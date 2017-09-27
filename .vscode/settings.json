@@ -1,0 +1,74 @@
+// Place your settings in this file to overwrite the default settings
+{
+    "files.associations": {
+        "*.blade.php": "html"
+    },
+    // Use Emmet on .vue and .blade
+    "emmet.syntaxProfiles": {
+        "blade": "html",
+        "vue-html": "html"
+    },
+    // Add Your Icon Theme if You Need this lol
+    "workbench.iconTheme": null,
+    // Edit Both Start and Ending of Tags
+    "auto-rename-tag.activationOnLanguage": [
+        "html",
+        "xml",
+        "php",
+        "javascript",
+        "blade",
+        "vue"
+    ],
+    // Exclude Vendor Folders During Search and Replace (GLOBAL)
+    "files.watcherExclude": {
+        "**/vendor/**": true,
+        "**/node_modules/**": true
+    },
+    // Exclude Vendor Folders During Search and Replace (GLOBAL)
+    "search.exclude": {
+        "**/vendor/**": true,
+        "**/node_modules/**": true
+    },
+    // remove crlf error on eslint
+    "files.eol": "\n",
+    // disable this and use eslint instead
+    "javascript.validate.enable": false,
+    // eslint configs
+    "eslint.enable": true,
+    "eslint.options": {
+        "extensions": [
+            ".html",
+            ".js",
+            ".vue",
+            ".jsx"
+        ]
+    },
+    "eslint.validate": [
+        {
+            "language": "html",
+            "autoFix": true
+        },
+        {
+            "language": "vue",
+            "autoFix": true
+        },
+        {
+            "language": "javascript",
+            "autoFix": true
+        },
+        {
+            "language": "javascriptreact",
+            "autoFix": true
+        }
+    ],
+    "eslint.run": "onSave",
+    "eslint.autoFixOnSave": true,
+    // PHP Configuration
+    "php.validate.run": "onSave",
+    "php.suggest.basic": false,
+    "phpformatter.composer": true,
+    // This is the Default in Any Windows 10, If you Installed it in Any Path Configure this One
+    "composer.executablePath": "C:\\ProgramData\\ComposerSetup\\bin\\composer.bat",
+    // Downloaded from http://windows.php.net/download/
+    "php.validate.executablePath": "C:\\php\\php.exe"
+}
