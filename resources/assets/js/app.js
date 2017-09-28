@@ -13,6 +13,7 @@ sync(store, router)
 /* Declare Here All Global Components You Want */
 
 /* Our Main Vue Instance */
+/* Reference Bus or vm */
 const app = window.vm = new Vue({
     store,
     router,
