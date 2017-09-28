@@ -1,7 +1,7 @@
 /* Boostrap App */
 import './bootstrap'
 /* App Routing */
-import router from './routes'
+import router from './router'
 /* App Template */
 import VueApp from './App.vue'
 /* App State Management */
