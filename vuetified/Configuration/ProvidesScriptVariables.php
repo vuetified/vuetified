@@ -18,9 +18,7 @@ trait ProvidesScriptVariables
         return [
             'csrfToken' => csrf_token(),
             'env' => config('app.env'),
-            'state' => self::getState(),
             'api_endpoint' => config('app.domain').'/api',
-            'userId' => Auth::id(),
             'site'  => config('site'), // Should Be Fetch From DB Settings
             'menu' => config('menu'), // Should Be Fetch From DB Menu and GroupMenu
             'grouplinks' => config('grouplinks'),
