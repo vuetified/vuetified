@@ -41,7 +41,7 @@
                     </thead>
 
                     <tbody>
-                        <tr v-for="client in clients">
+                        <tr v-for="client in clients" :key="client.id">
                             <!-- ID -->
                             <td style="vertical-align: middle;">
                                 {{ client.id }}
@@ -94,7 +94,7 @@
                             <p><strong>Whoops!</strong> Something went wrong!</p>
                             <br>
                             <ul>
-                                <li v-for="error in createForm.errors">
+                                <li v-for="(error,index) in createForm.errors" :key="index">
                                     {{ error }}
                                 </li>
                             </ul>
@@ -162,7 +162,7 @@
                             <p><strong>Whoops!</strong> Something went wrong!</p>
                             <br>
                             <ul>
-                                <li v-for="error in editForm.errors">
+                                <li v-for="(error,index) in editForm.errors" :key="index">
                                     {{ error }}
                                 </li>
                             </ul>
@@ -215,140 +215,140 @@
 </template>
 
 <script>
-    export default {
-        /*
+export default {
+    /*
          * The component's data.
          */
-        data() {
-            return {
-                clients: [],
+    data () {
+        return {
+            clients: [],
 
-                createForm: {
-                    errors: [],
-                    name: '',
-                    redirect: ''
-                },
-
-                editForm: {
-                    errors: [],
-                    name: '',
-                    redirect: ''
-                }
-            };
-        },
-
-        /**
-         * Prepare the component (Vue 1.x).
-         */
-        ready() {
-            this.prepareComponent();
-        },
-
-        /**
-         * Prepare the component (Vue 2.x).
-         */
-        mounted() {
-            this.prepareComponent();
-        },
-
-        methods: {
-            /**
-             * Prepare the component.
-             */
-            prepareComponent() {
-                this.getClients();
-
-                $('#modal-create-client').on('shown.bs.modal', () => {
-                    $('#create-client-name').focus();
-                });
-
-                $('#modal-edit-client').on('shown.bs.modal', () => {
-                    $('#edit-client-name').focus();
-                });
+            createForm: {
+                errors: [],
+                name: '',
+                redirect: ''
             },
 
-            /**
-             * Get all of the OAuth clients for the user.
-             */
-            getClients() {
-                axios.get('/oauth/clients')
-                        .then(response => {
-                            this.clients = response.data;
-                        });
-            },
-
-            /**
-             * Show the form for creating new clients.
-             */
-            showCreateClientForm() {
-                $('#modal-create-client').modal('show');
-            },
-
-            /**
-             * Create a new OAuth client for the user.
-             */
-            store() {
-                this.persistClient(
-                    'post', '/oauth/clients',
-                    this.createForm, '#modal-create-client'
-                );
-            },
-
-            /**
-             * Edit the given client.
-             */
-            edit(client) {
-                this.editForm.id = client.id;
-                this.editForm.name = client.name;
-                this.editForm.redirect = client.redirect;
-
-                $('#modal-edit-client').modal('show');
-            },
-
-            /**
-             * Update the client being edited.
-             */
-            update() {
-                this.persistClient(
-                    'put', '/oauth/clients/' + this.editForm.id,
-                    this.editForm, '#modal-edit-client'
-                );
-            },
-
-            /**
-             * Persist the client to storage using the given form.
-             */
-            persistClient(method, uri, form, modal) {
-                form.errors = [];
-
-                axios[method](uri, form)
-                    .then(response => {
-                        this.getClients();
-
-                        form.name = '';
-                        form.redirect = '';
-                        form.errors = [];
-
-                        $(modal).modal('hide');
-                    })
-                    .catch(error => {
-                        if (typeof error.response.data === 'object') {
-                            form.errors = _.flatten(_.toArray(error.response.data));
-                        } else {
-                            form.errors = ['Something went wrong. Please try again.'];
-                        }
-                    });
-            },
-
-            /**
-             * Destroy the given client.
-             */
-            destroy(client) {
-                axios.delete('/oauth/clients/' + client.id)
-                        .then(response => {
-                            this.getClients();
-                        });
+            editForm: {
+                errors: [],
+                name: '',
+                redirect: ''
             }
         }
+    },
+
+    /**
+         * Prepare the component (Vue 1.x).
+         */
+    ready () {
+        this.prepareComponent()
+    },
+
+    /**
+         * Prepare the component (Vue 2.x).
+         */
+    mounted () {
+        this.prepareComponent()
+    },
+
+    methods: {
+        /**
+             * Prepare the component.
+             */
+        prepareComponent () {
+            this.getClients()
+
+            $('#modal-create-client').on('shown.bs.modal', () => {
+                $('#create-client-name').focus()
+            })
+
+            $('#modal-edit-client').on('shown.bs.modal', () => {
+                $('#edit-client-name').focus()
+            })
+        },
+
+        /**
+             * Get all of the OAuth clients for the user.
+             */
+        getClients () {
+            axios.get('/oauth/clients')
+                .then(response => {
+                    this.clients = response.data
+                })
+        },
+
+        /**
+             * Show the form for creating new clients.
+             */
+        showCreateClientForm () {
+            $('#modal-create-client').modal('show')
+        },
+
+        /**
+             * Create a new OAuth client for the user.
+             */
+        store () {
+            this.persistClient(
+                'post', '/oauth/clients',
+                this.createForm, '#modal-create-client'
+            )
+        },
+
+        /**
+             * Edit the given client.
+             */
+        edit (client) {
+            this.editForm.id = client.id
+            this.editForm.name = client.name
+            this.editForm.redirect = client.redirect
+
+            $('#modal-edit-client').modal('show')
+        },
+
+        /**
+             * Update the client being edited.
+             */
+        update () {
+            this.persistClient(
+                'put', '/oauth/clients/' + this.editForm.id,
+                this.editForm, '#modal-edit-client'
+            )
+        },
+
+        /**
+             * Persist the client to storage using the given form.
+             */
+        persistClient (method, uri, form, modal) {
+            form.errors = []
+
+            axios[method](uri, form)
+                .then(response => {
+                    this.getClients()
+
+                    form.name = ''
+                    form.redirect = ''
+                    form.errors = []
+
+                    $(modal).modal('hide')
+                })
+                .catch(error => {
+                    if (typeof error.response.data === 'object') {
+                        form.errors = _.flatten(_.toArray(error.response.data))
+                    } else {
+                        form.errors = ['Something went wrong. Please try again.']
+                    }
+                })
+        },
+
+        /**
+             * Destroy the given client.
+             */
+        destroy (client) {
+            axios.delete('/oauth/clients/' + client.id)
+                .then(response => {
+                    this.getClients()
+                })
+        }
     }
+}
 </script>
