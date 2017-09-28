@@ -28,7 +28,7 @@
 
 @section('content')
 <div id="app">
-    <vue-app/>
+    <app/>
 </div>
 @endsection
 
