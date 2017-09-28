@@ -27,12 +27,18 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
+        /* Register Passport Routes */
         Passport::routes();
-        Passport::tokensCan([
-            'place-orders' => 'Place orders',
-            'check-status' => 'Check order status',
-        ]);
+
+        /* Add Expiration to Access Token */
         Passport::tokensExpireIn(Carbon::now()->addDays(15));
         Passport::refreshTokensExpireIn(Carbon::now()->addDays(30));
+
+        /* Add Scope */
+
+        // Passport::tokensCan([
+        //     'place-orders' => 'Place orders',
+        //     'check-status' => 'Check order status',
+        // ]);
     }
 }

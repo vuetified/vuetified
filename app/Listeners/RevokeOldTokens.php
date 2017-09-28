@@ -3,7 +3,9 @@
 namespace App\Listeners;
 
 use Laravel\Passport\Events\AccessTokenCreated;
-use App\User;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\DB;
 
 class RevokeOldTokens
 {
@@ -23,8 +25,12 @@ class RevokeOldTokens
      * @param  AccessTokenCreated  $event
      * @return void
      */
-    public function handle(AccessTokenCreated $newtoken)
+    public function handle(AccessTokenCreated $event)
     {
-        User::find($newtoken->userId)->tokens()->where('id', '!=' $newtoken->tokenId)->where('client_id',$newtoken->clientId)->delete();
+        DB::table('oauth_access_tokens')
+        ->where('id', '<>', $event->tokenId)
+        ->where('user_id', $event->userId)
+        ->where('client_id', $event->clientId)
+        ->update(['revoked' => true]);
     }
 }
