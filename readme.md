@@ -244,3 +244,28 @@ router.js
 routes.js
 store.js
 ```
+
+## Vue Routing
+
+we can use a global object routes()
+using laravel named routes courtesy of ziggy
+
+```js
+{
+    path: route('api.user.idex'),
+    component: Users
+},
+```
+
+Divided our Routes to Multiple Parts So We Can Organize Routes For Big Project
+Added routes folder
+change routes to router 
+and add routes to concat all routes file in routes folder
+
+
+## App State(Vuex)
+all reside in store folder, uses persistent state using localstorage
+
+## Vuetified Auth Scaffold Using Laravel Passport
+
+We Have A Full Authentication In Vuetified App
