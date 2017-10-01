@@ -5,10 +5,12 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
+use Gloudemans\Shoppingcart\Contracts\Buyable;
+use Gloudemans\Shoppingcart\CanBeBought;
 
-class Product extends Model
+class Product extends Model implements Buyable
 {
-    use Sluggable,SluggableScopeHelpers;
+    use Sluggable,SluggableScopeHelpers,CanBeBought;
 
     public function sluggable()
     {
@@ -27,5 +29,10 @@ class Product extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public static function findBySku($sku)
+    {
+        return self::whereSku($sku)->first();
     }
 }

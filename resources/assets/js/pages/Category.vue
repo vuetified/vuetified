@@ -64,11 +64,21 @@
                 </transition>
               </clazy-load>
               <v-card-actions class="accent">
-                <span class="body-2">View Product</span>
-                <v-spacer></v-spacer>
-                <v-btn icon @click="showProduct(product.slug)">
-                  <v-icon class="primary--text">shopping_basket</v-icon>
+                <span class="body-2" style="cursor:pointer;" @click="showProduct(product.slug)">Product Details</span>
+                <v-btn icon @click="showProduct(product.slug)" v-tooltip:right="{ html: `View Details of ${product.name}` }">
+                  <v-icon class="info--text">fa-info-circle</v-icon>
                 </v-btn>
+                <v-spacer></v-spacer>
+                <v-btn icon v-if="product.inCart" @click="removeFromCart(product.id)" v-tooltip:left="{ html: `Remove ${product.name} in cart` }">
+                  <v-icon class="error--text">remove_shopping_cart</v-icon>
+                </v-btn>
+                <v-btn icon @click="checkout()" v-if="product.inCart" v-tooltip:left="{ html: `Checkout ${product.name} qty : ${product.qty}` }">
+                  <v-icon v-badge="{ value: product.qty}" class="primary--text">shopping_cart</v-icon>
+                </v-btn>
+                <v-btn icon @click="addItem(product.sku)" v-tooltip:left="{ html: `Add ${product.name} to cart` }">
+                  <v-icon class="info--text">add_shopping_cart</v-icon>
+                </v-btn>
+
                 <!-- Add Other Action buttons Here -->
               </v-card-actions>
             </v-card>
@@ -78,7 +88,6 @@
             <v-flex xs12>
                 <div class="text-xs-center">
                     <v-pagination
-                    :total-visible="total_visible"
                     :length="length"
                     v-model="meta.current_page"
                     circle
@@ -97,6 +106,8 @@
 <script>
 import MainLayout from '../layouts/Main.vue'
 import Theme from '../mixins/theme'
+import { createNamespacedHelpers } from 'vuex'
+const { mapActions, mapGetters, mapMutations } = createNamespacedHelpers('cart')
 
 export default {
     props: ['slug'],
@@ -126,22 +137,74 @@ export default {
     computed: {
         length () {
             let self = this
-            return Math.abs(self.meta.from - self.meta.last_page)
-        },
-        total_visible () {
-            let self = this
-            return Math.round(self.meta.total / (self.meta.per_page / 2))
+            return Math.round(self.meta.total / (self.meta.per_page))
         },
         noPagination () {
             let self = this
             return self.meta.total === self.meta.per_page
-        }
+        },
+        ...mapGetters({
+            getItems: 'getItems',
+            getTax: 'getTax',
+            getSubTotal: 'getSubTotal',
+            getCount: 'getCount',
+            getForm: 'getForm'
+        })
     },
     mounted () {
         let self = this
         self.getProducts()
+
+        vm.$on('inCart', (payload) => {
+            let product = _.find(self.products, { id: payload.item.id })
+            let index = _.findIndex(self.products, { id: payload.item.id })
+            product.inCart = payload.inCart
+            product.qty = payload.qty
+            self.$set(self.products, index, product)
+        })
     },
     methods: {
+        checkout () {
+            let self = this
+            self.$router.push({ name: 'checkout' })
+        },
+        setInCart () {
+            let self = this
+            let items = Object.values(self.getItems)
+            let inCart = items.filter(function (item) {
+                return self.products.some(function (product) {
+                    return product.id === item.id
+                })
+            })
+            inCart.forEach(function (payload) {
+                let product = _.find(self.products, { id: payload.id })
+                let index = _.findIndex(self.products, { id: payload.id })
+                product.inCart = true
+                product.qty = payload.qty
+                self.$set(self.products, index, product)
+            }, this)
+        },
+        ...mapActions({
+            addItem: 'addItem',
+            removeItem: 'removeItem',
+            destroyCart: 'destroyCart',
+            updateItem: 'updateItem'
+        }),
+        ...mapMutations({
+            setItems: 'setItems',
+            setTax: 'setTax',
+            setSubTotal: 'setSubTotal',
+            setTotal: 'setTotal',
+            newCartForm: 'newForm'
+        }),
+        addToCart (sku) {
+            let self = this
+            self.addItem(sku)
+        },
+        removeFromCart (id) {
+            let self = this
+            self.removeItem(id)
+        },
         async getProducts () {
             let self = this
             let slug = {slug: self.slug}
@@ -149,6 +212,7 @@ export default {
                 self.products = response.data.data
                 self.links = response.data.links
                 self.meta = response.data.meta
+                self.setInCart()
             }).catch(({errors, message}) => {
                 console.log(errors)
                 self.$popup({ message: message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' })
@@ -172,6 +236,7 @@ export default {
                 self.products = response.data.data
                 self.links = response.data.links
                 self.meta = response.data.meta
+                self.setInCart()
                 self.$popup({ message: `Switch To Page: ${self.meta.current_page}`, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
             }).catch(({errors, message}) => {
                 console.log(errors)
@@ -187,6 +252,12 @@ export default {
         category: {
             handler: function (newValue) {
                 console.log('Category Fetched', newValue)
+            },
+            deep: true
+        },
+        products: {
+            handler: function () {
+                console.log('Products Array Updated')
             },
             deep: true
         }

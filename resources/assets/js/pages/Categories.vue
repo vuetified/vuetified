@@ -71,7 +71,6 @@
             <v-flex xs12>
                 <div class="text-xs-center">
                     <v-pagination
-                    :total-visible="total_visible"
                     :length="length"
                     v-model="meta.current_page"
                     circle
@@ -114,11 +113,7 @@ export default {
     computed: {
         length () {
             let self = this
-            return Math.abs(self.meta.from - self.meta.last_page)
-        },
-        total_visible () {
-            let self = this
-            return Math.round(self.meta.total / (self.meta.per_page / 2))
+            return Math.round(self.meta.total / (self.meta.per_page))
         },
         noPagination () {
             let self = this

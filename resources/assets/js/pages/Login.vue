@@ -6,7 +6,7 @@
             <v-icon class="primary--text">arrow_back</v-icon>
           </v-btn>
           <v-spacer></v-spacer>
-          <v-toolbar-title class="text-xs-center primary--text">Login Page</v-toolbar-title>
+          <v-toolbar-title class="text-xs-center primary--text">Customer Login Page</v-toolbar-title>
           <v-spacer></v-spacer>
           <v-toolbar-items>
               <!-- If There is no User Account Login Yet Redirect to Authentication Page -->

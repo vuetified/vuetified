@@ -11,4 +11,6 @@ interface InitialFrontendState
      * @return array
      */
     public function forUser($user);
+
+    public function getCart();
 }

@@ -14,7 +14,7 @@ class ProductSeeder extends Seeder
     {
         $categories = Category::all();
         foreach($categories as $category){
-           $products =  factory(App\Product::class,10)->create(); 
+           $products =  factory(App\Product::class,12)->create(); 
            foreach($products as $product){
             $category->products()->save($product);
            }

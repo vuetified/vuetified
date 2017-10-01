@@ -22,13 +22,18 @@ trait ProvidesScriptVariables
             'site'  => config('site'), // Should Be Fetch From DB Settings
             'menu' => config('menu'), // Should Be Fetch From DB Menu and GroupMenu
             'grouplinks' => config('grouplinks'),
-            'theme' => config('theme')
+            'theme' => config('theme'),
+            'cart' => self::getCart()
         ];
     }
 
     protected static function getState()
     {
        return Vuetified::call(InitialFrontendState::class.'@forUser', [Auth::user()]);
+    }
+    protected static function getCart()
+    {
+       return Vuetified::call(InitialFrontendState::class.'@getCart');
     }
 
 }

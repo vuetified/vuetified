@@ -13,7 +13,7 @@ class ProductsController extends Controller
 {
     public function index()
     {
-        return new ProductCollection(Product::with('category')->paginate(10));
+        return new ProductCollection(Product::with('category')->paginate(12));
     }
     public function show($slug)
     {

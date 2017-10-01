@@ -15,7 +15,7 @@ class CategoriesController extends Controller
 {
     public function index()
     {
-        return new CategoryCollection(Category::all()->paginate(4));
+        return new CategoryCollection(Category::all()->paginate(12));
     }
     public function show($category)
     {
@@ -23,7 +23,7 @@ class CategoriesController extends Controller
         if(!$category){
             throw new SlugNotFound;
         }
-        $product = Product::where('category_id',$category->id)->get()->paginate(4);
+        $product = Product::where('category_id',$category->id)->get()->paginate(12);
         return ProductResource::collection($product);
        
     }

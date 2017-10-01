@@ -37,3 +37,8 @@ Route::get('/categories/{slug}', 'Api\CategoriesController@show')->name('api.cat
 
 Route::get('/products', 'Api\ProductsController@index')->name('api.product.index');
 Route::get('/products/{slug}', 'Api\ProductsController@show')->name('api.product.show');
+
+
+
+// Route::post('/checkout', 'Api\CheckoutController@checkout')->name('api.product.show');
+// Checkout Will Save A New Order For Specific Authenticated User

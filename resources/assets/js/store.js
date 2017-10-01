@@ -3,12 +3,14 @@ import createPersistedState from 'vuex-persistedstate'
 /* Add Below All Your Modules */
 import auth from './store/modules/auth'
 import permission from './store/modules/permission'
+import cart from './store/modules/cart'
 // import users from './modules/users'
 
 export default new Store({
     modules: {
         auth,
-        permission
+        permission,
+        cart
         // users,
         /* add other modules here */
     },

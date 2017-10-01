@@ -30,6 +30,8 @@ class Product extends Resource
             'rating_count' => $this->rating_count,
             'available' => $this->available,
             'options' => $this->options,
+            'inCart' => false,
+            'qty' => 0
         ];
     }
 }
