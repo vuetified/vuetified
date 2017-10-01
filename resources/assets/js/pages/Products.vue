@@ -65,7 +65,7 @@
                 <v-btn icon v-if="product.inCart" @click.native="removeFromCart(product.id)" v-tooltip:left="{ html: `Remove ${product.name} in cart` }">
                   <v-icon class="error--text">remove_shopping_cart</v-icon>
                 </v-btn>
-                <v-btn icon @click="checkout()" v-if="product.inCart" v-tooltip:left="{ html: `Checkout ${product.name} qty : ${product.qty}` }">
+                <v-btn icon @click.native="viewCart()" v-if="product.inCart" v-tooltip:left="{ html: `View Item in Cart | ${product.name} qty : ${product.qty}` }">
                   <v-icon v-badge="{ value: product.qty}" class="primary--text">shopping_cart</v-icon>
                 </v-btn>
                 <v-btn icon @click.native="addItem(product.sku)" v-tooltip:left="{ html: `Add ${product.name} to cart` }">
@@ -155,9 +155,9 @@ export default {
         })
     },
     methods: {
-        checkout () {
+        viewCart () {
             let self = this
-            self.$router.push({ name: 'checkout' })
+            self.$router.push({ name: 'cart' })
         },
         setInCart () {
             let self = this
