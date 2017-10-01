@@ -18,7 +18,7 @@ const getters = {
 
 const actions = {
     /* Tested Working */
-    /* form : name, email ,password, password_confirmation */
+    /* form : sku */
     async addItem ({ commit, state }, sku) {
         commit('newForm')
         state.form.busy = true
@@ -43,6 +43,8 @@ const actions = {
             vm.$popup({ message: message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' })
         }
     },
+    /* Tested Working */
+    /* form : product.id */
     async removeItem ({commit, state}, id) {
         commit('newForm')
         state.form.busy = true
@@ -50,7 +52,6 @@ const actions = {
         state.form.rowId = item.rowId
         try {
             const payload = await App.post(route('api.cart.delete'), state.form)
-            console.log(payload)
             commit('setItems', payload.cart.items)
             commit('setTax', payload.cart.tax)
             commit('setSubTotal', payload.cart.subtotal)
