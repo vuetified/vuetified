@@ -138,6 +138,7 @@ export default {
                 self.categories = response.data.data
                 self.links = response.data.links
                 self.meta = response.data.meta
+                vm.$popup({ message: `Category Page: ${page}`, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
             }).catch(({errors, message}) => {
                 console.log(errors)
                 vm.$popup({ message: message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' })
@@ -149,6 +150,7 @@ export default {
                 self.categories = response.data.data
                 self.links = response.data.links
                 self.meta = response.data.meta
+                vm.$popup({ message: `Category Page: ${self.page}`, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
             }).catch(({errors, message}) => {
                 console.log(errors)
                 vm.$popup({ message: message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' })

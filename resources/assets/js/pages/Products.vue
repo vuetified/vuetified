@@ -217,7 +217,6 @@ export default {
                 self.links = response.data.links
                 self.meta = response.data.meta
                 self.setInCart()
-                vm.$popup({ message: `Switch To Page: ${self.page}`, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
             }).catch(({errors, message}) => {
                 console.log(errors)
                 vm.$popup({ message: message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' })
@@ -230,7 +229,7 @@ export default {
                 self.links = response.data.links
                 self.meta = response.data.meta
                 self.setInCart()
-                vm.$popup({ message: `Switch To Page: ${self.page}`, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
+                vm.$popup({ message: `Product Page: ${self.page}`, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
             }).catch(({errors, message}) => {
                 console.log(errors)
                 vm.$popup({ message: message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' })
@@ -246,6 +245,7 @@ export default {
             let self = this
             self.page = newValue
             self.$router.push({ name: 'product.index', query: { page: newValue } })
+            vm.$popup({ message: `Product Page: ${self.page}`, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
         },
         products: {
             handler: function () {
