@@ -58,7 +58,7 @@ export default {
         },
         redirectBack () {
             let self = this
-            return self.$nextTick(() => self.$router.go(-1))
+            self.$router.push({path: self.$store.state.route.from.fullPath})
         },
         checkout () {
             let self = this
