@@ -12,6 +12,7 @@ const getters = {
     getItems: state => state.items,
     getTax: state => state.tax,
     getSubTotal: state => state.subtotal,
+    getTotal: state => state.total,
     getCount: state => state.count,
     getForm: state => state.form
 }

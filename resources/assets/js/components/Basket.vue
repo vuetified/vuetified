@@ -23,69 +23,45 @@
         ></v-checkbox>
       </td>
       <td class="title text-xs-left info--text">{{ props.item.id }}</td>
-      <td class="title text-xs-left info--text">
-        <v-avatar>
-            <img :src="props.item.image" :alt="props.item.name">
-        </v-avatar>
-      </td>
       <td class="title text-xs-left info--text">{{ props.item.name }}</td>
-      <td class="title text-xs-left info--text">{{ props.item.price }}</td>
+      <td class="title text-xs-left info--text">{{ props.item.price | currency('₱') }}</td>
       <td class="title text-xs-left info--text">{{ props.item.qty }}</td>
-      <td class="title text-xs-left info--text">{{ props.item.total }}</td>
+      <td class="title text-xs-left info--text">{{ props.item.subtotal | currency('₱') }}</td>
     </template>
     <template slot="footer">
-      <td colspan="100%">
-        <strong class="right headline primary--text" style="padding-right:200px;">Total:</strong>
-      </td>
+        <td class="title text-xs-left info--text"></td>
+        <td class="title text-xs-left info--text"></td>
+        <td class="title text-xs-left info--text"></td>
+        <td class="title text-xs-left info--text"></td>
+        <td class="title text-xs-left info--text"></td>
+        <td class="title text-xs-left primary--text">
+            <p style="margin-left:-100px;">Tax :<span style="margin-left:78px;">{{ tax | currency('₱') }}</span></p>
+            <p style="margin-left:-100px;">Sub-Total :<span style="margin-left:23px;">{{ subtotal | currency('₱') }}</span></p>
+            <p style="margin-left:-100px;">Total :<span style="margin-left:65px;">{{ total | currency('₱') }}</span></p>
+        </td>
     </template>
   </v-data-table>
 </template>
 
 <script>
 export default {
-    props: ['orders'],
+    props: ['cart'],
     data () {
         return {
             search: '',
             selected: [],
             headers: [
                 { text: 'Product ID', value: 'id', align: 'left', sortable: true },
-                { text: 'Product Image', value: 'image', align: 'left' },
                 { text: 'Product Name', value: 'name', align: 'left' },
                 { text: 'Product Price', value: 'price', align: 'left' },
                 { text: 'Quantity', value: 'qty', align: 'left' },
                 { text: 'Total', value: 'total', align: 'left' }
-
             ],
-            items: [
-                {
-                    value: false,
-                    id: 1,
-                    image: 'https://vuetifyjs.com/static/doc-images/john.jpg',
-                    name: 'Frozen Yogurt',
-                    price: 1,
-                    qty: 6.0,
-                    total: 6
-                },
-                {
-                    value: false,
-                    id: 2,
-                    image: 'https://vuetifyjs.com/static/doc-images/john.jpg',
-                    name: 'Yogurt',
-                    price: 2,
-                    qty: 7.0,
-                    total: 14
-                },
-                {
-                    value: false,
-                    id: 3,
-                    image: 'https://vuetifyjs.com/static/doc-images/john.jpg',
-                    name: 'Beans',
-                    price: 8,
-                    qty: 6.0,
-                    total: 48
-                }
-            ]
+            items: [],
+            tax: 0,
+            subtotal: 0,
+            total: 0,
+            count: 0
         }
     },
     computed: {
@@ -98,17 +74,11 @@ export default {
     },
     mounted () {
         let self = this
-        Bus.$on('add-order', (order) => {
-            self.orders.push(order)
-        })
-        Bus.$on('remove-order', (order) => {
-            let index = _.findIndex(self.orders, { id: order.id })
-            self.$delete(self.orders, index)
-        })
-        Bus.$on('update-order', (order) => {
-            let index = _.findIndex(self.orders, { id: order.id })
-            self.$set(self.orders, index, order)
-        })
+        self.items = self.cart.items
+        self.tax = self.cart.tax
+        self.subtotal = self.cart.subtotal
+        self.total = self.cart.total
+        self.count = self.cart.count
     },
     methods: {
         closeCart () {

@@ -10,30 +10,38 @@
           <v-spacer></v-spacer>
           <v-toolbar-items>
               <!-- If There is no User Account Login Yet Redirect to Authentication Page -->
-            <v-btn class="success--text" flat @click.native="checkout()" v-if="orders.length > 0">Checkout<v-icon right dark>payment</v-icon></v-btn>
+            <v-btn class="success--text" flat @click.native="checkout()" v-if="cart.items.length > 0">Checkout<v-icon right dark>payment</v-icon></v-btn>
             <v-btn class="warning--text" flat @click.native="redirectBack()" v-else>Close</v-btn>
           </v-toolbar-items>
         </v-toolbar>
-        <basket :orders="orders"></basket>
+        <basket :cart="cart"></basket>
       </v-card>
     </modal>
 </template>
 
 <script>
 import Basket from './Basket.vue'
+import { createNamespacedHelpers } from 'vuex'
+const { mapActions, mapGetters, mapMutations } = createNamespacedHelpers('cart')
+
 export default {
     data: () => ({
-        orders: [
-            []
-        ]
-        // item name
-        // item no.
-        // item price
-        // item qty
-        // shipping fix rate
+        cart: {
+            items: [],
+            tax: 0,
+            subtotal: 0,
+            total: 0,
+            count: 0
+        }
     }),
     computed: {
-
+        ...mapGetters({
+            getItems: 'getItems',
+            getTax: 'getTax',
+            getSubTotal: 'getSubTotal',
+            getTotal: 'getTotal',
+            getCount: 'getCount'
+        }),
         isDark () {
             return this.dark === true
         }
@@ -41,20 +49,36 @@ export default {
     components: {
         Basket
     },
-    // when add to cart event is triggered
-    // add one item on the cart
-    // toggle on the dialog to true
-    // update the cart qty , price, 
     mounted () {
         let self = this
+        self.cart = {
+            items: Object.values(self.getItems),
+            tax: self.getTax,
+            subtotal: self.getSubTotal,
+            total: self.getTotal,
+            count: self.getCount
+        }
         self.$modal.show('cart-modal')
         Bus.$on('close-cart', () => {
             self.redirectBack()
         })
     },
     methods: {
+        ...mapActions({
+            addItem: 'addItem',
+            removeItem: 'removeItem',
+            destroyCart: 'destroyCart',
+            updateItem: 'updateItem'
+        }),
+        ...mapMutations({
+            setItems: 'setItems',
+            setTax: 'setTax',
+            setSubTotal: 'setSubTotal',
+            setTotal: 'setTotal',
+            newCartForm: 'newForm'
+        }),
         exceedOrderLimit () {
-            return this.orders.length > 999
+            return this.cart.items.length > 999
         },
         redirectBack () {
             let self = this
