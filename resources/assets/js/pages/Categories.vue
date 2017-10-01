@@ -168,8 +168,8 @@ export default {
             this.changePage()
         },
         categories: {
-            handler: function (newValue) {
-                console.log(newValue)
+            handler: function () {
+                console.log('Categories Array Updated')
             },
             deep: true
         }
