@@ -125,7 +125,7 @@ export default {
             to: 0,
             total: 0
         },
-        page: 0
+        page: 1
     }),
     computed: {
         length () {
@@ -213,7 +213,7 @@ export default {
                 self.links = response.data.links
                 self.meta = response.data.meta
                 self.setInCart()
-                vm.$popup({ message: `Switch To Page: ${page}`, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
+                vm.$popup({ message: `Switch To Page: ${self.page}`, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
             }).catch(({errors, message}) => {
                 console.log(errors)
                 vm.$popup({ message: message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' })
