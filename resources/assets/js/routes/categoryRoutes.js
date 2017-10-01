@@ -6,6 +6,10 @@ module.exports = [
         path: '/categories',
         component: Categories,
         name: 'category.index',
+        props: (route) => ({ query: {
+            q: route.query.q || '',
+            page: route.query.page || 1
+        } }),
         meta: {
             permission: 'guest',
             fail: '/error'
@@ -14,7 +18,13 @@ module.exports = [
     {
         path: '/categories/:slug',
         component: Category,
-        props: true,
+        props: (route) => (
+            {
+                query: {
+                    q: route.query.q || '',
+                    page: route.query.page || 1
+                },
+                slug: route.params.slug }),
         name: 'category.show',
         meta: {
             permission: 'guest',
