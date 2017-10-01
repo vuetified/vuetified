@@ -66,7 +66,7 @@
                   <v-icon class="error--text">remove_shopping_cart</v-icon>
                 </v-btn>
                 <v-btn icon @click.native="viewCart()" v-if="product.inCart" v-tooltip:left="{ html: `View Item in Cart | ${product.name} qty : ${product.qty}` }">
-                  <v-icon v-badge="{ value: product.qty}" class="primary--text">shopping_cart</v-icon>
+                  <v-icon v-badge="{ value: parseInt(product.qty)}" class="primary--text">shopping_cart</v-icon>
                 </v-btn>
                 <v-btn icon @click.native="addItem(product.sku)" v-tooltip:left="{ html: `Add ${product.name} to cart` }">
                   <v-icon class="info--text">add_shopping_cart</v-icon>
@@ -82,7 +82,7 @@
                 <div class="text-xs-center">
                     <v-pagination
                     :length="length"
-                    v-model="meta.current_page"
+                    v-model.number="page"
                     circle
                     >
                     </v-pagination>
@@ -102,6 +102,7 @@ import { createNamespacedHelpers } from 'vuex'
 const { mapActions, mapGetters, mapMutations } = createNamespacedHelpers('cart')
 
 export default {
+    props: ['query'],
     mixins: [Theme],
     components: {
         MainLayout
@@ -123,7 +124,8 @@ export default {
             per_page: 0,
             to: 0,
             total: 0
-        }
+        },
+        page: 0
     }),
     computed: {
         length () {
@@ -142,16 +144,21 @@ export default {
             getForm: 'getForm'
         })
     },
+    created () {
+        /* important if redirecting back to populate our product list */
+        this.getProducts()
+    },
     mounted () {
         let self = this
-        self.getProducts()
-
+        self.page = parseInt(self.query.page)
         vm.$on('inCart', (payload) => {
             let product = _.find(self.products, { id: payload.item.id })
             let index = _.findIndex(self.products, { id: payload.item.id })
-            product.inCart = payload.inCart
-            product.qty = payload.qty
-            self.$set(self.products, index, product)
+            if (product !== undefined) {
+                product.inCart = payload.inCart
+                product.qty = payload.qty
+                self.$set(self.products, index, product)
+            }
         })
     },
     methods: {
@@ -167,13 +174,15 @@ export default {
                     return product.id === item.id
                 })
             })
-            inCart.forEach(function (payload) {
-                let product = _.find(self.products, { id: payload.id })
-                let index = _.findIndex(self.products, { id: payload.id })
-                product.inCart = true
-                product.qty = payload.qty
-                self.$set(self.products, index, product)
-            }, this)
+            if (inCart.length > 0) {
+                inCart.forEach(function (payload) {
+                    let product = _.find(self.products, { id: payload.id })
+                    let index = _.findIndex(self.products, { id: payload.id })
+                    product.inCart = true
+                    product.qty = payload.qty
+                    self.$set(self.products, index, product)
+                })
+            }
         },
         ...mapActions({
             addItem: 'addItem',
@@ -196,13 +205,27 @@ export default {
             let self = this
             self.removeItem(id)
         },
-        getProducts () {
+        async getProducts () {
             let self = this
-            axios.get(route('api.product.index')).then((response) => {
+            await axios.get(`${route('api.product.index')}/?page=${self.$route.query.page}`).then((response) => {
                 self.products = response.data.data
                 self.links = response.data.links
                 self.meta = response.data.meta
                 self.setInCart()
+                vm.$popup({ message: `Switch To Page: ${self.page}`, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
+            }).catch(({errors, message}) => {
+                console.log(errors)
+                vm.$popup({ message: message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' })
+            })
+        },
+        async loadProducts () {
+            let self = this
+            await axios.get(`${route('api.product.index')}/?page=${self.page}`).then((response) => {
+                self.products = response.data.data
+                self.links = response.data.links
+                self.meta = response.data.meta
+                self.setInCart()
+                vm.$popup({ message: `Switch To Page: ${self.page}`, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
             }).catch(({errors, message}) => {
                 console.log(errors)
                 vm.$popup({ message: message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' })
@@ -211,33 +234,21 @@ export default {
         showProduct (slug) {
             let self = this
             self.$router.push({ name: 'product.show', params: { slug: slug } })
-        },
-        changePage () {
-            let self = this
-            axios.get(`${route('api.product.index')}/?page=${self.meta.current_page}`).then((response) => {
-                /* Override the Object with new Value */
-                self.products = response.data.data
-                self.links = response.data.links
-                self.meta = response.data.meta
-                self.setInCart()
-                vm.$popup({ message: `Switch To Page: ${self.meta.current_page}`, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
-            }).catch(({errors, message}) => {
-                console.log(errors)
-                vm.$popup({ message: message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' })
-            })
         }
     },
     watch: {
-        'meta.current_page' (newValue) {
-            console.log('Change To Page ' + newValue)
-            this.changePage()
+        'page' (newValue) {
+            let self = this
+            self.page = newValue
+            self.$router.push({ name: 'product.index', query: { page: newValue } })
         },
         products: {
             handler: function () {
                 console.log('Products Array Updated')
             },
             deep: true
-        }
+        },
+        '$route': 'loadProducts'
     }
 }
 </script>
