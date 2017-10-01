@@ -247,7 +247,7 @@ export default {
 
     },
     watch: {
-        'page' (newValue) {
+        page (newValue) {
             let self = this
             self.page = newValue
             self.$router.push({ name: 'category.show', query: { page: newValue }, params: { slug: self.$route.params.slug } })

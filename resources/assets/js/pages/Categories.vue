@@ -72,7 +72,7 @@
                 <div class="text-xs-center">
                     <v-pagination
                     :length="length"
-                    v-model="meta.current_page"
+                    v-model="page"
                     circle
                     >
                     </v-pagination>
@@ -90,6 +90,7 @@ import MainLayout from '../layouts/Main.vue'
 import Theme from '../mixins/theme'
 
 export default {
+    props: ['query'],
     mixins: [Theme],
     data: () => ({
         contentClass: { 'grey': true, 'lighten-4': true, 'accent--text': true },
@@ -108,7 +109,8 @@ export default {
             per_page: 0,
             to: 0,
             total: 0
-        }
+        },
+        page: 1
     }),
     computed: {
         length () {
@@ -120,14 +122,30 @@ export default {
             return self.meta.total === self.meta.per_page
         }
     },
-    mounted () {
+    created () {
         let self = this
         self.getCategories()
     },
+    mounted () {
+        let self = this
+        self.page = parseInt(self.query.page)
+    },
     methods: {
-        getCategories () {
+        async getCategories () {
             let self = this
-            axios.get(route('api.category.index')).then((response) => {
+            let page = self.$route.query.page || 1
+            await axios.get(`${route('api.category.index')}?page=${page}`).then((response) => {
+                self.categories = response.data.data
+                self.links = response.data.links
+                self.meta = response.data.meta
+            }).catch(({errors, message}) => {
+                console.log(errors)
+                vm.$popup({ message: message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' })
+            })
+        },
+        async loadCategories () {
+            let self = this
+            await axios.get(`${route('api.category.index')}?page=${self.page}`).then((response) => {
                 self.categories = response.data.data
                 self.links = response.data.links
                 self.meta = response.data.meta
@@ -139,40 +157,24 @@ export default {
         showCategory (slug) {
             let self = this
             self.$router.push({ name: 'category.show', params: { slug: slug } })
-        },
-        changePage () {
-            let self = this
-            axios.get(`${route('api.category.index')}/?page=${self.meta.current_page}`).then((response) => {
-                /* This Will Just Add The New Value To The Current Object
-                 Useful for Mobile Loading the New Object */
-
-                // self.categories = Object.assign({}, self.categories, response.data.data)
-
-                /* Override the Object with new Value */
-                self.categories = response.data.data
-                self.links = response.data.links
-                self.meta = response.data.meta
-                vm.$popup({ message: `Switch To Page: ${self.meta.current_page}`, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
-            }).catch(({errors, message}) => {
-                console.log(errors)
-                vm.$popup({ message: message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' })
-            })
         }
     },
     components: {
         MainLayout
     },
     watch: {
-        'meta.current_page' (newValue) {
-            console.log('Change To Page ' + newValue)
-            this.changePage()
+        page (newValue) {
+            let self = this
+            self.page = newValue
+            self.$router.push({ name: 'category.index', query: { page: newValue } })
         },
         categories: {
             handler: function () {
                 console.log('Categories Array Updated')
             },
             deep: true
-        }
+        },
+        '$route': 'loadCategories'
     }
 }
 </script>

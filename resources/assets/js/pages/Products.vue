@@ -238,7 +238,7 @@ export default {
         }
     },
     watch: {
-        'page' (newValue) {
+        page (newValue) {
             let self = this
             self.page = newValue
             self.$router.push({ name: 'product.index', query: { page: newValue } })
