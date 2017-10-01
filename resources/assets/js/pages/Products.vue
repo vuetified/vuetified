@@ -152,12 +152,16 @@ export default {
         let self = this
         self.page = parseInt(self.query.page)
         vm.$on('inCart', (payload) => {
-            let product = _.find(self.products, { id: payload.item.id })
-            let index = _.findIndex(self.products, { id: payload.item.id })
-            if (product !== undefined) {
-                product.inCart = payload.inCart
-                product.qty = payload.qty
-                self.$set(self.products, index, product)
+            if (payload.length === 0) {
+                self.getProducts()
+            } else {
+                let product = _.find(self.products, { id: payload.item.id })
+                let index = _.findIndex(self.products, { id: payload.item.id })
+                if (product !== undefined) {
+                    product.inCart = payload.inCart
+                    product.qty = payload.qty
+                    self.$set(self.products, index, product)
+                }
             }
         })
     },
@@ -182,12 +186,12 @@ export default {
         setInCart () {
             let self = this
             let items = Object.values(self.getItems)
-            let inCart = items.filter(function (item) {
-                return self.products.some(function (product) {
-                    return product.id === item.id
+            if (items.length > 0) {
+                let inCart = items.filter(function (item) {
+                    return self.products.some(function (product) {
+                        return product.id === item.id
+                    })
                 })
-            })
-            if (inCart.length > 0) {
                 inCart.forEach(function (payload) {
                     let product = _.find(self.products, { id: payload.id })
                     let index = _.findIndex(self.products, { id: payload.id })

@@ -63,6 +63,7 @@
     "vue-youtube-embed": "^2.1.2",
     "vue2-dropzone": "^2.3.5",
     "vue2-filters": "^0.2.1",
+    "vue2-scrollbar": "^0.0.3",
     "vuebars": "^0.1.1",
     "vuetify": "^0.15.7",
     "vueup": "^1.0.5",

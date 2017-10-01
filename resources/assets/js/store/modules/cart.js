@@ -74,7 +74,7 @@ const actions = {
         commit('newForm')
         state.form.busy = true
         try {
-            const payload = await App.post(route('api.cart.delete'))
+            const payload = await App.post(route('api.cart.destroy'), state.form)
             commit('setItems', payload.cart.items)
             commit('setTax', payload.cart.tax)
             commit('setSubTotal', payload.cart.subtotal)

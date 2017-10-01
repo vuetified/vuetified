@@ -15,31 +15,62 @@
         <img v-if="showLogo"   :src="logo" :style="[logoStyle]"  alt="vuejs">
         <v-spacer></v-spacer>
         <!-- Add Here All Your Nav Icons -->
-        <v-icon class="primary--text" style="cursor:pointer;" @click="openCart()">shopping_cart</v-icon>
+        <v-btn icon @click="emptyCart()" v-if="count > 0" v-tooltip:left="{ html: `Empty Cart` }">
+            <v-icon class="error--text">remove_shopping_cart</v-icon>
+        </v-btn>
+        <v-btn icon @click="openCart()" v-tooltip:left="{ html: `View Cart` }">
+            <v-icon class="primary--text primary--after" v-badge="{ value: parseInt(count), left: true}">shopping_cart</v-icon>
+        </v-btn>
 </v-toolbar>
 </template>
 
 <script>
 import Theme from '../mixins/theme'
+import { createNamespacedHelpers } from 'vuex'
+const { mapState, mapActions } = createNamespacedHelpers('cart')
+
 export default {
     mixins: [Theme],
     data: () => ({
         extension: false,
-        product: null
+        count: 0
     }),
+    computed: {
+        ...mapState({
+            getCount: 'count'
+        })
+    },
     created () {
         /* Emit On a Child Component If You Want This To Be Visible */
         Bus.$on('header-extension-visible', (visibility) => {
             this.extension = visibility
         })
     },
+    mounted () {
+        let self = this
+        self.count = self.getCount
+    },
     methods: {
+        ...mapActions({
+            destroyCart: 'destroyCart'
+        }),
+        emptyCart () {
+            let self = this
+            self.destroyCart()
+            vm.$emit('inCart', [])
+        },
         toggleDrawer () {
             Bus.$emit('toggleDrawer')
         },
         openCart () {
             let self = this
             self.$router.push({ name: 'cart' })
+        }
+    },
+    watch: {
+        getCount (newValue) {
+            let self = this
+            self.count = newValue
         }
     }
 }
