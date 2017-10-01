@@ -6,6 +6,10 @@ module.exports = [
         path: '/products',
         component: Products,
         name: 'product.index',
+        props: (route) => ({ query: {
+            q: route.query.q || '',
+            page: route.query.page || 1
+        } }),
         meta: {
             permission: 'guest',
             fail: '/error'
