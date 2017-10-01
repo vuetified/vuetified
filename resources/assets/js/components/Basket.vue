@@ -36,8 +36,8 @@
         <td class="title text-xs-left info--text"></td>
         <td class="title text-xs-left primary--text">
             <p style="margin-left:-100px;">Tax :<span style="margin-left:78px;">{{ tax | currency('₱') }}</span></p>
-            <p style="margin-left:-100px;">Sub-Total :<span style="margin-left:23px;">{{ subtotal | currency('₱') }}</span></p>
-            <p style="margin-left:-100px;">Total :<span style="margin-left:65px;">{{ total | currency('₱') }}</span></p>
+            <p style="margin-left:-100px;">Sub-Total :<span style="margin-left:24px;">{{ subtotal | currency('₱') }}</span></p>
+            <p style="margin-left:-100px;">Total :<span style="margin-left:67px;">{{ total | currency('₱') }}</span></p>
         </td>
     </template>
   </v-data-table>
