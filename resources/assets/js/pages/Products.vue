@@ -207,12 +207,13 @@ export default {
         },
         async getProducts () {
             let self = this
-            await axios.get(`${route('api.product.index')}/?page=${self.$route.query.page}`).then((response) => {
+            let page = self.$route.query.page || 1
+            await axios.get(`${route('api.product.index')}/?page=${page}`).then((response) => {
                 self.products = response.data.data
                 self.links = response.data.links
                 self.meta = response.data.meta
                 self.setInCart()
-                vm.$popup({ message: `Switch To Page: ${self.page}`, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
+                vm.$popup({ message: `Switch To Page: ${page}`, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
             }).catch(({errors, message}) => {
                 console.log(errors)
                 vm.$popup({ message: message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' })
