@@ -57,7 +57,6 @@ export default {
         emptyCart () {
             let self = this
             self.destroyCart()
-            vm.$emit('inCart', [])
         },
         toggleDrawer () {
             Bus.$emit('toggleDrawer')

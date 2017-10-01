@@ -152,7 +152,7 @@ export default {
         let self = this
         self.page = parseInt(self.query.page)
         vm.$on('inCart', (payload) => {
-            if (payload.length === 0) {
+            if (payload.items !== undefined) {
                 self.getProducts()
             } else {
                 let product = _.find(self.products, { id: payload.item.id })

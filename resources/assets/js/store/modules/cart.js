@@ -80,6 +80,8 @@ const actions = {
             commit('setSubTotal', payload.cart.subtotal)
             commit('setTotal', payload.cart.total)
             commit('setCount', payload.cart.count)
+            let newpayload = {items: payload.cart.items}
+            vm.$emit('inCart', newpayload)
             state.form.busy = false
             commit('newForm')
             vm.$popup({ message: payload.message, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
