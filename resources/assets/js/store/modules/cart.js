@@ -1,5 +1,5 @@
 const state = {
-    /* Laravel Passport Authentication */
+    /* gloudemans/shoppingcart */
     items: App.cart.items,
     tax: App.cart.tax,
     subtotal: App.cart.subtotal,
