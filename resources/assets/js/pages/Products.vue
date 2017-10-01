@@ -162,6 +162,19 @@ export default {
         })
     },
     methods: {
+        ...mapActions({
+            addItem: 'addItem',
+            removeItem: 'removeItem',
+            destroyCart: 'destroyCart',
+            updateItem: 'updateItem'
+        }),
+        ...mapMutations({
+            setItems: 'setItems',
+            setTax: 'setTax',
+            setSubTotal: 'setSubTotal',
+            setTotal: 'setTotal',
+            newCartForm: 'newForm'
+        }),
         viewCart () {
             let self = this
             self.$router.push({ name: 'cart' })
@@ -184,19 +197,6 @@ export default {
                 })
             }
         },
-        ...mapActions({
-            addItem: 'addItem',
-            removeItem: 'removeItem',
-            destroyCart: 'destroyCart',
-            updateItem: 'updateItem'
-        }),
-        ...mapMutations({
-            setItems: 'setItems',
-            setTax: 'setTax',
-            setSubTotal: 'setSubTotal',
-            setTotal: 'setTotal',
-            newCartForm: 'newForm'
-        }),
         addToCart (sku) {
             let self = this
             self.addItem(sku)
