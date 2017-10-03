@@ -18,7 +18,7 @@
         <v-btn icon @click="emptyCart()" v-if="count > 0" v-tooltip:left="{ html: `Empty Cart` }">
             <v-icon class="error--text">remove_shopping_cart</v-icon>
         </v-btn>
-        <v-btn icon @click="openCart()" v-tooltip:left="{ html: `View Cart` }">
+        <v-btn icon @click="openShoppingCart()" v-tooltip:left="{ html: `View Cart` }">
             <v-icon class="primary--text primary--after" v-badge="{ value: parseInt(count), left: true}">shopping_cart</v-icon>
         </v-btn>
 </v-toolbar>
@@ -54,6 +54,9 @@ export default {
         ...mapActions({
             destroyCart: 'destroyCart'
         }),
+        openShoppingCart () {
+            Bus.$emit('shopping-cart-open')
+        },
         emptyCart () {
             let self = this
             self.destroyCart()
