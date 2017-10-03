@@ -32,8 +32,6 @@ const actions = {
             commit('setSubTotal', payload.cart.subtotal)
             commit('setTotal', payload.cart.total)
             commit('setCount', payload.cart.count)
-            let newpayload = {item: payload.cart.item, inCart: !_.isEmpty(payload.cart.item), qty: payload.cart.item.qty}
-            vm.$emit('inCart', newpayload)
             state.form.busy = false
             commit('newForm')
             vm.$popup({ message: payload.message, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
@@ -58,8 +56,6 @@ const actions = {
             commit('setSubTotal', payload.cart.subtotal)
             commit('setTotal', payload.cart.total)
             commit('setCount', payload.cart.count)
-            let newpayload = {item: item, inCart: !_.isEmpty(payload.cart.item), qty: 0}
-            vm.$emit('inCart', newpayload)
             state.form.busy = false
             commit('newForm')
             vm.$popup({ message: payload.message, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
@@ -80,8 +76,6 @@ const actions = {
             commit('setSubTotal', payload.cart.subtotal)
             commit('setTotal', payload.cart.total)
             commit('setCount', payload.cart.count)
-            let newpayload = {items: payload.cart.items}
-            vm.$emit('inCart', newpayload)
             state.form.busy = false
             commit('newForm')
             vm.$popup({ message: payload.message, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
@@ -92,21 +86,20 @@ const actions = {
             vm.$popup({ message: message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' })
         }
     },
-    async updateItem ({ commit, state }, id, qty) {
+    /* form: id and qty */
+    async updateItem ({ commit, state }, { id, qty }) {
         commit('newForm')
         state.form.busy = true
         state.form.qty = qty
         let item = _.find(state.items, function (i) { return i.id === id })
         state.form.rowId = item.rowId
         try {
-            const payload = await App.post(route('api.cart.add'), state.form)
+            const payload = await App.post(route('api.cart.update'), state.form)
             commit('setItems', payload.cart.items)
             commit('setTax', payload.cart.tax)
             commit('setSubTotal', payload.cart.subtotal)
             commit('setTotal', payload.cart.total)
             commit('setCount', payload.cart.count)
-            let newpayload = {item: payload.cart.item, inCart: !_.isEmpty(payload.cart.item), qty: payload.cart.item.qty}
-            vm.$emit('inCart', newpayload)
             state.form.busy = false
             commit('newForm')
             vm.$popup({ message: payload.message, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
