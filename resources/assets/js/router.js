@@ -24,7 +24,7 @@ router.beforeEach((to, from, next) => {
     /* for all authenticated routes */
     if (to.matched.some(m => m.meta.requiresAuth)) {
         /* Check For Laravel Passport Access Token Cookie */
-        if (!Bus.$cookie.get('access_token')) {
+        if (!vm.$cookie.get('access_token')) {
             return next({ path: '/login' })
         }
         return next()
