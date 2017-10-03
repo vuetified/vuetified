@@ -10,7 +10,6 @@
       :transition="transition"
       :absolute="absolute"
       :fixed="fixed"
-      style="z-index:5000;"
     >
       <v-btn
         slot="activator"
