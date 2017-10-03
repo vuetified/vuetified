@@ -22,7 +22,7 @@ const actions = {
             commit('setToken', payload.access_token)
             commit('setRefreshToken', payload.refresh_token)
             commit('setExpiration', payload.expires_in)
-            vm.$cookie.set('access_token', payload.access_token)
+            vm.$cookie.set('access_token', payload.access_token, { expires: 365 })
             await dispatch('fetchMe')
             form.busy = false
             vm.$popup({ message: 'Account Registered!', backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
@@ -42,7 +42,7 @@ const actions = {
             commit('setToken', payload.access_token)
             commit('setRefreshToken', payload.refresh_token)
             commit('setExpiration', payload.expires_in)
-            vm.$cookie.set('access_token', payload.access_token)
+            vm.$cookie.set('access_token', payload.access_token, { expires: 365 })
             await dispatch('fetchMe')
             form.busy = false
             vm.$popup({ message: 'Successfully Logged In!', backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
@@ -61,7 +61,7 @@ const actions = {
             commit('setToken', payload.access_token)
             commit('setRefreshToken', payload.refresh_token)
             commit('setExpiration', payload.expires_in)
-            vm.$cookie.set('access_token', payload.access_token)
+            vm.$cookie.set('access_token', payload.access_token, { expires: 365 })
             await dispatch('fetchMe')
             form.busy = false
             vm.$popup({ message: 'Successfully Logged In!', backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
@@ -103,7 +103,7 @@ const actions = {
             commit('setToken', payload.access_token)
             commit('setRefreshToken', payload.refresh_token)
             commit('setExpiration', payload.expires_in)
-            vm.$cookie.set('access_token', payload.access_token)
+            vm.$cookie.set('access_token', payload.access_token, { expires: 365 })
             await dispatch('fetchMe')
             form.busy = false
             vm.$router.push({ name: 'dashboard' })
@@ -138,7 +138,7 @@ const actions = {
             commit('setToken', payload.access_token)
             commit('setRefreshToken', payload.refresh_token)
             commit('setExpiration', payload.expires_in)
-            vm.$cookie.set('access_token', payload.access_token)
+            vm.$cookie.set('access_token', payload.access_token, { expires: 365 })
             await dispatch('fetchMe')
             form.busy = false
             vm.$popup({ message: 'Password Reset Successfully!', backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
