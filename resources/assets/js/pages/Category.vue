@@ -69,13 +69,13 @@
                   <v-icon class="info--text">fa-info-circle</v-icon>
                 </v-btn>
                 <v-spacer></v-spacer>
-                <v-btn icon v-if="product.inCart" @click="removeFromCart(product.id)" v-tooltip:left="{ html: `Remove ${product.name} in cart` }">
+                <v-btn icon v-if="product.inCart" @click="removeFromCart(product)" v-tooltip:left="{ html: `Remove ${product.name} in cart` }">
                   <v-icon class="error--text">remove_shopping_cart</v-icon>
                 </v-btn>
                 <v-btn icon @click="viewCart()" v-if="product.inCart" v-tooltip:left="{ html: `View Item in Cart | ${product.name} qty : ${product.qty}` }">
                   <v-icon v-badge="{ value: parseInt(product.qty)}" class="primary--text">shopping_cart</v-icon>
                 </v-btn>
-                <v-btn icon @click="addItem(product.sku)" v-tooltip:left="{ html: `Add ${product.name} to cart` }">
+                <v-btn icon @click="addToCart(product)" v-tooltip:left="{ html: `Add ${product.name} to cart` }">
                   <v-icon class="info--text">add_shopping_cart</v-icon>
                 </v-btn>
 
@@ -107,7 +107,7 @@
 import MainLayout from '../layouts/Main.vue'
 import Theme from '../mixins/theme'
 import { createNamespacedHelpers } from 'vuex'
-const { mapActions, mapGetters, mapMutations } = createNamespacedHelpers('cart')
+const { mapActions, mapGetters } = createNamespacedHelpers('cart')
 
 export default {
     props: ['slug', 'query'],
@@ -136,6 +136,9 @@ export default {
         page: 1
     }),
     computed: {
+        ...mapGetters({
+            getItems: 'getItems'
+        }),
         length () {
             let self = this
             return Math.round(self.meta.total / (self.meta.per_page))
@@ -143,14 +146,7 @@ export default {
         noPagination () {
             let self = this
             return self.meta.total === self.meta.per_page
-        },
-        ...mapGetters({
-            getItems: 'getItems',
-            getTax: 'getTax',
-            getSubTotal: 'getSubTotal',
-            getCount: 'getCount',
-            getForm: 'getForm'
-        })
+        }
     },
     created () {
         /* important if redirecting back to populate our product list */
@@ -159,38 +155,13 @@ export default {
     mounted () {
         let self = this
         self.page = parseInt(self.query.page)
-        vm.$on('inCart', (payload) => {
-            if (payload.items !== undefined) {
-                self.getProducts()
-            } else {
-                let product = _.find(self.products, { id: payload.item.id })
-                let index = _.findIndex(self.products, { id: payload.item.id })
-                if (product !== undefined) {
-                    product.inCart = payload.inCart
-                    product.qty = payload.qty
-                    self.$set(self.products, index, product)
-                }
-            }
-        })
     },
     methods: {
         ...mapActions({
             addItem: 'addItem',
-            removeItem: 'removeItem',
-            destroyCart: 'destroyCart',
-            updateItem: 'updateItem'
+            removeItem: 'removeItem'
         }),
-        ...mapMutations({
-            setItems: 'setItems',
-            setTax: 'setTax',
-            setSubTotal: 'setSubTotal',
-            setTotal: 'setTotal',
-            newCartForm: 'newForm'
-        }),
-        viewCart () {
-            let self = this
-            self.$router.push({ name: 'cart' })
-        },
+        /* Adapter for product and cart Items */
         setInCart () {
             let self = this
             let items = Object.values(self.getItems)
@@ -209,17 +180,25 @@ export default {
                 })
             }
         },
-        addToCart (sku) {
-            let self = this
-            self.addItem(sku)
-        },
-        removeFromCart (id) {
-            let self = this
-            self.removeItem(id)
-        },
         showProduct (slug) {
             let self = this
             self.$router.push({ name: 'product.show', params: { slug: slug } })
+        },
+        viewCart () {
+            let self = this
+            self.$router.push({ name: 'cart' })
+        },
+        addToCart (product) {
+            let self = this
+            product.inCart = true
+            product.qty = product.qty || 1
+            self.addItem(product.sku)
+        },
+        removeFromCart (product) {
+            let self = this
+            product.qty = 0
+            product.inCart = false
+            self.removeItem(product.id)
         },
         async getProducts () {
             let self = this
@@ -250,17 +229,22 @@ export default {
 
     },
     watch: {
-        page (newValue) {
+        getItems () {
             let self = this
-            self.page = newValue
-            self.$router.push({ name: 'category.show', query: { page: newValue }, params: { slug: self.$route.params.slug } })
-            vm.$popup({ message: `${self.$route.params.slug} Page: ${self.page}`, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
+            /* if items in cart change we should Set what is in the cart */
+            self.setInCart()
         },
         products: {
             handler: function () {
                 console.log('Products Array Updated')
             },
             deep: true
+        },
+        page (newValue) {
+            let self = this
+            self.page = newValue
+            self.$router.push({ name: 'category.show', query: { page: newValue }, params: { slug: self.$route.params.slug } })
+            vm.$popup({ message: `${self.$route.params.slug} Page: ${self.page}`, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
         },
         '$route': 'loadProducts'
     }
