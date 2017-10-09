@@ -4,6 +4,7 @@
     <!-- <video-gallery></video-gallery> -->
     <show-case></show-case>
     <logo-slider></logo-slider>
+    <footer-note></footer-note>
   </main-layout>
 </template>
 
@@ -13,6 +14,7 @@ import ShowCase from '../components/home/Showcase.vue'
 import Carousel from '../components/home/Carousel.vue'
 // import VideoGallery from '../components/home/VideoGallery.vue'
 import LogoSlider from '../components/home/LogoSlider.vue'
+import FooterNote from '../partials/FooterNote'
 import Theme from '../mixins/theme'
 
 export default {
@@ -28,6 +30,7 @@ export default {
         MainLayout,
         ShowCase,
         Carousel,
+        FooterNote,
         // VideoGallery,
         LogoSlider
     }
