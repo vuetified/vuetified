@@ -64,21 +64,35 @@
                 </transition>
               </clazy-load>
               <v-card-actions class="accent">
-                <span class="body-2" style="cursor:pointer;" @click="showProduct(product.slug)">Product Details</span>
-                <v-btn icon @click="showProduct(product.slug)" v-tooltip:right="{ html: `View Details of ${product.name}` }">
-                  <v-icon class="info--text">fa-info-circle</v-icon>
+                <span class="body-2" style="cursor:pointer;" @click.native="showProduct(product.slug)">{{ product.name }}</span>
+                <v-tooltip right>
+                <v-btn flat icon color="teal lighten-4" slot="activator" @click.native="showProduct(product.slug)">
+                <v-icon>fa-info-circle</v-icon>
                 </v-btn>
+                <span>View | {{product.name}} Details</span>
+                </v-tooltip>
                 <v-spacer></v-spacer>
-                <v-btn icon v-if="product.inCart" @click="removeFromCart(product)" v-tooltip:left="{ html: `Remove ${product.name} in cart` }">
-                  <v-icon class="error--text">remove_shopping_cart</v-icon>
+                <v-tooltip left>
+                <v-btn flat icon color="error" slot="activator" @click.native="removeFromCart(product)" v-if="product.inCart">
+                <v-icon>remove_shopping_cart</v-icon>
                 </v-btn>
-                <v-btn icon @click="viewCart()" v-if="product.inCart" v-tooltip:left="{ html: `View Item in Cart | ${product.name} qty : ${product.qty}` }">
-                  <v-icon v-badge="{ value: parseInt(product.qty)}" class="primary--text">shopping_cart</v-icon>
+                <span>Remove | {{product.name}} in Cart</span>
+                </v-tooltip>
+                <v-tooltip left>
+                <v-btn flat icon color="primary" slot="activator" @click.native="viewCart()" v-if="product.inCart">
+                <v-badge left>
+                <span slot="badge">{{ product.qty }}</span>
+                <v-icon>shopping_cart</v-icon>
+                </v-badge>
                 </v-btn>
-                <v-btn icon @click="addToCart(product)" v-tooltip:left="{ html: `Add ${product.name} to cart` }">
-                  <v-icon class="info--text">add_shopping_cart</v-icon>
+                <span>{{ product.name }} Qty: {{ product.qty }}</span>
+                </v-tooltip>
+                <v-tooltip left>
+                <v-btn flat icon color="info" slot="activator" @click.native="addToCart(product)">
+                <v-icon>add_shopping_cart</v-icon>
                 </v-btn>
-
+                <span>Add To Cart | {{product.name}}</span>
+                </v-tooltip>
                 <!-- Add Other Action buttons Here -->
               </v-card-actions>
             </v-card>
@@ -94,6 +108,12 @@
                     >
                     </v-pagination>
                 </div>
+            </v-flex>
+        </v-layout>
+        <!-- If No Pagination Then Add 50px Height -->
+        <v-layout v-else row wrap>
+            <v-flex xs12>
+                <v-card flat class="grey lighten-4" height="50px"></v-card>
             </v-flex>
         </v-layout>
       </v-container>
