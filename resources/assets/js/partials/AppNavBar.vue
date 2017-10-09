@@ -54,6 +54,7 @@ export default {
         ...mapActions({
             destroyCart: 'destroyCart'
         }),
+        /* Use Vuetify Modal */
         openShoppingCart () {
             Bus.$emit('shopping-cart-open')
         },
@@ -64,6 +65,7 @@ export default {
         toggleDrawer () {
             Bus.$emit('toggleDrawer')
         },
+        /* Uses Cart Route */
         openCart () {
             let self = this
             self.$router.push({ name: 'cart' })
