@@ -65,14 +65,14 @@
                 <span>View | {{product.name}} Details</span>
                 </v-tooltip>
                 <v-spacer></v-spacer>
-                <v-tooltip left lazy>
+                <v-tooltip left lazy v-if="product.inCart">
                 <v-btn flat icon color="error" slot="activator" @click.native="removeFromCart(product)" v-if="product.inCart">
                 <v-icon>remove_shopping_cart</v-icon>
                 </v-btn>
                 <span>Remove | {{product.name}} in Cart</span>
                 </v-tooltip>
-                <v-tooltip left lazy>
-                <v-btn flat icon color="primary" slot="activator" @click.native="viewCart()">
+                <v-tooltip left lazy v-if="product.inCart">
+                <v-btn flat icon color="primary" slot="activator" @click.native="viewCart()" v-if="product.inCart">
                 <v-badge left>
                 <span slot="badge">{{ product.qty }}</span>
                 <v-icon>shopping_cart</v-icon>

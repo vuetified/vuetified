@@ -65,20 +65,20 @@
               </clazy-load>
               <v-card-actions class="accent">
                 <span class="body-2" style="cursor:pointer;" @click.native="showProduct(product.slug)">{{ product.name }}</span>
-                <v-tooltip right>
+                <v-tooltip right lazy>
                 <v-btn flat icon color="teal lighten-4" slot="activator" @click.native="showProduct(product.slug)">
                 <v-icon>fa-info-circle</v-icon>
                 </v-btn>
                 <span>View | {{product.name}} Details</span>
                 </v-tooltip>
                 <v-spacer></v-spacer>
-                <v-tooltip left>
+                <v-tooltip left lazy v-if="product.inCart">
                 <v-btn flat icon color="error" slot="activator" @click.native="removeFromCart(product)" v-if="product.inCart">
                 <v-icon>remove_shopping_cart</v-icon>
                 </v-btn>
                 <span>Remove | {{product.name}} in Cart</span>
                 </v-tooltip>
-                <v-tooltip left>
+                <v-tooltip left lazy v-if="product.inCart">
                 <v-btn flat icon color="primary" slot="activator" @click.native="viewCart()" v-if="product.inCart">
                 <v-badge left>
                 <span slot="badge">{{ product.qty }}</span>
@@ -87,7 +87,7 @@
                 </v-btn>
                 <span>{{ product.name }} Qty: {{ product.qty }}</span>
                 </v-tooltip>
-                <v-tooltip left>
+                <v-tooltip left lazy>
                 <v-btn flat icon color="info" slot="activator" @click.native="addToCart(product)">
                 <v-icon>add_shopping_cart</v-icon>
                 </v-btn>
