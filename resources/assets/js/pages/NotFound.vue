@@ -1,18 +1,17 @@
 <template>
-<modal name="404-not-found" :adaptive="true" width="100%" height="100%" :clickToClose="false">
-        <v-card :flat="true">
-        <v-toolbar class="accent">
-          <v-btn icon @click.native="redirectBack()">
-            <v-icon class="primary--text">arrow_back</v-icon>
-          </v-btn>
-          <v-spacer></v-spacer>
-          <v-toolbar-title class="text-xs-center primary--text">PAGE NOT FOUND</v-toolbar-title>
-          <v-spacer></v-spacer>
-          <v-toolbar-items>
-            <v-btn class="primary--text" flat @click.native="goHome()"><v-icon right dark>home</v-icon></v-btn>
-          </v-toolbar-items>
-        </v-toolbar>
-        <v-card-text style="padding-top:100px;">
+<modal-layout>
+  <v-toolbar class="accent" slot="toolbar">
+    <v-btn flat icon color="primary" @click.native="redirectBack()">
+      <v-icon >arrow_back</v-icon>
+    </v-btn>
+    <v-spacer></v-spacer>
+    <v-toolbar-title class="text-xs-center primary--text">PAGE NOT FOUND</v-toolbar-title>
+    <v-spacer></v-spacer>
+    <v-toolbar-items>
+      <v-btn class="primary--text" flat @click.native="goHome()"><v-icon right dark>home</v-icon></v-btn>
+    </v-toolbar-items>
+  </v-toolbar>
+  <v-card-text style="padding-top:100px;">
       <v-container fluid>
         <v-layout row>
           <v-flex x12 sm12 md4 offset-md4 lg4 offset-lg4 xl4 offset-xl4>
@@ -151,15 +150,17 @@
          </v-flex>
         </v-layout>
       </v-container>
-
-    </v-card-text>
-      </v-card>
-    </modal>
+  </v-card-text>
+</modal-layout>
 </template>
 
 <script>
+import ModalLayout from '../layouts/ModalLayout'
 
 export default {
+    components: {
+        ModalLayout
+    },
     mounted () {
         let self = this
         self.$modal.show('404-not-found')

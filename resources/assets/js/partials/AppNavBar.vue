@@ -20,16 +20,16 @@
         <v-btn flat icon color="error" slot="activator" @click="emptyCart()" v-if="count > 0">
         <v-icon>remove_shopping_cart</v-icon>
         </v-btn>
-        <span>Empty Cart</span>
+        <span>Empty|Cart</span>
         </v-tooltip>
         <v-tooltip left>
-        <v-btn flat icon color="primary" slot="activator" @click="openCart()" v-if="count > 0">
+        <v-btn flat icon color="primary" slot="activator" @click="openCart()">
         <v-badge left>
         <span slot="badge">{{ count }}</span>
         <v-icon>shopping_cart</v-icon>
         </v-badge>
         </v-btn>
-        <span>Empty Cart</span>
+        <span>View|Cart</span>
         </v-tooltip>
 </v-toolbar>
 </template>
