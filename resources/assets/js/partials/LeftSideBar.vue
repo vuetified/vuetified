@@ -1,11 +1,9 @@
 <template>
   <v-navigation-drawer
-      class="pb-0"
-      persistent
+      temporary
       hide-overlay
       height="100%"
-      disable-route-watcher
-      floating
+      enable-resize-watcher
       v-model="drawer"
     >
       <v-list dense>
