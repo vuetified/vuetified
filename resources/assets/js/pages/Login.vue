@@ -1,16 +1,18 @@
 <template>
-    <modal name="login-modal" :adaptive="true" width="100%" height="100%" :clickToClose="false">
+    <modal-layout>
         <v-card :flat="true">
         <v-toolbar class="accent">
-          <v-btn icon @click.native="redirectBack()">
-            <v-icon class="primary--text">arrow_back</v-icon>
+          <v-btn flat icon color="primary" @click.native="redirectBack()">
+          <v-icon>arrow_back</v-icon>
           </v-btn>
           <v-spacer></v-spacer>
           <v-toolbar-title class="text-xs-center primary--text">Customer Login Page</v-toolbar-title>
           <v-spacer></v-spacer>
           <v-toolbar-items>
               <!-- If There is no User Account Login Yet Redirect to Authentication Page -->
-            <v-btn class="primary--text" flat @click.native="goHome()"><v-icon right dark>fa-home</v-icon></v-btn>
+            <v-btn flat color="primary" @click.native="goHome()">
+            <v-icon>fa-home</v-icon>
+            </v-btn>
           </v-toolbar-items>
         </v-toolbar>
         <v-card-text style="padding-top:100px;">
@@ -62,10 +64,11 @@
 
     </v-card-text>
       </v-card>
-    </modal>
+    </modal-layout>
 </template>
 
 <script>
+import ModalLayout from '../layouts/ModalLayout'
 import { createNamespacedHelpers } from 'vuex'
 const { mapActions, mapGetters } = createNamespacedHelpers('auth')
 
@@ -103,28 +106,22 @@ export default {
             /* nextick make sure our modal wount be visible before redirect */
             return self.$nextTick(() => self.$router.go(-1))
         }
-        /* Show Login Modal */
-        self.$modal.show('login-modal')
     },
     methods: {
         resetPassword () {
             let self = this
-            self.$modal.hide('login-modal')
             self.$nextTick(() => self.$router.push({name: 'forgotpassword'}))
         },
         goHome () {
             let self = this
-            self.$modal.hide('login-modal')
             self.$nextTick(() => self.$router.push({name: 'home'}))
         },
         goToRegister () {
             let self = this
-            self.$modal.hide('login-modal')
             self.$nextTick(() => self.$router.push({name: 'register'}))
         },
         redirectBack () {
             let self = this
-            self.$modal.hide('login-modal')
             return self.$nextTick(() => self.$router.go(-1))
         },
         login () {
@@ -134,6 +131,9 @@ export default {
         ...mapActions({
             submit: 'login'
         })
+    },
+    components: {
+        ModalLayout
     }
 }
 </script>
