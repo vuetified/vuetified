@@ -12,6 +12,7 @@
             </v-tooltip>
 
             <v-text-field
+                v-if="items.length > 0"
                 append-icon="search"
                 label="Search For Product In Cart"
                 single-line
