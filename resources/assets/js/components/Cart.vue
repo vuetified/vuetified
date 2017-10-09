@@ -41,10 +41,6 @@ export default {
     mounted () {
         let self = this
         self.count = self.getCount
-        self.$modal.show('cart-modal')
-        Bus.$on('close-cart', () => {
-            self.redirectBack()
-        })
     },
     methods: {
         redirectBack () {
@@ -64,11 +60,3 @@ export default {
     }
 }
 </script>
-
-<style lang="scss" scoped>
-.shopping-cart {
-    position:absolute;
-    right:15px;
-    top:20px;
-}
-</style>

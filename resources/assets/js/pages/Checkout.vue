@@ -80,7 +80,7 @@ export default {
     methods: {
         redirectBack () {
             let self = this
-            self.$router.push({path: self.$store.state.route.from.fullPath})
+            self.$router.push({path: '/cart'})
         },
         purchase () {
             console.log('making purchase')
