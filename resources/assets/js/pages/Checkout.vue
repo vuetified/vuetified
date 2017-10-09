@@ -11,50 +11,60 @@
     </v-toolbar>
     <!-- Main Slot -->
     <v-stepper v-model="current_step" vertical>
-    <!-- STEP 1 -->
+    <!-- STEP 1 Label -->
     <v-stepper-step step="1" :complete="current_step > 1">
-      <span class="primary--text">Customer Details</span>
-      <small class="info--text">Fill Up Customer Info</small>
+        <span class="primary--text">Customer Details</span>
+        <small class="info--text">Fill Up Customer Info</small>
     </v-stepper-step>
     <v-stepper-content step="1">
-      <customer-details></customer-details>
-      <v-btn primary @click.native="current_step = 2">Continue</v-btn>
-      <v-btn outline color="primary" class="primary--text" @click.native="viewCart()">Update Cart</v-btn>
+        <!-- Step 1 Component -->
+        <customer-details :form="checkoutForm"></customer-details>
+        <!-- Step 1 Buttons -->
+        <v-btn primary @click.native="current_step = 2">Continue</v-btn>
+        <v-btn outline color="primary" class="primary--text" @click.native="viewCart()">Update Cart</v-btn>
     </v-stepper-content>
-    <!-- STEP 2 -->
+    <!-- STEP 2 Label -->
     <v-stepper-step step="2" :complete="current_step > 2">
-      <span class="primary--text">Shipment Details</span>
-      <small class="info--text">Fill Up Shipping Details</small>
+        <span class="primary--text">Shipment Details</span>
+        <small class="info--text">Fill Up Shipping Details</small>
     </v-stepper-step>
     <v-stepper-content step="2">
-      <shipping-details></shipping-details>
-      <v-btn primary @click.native="current_step = 3">Continue</v-btn>
-      <v-btn outline color="primary" class="primary--text" @click.native="current_step = 1">Back</v-btn>
+        <!-- Step 2 Component -->
+        <shipping-details :form="checkoutForm"></shipping-details>
+        <!-- Step 2 Buttons -->
+        <v-btn primary @click.native="current_step = 3">Continue</v-btn>
+        <v-btn outline color="primary" class="primary--text" @click.native="current_step = 1">Back</v-btn>
     </v-stepper-content>
-    <!-- STEP 3 -->
+    <!-- STEP 3 Label -->
     <v-stepper-step step="3" :complete="current_step > 3">
-      <span class="primary--text">Mode of Payment</span>
-      <small class="info--text">Select Payment Options</small>
+        <span class="primary--text">Mode of Payment</span>
+        <small class="info--text">Select Payment Options</small>
     </v-stepper-step>
     <v-stepper-content step="3">
-      <mode-of-payment></mode-of-payment>
-      <v-btn primary @click.native="current_step = 4">Continue</v-btn>
-      <v-btn outline color="primary" class="primary--text" @click.native="current_step = 2">Back</v-btn>
+        <!-- Step 3 Component -->
+        <mode-of-payment :form="checkoutForm"></mode-of-payment>
+        <!-- Step 3 Buttons -->
+        <v-btn primary @click.native="current_step = 4">Continue</v-btn>
+        <v-btn outline color="primary" class="primary--text" @click.native="current_step = 2">Back</v-btn>
     </v-stepper-content>
-    <!-- STEP 4 -->
+    <!-- STEP 4 Label -->
     <v-stepper-step step="4" :complete="current_step > 4">
-      <span class="primary--text">Purchase</span>
-      <small class="info--text">Verify Order Details</small>
+        <span class="primary--text">Purchase</span>
+        <small class="info--text">Verify Order Details</small>
     </v-stepper-step>
     <v-stepper-content step="4">
-      <mode-of-payment></mode-of-payment>
-      <v-btn primary @click.native="purchase()">Submit</v-btn>
-      <v-btn outline color="primary" class="primary--text" @click.native="current_step = 3">Back</v-btn>
+        <!-- Step 4 Component -->
+        <mode-of-payment :form="checkoutForm"></mode-of-payment>
+        <!-- Step 4 Buttons -->
+        <v-btn primary @click.native="purchase()">Submit</v-btn>
+        <v-btn outline color="primary" class="primary--text" @click.native="current_step = 3">Back</v-btn>
     </v-stepper-content>
     </v-stepper>
     <!-- Footer Slot -->
     <v-footer :class="[footerClass]" fixed slot="footer">
-    <v-spacer></v-spacer><span>© {{ year }} {{ domain }} ® | {{ trademark }}™</span><v-spacer></v-spacer>
+    <v-spacer></v-spacer>
+    <span>© {{ year }} {{ domain }} ® | {{ trademark }}™</span>
+    <v-spacer></v-spacer>
     </v-footer>
   </modal-layout>
 </template>
