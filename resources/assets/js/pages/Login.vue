@@ -17,7 +17,7 @@
         </v-toolbar>
         <v-card-text style="padding-top:100px;">
       <v-container fluid>
-        <v-form v-model="valid" ref="form" lazy-validation @submit.prevent="login()">
+        <form @submit.prevent="login()">
         <v-layout row>
           <v-flex xs12 sm12 md4 offset-md4 lg4 offset-lg4 xl4 offset-xl4>
             <v-text-field
@@ -25,7 +25,9 @@
               name="username"
               label="Type Your Account Email"
               v-model="loginForm.username"
-              :rules="usernameRules"
+              :error-messages="errors.collect('username')"
+              v-validate="'required|email'"
+              data-vv-name="username"
               prepend-icon="email"
               counter="60"
             ></v-text-field>
@@ -37,20 +39,20 @@
             class="primary--text"
             name="password"
             label="Enter your password"
-            hint="At least 8 characters"
+            hint="At least 6 characters"
             v-model="loginForm.password"
-            min="8"
             :append-icon="icon"
             :append-icon-cb="() => (password_visible = !password_visible)"
             :type="!password_visible ? 'password' : 'text'"
-            :rules="passwordRules"
+            v-validate="'required|min:6'"
+            :error-messages="errors.collect('password')"
+            data-vv-name="password"
             prepend-icon="fa-key"
-            counter="60"
             ></v-text-field>
           </v-flex>
         </v-layout>
         <v-flex xs12 sm12 md4 offset-md4 lg4 offset-lg4 xl4 offset-xl4>
-            <v-btn :loading="loginForm.busy" :disabled="!valid" type="submit" block :class="{primary: !loginForm.busy, error: loginForm.busy}">Login</v-btn>
+            <v-btn :loading="loginForm.busy" :disabled="errors.any()"  type="submit" block :class="{primary: !loginForm.busy, error: loginForm.busy}">Login</v-btn>
 
         </v-flex>
         <v-flex xs12 sm12 md4 offset-md4 lg4 offset-lg4 xl4 offset-xl4>
@@ -59,7 +61,7 @@
             <v-btn @click.native="resetPassword()" block flat class="error--text error">Forgot Password?</v-btn>
             </v-card-actions>
         </v-flex>
-        </v-form>
+        </form>
       </v-container>
 
     </v-card-text>
@@ -73,18 +75,11 @@ import { createNamespacedHelpers } from 'vuex'
 const { mapActions, mapGetters } = createNamespacedHelpers('auth')
 
 export default {
+    inject: ['$validator'],
     data: () => ({
         valid: true,
         loginForm: new AppForm(App.forms.loginForm),
-        password_visible: false,
-        usernameRules: [
-            (v) => !!v || 'E-mail is required',
-            (v) => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
-        ],
-        passwordRules: [
-            (v) => !!v || 'Password is Required.',
-            (v) => { return v.length > 5 || 'Password is Below 6 Characters' }
-        ]
+        password_visible: false
 
     }),
     computed: {
@@ -122,7 +117,8 @@ export default {
         },
         login () {
             let self = this
-            if (self.$refs.form.validate()) {
+            self.$validator.validateAll()
+            if (!self.errors.any()) {
                 self.submit(self.loginForm)
             }
         },

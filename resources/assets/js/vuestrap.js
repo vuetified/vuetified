@@ -28,9 +28,9 @@ if (window.Vue === undefined) {
 require('./forms/form-bootstrap')
 
 /* Form Validation Config */
-const validationConfig = {
-    errorBagName: 'veeErrors', // change if property conflicts.
-    fieldsBagName: 'veeFields',
+const config = {
+    errorBagName: 'errors', // change if property conflicts.
+    fieldsBagName: 'fields',
     delay: 0,
     locale: 'en',
     dictionary: null,
@@ -46,7 +46,7 @@ const validationConfig = {
     },
     events: 'input|blur',
     inject: true,
-    validity: true,
+    validity: false,
     aria: true
 }
 
@@ -72,7 +72,7 @@ Vue.use(VueYouTubeEmbed)
 Vue.use(VueClazyLoad)
 Vue.use(VueImg)
 Vue.use(VueTimeago, timeagoConfig)
-Vue.use(VeeValidate, validationConfig)
+Vue.use(VeeValidate, config)
 Vue.use(Vuex)
 Vue.use(VueCookie)
 /* Seed Initial State as Mixins */

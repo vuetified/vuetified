@@ -2,8 +2,8 @@
   <modal-layout>
     <!-- ToolBar Slot -->
     <v-toolbar class="accent" slot="toolbar">
-    <v-btn icon @click.native="redirectBack()">
-        <v-icon class="primary--text">arrow_back</v-icon>
+    <v-btn flat icon color="primary" @click.native="redirectBack()">
+        <v-icon>arrow_back</v-icon>
     </v-btn>
     <v-spacer></v-spacer>
     <v-toolbar-title class="text-xs-center primary--text">Checkout Order Form</v-toolbar-title>
