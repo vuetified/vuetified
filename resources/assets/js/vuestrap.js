@@ -28,7 +28,7 @@ if (window.Vue === undefined) {
 require('./forms/form-bootstrap')
 
 /* Form Validation Config */
-const config = {
+const veeConfig = {
     errorBagName: 'errors', // change if property conflicts.
     fieldsBagName: 'fields',
     delay: 0,
@@ -72,7 +72,7 @@ Vue.use(VueYouTubeEmbed)
 Vue.use(VueClazyLoad)
 Vue.use(VueImg)
 Vue.use(VueTimeago, timeagoConfig)
-Vue.use(VeeValidate, config)
+Vue.use(VeeValidate, veeConfig)
 Vue.use(Vuex)
 Vue.use(VueCookie)
 /* Seed Initial State as Mixins */
