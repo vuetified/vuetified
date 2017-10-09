@@ -1,25 +1,23 @@
 <template>
-    <modal name="cart-modal" :adaptive="true" width="100%" height="100%" :clickToClose="false">
-        <v-card :flat="true">
-        <v-toolbar class="accent">
-          <v-btn icon @click.native="redirectBack()">
-            <v-icon class="primary--text">arrow_back</v-icon>
-          </v-btn>
-          <v-spacer></v-spacer>
-          <v-toolbar-title class="text-xs-center primary--text">Shopping Cart</v-toolbar-title>
-          <v-spacer></v-spacer>
-          <v-toolbar-items>
-              <!-- If There is no User Account Login Yet Redirect to Authentication Page -->
-            <v-btn class="success--text" flat @click.native="checkout()" v-if="count > 0">Checkout<v-icon right dark>payment</v-icon></v-btn>
-            <v-btn class="warning--text" flat @click.native="redirectBack()" v-else>Close</v-btn>
-          </v-toolbar-items>
-        </v-toolbar>
-        <basket></basket>
-      </v-card>
-    </modal>
+<modal-layout>
+    <v-toolbar class="accent" slot="toolbar">
+    <v-btn icon @click.native="redirectBack()">
+        <v-icon class="primary--text">arrow_back</v-icon>
+    </v-btn>
+    <v-spacer></v-spacer>
+    <v-toolbar-title class="text-xs-center primary--text">Shopping Cart</v-toolbar-title>
+    <v-spacer></v-spacer>
+    <v-toolbar-items>
+        <!-- If There is no User Account Login Yet Redirect to Authentication Page -->
+        <v-btn class="success--text" flat @click.native="checkout()" v-if="count > 0">Checkout<v-icon right>payment</v-icon></v-btn>
+        <v-btn  flat class="primary--text" @click.native="redirectBack()" v-else>Close</v-btn>
+    </v-toolbar-items>
+    </v-toolbar>
+    <basket></basket>
+</modal-layout>
 </template>
-
 <script>
+import ModalLayout from '../layouts/ModalLayout'
 import Basket from './Basket.vue'
 import { createNamespacedHelpers } from 'vuex'
 const { mapGetters } = createNamespacedHelpers('cart')
@@ -37,6 +35,7 @@ export default {
         }
     },
     components: {
+        ModalLayout,
         Basket
     },
     mounted () {

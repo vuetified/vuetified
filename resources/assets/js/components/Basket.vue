@@ -1,37 +1,45 @@
 <template>
-<v-app>
-    <main>
-       <v-container fluid pa-0 ma-0>
-           <v-layout row>
+<v-card flat>
+        <v-container fluid>
 
-               <v-data-table
+            <v-card-title>
+
+            <v-btn icon @click="emptyCart()" v-if="count > 0" v-tooltip:top="{ html: `Empty Cart` }">
+            <v-icon class="error--text">remove_shopping_cart</v-icon>
+            </v-btn>
+
+            <v-text-field
+                append-icon="search"
+                label="Search For Product In Cart"
+                single-line
+                v-model="search"
+            ></v-text-field>
+
+            </v-card-title>
+
+            <v-data-table
                 :headers="headers"
                 :items="items"
+                :search="search"
                 v-model="selected"
                 selected-key="id"
                 select-all
-                no-data-text="You Have No Orders Yet, Continue Shopping..."
-                class="info--text"
             >
-                <template slot="headerCell" scope="props">
-                <span v-tooltip:bottom="{ 'html': props.header.text }">
-                    {{ props.header.text }}
-                </span>
-                </template>
-                <template slot="items" scope="props">
+            <template slot="items" scope="props">
                 <td>
                     <v-checkbox
                     color="primary"
                     hide-details
                     v-model="props.selected"
-                    ></v-checkbox>
+                    >
+                    </v-checkbox>
                 </td>
-                <td class="title text-xs-left info--text">{{ props.item.id }}</td>
-                <td class="title text-xs-left info--text">{{ props.item.name }}</td>
-                <td class="title text-xs-left info--text">{{ props.item.price | currency(currency) }}</td>
-                <td class="title text-xs-left info--text">{{ props.item.qty }}</td>
-                <td class="title text-xs-left info--text">{{ props.item.subtotal | currency(currency) }}</td>
-                <td class="title text-xs-center info--text">
+                <td class="title text-xs-left primary--text">{{ props.item.name }}</td>
+                <td class="title text-xs-left primary--text">{{ props.item.qty }}</td>
+                <td class="title text-xs-left primary--text">{{ props.item.price | currency(currency) }}</td>
+                <td class="title text-xs-left primary--text">{{ props.item.subtotal | currency(currency) }}</td>
+                <td class="title text-xs-center">
+
                     <v-edit-dialog
                     @open="tmp = props.item"
                     @save="updateCartItem(tmp)"
@@ -39,11 +47,9 @@
                     lazy
                     >
 
-                    <v-btn icon>
-                        <v-icon class="teal--text text--lighten-2">fa-edit</v-icon>
-                    </v-btn>
+                    <v-icon class="teal--text text--lighten-2">fa-edit</v-icon>
 
-                    <div slot="input" class="mt-3 title primary--text">Update Qty</div>
+                    <div slot="input" class="mt-3 text-xs-center title primary--text">Update Qty</div>
 
                     <v-text-field
                     slot="input"
@@ -57,16 +63,23 @@
                     </v-text-field>
 
                     </v-edit-dialog>
+
                 </td>
                 <td class="title text-xs-center">
                     <v-btn icon @click.native="removeFromCart(props.item.id)">
                         <v-icon class="red--text text--lighten-2">delete_forever</v-icon>
                     </v-btn>
                 </td>
-                </template>
+
+            </template>
+
+            <template slot="pageText" scope="{ pageStart, pageStop }">
+                From {{ pageStart }} to {{ pageStop }}
+            </template>
+
             </v-data-table>
-           </v-layout>
-           <v-flex xs12 class="text-xs-right">
+
+            <v-flex xs12 class="text-xs-right">
                  <v-chip label class="red lighten-2 white--text title">
                     <v-icon left>fa-percent</v-icon> Tax : {{ currency }} {{ tax }}
                 </v-chip>
@@ -83,10 +96,10 @@
                     <v-icon left>fa-money</v-icon> Total : {{ currency }} {{ total }}
                 </v-chip>
             </v-flex>
-       </v-container>
-     </main>
 
-  </v-app>
+        </v-container>
+
+      </v-card>
 </template>
 
 <script>
@@ -101,11 +114,10 @@ export default {
             search: '',
             selected: [],
             headers: [
-                { text: 'Product ID', value: 'id', align: 'left', sortable: true },
-                { text: 'Product Name', value: 'name', align: 'left' },
-                { text: 'Product Price', value: 'price', align: 'left' },
-                { text: 'Quantity', value: 'qty', align: 'left' },
-                { text: 'Total', value: 'total', align: 'left' },
+                { text: 'Name', value: 'name', align: 'left', sortable: true },
+                { text: 'Qty', value: 'qty', align: 'left', sortable: true },
+                { text: 'Price', value: 'price', align: 'left', sortable: true },
+                { text: 'Amount', value: 'subtotal', align: 'left', sortable: true },
                 { text: 'Update', align: 'center', sortable: false },
                 { text: 'Delete', align: 'center', sortable: false }
             ],
@@ -151,7 +163,11 @@ export default {
             updateItem: 'updateItem' /* params: product.id and product.qty, request: rowId and qty */
         }),
         updateCartItem (tmp) {
+            if (tmp.qty > 999) {
+                tmp.qty = 999
+            }
             let payload = {qty: tmp.qty, id: tmp.id}
+
             this.updateItem(payload)
         },
         emptyCart () {

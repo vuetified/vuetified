@@ -1,61 +1,60 @@
 <template>
-  <main-layout>
+  <modal-layout>
+    <v-toolbar class="accent" slot="toolbar">
+    <v-btn icon @click.native="redirectBack()">
+        <v-icon class="primary--text">arrow_back</v-icon>
+    </v-btn>
+    <v-spacer></v-spacer>
+    <v-toolbar-title class="text-xs-center primary--text">Checkout Order Form</v-toolbar-title>
+    <v-spacer></v-spacer>
+    </v-toolbar>
     <v-stepper v-model="current_step" vertical>
+<!-- STEP 1 -->
     <v-stepper-step step="1" :complete="current_step > 1">
-      Verify Orders
-      <small>Order Details</small>
+      <span class="primary--text">Customer Details</span>
+      <small class="info--text">Fill Up Customer Info</small>
     </v-stepper-step>
     <v-stepper-content step="1">
-      <order-details></order-details>
+      <customer-details></customer-details>
       <v-btn primary @click.native="current_step = 2">Continue</v-btn>
-      <v-btn flat @click.native="viewCart()">Update Cart</v-btn>
+      <v-btn outline color="primary" class="primary--text" @click.native="viewCart()">Update Cart</v-btn>
     </v-stepper-content>
-    <v-stepper-step step="2" :complete="current_step > 2">Fill Up Shipping Details
-      <small>Shipping Details</small>
+<!-- STEP 2 -->
+    <v-stepper-step step="2" :complete="current_step > 2">
+      <span class="primary--text">Shipment Details</span>
+      <small class="info--text">Fill Up Shipping Details</small>
     </v-stepper-step>
     <v-stepper-content step="2">
       <shipping-details></shipping-details>
       <v-btn primary @click.native="current_step = 3">Continue</v-btn>
-      <v-btn flat @click.native="current_step = 1">Back</v-btn>
+      <v-btn outline color="primary" class="primary--text" @click.native="current_step = 1">Back</v-btn>
     </v-stepper-content>
-    <v-stepper-step step="3" :complete="current_step > 3">Fill Up Personal Info
-      <small>Your Account Details</small>
+<!-- STEP 3 -->
+    <v-stepper-step step="3" :complete="current_step > 3">
+      <span class="primary--text">Mode of Payment</span>
+      <small class="info--text">Select Payment Options</small>
     </v-stepper-step>
     <v-stepper-content step="3">
-      <customer-details></customer-details>
+      <mode-of-payment></mode-of-payment>
       <v-btn primary @click.native="current_step = 4">Continue</v-btn>
-      <v-btn flat @click.native="current_step = 2">Back</v-btn>
+      <v-btn outline color="primary" class="primary--text" @click.native="current_step = 2">Back</v-btn>
     </v-stepper-content>
-    <v-stepper-step step="4" :complete="current_step > 4">Select Payment Options
-      <small>Mode of Payment</small>
+<!-- STEP 4 -->
+    <v-stepper-step step="4" :complete="current_step > 4">
+      <span class="primary--text">Purchase</span>
+      <small class="info--text">Verify Order Details</small>
     </v-stepper-step>
     <v-stepper-content step="4">
       <mode-of-payment></mode-of-payment>
-      <v-btn primary @click.native="current_step = 5">Submit</v-btn>
-      <v-btn flat @click.native="current_step = 3">Back</v-btn>
+      <v-btn primary @click.native="purchase()">Submit</v-btn>
+      <v-btn outline color="primary" class="primary--text" @click.native="current_step = 3">Back</v-btn>
     </v-stepper-content>
-    <v-stepper-step step="5" :complete="current_step > 5" :rules="checkEmail()">Check Your Email
-      <small>Verify Your Email</small>
-    </v-stepper-step>
-    <v-stepper-content step="5">
-      <verify-email></verify-email>
-      <v-btn primary @click.native="current_step = 6">Submit</v-btn>
-      <v-btn flat @click.native="current_step = 4">Back</v-btn>
-    </v-stepper-content>
-    <v-stepper-step step="6">Login To Your Account
-      <small>Track Your Order Status</small>
-    </v-stepper-step>
-    <v-stepper-content step="6">
-      <success-order></success-order>
-      <v-btn primary @click="login()">Login</v-btn>
-      <v-btn flat @click.native="current_step = 5">Shop More Item</v-btn>
-    </v-stepper-content>
-  </v-stepper>
-  </main-layout>
+    </v-stepper>
+  </modal-layout>
 </template>
 
 <script>
-import MainLayout from '../layouts/Main.vue'
+import ModalLayout from '../layouts/ModalLayout.vue'
 import OrderDetails from '../components/checkout/order-details.vue'
 import ShippingDetails from '../components/checkout/shipping-details.vue'
 import CustomerDetails from '../components/checkout/customer-details.vue'
@@ -70,7 +69,7 @@ export default {
         checkoutForm: new AppForm(App.forms.checkoutForm)
     }),
     components: {
-        MainLayout,
+        ModalLayout,
         OrderDetails,
         ShippingDetails,
         CustomerDetails,
@@ -79,6 +78,13 @@ export default {
         SuccessOrder
     },
     methods: {
+        redirectBack () {
+            let self = this
+            self.$router.push({path: self.$store.state.route.from.fullPath})
+        },
+        purchase () {
+            console.log('making purchase')
+        },
         verifyEmail () {
             self.current_step = 6
             console.log('Please Wait For Sending Payment', self.current_step)
@@ -98,3 +104,8 @@ export default {
     }
 }
 </script>
+<style scoped>
+.stepper .stepper__step--inactive  .stepper__step__step {
+    color: #BA9A5A;
+}
+</style>
