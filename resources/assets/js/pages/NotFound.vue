@@ -162,23 +162,19 @@ export default {
         ModalLayout
     },
     mounted () {
-        let self = this
-        self.$modal.show('404-not-found')
+        // let self = this
     },
     methods: {
         redirectBack () {
             let self = this
-            self.$modal.hide('404-not-found')
             self.$router.go(-2)
         },
         goHome () {
             let self = this
-            self.$modal.hide('404-not-found')
             self.$router.push({name: 'home'})
         },
         goShop () {
             let self = this
-            self.$modal.hide('404-not-found')
             self.$router.push({name: 'product.index'})
         }
     }
