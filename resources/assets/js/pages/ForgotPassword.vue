@@ -17,7 +17,7 @@
         </v-toolbar>
         <v-card-text style="padding-top:100px;">
       <v-container fluid>
-        <v-form v-model="valid" ref="form" lazy-validation @submit.prevent="sendEmail()">
+        <form @submit.prevent="sendEmail()">
         <v-layout row>
           <v-flex xs12 sm12 md4 offset-md4 lg4 offset-lg4 xl4 offset-xl4>
             <v-text-field
@@ -25,16 +25,18 @@
               name="username"
               label="Type Your Registered Email"
               v-model="resetForm.username"
-              :rules="usernameRules"
               prepend-icon="email"
+              v-validate="'required|email'"
+              data-vv-name="username"
+              :error-messages="errors.collect('username')"
               counter="60"
             ></v-text-field>
           </v-flex>
         </v-layout>
         <v-flex xs12 sm12 md4 offset-md4 lg4 offset-lg4 xl4 offset-xl4>
-            <v-btn :loading="resetForm.busy" :disabled="!valid"  type="submit" block :class="{primary: !resetForm.busy, error: resetForm.busy}">Send Password Reset Email</v-btn>
+            <v-btn :disabled="errors.any()" :loading="resetForm.busy" type="submit" block :class="{primary: !resetForm.busy, error: resetForm.busy}">Send Password Reset Email</v-btn>
         </v-flex>
-        </v-form>
+        </form>
       </v-container>
 
     </v-card-text>
@@ -49,12 +51,7 @@ const { mapGetters } = createNamespacedHelpers('auth')
 
 export default {
     data: () => ({
-        valid: true,
-        resetForm: new AppForm(App.forms.resetForm),
-        usernameRules: [
-            (v) => !!v || 'E-mail is required',
-            (v) => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
-        ]
+        resetForm: new AppForm(App.forms.resetForm)
     }),
     computed: {
         ...mapGetters({
@@ -69,22 +66,20 @@ export default {
             return self.$nextTick(() => self.$router.go(-1))
         }
         /* Show Forgot Password Modal */
-        self.$modal.show('forgotpassword')
     },
     methods: {
         goHome () {
             let self = this
-            self.$modal.hide('forgotpassword')
             self.$nextTick(() => self.$router.push({name: 'home'}))
         },
         redirectBack () {
             let self = this
-            self.$modal.hide('forgotpassword')
             return self.$nextTick(() => self.$router.go(-1))
         },
         async sendEmail () {
             let self = this
-            if (self.$refs.form.validate()) {
+            self.$validator.validateAll()
+            if (!self.errors.any()) {
                 self.resetForm.busy = true
                 await axios.post(route('api.auth.forgotpassword'), self.resetForm).then(response => {
                     self.$popup({ message: response.data.message, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })

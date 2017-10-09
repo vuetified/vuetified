@@ -36994,19 +36994,19 @@ exports.default = routes;
 
 
 var Login = function Login() {
-    return __webpack_require__.e/* import() */(15).then(__webpack_require__.bind(null, 538));
+    return __webpack_require__.e/* import() */(13).then(__webpack_require__.bind(null, 538));
 };
 var Logout = function Logout() {
-    return __webpack_require__.e/* import() */(14).then(__webpack_require__.bind(null, 539));
+    return __webpack_require__.e/* import() */(16).then(__webpack_require__.bind(null, 539));
 };
 var Register = function Register() {
-    return __webpack_require__.e/* import() */(13).then(__webpack_require__.bind(null, 540));
+    return __webpack_require__.e/* import() */(12).then(__webpack_require__.bind(null, 540));
 };
 var ResetPassword = function ResetPassword() {
-    return __webpack_require__.e/* import() */(12).then(__webpack_require__.bind(null, 541));
+    return __webpack_require__.e/* import() */(15).then(__webpack_require__.bind(null, 541));
 };
 var ForgotPassword = function ForgotPassword() {
-    return __webpack_require__.e/* import() */(16).then(__webpack_require__.bind(null, 542));
+    return __webpack_require__.e/* import() */(14).then(__webpack_require__.bind(null, 542));
 };
 
 module.exports = [
@@ -37115,7 +37115,7 @@ var About = function About() {
     return __webpack_require__.e/* import() */(9).then(__webpack_require__.bind(null, 546));
 };
 var Cart = function Cart() {
-    return __webpack_require__.e/* import() */(10).then(__webpack_require__.bind(null, 547));
+    return __webpack_require__.e/* import() */(11).then(__webpack_require__.bind(null, 547));
 };
 var Courses = function Courses() {
     return __webpack_require__.e/* import() */(7).then(__webpack_require__.bind(null, 548));
@@ -37252,7 +37252,7 @@ module.exports = [
 
 
 var NotFound = function NotFound() {
-    return __webpack_require__.e/* import() */(11).then(__webpack_require__.bind(null, 554));
+    return __webpack_require__.e/* import() */(10).then(__webpack_require__.bind(null, 554));
 };
 
 module.exports = [

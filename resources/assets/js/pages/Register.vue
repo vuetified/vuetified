@@ -17,7 +17,7 @@
         </v-toolbar>
         <v-card-text style="padding-top:100px;">
       <v-container fluid>
-        <v-form v-model="valid" ref="form" lazy-validation @submit.prevent="register()">
+        <form @submit.prevent="register()">
         <v-layout row>
           <v-flex xs12 sm12 md4 offset-md4 lg4 offset-lg4 xl4 offset-xl4>
             <v-text-field
@@ -25,7 +25,9 @@
               name="name"
               label="Full Name"
               v-model="registerForm.name"
-              :rules="nameRules"
+              v-validate="'required|max:255'"
+              data-vv-name="name"
+              :error-messages="errors.collect('name')"
               counter="60"
               prepend-icon="fa-user"
             ></v-text-field>
@@ -38,7 +40,9 @@
               name="email"
               label="Email"
               v-model="registerForm.username"
-              :rules="usernameRules"
+              v-validate="'required|email'"
+              data-vv-name="email"
+              :error-messages="errors.collect('email')"
               prepend-icon="email"
               counter="60"
             ></v-text-field>
@@ -55,7 +59,9 @@
             :append-icon="icon"
             :append-icon-cb="() => (password_visible = !password_visible)"
             :type="!password_visible ? 'password' : 'text'"
-            :rules="passwordRules"
+            v-validate="'required|min:6|confirmed:password_confirmation'"
+            data-vv-name="password"
+            :error-messages="errors.collect('password')"
             prepend-icon="fa-key"
             counter="60"
             ></v-text-field>
@@ -71,19 +77,16 @@
             :append-icon="icon"
             :append-icon-cb="() => (password_visible = !password_visible)"
             :type="!password_visible ? 'password' : 'text'"
-            :rules="[(value) => {
-                return value === registerForm.password || 'Password Confirmation is Does Not Match.'
-            }]"
             prepend-icon="fa-copy"
             counter="60"
             ></v-text-field>
           </v-flex>
         </v-layout>
         <v-flex xs12 sm12 md4 offset-md4 lg4 offset-lg4 xl4 offset-xl4>
-            <v-btn :loading="registerForm.busy" :disabled="!valid" type="submit" block :class="{primary: !registerForm.busy, error: registerForm.busy}">Register</v-btn>
+            <v-btn :loading="registerForm.busy" :disabled="errors.any()" type="submit" block :class="{primary: !registerForm.busy, error: registerForm.busy}">Register</v-btn>
             <v-btn @click.native="goToLogin()" block flat class="info--text info">Already Have An Account? Go Login</v-btn>
          </v-flex>
-        </v-form>
+        </form>
       </v-container>
 
     </v-card-text>
@@ -98,20 +101,8 @@ const { mapActions, mapGetters } = createNamespacedHelpers('auth')
 
 export default {
     data: () => ({
-        valid: true,
         registerForm: new AppForm(App.forms.registerForm),
-        password_visible: false,
-        usernameRules: [
-            (v) => !!v || 'E-mail is required',
-            (v) => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
-        ],
-        passwordRules: [
-            (v) => !!v || 'Password is Required.',
-            (v) => { return v.length > 5 || 'Password is Below 6 Characters' }
-        ],
-        nameRules: [
-            (v) => !!v || 'Name is Required.'
-        ]
+        password_visible: false
 
     }),
     computed: {
@@ -126,11 +117,9 @@ export default {
         let self = this
         /* Make Sure We Only Load Registration Page If Not Authenticated */
         if (self.getAuth) {
-            /* nextick make sure our modal wount be visible before redirect */
+            /* nextick make sure our modal would not be visible before redirect */
             return self.$nextTick(() => self.$router.go(-1))
         }
-        /* Show Registration Modal */
-        self.$modal.show('register-modal')
     },
     methods: {
         ...mapActions({
@@ -138,22 +127,20 @@ export default {
         }),
         goHome () {
             let self = this
-            self.$modal.hide('register-modal')
             self.$nextTick(() => self.$router.push({name: 'home'}))
         },
         goToLogin () {
             let self = this
-            self.$modal.hide('register-modal')
             self.$nextTick(() => self.$router.push({name: 'login'}))
         },
         redirectBack () {
             let self = this
-            self.$modal.hide('register-modal')
             return self.$nextTick(() => self.$router.go(-1))
         },
         register () {
             let self = this
-            if (self.$refs.form.validate()) {
+            self.$validator.validateAll()
+            if (!self.errors.any()) {
                 self.submit(self.registerForm)
             }
         }

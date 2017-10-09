@@ -75,9 +75,7 @@ import { createNamespacedHelpers } from 'vuex'
 const { mapActions, mapGetters } = createNamespacedHelpers('auth')
 
 export default {
-    inject: ['$validator'],
     data: () => ({
-        valid: true,
         loginForm: new AppForm(App.forms.loginForm),
         password_visible: false
 
