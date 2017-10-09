@@ -15,7 +15,7 @@ const getters = {
 const actions = {
     /* Tested Working */
     /* form : name, email ,password, password_confirmation */
-    async register ({ commit }, form) {
+    async register ({ commit, dispatch }, form) {
         form.busy = true
         try {
             const payload = (await App.post(route('api.auth.register'), form))
@@ -54,7 +54,7 @@ const actions = {
         }
     },
     /* form : name,email ,provider(fb),provider_user_id(fb_id) */
-    async socialauth ({ commit }, form) {
+    async socialauth ({ commit, dispatch }, form) {
         form.busy = true
         try {
             const payload = (await App.post(route('api.auth.social'), form))

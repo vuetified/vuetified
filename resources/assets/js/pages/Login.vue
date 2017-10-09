@@ -17,7 +17,7 @@
         </v-toolbar>
         <v-card-text style="padding-top:100px;">
       <v-container fluid>
-        <form @submit.prevent="login()">
+        <v-form v-model="valid" ref="form" lazy-validation @submit.prevent="login()">
         <v-layout row>
           <v-flex xs12 sm12 md4 offset-md4 lg4 offset-lg4 xl4 offset-xl4>
             <v-text-field
@@ -25,7 +25,7 @@
               name="username"
               label="Type Your Account Email"
               v-model="loginForm.username"
-              :rules="[rules.username.required, rules.username.email]"
+              :rules="usernameRules"
               prepend-icon="email"
               counter="60"
             ></v-text-field>
@@ -43,14 +43,14 @@
             :append-icon="icon"
             :append-icon-cb="() => (password_visible = !password_visible)"
             :type="!password_visible ? 'password' : 'text'"
-            :rules="[rules.password.required, rules.password.min]"
+            :rules="passwordRules"
             prepend-icon="fa-key"
             counter="60"
             ></v-text-field>
           </v-flex>
         </v-layout>
         <v-flex xs12 sm12 md4 offset-md4 lg4 offset-lg4 xl4 offset-xl4>
-            <v-btn :loading="loginForm.busy" :disabled="loginForm.busy" type="submit" block :class="{primary: !loginForm.busy, error: loginForm.busy}">Login</v-btn>
+            <v-btn :loading="loginForm.busy" :disabled="!valid" type="submit" block :class="{primary: !loginForm.busy, error: loginForm.busy}">Login</v-btn>
 
         </v-flex>
         <v-flex xs12 sm12 md4 offset-md4 lg4 offset-lg4 xl4 offset-xl4>
@@ -59,7 +59,7 @@
             <v-btn @click.native="resetPassword()" block flat class="error--text error">Forgot Password?</v-btn>
             </v-card-actions>
         </v-flex>
-        </form>
+        </v-form>
       </v-container>
 
     </v-card-text>
@@ -74,22 +74,18 @@ const { mapActions, mapGetters } = createNamespacedHelpers('auth')
 
 export default {
     data: () => ({
+        valid: true,
         loginForm: new AppForm(App.forms.loginForm),
         password_visible: false,
-        rules: {
-            password: {
-                required: (value) => !!value || 'Password is Required.',
-                min: (value) => { return value.length > 5 || 'Password is Below 6 Characters' }
-            },
-            username: {
-                required: (value) => !!value || 'Email is Required.',
-                email: (value) => {
-                    const pattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-                    return pattern.test(value) || 'Invalid e-mail.'
-                }
-            }
+        usernameRules: [
+            (v) => !!v || 'E-mail is required',
+            (v) => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
+        ],
+        passwordRules: [
+            (v) => !!v || 'Password is Required.',
+            (v) => { return v.length > 5 || 'Password is Below 6 Characters' }
+        ]
 
-        }
     }),
     computed: {
         icon () {
@@ -126,7 +122,9 @@ export default {
         },
         login () {
             let self = this
-            self.submit(self.loginForm)
+            if (self.$refs.form.validate()) {
+                self.submit(self.loginForm)
+            }
         },
         ...mapActions({
             submit: 'login'
