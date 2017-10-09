@@ -69,8 +69,8 @@
 
                 </td>
                 <td class="title text-xs-center">
-                    <v-btn icon @click.native="removeFromCart(props.item.id)">
-                        <v-icon class="red--text text--lighten-2">delete_forever</v-icon>
+                    <v-btn flat icon color="red lighten-2" @click.native="removeFromCart(props.item.id)">
+                    <v-icon>delete_forever</v-icon>
                     </v-btn>
                 </td>
 
