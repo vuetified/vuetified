@@ -4,9 +4,12 @@
 
             <v-card-title>
 
-            <v-btn icon @click="emptyCart()" v-if="count > 0" v-tooltip:top="{ html: `Empty Cart` }">
-            <v-icon class="error--text">remove_shopping_cart</v-icon>
+            <v-tooltip top>
+            <v-btn flat icon color="red lighten-2" slot="activator" @click="emptyCart()" v-if="count > 0">
+            <v-icon>remove_shopping_cart</v-icon>
             </v-btn>
+            <span>Empty Cart</span>
+            </v-tooltip>
 
             <v-text-field
                 append-icon="search"

@@ -15,12 +15,22 @@
         <img v-if="showLogo"   :src="logo" :style="[logoStyle]"  alt="vuejs">
         <v-spacer></v-spacer>
         <!-- Add Here All Your Nav Icons -->
-        <v-btn icon @click="emptyCart()" v-if="count > 0" v-tooltip:left="{ html: `Empty Cart` }">
-            <v-icon class="error--text">remove_shopping_cart</v-icon>
+
+        <v-tooltip left>
+        <v-btn flat icon color="error" slot="activator" @click="emptyCart()" v-if="count > 0">
+        <v-icon>remove_shopping_cart</v-icon>
         </v-btn>
-        <v-btn icon @click="openCart()" v-tooltip:left="{ html: `View Cart` }">
-            <v-icon class="primary--text primary--after" v-badge="{ value: parseInt(count), left: true}">shopping_cart</v-icon>
+        <span>Empty Cart</span>
+        </v-tooltip>
+        <v-tooltip left>
+        <v-btn flat icon color="primary" slot="activator" @click="openCart()" v-if="count > 0">
+        <v-badge left>
+        <span slot="badge">{{ count }}</span>
+        <v-icon>shopping_cart</v-icon>
+        </v-badge>
         </v-btn>
+        <span>Empty Cart</span>
+        </v-tooltip>
 </v-toolbar>
 </template>
 
