@@ -29,7 +29,7 @@
               v-validate="'required|email'"
               data-vv-name="username"
               prepend-icon="email"
-              counter="60"
+              counter="255"
             ></v-text-field>
           </v-flex>
         </v-layout>
@@ -47,6 +47,7 @@
             v-validate="'required|min:6'"
             :error-messages="errors.collect('password')"
             data-vv-name="password"
+            counter="255"
             prepend-icon="fa-key"
             ></v-text-field>
           </v-flex>

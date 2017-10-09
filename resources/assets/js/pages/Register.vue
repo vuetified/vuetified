@@ -28,7 +28,7 @@
               v-validate="'required|max:255'"
               data-vv-name="name"
               :error-messages="errors.collect('name')"
-              counter="60"
+              counter="255"
               prepend-icon="fa-user"
             ></v-text-field>
           </v-flex>
@@ -44,7 +44,7 @@
               data-vv-name="email"
               :error-messages="errors.collect('email')"
               prepend-icon="email"
-              counter="60"
+              counter="255"
             ></v-text-field>
           </v-flex>
         </v-layout>
@@ -55,7 +55,6 @@
             name="password"
             label="Password"
             v-model="registerForm.password"
-            min="8"
             :append-icon="icon"
             :append-icon-cb="() => (password_visible = !password_visible)"
             :type="!password_visible ? 'password' : 'text'"
@@ -63,7 +62,7 @@
             data-vv-name="password"
             :error-messages="errors.collect('password')"
             prepend-icon="fa-key"
-            counter="60"
+            counter="255"
             ></v-text-field>
           </v-flex>
         </v-layout>
@@ -78,7 +77,7 @@
             :append-icon-cb="() => (password_visible = !password_visible)"
             :type="!password_visible ? 'password' : 'text'"
             prepend-icon="fa-copy"
-            counter="60"
+            counter="255"
             ></v-text-field>
           </v-flex>
         </v-layout>

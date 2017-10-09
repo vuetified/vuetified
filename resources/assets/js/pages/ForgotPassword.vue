@@ -29,7 +29,7 @@
               v-validate="'required|email'"
               data-vv-name="username"
               :error-messages="errors.collect('username')"
-              counter="60"
+              counter="255"
             ></v-text-field>
           </v-flex>
         </v-layout>
