@@ -1,5 +1,6 @@
 <template>
   <modal-layout>
+    <!-- ToolBar Slot -->
     <v-toolbar class="accent" slot="toolbar">
     <v-btn icon @click.native="redirectBack()">
         <v-icon class="primary--text">arrow_back</v-icon>
@@ -8,8 +9,9 @@
     <v-toolbar-title class="text-xs-center primary--text">Checkout Order Form</v-toolbar-title>
     <v-spacer></v-spacer>
     </v-toolbar>
+    <!-- Main Slot -->
     <v-stepper v-model="current_step" vertical>
-<!-- STEP 1 -->
+    <!-- STEP 1 -->
     <v-stepper-step step="1" :complete="current_step > 1">
       <span class="primary--text">Customer Details</span>
       <small class="info--text">Fill Up Customer Info</small>
@@ -19,7 +21,7 @@
       <v-btn primary @click.native="current_step = 2">Continue</v-btn>
       <v-btn outline color="primary" class="primary--text" @click.native="viewCart()">Update Cart</v-btn>
     </v-stepper-content>
-<!-- STEP 2 -->
+    <!-- STEP 2 -->
     <v-stepper-step step="2" :complete="current_step > 2">
       <span class="primary--text">Shipment Details</span>
       <small class="info--text">Fill Up Shipping Details</small>
@@ -29,7 +31,7 @@
       <v-btn primary @click.native="current_step = 3">Continue</v-btn>
       <v-btn outline color="primary" class="primary--text" @click.native="current_step = 1">Back</v-btn>
     </v-stepper-content>
-<!-- STEP 3 -->
+    <!-- STEP 3 -->
     <v-stepper-step step="3" :complete="current_step > 3">
       <span class="primary--text">Mode of Payment</span>
       <small class="info--text">Select Payment Options</small>
@@ -39,7 +41,7 @@
       <v-btn primary @click.native="current_step = 4">Continue</v-btn>
       <v-btn outline color="primary" class="primary--text" @click.native="current_step = 2">Back</v-btn>
     </v-stepper-content>
-<!-- STEP 4 -->
+    <!-- STEP 4 -->
     <v-stepper-step step="4" :complete="current_step > 4">
       <span class="primary--text">Purchase</span>
       <small class="info--text">Verify Order Details</small>
@@ -50,6 +52,10 @@
       <v-btn outline color="primary" class="primary--text" @click.native="current_step = 3">Back</v-btn>
     </v-stepper-content>
     </v-stepper>
+    <!-- Footer Slot -->
+    <v-footer :class="[footerClass]" fixed slot="footer">
+    <v-spacer></v-spacer><span>© {{ year }} {{ domain }} ® | {{ trademark }}™</span><v-spacer></v-spacer>
+    </v-footer>
   </modal-layout>
 </template>
 
@@ -61,11 +67,14 @@ import CustomerDetails from '../components/checkout/customer-details.vue'
 import ModeOfPayment from '../components/checkout/mode-of-payment.vue'
 import VerifyEmail from '../components/checkout/verify-email.vue'
 import SuccessOrder from '../components/checkout/success-order.vue'
+import Theme from '../mixins/theme'
 
 export default {
+    mixins: [Theme],
     props: ['orders'],
     data: () => ({
         current_step: 0,
+        footerClass: {'primary--text': true, 'accent': true},
         checkoutForm: new AppForm(App.forms.checkoutForm)
     }),
     components: {
