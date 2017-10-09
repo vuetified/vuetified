@@ -49,9 +49,9 @@
                     large
                     lazy
                     >
-
-                    <v-icon class="teal--text text--lighten-2">fa-edit</v-icon>
-
+                    <v-btn flat color="teal lighten-2">
+                    <v-icon>fa-edit</v-icon>
+                    </v-btn>
                     <div slot="input" class="mt-3 text-xs-center title primary--text">Update Qty</div>
 
                     <v-text-field
