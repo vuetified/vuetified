@@ -59,8 +59,8 @@
               <v-card-actions class="accent">
                 <span class="body-2">View Product List</span>
                 <v-spacer></v-spacer>
-                <v-btn icon @click="showCategory(category.slug)">
-                  <v-icon class="primary--text">fa-list</v-icon>
+                <v-btn flat icon color="primary" slot="activator" @click="showCategory(category.slug)">
+                <v-icon>fa-list</v-icon>
                 </v-btn>
                 <!-- Add Other Action buttons Here -->
               </v-card-actions>
