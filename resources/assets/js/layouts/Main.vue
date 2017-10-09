@@ -8,7 +8,7 @@
           <slot></slot>
       </v-container>
     </main>
-    <shopping-cart></shopping-cart>
+    <!-- <shopping-cart></shopping-cart> -->
     <fab-button></fab-button>
     <cookie-law></cookie-law>
     <app-footer></app-footer>
@@ -21,7 +21,7 @@ import AppNavBar from '../partials/AppNavBar.vue'
 import LeftSideBar from '../partials/LeftSideBar.vue'
 import FabButton from '../components/FabButton.vue'
 import CookieLaw from '../partials/CookieLaw.vue'
-import ShoppingCart from '../partials/ShoppingCart.vue'
+// import ShoppingCart from '../partials/ShoppingCart.vue'
 
 export default {
     components: {
@@ -29,8 +29,8 @@ export default {
         AppNavBar,
         LeftSideBar,
         FabButton,
-        CookieLaw,
-        ShoppingCart
+        CookieLaw
+        // ShoppingCart
     }
 }
 </script>
