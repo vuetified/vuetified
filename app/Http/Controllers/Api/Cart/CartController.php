@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Api\Cart;
 
+use Cart;
+use App\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Product;
-use Cart;
 
 class CartController extends Controller
 {
