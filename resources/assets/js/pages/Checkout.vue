@@ -20,8 +20,8 @@
         <!-- Step 1 Component -->
         <customer-details :form="checkoutForm"></customer-details>
         <!-- Step 1 Buttons -->
-        <v-btn primary @click.native="current_step = 2">Continue</v-btn>
-        <v-btn outline color="primary" class="primary--text" @click.native="viewCart()">Update Cart</v-btn>
+        <v-btn color="primary" @click.native="current_step = 2">Continue</v-btn>
+        <v-btn outline color="primary" @click.native="viewCart()">Update Cart</v-btn>
     </v-stepper-content>
     <!-- STEP 2 Label -->
     <v-stepper-step step="2" :complete="current_step > 2">
@@ -32,8 +32,8 @@
         <!-- Step 2 Component -->
         <shipping-details :form="checkoutForm"></shipping-details>
         <!-- Step 2 Buttons -->
-        <v-btn primary @click.native="current_step = 3">Continue</v-btn>
-        <v-btn outline color="primary" class="primary--text" @click.native="current_step = 1">Back</v-btn>
+        <v-btn color="primary" @click.native="current_step = 3">Continue</v-btn>
+        <v-btn outline color="primary" @click.native="current_step = 1">Back</v-btn>
     </v-stepper-content>
     <!-- STEP 3 Label -->
     <v-stepper-step step="3" :complete="current_step > 3">
@@ -44,8 +44,8 @@
         <!-- Step 3 Component -->
         <mode-of-payment :form="checkoutForm"></mode-of-payment>
         <!-- Step 3 Buttons -->
-        <v-btn primary @click.native="current_step = 4">Continue</v-btn>
-        <v-btn outline color="primary" class="primary--text" @click.native="current_step = 2">Back</v-btn>
+        <v-btn color="primary" @click.native="current_step = 4">Continue</v-btn>
+        <v-btn outline color="primary" @click.native="current_step = 2">Back</v-btn>
     </v-stepper-content>
     <!-- STEP 4 Label -->
     <v-stepper-step step="4" :complete="current_step > 4">
@@ -56,8 +56,8 @@
         <!-- Step 4 Component -->
         <mode-of-payment :form="checkoutForm"></mode-of-payment>
         <!-- Step 4 Buttons -->
-        <v-btn primary @click.native="purchase()">Submit</v-btn>
-        <v-btn outline color="primary" class="primary--text" @click.native="current_step = 3">Back</v-btn>
+        <v-btn color="primary" @click.native="purchase()">Submit</v-btn>
+        <v-btn outline color="primary" @click.native="current_step = 3">Back</v-btn>
     </v-stepper-content>
     </v-stepper>
     <!-- Footer Slot -->
