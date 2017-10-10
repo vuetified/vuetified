@@ -23,9 +23,13 @@ HTML Class Suggestions
 Composer
 Laravel Blade Snippets
 Laravel 5 Snippets
+Laravel Helpers
+Laravel goto view
 PHP DocBLocker
 PHP Formatter
-PHP Intellisense - Crane
+PHP Intellisense
+PHP Namespace Resolver
+PHPComments
 
 launguage-stylus
 
