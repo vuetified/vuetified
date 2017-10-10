@@ -1,7 +1,5 @@
 let mix = require('laravel-mix')
-require('dotenv').config()
 
-const env = process.env
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -19,10 +17,18 @@ mix.js('resources/assets/js/app.js', 'public/js')
     ])
 mix.stylus('resources/assets/stylus/app.styl', 'public/css')
 mix.sourceMaps()
-mix.browserSync({
-    proxy: env.APP_DOMAIN
-})
 if (mix.inProduction()) {
     mix.version()
     mix.disableNotifications()
 }
+/* 
+ * Comment out if you want to Use BrowserSync
+ *
+ * 
+require('dotenv').config()
+const env = process.env
+mix.browserSync({
+    proxy: env.APP_DOMAIN
+})
+ *
+ */
