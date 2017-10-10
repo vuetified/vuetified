@@ -1,6 +1,3 @@
 {
-    "presets": [
-        ["env"],
-        "stage-2"
-    ]
+    "presets": ["vue-app"]
 }

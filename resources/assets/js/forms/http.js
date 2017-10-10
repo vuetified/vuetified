@@ -1,4 +1,4 @@
-module.exports = {
+export default {
     /**
      * Helper method for making POST HTTP requests.
      */
