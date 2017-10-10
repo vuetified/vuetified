@@ -1,0 +1,29 @@
+
+Controller For Order Add Edit Delete View Index
+
+Controller For username Subdomain
+
+CheckOut Process State Of Completion
+
+Type of Delivery
+
+- Door to Door (Courriers)
+- Pick Up Location (Areas)
+- Meet Up (Note For Meet Up)
+
+Mode of Payment
+- Cash
+- Bank Transfer (Bank Details Multiple Bank Account)
+- Mobile Payment (Gcash, Smart)
+- Cash On Delivery 
+
+
+This is for uploading profile image?
+https://github.com/waynecz/vue-img-inputer
+
+head tag
+https://github.com/ktquez/vue-head
+
+meta tag 
+https://github.com/declandewet/vue-meta
+

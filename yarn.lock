@@ -2175,6 +2175,10 @@ deep-is@~0.1.3:
   version "0.1.3"
   resolved "https://registry.yarnpkg.com/deep-is/-/deep-is-0.1.3.tgz#b369d6fb5dbc13eecf524f91b070feedc357cf34"
 
+deepmerge@^1.5.0:
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/deepmerge/-/deepmerge-1.5.2.tgz#10499d868844cdad4fee0842df8c7f6f0c95a753"
+
 default-gateway@^2.2.2:
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/default-gateway/-/default-gateway-2.5.0.tgz#78e24dbd2e1df7490c2b8050515b8e816bfa7da5"
@@ -4765,6 +4769,10 @@ lodash.isfinite@^3.3.2:
   version "3.3.2"
   resolved "https://registry.yarnpkg.com/lodash.isfinite/-/lodash.isfinite-3.3.2.tgz#fb89b65a9a80281833f0b7478b3a5104f898ebb3"
 
+lodash.isplainobject@^4.0.6:
+  version "4.0.6"
+  resolved "https://registry.yarnpkg.com/lodash.isplainobject/-/lodash.isplainobject-4.0.6.tgz#7c526a52d89b45c45cc690b88163be0497f550cb"
+
 lodash.keys@^3.0.0:
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/lodash.keys/-/lodash.keys-3.1.2.tgz#4dbc0472b156be50a0b286855d1bd0b0c656098a"
@@ -5355,7 +5363,7 @@ object-assign@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/object-assign/-/object-assign-3.0.0.tgz#9bedd5ca0897949bca47e7ff408062d549f587f2"
 
-object-assign@^4.0.0, object-assign@^4.0.1, object-assign@^4.1.0, object-assign@~4.1.1:
+object-assign@^4.0.0, object-assign@^4.0.1, object-assign@^4.1.0, object-assign@^4.1.1, object-assign@~4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/object-assign/-/object-assign-4.1.1.tgz#2109adc7965887cfc05cbbd442cac8bfbb360863"
 
@@ -7881,6 +7889,10 @@ vue-eslint-parser@^2.0.1-beta.0:
     esquery "^1.0.0"
     lodash "^4.17.4"
 
+vue-head@^2.0.11:
+  version "2.0.11"
+  resolved "https://registry.yarnpkg.com/vue-head/-/vue-head-2.0.11.tgz#d063b87d99e8898002c4967f558f82437b23f72a"
+
 vue-hot-reload-api@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/vue-hot-reload-api/-/vue-hot-reload-api-2.1.0.tgz#9ca58a6e0df9078554ce1708688b6578754d86de"
@@ -7890,10 +7902,6 @@ vue-js-cookie@^2.0.0:
   resolved "https://registry.yarnpkg.com/vue-js-cookie/-/vue-js-cookie-2.0.0.tgz#2f64591ab6393f6798ff0612aa37c82de0499060"
   dependencies:
     js-cookie "^2.1"
-
-vue-js-modal@^1.2.11:
-  version "1.2.11"
-  resolved "https://registry.yarnpkg.com/vue-js-modal/-/vue-js-modal-1.2.11.tgz#6b715a978cb9ddcc4b2042ca2c65147198aca75a"
 
 vue-loader@^13.0.5:
   version "13.0.5"
@@ -7912,6 +7920,14 @@ vue-loader@^13.0.5:
     vue-hot-reload-api "^2.1.0"
     vue-style-loader "^3.0.0"
     vue-template-es2015-compiler "^1.5.3"
+
+vue-meta@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/vue-meta/-/vue-meta-1.2.0.tgz#f4cedccaae566ea0a27f052820dc076510d0080c"
+  dependencies:
+    deepmerge "^1.5.0"
+    lodash.isplainobject "^4.0.6"
+    object-assign "^4.1.1"
 
 vue-router@^2.7.0:
   version "2.7.0"
@@ -7939,9 +7955,9 @@ vue-timeago@^3.3.6:
   version "3.3.6"
   resolved "https://registry.yarnpkg.com/vue-timeago/-/vue-timeago-3.3.6.tgz#c849042ddaf159f24c80ac317211a0d4b427e5fc"
 
-vue-use-vuex@^0.2.2:
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/vue-use-vuex/-/vue-use-vuex-0.2.2.tgz#b2176b9412049c40e5dbeb83b0110452aa7be14c"
+vue-visible@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/vue-visible/-/vue-visible-1.0.2.tgz#4589036bbf3cfcf4cfbcb209ae8062e9b7cafa91"
 
 vue-youtube-embed@^2.1.2:
   version "2.1.2"
@@ -7957,13 +7973,6 @@ vue2-dropzone@^2.3.5:
 vue2-filters@^0.2.1:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/vue2-filters/-/vue2-filters-0.2.1.tgz#f0c79df41a8c396134d1983110879b19fd0e27c8"
-
-vue2-scrollbar@^0.0.3:
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/vue2-scrollbar/-/vue2-scrollbar-0.0.3.tgz#2db07eea49f1330e483c2b1312862f37711c1d57"
-  dependencies:
-    vue "^2.4.2"
-    vue-template-compiler "^2.4.2"
 
 vue@2.*.*, vue@^2.0.0, vue@^2.2.2, vue@^2.4.2, vue@^2.4.4:
   version "2.4.4"

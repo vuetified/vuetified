@@ -1,7 +1,6 @@
 /* IE 11 Compatible */
 import Vue from 'vue'
 import Vuex from 'vuex' /* State Management */
-import vmodal from 'vue-js-modal' /* Modals */
 import Vuetify from 'vuetify' /* Front End Framework */
 import VueDefaultValue from 'vue-default-value' /* add default directive */
 import Vue2Filters from 'vue2-filters' /* Add Filters such as currency etc */
@@ -16,6 +15,7 @@ import VueImg from 'v-img' /* Image Gallery Directive */
 import Echo from 'laravel-echo' /* Make App Realtime */
 import VueEcho from 'vue-echo' /* Vue Wrapper for laravel echo */
 import VueCookie from 'vue-js-cookie'
+import VueVisible from 'vue-visible'
 import initialData from './mixins/initial-state' /* Our Initial State Provided By Our App */
 import './services/acl' /* Add ACL To Our Routes */
 
@@ -64,7 +64,6 @@ const timeagoConfig = {
 Vue.use(Vuetify)
 Vue.use(Vue2Filters)
 Vue.use(VueDefaultValue)
-Vue.use(vmodal)
 Vue.use(VueUp)
 Vue.use(VueAgile)
 Vue.use(Bars)
@@ -75,6 +74,7 @@ Vue.use(VueTimeago, timeagoConfig)
 Vue.use(VeeValidate, veeConfig)
 Vue.use(Vuex)
 Vue.use(VueCookie)
+Vue.use(VueVisible)
 /* Seed Initial State as Mixins */
 Vue.mixin(initialData)
 
