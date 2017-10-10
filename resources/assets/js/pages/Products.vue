@@ -57,9 +57,9 @@
                 </transition>
               </clazy-load>
               <v-card-actions class="accent">
-                <span class="body-2" style="cursor:pointer;" @click.native="showProduct(product.slug)">{{ product.name }}</span>
+                <span class="body-2">{{product.price | currency(currency)}}</span>
                 <v-tooltip right lazy>
-                <v-btn flat icon color="teal lighten-4" slot="activator" @click.native="showProduct()">
+                <v-btn flat icon color="teal lighten-4" slot="activator" @click.native="showProduct(product.slug)">
                 <v-icon>fa-info-circle</v-icon>
                 </v-btn>
                 <span>View | {{product.name}} Details</span>
@@ -132,6 +132,7 @@ export default {
     },
     data: () => ({
         contentClass: { 'grey': true, 'lighten-4': true, 'accent--text': true },
+        currency: '₱',
         products: [],
         links: {
             first: null,
