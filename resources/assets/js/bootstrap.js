@@ -1,6 +1,3 @@
-/* Local Storage */
-import Ls from './services/ls'
-
 window._ = require('lodash')
 window.moment = require('moment')
 window.Promise = require('promise')
@@ -37,22 +34,25 @@ if (!global._babelPolyfill) {
     require('babel-polyfill')
 }
 
-/* Load Our Vue App */
+/* Bootstrap Vue Plugins */
 
 if ($('#app').length > 0) {
     require('./vuestrap')
 }
 
+/* Load Axios */
 window.axios = require('axios')
 
+/* Allows Us To Authorized Api Request If Authenticated Using Web Middleware */
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
-
+/* Set The Token if Present So We Can Authorize Request */
 let token = document.head.querySelector('meta[name="csrf-token"]')
 if (token) {
     window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content
 } else {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token')
 }
+/* Allows Us To Authorized Api Request If Authenticated Using Api Middleware */
 /* Set The Token if Present So We Can Authorize Request */
 window.axios.interceptors.request.use(function (response) {
     const AUTH_TOKEN = vm.$cookie.get('access_token')
