@@ -1,6 +1,6 @@
 const NotFound = () => import('../pages/NotFound.vue')
 
-module.exports = [
+export default [
     /* Start Error Handing Routes */
     {
         path: '/404.html',

@@ -1,8 +1,9 @@
-require('./forms')
-require('./errors')
+import './forms'
+import './errors'
+import http from './http'
 
 // Add methods to App Object for HTTP Request
-_.extend(App, require('./http'))
+_.extend(App, http)
 
 // All Fields Declared Here When Initiated Will Be Reactive
 App.forms = {

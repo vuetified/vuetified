@@ -1,7 +1,7 @@
 const Checkout = () => import('../pages/Checkout.vue')
 const Dashboard = () => import('../pages/Dashboard.vue')
 
-module.exports = [
+export default [
     /* Start Authenticated Routes */
     {
         path: '/dashboard',

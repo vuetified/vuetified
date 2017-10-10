@@ -1,7 +1,7 @@
 const Categories = () => import('../pages/Categories.vue')
 const Category = () => import('../pages/Category.vue')
 
-module.exports = [
+export default [
     {
         path: '/categories',
         component: Categories,

@@ -4,7 +4,7 @@ const Register = () => import('../pages/Register.vue')
 const ResetPassword = () => import('../pages/ResetPassword.vue')
 const ForgotPassword = () => import('../pages/ForgotPassword.vue')
 
-module.exports = [
+export default [
     /* Start Authentication Routes */
     {
         path: '/login',

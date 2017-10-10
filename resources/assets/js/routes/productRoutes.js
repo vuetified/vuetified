@@ -1,7 +1,7 @@
 const Products = () => import('../pages/Products.vue')
 const Product = () => import('../pages/Product.vue')
 
-module.exports = [
+export default [
     {
         path: '/products',
         component: Products,

@@ -4,7 +4,7 @@ const Cart = () => import('../components/Cart.vue')
 const Courses = () => import('../pages/Courses.vue')
 const Support = () => import('../pages/Support.vue')
 
-module.exports = [
+export default [
     /* Front End Routes */
     {
         path: '/about',

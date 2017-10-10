@@ -1,7 +1,7 @@
 /**
  * Export the Any Component
  */
-module.exports = {
+export default {
     data: () => ({
         darkClass: App.theme.dark,
         primaryClass: App.theme.primary,

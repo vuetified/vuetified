@@ -1,5 +1,5 @@
 /* Useful for Multi Auth */
-module.exports = {
+export default {
     props: ['guard'],
     data () {
         return {
