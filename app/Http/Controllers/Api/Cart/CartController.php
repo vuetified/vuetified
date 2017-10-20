@@ -34,7 +34,7 @@ class CartController extends Controller
                     'count' => $count,
                     'item' => $cartItem
                     ],
-            'message' => 'Add Item To Cart'
+            'message' => 'Product Added To Cart'
         ],200);
     }
 
@@ -60,7 +60,7 @@ class CartController extends Controller
                     'count' => $count,
                     'item' => $cartItem
                     ],
-            'message' => 'Cart Item Updated'
+            'message' => 'Product Qty Updated'
         ],200);
 
     }
