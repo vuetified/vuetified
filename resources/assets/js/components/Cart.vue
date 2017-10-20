@@ -10,7 +10,7 @@
     <v-toolbar-items>
         <!-- If There is no User Account Login Yet Redirect to Authentication Page -->
         <v-btn color="success" flat @click.native="checkout()" v-if="count > 0">Checkout<v-icon right>payment</v-icon></v-btn>
-        <v-btn  flat  color="primary" @click.native="redirectBack()" v-else>Close</v-btn>
+        <v-btn  flat  color="primary" @click.native="close()" v-else>Close</v-btn>
     </v-toolbar-items>
     </v-toolbar>
     <basket></basket>
@@ -46,6 +46,10 @@ export default {
         redirectBack () {
             let self = this
             self.$router.push({path: self.$store.state.route.from.fullPath})
+        },
+        close () {
+            let self = this
+            self.$router.push({path: '/'})
         },
         checkout () {
             let self = this
