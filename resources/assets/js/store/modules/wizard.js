@@ -38,27 +38,35 @@ const actions = {
 const mutations = {
     setCurrentStep: (state, payload) => {
         switch (payload) {
+        case 1:
+            state.current_step = payload
+            break
         case 2:
+            vm.$emit('validate_step_1')
             if (state.step_1_validated) {
                 state.current_step = payload
             }
             break
         case 3:
+            vm.$emit('validate_step_2')
             if (state.step_2_validated) {
                 state.current_step = payload
             }
             break
         case 4:
+            vm.$emit('validate_step_3')
             if (state.step_3_validated) {
                 state.current_step = payload
             }
             break
         case 5:
+            vm.$emit('validate_step_4')
             if (state.step_4_validated) {
                 state.current_step = payload
             }
             break
         default:
+            vm.$emit('validate_step_5')
             if (state.step_5_validated) {
                 state.current_step = payload
             }

@@ -82,10 +82,12 @@ export default {
     },
     mounted () {
         let self = this
-        Bus.$on('validate_step_3', () => {
+        vm.$on('validate_step_3', () => {
             self.$validator.validateAll()
             if (!self.errors.any()) {
-                Bus.$emit('step_3_validated')
+                vm.$emit('step_3_validated', true)
+            } else {
+                vm.$emit('step_3_validated', false)
             }
         })
     },

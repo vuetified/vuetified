@@ -20,7 +20,8 @@
         <!-- Step 1 Component -->
         <customer-details></customer-details>
         <!-- Step 1 Buttons -->
-        <v-btn color="primary" @click.native="stepHop(parseInt(2))">Continue</v-btn>
+        <!-- we can move this button inside the component -->
+        <v-btn color="primary" @click.native="current_step = 2">Continue</v-btn>
         <v-btn outline color="primary" @click.native="viewCart()">Update Cart</v-btn>
     </v-stepper-content>
     <!-- STEP 2 Label -->
@@ -32,7 +33,7 @@
         <!-- Step 2 Component -->
         <shipping-details></shipping-details>
         <!-- Step 2 Buttons -->
-        <v-btn color="primary" @click.native="stepHop(parseInt(3))">Continue</v-btn>
+        <v-btn color="primary" @click.native="current_step = 3">Continue</v-btn>
         <v-btn outline color="primary" @click.native="current_step = 1">Back</v-btn>
     </v-stepper-content>
     <!-- STEP 3 Label -->
@@ -44,7 +45,7 @@
         <!-- Step 3 Component -->
         <delivery-method></delivery-method>
         <!-- Step 3 Buttons -->
-        <v-btn color="primary" @click.native="stepHop(parseInt(4))">Continue</v-btn>
+        <v-btn color="primary" @click.native="current_step = 4">Continue</v-btn>
         <v-btn outline color="primary" @click.native="current_step = 2">Back</v-btn>
     </v-stepper-content>
     <!-- STEP 4 Label -->
@@ -56,7 +57,7 @@
         <!-- Step 4 Component -->
         <mode-of-payment></mode-of-payment>
         <!-- Step 4 Buttons -->
-        <v-btn color="primary" @click.native="stepHop(parseInt(5))">Continue</v-btn>
+        <v-btn color="primary" @click.native="current_step = 5">Continue</v-btn>
         <v-btn outline color="primary" @click.native="current_step = 3">Back</v-btn>
     </v-stepper-content>
     <!-- STEP 5 Label -->
@@ -68,7 +69,7 @@
         <!-- Step 5 Component -->
         <order-details></order-details>
         <!-- Step 5 Buttons -->
-        <v-btn color="primary" @click.native="stepHop(parseInt(6))">Submit</v-btn>
+        <v-btn color="primary" @click.native="purchase()">Submit</v-btn>
         <v-btn outline color="primary" @click.native="current_step = 4">Back</v-btn>
     </v-stepper-content>
     <!-- End Stepper -->
@@ -91,19 +92,11 @@ import ModeOfPayment from '../components/checkout/mode-of-payment.vue'
 import SuccessOrder from '../components/checkout/success-order.vue'
 import DeliveryMethod from '../components/checkout/delivery-method.vue'
 import Theme from '../mixins/theme'
+import { createNamespacedHelpers } from 'vuex'
+const { mapGetters, mapMutations } = createNamespacedHelpers('wizard')
 
 export default {
     mixins: [Theme],
-    data: () => ({
-        current_step: 1,
-        footerClass: {'primary--text': true, 'accent': true},
-        checkoutForm: new AppForm(App.forms.checkoutForm),
-        step_1_validated: false,
-        step_2_validated: false,
-        step_3_validated: false,
-        step_4_validated: false,
-        step_5_validated: false
-    }),
     components: {
         ModalLayout,
         OrderDetails,
@@ -113,27 +106,78 @@ export default {
         SuccessOrder,
         DeliveryMethod
     },
-    mounted () {
-        let self = this
-        Bus.$on('step_1_validated', () => {
-            self.step_1_validated = true
-        })
-        Bus.$on('step_2_validated', () => {
-            self.step_2_validated = true
-        })
-        Bus.$on('step_3_validated', (courier) => {
-            console.log(courier)
-            self.step_3_validated = true
-        })
-        Bus.$on('step_4_validated', (mop) => {
-            console.log(mop)
-            self.step_4_validated = true
-        })
-        Bus.$on('step_5_validated', () => {
-            self.step_5_validated = true
-        })
+    data: () => ({
+        footerClass: {'primary--text': true, 'accent': true},
+        checkoutForm: new AppForm(App.forms.checkoutForm)
+    }),
+    computed: {
+        ...mapGetters([
+            'getCurrentStep',
+            'getStepOne',
+            'getStepTwo',
+            'getStepThree',
+            'getStepFour',
+            'getStepFive'
+        ]),
+        current_step: {
+            get () {
+                return this.getCurrentStep
+            },
+            set (value) {
+                this.setCurrentStep(value)
+            }
+        },
+        step_1_validated: {
+            get () {
+                return this.getStepOne
+            },
+            set (value) {
+                this.setStepOne(value)
+            }
+        },
+        step_2_validated: {
+            get () {
+                return this.getStepTwo
+            },
+            set (value) {
+                this.setStepTwo(value)
+            }
+        },
+        step_3_validated: {
+            get () {
+                return this.getStepThree
+            },
+            set (value) {
+                this.setStepThree(value)
+            }
+        },
+        step_4_validated: {
+            get () {
+                return this.getStepFour
+            },
+            set (value) {
+                this.setStepFour(value)
+            }
+        },
+        step_5_validated: {
+            get () {
+                return this.getStepFive
+            },
+            set (value) {
+                this.setStepFive(value)
+            }
+        }
     },
+
     methods: {
+        ...mapMutations([
+            'setCurrentStep',
+            'setStepOne',
+            'setStepTwo',
+            'setStepThree',
+            'setStepFour',
+            'setStepFive'
+        ]),
         redirectBack () {
             let self = this
             self.$router.push({path: '/cart'})
@@ -141,59 +185,29 @@ export default {
         purchase () {
             console.log('making purchase')
         },
-        verifyEmail () {
-            self.current_step = 6
-            console.log('Please Wait For Sending Payment', self.current_step)
-        },
         viewCart () {
             let self = this
             return self.$nextTick(() => self.$router.push({ name: 'cart' }))
-        },
-        login () {
-            let self = this
-            console.log('Loggin In...')
-            self.current_step = 1
-        },
-        checkEmail () {
-            return [() => true]
-        },
-        stepHop (step) {
-            let self = this
-
-            switch (step) {
-            case 2:
-                Bus.$emit('validate_step_1')
-                if (self.step_1_validated) {
-                    self.current_step = step
-                }
-                break
-            case 3:
-                Bus.$emit('validate_step_2')
-                if (self.step_2_validated) {
-                    self.current_step = step
-                }
-                break
-            case 4:
-                Bus.$emit('validate_step_3')
-                if (self.step_3_validated) {
-                    self.current_step = step
-                }
-                break
-            case 5:
-                Bus.$emit('validate_step_4')
-                if (self.step_4_validated) {
-                    self.current_step = step
-                }
-                break
-            default:
-                Bus.$emit('validate_step_5')
-                if (self.step_5_validated) {
-                    self.current_step = step
-                    console.log('placed_order')
-                }
-                break
-            }
         }
+
+    },
+    mounted () {
+        let self = this
+        vm.$on('step_1_validated', (payload) => {
+            self.step_1_validated = payload
+        })
+        vm.$on('step_2_validated', (payload) => {
+            self.step_2_validated = payload
+        })
+        vm.$on('step_3_validated', (payload) => {
+            self.step_3_validated = payload
+        })
+        vm.$on('step_4_validated', (payload) => {
+            self.step_4_validated = payload
+        })
+        vm.$on('step_5_validated', (payload) => {
+            self.step_5_validated = payload
+        })
     }
 }
 </script>

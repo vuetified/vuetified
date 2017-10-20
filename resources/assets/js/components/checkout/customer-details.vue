@@ -73,11 +73,13 @@ export default {
     },
     mounted () {
         let self = this
-        Bus.$on('validate_step_1', () => {
+        vm.$on('validate_step_1', () => {
             self.$validator.validateAll()
             if (!self.errors.any()) {
-                Bus.$emit('step_1_validated')
+                vm.$emit('step_1_validated', true)
                 self.setCustomerDetails(self.customer_details)
+            } else {
+                vm.$emit('step_1_validated', false)
             }
         })
     },
