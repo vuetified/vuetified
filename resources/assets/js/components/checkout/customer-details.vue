@@ -11,7 +11,7 @@
               v-validate="'required|max:255'"
               data-vv-name="first_name"
               :error-messages="errors.collect('first_name')"
-              prepend-icon="fa-user"
+              prepend-icon="fa-id-card"
             ></v-text-field>
           </v-flex>
         </v-layout>
@@ -25,7 +25,7 @@
               v-validate="'required|max:255'"
               data-vv-name="last_name"
               :error-messages="errors.collect('last_name')"
-              prepend-icon="fa-user"
+              prepend-icon="fa-id-card-o"
             ></v-text-field>
           </v-flex>
         </v-layout>
