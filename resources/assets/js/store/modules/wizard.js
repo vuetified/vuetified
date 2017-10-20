@@ -36,31 +36,31 @@ const actions = {
 }
 
 const mutations = {
-    setCurrentStep: (state, step) => {
-        switch (step) {
+    setCurrentStep: (state, payload) => {
+        switch (payload) {
         case 2:
             if (state.step_1_validated) {
-                state.current_step = step
+                state.current_step = payload
             }
             break
         case 3:
             if (state.step_2_validated) {
-                state.current_step = step
+                state.current_step = payload
             }
             break
         case 4:
             if (state.step_3_validated) {
-                state.current_step = step
+                state.current_step = payload
             }
             break
         case 5:
             if (state.step_4_validated) {
-                state.current_step = step
+                state.current_step = payload
             }
             break
         default:
             if (state.step_5_validated) {
-                state.current_step = step
+                state.current_step = payload
             }
             break
         }
