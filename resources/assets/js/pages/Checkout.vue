@@ -19,10 +19,6 @@
     <v-stepper-content step="1">
         <!-- Step 1 Component -->
         <customer-details></customer-details>
-        <!-- Step 1 Buttons -->
-        <!-- we can move this button inside the component -->
-        <v-btn color="primary" @click.native="current_step = 2">Continue</v-btn>
-        <v-btn outline color="primary" @click.native="viewCart()">Update Cart</v-btn>
     </v-stepper-content>
     <!-- STEP 2 Label -->
     <v-stepper-step step="2" :complete="current_step > 2" :rules="[() => step_2_validated]">
@@ -32,9 +28,6 @@
     <v-stepper-content step="2">
         <!-- Step 2 Component -->
         <shipping-details></shipping-details>
-        <!-- Step 2 Buttons -->
-        <v-btn color="primary" @click.native="current_step = 3">Continue</v-btn>
-        <v-btn outline color="primary" @click.native="current_step = 1">Back</v-btn>
     </v-stepper-content>
     <!-- STEP 3 Label -->
     <v-stepper-step step="3" :complete="current_step > 3" :rules="[() => step_3_validated]">
@@ -45,8 +38,6 @@
         <!-- Step 3 Component -->
         <delivery-method></delivery-method>
         <!-- Step 3 Buttons -->
-        <v-btn color="primary" @click.native="current_step = 4">Continue</v-btn>
-        <v-btn outline color="primary" @click.native="current_step = 2">Back</v-btn>
     </v-stepper-content>
     <!-- STEP 4 Label -->
     <v-stepper-step step="4" :complete="current_step > 4" :rules="[() => step_4_validated]">
@@ -57,8 +48,6 @@
         <!-- Step 4 Component -->
         <mode-of-payment></mode-of-payment>
         <!-- Step 4 Buttons -->
-        <v-btn color="primary" @click.native="current_step = 5">Continue</v-btn>
-        <v-btn outline color="primary" @click.native="current_step = 3">Back</v-btn>
     </v-stepper-content>
     <!-- STEP 5 Label -->
     <v-stepper-step step="5" :complete="current_step > 5" :rules="[() => step_5_validated]">
@@ -68,9 +57,6 @@
     <v-stepper-content step="5">
         <!-- Step 5 Component -->
         <order-details></order-details>
-        <!-- Step 5 Buttons -->
-        <v-btn color="primary" @click.native="purchase()">Submit</v-btn>
-        <v-btn outline color="primary" @click.native="current_step = 4">Back</v-btn>
     </v-stepper-content>
     <!-- End Stepper -->
     </v-stepper>
@@ -107,8 +93,7 @@ export default {
         DeliveryMethod
     },
     data: () => ({
-        footerClass: {'primary--text': true, 'accent': true},
-        checkoutForm: new AppForm(App.forms.checkoutForm)
+        footerClass: {'primary--text': true, 'accent': true}
     }),
     computed: {
         ...mapGetters([
@@ -181,13 +166,6 @@ export default {
         redirectBack () {
             let self = this
             self.$router.push({path: '/cart'})
-        },
-        purchase () {
-            console.log('making purchase')
-        },
-        viewCart () {
-            let self = this
-            return self.$nextTick(() => self.$router.push({ name: 'cart' }))
         }
 
     },

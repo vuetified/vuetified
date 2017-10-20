@@ -87,6 +87,8 @@
             ></v-text-field>
           </v-flex>
         </v-layout>
+        <v-btn color="primary" @click.native="current_step = 3">Continue</v-btn>
+        <v-btn outline color="primary" @click.native="current_step = 1">Back</v-btn>
         </form>
       </v-container>
 </template>
@@ -99,7 +101,15 @@ export default {
     computed: {
         ...mapState({
             shipping_details: state => state.shipping_details
-        })
+        }),
+        current_step: {
+            get () {
+                return this.$store.getters['wizard/getCurrentStep']
+            },
+            set (value) {
+                this.$store.commit('wizard/setCurrentStep', value)
+            }
+        }
     },
     mounted () {
         let self = this

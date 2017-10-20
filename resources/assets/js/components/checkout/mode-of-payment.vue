@@ -46,6 +46,8 @@
                 </template>
             </template>
             </v-select>
+            <v-btn color="primary" @click.native="current_step = 5">Continue</v-btn>
+            <v-btn outline color="primary" @click.native="current_step = 3">Back</v-btn>
             </form>
         </v-flex>
         </v-layout>
@@ -70,6 +72,14 @@ export default {
             },
             set (value) {
                 this.setModeOfPayment(value)
+            }
+        },
+        current_step: {
+            get () {
+                return this.$store.getters['wizard/getCurrentStep']
+            },
+            set (value) {
+                this.$store.commit('wizard/setCurrentStep', value)
             }
         }
 

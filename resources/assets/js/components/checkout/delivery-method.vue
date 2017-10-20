@@ -47,6 +47,8 @@
                 </template>
             </template>
             </v-select>
+            <v-btn color="primary" @click.native="current_step = 4">Continue</v-btn>
+            <v-btn outline color="primary" @click.native="current_step = 2">Back</v-btn>
             </form>
         </v-flex>
         </v-layout>
@@ -71,6 +73,14 @@ export default {
             },
             set (value) {
                 this.setDeliveryMethod(value)
+            }
+        },
+        current_step: {
+            get () {
+                return this.$store.getters['wizard/getCurrentStep']
+            },
+            set (value) {
+                this.$store.commit('wizard/setCurrentStep', value)
             }
         }
 

@@ -57,6 +57,8 @@
             ></v-text-field>
           </v-flex>
         </v-layout>
+        <v-btn color="primary" @click.native="current_step = 2">Continue</v-btn>
+        <v-btn outline color="primary" @click.native="viewCart()">Update Cart</v-btn>
         </form>
       </v-container>
 </template>
@@ -69,7 +71,15 @@ export default {
     computed: {
         ...mapState({
             customer_details: state => state.customer_details
-        })
+        }),
+        current_step: {
+            get () {
+                return this.$store.getters['wizard/getCurrentStep']
+            },
+            set (value) {
+                this.$store.commit('wizard/setCurrentStep', value)
+            }
+        }
     },
     mounted () {
         let self = this
@@ -86,7 +96,11 @@ export default {
     methods: {
         ...mapMutations([
             'setCustomerDetails'
-        ])
+        ]),
+        viewCart () {
+            let self = this
+            return self.$nextTick(() => self.$router.push({ name: 'cart' }))
+        }
     }
 }
 </script>

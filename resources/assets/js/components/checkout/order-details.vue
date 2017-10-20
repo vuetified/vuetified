@@ -56,6 +56,8 @@
             ></v-text-field>
           </v-flex>
         </v-layout>
+        <v-btn color="primary" @click.native="current_step = 1">Submit</v-btn>
+        <v-btn outline color="primary" @click.native="current_step = 4">Back</v-btn>
         </form>
 </template>
 
@@ -64,23 +66,56 @@ import { createNamespacedHelpers } from 'vuex'
 const { mapActions, mapGetters, mapState, mapMutations } = createNamespacedHelpers('checkout')
 
 export default {
+    data: () => ({
+        checkoutForm: new AppForm(App.forms.checkoutForm)
+    }),
     computed: {
         ...mapState({
-            cart: state => state.cart,
             customer_details: state => state.customer_details,
             shipping_details: state => state.shipping_details,
             courier: state => state.courier,
-            form: state => state.form
+            mop: state => state.mop
         }),
-        ...mapGetters([
-            'getStepOne',
-            'getStepTwo',
-            'getStepThree',
-            'getStepFour',
-            'getStepFive'
-        ])
-    },
-    mounted () {
+        cartItems: {
+            get () {
+                return this.$store.getters['cart/getItems']
+            },
+            set (value) {
+                this.$store.commit('cart/setItems', value)
+            }
+        },
+        cartSubTotal: {
+            get () {
+                return this.$store.getters['cart/getSubTotal']
+            },
+            set (value) {
+                this.$store.commit('cart/setSubTotal', value)
+            }
+        },
+        cartTax: {
+            get () {
+                return this.$store.getters['cart/getTax']
+            },
+            set (value) {
+                this.$store.commit('cart/setTax', value)
+            }
+        },
+        cartTotal: {
+            get () {
+                return this.$store.getters['cart/getTotal']
+            },
+            set (value) {
+                this.$store.commit('cart/setTotal', value)
+            }
+        },
+        current_step: {
+            get () {
+                return this.$store.getters['wizard/getCurrentStep']
+            },
+            set (value) {
+                this.$store.commit('wizard/setCurrentStep', value)
+            }
+        }
     },
     methods: {
         ...mapActions([
@@ -92,7 +127,9 @@ export default {
             'setModeOfPayment',
             'setDeliveryMethod',
             'newForm',
-            'setForm'
+            'setForm',
+            'setCouriers',
+            'setGateways'
         ])
     }
 }

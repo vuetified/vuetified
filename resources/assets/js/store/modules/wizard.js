@@ -1,10 +1,10 @@
 const state = {
-    current_step: 0,
-    step_1_validated: false,
-    step_2_validated: false,
-    step_3_validated: false,
-    step_4_validated: false,
-    step_5_validated: false
+    current_step: 1,
+    step_1_validated: true,
+    step_2_validated: true,
+    step_3_validated: true,
+    step_4_validated: true,
+    step_5_validated: true
 }
 
 const getters = {
