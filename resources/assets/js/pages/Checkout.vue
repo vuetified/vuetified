@@ -68,7 +68,7 @@
         <!-- Step 5 Component -->
         <order-details></order-details>
         <!-- Step 5 Buttons -->
-        <v-btn color="primary" @click.native="purchase()">Submit</v-btn>
+        <v-btn color="primary" @click.native="stepHop(parseInt(6))">Submit</v-btn>
         <v-btn outline color="primary" @click.native="current_step = 4">Back</v-btn>
     </v-stepper-content>
     <!-- End Stepper -->
@@ -91,11 +91,19 @@ import ModeOfPayment from '../components/checkout/mode-of-payment.vue'
 import SuccessOrder from '../components/checkout/success-order.vue'
 import DeliveryMethod from '../components/checkout/delivery-method.vue'
 import Theme from '../mixins/theme'
-import { createNamespacedHelpers } from 'vuex'
-const { mapGetters, mapMutations } = createNamespacedHelpers('wizard')
 
 export default {
     mixins: [Theme],
+    data: () => ({
+        current_step: 1,
+        footerClass: {'primary--text': true, 'accent': true},
+        checkoutForm: new AppForm(App.forms.checkoutForm),
+        step_1_validated: false,
+        step_2_validated: false,
+        step_3_validated: false,
+        step_4_validated: false,
+        step_5_validated: false
+    }),
     components: {
         ModalLayout,
         OrderDetails,
@@ -113,101 +121,42 @@ export default {
         Bus.$on('step_2_validated', () => {
             self.step_2_validated = true
         })
-        Bus.$on('step_3_validated', () => {
+        Bus.$on('step_3_validated', (courier) => {
+            console.log(courier)
             self.step_3_validated = true
         })
-        Bus.$on('step_4_validated', () => {
+        Bus.$on('step_4_validated', (mop) => {
+            console.log(mop)
             self.step_4_validated = true
         })
         Bus.$on('step_5_validated', () => {
             self.step_5_validated = true
         })
     },
-    data: () => ({
-        footerClass: {'primary--text': true, 'accent': true},
-        checkoutForm: new AppForm(App.forms.checkoutForm)
-    }),
-    computed: {
-        ...mapGetters([
-            'getCurrentStep',
-            'getStepOne',
-            'getStepTwo',
-            'getStepThree',
-            'getStepFour',
-            'getStepFive'
-        ]),
-        current_step: {
-            get () {
-                return this.getCurrentStep
-            },
-            set (value) {
-                this.setCurrentStep(value)
-            }
-        },
-        step_1_validated: {
-            get () {
-                return this.getStepOne
-            },
-            set (value) {
-                this.setStepOne(value)
-            }
-        },
-        step_2_validated: {
-            get () {
-                return this.getStepTwo
-            },
-            set (value) {
-                this.setStepTwo(value)
-            }
-        },
-        step_3_validated: {
-            get () {
-                return this.getStepThree
-            },
-            set (value) {
-                this.setStepThree(value)
-            }
-        },
-        step_4_validated: {
-            get () {
-                return this.getStepFour
-            },
-            set (value) {
-                this.setStepFour(value)
-            }
-        },
-        step_5_validated: {
-            get () {
-                return this.getStepFive
-            },
-            set (value) {
-                this.setStepFive(value)
-            }
-        }
-
-    },
     methods: {
-        purchase () {
-            let self = this
-            self.stepHop(parseInt(1))
-            // App.post(route('api.orders.create'), self.checkoutForm)
-        },
         redirectBack () {
             let self = this
             self.$router.push({path: '/cart'})
+        },
+        purchase () {
+            console.log('making purchase')
+        },
+        verifyEmail () {
+            self.current_step = 6
+            console.log('Please Wait For Sending Payment', self.current_step)
         },
         viewCart () {
             let self = this
             return self.$nextTick(() => self.$router.push({ name: 'cart' }))
         },
-        ...mapMutations([
-            'setCurrentStep',
-            'setStepOne',
-            'setStepTwo',
-            'setStepThree',
-            'setStepFour',
-            'setStepFive'
-        ]),
+        login () {
+            let self = this
+            console.log('Loggin In...')
+            self.current_step = 1
+        },
+        checkEmail () {
+            return [() => true]
+        },
         stepHop (step) {
             let self = this
 
@@ -240,6 +189,7 @@ export default {
                 Bus.$emit('validate_step_5')
                 if (self.step_5_validated) {
                     self.current_step = step
+                    console.log('placed_order')
                 }
                 break
             }
