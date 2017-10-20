@@ -37,29 +37,28 @@ App.forms = {
         password: '',
         password_confirmation: ''
     },
-    shoppingCart: {
-
-    },
     checkOutForm: {
-        orders: [],
+        cart: {
+            items: [],
+            subtotal: 0,
+            tax: 0,
+            total: 0
+        },
         shipping_details: {
-            address_1: null,
-            address_2: null,
-            city: null,
-            country: null,
-            zip_code: null,
-            state: null
+            address_1: '',
+            address_2: '',
+            city: '',
+            country: '',
+            zip_code: '',
+            state_province: ''
         },
-        account_details: {
-            first_name: null,
-            middle_name: null,
-            last_name: null,
-            email: null,
-            contact_no: null
+        customer_details: {
+            first_name: '',
+            last_name: '',
+            email: '',
+            contact_no: ''
         },
-        mop: {
-
-        }
+        courier: {} // fetch courrier or save it on store for courier.js
     }
 
     // Add Other Form Object Here
