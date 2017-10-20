@@ -24,6 +24,6 @@ export default new Store({
         /* https://github.com/robinvdvleuten/vuex-persistedstate#createpersistedstateoptions */
         key: App.site.trademark,
         // Declare All The State We Want to Persist (use dot anotation for object.key)
-        paths: ['auth', 'cart', 'checkout', 'wizard']
+        paths: ['auth', 'checkout', 'wizard']
     })]
 })
