@@ -19,16 +19,12 @@ class CreateProducts extends Migration
             $table->string('sku')->unique();
             $table->string('name');
             $table->string('slug')->unique();
-            $table->text('summary')->nullable();
+            $table->text('excerpt')->nullable();
             $table->text('description')->nullable();
             $table->double('price', 15, 2);
+            $table->string('currency')->nullable()->default('PHP');
             $table->string('image')->nullable();
-            $table->json('gallery')->nullable();
-            $table->integer('stock')->default(0);
-            $table->float('rating_cache', 2, 1)->default(0);
-            $table->integer('rating_count')->default(0);
-            $table->boolean('available')->default(0);
-            $table->json('options')->nullable();
+            $table->json('photos')->nullable();
             $table->timestamps();
         });
     }
