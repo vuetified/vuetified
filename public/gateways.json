@@ -1,0 +1,169 @@
+[   
+    { "name": "Cash On Delivery", "group": "Cash", "avatar": "/img/gateway/cod.png", "slug": "cod" },
+    { "name": "BDO", "group": "Bank Deposit", "avatar": "/img/gateway/bdo-logo.png", "slug": "bdo",
+        "details": {
+            "account_name": "Uriah Galang",
+            "account_no": "1234567890"
+        }
+    },
+    { "name": "BPI", "group": "Bank Deposit", "avatar": "/img/gateway/bpi.jpg", "slug": "bpi",
+        "details": {
+            "account_name": "Uriah Galang",
+            "account_no": "1234567890"
+        }
+    },
+    { "name": "HSBC", "group": "Bank Deposit", "avatar": "/img/gateway/hsbc-logo.png", "slug": "hsbc",
+        "details": {
+            "account_name": "Uriah Galang",
+            "account_no": "1234567890"
+        }
+    },
+    { "name": "PNB", "group": "Bank Deposit", "avatar": "/img/gateway/pnb-logo.png", "slug": "pnb",
+        "details": {
+            "account_name": "Uriah Galang",
+            "account_no": "1234567890"
+        }
+    },
+    { "name": "Land Bank", "group": "Bank Deposit", "avatar": "/img/gateway/landbank.png", "slug": "land-bank",
+        "details": {
+            "account_name": "Uriah Galang",
+            "account_no": "1234567890"
+        }
+    },
+    { "name": "East West Bank", "group": "Bank Deposit", "avatar": "/img/gateway/eastwest-logo.png", "slug": "east-west-bank",
+        "details": {
+            "account_name": "Uriah Galang",
+            "account_no": "1234567890"
+        }
+    },
+    { "name": "Union Bank", "group": "Bank Deposit", "avatar": "/img/gateway/unionbank-logo.png", "slug": "union-bank",
+        "details": {
+            "account_name": "Uriah Galang",
+            "account_no": "1234567890"
+        }
+    },
+    { "name": "Metro Bank", "group": "Bank Deposit", "avatar": "/img/gateway/metrobank-logo.png", "slug": "metro-bank",
+        "details": {
+            "account_name": "Uriah Galang",
+            "account_no": "1234567890"
+        }
+    },
+    { "name": "RCBC", "group": "Bank Deposit", "avatar": "/img/gateway/rcbc-logo.png", "slug": "rcbc",
+        "details": {
+            "account_name": "Uriah Galang",
+            "account_no": "1234567890"
+        }
+    },
+    { "name": "Gcash", "group": "Mobile Transfer", "avatar": "/img/gateway/globe-logo.png", "slug": "gcash",
+        "details": {
+            "account_name": "Uriah Galang",
+            "account_no": "1234567890",
+            "mobile_no": "1234567890"
+        }
+    },
+    { "name": "Smart Money", "group": "Mobile Transfer", "avatar": "/img/gateway/smart-logo.png", "slug": "smartmoney",
+        "details": {
+            "account_name": "Uriah Galang",
+            "account_no": "1234567890",
+            "mobile_no": "1234567890"
+        }
+    },
+    { "name": "Western Union", "group": "Remittance", "avatar": "/img/gateway/westernunuion-logo.png", "slug": "western-union",
+        "details": {
+            "first_name": "Uriah",
+            "last_name": "Galang",
+            "city": "Olongapo",
+            "state": "zambales",
+            "country": "Philippines",
+            "contact_no": "1234567890"
+        }
+    },
+    { "name": "Money Gram", "group": "Remittance", "avatar": "/img/gateway/moneygram-logo.png", "slug": "money-gram",
+        "details": {
+            "first_name": "Uriah",
+            "last_name": "Galang",
+            "city": "Olongapo",
+            "state": "zambales",
+            "country": "Philippines",
+            "contact_no": "1234567890"
+        }
+    },
+    { "name": "Xoom", "group": "Remittance", "avatar": "/img/gateway/xoom-logo.png", "slug": "xoom",
+        "details": {
+            "bank_name": "BDO",
+            "account_no": "1234567890",
+            "first_name": "Uriah",
+            "last_name": "Galang",
+            "address1": "address1",
+            "address2": "address2",
+            "city": "Olongapo",
+            "postal_code": "2200",
+            "state": "zambales",
+            "country": "Philippines",
+            "contact_no": "1234567890"
+        }
+    },
+    { "name": "Palawan Express", "group": "Remittance", "avatar": "/img/gateway/palawan-logo.png", "slug": "palawan-express",
+        "details": {
+            "first_name": "Uriah",
+            "last_name": "Galang",
+            "contact_no": "1234567890"
+        }
+    },
+    { "name": "LBC", "group": "Remittance", "avatar": "/img/gateway/lbc-logo.png", "slug": "lbc",
+        "details": {
+            "first_name": "Uriah",
+            "middle_name": "Alicando",
+            "last_name": "Galang",
+            "city": "Olongapo",
+            "contact_no": "1234567890"
+        }
+    },
+    { "name": "Cebuana Lhuillier", "group": "Remittance", "avatar": "/img/gateway/cebuana-logo.jpg", "slug": "cebuana",
+        "details": {
+            "first_name": "Uriah",
+            "middle_name": "Alicando",
+            "last_name": "Galang",
+            "city": "Olongapo",
+            "contact_no": "1234567890"
+        }
+    },
+    { "name": "MLhuillier", "group": "Remittance", "avatar": "/img/gateway/ml-logo.jpg", "slug": "mlhuillier",
+        "details": {
+            "first_name": "Uriah",
+            "middle_name": "Alicando",
+            "last_name": "Galang",
+            "city": "Olongapo",
+            "contact_no": "1234567890"
+        }
+    },
+    { "name": "Remitly", "group": "Remittance", "avatar": "/img/gateway/remitly-logo.png", "slug": "remitly",
+        "details": {
+            "first_name": "Uriah",
+            "middle_name": "Alicando",
+            "last_name": "Galang",
+            "address": "Olongapo",
+            "city": "Olongapo",
+            "province": "Olongapo",
+            "contact_no": "1234567890"
+        }
+    },
+    { "name": "Bitcoin", "group": "Cryptocurrency", "avatar": "/img/gateway/bitcoin-logo.png", "slug": "bitcoin",
+        "details": {
+            "address": "3854kfAktSoU8VeVLJ5tE2FmuJeD6gRZoT",
+            "qrcode": "https://i.imgur.com/tP7xsTS.png"
+        }
+    },
+    { "name": "Credit Card", "group": "Credit Card", "avatar": "/img/gateway/creditcard-logo.png", "slug": "credit-card",
+        "details": {
+            "service": "stripe",
+            "publishable_key": "pk_test_TXiC5ZbBVV5Dp85EFT8rxAyJ"
+        }
+    },
+    { "name": "Paypal", "group": "Paypal", "avatar": "/img/gateway/paypal-logo.png", "slug": "paypal",
+        "details": {
+            "email": "stevendcoffey-facilitator@gmail.com"
+        }
+    }
+]
+
