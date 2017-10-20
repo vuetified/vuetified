@@ -171,6 +171,10 @@ export default {
     },
     mounted () {
         let self = this
+        /* redirect if no Item in the Cart */
+        if (self.$store.getters['cart/getCount'] === 0) {
+            self.$router.push({path: '/'})
+        }
         vm.$on('step_1_validated', (payload) => {
             self.step_1_validated = payload
         })
