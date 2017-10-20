@@ -89,11 +89,16 @@ const actions = {
             if (errors) {
                 console.log(errors)
             }
-            if (message) {
-                console.log(message)
+            form.busy = false
+            if (message === 'Request failed with status code 401') {
+                vm.$store.commit('auth/setToken', null)
+                vm.$store.commit('auth/setRefreshToken', null)
+                vm.$store.commit('auth/setExpiration', null)
+                vm.$store.commit('auth/setMe', null)
+                vm.$router.push({ name: 'login' })
+                vm.$cookie.remove('access_token')
                 vm.$popup({ message: message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' })
             }
-            form.busy = false
         }
     },
     async refreshtoken ({ commit, dispatch }, form) {
