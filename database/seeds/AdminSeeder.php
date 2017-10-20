@@ -32,9 +32,6 @@ class AdminSeeder extends Seeder
         $profile = Profile::create([
             'first_name' => 'John',
             'last_name'  => 'Doe',
-            'profile_pic' => '/img/avatar.png',
-            'about_me' => 'Its All About Me',
-            'location' => 'Paradise'
         ]);
         $user->profile()->save($profile);
         
