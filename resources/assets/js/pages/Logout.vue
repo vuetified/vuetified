@@ -1,16 +1,16 @@
 <template>
-    <modal name="logout-modal" :adaptive="true" width="100%" height="100%" :clickToClose="false">
+    <modal-layout v-if="visible">
         <v-card :flat="true">
         <v-toolbar class="accent">
-          <v-btn icon @click.native="redirectBack()">
-            <v-icon class="primary--text">arrow_back</v-icon>
+          <v-btn flat icon color="primary" @click.native="redirectBack()">
+          <v-icon>arrow_back</v-icon>
           </v-btn>
           <v-spacer></v-spacer>
           <v-toolbar-title class="text-xs-center primary--text">Are You Sure You Want To Log Out?</v-toolbar-title>
           <v-spacer></v-spacer>
           <v-toolbar-items>
               <!-- If There is no User Account Login Yet Redirect to Authentication Page -->
-            <v-btn class="primary--text" flat @click.native="logout()"><v-icon right dark>fa-power-off</v-icon></v-btn>
+            <v-btn flat color="error" flat @click.native="logout()"><v-icon right>fa-power-off</v-icon></v-btn>
           </v-toolbar-items>
         </v-toolbar>
         <v-card-text style="padding-top:100px;">
@@ -56,18 +56,20 @@
 
     </v-card-text>
       </v-card>
-    </modal>
+    </modal-layout>
 </template>
 
 <script>
+import ModalLayout from '../layouts/ModalLayout'
 import { createNamespacedHelpers } from 'vuex'
-const { mapActions, mapGetters } = createNamespacedHelpers('auth')
+const { mapActions, mapGetters, mapMutations } = createNamespacedHelpers('auth')
 
 export default {
     data: () => ({
         tile: false,
         avatarSize: '200px',
-        logoutForm: new AppForm(App.forms.logoutForm)
+        logoutForm: new AppForm(App.forms.logoutForm),
+        visible: false
     }),
     computed: {
         ...mapGetters({
@@ -82,13 +84,11 @@ export default {
             /* nextick make sure our modal wount be visible before redirect */
             return self.$nextTick(() => self.$router.go(-1))
         }
-        /* Show Logout Modal */
-        self.$modal.show('logout-modal')
+        self.visible = true
     },
     methods: {
         redirectBack () {
             let self = this
-            self.$modal.hide('logout-modal')
             return self.$nextTick(() => self.$router.go(-1))
         },
         logout () {
@@ -97,9 +97,17 @@ export default {
             return self.$nextTick(() => self.submit(self.logoutForm))
         },
         ...mapActions({
-            submit: 'logout',
-            fetchMe: 'fetchMe'
+            submit: 'logout'
+        }),
+        ...mapMutations({
+            setToken: 'setToken',
+            setRefreshToken: 'setRefreshToken',
+            setExpiration: 'setExpiration',
+            setMe: 'setMe'
         })
+    },
+    components: {
+        ModalLayout
     }
 }
 </script>
