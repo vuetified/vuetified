@@ -4,13 +4,17 @@ import createPersistedState from 'vuex-persistedstate'
 import auth from './store/modules/auth'
 import permission from './store/modules/permission'
 import cart from './store/modules/cart'
+import checkout from './store/modules/checkout'
+import wizard from './store/modules/wizard'
 // import users from './modules/users'
 
 export default new Store({
     modules: {
         auth,
         permission,
-        cart
+        cart,
+        checkout,
+        wizard
         // users,
         /* add other modules here */
     },
@@ -20,6 +24,6 @@ export default new Store({
         /* https://github.com/robinvdvleuten/vuex-persistedstate#createpersistedstateoptions */
         key: App.site.trademark,
         // Declare All The State We Want to Persist (use dot anotation for object.key)
-        paths: ['auth']
+        paths: ['auth', 'cart', 'checkout', 'wizard']
     })]
 })
