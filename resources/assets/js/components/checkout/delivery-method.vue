@@ -7,17 +7,18 @@
             <form>
             <v-select
             label="Select"
-            v-bind:items="getGateways"
-            v-model="mop"
+            v-bind:items="getCouriers"
+            v-model="courier"
             item-text="name"
             item-value="slug"
+            :cache-items="true"
             max-height="400"
-            hint="Payment Options"
+            hint="How Do You Want to Receive The Products?"
             persistent-hint
             v-validate="'required'"
-            data-vv-name="mop"
+            data-vv-name="courier"
             :return-object="true"
-            :error-messages="errors.collect('mop')"
+            :error-messages="errors.collect('courier')"
             >
             <template slot="selection" scope="data">
                 <v-chip
@@ -56,43 +57,46 @@
 
 <script>
 import { createNamespacedHelpers } from 'vuex'
-const { mapState, mapMutations, mapActions, mapGetters } = createNamespacedHelpers('checkout')
+const { mapMutations, mapActions, mapGetters } = createNamespacedHelpers('checkout')
 
 export default {
     computed: {
         ...mapGetters([
-            'getModeOfPayment',
-            'getGateways'
+            'getDeliveryMethod',
+            'getCouriers'
         ]),
-        mop: {
+        courier: {
             get () {
-                return this.getModeOfPayment
+                return this.getDeliveryMethod
             },
             set (value) {
-                this.setModeOfPayment(value)
+                this.setDeliveryMethod(value)
             }
         }
 
     },
     created () {
-        this.fetchGateways()
+        if (this.getCouriers.length < 1) {
+            this.fetchCouriers()
+        }
     },
     mounted () {
         let self = this
-        Bus.$on('validate_step_4', () => {
+        Bus.$on('validate_step_3', () => {
             self.$validator.validateAll()
             if (!self.errors.any()) {
-                Bus.$emit('step_4_validated')
+                Bus.$emit('step_3_validated')
             }
         })
     },
     methods: {
         ...mapMutations([
-            'setModeOfPayment'
+            'setDeliveryMethod'
         ]),
         ...mapActions([
-            'fetchGateways'
+            'fetchCouriers'
         ])
+
     }
 }
 </script>
