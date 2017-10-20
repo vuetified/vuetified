@@ -23,7 +23,22 @@ trait ProvidesScriptVariables
             'menu' => config('menu'), // Should Be Fetch From DB Menu and GroupMenu
             'grouplinks' => config('grouplinks'),
             'theme' => config('theme'),
-            'cart' => self::getCart()
+            'cart' => self::getCart(),
+            // This will only be Loaded for Authenticated users
+            // Specifically Admin Role
+            // Hmmf maybe we can use Resource to Dynamically Load this stuff?
+            // 'widgets' => [
+            //     'productCounter' => self::getProducts(), // admin
+            //     'usersCounter' => self::getUsersCount(), // admin
+            //     'activeUsersCounter' => self::getActiveUsersCounter(), // admin
+            //     'totalPendingIncome' => self::getTotalPendingIncome(),
+            //     'totalPaidIncome' => self::getTotalPaidIncome(), // admin
+            //     'totalRefund' => self::getTotalRefund(), //admin
+            //     'placedOrderCounter' => self::getPlacedOrders(), // customer
+            //     'pendingOrderCounter' => self::getPendingOrders(), // customer
+            //     'paidOrderCounter' => self::getPaidOrders(), // customer
+            //     'deliveredOrderCounter' => self::getDeliveredOrders(), // customer
+            // ],
         ];
     }
 
