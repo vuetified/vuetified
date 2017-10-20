@@ -14,7 +14,7 @@ class CartController extends Controller
     {
         $product = Product::findBySku($request->sku);
         $cartItem = Cart::add($product->id, $product->name, $request->qty, $product->price);
-        $cartItem->associate('Product');
+        // $cartItem->associate('Product');
 
         $items = Cart::content();
         // cartItem $row->id , $row->qty , $row->name, $row->price, $row->options 
