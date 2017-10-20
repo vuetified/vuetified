@@ -60,4 +60,9 @@ class User extends Authenticatable
         $this->notify(new PasswordResetNotification($token));
     }
 
+    public function orders() 
+    {
+        return $this->hasMany(Order::class);
+    }
+
 }
