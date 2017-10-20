@@ -1,4 +1,18 @@
+- switch Use Profile Details
+- save this as Profile Details (checkbox)
+- switch Use Profile Shipping Details
+- save this as Profile Details (checkbox)
+- switch Use Default MOP
+- save this as Profile Details (checkbox)
+- switch Use Default Courrier
+- save this as Profile Details (checkbox)
 
+- Choose Courrier 
+
+
+- If checkout has no cart dont go to checkout
+ Add Rules For Going On Next Step Using Form Veevalidate 
+ 
 Controller For Order Add Edit Delete View Index
 
 Controller For username Subdomain

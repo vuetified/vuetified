@@ -17,13 +17,13 @@
 - Laravel Mix (^1.4.3)
 - Laravel Valet for Windows (^2.0.8)
 - Vue (^2.4.4)
-- Vuetify (^0.15.7)
+- Vuetify (^0.16.4)
 
 ## Installation
 
 
 ```php
-git clone https://github.com/codeitlikemiley/vuetified.git Vuetified
+git clone https://github.com/vuetified/vuetified.git Vuetified
 cd Vuetified
 cp .env.example .env
 composer install
@@ -256,16 +256,31 @@ using laravel named routes courtesy of ziggy
     component: Users
 },
 ```
+Ready for Big Project : Using Route Group files
 
-Divided our Routes to Multiple Parts So We Can Organize Routes For Big Project
-Added routes folder
-change routes to router 
-and add routes to concat all routes file in routes folder
+Available Routes:
+```
+authRoutes.js
+categoryRoutes.js
+errorRoutes.js
+homeRoutes.js
+productRoutes.js
+profileRoutes.js
+```
+
+This is Imported in routes.js
+
+and routes.js is being used by router.js
 
 
 ## App State(Vuex)
-all reside in store folder, uses persistent state using localstorage
+Our State Is Being Stored at Local Storage , Also the access_token is used both in local storage and cookie (for routes authentication)
 
 ## Vuetified Auth Scaffold Using Laravel Passport
 
 We Have A Full Authentication In Vuetified App
+```
+/login
+/register
+/forgotpassword
+```
