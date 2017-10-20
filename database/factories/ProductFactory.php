@@ -12,11 +12,10 @@ $factory->define(Product::class, function (Faker $faker) {
     return [
         'sku' => $faker->numerify('sku-##########'),
         'name' => ucwords($faker->word),
-        'summary' => $faker->paragraph,
+        'excerpt' => $faker->paragraph,
         'description' => $faker->randomHtml(2,3),
         'price' => $faker->numberBetween(0, 100),
         'image' => $faker->imageUrl($width = 640, $height = 480),
-        'gallery' => json_encode($images),
-        'stock' => $faker->numberBetween(0, 100),
+        'photos' => json_encode($images),
     ];
 });
