@@ -57,7 +57,7 @@
             ></v-text-field>
           </v-flex>
         </v-layout>
-        <v-btn color="primary" @click.native="move()" @keyup.enter="move()">Continue</v-btn>
+        <v-btn color="primary" @click.native="move(2)" @keyup.enter="move(2)">Continue</v-btn>
         <v-btn outline color="primary" @click.native="viewCart()">Update Cart</v-btn>
         </form>
       </v-container>
@@ -111,11 +111,11 @@ export default {
         ...mapMutations([
             'setCustomerDetails'
         ]),
-        move () {
+        move (step) {
             let self = this
             self.$validator.validateAll()
             self.setValidated()
-            self.$store.dispatch('wizard/move', self.next)
+            self.$store.dispatch('wizard/move', parseInt(step))
             self.setCustomerDetails(self.customer_details)
         },
         setValidated () {
