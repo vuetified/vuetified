@@ -41,7 +41,22 @@ const actions = {
     },
     /* payload = step */
     move ({ state, commit }, payload) {
-        if (state.current.validated) {
+        // Moving Forward
+        if (state.step < payload && state.current.validated) {
+            commit('setStep', payload)
+            let next = payload + 1
+            commit('setNext', next)
+            let previous = payload - 1
+            commit('setPrevious', previous)
+            let current = null
+            if (state.previous > 0) {
+                current = state.steps[state.previous]
+            } else {
+                current = state.steps[0]
+            }
+            commit('setCurrent', current)
+        // Moving Back
+        } else {
             commit('setStep', payload)
             let next = payload + 1
             commit('setNext', next)
