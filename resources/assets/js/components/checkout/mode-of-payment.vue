@@ -46,8 +46,8 @@
                 </template>
             </template>
             </v-select>
-            <v-btn color="primary" @click.native="current_step = 5">Continue</v-btn>
-            <v-btn outline color="primary" @click.native="current_step = 3">Back</v-btn>
+            <v-btn color="primary" @click.native="forward()">Continue</v-btn>
+            <v-btn outline color="primary" @click.native="back()">Back</v-btn>
             </form>
         </v-flex>
         </v-layout>
@@ -58,7 +58,7 @@
 
 <script>
 import { createNamespacedHelpers } from 'vuex'
-const { mapState, mapMutations, mapActions, mapGetters } = createNamespacedHelpers('checkout')
+const { mapMutations, mapActions, mapGetters } = createNamespacedHelpers('checkout')
 
 export default {
     computed: {
@@ -74,29 +74,45 @@ export default {
                 this.setModeOfPayment(value)
             }
         },
-        current_step: {
+        current: {
             get () {
-                return this.$store.getters['wizard/getCurrentStep']
+                return this.$store.getters['wizard/getCurrent']
             },
             set (value) {
-                this.$store.commit('wizard/setCurrentStep', value)
+                this.$store.commit('wizard/setCurrent', value)
+            }
+        },
+        step: {
+            get () {
+                return this.$store.getters['wizard/getStep']
+            },
+            set (value) {
+                this.$store.commit('wizard/setStep', value)
+            }
+        },
+
+        next: {
+            get () {
+                return this.$store.getters['wizard/getNext']
+            },
+            set (value) {
+                this.$store.commit('wizard/setNext', value)
+            }
+        },
+        previous: {
+            get () {
+                return this.$store.getters['wizard/getPrevious']
+            },
+            set (value) {
+                this.$store.commit('wizard/setPrevious', value)
             }
         }
 
     },
     created () {
-        this.fetchGateways()
-    },
-    mounted () {
-        let self = this
-        vm.$on('validate_step_4', () => {
-            self.$validator.validateAll()
-            if (!self.errors.any()) {
-                vm.$emit('step_4_validated', true)
-            } else {
-                vm.$emit('step_4_validated', false)
-            }
-        })
+        if (this.getGateways.length < 1) {
+            this.fetchGateways()
+        }
     },
     methods: {
         ...mapMutations([
@@ -104,7 +120,27 @@ export default {
         ]),
         ...mapActions([
             'fetchGateways'
-        ])
+        ]),
+        forward () {
+            let self = this
+            self.$validator.validateAll()
+            self.setValidated()
+            self.$store.dispatch('wizard/move', self.next)
+        },
+        back () {
+            let self = this
+            self.$validator.validateAll()
+            self.setValidated()
+            self.$store.dispatch('wizard/move', self.previous)
+        },
+        setValidated () {
+            if (!this.errors.any()) {
+                this.current.validated = true
+            } else {
+                this.current.validated = false
+            }
+            this.$store.commit('wizard/setStepValidated', this.current)
+        }
     }
 }
 </script>
