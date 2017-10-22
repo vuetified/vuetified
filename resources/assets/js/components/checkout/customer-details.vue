@@ -57,7 +57,7 @@
             ></v-text-field>
           </v-flex>
         </v-layout>
-        <v-btn color="primary" @click.native="current_step = 2">Continue</v-btn>
+        <v-btn color="primary" @click.native="move()" @keyup.enter="move()">Continue</v-btn>
         <v-btn outline color="primary" @click.native="viewCart()">Update Cart</v-btn>
         </form>
       </v-container>
@@ -72,31 +72,59 @@ export default {
         ...mapState({
             customer_details: state => state.customer_details
         }),
-        current_step: {
+        current: {
             get () {
-                return this.$store.getters['wizard/getCurrentStep']
+                return this.$store.getters['wizard/getCurrent']
             },
             set (value) {
-                this.$store.commit('wizard/setCurrentStep', value)
+                this.$store.commit('wizard/setCurrent', value)
+            }
+        },
+        step: {
+            get () {
+                return this.$store.getters['wizard/getStep']
+            },
+            set (value) {
+                this.$store.commit('wizard/setStep', value)
+            }
+        },
+
+        next: {
+            get () {
+                return this.$store.getters['wizard/getNext']
+            },
+            set (value) {
+                this.$store.commit('wizard/setNext', value)
+            }
+        },
+        previous: {
+            get () {
+                return this.$store.getters['wizard/getPrevious']
+            },
+            set (value) {
+                this.$store.commit('wizard/setPrevious', value)
             }
         }
-    },
-    mounted () {
-        let self = this
-        vm.$on('validate_step_1', () => {
-            self.$validator.validateAll()
-            if (!self.errors.any()) {
-                vm.$emit('step_1_validated', true)
-                self.setCustomerDetails(self.customer_details)
-            } else {
-                vm.$emit('step_1_validated', false)
-            }
-        })
+
     },
     methods: {
         ...mapMutations([
             'setCustomerDetails'
         ]),
+        move () {
+            let self = this
+            self.$validator.validateAll()
+            self.setValidated()
+            self.$store.dispatch('wizard/move', self.next)
+            self.setCustomerDetails(self.customer_details)
+        },
+        setValidated () {
+            if (!this.errors.any()) {
+                this.current.validated = true
+            } else {
+                this.current.validated = false
+            }
+        },
         viewCart () {
             let self = this
             return self.$nextTick(() => self.$router.push({ name: 'cart' }))
