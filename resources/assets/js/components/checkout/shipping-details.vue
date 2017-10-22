@@ -87,8 +87,8 @@
             ></v-text-field>
           </v-flex>
         </v-layout>
-        <v-btn color="primary" @click.native="current_step = 4">Continue</v-btn>
-        <v-btn outline color="primary" @click.native="current_step = 2">Back</v-btn>
+        <v-btn color="primary" @click.native="forward()">Continue</v-btn>
+        <v-btn outline color="primary" @click.native="back()">Back</v-btn>
         </form>
       </v-container>
 </template>
@@ -102,31 +102,67 @@ export default {
         ...mapState({
             shipping_details: state => state.shipping_details
         }),
-        current_step: {
+        current: {
             get () {
-                return this.$store.getters['wizard/getCurrentStep']
+                return this.$store.getters['wizard/getCurrent']
             },
             set (value) {
-                this.$store.commit('wizard/setCurrentStep', value)
+                this.$store.commit('wizard/setCurrent', value)
+            }
+        },
+        step: {
+            get () {
+                return this.$store.getters['wizard/getStep']
+            },
+            set (value) {
+                this.$store.commit('wizard/setStep', value)
+            }
+        },
+
+        next: {
+            get () {
+                return this.$store.getters['wizard/getNext']
+            },
+            set (value) {
+                this.$store.commit('wizard/setNext', value)
+            }
+        },
+        previous: {
+            get () {
+                return this.$store.getters['wizard/getPrevious']
+            },
+            set (value) {
+                this.$store.commit('wizard/setPrevious', value)
             }
         }
-    },
-    mounted () {
-        let self = this
-        vm.$on('validate_step_3', () => {
-            self.$validator.validateAll()
-            if (!self.errors.any()) {
-                vm.$emit('step_3_validated', true)
-                self.setShippingDetails(self.shipping_details)
-            } else {
-                vm.$emit('step_3_validated', false)
-            }
-        })
     },
     methods: {
         ...mapMutations([
             'setShippingDetails'
-        ])
+        ]),
+        forward () {
+            let self = this
+            self.$validator.validateAll()
+            self.setValidated()
+            self.$store.dispatch('wizard/move', self.next)
+            self.setShippingDetails(self.shipping_details)
+        },
+        back () {
+            let self = this
+            self.$validator.validateAll()
+            self.setValidated()
+            self.$store.dispatch('wizard/move', self.previous)
+            self.setShippingDetails(self.shipping_details)
+        },
+        setValidated () {
+            if (!this.errors.any()) {
+                this.current.validated = true
+            } else {
+                this.current.validated = false
+            }
+            this.$store.commit('wizard/setStepValidated', this.current)
+        }
+
     }
 }
 </script>
