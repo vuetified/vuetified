@@ -94,13 +94,9 @@ export default {
         footerClass: {'primary--text': true, 'accent': true}
     }),
     computed: {
-
         ...mapGetters([
             'getActiveSteps',
-            'getCurrent',
-            'getStep',
-            'getPrevious',
-            'getNext'
+            'getStep'
         ]),
         step: {
             get () {
@@ -109,47 +105,16 @@ export default {
             set (value) {
                 this.setStep(value)
             }
-        },
-        current: {
-            get () {
-                return this.getCurrent
-            },
-            set (value) {
-                this.setCurrent(value)
-            }
-        },
-        previous: {
-            get () {
-                return this.getPrevious
-            },
-            set (value) {
-                this.setPrevious(value)
-            }
-        },
-        next: {
-            get () {
-                return this.getNext
-            },
-            set (value) {
-                this.setNext(value)
-            }
         }
     },
-
     methods: {
         ...mapMutations([
-            'setStep',
-            'setPrevious',
-            'setNext',
-            'setCurrent',
-            'setStepStatus', // for changin active step count
-            'setStepValidated' // for validation of step
+            'setStep'
         ]),
         redirectBack () {
             let self = this
             self.$router.push({path: '/cart'})
         }
-
     },
     mounted () {
         let self = this
