@@ -57,7 +57,7 @@
             ></v-text-field>
           </v-flex>
         </v-layout>
-        <v-btn color="primary" @click.native="move(2)">Continue</v-btn>
+        <v-btn color="primary" @click.native="move(next)">Continue</v-btn>
         <v-btn outline color="primary" @click.native="viewCart()">Update Cart</v-btn>
         </form>
       </v-container>
