@@ -29,6 +29,7 @@
                 :key="key"
                 :step="parseInt(key + 1)"
                 :complete="parseInt(step) > parseInt(key + 1)"
+                :rules="[() => getActiveSteps[key].validated]"
                 >
                     <span class="primary--text">{{ active.title }}</span>
                     <small class="info--text">{{ active.subtitle }}</small>
@@ -109,7 +110,8 @@ export default {
     },
     methods: {
         ...mapMutations([
-            'setStep'
+            'setStep',
+            'setSteps'
         ]),
         redirectBack () {
             let self = this
