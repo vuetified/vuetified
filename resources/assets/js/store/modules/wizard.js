@@ -16,6 +16,9 @@ const getters = {
     getSteps: state => state.steps,
     getActiveSteps: state => _.filter(state.steps, _.iteratee(['active', true])),
     getCurrent: state => state.current,
+    getIndex: (state) => {
+        return _.findIndex(state.steps, (step) => { return step.component === state.current.component })
+    },
     getStep: state => state.step,
     getPrevious: state => state.previous,
     getNext: state => state.next
@@ -40,6 +43,17 @@ const actions = {
     move ({ state, commit }, payload) {
         if (state.current.validated) {
             commit('setStep', payload)
+            let next = payload + 1
+            commit('setNext', next)
+            let previous = payload - 1
+            commit('setPrevious', previous)
+            let current = null
+            if (state.previous > 0) {
+                current = state.steps[state.previous]
+            } else {
+                current = state.steps[0]
+            }
+            commit('setCurrent', current)
         }
     },
     /* no payload */
