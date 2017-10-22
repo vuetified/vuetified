@@ -2,7 +2,7 @@ const state = {
     steps: [
         {title: 'Customer Details', subtitle: 'Fill Up Customer Info', component: 'customer-details', active: true, validated: true},
         {title: 'Delivery Method', subtitle: 'Choose Courier', component: 'delivery-method', active: true, validated: true},
-        {title: 'Shipment Details', subtitle: 'Fill Up Shipping Details', component: 'shipping-details', active: true, validated: true},
+        {title: 'Shipment Details', subtitle: 'Fill Up Shipping Details', component: 'shipping-details', active: false, validated: true},
         {title: 'Mode of Payment', subtitle: 'Select Payment Options', component: 'mode-of-payment', active: true, validated: true},
         {title: 'Purchase', subtitle: 'Create Order', component: 'order-details', active: true, validated: true}
     ],
