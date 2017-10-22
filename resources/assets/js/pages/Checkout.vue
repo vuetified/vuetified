@@ -1,72 +1,70 @@
 <template>
-  <modal-layout>
-    <!-- ToolBar Slot -->
+<modal-layout>
+    <!-- Start ToolBar Slot -->
     <v-toolbar class="accent" slot="toolbar">
-    <v-btn flat icon color="primary" @click.native="redirectBack()">
-        <v-icon>arrow_back</v-icon>
-    </v-btn>
-    <v-spacer></v-spacer>
-    <v-toolbar-title class="text-xs-center primary--text">Checkout Order Form</v-toolbar-title>
-    <v-spacer></v-spacer>
+        <!-- Arrow Back -->
+        <v-btn flat icon color="error" @click.native="home()">
+            <v-icon>fa-times</v-icon>
+        </v-btn>
+
+        <v-spacer></v-spacer>
+        <!-- Modal Title -->
+        <v-toolbar-title class="text-xs-center primary--text">
+            Checkout Order Form
+        </v-toolbar-title>
+
+        <v-spacer></v-spacer>
+
     </v-toolbar>
-    <!-- Main Slot -->
-    <v-stepper v-model="current_step" vertical>
-    <!-- STEP 1 Label -->
-    <v-stepper-step step="1" :complete="current_step > 1" :rules="[() => step_1_validated]">
-        <span class="primary--text">Customer Details</span>
-        <small class="info--text">Fill Up Customer Info</small>
-    </v-stepper-step>
-    <v-stepper-content step="1">
-        <!-- Step 1 Component -->
-        <customer-details></customer-details>
-    </v-stepper-content>
-    <!-- STEP 2 Label -->
-    <v-stepper-step step="2" :complete="current_step > 2" :rules="[() => step_2_validated]">
-        <span class="primary--text">Shipment Details</span>
-        <small class="info--text">Fill Up Shipping Details</small>
-    </v-stepper-step>
-    <v-stepper-content step="2">
-        <!-- Step 2 Component -->
-        <shipping-details></shipping-details>
-    </v-stepper-content>
-    <!-- STEP 3 Label -->
-    <v-stepper-step step="3" :complete="current_step > 3" :rules="[() => step_3_validated]">
-        <span class="primary--text">Delivery Method</span>
-        <small class="info--text">Choose Courier</small>
-    </v-stepper-step>
-    <v-stepper-content step="3">
-        <!-- Step 3 Component -->
-        <delivery-method></delivery-method>
-        <!-- Step 3 Buttons -->
-    </v-stepper-content>
-    <!-- STEP 4 Label -->
-    <v-stepper-step step="4" :complete="current_step > 4" :rules="[() => step_4_validated]">
-        <span class="primary--text">Mode of Payment</span>
-        <small class="info--text">Select Payment Options</small>
-    </v-stepper-step>
-    <v-stepper-content step="4">
-        <!-- Step 4 Component -->
-        <mode-of-payment></mode-of-payment>
-        <!-- Step 4 Buttons -->
-    </v-stepper-content>
-    <!-- STEP 5 Label -->
-    <v-stepper-step step="5" :complete="current_step > 5" :rules="[() => step_5_validated]">
-        <span class="primary--text">Place Order</span>
-        <small class="info--text">Send Mail</small>
-    </v-stepper-step>
-    <v-stepper-content step="5">
-        <!-- Step 5 Component -->
-        <order-details></order-details>
-    </v-stepper-content>
-    <!-- End Stepper -->
+    <!-- End ToolBar Slot -->
+
+    <!-- Start Content Slot -->
+    <v-stepper v-model="current_step">
+
+        <v-stepper-header>
+
+            <template v-for="(step,key) in activeSteps">
+
+                <v-stepper-step
+                :key="key"
+                :step="parseInt(key + 1)"
+                :complete="current_step > ( key + 1 )"
+                >
+                    <span class="primary--text">{{ step.title }}</span>
+                    <small class="info--text">{{ step.subtitle }}</small>
+                </v-stepper-step>
+
+                <v-divider :key="key" v-if="parseInt(key + 1) !== activeSteps.length">
+                </v-divider>
+
+            </template>
+
+        </v-stepper-header>
+
+        <v-stepper-content
+            :step="parseInt(key + 1)"
+            v-for="(step,key) in activeSteps"
+            :key="key"
+        >
+            <v-card style="min-height: 600px;">
+                <component :is="step.component">
+                </component>
+            </v-card>
+
+        </v-stepper-content>
+
     </v-stepper>
-    <!-- Footer Slot -->
+    <!-- End Content Slot -->
+
+    <!-- Start Footer Slot -->
     <v-footer :class="[footerClass]" fixed slot="footer">
     <v-spacer></v-spacer>
     <span>© {{ year }} {{ domain }} ® | {{ trademark }}™</span>
     <v-spacer></v-spacer>
     </v-footer>
-  </modal-layout>
+    <!-- End Footer Slot -->
+
+</modal-layout>
 </template>
 
 <script>
@@ -93,9 +91,17 @@ export default {
         DeliveryMethod
     },
     data: () => ({
+        steps: [
+            {title: 'Customer Details', subtitle: 'Fill Up Customer Info', component: 'customer-details', active: true},
+            {title: 'Delivery Method', subtitle: 'Choose Courier', component: 'delivery-method', active: true},
+            {title: 'Shipment Details', subtitle: 'Fill Up Shipping Details', component: 'shipping-details', active: true},
+            {title: 'Mode of Payment', subtitle: 'Select Payment Options', component: 'mode-of-payment', active: true},
+            {title: 'Purchase', subtitle: 'Create Order', component: 'order-details', active: true}
+        ],
         footerClass: {'primary--text': true, 'accent': true}
     }),
     computed: {
+
         ...mapGetters([
             'getCurrentStep',
             'getStepOne',
@@ -110,6 +116,20 @@ export default {
             },
             set (value) {
                 this.setCurrentStep(value)
+            }
+        },
+        activeSteps () {
+            return _.filter(this.steps, _.iteratee(['active', true]))
+        },
+        nodelivery () {
+            let courier = this.$store.getters['checkout/getDeliveryMethod']
+            let couriers = this.$store.getters['checkout/getCouriers']
+            let pickup = _.filter(couriers, _.iteratee(['group', 'Pick Up Location']))
+            let meetup = _.filter(couriers, _.iteratee(['group', 'Meet Up']))
+            if (_.includes(pickup, courier) | _.includes(meetup, courier)) {
+                return false
+            } else {
+                return true
             }
         },
         step_1_validated: {
@@ -166,6 +186,10 @@ export default {
         redirectBack () {
             let self = this
             self.$router.push({path: '/cart'})
+        },
+        home () {
+            let self = this
+            self.$router.push({path: '/'})
         }
 
     },
