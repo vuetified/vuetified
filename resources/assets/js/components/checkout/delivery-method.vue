@@ -47,8 +47,8 @@
                 </template>
             </template>
             </v-select>
-            <v-btn color="primary" @click.native="nextStep()">Continue</v-btn>
-            <v-btn outline color="primary" @click.native="current_step = 1">Back</v-btn>
+            <v-btn color="primary" @click.native="forward()">Continue</v-btn>
+            <v-btn outline color="primary" @click.native="back()">Back</v-btn>
             </form>
         </v-flex>
         </v-layout>
@@ -75,12 +75,37 @@ export default {
                 this.setDeliveryMethod(value)
             }
         },
-        current_step: {
+        current: {
             get () {
-                return this.$store.getters['wizard/getCurrentStep']
+                return this.$store.getters['wizard/getCurrent']
             },
             set (value) {
-                this.$store.commit('wizard/setCurrentStep', value)
+                this.$store.commit('wizard/setCurrent', value)
+            }
+        },
+        step: {
+            get () {
+                return this.$store.getters['wizard/getStep']
+            },
+            set (value) {
+                this.$store.commit('wizard/setStep', value)
+            }
+        },
+
+        next: {
+            get () {
+                return this.$store.getters['wizard/getNext']
+            },
+            set (value) {
+                this.$store.commit('wizard/setNext', value)
+            }
+        },
+        previous: {
+            get () {
+                return this.$store.getters['wizard/getPrevious']
+            },
+            set (value) {
+                this.$store.commit('wizard/setPrevious', value)
             }
         }
 
@@ -108,15 +133,40 @@ export default {
         ...mapActions([
             'fetchCouriers'
         ]),
-        nextStep () {
-            // check if 
+        forward () {
+            let self = this
+            self.$validator.validateAll()
+            self.setValidated()
+            self.setActiveSteps()
+            self.$store.dispatch('wizard/move', self.next)
+        },
+        back () {
+            let self = this
+            self.$validator.validateAll()
+            self.setValidated()
+            self.setActiveSteps()
+            self.$store.dispatch('wizard/move', self.previous)
+        },
+        setValidated () {
+            if (!this.errors.any()) {
+                this.current.validated = true
+            } else {
+                this.current.validated = false
+            }
+            this.$store.commit('wizard/setStepValidated', this.current)
+        },
+        setActiveSteps () {
             let pickup = _.filter(this.getCouriers, _.iteratee(['group', 'Pick Up Location']))
             let meetup = _.filter(this.getCouriers, _.iteratee(['group', 'Meet Up']))
+            let payload = {
+                component: 'shipping-details',
+                active: true
+            }
             if (_.includes(pickup, this.courier) | _.includes(meetup, this.courier)) {
-                this.current_step = 4
-                // skip validation of step 3
+                payload.active = false
+                this.$store.commit('wizard/setStepStatus', payload)
             } else {
-                this.current_step = 3
+                this.$store.commit('wizard/setStepStatus', payload)
             }
         }
 
