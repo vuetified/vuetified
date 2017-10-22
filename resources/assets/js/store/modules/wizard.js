@@ -1,92 +1,102 @@
 const state = {
-    current_step: 1,
-    step_1_validated: true,
-    step_2_validated: true,
-    step_3_validated: true,
-    step_4_validated: true,
-    step_5_validated: true
+    steps: [
+        {title: 'Customer Details', subtitle: 'Fill Up Customer Info', component: 'customer-details', active: true, validated: true},
+        {title: 'Delivery Method', subtitle: 'Choose Courier', component: 'delivery-method', active: true, validated: true},
+        {title: 'Shipment Details', subtitle: 'Fill Up Shipping Details', component: 'shipping-details', active: true, validated: true},
+        {title: 'Mode of Payment', subtitle: 'Select Payment Options', component: 'mode-of-payment', active: true, validated: true},
+        {title: 'Purchase', subtitle: 'Create Order', component: 'order-details', active: true, validated: true}
+    ],
+    current: {title: 'Customer Details', subtitle: 'Fill Up Customer Info', component: 'customer-details', active: true, validated: true},
+    step: 1,
+    previous: null,
+    next: 2
 }
 
 const getters = {
-    getCurrentStep: state => state.current_step,
-    getStepOne: state => state.step_1_validated,
-    getStepTwo: state => state.step_2_validated,
-    getStepThree: state => state.step_3_validated,
-    getStepFour: state => state.step_4_validated,
-    getStepFive: state => state.step_5_validated
+    getSteps: state => state.steps,
+    getActiveSteps: state => _.filter(state.steps, _.iteratee(['active', true])),
+    getCurrent: state => state.current,
+    getStep: state => state.step,
+    getPrevious: state => state.previous,
+    getNext: state => state.next
 }
 
 const actions = {
-    async checkout ({ commit, state }) {
-        commit('newForm')
-        state.form.busy = true
-        commit('setForm')
+    /* payload = checkout form */
+    async checkout ({ dispatch }, form) {
+        form.busy = true
         try {
-            const payload = await App.post(route('api.order.add'), state.form)
-            state.form.busy = false
-            commit('newForm')
+            const payload = await App.post(route('api.order.add'), form)
+            form.busy = false
+            dispatch('resetWizard')
             vm.$popup({ message: payload.message, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
         } catch ({errors, message}) {
-            state.form.errors.set(errors)
-            state.form.busy = false
-            commit('newForm')
+            form.errors.set(errors)
+            form.busy = false
             vm.$popup({ message: message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' })
         }
+    },
+    /* payload = step */
+    move ({ state, commit }, payload) {
+        if (state.current.validated) {
+            commit('setStep', payload)
+        }
+    },
+    /* no payload */
+    resetWizard ({ commit }) {
+        let steps = [
+            {title: 'Customer Details', subtitle: 'Fill Up Customer Info', component: 'customer-details', active: true, validated: true},
+            {title: 'Delivery Method', subtitle: 'Choose Courier', component: 'delivery-method', active: true, validated: true},
+            {title: 'Shipment Details', subtitle: 'Fill Up Shipping Details', component: 'shipping-details', active: true, validated: true},
+            {title: 'Mode of Payment', subtitle: 'Select Payment Options', component: 'mode-of-payment', active: true, validated: true},
+            {title: 'Purchase', subtitle: 'Create Order', component: 'order-details', active: true, validated: true}
+        ]
+        let current = {title: 'Customer Details', subtitle: 'Fill Up Customer Info', component: 'customer-details', active: true, validated: true}
+        let step = parseInt(1)
+        let previous = null
+        let next = parseInt(2)
+        commit('setSteps', steps)
+        commit('setCurrent', current)
+        commit('setStep', step)
+        commit('setPrevious', previous)
+        commit('setNext', next)
     }
 }
 
 const mutations = {
-    setCurrentStep: (state, payload) => {
-        switch (payload) {
-        case 1:
-            state.current_step = payload
-            break
-        case 2:
-            vm.$emit('validate_step_1')
-            if (state.step_1_validated) {
-                state.current_step = payload
-            }
-            break
-        case 3:
-            vm.$emit('validate_step_2')
-            if (state.step_2_validated) {
-                state.current_step = payload
-            }
-            break
-        case 4:
-            vm.$emit('validate_step_3')
-            if (state.step_3_validated) {
-                state.current_step = payload
-            }
-            break
-        case 5:
-            vm.$emit('validate_step_4')
-            if (state.step_4_validated) {
-                state.current_step = payload
-            }
-            break
-        default:
-            vm.$emit('validate_step_5')
-            if (state.step_5_validated) {
-                state.current_step = payload
-            }
-            break
-        }
+    /* payload = int */
+    setStep: (state, payload) => {
+        state.step = payload
     },
-    setStepOne: (state, payload) => {
-        state.step_1_validated = payload
+    /* payload = int */
+    setPrevious: (state, payload) => {
+        state.previous = payload
     },
-    setStepTwo: (state, payload) => {
-        state.step_2_validated = payload
+    /* payload = int */
+    setNext: (state, payload) => {
+        state.next = payload
     },
-    setStepThree: (state, payload) => {
-        state.step_3_validated = payload
+    /* payload = object */
+    setCurrent: (state, payload) => {
+        state.current = payload
     },
-    setStepFour: (state, payload) => {
-        state.step_4_validated = payload
+    /* payload = array */
+    setSteps: (state, payload) => {
+        state.steps = payload
     },
-    setStepFive: (state, payload) => {
-        state.step_5_validated = payload
+    /* payload = component and active */
+    setStepStatus: (state, payload) => {
+        let index = _.findIndex(state.steps, (step) => { return step.component === payload.component })
+        let step = _.find(state.steps, (step) => { return step.component === payload.component })
+        step.active = payload.active
+        vm.$set(state.steps, index, step)
+    },
+    /* payload = component and validated */
+    setStepValidated: (state, payload) => {
+        let index = _.findIndex(state.steps, (step) => { return step.component === payload.component })
+        let step = _.find(state.steps, (step) => { return step.component === payload.component })
+        step.validated = payload.validated
+        vm.$set(state.steps, index, step)
     }
 
 }
