@@ -115,17 +115,6 @@ export default {
             this.fetchCouriers()
         }
     },
-    mounted () {
-        let self = this
-        vm.$on('validate_step_2', () => {
-            self.$validator.validateAll()
-            if (!self.errors.any()) {
-                vm.$emit('step_2_validated', true)
-            } else {
-                vm.$emit('step_2_validated', false)
-            }
-        })
-    },
     methods: {
         ...mapMutations([
             'setDeliveryMethod'
