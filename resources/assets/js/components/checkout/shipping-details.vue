@@ -87,8 +87,8 @@
             ></v-text-field>
           </v-flex>
         </v-layout>
-        <v-btn color="primary" @click.native="current_step = 3">Continue</v-btn>
-        <v-btn outline color="primary" @click.native="current_step = 1">Back</v-btn>
+        <v-btn color="primary" @click.native="current_step = 4">Continue</v-btn>
+        <v-btn outline color="primary" @click.native="current_step = 2">Back</v-btn>
         </form>
       </v-container>
 </template>
@@ -113,13 +113,13 @@ export default {
     },
     mounted () {
         let self = this
-        vm.$on('validate_step_2', () => {
+        vm.$on('validate_step_3', () => {
             self.$validator.validateAll()
             if (!self.errors.any()) {
-                vm.$emit('step_2_validated', true)
+                vm.$emit('step_3_validated', true)
                 self.setShippingDetails(self.shipping_details)
             } else {
-                vm.$emit('step_2_validated', false)
+                vm.$emit('step_3_validated', false)
             }
         })
     },

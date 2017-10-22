@@ -47,8 +47,8 @@
                 </template>
             </template>
             </v-select>
-            <v-btn color="primary" @click.native="current_step = 4">Continue</v-btn>
-            <v-btn outline color="primary" @click.native="current_step = 2">Back</v-btn>
+            <v-btn color="primary" @click.native="nextStep()">Continue</v-btn>
+            <v-btn outline color="primary" @click.native="current_step = 1">Back</v-btn>
             </form>
         </v-flex>
         </v-layout>
@@ -92,12 +92,12 @@ export default {
     },
     mounted () {
         let self = this
-        vm.$on('validate_step_3', () => {
+        vm.$on('validate_step_2', () => {
             self.$validator.validateAll()
             if (!self.errors.any()) {
-                vm.$emit('step_3_validated', true)
+                vm.$emit('step_2_validated', true)
             } else {
-                vm.$emit('step_3_validated', false)
+                vm.$emit('step_2_validated', false)
             }
         })
     },
@@ -107,7 +107,18 @@ export default {
         ]),
         ...mapActions([
             'fetchCouriers'
-        ])
+        ]),
+        nextStep () {
+            // check if 
+            let pickup = _.filter(this.getCouriers, _.iteratee(['group', 'Pick Up Location']))
+            let meetup = _.filter(this.getCouriers, _.iteratee(['group', 'Meet Up']))
+            if (_.includes(pickup, this.courier) | _.includes(meetup, this.courier)) {
+                this.current_step = 4
+                // skip validation of step 3
+            } else {
+                this.current_step = 3
+            }
+        }
 
     }
 }

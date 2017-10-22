@@ -3,7 +3,7 @@
     <!-- Start ToolBar Slot -->
     <v-toolbar class="accent" slot="toolbar">
         <!-- Arrow Back -->
-        <v-btn flat icon color="error" @click.native="home()">
+        <v-btn flat icon color="error" @click.native="redirectBack()">
             <v-icon>fa-times</v-icon>
         </v-btn>
 
@@ -19,22 +19,22 @@
     <!-- End ToolBar Slot -->
 
     <!-- Start Content Slot -->
-    <v-stepper v-model="current_step">
+    <v-stepper v-model="step">
 
         <v-stepper-header>
 
-            <template v-for="(step,key) in activeSteps">
+            <template v-for="(active,key) in getActiveSteps">
 
                 <v-stepper-step
                 :key="key"
                 :step="parseInt(key + 1)"
-                :complete="current_step > ( key + 1 )"
+                :complete="parseInt(step) > parseInt(key + 1)"
                 >
-                    <span class="primary--text">{{ step.title }}</span>
-                    <small class="info--text">{{ step.subtitle }}</small>
+                    <span class="primary--text">{{ active.title }}</span>
+                    <small class="info--text">{{ active.subtitle }}</small>
                 </v-stepper-step>
 
-                <v-divider :key="key" v-if="parseInt(key + 1) !== activeSteps.length">
+                <v-divider :key="key" v-if="parseInt(key + 1) !== getActiveSteps.length">
                 </v-divider>
 
             </template>
@@ -43,11 +43,11 @@
 
         <v-stepper-content
             :step="parseInt(key + 1)"
-            v-for="(step,key) in activeSteps"
+            v-for="(active,key) in getActiveSteps"
             :key="key"
         >
             <v-card style="min-height: 600px;">
-                <component :is="step.component">
+                <component :is="active.component">
                 </component>
             </v-card>
 
@@ -91,105 +91,63 @@ export default {
         DeliveryMethod
     },
     data: () => ({
-        steps: [
-            {title: 'Customer Details', subtitle: 'Fill Up Customer Info', component: 'customer-details', active: true},
-            {title: 'Delivery Method', subtitle: 'Choose Courier', component: 'delivery-method', active: true},
-            {title: 'Shipment Details', subtitle: 'Fill Up Shipping Details', component: 'shipping-details', active: true},
-            {title: 'Mode of Payment', subtitle: 'Select Payment Options', component: 'mode-of-payment', active: true},
-            {title: 'Purchase', subtitle: 'Create Order', component: 'order-details', active: true}
-        ],
         footerClass: {'primary--text': true, 'accent': true}
     }),
     computed: {
 
         ...mapGetters([
-            'getCurrentStep',
-            'getStepOne',
-            'getStepTwo',
-            'getStepThree',
-            'getStepFour',
-            'getStepFive'
+            'getActiveSteps',
+            'getCurrent',
+            'getStep',
+            'getPrevious',
+            'getNext'
         ]),
-        current_step: {
+        step: {
             get () {
-                return this.getCurrentStep
+                return this.getStep
             },
             set (value) {
-                this.setCurrentStep(value)
+                this.setStep(value)
             }
         },
-        activeSteps () {
-            return _.filter(this.steps, _.iteratee(['active', true]))
-        },
-        nodelivery () {
-            let courier = this.$store.getters['checkout/getDeliveryMethod']
-            let couriers = this.$store.getters['checkout/getCouriers']
-            let pickup = _.filter(couriers, _.iteratee(['group', 'Pick Up Location']))
-            let meetup = _.filter(couriers, _.iteratee(['group', 'Meet Up']))
-            if (_.includes(pickup, courier) | _.includes(meetup, courier)) {
-                return false
-            } else {
-                return true
-            }
-        },
-        step_1_validated: {
+        current: {
             get () {
-                return this.getStepOne
+                return this.getCurrent
             },
             set (value) {
-                this.setStepOne(value)
+                this.setCurrent(value)
             }
         },
-        step_2_validated: {
+        previous: {
             get () {
-                return this.getStepTwo
+                return this.getPrevious
             },
             set (value) {
-                this.setStepTwo(value)
+                this.setPrevious(value)
             }
         },
-        step_3_validated: {
+        next: {
             get () {
-                return this.getStepThree
+                return this.getNext
             },
             set (value) {
-                this.setStepThree(value)
-            }
-        },
-        step_4_validated: {
-            get () {
-                return this.getStepFour
-            },
-            set (value) {
-                this.setStepFour(value)
-            }
-        },
-        step_5_validated: {
-            get () {
-                return this.getStepFive
-            },
-            set (value) {
-                this.setStepFive(value)
+                this.setNext(value)
             }
         }
     },
 
     methods: {
         ...mapMutations([
-            'setCurrentStep',
-            'setStepOne',
-            'setStepTwo',
-            'setStepThree',
-            'setStepFour',
-            'setStepFive'
+            'setStep',
+            'setPrevious',
+            'setNext',
+            'setCurrent',
+            'setStepStatus', // for changin active step count
+            'setStepValidated' // for validation of step
         ]),
         redirectBack () {
             let self = this
             self.$router.push({path: '/cart'})
-        },
-        home () {
-            let self = this
-            self.$router.push({path: '/'})
         }
 
     },
@@ -199,21 +157,6 @@ export default {
         if (self.$store.getters['cart/getCount'] === 0) {
             self.$router.push({path: '/'})
         }
-        vm.$on('step_1_validated', (payload) => {
-            self.step_1_validated = payload
-        })
-        vm.$on('step_2_validated', (payload) => {
-            self.step_2_validated = payload
-        })
-        vm.$on('step_3_validated', (payload) => {
-            self.step_3_validated = payload
-        })
-        vm.$on('step_4_validated', (payload) => {
-            self.step_4_validated = payload
-        })
-        vm.$on('step_5_validated', (payload) => {
-            self.step_5_validated = payload
-        })
     }
 }
 </script>
