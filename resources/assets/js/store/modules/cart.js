@@ -109,6 +109,14 @@ const actions = {
             commit('newForm')
             vm.$popup({ message: message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' })
         }
+    },
+    resetCart ({ commit }) {
+        commit('setItems', [])
+        commit('setTax', 0)
+        commit('setSubTotal', 0)
+        commit('setTotal', 0)
+        commit('setCount', 0)
+        commit('newForm')
     }
 
 }

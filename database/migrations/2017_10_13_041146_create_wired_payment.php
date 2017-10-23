@@ -16,14 +16,14 @@ class CreateWiredPayment extends Migration
         Schema::create('wired_payments', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedBigInteger('gateway_id');
-            $table->string('transaction_no');
-            $table->string('sender');
-            $table->string('contact_no');
+            $table->string('transaction_no')->nullable();
+            $table->string('account_name')->nullable(); // sender name
+            $table->string('account_no')->nullable(); // mobile no.
             $table->double('amount', 15, 2);
             $table->string('currency')->default('PHP');
-            $table->text('uploads');
-            $table->boolean('paid');
-            $table->timestamp('date_paid');
+            $table->text('uploads')->nullable(); // attachment Image Uploads
+            $table->boolean('paid')->default(0);
+            $table->timestamp('date_paid')->nullable(); // Day Payment is Settled
             $table->timestamps();
         });
     }

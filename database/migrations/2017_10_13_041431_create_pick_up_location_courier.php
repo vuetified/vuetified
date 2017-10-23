@@ -18,10 +18,12 @@ class CreatePickUpLocationCourier extends Migration
             $table->unsignedBigInteger('courier_id')->nullable();
             $table->double('shipping_fee', 15, 2)->default(0);
             $table->string('currency')->default('PHP');
-            $table->date('date')->nullable();
-            $table->time('time')->nullable();
+            $table->string('tracking_no')->nullable();
+            $table->boolean('sent')->default(0);
+            $table->timestamp('date_sent')->nullable();
             $table->boolean('received')->default(0);
             $table->timestamp('date_received')->nullable();
+            $table->text('uploads')->nullable();
             $table->timestamps();
         });
     }

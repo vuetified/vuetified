@@ -5,7 +5,8 @@
             "address": "Olongapo",
             "working_days": "Mon-Fri",
             "open_hrs": "10am-6pm"
-        }
+        },
+        "model": "App\\Shipment\\PickUp"
     },
     { "name": "SM Pampanga", "group": "Pick Up Location", "avatar": "/img/gateway/cod.png", "slug": "sm-pampanga",
         "details": {
@@ -13,7 +14,8 @@
             "address": "Pampanga",
             "working_days": "Mon-Fri",
             "open_hrs": "10am-6pm"
-        }
+        },
+        "model": "App\\Shipment\\PickUp"
     },
     { "name": "Meet Up", "group": "Meet Up", "avatar": "/img/gateway/bdo-logo.png", "slug": "meet-up",
         "details": {
@@ -22,26 +24,31 @@
             "contact_no": "90121212",
             "messenger": "@uriahg17",
             "viber": "123466789"
-        }
+        },
+        "model": "App\\Shipment\\MeetUp"
     },
     { "name": "LBC", "group": "Door To Door", "avatar": "/img/gateway/globe-logo.png", "slug": "lbc",
         "details": {
             
-        }
+        },
+        "model": "App\\Shipment\\DoorToDoor"
     },
     { "name": "DHL", "group": "Door To Door", "avatar": "/img/gateway/globe-logo.png", "slug": "dhl",
         "details": {
             
-        }
+        },
+        "model": "App\\Shipment\\DoorToDoor"
     },
     { "name": "Xend", "group": "Door To Door", "avatar": "/img/gateway/globe-logo.png", "slug": "xend",
         "details": {
             
-        }
+        },
+        "model": "App\\Shipment\\DoorToDoor"
     },
     { "name": "PHLPOST ", "group": "Postal Station", "avatar": "/img/gateway/westernunuion-logo.png", "slug": "phlpost",
         "details": {
            
-        }
+        },
+        "model": "App\\Shipment\\PostalMail"
     }
 ]

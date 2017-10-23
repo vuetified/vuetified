@@ -1,72 +1,88 @@
 [   
-    { "name": "Cash On Delivery", "group": "Cash", "avatar": "/img/gateway/cod.png", "slug": "cod" },
+    { "name": "Cash On Delivery", "group": "Cash", "avatar": "/img/gateway/cod.png", "slug": "cod",
+        "details": {
+
+        },
+        "model": "App\\Payment\\Cash"
+    },
     { "name": "BDO", "group": "Bank Deposit", "avatar": "/img/gateway/bdo-logo.png", "slug": "bdo",
         "details": {
             "account_name": "Uriah Galang",
             "account_no": "1234567890"
-        }
+        },
+        "model": "App\\Payment\\Bank"
     },
     { "name": "BPI", "group": "Bank Deposit", "avatar": "/img/gateway/bpi.jpg", "slug": "bpi",
         "details": {
             "account_name": "Uriah Galang",
             "account_no": "1234567890"
-        }
+        },
+        "model": "App\\Payment\\Bank"
     },
     { "name": "HSBC", "group": "Bank Deposit", "avatar": "/img/gateway/hsbc-logo.png", "slug": "hsbc",
         "details": {
             "account_name": "Uriah Galang",
             "account_no": "1234567890"
-        }
+        },
+        "model": "App\\Payment\\Bank"
     },
     { "name": "PNB", "group": "Bank Deposit", "avatar": "/img/gateway/pnb-logo.png", "slug": "pnb",
         "details": {
             "account_name": "Uriah Galang",
             "account_no": "1234567890"
-        }
+        },
+        "model": "App\\Payment\\Bank"
     },
     { "name": "Land Bank", "group": "Bank Deposit", "avatar": "/img/gateway/landbank.png", "slug": "land-bank",
         "details": {
             "account_name": "Uriah Galang",
             "account_no": "1234567890"
-        }
+        },
+        "model": "App\\Payment\\Bank"
     },
     { "name": "East West Bank", "group": "Bank Deposit", "avatar": "/img/gateway/eastwest-logo.png", "slug": "east-west-bank",
         "details": {
             "account_name": "Uriah Galang",
             "account_no": "1234567890"
-        }
+        },
+        "model": "App\\Payment\\Bank"
     },
     { "name": "Union Bank", "group": "Bank Deposit", "avatar": "/img/gateway/unionbank-logo.png", "slug": "union-bank",
         "details": {
             "account_name": "Uriah Galang",
             "account_no": "1234567890"
-        }
+        },
+        "model": "App\\Payment\\Bank"
     },
     { "name": "Metro Bank", "group": "Bank Deposit", "avatar": "/img/gateway/metrobank-logo.png", "slug": "metro-bank",
         "details": {
             "account_name": "Uriah Galang",
             "account_no": "1234567890"
-        }
+        },
+        "model": "App\\Payment\\Bank"
     },
     { "name": "RCBC", "group": "Bank Deposit", "avatar": "/img/gateway/rcbc-logo.png", "slug": "rcbc",
         "details": {
             "account_name": "Uriah Galang",
             "account_no": "1234567890"
-        }
+        },
+        "model": "App\\Payment\\Bank"
     },
     { "name": "Gcash", "group": "Mobile Transfer", "avatar": "/img/gateway/globe-logo.png", "slug": "gcash",
         "details": {
             "account_name": "Uriah Galang",
             "account_no": "1234567890",
             "mobile_no": "1234567890"
-        }
+        },
+        "model": "App\\Payment\\Mobile"
     },
     { "name": "Smart Money", "group": "Mobile Transfer", "avatar": "/img/gateway/smart-logo.png", "slug": "smartmoney",
         "details": {
             "account_name": "Uriah Galang",
             "account_no": "1234567890",
             "mobile_no": "1234567890"
-        }
+        },
+        "model": "App\\Payment\\Mobile"
     },
     { "name": "Western Union", "group": "Remittance", "avatar": "/img/gateway/westernunuion-logo.png", "slug": "western-union",
         "details": {
@@ -76,7 +92,8 @@
             "state": "zambales",
             "country": "Philippines",
             "contact_no": "1234567890"
-        }
+        },
+        "model": "App\\Payment\\Remittance"
     },
     { "name": "Money Gram", "group": "Remittance", "avatar": "/img/gateway/moneygram-logo.png", "slug": "money-gram",
         "details": {
@@ -86,7 +103,8 @@
             "state": "zambales",
             "country": "Philippines",
             "contact_no": "1234567890"
-        }
+        },
+        "model": "App\\Payment\\Remittance"
     },
     { "name": "Xoom", "group": "Remittance", "avatar": "/img/gateway/xoom-logo.png", "slug": "xoom",
         "details": {
@@ -101,14 +119,16 @@
             "state": "zambales",
             "country": "Philippines",
             "contact_no": "1234567890"
-        }
+        },
+        "model": "App\\Payment\\Remittance"
     },
     { "name": "Palawan Express", "group": "Remittance", "avatar": "/img/gateway/palawan-logo.png", "slug": "palawan-express",
         "details": {
             "first_name": "Uriah",
             "last_name": "Galang",
             "contact_no": "1234567890"
-        }
+        },
+        "model": "App\\Payment\\Remittance"
     },
     { "name": "LBC", "group": "Remittance", "avatar": "/img/gateway/lbc-logo.png", "slug": "lbc",
         "details": {
@@ -117,7 +137,8 @@
             "last_name": "Galang",
             "city": "Olongapo",
             "contact_no": "1234567890"
-        }
+        },
+        "model": "App\\Payment\\Remittance"
     },
     { "name": "Cebuana Lhuillier", "group": "Remittance", "avatar": "/img/gateway/cebuana-logo.jpg", "slug": "cebuana",
         "details": {
@@ -126,7 +147,8 @@
             "last_name": "Galang",
             "city": "Olongapo",
             "contact_no": "1234567890"
-        }
+        },
+        "model": "App\\Payment\\Remittance"
     },
     { "name": "MLhuillier", "group": "Remittance", "avatar": "/img/gateway/ml-logo.jpg", "slug": "mlhuillier",
         "details": {
@@ -135,7 +157,8 @@
             "last_name": "Galang",
             "city": "Olongapo",
             "contact_no": "1234567890"
-        }
+        },
+        "model": "App\\Payment\\Remittance"
     },
     { "name": "Remitly", "group": "Remittance", "avatar": "/img/gateway/remitly-logo.png", "slug": "remitly",
         "details": {
@@ -146,24 +169,28 @@
             "city": "Olongapo",
             "province": "Olongapo",
             "contact_no": "1234567890"
-        }
+        },
+        "model": "App\\Payment\\Remittance"
     },
     { "name": "Bitcoin", "group": "Cryptocurrency", "avatar": "/img/gateway/bitcoin-logo.png", "slug": "bitcoin",
         "details": {
             "address": "3854kfAktSoU8VeVLJ5tE2FmuJeD6gRZoT",
             "qrcode": "https://i.imgur.com/tP7xsTS.png"
-        }
+        },
+        "model": "App\\Payment\\Coin"
     },
     { "name": "Credit Card", "group": "Credit Card", "avatar": "/img/gateway/creditcard-logo.png", "slug": "credit-card",
         "details": {
             "service": "stripe",
             "publishable_key": "pk_test_TXiC5ZbBVV5Dp85EFT8rxAyJ"
-        }
+        },
+        "model": "App\\Payment\\Card"
     },
     { "name": "Paypal", "group": "Paypal", "avatar": "/img/gateway/paypal-logo.png", "slug": "paypal",
         "details": {
             "email": "stevendcoffey-facilitator@gmail.com"
-        }
+        },
+        "model": "App\\Payment\\Paypal"
     }
 ]
 

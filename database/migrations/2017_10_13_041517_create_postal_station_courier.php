@@ -19,13 +19,11 @@ class CreatePostalStationCourier extends Migration
             $table->double('shipping_fee', 15, 2)->default(0);
             $table->string('currency')->default('PHP');
             $table->string('tracking_no')->nullable();
-            $table->string('postal_location')->nullable();
-            $table->string('postal_address')->nullable();
             $table->boolean('sent')->default(0);
-            $table->timestamp('date_sent');
+            $table->timestamp('date_sent')->nullable();
             $table->boolean('received')->default(0);
             $table->timestamp('date_received')->nullable();
-            $table->text('uploads');
+            $table->text('uploads')->nullable();
             $table->timestamps();
         });
     }

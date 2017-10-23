@@ -13,7 +13,7 @@ class CreateDoorToDoorCourier extends Migration
      */
     public function up()
     {
-        Schema::create('door_to_door', function (Blueprint $table) {
+        Schema::create('door_to_doors', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedBigInteger('courier_id')->nullable();
             $table->double('shipping_fee', 15, 2)->default(0);
@@ -23,7 +23,7 @@ class CreateDoorToDoorCourier extends Migration
             $table->timestamp('date_sent')->nullable();
             $table->boolean('received')->default(0);
             $table->timestamp('date_received')->nullable();
-            $table->text('uploads');
+            $table->text('uploads')->nullable();
             $table->timestamps();
         });
     }
@@ -35,6 +35,6 @@ class CreateDoorToDoorCourier extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('door_to_door');
+        Schema::dropIfExists('door_to_doors');
     }
 }

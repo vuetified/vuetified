@@ -58,6 +58,7 @@ App.forms = {
             email: '',
             contact_no: ''
         },
+        shipping_fee: 0,
         courier: {} // fetch courrier or save it on store for courier.js
     }
 

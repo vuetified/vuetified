@@ -16,11 +16,11 @@ class CreateOrders extends Migration
         // User Has many Orders
         Schema::create('orders', function(Blueprint $table){
             $table->increments('id');
-            $table->unsignedBigInteger('user_id');
-            $table->json('cart');
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->json('cart')->nullable();
+            $table->json('customer_details')->nullable();
+            $table->json('shipping_details')->nullable();
             $table->nullableMorphs('payment');
-            $table->json('profile')->nullable();
-            $table->json('address')->nullable();
             $table->nullableMorphs('shipment');
             $table->timestamps();
         });

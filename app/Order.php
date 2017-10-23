@@ -8,13 +8,13 @@ class Order extends Model
 {
 
     protected $casts = [
-        'profile' => 'array', 
-        'address' => 'array'
+        'customer_details' => 'array', 
+        'shipping_details' => 'array'
     ];
 
     protected $dates = ['created_at', 'updated_at'];
 
-    public function buyer()
+    public function account()
     {
         return $this->belongsTo(User::class);
     }

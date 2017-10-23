@@ -26,24 +26,20 @@ const getters = {
     getModeOfPayment: state => state.mop,
     getDeliveryMethod: state => state.courier,
     getCouriers: state => state.couriers,
-    getCart: state => state.cart,
     getGateways: state => state.gateways
 }
 
 const actions = {
-    async checkout ({ commit, state }) {
-        commit('newForm')
-        state.form.busy = true
-        commit('setForm')
+    async checkout ({ dispatch }, form) {
+        form.busy = true
         try {
-            const payload = await App.post(route('api.order.add'), state.form)
-            state.form.busy = false
-            commit('newForm')
+            const payload = await App.post(route('api.order.create'), form)
+            form.busy = false
+            dispatch('resetCheckout')
             vm.$popup({ message: payload.message, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
         } catch ({errors, message}) {
-            state.form.errors.set(errors)
-            state.form.busy = false
-            commit('newForm')
+            form.errors.set(errors)
+            form.busy = false
             vm.$popup({ message: message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' })
         }
     },
@@ -56,6 +52,24 @@ const actions = {
         await axios.get('/gateways').then((response) => {
             commit('setGateways', response.data)
         })
+    },
+    resetCheckout ({commit}) {
+        commit('setShippingDetails', {
+            address_1: '',
+            address_2: '',
+            city: '',
+            country: '',
+            zip_code: '',
+            state_province: ''
+        })
+        commit('setCustomerDetails', {
+            first_name: '',
+            last_name: '',
+            email: '',
+            contact_no: ''
+        })
+        commit('setDeliveryMethod', null)
+        commit('setModeOfPayment', null)
     }
 
 }

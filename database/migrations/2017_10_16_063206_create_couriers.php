@@ -20,6 +20,7 @@ class CreateCouriers extends Migration
             $table->string('group');
             $table->string('avatar')->nullable();
             $table->json('details')->nullable(); // to be displayed in customer
+            $table->string('model')->nullable(); // Associated Model Namespace
             $table->timestamps();
         });
     }
