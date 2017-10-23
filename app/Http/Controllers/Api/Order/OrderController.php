@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Order;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Order;
+use App\Courier;
 use Cart;
 
 class OrderController extends Controller
@@ -30,13 +31,12 @@ class OrderController extends Controller
         $mop->save();
         $mop->payments()->save($order);
         /* create new Courier */
-        $courier = new $request->courier['model'];
-        $courier->courier_id = $request->courier['id'];
-        if($request->has('shipping_fee')){
-            $courier->shipping_fee = $request->shipping_fee;
-        }
-        $courier->save();
-        $courier->shipments()->save($order);
+        $courier = Courier::find($request->courier['id']);
+        $shipment = new $request->courier['model'];
+        $shipment->courier_id = optional($courier)->id;
+        $shipment->shipping_fee = $courier->details['rate'];
+        $shipment->save();
+        $shipment->shipments()->save($order);
         /* Destroy Cart */
         Cart::destroy();
 

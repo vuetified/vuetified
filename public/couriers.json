@@ -29,25 +29,25 @@
     },
     { "name": "LBC", "group": "Door To Door", "avatar": "/img/gateway/globe-logo.png", "slug": "lbc",
         "details": {
-            
+            "rate": 450
         },
         "model": "App\\Shipment\\DoorToDoor"
     },
     { "name": "DHL", "group": "Door To Door", "avatar": "/img/gateway/globe-logo.png", "slug": "dhl",
         "details": {
-            
+            "rate": 1000
         },
         "model": "App\\Shipment\\DoorToDoor"
     },
     { "name": "Xend", "group": "Door To Door", "avatar": "/img/gateway/globe-logo.png", "slug": "xend",
         "details": {
-            
+            "rate": 250
         },
         "model": "App\\Shipment\\DoorToDoor"
     },
     { "name": "PHLPOST ", "group": "Postal Station", "avatar": "/img/gateway/westernunuion-logo.png", "slug": "phlpost",
         "details": {
-           
+            "rate": 500
         },
         "model": "App\\Shipment\\PostalMail"
     }
