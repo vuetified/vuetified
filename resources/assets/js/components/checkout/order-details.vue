@@ -1,16 +1,35 @@
 <template>
-  <form @submit.prevent="checkout()">
-        <v-layout row>
+<div>
+    <v-layout row>
           <v-flex xs12 sm12 md12  lg12  xl12>
             <v-text-field
               class="primary--text"
-              name="first_name"
-              label="First Name"
-              v-model="customer_details.first_name"
-              v-validate="'required|max:255'"
-              data-vv-name="first_name"
-              :error-messages="errors.collect('first_name')"
-              prepend-icon="fa-user"
+              label="Total Price"
+              v-model="subtotal"
+              readonly
+              prepend-icon="fa-shopping-bag"
+            ></v-text-field>
+          </v-flex>
+        </v-layout>
+        <v-layout row v-if="tax > 0">
+          <v-flex xs12 sm12 md12  lg12  xl12>
+            <v-text-field
+              class="primary--text"
+              label="Tax"
+              v-model="tax"
+              readonly
+              prepend-icon="fa-percent"
+            ></v-text-field>
+          </v-flex>
+        </v-layout>
+        <v-layout row v-if="courier.details.rate > 0">
+            <v-flex xs12 sm12 md12  lg12  xl12>
+            <v-text-field
+              class="primary--text"
+              label="Shipping Fee"
+              :value="courier.details.rate"
+              readonly
+              prepend-icon="local_shipping"
             ></v-text-field>
           </v-flex>
         </v-layout>
@@ -18,52 +37,25 @@
             <v-flex xs12 sm12 md12  lg12  xl12>
             <v-text-field
               class="primary--text"
-              name="last_name"
-              label="Last Name"
-              v-model="customer_details.last_name"
-              v-validate="'required|max:255'"
-              data-vv-name="last_name"
-              :error-messages="errors.collect('last_name')"
-              prepend-icon="fa-user"
+              label="Total Amount"
+              :value="total_amount"
+              readonly
+              prepend-icon="fa-money"
             ></v-text-field>
           </v-flex>
         </v-layout>
-        <v-layout row>
-          <v-flex xs12 sm12 md12  lg12  xl12>
-            <v-text-field
-              class="primary--text"
-              name="email"
-              label="Email"
-              v-model="customer_details.email"
-              v-validate="'required|email'"
-              data-vv-name="email"
-              :error-messages="errors.collect('email')"
-              prepend-icon="email"
-            ></v-text-field>
-          </v-flex>
-        </v-layout>
-        <v-layout row>
-          <v-flex xs12 sm12 md12  lg12  xl12>
-            <v-text-field
-            class="primary--text"
-            name="contact_no"
-            label="Contact No."
-            v-model="customer_details.contact_no"
-            v-validate="'required|numeric'"
-            data-vv-name="contact_no"
-            :error-messages="errors.collect('contact_no')"
-            prepend-icon="fa-phone"
-            ></v-text-field>
-          </v-flex>
-        </v-layout>
-        <v-btn :loading="checkOutForm.busy" :disabled="errors.any()"  type="submit" :class="{primary: !checkOutForm.busy, error: checkOutForm.busy}"  @click.native="submit()">Submit</v-btn>
-        <v-btn outline color="primary" @click.native="back()">Back</v-btn>
-        </form>
+        <v-btn v-if="getModeOfPayment.slug ==='paypal'" @click.native="paypalcallback()" :loading="checkOutForm.busy" :disabled="errors.any()"  :class="{primary: !checkOutForm.busy, error: checkOutForm.busy}">Pay Via Paypal <v-icon right dark>fa-paypal</v-icon></v-btn>
+        <v-btn v-else-if="getModeOfPayment.slug ==='bitcoin'" @click.native="bitcoincallback()" :loading="checkOutForm.busy" :disabled="errors.any()"  :class="{primary: !checkOutForm.busy, error: checkOutForm.busy}">Pay Via Bitcoin <v-icon right dark>fa-btc</v-icon></v-btn>
+        <v-btn v-else-if="getModeOfPayment.slug ==='credit-card'" @click.native="stripecallback()" :loading="checkOutForm.busy" :disabled="errors.any()"  :class="{primary: !checkOutForm.busy, error: checkOutForm.busy}">Pay Via Stripe <v-icon right dark>fa-cc-stripe</v-icon></v-btn>
+        <v-btn v-else @click.native="submit()" :loading="checkOutForm.busy" :disabled="errors.any()"  :class="{primary: !checkOutForm.busy, error: checkOutForm.busy}">Submit <v-icon right dark>send</v-icon></v-btn>
+        <v-btn :disabled="errors.any()" outline color="primary" @click.native="back()">Back</v-btn>
+</div>
+
 </template>
 
 <script>
 import { createNamespacedHelpers } from 'vuex'
-const { mapActions, mapState } = createNamespacedHelpers('checkout')
+const { mapActions, mapState, mapGetters } = createNamespacedHelpers('checkout')
 
 export default {
     data: () => ({
@@ -76,6 +68,9 @@ export default {
             courier: state => state.courier,
             mop: state => state.mop
         }),
+        ...mapGetters([
+            'getModeOfPayment'
+        ]),
         items: {
             get () {
                 return this.$store.getters['cart/getItems']
@@ -143,12 +138,26 @@ export default {
         },
         steps () {
             return this.$store.getters['wizard/getActiveSteps']
+        },
+        total_amount () {
+            let total = parseFloat(this.total)
+            let fee = parseFloat(this.courier.details.rate)
+            return (total + fee).toFixed(2)
         }
     },
     methods: {
         ...mapActions([
             'checkout'
         ]),
+        paypalcallback () {
+            console.log('paying with paypal')
+        },
+        bitcoincallback () {
+            console.log('paying with bitcoin')
+        },
+        stripecallback () {
+            console.log('paying with stripe')
+        },
         submit () {
             let self = this
             // set Customer Details
