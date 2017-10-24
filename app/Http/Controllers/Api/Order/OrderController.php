@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Order;
 use App\Courier;
 use Cart;
+use App\Mail\OrderPlaced;
 
 class OrderController extends Controller
 {
@@ -37,9 +38,18 @@ class OrderController extends Controller
         $shipment->shipping_fee = $courier->details['rate'];
         $shipment->save();
         $shipment->shipments()->save($order);
+        
+        $items = Cart::content();
+        $tax = Cart::tax();
+        $total = Cart::total();
+        $subtotal = Cart::subtotal();
+        $count = Cart::content()->count();
+        $gateway = Gateway::find($request->mop['id']);
+        $shipping_fee = $courier->details['rate'];
         /* Destroy Cart */
         Cart::destroy();
-
+        \Mail::to($request->user())
+        ->queue(new OrderPlaced($gateway,$items,$tax,$total,$subtotal,$shipping_fee));
         return response()->json([
             'message' => 'Order Placed!'
         ],200);
