@@ -22,7 +22,7 @@
             ></v-text-field>
           </v-flex>
         </v-layout>
-        <v-layout row v-if="courier.details.rate > 0">
+        <v-layout row v-if="courier && courier.details.rate > 0">
             <v-flex xs12 sm12 md12  lg12  xl12>
             <v-text-field
               class="primary--text"
@@ -44,9 +44,9 @@
             ></v-text-field>
           </v-flex>
         </v-layout>
-        <v-btn v-if="getModeOfPayment.slug ==='paypal'" @click.native="paypalcallback()" :loading="checkOutForm.busy" :disabled="errors.any()"  :class="{primary: !checkOutForm.busy, error: checkOutForm.busy}">Pay Via Paypal <v-icon right dark>fa-paypal</v-icon></v-btn>
-        <v-btn v-else-if="getModeOfPayment.slug ==='bitcoin'" @click.native="bitcoincallback()" :loading="checkOutForm.busy" :disabled="errors.any()"  :class="{primary: !checkOutForm.busy, error: checkOutForm.busy}">Pay Via Bitcoin <v-icon right dark>fa-btc</v-icon></v-btn>
-        <v-btn v-else-if="getModeOfPayment.slug ==='credit-card'" @click.native="stripecallback()" :loading="checkOutForm.busy" :disabled="errors.any()"  :class="{primary: !checkOutForm.busy, error: checkOutForm.busy}">Pay Via Stripe <v-icon right dark>fa-cc-stripe</v-icon></v-btn>
+        <v-btn v-if="courier && courier.slug ==='paypal'" @click.native="paypalcallback()" :loading="checkOutForm.busy" :disabled="errors.any()"  :class="{primary: !checkOutForm.busy, error: checkOutForm.busy}">Pay Via Paypal <v-icon right dark>fa-paypal</v-icon></v-btn>
+        <v-btn v-else-if="courier && courier.slug ==='bitcoin'" @click.native="bitcoincallback()" :loading="checkOutForm.busy" :disabled="errors.any()"  :class="{primary: !checkOutForm.busy, error: checkOutForm.busy}">Pay Via Bitcoin <v-icon right dark>fa-btc</v-icon></v-btn>
+        <v-btn v-else-if="courier && courier.slug ==='credit-card'" @click.native="stripecallback()" :loading="checkOutForm.busy" :disabled="errors.any()"  :class="{primary: !checkOutForm.busy, error: checkOutForm.busy}">Pay Via Stripe <v-icon right dark>fa-cc-stripe</v-icon></v-btn>
         <v-btn v-else @click.native="submit()" :loading="checkOutForm.busy" :disabled="errors.any()"  :class="{primary: !checkOutForm.busy, error: checkOutForm.busy}">Submit <v-icon right dark>send</v-icon></v-btn>
         <v-btn :disabled="errors.any()" outline color="primary" @click.native="back()">Back</v-btn>
 </div>
@@ -55,7 +55,7 @@
 
 <script>
 import { createNamespacedHelpers } from 'vuex'
-const { mapActions, mapState, mapGetters } = createNamespacedHelpers('checkout')
+const { mapActions, mapState } = createNamespacedHelpers('checkout')
 
 export default {
     data: () => ({
@@ -68,9 +68,6 @@ export default {
             courier: state => state.courier,
             mop: state => state.mop
         }),
-        ...mapGetters([
-            'getModeOfPayment'
-        ]),
         items: {
             get () {
                 return this.$store.getters['cart/getItems']
@@ -141,7 +138,10 @@ export default {
         },
         total_amount () {
             let total = parseFloat(this.total)
-            let fee = parseFloat(this.courier.details.rate)
+            let fee = 0
+            if (this.courier && this.courier.details.rate) {
+                fee = parseFloat(this.courier.details.rate)
+            }
             return (total + fee).toFixed(2)
         }
     },
