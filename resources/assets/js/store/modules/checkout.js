@@ -79,7 +79,7 @@ const mutations = {
         state.shipping_details = payload
     },
     setCustomerDetails: (state, payload) => {
-        state.account_details = payload
+        state.customer_details = payload
     },
     setModeOfPayment: (state, payload) => {
         state.mop = payload
