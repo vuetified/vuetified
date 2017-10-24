@@ -18,6 +18,7 @@
             data-vv-name="mop"
             :return-object="true"
             :error-messages="errors.collect('mop')"
+            prepend-icon="fa-money"
             >
             <template slot="selection" scope="data">
                 <v-chip

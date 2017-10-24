@@ -19,6 +19,7 @@
             data-vv-name="courier"
             :return-object="true"
             :error-messages="errors.collect('courier')"
+            prepend-icon="local_shipping"
             >
             <template slot="selection" scope="data">
                 <v-chip
