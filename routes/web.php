@@ -1,4 +1,15 @@
 <?php
+/* Mailables */
+Route::get('/mailable', function () {
+    $order = App\Order::find(1);
+    $items = Cart::content();
+    $tax = Cart::tax();
+    $total = Cart::total();
+    $subtotal = Cart::subtotal();
+    $gateway = App\Gateway::find(4);
+    $shipping_fee = 500;
+    return new App\Mail\OrderPlaced($gateway,$items,$tax,$total,$subtotal,$shipping_fee);
+});
 /* Cart Web Api */
 Route::get('/gateways', function(){
    return  \App\Gateway::all();
