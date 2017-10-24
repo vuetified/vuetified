@@ -1,16 +1,3 @@
-delivery methods image
-lbc
-dhl
-xend
-phlpost
-meet up
-pickup location (image of the location or logo)
-
-// remove in payment gateway.json
-bitcoin
-credit card
-paypal
-
 // display final price in step purchase step
 read only
 amount -> tax, subtotal, total
@@ -20,13 +7,15 @@ mode of payment -> print details (bank details they will deposit)
 send email with orders details
 
 Dynamic Submit Button for order
-v-if="getModeOfPayment.slug ==='Paypal'"
-v-else-if="getModeOfPayment.group ==='Cryptocurrency'"
-v-else-if="getModeOfPayment.group ==='Credit Card'"
-v-else (all manual payment)
+v-if="getModeOfPayment.slug ==='Paypal'" @click="paypalcallback"
+v-else-if="getModeOfPayment.group ==='Cryptocurrency'" @click="bitcoincallback"
+v-else-if="getModeOfPayment.group ==='Credit Card'" @click="stripecallback"
+v-else (all manual payment) @click="redirectSuccessPage"
 
-// properly set up database of coins ,card and paypal
 
 // Create a Link Route which holds the sponsor
+
+// fix bug on select box when moving back and forth step
+
 
 
