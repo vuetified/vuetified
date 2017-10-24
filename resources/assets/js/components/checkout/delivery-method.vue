@@ -152,7 +152,8 @@ export default {
                 component: 'shipping-details',
                 active: true
             }
-            if (_.includes(pickup, this.courier) | _.includes(meetup, this.courier)) {
+            let filter = pickup.concat(meetup)
+            if (_.includes(filter, this.courier)) {
                 payload.active = false
                 this.$store.commit('wizard/setStepStatus', payload)
             } else {
