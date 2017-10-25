@@ -6,14 +6,14 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Order;
 use App\Courier;
-use Cart;
 use App\Mail\OrderPlaced;
+use App\Gateway;
 
 class OrderController extends Controller
 {
     public function __construct()
     {
-        // $this->middleware('auth:api');
+        $this->middleware('auth:api');
     }
     public function create(Request $request)
     {
@@ -27,7 +27,7 @@ class OrderController extends Controller
         /* load order relationships */
         $order->load('user','shipment.courier','payment.gateway');
         /* Destroy Cart */
-        Cart::destroy();
+        \Cart::destroy();
         \Mail::to($request->user())
         ->queue(new OrderPlaced($order));
         return response()->json([
