@@ -1,21 +1,5 @@
-// display final price in step purchase step
-read only
-amount -> tax, subtotal, total
-delivery method -> shipment fee
-total -> total + shipment fee
-mode of payment -> print details (bank details they will deposit) 
-send email with orders details
-
-Dynamic Submit Button for order
-v-if="getModeOfPayment.slug ==='Paypal'" @click="paypalcallback"
-v-else-if="getModeOfPayment.group ==='Cryptocurrency'" @click="bitcoincallback"
-v-else-if="getModeOfPayment.group ==='Credit Card'" @click="stripecallback"
-v-else (all manual payment) @click="redirectSuccessPage"
-
+show where to settle payment for manual payment
 
 // Create a Link Route which holds the sponsor
-
-// fix bug on select box when moving back and forth step
-
 
 
