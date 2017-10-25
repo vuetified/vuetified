@@ -1,7 +1,8 @@
 [   
-    { "name": "Cash On Delivery", "group": "Cash", "avatar": "/img/gateway/cod.png", "slug": "cod",
+    { "name": "Pay Cash On Meet Up", "group": "Cash", "avatar": "/img/gateway/cod.png", "slug": "cod",
         "details": {
-
+            "contact_person": "Uriah Galang",
+            "contact_no": "0917123456"
         },
         "model": "App\\Payment\\Cash"
     },
