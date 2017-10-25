@@ -3,6 +3,7 @@ const About = () => import('../pages/About.vue')
 const Cart = () => import('../components/Cart.vue')
 const Courses = () => import('../pages/Courses.vue')
 const Support = () => import('../pages/Support.vue')
+const ThankYou = () => import('../pages/ThankYou.vue')
 
 export default [
     /* Front End Routes */
@@ -46,6 +47,15 @@ export default [
         path: '/support',
         component: Support,
         name: 'support',
+        meta: {
+            permission: 'guest',
+            fail: '/error'
+        }
+    },
+    {
+        path: '/thank-you',
+        component: ThankYou,
+        name: 'thankyou',
         meta: {
             permission: 'guest',
             fail: '/error'
