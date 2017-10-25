@@ -1,30 +1,58 @@
 @component('mail::message')
-# Order Placed
+**Congratulations, {{$order->user->name}}**
+
+**Your Order Has Been Placed**
+
+**Order No: {{$order->id}}**
 
 @component('mail::table')
-|                   |           |                                           |
-|-------------------|:---------:|:-----------------------------------------:|
-| Total Price       |           | {{$subtotal}}                             |
-| Tax               |           | {{$tax}}                                  |
-| Shipping Fee      |           | {{$shipping_fee}}                         |
-| Total Amount      |           | {{$subtotal + $tax + $shipping_fee}}      |
+| Product           | Qty              | Price              | Subtotal              |
+|:------------------|:----------------:|:------------------:|----------------------:|
+@foreach($items as $item)
+| {{$item['name']}} | {{$item['qty']}} | {{$item['price']}} | {{$item['subtotal']}} |
+@endforeach
+
 @endcomponent
 
-Settle Your Payment At:
+@component('mail::table')
+|  |   |                    |                                          |
+|:-|:-:|-------------------:|-----------------------------------------:|
+|  |   | **Subtotal:**      | **{{$subtotal}}**                        |
+|  |   | **Tax:**           | **{{$tax}}**                             |
+|  |   | **Shipping Fee:**  | **{{$shipping_fee}}**                    |
+|  |   | **Total:**         | **{{$subtotal + $tax + $shipping_fee}}** |
+@endcomponent
 
-@if($gateway->group === 'Bank Deposit')
+---
+
+**You May Settle Your Payment As Specified Below**
 @component('mail::panel')
+<strong>Mode of Payment: {{ $gateway->name }}</strong>
+@foreach($gateway->details as $key => $detail)
 
-Bank Name: {{ $gateway->name }}
+{{ toTitleCase($key) }} : {{$detail}}
 
-Bank Account: {{ $gateway->details['account_name'] }}
+@endforeach
+@endcomponent
 
-Bank Account No: {{ $gateway->details['account_no'] }}
+---
+
+@if($courier)
+@component('mail::panel')
+<strong>Delivery Method: {{ $courier->group }}</strong>
+@foreach($courier->details as $key => $detail)
+
+{{ toTitleCase($key) }} : {{$detail}}
+
+@endforeach
 
 @endcomponent
 @endif
 
-If You Have Settle Your Payment Click This Button To Update Us
+---
+
+<center>Click Button Below To Update Your Order</center>
+
 @component('mail::button', ['url' => '/dashboard','color' => 'green'])
 Confirm Payment
 @endcomponent
