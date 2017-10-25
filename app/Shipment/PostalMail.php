@@ -11,7 +11,17 @@ class PostalMail extends Model
     protected $table = "postal_mail";
 
     protected $casts = [
+        'shipping_fee' => 'double',
         'uploads' => 'array',
+        'sent' => 'boolean',
+        'received' => 'boolean'
+    ];
+
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'date_sent',
+        'date_received'
     ];
     
     public function courier()
