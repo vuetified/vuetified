@@ -22,6 +22,7 @@ class CreateOrders extends Migration
             $table->json('shipping_details')->nullable();
             $table->nullableMorphs('payment');
             $table->nullableMorphs('shipment');
+            $table->boolean('done')->default(0);
             $table->timestamps();
         });
     }
