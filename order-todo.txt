@@ -2,4 +2,27 @@ show where to settle payment for manual payment
 
 // Create a Link Route which holds the sponsor
 
+// thank you page order? telling you successully placed an order , check your email
+// button to go to dashboard or to shop more
+
+// dashboard
+
+-> panel 
+api to return (admin/user)
+order total count
+order unpaid count
+order sent count
+order receive count
+order paid count
+
+order tables ( filter by paid , unpaid,)
+paid and updaid (payment)
+sent and  receive (shipment)
+view 
+modal edit (upload receipt)
+
+admin kanban for manual updating status
+Only get the list for undone order
+unpaid -> paid
+sent -> received
 
