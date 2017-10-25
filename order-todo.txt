@@ -2,8 +2,6 @@ show where to settle payment for manual payment
 
 // Create a Link Route which holds the sponsor
 
-// thank you page order? telling you successully placed an order , check your email
-// button to go to dashboard or to shop more
 
 // dashboard
 
