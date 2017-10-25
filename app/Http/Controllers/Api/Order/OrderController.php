@@ -120,7 +120,7 @@ class OrderController extends Controller
         return $user->orders->count();
     }
 
-    private function getReceivedCount()
+    private function getReceivedCount($user)
     {
         return $user->orders->reduce(function ($carry, $order) {
             if($order->shipment->received){
@@ -130,7 +130,7 @@ class OrderController extends Controller
         },0);
     }
 
-    private function getDone()
+    private function getDone($user)
     {
         return $user->orders->reduce(function ($carry, $order) {
             if($order->done){
