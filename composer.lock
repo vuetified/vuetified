@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "a52d83ee26166209505863055047e005",
+    "content-hash": "d61f21ca136c87f13e6e244b515b2ba1",
     "packages": [
         {
             "name": "barryvdh/laravel-cors",
@@ -3166,16 +3166,16 @@
         },
         {
             "name": "spatie/laravel-collection-macros",
-            "version": "3.0.0",
+            "version": "3.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-collection-macros.git",
-                "reference": "8b09fd9f526db1723fedd3cc51ac31e394e6b86b"
+                "reference": "c23e839d089e220953c707dc2f7221321a25d8e6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-collection-macros/zipball/8b09fd9f526db1723fedd3cc51ac31e394e6b86b",
-                "reference": "8b09fd9f526db1723fedd3cc51ac31e394e6b86b",
+                "url": "https://api.github.com/repos/spatie/laravel-collection-macros/zipball/c23e839d089e220953c707dc2f7221321a25d8e6",
+                "reference": "c23e839d089e220953c707dc2f7221321a25d8e6",
                 "shasum": ""
             },
             "require": {
@@ -3228,7 +3228,7 @@
                 "laravel-collection-macros",
                 "spatie"
             ],
-            "time": "2017-08-30T12:42:27+00:00"
+            "time": "2017-10-24T10:18:40+00:00"
         },
         {
             "name": "spatie/laravel-medialibrary",
