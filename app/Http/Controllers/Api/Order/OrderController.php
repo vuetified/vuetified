@@ -83,11 +83,15 @@ class OrderController extends Controller
         $sent = $this->getSentCount($user);
         $paid = $this->getPaidCount($user);
         $total = $this->getTotal($user);
+        $received = $this->getReceivedCount($user);
+        $done = $this->getDone($user);
 
         return response()->json([
             'total' => $total,
             'sent' => $sent,
-            'paid' => $paid
+            'paid' => $paid,
+            'received' => $received,
+            'done' => $done
         ],200);
     }
 
@@ -114,6 +118,26 @@ class OrderController extends Controller
     private function getTotal($user)
     {
         return $user->orders->count();
+    }
+
+    private function getReceivedCount()
+    {
+        return $user->orders->reduce(function ($carry, $order) {
+            if($order->shipment->received){
+                return $carry++;
+            }
+            return $carry;
+        },0);
+    }
+
+    private function getDone()
+    {
+        return $user->orders->reduce(function ($carry, $order) {
+            if($order->done){
+                return $carry++;
+            }
+            return $carry;
+        },0);
     }
 
     private function getUserWithOrders(Request $request)

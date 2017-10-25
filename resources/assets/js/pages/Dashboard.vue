@@ -43,8 +43,19 @@ export default {
         received: 3,
         done: 3
     }),
+    computed: {
+        unpaid() {
+            return this.total - this.paid
+        },
+        unsent() {
+            return this.total - this.sent
+        }
+    },
     components: {
         MainLayout
+    },
+    mounted() {
+        $this->fetchPanelStats();
     }
 }
 </script>
