@@ -76,4 +76,50 @@ class OrderController extends Controller
         $shipment->save();
         $shipment->shipments()->save($order);
     }
+
+    public function getPanelStats(Request $request)
+    {
+        $user = $this->getUserWithOrders($request);
+        $sent = $this->getSentCount($user);
+        $paid = $this->getPaidCount($user);
+        $total = $this->getTotal($user);
+
+        return response()->json([
+            'total' => $total,
+            'sent' => $sent,
+            'paid' => $paid
+        ],200);
+    }
+
+    private function getSentCount($user) 
+    {
+        return $user->orders->reduce(function ($carry, $order) {
+            if($order->shipment->sent){
+                return $carry++;
+            }
+            return $carry;
+        },0);
+    }
+
+    private function getPaidCount($user) 
+    {
+        return $user->orders->reduce(function ($carry, $order) {
+            if($order->payment->paid){
+                return $carry++;
+            }
+            return $carry;
+        },0);
+    }
+
+    private function getTotal($user)
+    {
+        return $user->orders->count();
+    }
+
+    private function getUserWithOrders(Request $request)
+    {
+        $user = $request->user();
+        $user->load('orders.shipment.courier','orders.payment.gateway');
+        return $user;
+    }
 }
