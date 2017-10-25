@@ -9,7 +9,8 @@ class Order extends Model
 
     protected $casts = [
         'customer_details' => 'array', 
-        'shipping_details' => 'array'
+        'shipping_details' => 'array',
+        'done' => 'boolean'
     ];
 
     protected $dates = ['created_at', 'updated_at'];
