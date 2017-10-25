@@ -2,7 +2,7 @@
 
 namespace App\Mail;
 
-use App\Gateway;
+use App\Order;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -12,25 +12,16 @@ class OrderPlaced extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
-    public $gateway;
-    public $items;
-    public $tax;
-    public $total;
-    public $subtotal;
-    public $shipping_fee;
+    public $order;
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(Gateway $gateway,$items,$tax,$total,$subtotal,$shipping_fee)
+    public function __construct(Order $order)
     {
-        $this->gateway = $gateway;
-        $this->items = $items;
-        $this->tax = $tax;
-        $this->total = $total;
-        $this->subtotal = $subtotal;
-        $this->shipping_fee = $shipping_fee;
+        $this->order = $order;
     }
 
     /**
@@ -40,13 +31,16 @@ class OrderPlaced extends Mailable implements ShouldQueue
      */
     public function build()
     {
+        $cart = json_decode($this->order->cart,true);
         return $this->markdown('emails.orders.placed')->with([
-            'gateway' => $this->gateway,
-            'items' => $this->items,
-            'subtotal' => $this->subtotal,
-            'tax' => $this->tax,
-            'total' => $this->total,
-            'shippping_fee' => $this->shipping_fee,
+            'gateway' => $this->order->payment->gateway,
+            'items' => $cart['items'],
+            'subtotal' => $cart['subtotal'],
+            'tax' => $cart['tax'],
+            'total' => $cart['total'],
+            'shipping_fee' => $this->order->shipment->shipping_fee,
+            'courier' => $this->order->shipment->courier,
+            'payment_type' => str_after($this->order->payment_type, 'App\\Payment\\')
         ]);
     }
 }
