@@ -36,6 +36,7 @@ const actions = {
             const payload = await App.post(route('api.order.create'), form)
             form.busy = false
             dispatch('resetCheckout')
+            vm.$router.push({name: 'dashboard'})
             vm.$popup({ message: payload.message, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
         } catch ({errors, message}) {
             form.errors.set(errors)

@@ -158,7 +158,7 @@ export default {
         stripecallback () {
             console.log('paying with stripe')
         },
-        submit () {
+        async submit () {
             let self = this
             // set Customer Details
             if (_.find(self.steps, { 'component': 'customer-details', 'active': true }) !== undefined) {
@@ -189,13 +189,12 @@ export default {
             let validated = _.filter(self.steps, { 'validated': true }).length
             // Usual Error is if any of the step is not validated form object is not new up
             if (count === validated) {
-                self.checkout(self.checkOutForm)
+                await self.checkout(self.checkOutForm)
                 // empty cart
-                this.$store.dispatch('cart/resetCart')
+                await this.$store.dispatch('cart/resetCart')
                 // reset wizard
-                this.$store.dispatch('wizard/resetWizard')
+                await this.$store.dispatch('wizard/resetWizard')
                 // reset checkout is already inside dispatch checkout
-                self.$router.push({name: 'home'})
             } else {
                 // if by chance not all steps are validated , show an error message
                 self.$popup({ message: 'Checkout Form Has An Error', backgroundColor: '#e57373', delay: 5, color: '#fffffa' })
