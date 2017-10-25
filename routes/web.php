@@ -5,7 +5,6 @@ Route::get('/mailable', function () {
     $order->load('user','shipment.courier','payment.gateway');
     return new App\Mail\OrderPlaced($order);
 });
-Route::get('/orders/create', 'Api\Order\OrderController@create')->name('api.order.create');
 /* Cart Web Api */
 Route::get('/gateways', function(){
    return  \App\Gateway::all();
