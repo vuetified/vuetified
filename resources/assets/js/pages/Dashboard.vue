@@ -146,11 +146,13 @@ export default {
         admin: false,
         currency: '₱',
         dialog: false,
+        /* panels */
         total: 0,
         paid: 0,
         sent: 0,
         received: 0,
         done: 0,
+        /* table */
         search: '',
         selected: [],
         headers: [
