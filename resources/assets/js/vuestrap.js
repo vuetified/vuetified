@@ -80,6 +80,20 @@ Vue.use(VueTruncate)
 /* Seed Initial State as Mixins */
 Vue.mixin(initialData)
 
+/* Custom Filters */
+Vue.filter('formatSize', function (size) {
+    if (size > 1024 * 1024 * 1024 * 1024) {
+        return (size / 1024 / 1024 / 1024 / 1024).toFixed(2) + ' TB'
+    } else if (size > 1024 * 1024 * 1024) {
+        return (size / 1024 / 1024 / 1024).toFixed(2) + ' GB'
+    } else if (size > 1024 * 1024) {
+        return (size / 1024 / 1024).toFixed(2) + ' MB'
+    } else if (size > 1024) {
+        return (size / 1024).toFixed(2) + ' KB'
+    }
+    return size.toString() + ' B'
+})
+
 /**
  * Only Load Laravel Echo if Socket.io is Present, Can Be Configure in echo.php
  * If Set to Realtime then this Will be Loaded.
