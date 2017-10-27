@@ -18,6 +18,7 @@ import VueCookie from 'vue-js-cookie'
 import VueVisible from 'vue-visible'
 import initialData from './mixins/initial-state' /* Our Initial State Provided By Our App */
 import './services/acl' /* Add ACL To Our Routes */
+import VueTruncate from 'vue-truncate-filter'
 
 if (window.Vue === undefined) {
     window.Vue = Vue
@@ -75,6 +76,7 @@ Vue.use(VeeValidate, veeConfig)
 Vue.use(Vuex)
 Vue.use(VueCookie)
 Vue.use(VueVisible)
+Vue.use(VueTruncate)
 /* Seed Initial State as Mixins */
 Vue.mixin(initialData)
 
