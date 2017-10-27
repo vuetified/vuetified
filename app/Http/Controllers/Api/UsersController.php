@@ -21,12 +21,12 @@ class UsersController extends Controller
 
     public function index(Request $request)
     {
-        return new UserCollection(User::with('profile','referralLink')->paginate(10));
+        return new UserCollection(User::with('profile','referralLink', 'roles', 'permissions')->paginate(10));
     }
 
     public function show($id)
     {
-        $user = User::with('profile','referralLink')->find($id);
+        $user = User::with('profile','referralLink', 'roles', 'permissions')->find($id);
         return new UserResouce($user);
     }
 
@@ -36,7 +36,7 @@ class UsersController extends Controller
         if(!$user){
             throw new UserTokenNotFound;
         }
-        return new UserResouce($user->load('profile','referralLink'));
+        return new UserResouce($user->load('profile','referralLink', 'roles', 'permissions'));
     }
 
     public function findByUsername($username)
@@ -45,7 +45,7 @@ class UsersController extends Controller
         if(!$user){
             throw new UsernameNotFound;
         }
-        return new UserResouce($user->load('profile','referralLink'));
+        return new UserResouce($user->load('profile','referralLink', 'roles', 'permissions'));
     }
 
     public function findByEmail($email)
@@ -54,7 +54,7 @@ class UsersController extends Controller
         if(!$user){
             throw new EmailNotFound;
         }
-        return new UserResouce($user->load('profile','referralLink'));
+        return new UserResouce($user->load('profile','referralLink', 'roles', 'permissions'));
     }
 
     
