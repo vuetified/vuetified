@@ -31,6 +31,7 @@
     "stylus-loader": "^3.0.1"
   },
   "dependencies": {
+    "@xkeshi/image-compressor": "^0.5.2",
     "axios": "^0.16.2",
     "cross-env": "^5.0.5",
     "dotenv": "^4.0.0",
@@ -60,6 +61,8 @@
     "vue-router": "^2.7.0",
     "vue-template-compiler": "^2.4.4",
     "vue-timeago": "^3.3.6",
+    "vue-truncate-filter": "^1.1.7",
+    "vue-upload-component": "^2.6.3",
     "vue-visible": "^1.0.2",
     "vue-youtube-embed": "^2.1.2",
     "vue2-dropzone": "^2.3.5",
