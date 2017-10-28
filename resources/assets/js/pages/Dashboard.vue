@@ -24,36 +24,13 @@
       </v-layout>
 
       <v-container fluid>
-            <v-card-title>
-            <v-text-field
-                append-icon="search"
-                label="Search Orders No."
-                v-model="search"
-                color="info"
-                :light="true"
-            ></v-text-field>
-
-            </v-card-title>
 
             <v-data-table
                 :headers="headers"
                 :items="items"
-                :search="search"
-                v-model="selected"
-                selected-key="id"
-                select-all
                 :light="true"
-
             >
             <template slot="items" scope="props">
-                <td>
-                    <v-checkbox
-                    color="primary"
-                    hide-details
-                    v-model="props.selected"
-                    >
-                    </v-checkbox>
-                </td>
                 <td class="title text-xs-left primary--text">{{ props.item.id }}</td>
                 <td class="title text-xs-left primary--text">{{ totalAmount(props.item) | currency(currency) }}</td>
                 <td class="title text-xs-left primary--text">{{ props.item.payment.paid ? 'Paid' : 'Unpaid' }}</td>
@@ -70,7 +47,7 @@
                             <v-icon>close</v-icon>
                             </v-btn>
                             <v-spacer></v-spacer>
-                            <v-toolbar-title>Update Order No. {{ props.item.id }}</v-toolbar-title>
+                            <v-toolbar-title>Update Order No. {{ current_order.id }}</v-toolbar-title>
                             <v-spacer></v-spacer>
                             <v-toolbar-items>
                             <v-btn dark flat @click.native="dialog = false">Save</v-btn>
@@ -108,11 +85,11 @@
                     </v-dialog>
                 </td>
                 <td class="title text-xs-left">
-                    <v-switch v-if="admin"
+                    <v-switch v-if="hasRole('admin')"
                         v-model="props.item.done"
                         color="red"
                         :light="true"
-                        :disabled="!admin"
+                        :disabled="!hasRole('admin')"
                         >
                     </v-switch>
                     <v-btn v-else flat icon color="red lighten-2">
@@ -138,12 +115,12 @@
 <script>
 import MainLayout from '../layouts/Main.vue'
 import Theme from '../mixins/theme'
+import Acl from '../mixins/acl'
 
 export default {
-    mixins: [Theme],
+    mixins: [Theme, Acl],
     data: () => ({
         contentClass: { 'grey': true, 'lighten-4': true, 'accent--text': true },
-        admin: false,
         currency: '₱',
         dialog: false,
         /* panels */
@@ -153,16 +130,15 @@ export default {
         received: 0,
         done: 0,
         /* table */
-        search: '',
-        selected: [],
         headers: [
+            /* remove sort and value since we cant access dot anotation in item */
             { text: 'Order No.', value: 'id', align: 'left', sortable: true },
-            { text: 'Amount', value: 'totalAmount', align: 'left', sortable: true },
-            { text: 'Paid', value: 'paid', align: 'left', sortable: true },
-            { text: 'Sent', value: 'sent', align: 'left', sortable: true },
-            { text: 'Received', value: 'received', align: 'left', sortable: true },
+            { text: 'Amount', align: 'left', sortable: false },
+            { text: 'Paid', align: 'left', sortable: false },
+            { text: 'Sent', align: 'left', sortable: false },
+            { text: 'Received', align: 'left', sortable: false },
             { text: 'Update', align: 'center', sortable: false },
-            { text: 'Completed', align: 'left', sortable: true }
+            { text: 'Completed', align: 'left', sortable: false }
         ],
         items: [],
         /* current updated item */
