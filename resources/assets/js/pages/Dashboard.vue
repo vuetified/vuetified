@@ -1,25 +1,49 @@
 <template>
   <main-layout  :style="{ paddingTop: `100px`, backgroundColor: `white` }">
     <v-container  fluid>
-      <v-layout row wrap>
+      <v-layout row wrap align-center>
         <!-- make a card to display this -->
         <v-flex xs12 md4 text-xs-center>
-            <h3 class="primary--text">Orders: {{ total }}</h3>
+            <v-card color="blue-grey" class="ma-1" height="110px">
+                <v-card-text class="title pa-5">
+                 <v-icon large color="amber lighten-2">confirmation_number</v-icon> Unpaid: {{ unpaid }}
+                </v-card-text>
+            </v-card>
         </v-flex>
         <v-flex xs12 md4 text-xs-center>
-            <h3 class="primary--text">Unpaid: {{ unpaid }} </h3>
+            <v-card color="red lighten-2" class="ma-1" height="110px">
+                <v-card-text class="title pa-5">
+                 <v-icon large color="red darken-4">do_not_disturb</v-icon> On-Hold: {{ unsent }}
+                </v-card-text>
+            </v-card>
         </v-flex>
         <v-flex xs12 md4 text-xs-center>
-            <h3 class="primary--text">Paid: {{ paid }}</h3>
+            <v-card color="yellow darken-2" class="ma-1" height="110px">
+                <v-card-text class="title pa-5">
+                 <v-icon large color="teal accent-4">local_shipping</v-icon> Sent: {{ sent }}
+                </v-card-text>
+            </v-card>
         </v-flex>
         <v-flex xs12 md4 text-xs-center>
-            <h3 class="primary--text">On-Hold: {{ unsent }} </h3>
+            <v-card color="teal lighten-2" class="ma-1" height="110px">
+                 <v-card-text class="title pa-5">
+                 <v-icon large color="lime">local_mall</v-icon> Orders: {{ total }}
+                </v-card-text>
+            </v-card>
         </v-flex>
         <v-flex xs12 md4 text-xs-center>
-            <h3 class="primary--text">On-Delivery: {{ sent }}</h3>
+            <v-card color="light-green" class="ma-1" height="110px">
+                <v-card-text class="title pa-5">
+                 <v-icon large color="teal">beenhere</v-icon> Received: {{ received }}
+                </v-card-text>
+            </v-card>
         </v-flex>
         <v-flex xs12 md4 text-xs-center>
-            <h3 class="primary--text">Received: {{ received }} </h3>
+            <v-card color="teal darken-4" class="ma-1" height="110px">
+                <v-card-text class="title pa-5">
+                 <v-icon large color="green lighten-2">local_atm</v-icon> Paid: {{ paid }}
+                </v-card-text>
+            </v-card>
         </v-flex>
       </v-layout>
 
@@ -34,8 +58,8 @@
                 <td class="title text-xs-left primary--text">{{ props.item.id }}</td>
                 <td class="title text-xs-left primary--text">{{ totalAmount(props.item) | currency(currency) }}</td>
                 <td class="title text-xs-left primary--text">{{ props.item.payment.paid ? 'Paid' : 'Unpaid' }}</td>
-                <td class="title text-xs-left primary--text">{{ props.item.shipment.sent ? 'On-Delivery' : 'On-Hold' }}</td>
-                <td class="title text-xs-left primary--text">{{ props.item.shipment.received ? 'Received' : 'Not Yet' }}</td>
+                <td class="title text-xs-left primary--text">{{ props.item.shipment.sent ? 'Sent' : 'On-Hold' }}</td>
+                <td class="title text-xs-left primary--text">{{ props.item.shipment.received ? 'Received' : 'Pending' }}</td>
                 <td class="title text-xs-center">
                     <v-dialog v-model="dialog" fullscreen transition="dialog-bottom-transition" :overlay="false">
                         <v-btn flat icon color="accent" slot="activator" @click.native="setCurrentOrder(props.item)">
