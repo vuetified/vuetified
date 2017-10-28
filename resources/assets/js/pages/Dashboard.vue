@@ -10,6 +10,7 @@
                 :light="true"
             >
             <template slot="items" scope="props">
+            <tr @click="props.expanded = !props.expanded">
                 <td class="title text-xs-left primary--text">{{ props.item.id }}</td>
                 <td class="title text-xs-left primary--text">{{ totalAmount(props.item) | currency(currency) }}</td>
                 <td class="title text-xs-left primary--text">{{ props.item.payment.paid ? 'Paid' : 'Unpaid' }}</td>
@@ -76,7 +77,31 @@
                     <v-icon v-else>fa-square-o</v-icon>
                     </v-btn>
                 </td>
+            </tr>
+            </template>
 
+             <template slot="expand" scope="props">
+                <v-card flat :light="true">
+                    <v-container fluid>
+                        <v-layout row wrap v-for="(item , key) in getItems(props.item.cart)" :key="key">
+                                    <v-spacer></v-spacer>
+                                    <span class="title blue-grey--text">Product: {{ item.name }}</span>
+                                    <v-spacer></v-spacer>
+
+                                    <span class="title blue-grey--text">Qty: {{ item.qty }}</span>
+                                    <v-spacer></v-spacer>
+
+                                    <span class="title blue-grey--text">Price: {{ item.price | currency(currency) }}</span>
+                                    <v-spacer></v-spacer>
+
+                                    <span class="title blue-grey--text">Tax: {{ parseFloat(item.tax).toFixed(2) | currency(currency) }}</span>
+                                    <v-spacer></v-spacer>
+
+                                    <span class="title blue-grey--text">Subtotal: {{ item.subtotal }}</span>
+                                    <v-spacer></v-spacer>
+                        </v-layout>
+                    </v-container>
+                </v-card>
             </template>
 
             <template slot="pageText" scope="{ pageStart, pageStop }">
@@ -96,7 +121,6 @@ import MainLayout from '../layouts/Main.vue'
 import Theme from '../mixins/theme'
 import Acl from '../mixins/acl'
 import DashPanels from '../partials/DashPanels.vue'
-import CartDetails from '../components/dashboard/CartDetails.vue'
 import CustomerDetails from '../components/dashboard/CustomerDetails.vue'
 import PaymentDetails from '../components/dashboard/PaymentDetails.vue'
 import ShippingDetails from '../components/dashboard/ShippingDetails.vue'
@@ -106,7 +130,6 @@ export default {
     components: {
         MainLayout,
         DashPanels,
-        CartDetails,
         CustomerDetails,
         PaymentDetails,
         ShippingDetails
@@ -158,20 +181,16 @@ export default {
     mounted () {
         this.fetchPanelStats()
     },
-    watch: {
-        active (newVal) {
-            console.log(newVal)
-        }
-    },
     methods: {
-        next (tab) {
-            this.active = tab
+        getCart (cart) {
+            return JSON.parse(cart)
+        },
+        getItems (cart) {
+            return Object.values(JSON.parse(cart)['items'])
         },
         setCurrentOrder (order) {
             this.current_order = order
-            this.tabs =
-            [
-                Object.assign({name: 'order details', component: 'cart-details'}, JSON.parse(this.current_order.cart)),
+            this.tabs = [
                 Object.assign({name: 'customer details', component: 'customer-details'}, JSON.parse(this.current_order.customer_details)),
                 Object.assign({name: 'shipping details', component: 'shipping-details'}, this.current_order.shipment),
                 Object.assign({name: 'payment details', component: 'payment-details'}, this.current_order.payment)
@@ -196,14 +215,3 @@ export default {
     }
 }
 </script>
-
-<style scoped>
-.application--dark .table {
-    background-color: #F5F5F5 !important;
-    color: #103050 !important;
-}
-.application--dark .input-group:not(.input-group--error) label {
-    /* color: rgba(255,255,255,0.7); */
-}
-
-</style>
