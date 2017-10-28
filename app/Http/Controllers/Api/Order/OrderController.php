@@ -85,7 +85,7 @@ class OrderController extends Controller
         $total = $this->getTotal($user);
         $received = $this->getReceivedCount($user);
         $done = $this->getDone($user);
-        $orders = $user->orders;
+        $orders = $user->orders->toArray();
         
         return response()->json([
             'orders' => $orders,
