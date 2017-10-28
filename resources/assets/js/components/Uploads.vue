@@ -245,7 +245,7 @@ export default {
     data () {
         return {
             th: [
-                { text: 'Thumb', value: 'totalAmount', align: 'left', sortable: true },
+                { text: 'Thumb', value: 'thumb', align: 'left', sortable: true },
                 { text: 'Name', value: 'name', align: 'left', sortable: true },
                 { text: 'Size', value: 'size', align: 'left', sortable: true },
                 { text: 'Progress', value: 'progress', align: 'left', sortable: true },
