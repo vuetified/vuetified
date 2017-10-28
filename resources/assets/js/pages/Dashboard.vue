@@ -1,52 +1,7 @@
 <template>
   <main-layout  :style="{ paddingTop: `100px`, backgroundColor: `white` }">
     <v-container  fluid>
-      <v-layout row wrap align-center>
-        <!-- make a card to display this -->
-        <v-flex xs12 md4 text-xs-center>
-            <v-card color="blue-grey" class="ma-1" height="110px">
-                <v-card-text class="title pa-5">
-                 <v-icon large color="amber lighten-2">confirmation_number</v-icon> Unpaid: {{ unpaid }}
-                </v-card-text>
-            </v-card>
-        </v-flex>
-        <v-flex xs12 md4 text-xs-center>
-            <v-card color="red lighten-2" class="ma-1" height="110px">
-                <v-card-text class="title pa-5">
-                 <v-icon large color="red darken-4">do_not_disturb</v-icon> On-Hold: {{ unsent }}
-                </v-card-text>
-            </v-card>
-        </v-flex>
-        <v-flex xs12 md4 text-xs-center>
-            <v-card color="yellow darken-2" class="ma-1" height="110px">
-                <v-card-text class="title pa-5">
-                 <v-icon large color="teal accent-4">local_shipping</v-icon> Sent: {{ sent }}
-                </v-card-text>
-            </v-card>
-        </v-flex>
-        <v-flex xs12 md4 text-xs-center>
-            <v-card color="teal lighten-2" class="ma-1" height="110px">
-                 <v-card-text class="title pa-5">
-                 <v-icon large color="lime">local_mall</v-icon> Orders: {{ total }}
-                </v-card-text>
-            </v-card>
-        </v-flex>
-        <v-flex xs12 md4 text-xs-center>
-            <v-card color="light-green" class="ma-1" height="110px">
-                <v-card-text class="title pa-5">
-                 <v-icon large color="teal">beenhere</v-icon> Received: {{ received }}
-                </v-card-text>
-            </v-card>
-        </v-flex>
-        <v-flex xs12 md4 text-xs-center>
-            <v-card color="teal darken-4" class="ma-1" height="110px">
-                <v-card-text class="title pa-5">
-                 <v-icon large color="green lighten-2">local_atm</v-icon> Paid: {{ paid }}
-                </v-card-text>
-            </v-card>
-        </v-flex>
-      </v-layout>
-
+      <dash-panels :unpaid="unpaid" :paid="paid" :sent="sent" :received="received" :total="total" :unsent="unsent"></dash-panels>
       <v-container fluid>
 
             <v-data-table
@@ -67,42 +22,42 @@
                         </v-btn>
                         <v-card :light="true">
                         <v-toolbar  color="primary">
-                            <v-btn icon @click.native="dialog = false" dark>
+                            <v-btn icon @click.native="dialog = false">
                             <v-icon>close</v-icon>
                             </v-btn>
                             <v-spacer></v-spacer>
                             <v-toolbar-title>Update Order No. {{ current_order.id }}</v-toolbar-title>
                             <v-spacer></v-spacer>
                             <v-toolbar-items>
-                            <v-btn dark flat @click.native="dialog = false">Save</v-btn>
+                            <v-btn  flat @click.native="dialog = false">Save</v-btn>
                             </v-toolbar-items>
                         </v-toolbar>
                         <v-container fluid>
-                            <v-layout row wrap>
-                            <!-- View Cart -->
-                            <v-flex xs12 text-xs-center>
-                                <h3 class="primary--text">View Cart Details</h3>
-                            </v-flex>
-                            <!-- Customer Details -->
-                            <v-flex xs12 text-xs-center>
-                                <h3 class="primary--text">View Customer Details</h3>
-                            </v-flex>
-                            <!-- Shipping Details -->
-                            <v-flex xs12 text-xs-center>
-                                <h3 class="primary--text">View Shipping Details</h3>
-                            </v-flex>
-                            <!-- Mode Of Payment -->
-                            <v-flex xs12 text-xs-center>
-                                <h3 class="primary--text">View Mode Of Payment</h3>
-                            </v-flex>
-                            <!-- Upload Receipt -->
-                            <v-flex xs12 text-xs-center>
-                                <h3 class="primary--text">Upload Receipt</h3>
-                            </v-flex>
-                            <!-- Update Status -->
-                            <v-flex xs12 text-xs-center>
-                                <h3 class="primary--text">Update Status</h3>
-                            </v-flex>
+                            <v-tabs v-model="active.name">
+                                <v-tabs-bar class="accent">
+                                <v-tabs-item
+                                v-for="(tab,key) in tabs"
+                                :key="key"
+                                :href="'#' + tab.name"
+                                ripple
+                                >
+                                {{tab.name}}
+                                </v-tabs-item>
+                                <v-tabs-slider color="primary"></v-tabs-slider>
+                                </v-tabs-bar>
+                                <v-tabs-items>
+                                    <v-tabs-content
+                                    v-for="(tab, key) in tabs"
+                                    :key="key"
+                                    :id="tab.name"
+                                    >
+                                    <v-card flat :light="true">
+                                        <component :is="tab.component" :tab="tab">
+                                        </component>
+                                    </v-card>
+                                    </v-tabs-content>
+                                </v-tabs-items>
+                            </v-tabs>
                         </v-layout>
                         </v-container>
                         </v-card>
@@ -140,9 +95,22 @@
 import MainLayout from '../layouts/Main.vue'
 import Theme from '../mixins/theme'
 import Acl from '../mixins/acl'
+import DashPanels from '../partials/DashPanels.vue'
+import CartDetails from '../components/dashboard/CartDetails.vue'
+import CustomerDetails from '../components/dashboard/CustomerDetails.vue'
+import PaymentDetails from '../components/dashboard/PaymentDetails.vue'
+import ShippingDetails from '../components/dashboard/ShippingDetails.vue'
 
 export default {
     mixins: [Theme, Acl],
+    components: {
+        MainLayout,
+        DashPanels,
+        CartDetails,
+        CustomerDetails,
+        PaymentDetails,
+        ShippingDetails
+    },
     data: () => ({
         contentClass: { 'grey': true, 'lighten-4': true, 'accent--text': true },
         currency: '₱',
@@ -166,7 +134,18 @@ export default {
         ],
         items: [],
         /* current updated item */
-        current_order: {}
+        current_order: {},
+        /* tabs */
+        tabs: [
+            {name: 'order details', component: 'cart-details'},
+            {name: 'customer details', component: 'customer-details'},
+            {name: 'shipping details', component: 'shipping-details'},
+            {name: 'payment', component: 'payment-details'}
+        ],
+        active: {
+            name: 'order details'
+        }
+
     }),
     computed: {
         unpaid () {
@@ -176,15 +155,27 @@ export default {
             return this.total - this.sent
         }
     },
-    components: {
-        MainLayout
-    },
     mounted () {
         this.fetchPanelStats()
     },
+    watch: {
+        active (newVal) {
+            console.log(newVal)
+        }
+    },
     methods: {
+        next (tab) {
+            this.active = tab
+        },
         setCurrentOrder (order) {
             this.current_order = order
+            this.tabs =
+            [
+                Object.assign({name: 'order details', component: 'cart-details'}, JSON.parse(this.current_order.cart)),
+                Object.assign({name: 'customer details', component: 'customer-details'}, JSON.parse(this.current_order.customer_details)),
+                Object.assign({name: 'shipping details', component: 'shipping-details'}, this.current_order.shipment),
+                Object.assign({name: 'payment details', component: 'payment-details'}, this.current_order.payment)
+            ]
         },
         fetchPanelStats () {
             let self = this
