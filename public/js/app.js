@@ -38700,7 +38700,7 @@ var Categories = function Categories() {
     return __webpack_require__.e/* import() */(5).then(__webpack_require__.bind(null, 639));
 };
 var Category = function Category() {
-    return __webpack_require__.e/* import() */(2).then(__webpack_require__.bind(null, 640));
+    return __webpack_require__.e/* import() */(3).then(__webpack_require__.bind(null, 640));
 };
 
 /* harmony default export */ __webpack_exports__["a"] = ([{
@@ -38741,7 +38741,7 @@ var Category = function Category() {
 
 "use strict";
 var Home = function Home() {
-    return __webpack_require__.e/* import() */(0).then(__webpack_require__.bind(null, 641));
+    return __webpack_require__.e/* import() */(1).then(__webpack_require__.bind(null, 641));
 };
 var About = function About() {
     return __webpack_require__.e/* import() */(10).then(__webpack_require__.bind(null, 642));
@@ -38756,7 +38756,7 @@ var Support = function Support() {
     return __webpack_require__.e/* import() */(7).then(__webpack_require__.bind(null, 645));
 };
 var ThankYou = function ThankYou() {
-    return __webpack_require__.e/* import() */(3).then(__webpack_require__.bind(null, 646));
+    return __webpack_require__.e/* import() */(4).then(__webpack_require__.bind(null, 646));
 };
 
 /* harmony default export */ __webpack_exports__["a"] = ([
@@ -38817,7 +38817,7 @@ var ThankYou = function ThankYou() {
 
 "use strict";
 var Products = function Products() {
-    return __webpack_require__.e/* import() */(1).then(__webpack_require__.bind(null, 647));
+    return __webpack_require__.e/* import() */(2).then(__webpack_require__.bind(null, 647));
 };
 var Product = function Product() {
     return __webpack_require__.e/* import() */(8).then(__webpack_require__.bind(null, 648));
@@ -38857,7 +38857,7 @@ var Checkout = function Checkout() {
     return __webpack_require__.e/* import() */(6).then(__webpack_require__.bind(null, 649));
 };
 var Dashboard = function Dashboard() {
-    return __webpack_require__.e/* import() */(4).then(__webpack_require__.bind(null, 650));
+    return __webpack_require__.e/* import() */(0).then(__webpack_require__.bind(null, 650));
 };
 
 /* harmony default export */ __webpack_exports__["a"] = ([

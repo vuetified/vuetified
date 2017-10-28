@@ -22,15 +22,15 @@
                             <v-icon>fa-edit</v-icon>
                         </v-btn>
                         <v-card :light="true">
-                        <v-toolbar  color="primary">
-                            <v-btn icon @click.native="dialog = false">
+                        <v-toolbar  color="accent">
+                            <v-btn icon @click.native="dialog = false" class="error--text">
                             <v-icon>close</v-icon>
                             </v-btn>
                             <v-spacer></v-spacer>
-                            <v-toolbar-title>Update Order No. {{ current_order.id }}</v-toolbar-title>
+                            <v-toolbar-title class="primary--text">Update Order No. {{ current_order.id }}</v-toolbar-title>
                             <v-spacer></v-spacer>
                             <v-toolbar-items>
-                            <v-btn  flat @click.native="dialog = false">Save</v-btn>
+                            <v-btn  flat @click.native="dialog = false" class="info--text">Save</v-btn>
                             </v-toolbar-items>
                         </v-toolbar>
                         <v-container fluid>
@@ -110,8 +110,6 @@
 
             </v-data-table>
       </v-container>
-      <!-- Table to View All Orders -->
-      <!-- Modal To Load Each Order Details -->
     </v-container>
   </main-layout>
 </template>
@@ -160,13 +158,12 @@ export default {
         current_order: {},
         /* tabs */
         tabs: [
-            {name: 'order details', component: 'cart-details'},
             {name: 'customer details', component: 'customer-details'},
             {name: 'shipping details', component: 'shipping-details'},
             {name: 'payment', component: 'payment-details'}
         ],
         active: {
-            name: 'order details'
+            name: 'customer details'
         }
 
     }),
@@ -190,10 +187,15 @@ export default {
         },
         setCurrentOrder (order) {
             this.current_order = order
+            /* Check for Shipment Type if Meet Up Or Pick Up Remove Shipping Details From Tabs */
+            let customer = Object.assign({name: 'customer details', component: 'customer-details'}, JSON.parse(this.current_order.customer_details))
+            let shipping = Object.assign({name: 'shipping details', component: 'shipping-details'}, JSON.parse(this.current_order.shipping_details))
+            let payment = Object.assign({name: 'payment details', component: 'payment-details'}, this.current_order.payment)
+
             this.tabs = [
-                Object.assign({name: 'customer details', component: 'customer-details'}, JSON.parse(this.current_order.customer_details)),
-                Object.assign({name: 'shipping details', component: 'shipping-details'}, this.current_order.shipment),
-                Object.assign({name: 'payment details', component: 'payment-details'}, this.current_order.payment)
+                customer,
+                shipping,
+                payment
             ]
         },
         fetchPanelStats () {
