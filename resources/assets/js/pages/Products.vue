@@ -1,6 +1,6 @@
 <template>
   <main-layout :class="[contentClass]">
-      <v-container fluid grid-list-md>
+      <v-container fluid grid-list-md style="padding-top:100px;">
         <v-layout row wrap>
             <v-breadcrumbs icons divider="forward">
                 <v-breadcrumbs-item
@@ -161,7 +161,13 @@ export default {
         },
         noPagination () {
             let self = this
-            return self.meta.total === self.meta.per_page
+            if (self.meta.total === self.meta.per_page) {
+                return true
+            } else if (self.meta.per_page > self.meta.total) {
+                return true
+            } else {
+                return false
+            }
         }
     },
     created () {
