@@ -1,6 +1,6 @@
 <template>
   <main-layout :class="[contentClass]">
-      <v-container fluid grid-list-md>
+      <v-container fluid grid-list-md style="padding-top:100px;">
         <v-layout row wrap>
             <v-breadcrumbs icons divider="forward">
                 <v-breadcrumbs-item
@@ -17,14 +17,13 @@
                 </v-breadcrumbs-item>
             </v-breadcrumbs>
         </v-layout>
-        <v-divider inset></v-divider>
-        <v-layout row wrap>
+        <v-layout row wrap style="padding-top:100px;">
           <v-flex
-            xs12 sm12 md3 lg3 xl3
+            xs12 sm12 md4 lg4 xl4
             v-for="(category,index) in categories"
             :key="category.slug" :index="index"
           >
-            <v-card>
+            <v-card :dark="true">
             <clazy-load :src="category.image">
                 <transition name="fade" slot="image">
                     <v-card-media
@@ -147,7 +146,7 @@ export default {
                 self.categories = response.data.data
                 self.links = response.data.links
                 self.meta = response.data.meta
-                vm.$popup({ message: `Category Page: ${page}`, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
+                // vm.$popup({ message: `Category Page: ${page}`, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
             }).catch(({errors, message}) => {
                 console.log(errors)
                 vm.$popup({ message: message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' })
@@ -159,7 +158,7 @@ export default {
                 self.categories = response.data.data
                 self.links = response.data.links
                 self.meta = response.data.meta
-                vm.$popup({ message: `Category Page: ${self.page}`, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
+                // vm.$popup({ message: `Category Page: ${self.page}`, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
             }).catch(({errors, message}) => {
                 console.log(errors)
                 vm.$popup({ message: message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' })
