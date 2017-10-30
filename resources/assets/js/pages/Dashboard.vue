@@ -81,27 +81,26 @@
             </template>
 
              <template slot="expand" scope="props">
-                <v-card flat :light="true">
-                    <v-container fluid>
-                        <v-layout row wrap v-for="(item , key) in getItems(props.item.cart)" :key="key">
-                                    <v-spacer></v-spacer>
-                                    <span class="title blue-grey--text">Product: {{ item.name }}</span>
-                                    <v-spacer></v-spacer>
-
-                                    <span class="title blue-grey--text">Qty: {{ item.qty }}</span>
-                                    <v-spacer></v-spacer>
-
-                                    <span class="title blue-grey--text">Price: {{ item.price | currency(currency) }}</span>
-                                    <v-spacer></v-spacer>
-
-                                    <span class="title blue-grey--text">Tax: {{ parseFloat(item.tax).toFixed(2) | currency(currency) }}</span>
-                                    <v-spacer></v-spacer>
-
-                                    <span class="title blue-grey--text">Subtotal: {{ item.subtotal | currency(currency) }}</span>
-                                    <v-spacer></v-spacer>
-                        </v-layout>
-                    </v-container>
-                </v-card>
+                        <v-data-table
+                        :items="getItems(props.item.cart)"
+                        hide-actions
+                        light
+                        >
+                        <template slot="headers" scope="orders">
+                            <th class="text-xs-left">Product</th>
+                            <th class="text-xs-left">Qty</th>
+                            <th class="text-xs-left">Price</th>
+                            <th class="text-xs-left">Tax</th>
+                            <th class="text-xs-left">Subtotal</th>
+                        </template>
+                        <template slot="items" scope="orders">
+                        <td class="text-xs-left">{{ orders.item.name }}</td>
+                        <td class="text-xs-left">{{ orders.item.qty }}</td>
+                        <td class="text-xs-left">{{ orders.item.price | currency(currency) }}</td>
+                        <td class="text-xs-left">{{ parseFloat(orders.item.tax).toFixed(2) | currency(currency) }}</td>
+                        <td class="text-xs-left">{{ orders.item.subtotal | currency(currency) }}</td>
+                        </template>
+                        </v-data-table>
             </template>
 
             <template slot="pageText" scope="{ pageStart, pageStop }">
@@ -228,3 +227,9 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+thead.datatable__progress {
+    display: none;
+}
+</style>
