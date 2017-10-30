@@ -13,8 +13,9 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(GatewaySeeder::class);
         $this->call(CourierSeeder::class);
-        $this->call(CategorySeeder::class);
-        $this->call(ProductSeeder::class);
+        $this->call(IamProductSeeder::class);
+        // $this->call(CategorySeeder::class);
+        // $this->call(ProductSeeder::class);
         $this->call(RolesAndPermissionsSeeder::class);
         $this->call(AdminSeeder::class);
         \Artisan::call('passport:client', [

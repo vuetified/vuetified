@@ -17,6 +17,9 @@ class Product extends Model implements Buyable
         return [
             'slug' => [
                 'source' => 'name'
+            ],
+            'sku' => [
+                'source' => 'name'
             ]
         ];
     }
