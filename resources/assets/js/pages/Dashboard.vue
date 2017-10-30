@@ -97,7 +97,7 @@
                                     <span class="title blue-grey--text">Tax: {{ parseFloat(item.tax).toFixed(2) | currency(currency) }}</span>
                                     <v-spacer></v-spacer>
 
-                                    <span class="title blue-grey--text">Subtotal: {{ item.subtotal }}</span>
+                                    <span class="title blue-grey--text">Subtotal: {{ item.subtotal | currency(currency) }}</span>
                                     <v-spacer></v-spacer>
                         </v-layout>
                     </v-container>
@@ -179,6 +179,17 @@ export default {
         this.fetchPanelStats()
     },
     methods: {
+        parseNumber (str) {
+            var strg = str || ''
+            var decimal = '.'
+            strg = strg.replace(/[^0-9$.,]/g, '')
+            if (strg.indexOf(',') > strg.indexOf('.')) decimal = ','
+            if ((strg.match(new RegExp('\\' + decimal, 'g')) || []).length > 1) decimal = ''
+            if (decimal != '' && (strg.length - strg.indexOf(decimal) - 1 == 3) && strg.indexOf('0' + decimal) !== 0) decimal = ''
+            strg = strg.replace(new RegExp('[^0-9$' + decimal + ']', 'g'), '')
+            strg = strg.replace(',', '.')
+            return parseFloat(strg)
+        },
         getCart (cart) {
             return JSON.parse(cart)
         },
@@ -211,7 +222,7 @@ export default {
         },
         totalAmount (item) {
             let cart = JSON.parse(item.cart)
-            let total = parseFloat(cart.total) + parseFloat(item.shipment.shipping_fee)
+            let total = this.parseNumber(cart.total) + parseFloat(item.shipment.shipping_fee)
             return total.toFixed(2)
         }
     }
