@@ -15,7 +15,11 @@ class CategoriesController extends Controller
 {
     public function index()
     {
-        return new CategoryCollection(Category::all()->paginate(12));
+        /* to Display properly with pagination, make sure we dynamically determine, 
+         * what is the paginate number needed 
+         */
+        
+        return new CategoryCollection(Category::all()->paginate(3));
     }
     public function show($category)
     {
