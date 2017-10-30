@@ -11,7 +11,7 @@
             ></v-text-field>
           </v-flex>
         </v-layout>
-        <v-layout row v-if="tax > 0">
+        <v-layout row v-if="parseFloat(tax) > 0">
           <v-flex xs12 sm12 md12  lg12  xl12>
             <v-text-field
               class="primary--text"
@@ -137,15 +137,29 @@ export default {
             return this.$store.getters['wizard/getActiveSteps']
         },
         total_amount () {
-            let total = parseFloat(this.total)
+            let total = this.total
             let fee = 0
             if (this.courier && this.courier.details.rate) {
+                total = this.parseNumber(total)
                 fee = parseFloat(this.courier.details.rate)
+                return (total + fee).toFixed(2)
+            } else {
+                return total
             }
-            return (total + fee).toFixed(2)
         }
     },
     methods: {
+        parseNumber (str) {
+            var strg = str || ''
+            var decimal = '.'
+            strg = strg.replace(/[^0-9$.,]/g, '')
+            if (strg.indexOf(',') > strg.indexOf('.')) decimal = ','
+            if ((strg.match(new RegExp('\\' + decimal, 'g')) || []).length > 1) decimal = ''
+            if (decimal != '' && (strg.length - strg.indexOf(decimal) - 1 == 3) && strg.indexOf('0' + decimal) !== 0) decimal = ''
+            strg = strg.replace(new RegExp('[^0-9$' + decimal + ']', 'g'), '')
+            strg = strg.replace(',', '.')
+            return parseFloat(strg)
+        },
         ...mapActions([
             'checkout'
         ]),
