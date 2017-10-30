@@ -62,7 +62,8 @@ class OrderController extends Controller
     {
         $mop = new $request->mop['model'];
         $mop->gateway_id = $request->mop['id'];
-        $mop->amount = $request->cart['total'];
+        /* format amount */
+        $mop->amount = str_replace( ',', '', \Cart::total() );
         $mop->save();
         $mop->payments()->save($order);
     }
@@ -70,6 +71,11 @@ class OrderController extends Controller
     private function newShipment(Request $request, $order)
     {
         $courier = Courier::find($request->courier['id']);
+        if(!$courier){
+            return response()->json([
+                'message' => 'Courier Model Not Found!'
+            ],400);
+        }
         $shipment = new $request->courier['model'];
         $shipment->courier_id = optional($courier)->id;
         $shipment->shipping_fee = $courier->details['rate'];
