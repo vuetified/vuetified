@@ -1,6 +1,6 @@
 <template>
   <main-layout :class="[contentClass]">
-      <v-container fluid grid-list-md>
+      <v-container fluid grid-list-md style="padding-top:100px;">
         <v-layout row wrap>
             <v-breadcrumbs icons divider="forward">
                 <v-breadcrumbs-item
@@ -24,14 +24,13 @@
                 </v-breadcrumbs-item>
             </v-breadcrumbs>
         </v-layout>
-        <v-divider inset></v-divider>
         <v-layout row wrap>
           <v-flex
             xs12 sm12 md3 lg3 xl3
             v-for="(product,index) in products"
             :key="product.slug" :index="index"
           >
-            <v-card>
+            <v-card dark>
             <clazy-load :src="product.image">
                 <transition name="fade" slot="image">
                     <v-card-media
@@ -166,7 +165,13 @@ export default {
         },
         noPagination () {
             let self = this
-            return self.meta.total === self.meta.per_page
+            if (self.meta.total === self.meta.per_page) {
+                return true
+            } else if (self.meta.per_page > self.meta.total) {
+                return true
+            } else {
+                return false
+            }
         }
     },
     created () {
@@ -271,3 +276,11 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+.breadcrumbs li:not(:last-child):after {
+    color: #009688;
+    content: attr(data-divider);
+    vertical-align: middle;
+}
+</style>
