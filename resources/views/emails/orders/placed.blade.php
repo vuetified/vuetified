@@ -6,10 +6,10 @@
 **Order No: {{$order->id}}**
 
 @component('mail::table')
-| Product           | Qty              | Price              | Subtotal              |
-|:------------------|:----------------:|:------------------:|----------------------:|
+| Product           | Qty              | Price                           | Subtotal                           |
+|:------------------|:----------------:|:-------------------------------:|-----------------------------------:|
 @foreach($items as $item)
-| {{$item['name']}} | {{$item['qty']}} | {{$item['price']}} | {{$item['subtotal']}} |
+| {{$item['name']}} | {{$item['qty']}} | {{$currency}}{{$item['price']}} | {{$currency}}{{$item['subtotal']}} |
 @endforeach
 
 @endcomponent
@@ -17,10 +17,10 @@
 @component('mail::table')
 |  |   |                    |                                          |
 |:-|:-:|-------------------:|-----------------------------------------:|
-|  |   | **Subtotal:**      | **{{$subtotal}}**                        |
-|  |   | **Tax:**           | **{{$tax}}**                             |
-|  |   | **Shipping Fee:**  | **{{$shipping_fee}}**                    |
-|  |   | **Total:**         | **{{$subtotal + $tax + $shipping_fee}}** |
+|  |   | **Subtotal:**      | **{{$currency}}{{$subtotal}}**                        |
+|  |   | **Tax:**           | **{{$currency}}{{$tax}}**                             |
+|  |   | **Shipping Fee:**  | **{{$currency}}{{$shipping_fee}}**                    |
+|  |   | **Total:**         | **{{$currency}}{{$net_total}}**                       |
 @endcomponent
 
 ---
