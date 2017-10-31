@@ -220,7 +220,7 @@ export default {
             let self = this
             self.toggleForm.order = order.id
             self.toggleForm.toggle = order.payment.paid
-            App.post(route('api.toggle.paid'), self.toggleForm).then(({message}) => {
+            App.post(route('api.toggle.paid', {order: order.id}), self.toggleForm).then(({message}) => {
                 if (order.payment.paid) {
                     this.paid = this.paid + 1
                 } else {
@@ -241,7 +241,7 @@ export default {
             let self = this
             self.toggleForm.order = order.id
             self.toggleForm.toggle = order.shipment.sent
-            App.post(route('api.toggle.sent'), self.toggleForm).then(({message}) => {
+            App.post(route('api.toggle.sent', {order: order.id}), self.toggleForm).then(({message}) => {
                 if (order.shipment.sent) {
                     this.sent = this.sent + 1
                 } else {
@@ -262,7 +262,7 @@ export default {
             let self = this
             self.toggleForm.order = order.id
             self.toggleForm.toggle = order.shipment.received
-            App.post(route('api.toggle.received'), self.toggleForm).then(({message}) => {
+            App.post(route('api.toggle.received', {order: order.id}), self.toggleForm).then(({message}) => {
                 if (order.shipment.received) {
                     this.received = this.received + 1
                 } else {
@@ -284,7 +284,7 @@ export default {
             let self = this
             self.toggleForm.order = order.id
             self.toggleForm.toggle = order.done
-            App.post(route('api.toggle.done'), self.toggleForm).then(({message}) => {
+            App.post(route('api.toggle.done', {order: order.id}), self.toggleForm).then(({message}) => {
                 if (order.done) {
                     this.done = this.done + 1
                 } else {
