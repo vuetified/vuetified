@@ -1,7 +1,7 @@
 <template>
   <main-layout  :style="{ paddingTop: `100px`, backgroundColor: `white` }">
     <v-container  fluid>
-      <dash-panels :unpaid="unpaid" :paid="paid" :sent="sent" :received="received" :total="total" :unsent="unsent"></dash-panels>
+      <dash-panels :unpaid="unpaid" :paid="paid" :sent="sent" :received="received" :total="total" :unsent="unsent" :done="done"></dash-panels>
       <v-container fluid>
 
             <v-data-table
@@ -21,9 +21,10 @@
                     <v-switch
                         :label="`${props.item.payment.paid ? 'Paid' : 'Unpaid'}`"
                         v-model="props.item.payment.paid"
-                        color="primary"
+                        color="teal darken-4"
                         light
                         :disabled="!hasRole('admin')"
+                        @change="togglePaid(props.item)"
                         >
                     </v-switch>
                 </td>
@@ -32,9 +33,10 @@
                     <v-switch
                         :label="`${props.item.shipment.sent ? 'Delivered' : 'On-Hold'}`"
                         v-model="props.item.shipment.sent"
-                        color="amber"
+                        color="cyan"
                         light
                         :disabled="!hasRole('admin')"
+                        @change="toggleSent(props.item)"
                         >
                     </v-switch>
                 </td>
@@ -42,9 +44,10 @@
                     <v-switch
                         :label="`${props.item.shipment.received ? 'Received' : 'Pending'}`"
                         v-model="props.item.shipment.received"
-                        color="green"
+                        color="light-green"
                         light
                         :disabled="!hasPermission('update-order')"
+                        @change="toggleReceived(props.item)"
                         >
                     </v-switch>
                 </td>
@@ -55,6 +58,7 @@
                         color="teal lighten-2"
                         light
                         :disabled="!hasRole('admin')"
+                        @change="toggleDone(props.item)"
                         >
                     </v-switch>
                 </td>
@@ -193,7 +197,8 @@ export default {
         ],
         active: {
             name: 'customer details'
-        }
+        },
+        toggleForm: new AppForm(App.forms.toggleForm)
 
     }),
     computed: {
@@ -208,6 +213,94 @@ export default {
         this.fetchPanelStats()
     },
     methods: {
+        resetToggleForm () {
+            this.toggleForm = new AppForm(App.forms.toggleForm)
+        },
+        togglePaid (order) {
+            let self = this
+            self.toggleForm.order = order.id
+            self.toggleForm.toggle = order.payment.paid
+            App.post(route('api.toggle.paid'), self.toggleForm).then(({message}) => {
+                if (order.payment.paid) {
+                    this.paid = this.paid + 1
+                } else {
+                    this.paid = this.paid - 1
+                }
+                vm.$popup({ message: message, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
+            }).catch(({errors, message}) => {
+                if (errors) {
+                    console.log(errors)
+                }
+                if (message) {
+                    vm.$popup({ message: message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' })
+                }
+                order.payment.paid = !order.payment.paid
+            })
+        },
+        toggleSent (order) {
+            let self = this
+            self.toggleForm.order = order.id
+            self.toggleForm.toggle = order.shipment.sent
+            App.post(route('api.toggle.sent'), self.toggleForm).then(({message}) => {
+                if (order.shipment.sent) {
+                    this.sent = this.sent + 1
+                } else {
+                    this.sent = this.sent - 1
+                }
+                vm.$popup({ message: message, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
+            }).catch(({errors, message}) => {
+                if (errors) {
+                    console.log(errors)
+                }
+                if (message) {
+                    vm.$popup({ message: message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' })
+                }
+                order.shipment.sent = !order.shipment.sent
+            })
+        },
+        toggleReceived (order) {
+            let self = this
+            self.toggleForm.order = order.id
+            self.toggleForm.toggle = order.shipment.received
+            App.post(route('api.toggle.received'), self.toggleForm).then(({message}) => {
+                if (order.shipment.received) {
+                    this.received = this.received + 1
+                } else {
+                    this.received = this.received - 1
+                }
+                vm.$popup({ message: message, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
+            }).catch(({errors, message}) => {
+                if (errors) {
+                    console.log(errors)
+                }
+                if (message) {
+                    vm.$popup({ message: message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' })
+                }
+                order.shipment.received = !order.shipment.received
+            })
+            console.log('toggle received', order.shipment.received)
+        },
+        toggleDone (order) {
+            let self = this
+            self.toggleForm.order = order.id
+            self.toggleForm.toggle = order.done
+            App.post(route('api.toggle.done'), self.toggleForm).then(({message}) => {
+                if (order.done) {
+                    this.done = this.done + 1
+                } else {
+                    this.done = this.done - 1
+                }
+                vm.$popup({ message: message, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
+            }).catch(({errors, message}) => {
+                if (errors) {
+                    console.log(errors)
+                }
+                if (message) {
+                    vm.$popup({ message: message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' })
+                }
+                order.done = !order.done
+            })
+        },
         parseNumber (str) {
             var strg = str || ''
             var decimal = '.'
