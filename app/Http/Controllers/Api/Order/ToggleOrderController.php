@@ -5,20 +5,17 @@ namespace App\Http\Controllers\Api\Order;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Order;
-use App\Exceptions\OrderNotFound;
 use App\Exceptions\OrderDone;
 
 class ToggleOrderController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:api');
+        $this->middleware(['auth:api','can:update,order']);
     }
 
-    public function togglePaid(Request $request)
+    public function togglePaid(Order $order,Request $request)
     {
-        // check if own the order or you are admin
-        $order = $this->checkOrder($request);
         $this->isMarkDone($request,$order);
         $message = 'Unpaid';
         $gateway = $order->payment;
@@ -30,11 +27,11 @@ class ToggleOrderController extends Controller
         return response()->json([
         'message' => 'Order #'.$order->id.' Status: '.$message
         ],200);
+        
     }
 
-    public function toggleSent(Request $request)
+    public function toggleSent(Order $order,Request $request)
     {
-        $order = $this->checkOrder($request);
         $this->isMarkDone($request,$order);
         $message = 'On-Hold';
         $gateway = $order->payment;
@@ -55,15 +52,12 @@ class ToggleOrderController extends Controller
                 'message' => $message
                 ],400);
         }
-        
-
     }
     
-    public function toggleReceived(Request $request)
+    public function toggleReceived(Order $order,Request $request)
     {
-        $order = $this->checkOrder($request);
-        $message = 'Pending';
         $this->isMarkDone($request,$order);
+        $message = 'Pending';
         $courier = $order->shipment;
         if($courier->sent){
             $courier = $order->shipment;
@@ -81,12 +75,10 @@ class ToggleOrderController extends Controller
                 'message' => $message
                 ],400);
         }
-
     }
 
-    public function toggleDone(Request $request)
+    public function toggleDone(Order $order,Request $request)
     {
-        $order = $this->checkOrder($request);
         $message = 'On-Progress';
         $order->done = $request->toggle;
         $order->save();
@@ -96,16 +88,6 @@ class ToggleOrderController extends Controller
         return response()->json([
             'message' => 'Order #'.$order->id.' Status: '.$message
             ],200);
-    }
-
-
-    private function checkOrder(Request $request)
-    {
-        $order = Order::find($request->order);
-        if(!$order){
-            throw new OrderNotFound;
-        }
-        return $order;
     }
 
     private function isMarkDone(Request $request,$order)
