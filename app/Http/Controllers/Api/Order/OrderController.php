@@ -105,22 +105,26 @@ class OrderController extends Controller
 
     private function getSentCount($user) 
     {
-        return $user->orders->reduce(function ($carry, $order) {
+        $orders = $user->orders;
+        $count = 0;
+        foreach($orders as $order){
             if($order->shipment->sent){
-                return $carry++;
+                $count++;
             }
-            return $carry;
-        },0);
+        }
+        return $count;
     }
 
     private function getPaidCount($user) 
     {
-        return $user->orders->reduce(function ($carry, $order) {
+        $orders = $user->orders;
+        $count = 0;
+        foreach($orders as $order){
             if($order->payment->paid){
-                return $carry++;
+                $count++;
             }
-            return $carry;
-        },0);
+        }
+        return $count;
     }
 
     private function getTotal($user)
@@ -130,22 +134,26 @@ class OrderController extends Controller
 
     private function getReceivedCount($user)
     {
-        return $user->orders->reduce(function ($carry, $order) {
+        $orders = $user->orders;
+        $count = 0;
+        foreach($orders as $order){
             if($order->shipment->received){
-                return $carry++;
+                $count++;
             }
-            return $carry;
-        },0);
+        }
+        return $count;
     }
 
     private function getDone($user)
     {
-        return $user->orders->reduce(function ($carry, $order) {
+        $orders = $user->orders;
+        $count = 0;
+        foreach($orders as $order){
             if($order->done){
-                return $carry++;
+                $count++;
             }
-            return $carry;
-        },0);
+        }
+        return $count;
     }
 
     private function getUserWithOrders(Request $request)
