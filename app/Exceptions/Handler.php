@@ -48,6 +48,9 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if ($exception instanceof \Spatie\Permission\Exceptions\UnauthorizedException) {
+            return response()->json(['message' => 'Action UnAuthorized!'],403);
+        }
         return parent::render($request, $exception);
     }
 }
