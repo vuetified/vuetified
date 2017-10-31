@@ -38,7 +38,9 @@ Route::get('/categories/{slug}', 'Api\CategoriesController@show')->name('api.cat
 Route::get('/products', 'Api\ProductsController@index')->name('api.product.index');
 Route::get('/products/{slug}', 'Api\ProductsController@show')->name('api.product.show');
 
-
-
+Route::post('/order/toggle/paid', 'Api\Order\ToggleOrderController@togglePaid')->name('api.toggle.paid');
+Route::post('/order/toggle/sent', 'Api\Order\ToggleOrderController@toggleSent')->name('api.toggle.sent');
+Route::post('/order/toggle/received', 'Api\Order\ToggleOrderController@toggleReceived')->name('api.toggle.received');
+Route::post('/order/toggle/done', 'Api\Order\ToggleOrderController@toggleDone')->name('api.toggle.done');
 // Route::post('/checkout', 'Api\CheckoutController@checkout')->name('api.product.show');
 // Checkout Will Save A New Order For Specific Authenticated User
