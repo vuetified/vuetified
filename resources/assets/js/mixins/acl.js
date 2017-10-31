@@ -2,11 +2,11 @@ export default {
     methods: {
         hasRole (payload) {
             let me = this.$store.getters['auth/getMe']
-            return me.roles.includes(r => r === payload)
+            return _.includes(me.roles, payload)
         },
-        hasPermission (permission) {
+        hasPermission (payload) {
             let me = this.$store.getters['auth/getMe']
-            return me.permissions.includes(p => p === permission)
+            return _.includes(me.permissions, payload)
         },
         hasAnyPermission (permissions) {
             let me = this.$store.getters['auth/getMe']

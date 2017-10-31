@@ -7,15 +7,57 @@
             <v-data-table
                 :headers="headers"
                 :items="items"
-                :light="true"
+                light
             >
             <template slot="items" scope="props">
-            <tr @click="props.expanded = !props.expanded">
-                <td class="title text-xs-left primary--text">{{ props.item.id }}</td>
+            <tr>
+                <td class="title text-xs-left primary--text">
+                    <v-btn color="primary" icon @click="props.expanded = !props.expanded"><v-icon>shopping_basket</v-icon></v-btn>
+                    {{ props.item.id }}
+                </td>
                 <td class="title text-xs-left primary--text">{{ totalAmount(props.item) | currency(currency) }}</td>
-                <td class="title text-xs-left primary--text">{{ props.item.payment.paid ? 'Paid' : 'Unpaid' }}</td>
-                <td class="title text-xs-left primary--text">{{ props.item.shipment.sent ? 'Sent' : 'On-Hold' }}</td>
-                <td class="title text-xs-left primary--text">{{ props.item.shipment.received ? 'Received' : 'Pending' }}</td>
+
+                <td class="title text-xs-left primary--text">
+                    <v-switch
+                        :label="`${props.item.payment.paid ? 'Paid' : 'Unpaid'}`"
+                        v-model="props.item.payment.paid"
+                        color="primary"
+                        light
+                        :disabled="!hasRole('admin')"
+                        >
+                    </v-switch>
+                </td>
+
+                <td class="title text-xs-left primary--text">
+                    <v-switch
+                        :label="`${props.item.shipment.sent ? 'Delivered' : 'On-Hold'}`"
+                        v-model="props.item.shipment.sent"
+                        color="amber"
+                        light
+                        :disabled="!hasRole('admin')"
+                        >
+                    </v-switch>
+                </td>
+                <td class="title text-xs-left primary--text">
+                    <v-switch
+                        :label="`${props.item.shipment.received ? 'Received' : 'Pending'}`"
+                        v-model="props.item.shipment.received"
+                        color="green"
+                        light
+                        :disabled="!hasPermission('update-order')"
+                        >
+                    </v-switch>
+                </td>
+                <td class="title text-xs-left primary--text">
+                    <v-switch
+                        :label="`${props.item.done ? 'Completed' : 'On-Progress'}`"
+                        v-model="props.item.done"
+                        color="teal lighten-2"
+                        light
+                        :disabled="!hasRole('admin')"
+                        >
+                    </v-switch>
+                </td>
                 <td class="title text-xs-center">
                     <v-dialog v-model="dialog" fullscreen transition="dialog-bottom-transition" :overlay="false">
                         <v-btn flat icon color="accent" slot="activator" @click.native="setCurrentOrder(props.item)">
@@ -64,35 +106,23 @@
                         </v-card>
                     </v-dialog>
                 </td>
-                <td class="title text-xs-left">
-                    <v-switch v-if="hasRole('admin')"
-                        v-model="props.item.done"
-                        color="red"
-                        :light="true"
-                        :disabled="!hasRole('admin')"
-                        >
-                    </v-switch>
-                    <v-btn v-else flat icon color="red lighten-2">
-                    <v-icon v-if="props.item.done">fa-check-square-o</v-icon>
-                    <v-icon v-else>fa-square-o</v-icon>
-                    </v-btn>
-                </td>
+
             </tr>
             </template>
 
-             <template slot="expand" scope="props">
-                        <v-data-table
-                        :items="getItems(props.item.cart)"
-                        hide-actions
-                        light
-                        >
-                        <template slot="headers" scope="orders">
+            <template slot="expand" scope="props">
+                <v-data-table
+                    :items="getItems(props.item.cart)"
+                    hide-actions
+                    light
+                    >
+                    <template slot="headers" scope="orders">
                             <th class="text-xs-left">Product</th>
                             <th class="text-xs-left">Qty</th>
                             <th class="text-xs-left">Price</th>
                             <th class="text-xs-left">Tax</th>
                             <th class="text-xs-left">Subtotal</th>
-                        </template>
+                    </template>
                         <template slot="items" scope="orders">
                         <td class="text-xs-left">{{ orders.item.name }}</td>
                         <td class="text-xs-left">{{ orders.item.qty }}</td>
@@ -100,7 +130,7 @@
                         <td class="text-xs-left">{{ parseFloat(orders.item.tax).toFixed(2) | currency(currency) }}</td>
                         <td class="text-xs-left">{{ orders.item.subtotal | currency(currency) }}</td>
                         </template>
-                        </v-data-table>
+                </v-data-table>
             </template>
 
             <template slot="pageText" scope="{ pageStart, pageStop }">
@@ -149,8 +179,8 @@ export default {
             { text: 'Paid', align: 'left', sortable: false },
             { text: 'Sent', align: 'left', sortable: false },
             { text: 'Received', align: 'left', sortable: false },
-            { text: 'Update', align: 'center', sortable: false },
-            { text: 'Completed', align: 'left', sortable: false }
+            { text: 'Completed', align: 'left', sortable: false },
+            { text: 'Update', align: 'center', sortable: false }
         ],
         items: [],
         /* current updated item */
@@ -223,6 +253,14 @@ export default {
             let cart = JSON.parse(item.cart)
             let total = this.parseNumber(cart.total) + parseFloat(item.shipment.shipping_fee)
             return total.toFixed(2)
+        }
+    },
+    watch: {
+        items: {
+            handler: function () {
+                console.log('items changed')
+            },
+            deep: true
         }
     }
 }
