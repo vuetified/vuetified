@@ -60,6 +60,10 @@ App.forms = {
         },
         shipping_fee: 0,
         courier: {} // fetch courrier or save it on store for courier.js
+    },
+    toggleForm: {
+        order: null,
+        toggle: false
     }
 
     // Add Other Form Object Here
