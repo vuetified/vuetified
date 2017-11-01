@@ -8,8 +8,6 @@ show where to settle payment for manual payment
 view 
 modal edit (upload receipt)
 
-add a button for admin to toggle paid , unpaid,
-sent and 
 
 add a button for received(user)
 
