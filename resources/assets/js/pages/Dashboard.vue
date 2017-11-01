@@ -67,7 +67,6 @@
                         <v-icon>fa-edit</v-icon>
                     </v-btn>
                 </td>
-
             </tr>
             </template>
 
@@ -132,7 +131,7 @@
                             :id="tab.name"
                             >
                             <v-card flat :light="true">
-                                <component :is="tab.component" :tab="tab">
+                                <component :is="tab.component" :tab="tab" :order="current_order">
                                 </component>
                             </v-card>
                             </v-tabs-content>
@@ -218,7 +217,6 @@ export default {
         },
         togglePaid (order) {
             let self = this
-            self.toggleForm.order = order.id
             self.toggleForm.toggle = order.payment.paid
             App.post(route('api.toggle.paid', {order: order.id}), self.toggleForm).then(({message}) => {
                 if (order.payment.paid) {
@@ -239,7 +237,6 @@ export default {
         },
         toggleSent (order) {
             let self = this
-            self.toggleForm.order = order.id
             self.toggleForm.toggle = order.shipment.sent
             App.post(route('api.toggle.sent', {order: order.id}), self.toggleForm).then(({message}) => {
                 if (order.shipment.sent) {
@@ -260,7 +257,6 @@ export default {
         },
         toggleReceived (order) {
             let self = this
-            self.toggleForm.order = order.id
             self.toggleForm.toggle = order.shipment.received
             App.post(route('api.toggle.received', {order: order.id}), self.toggleForm).then(({message}) => {
                 if (order.shipment.received) {
@@ -282,7 +278,6 @@ export default {
         },
         toggleDone (order) {
             let self = this
-            self.toggleForm.order = order.id
             self.toggleForm.toggle = order.done
             App.post(route('api.toggle.done', {order: order.id}), self.toggleForm).then(({message}) => {
                 if (order.done) {
