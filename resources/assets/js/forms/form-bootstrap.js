@@ -62,8 +62,25 @@ App.forms = {
         courier: {} // fetch courrier or save it on store for courier.js
     },
     toggleForm: {
-        order: null,
         toggle: false
+    },
+    customerForm: {
+        customer_details: {
+            first_name: '',
+            last_name: '',
+            email: '',
+            contact_no: ''
+        }
+    },
+    addressForm: {
+        shipping_details: {
+            address_1: '',
+            address_2: '',
+            city: '',
+            country: '',
+            zip_code: '',
+            state_province: ''
+        }
     }
 
     // Add Other Form Object Here
