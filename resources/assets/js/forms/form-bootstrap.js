@@ -81,6 +81,24 @@ App.forms = {
             zip_code: '',
             state_province: ''
         }
+    },
+    paymentForm: {
+        id: '',
+        transaction_no: '',
+        date_paid: null,
+        account_name: '',
+        account_no: '',
+        amount: '',
+        currency: '',
+        gateway: {
+            id: '',
+            name: '',
+            slug: '',
+            group: '',
+            avatar: '',
+            details: '',
+            model: ''
+        }
     }
 
     // Add Other Form Object Here
