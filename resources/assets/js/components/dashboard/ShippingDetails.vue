@@ -7,7 +7,7 @@
               class="primary--text"
               name="address_1"
               label="Address 1"
-              v-model="shipping_details.address_1"
+              v-model="addressForm.shipping_details.address_1"
               v-validate="'required|max:255'"
               data-vv-name="address_1"
               :error-messages="errors.collect('address_1')"
@@ -22,7 +22,7 @@
               class="primary--text"
               name="address_2"
               label="Address 2"
-              v-model="shipping_details.address_2"
+              v-model="addressForm.shipping_details.address_2"
               v-validate="'required|max:255'"
               data-vv-name="address_2"
               :error-messages="errors.collect('address_2')"
@@ -38,7 +38,7 @@
               class="primary--text"
               name="city"
               label="City"
-              v-model="shipping_details.city"
+              v-model="addressForm.shipping_details.city"
               v-validate="'required|max:255'"
               data-vv-name="city"
               :error-messages="errors.collect('city')"
@@ -54,7 +54,7 @@
               class="primary--text"
               name="country"
               label="Country"
-              v-model="shipping_details.country"
+              v-model="addressForm.shipping_details.country"
               v-validate="'required|max:255'"
               data-vv-name="country"
               :error-messages="errors.collect('country')"
@@ -69,7 +69,7 @@
             class="primary--text"
             name="zip_code"
             label="Zip Code"
-            v-model="shipping_details.zip_code"
+            v-model="addressForm.shipping_details.zip_code"
             v-validate="'required'"
             data-vv-name="zip_code"
             :error-messages="errors.collect('zip_code')"
@@ -84,7 +84,7 @@
             class="primary--text"
             name="state_province"
             label="State | Province"
-            v-model="shipping_details.state_province"
+            v-model="addressForm.shipping_details.state_province"
             v-validate="'required'"
             data-vv-name="state_province"
             :error-messages="errors.collect('state_province')"
@@ -93,32 +93,45 @@
             ></v-text-field>
           </v-flex>
         </v-layout>
-        <v-btn outline color="primary" @click.native="submit()">Update</v-btn>
+        <v-btn color="primary" :loading="addressForm.busy" :disabled="errors.any()"  @click.native="submit()" :class="{primary: !addressForm.busy, error: addressForm.busy}">Update</v-btn>
         </form>
 </v-container>
 </template>
 
 <script>
 export default {
-    props: ['tab'],
+    props: ['tab', 'order'],
     data: () => ({
-        shipping_details: {
-            address_1: '',
-            address_2: '',
-            city: '',
-            country: '',
-            zip_code: '',
-            state_province: ''
-        }
+        addressForm: new AppForm(App.forms.addressForm)
     }),
     watch: {
         tab (newValue) {
             this.shipping_details = newValue
+            this.addressForm.shipping_details.address_1 = newValue.address_1
+            this.addressForm.shipping_details.address_2 = newValue.address_2
+            this.addressForm.shipping_details.city = newValue.city
+            this.addressForm.shipping_details.country = newValue.country
+            this.addressForm.shipping_details.zip_code = newValue.zip_code
+            this.addressForm.shipping_details.state_province = newValue.state_province
         }
     },
     methods: {
         submit () {
             console.log('form submitted')
+            let self = this
+            self.addressForm.busy = true
+            App.post(route('api.orders.shipping_details', {order: self.order.id}), self.addressForm).then(({message}) => {
+                self.addressForm.busy = false
+                vm.$popup({ message: message, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
+            }).catch(({errors, message}) => {
+                if (errors) {
+                    console.log(errors)
+                }
+                if (message) {
+                    vm.$popup({ message: message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' })
+                }
+                self.addressForm.busy = false
+            })
         }
     }
 
