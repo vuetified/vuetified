@@ -93,7 +93,7 @@
             ></v-text-field>
           </v-flex>
         </v-layout>
-        <v-btn color="primary" :loading="addressForm.busy" :disabled="errors.any()"  @click.native="submit()" :class="{primary: !addressForm.busy, error: addressForm.busy}">Update</v-btn>
+        <v-btn light color="primary" :loading="addressForm.busy" :disabled="errors.any()"  @click.native="submit()" :class="{primary: !addressForm.busy, error: addressForm.busy}" class="white--text">Update</v-btn>
         </form>
 </v-container>
 </template>
