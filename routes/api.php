@@ -43,8 +43,8 @@ Route::post('/order/{order}/toggle/sent', 'Api\Order\ToggleOrderController@toggl
 Route::post('/order/{order}/toggle/received', 'Api\Order\ToggleOrderController@toggleReceived')->name('api.toggle.received');
 Route::post('/order/{order}/toggle/done', 'Api\Order\ToggleOrderController@toggleDone')->name('api.toggle.done');
 
-Route::post('/order/{order}/customer-details', 'Api\Order\ToggleOrderController@updateCustomerDetails')->name('api.orders.customer_details');
-Route::post('/order/{order}/shipping-details', 'Api\Order\ToggleOrderController@updateCustomerDetails')->name('api.orders.shipping_details');
-Route::post('/order/{order}/payment-details', 'Api\Order\ToggleOrderController@updateCustomerDetails')->name('api.orders.payment_details');
+Route::post('/orders/{order}/customer-details', 'Api\Order\OrderDetailsConstroller@updateCustomerDetails')->name('api.orders.customer_details');
+Route::post('/orders/{order}/shipping-details', 'Api\Order\OrderDetailsConstroller@updateShippingDetails')->name('api.orders.shipping_details');
+Route::post('/orders/{order}/payment-details', 'Api\Order\OrderDetailsConstroller@updatePaymentDetails')->name('api.orders.payment_details');
 // Route::post('/checkout', 'Api\CheckoutController@checkout')->name('api.product.show');
 // Checkout Will Save A New Order For Specific Authenticated User
