@@ -1,13 +1,12 @@
 <template>
 <v-container fluid>
-    <form>
         <v-layout row>
           <v-flex xs12 sm12 md12  lg12  xl12>
             <v-text-field
               class="primary--text"
               name="first_name"
               label="First Name"
-              v-model="customer_details.first_name"
+              v-model="customerForm.customer_details.first_name"
               v-validate="'required|max:255'"
               data-vv-name="first_name"
               :error-messages="errors.collect('first_name')"
@@ -22,7 +21,7 @@
               class="primary--text"
               name="last_name"
               label="Last Name"
-              v-model="customer_details.last_name"
+              v-model="customerForm.customer_details.last_name"
               v-validate="'required|max:255'"
               data-vv-name="last_name"
               :error-messages="errors.collect('last_name')"
@@ -37,7 +36,7 @@
               class="primary--text"
               name="email"
               label="Email"
-              v-model="customer_details.email"
+              v-model="customerForm.customer_details.email"
               v-validate="'required|email'"
               data-vv-name="email"
               :error-messages="errors.collect('email')"
@@ -52,7 +51,7 @@
             class="primary--text"
             name="contact_no"
             label="Contact No."
-            v-model="customer_details.contact_no"
+            v-model="customerForm.customer_details.contact_no"
             v-validate="'required|numeric'"
             data-vv-name="contact_no"
             :error-messages="errors.collect('contact_no')"
@@ -61,30 +60,41 @@
             ></v-text-field>
           </v-flex>
         </v-layout>
-        <v-btn outline color="primary" @click.native="submit()">Update</v-btn>
-        </form>
+        <v-btn color="primary" :loading="customerForm.busy" :disabled="errors.any()"  @click.native="submit()" :class="{primary: !customerForm.busy, error: customerForm.busy}">Update</v-btn>
 </v-container>
 </template>
 
 <script>
 export default {
-    props: ['tab'],
+    props: ['tab', 'order'],
     data: () => ({
-        customer_details: {
-            first_name: '',
-            last_name: '',
-            email: '',
-            contact_no: ''
-        }
+        customerForm: new AppForm(App.forms.customerForm)
     }),
     watch: {
         tab (newValue) {
-            this.customer_details = newValue
+            this.customerForm.customer_details.first_name = newValue.first_name
+            this.customerForm.customer_details.last_name = newValue.last_name
+            this.customerForm.customer_details.email = newValue.email
+            this.customerForm.customer_details.contact_no = newValue.contact_no
         }
     },
     methods: {
         submit () {
             console.log('form submitted')
+            let self = this
+            self.customerForm.busy = true
+            App.post(route('api.orders.customer_details', {order: self.order.id}), self.customerForm).then(({message}) => {
+                self.customerForm.busy = false
+                vm.$popup({ message: message, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
+            }).catch(({errors, message}) => {
+                if (errors) {
+                    console.log(errors)
+                }
+                if (message) {
+                    vm.$popup({ message: message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' })
+                }
+                self.customerForm.busy = false
+            })
         }
     }
 
