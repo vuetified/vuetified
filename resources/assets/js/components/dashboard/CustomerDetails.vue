@@ -60,7 +60,7 @@
             ></v-text-field>
           </v-flex>
         </v-layout>
-        <v-btn color="primary" :loading="customerForm.busy" :disabled="errors.any()"  @click.native="submit()" :class="{primary: !customerForm.busy, error: customerForm.busy}">Update</v-btn>
+        <v-btn light color="primary" :loading="customerForm.busy" :disabled="errors.any()"  @click.native="submit()" :class="{primary: !customerForm.busy, error: customerForm.busy}" class="white--text">Update</v-btn>
 </v-container>
 </template>
 
