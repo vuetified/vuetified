@@ -46,7 +46,6 @@
                         v-model="props.item.shipment.received"
                         color="light-green"
                         light
-                        :disabled="!hasPermission('update-order')"
                         @change="toggleReceived(props.item)"
                         >
                     </v-switch>
