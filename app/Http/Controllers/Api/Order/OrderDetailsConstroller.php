@@ -43,6 +43,17 @@ class OrderDetailsConstroller extends Controller
     public function updatePaymentDetails(Order $order,Request $request)
     {
         $this->isMarkDone($request,$order);
+        $gateway = $order->payment;
+        $gateway->transaction_no = $request->transaction_no;
+        $gateway->account_name = $request->account_name;
+        $gateway->account_no = $request->account_no;
+        $gateway->amount = $request->amount;
+        $gateway->currency = $request->currency;
+        $gateway->date_paid = $request->date_paid;
+        $gateway->save();
+        return response()->json([
+            'message' => 'Order #'.$order->id.' Updated: Payment Details'
+            ],200);
     }
 
     private function isMarkDone(Request $request,$order)
