@@ -162,19 +162,4 @@ class OrderController extends Controller
         $user->load('orders.shipment.courier','orders.payment.gateway');
         return $user;
     }
-
-    public function updateCustomerDetails(Request $request)
-    {
-        
-    }
-
-    public function updateShippingDetails(Request $request)
-    {
-
-    }
-
-    public function updatePaymentDetails(Request $request)
-    {
-
-    }
 }
