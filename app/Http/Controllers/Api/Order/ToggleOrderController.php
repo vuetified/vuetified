@@ -36,22 +36,16 @@ class ToggleOrderController extends Controller
         $message = 'On-Hold';
         $gateway = $order->payment;
         $courier = $order->shipment;
-        if($gateway->paid){
-            $courier->sent = $request->toggle;
-            $courier->save();
-            
-            if($courier->sent){
-                $message = 'Sent';
-            }
-            return response()->json([
-                'message' => 'Order #'.$order->id.' Status: '.$message
-                ],200);
-        }else {
-            $message = 'Confirm Order Payment First!';
-            return response()->json([
-                'message' => $message
-                ],400);
+        $courier->sent = $request->toggle;
+        $courier->save();
+        
+        if($courier->sent){
+            $message = 'Sent';
         }
+        return response()->json([
+            'message' => 'Order #'.$order->id.' Status: '.$message
+            ],200);
+        
     }
     
     public function toggleReceived(Order $order,Request $request)
@@ -59,22 +53,19 @@ class ToggleOrderController extends Controller
         $this->isMarkDone($request,$order);
         $message = 'Pending';
         $courier = $order->shipment;
-        if($courier->sent){
-            $courier = $order->shipment;
-            $courier->received = $request->toggle;
-            $courier->save();
-            if($courier->received){
-                $message = 'Received';
-            }
-            return response()->json([
-                'message' => 'Order #'.$order->id.' Status: '.$message
-                ],200);
-        }else {
-            $message = 'Order Not Yet Sent!';
-            return response()->json([
-                'message' => $message
-                ],400);
+        $courier = $order->shipment;
+        $courier->received = $request->toggle;
+        $courier->save();
+        if($courier->received){
+            $message = 'Received';
         }
+        return response()->json([
+            'message' => 'Order #'.$order->id.' Status: '.$message
+            ],200);
+        $message = 'Order Not Yet Sent!';
+        return response()->json([
+            'message' => $message
+            ],400);
     }
 
     public function toggleDone(Order $order,Request $request)
