@@ -63,52 +63,9 @@
                     </v-switch>
                 </td>
                 <td class="title text-xs-center">
-                    <v-dialog v-model="dialog" fullscreen transition="dialog-bottom-transition" :overlay="false">
-                        <v-btn flat icon color="accent" slot="activator" @click.native="setCurrentOrder(props.item)">
-                            <v-icon>fa-edit</v-icon>
-                        </v-btn>
-                        <v-card :light="true">
-                        <v-toolbar  color="accent">
-                            <v-btn icon @click.native="dialog = false" class="error--text">
-                            <v-icon>close</v-icon>
-                            </v-btn>
-                            <v-spacer></v-spacer>
-                            <v-toolbar-title class="primary--text">Update Order No. {{ current_order.id }}</v-toolbar-title>
-                            <v-spacer></v-spacer>
-                            <v-toolbar-items>
-                            <v-btn  flat @click.native="dialog = false" class="info--text">Save</v-btn>
-                            </v-toolbar-items>
-                        </v-toolbar>
-                        <v-container fluid>
-                            <v-tabs v-model="active.name">
-                                <v-tabs-bar class="accent">
-                                <v-tabs-item
-                                v-for="(tab,key) in tabs"
-                                :key="key"
-                                :href="'#' + tab.name"
-                                ripple
-                                >
-                                {{tab.name}}
-                                </v-tabs-item>
-                                <v-tabs-slider color="primary"></v-tabs-slider>
-                                </v-tabs-bar>
-                                <v-tabs-items>
-                                    <v-tabs-content
-                                    v-for="(tab, key) in tabs"
-                                    :key="key"
-                                    :id="tab.name"
-                                    >
-                                    <v-card flat :light="true">
-                                        <component :is="tab.component" :tab="tab">
-                                        </component>
-                                    </v-card>
-                                    </v-tabs-content>
-                                </v-tabs-items>
-                            </v-tabs>
-                        </v-layout>
-                        </v-container>
-                        </v-card>
-                    </v-dialog>
+                    <v-btn flat icon color="accent" @click.native="setCurrentOrder(props.item)">
+                        <v-icon>fa-edit</v-icon>
+                    </v-btn>
                 </td>
 
             </tr>
@@ -142,6 +99,49 @@
             </template>
 
             </v-data-table>
+            <v-dialog v-model="dialog" fullscreen transition="dialog-bottom-transition" :overlay="false">
+                <v-card :light="true">
+                <v-toolbar  color="accent">
+                    <v-btn icon @click.native="dialog = false" class="error--text">
+                    <v-icon>close</v-icon>
+                    </v-btn>
+                    <v-spacer></v-spacer>
+                    <v-toolbar-title class="primary--text">Update Order No. {{ current_order.id }}</v-toolbar-title>
+                    <v-spacer></v-spacer>
+                    <v-toolbar-items>
+                    <v-btn  flat @click.native="dialog = false" class="info--text">Save</v-btn>
+                    </v-toolbar-items>
+                </v-toolbar>
+                <v-container fluid>
+                    <v-tabs v-model="active.name">
+                        <v-tabs-bar class="accent">
+                        <v-tabs-item
+                        v-for="(tab,key) in tabs"
+                        :key="key"
+                        :href="'#' + tab.name"
+                        ripple
+                        >
+                        {{tab.name}}
+                        </v-tabs-item>
+                        <v-tabs-slider color="primary"></v-tabs-slider>
+                        </v-tabs-bar>
+                        <v-tabs-items>
+                            <v-tabs-content
+                            v-for="(tab, key) in tabs"
+                            :key="key"
+                            :id="tab.name"
+                            >
+                            <v-card flat :light="true">
+                                <component :is="tab.component" :tab="tab">
+                                </component>
+                            </v-card>
+                            </v-tabs-content>
+                        </v-tabs-items>
+                    </v-tabs>
+                </v-layout>
+                </v-container>
+                </v-card>
+            </v-dialog>
       </v-container>
     </v-container>
   </main-layout>
@@ -319,6 +319,7 @@ export default {
             return Object.values(JSON.parse(cart)['items'])
         },
         setCurrentOrder (order) {
+            this.dialog = true
             this.current_order = order
             /* Check for Shipment Type if Meet Up Or Pick Up Remove Shipping Details From Tabs */
             let customer = Object.assign({name: 'customer details', component: 'customer-details'}, JSON.parse(this.current_order.customer_details))
