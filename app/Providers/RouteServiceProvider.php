@@ -35,11 +35,11 @@ class RouteServiceProvider extends ServiceProvider
         Route::pattern('username', '[a-z0-9_-]{3,16}');
         Route::pattern('name', '[a-z]+');
         Route::bind('order', function ($value) {
-                $order = Order::find($value)->first();
-                if(!$order){
-                    throw new OrderNotFound;
-                }
+            $order = Order::where('id', $value)->first();
+            if($order){
                 return $order;
+            }
+            throw new OrderNotFound;
         });
         Route::pattern('order', '[0-9]+');
         Route::model('user', User::class);
