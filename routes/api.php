@@ -38,10 +38,10 @@ Route::get('/categories/{slug}', 'Api\CategoriesController@show')->name('api.cat
 Route::get('/products', 'Api\ProductsController@index')->name('api.product.index');
 Route::get('/products/{slug}', 'Api\ProductsController@show')->name('api.product.show');
 
-Route::post('/order/{order}/toggle/paid', 'Api\Order\ToggleOrderController@togglePaid')->name('api.toggle.paid');
-Route::post('/order/{order}/toggle/sent', 'Api\Order\ToggleOrderController@toggleSent')->name('api.toggle.sent');
-Route::post('/order/{order}/toggle/received', 'Api\Order\ToggleOrderController@toggleReceived')->name('api.toggle.received');
-Route::post('/order/{order}/toggle/done', 'Api\Order\ToggleOrderController@toggleDone')->name('api.toggle.done');
+Route::post('/orders/{order}/toggle/paid', 'Api\Order\ToggleOrderController@togglePaid')->name('api.toggle.paid');
+Route::post('/orders/{order}/toggle/sent', 'Api\Order\ToggleOrderController@toggleSent')->name('api.toggle.sent');
+Route::post('/orders/{order}/toggle/received', 'Api\Order\ToggleOrderController@toggleReceived')->name('api.toggle.received');
+Route::post('/orders/{order}/toggle/done', 'Api\Order\ToggleOrderController@toggleDone')->name('api.toggle.done');
 
 Route::post('/orders/{order}/customer-details', 'Api\Order\OrderDetailsConstroller@updateCustomerDetails')->name('api.orders.customer_details');
 Route::post('/orders/{order}/shipping-details', 'Api\Order\OrderDetailsConstroller@updateShippingDetails')->name('api.orders.shipping_details');
