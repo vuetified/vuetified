@@ -4,6 +4,13 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use App\Exceptions\EmailNotFound;
+use App\Exceptions\OrderArchive;
+use App\Exceptions\OrderDone;
+use App\Exceptions\OrderNotFound;
+use App\Exceptions\SlugNotFound;
+use App\Exceptions\UsernameNotFound;
+use App\Exceptions\UserTokenNotFound;
 
 class Handler extends ExceptionHandler
 {
@@ -13,7 +20,13 @@ class Handler extends ExceptionHandler
      * @var array
      */
     protected $dontReport = [
-        //
+        EmailNotFound::class,
+        OrderArchive::class,
+        OrderDone::class,
+        OrderNotFound::class,
+        SlugNotFound::class,
+        UserNameNotFound::class,
+        UserTokenNotFound::class
     ];
 
     /**
