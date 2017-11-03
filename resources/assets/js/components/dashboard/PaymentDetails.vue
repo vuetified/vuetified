@@ -1,11 +1,11 @@
 <template>
 <v-container fluid>
-  <v-layout row>
+  <v-layout row v-if="paymentForm.gateway">
     <v-flex xs12 text-xs-center>
         <p class="subheader primary--text">Gateway Details:</p>
     </v-flex>
   </v-layout>
-  <v-layout row>
+  <v-layout row v-if="paymentForm.gateway">
     <v-flex xs12 sm12 md12  lg12  xl12>
       <v-text-field
       class="primary--text"
@@ -17,7 +17,8 @@
       ></v-text-field>
     </v-flex>
   </v-layout>
-  <v-layout row v-for="(value,key,index) in paymentForm.gateway.details" :key="key" :index="index">
+  <div v-if="paymentForm.gateway">
+    <v-layout row v-for="(value,key,index) in paymentForm.gateway.details" :key="key" :index="index">
     <v-flex xs12 sm12 md12  lg12  xl12>
       <v-text-field
       class="primary--text"
@@ -29,6 +30,7 @@
       ></v-text-field>
     </v-flex>
   </v-layout>
+  </div>
   <v-layout row>
     <v-flex xs12 text-xs-center>
         <p class="subheader primary--text">Payment Details:</p>

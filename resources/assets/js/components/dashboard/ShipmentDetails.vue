@@ -1,11 +1,11 @@
 <template>
 <v-container fluid>
-        <v-layout row>
+        <v-layout row v-if="shipmentForm.courier">
             <v-flex xs12 text-xs-center>
                 <p class="subheader primary--text">Delivery Method:</p>
             </v-flex>
         </v-layout>
-        <v-layout row>
+        <v-layout row v-if="shipmentForm.courier">
           <v-flex xs12 sm12 md12  lg12  xl12>
             <v-text-field
             class="primary--text"
@@ -17,7 +17,8 @@
             ></v-text-field>
           </v-flex>
         </v-layout>
-        <v-layout row v-for="(value,key,index) in shipmentForm.courier.details" :key="key" :index="index">
+        <div v-if="shipmentForm.courier">
+            <v-layout row v-for="(value,key,index) in shipmentForm.courier.details" :key="key" :index="index">
           <v-flex xs12 sm12 md12  lg12  xl12>
             <v-text-field
             class="primary--text"
@@ -29,6 +30,7 @@
             ></v-text-field>
           </v-flex>
         </v-layout>
+        </div>
         <v-layout row>
             <v-flex xs12 text-xs-center>
                 <p class="subheader primary--text">Shipment Status:</p>
