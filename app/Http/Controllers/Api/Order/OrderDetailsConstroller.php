@@ -59,13 +59,13 @@ class OrderDetailsConstroller extends Controller
     public function updateShipmentDetails(Order $order,Request $request)
     {
         $this->isMarkDone($request,$order);
-        $courier = $order->shipment;
-        $courier->tracking_no = $request->tracking_no;
-        $courier->sent = $request->sent;
-        $courier->date_sent = $request->date_sent;
-        $courier->received = $request->received;
-        $courier->date_received = $request->date_received;
-        $courier->save();
+        $shipment = $order->shipment;
+        $shipment->tracking_no = $request->tracking_no;
+        $shipment->sent = $request->sent;
+        $shipment->date_sent = $request->date_sent;
+        $shipment->received = $request->received;
+        $shipment->date_received = $request->date_received;
+        $shipment->save();
         return response()->json([
             'message' => 'Order #'.$order->id.' Updated: Shipment Details'
             ],200);
