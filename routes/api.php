@@ -43,6 +43,7 @@ Route::post('/orders/{order}/toggle/sent', 'Api\Order\ToggleOrderController@togg
 Route::post('/orders/{order}/toggle/received', 'Api\Order\ToggleOrderController@toggleReceived')->name('api.toggle.received');
 Route::post('/orders/{order}/toggle/done', 'Api\Order\ToggleOrderController@toggleDone')->name('api.toggle.done');
 
+Route::post('/orders/{order}/destroy', 'Api\Order\OrderController@destroy')->name('api.order.destroy')->middleware('can:delete_order,order');
 Route::post('/orders/{order}/customer-details', 'Api\Order\OrderDetailsConstroller@updateCustomerDetails')->name('api.orders.customer_details');
 Route::post('/orders/{order}/shipping-details', 'Api\Order\OrderDetailsConstroller@updateShippingDetails')->name('api.orders.shipping_details');
 Route::post('/orders/{order}/payment-details', 'Api\Order\OrderDetailsConstroller@updatePaymentDetails')->name('api.orders.payment_details');
