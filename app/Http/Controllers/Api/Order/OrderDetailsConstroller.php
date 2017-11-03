@@ -56,6 +56,21 @@ class OrderDetailsConstroller extends Controller
             ],200);
     }
 
+    public function updateShipmentDetails(Order $order,Request $request)
+    {
+        $this->isMarkDone($request,$order);
+        $courier = $order->shipment;
+        $courier->tracking_no = $request->tracking_no;
+        $courier->sent = $request->sent;
+        $courier->date_sent = $request->date_sent;
+        $courier->received = $request->received;
+        $courier->date_received = $request->date_received;
+        $courier->save();
+        return response()->json([
+            'message' => 'Order #'.$order->id.' Updated: Shipment Details'
+            ],200);
+    }
+
     private function isMarkDone(Request $request,$order)
     {
         if($order && $order->done){
