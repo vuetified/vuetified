@@ -160,7 +160,7 @@ export default {
     watch: {
         tab (newValue) {
             this.paymentForm.id = newValue.id
-            this.paymentForm.date_paid = moment(newValue.date_paid).format('YYYY-MM-DD')
+            this.paymentForm.date_paid = newValue.date_paid ? moment(newValue.date_paid).format('YYYY-MM-DD') : null
             this.paymentForm.transaction_no = newValue.transaction_no
             this.paymentForm.account_name = newValue.account_name
             this.paymentForm.account_no = newValue.account_no
@@ -178,8 +178,10 @@ export default {
             console.log('form submitted')
             let self = this
             self.paymentForm.busy = true
-            App.post(route('api.orders.payment_details', {order: self.order.id}), self.paymentForm).then(({message}) => {
+            App.post(route('api.orders.payment_details', {order: self.order.id}), self.paymentForm).then(({message, order}) => {
                 self.paymentForm.busy = false
+                // edit the array of orders by passing the whole object of each order
+                vm.$emit('payment_details_updated', self.paymentForm, self.order)
                 vm.$popup({ message: message, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
             }).catch(({errors, message}) => {
                 if (errors) {
