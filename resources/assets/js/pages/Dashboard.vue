@@ -62,8 +62,11 @@
                     </v-switch>
                 </td>
                 <td class="title text-xs-center">
-                    <v-btn flat icon color="accent" @click.native="setCurrentOrder(props.item)">
+                    <v-btn :disabled="!can('edit_order')"  flat icon color="accent" @click.native="setCurrentOrder(props.item)">
                         <v-icon>fa-edit</v-icon>
+                    </v-btn>
+                    <v-btn :disabled="!can('delete_order')" flat icon color="error" @click.native="deleteOrder(props.item)">
+                        <v-icon>fa-trash</v-icon>
                     </v-btn>
                 </td>
             </tr>
@@ -153,6 +156,7 @@ import DashPanels from '../partials/DashPanels.vue'
 import CustomerDetails from '../components/dashboard/CustomerDetails.vue'
 import PaymentDetails from '../components/dashboard/PaymentDetails.vue'
 import ShippingDetails from '../components/dashboard/ShippingDetails.vue'
+import ShipmentDetails from '../components/dashboard/ShipmentDetails.vue'
 
 export default {
     mixins: [Theme, Acl],
@@ -161,7 +165,8 @@ export default {
         DashPanels,
         CustomerDetails,
         PaymentDetails,
-        ShippingDetails
+        ShippingDetails,
+        ShipmentDetails
     },
     data: () => ({
         contentClass: { 'grey': true, 'lighten-4': true, 'accent--text': true },
@@ -182,7 +187,7 @@ export default {
             { text: 'Sent', align: 'left', sortable: false },
             { text: 'Received', align: 'left', sortable: false },
             { text: 'Completed', align: 'left', sortable: false },
-            { text: 'Update', align: 'center', sortable: false }
+            { text: 'Actions', align: 'center', sortable: false }
         ],
         items: [],
         /* current updated item */
@@ -191,7 +196,8 @@ export default {
         tabs: [
             {name: 'customer details', component: 'customer-details'},
             {name: 'shipping details', component: 'shipping-details'},
-            {name: 'payment', component: 'payment-details'}
+            {name: 'payment details', component: 'payment-details'},
+            {name: 'shipment details', component: 'shipment-details'}
         ],
         active: {
             name: 'customer details'
@@ -211,6 +217,9 @@ export default {
         this.fetchPanelStats()
     },
     methods: {
+        deleteOrder () {
+            console.log('delete Order')
+        },
         resetToggleForm () {
             this.toggleForm = new AppForm(App.forms.toggleForm)
         },
@@ -319,11 +328,13 @@ export default {
             let customer = Object.assign({name: 'customer details', component: 'customer-details'}, JSON.parse(this.current_order.customer_details))
             let shipping = Object.assign({name: 'shipping details', component: 'shipping-details'}, JSON.parse(this.current_order.shipping_details))
             let payment = Object.assign({name: 'payment details', component: 'payment-details'}, this.current_order.payment)
+            let shipment = Object.assign({name: 'shipment details', component: 'shipment-details'}, this.current_order.shipment)
 
             this.tabs = [
                 customer,
                 shipping,
-                payment
+                payment,
+                shipment
             ]
         },
         fetchPanelStats () {
