@@ -99,6 +99,17 @@ App.forms = {
             details: '',
             model: ''
         }
+    },
+    shipmentForm: {
+        id: null,
+        courier: {},
+        shipping_fee: 0,
+        currency: null,
+        tracking_no: '',
+        sent: false,
+        date_sent: null,
+        received: false,
+        date_received: null
     }
 
     // Add Other Form Object Here
