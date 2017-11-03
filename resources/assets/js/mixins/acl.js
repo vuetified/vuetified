@@ -23,6 +23,9 @@ export default {
         hasAllPermissions (permissions) {
             let me = this.$store.getters['auth/getMe']
             return _.difference(permissions, me.permissions).length === 0
+        },
+        can (permission) {
+            return this.$store.getters['auth/getMe'].can[permission]
         }
     }
 }
