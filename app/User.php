@@ -13,6 +13,7 @@ use App\Notifications\PasswordResetNotification;
 
 class User extends Authenticatable
 {
+    /* Has Roles when using toArray() returns permissions and roles attributes */
     use HasApiTokens,Notifiable, Sluggable, UserMutator, HasRoles, GenerateUniqueID;
 
     /**
@@ -41,6 +42,9 @@ class User extends Authenticatable
 
     protected $dates = ['created_at', 'updated_at'];
 
+    /* For Vue Authorization (Inside UserMutator) */
+    protected $appends = ['all_permissions','can'];
+
     public function sluggable()
     {
         return [
@@ -63,10 +67,6 @@ class User extends Authenticatable
     public function orders() 
     {
         return $this->hasMany(Order::class);
-    }
-
-    public function isSuperAdmin(){
-        return $this->hasRole('admin');
     }
 
 }
