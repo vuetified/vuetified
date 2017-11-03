@@ -175,10 +175,9 @@ export default {
             return newStr.replace(/\w\S*/g, function (txt) { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase() })
         },
         submit () {
-            console.log('form submitted')
             let self = this
             self.paymentForm.busy = true
-            App.post(route('api.orders.payment_details', {order: self.order.id}), self.paymentForm).then(({message, order}) => {
+            App.post(route('api.orders.payment_details', {order: self.order.id}), self.paymentForm).then(({message}) => {
                 self.paymentForm.busy = false
                 // edit the array of orders by passing the whole object of each order
                 self.order.payment.transaction_no = self.paymentForm.transaction_no
