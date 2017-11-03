@@ -181,7 +181,12 @@ export default {
             App.post(route('api.orders.payment_details', {order: self.order.id}), self.paymentForm).then(({message, order}) => {
                 self.paymentForm.busy = false
                 // edit the array of orders by passing the whole object of each order
-                vm.$emit('payment_details_updated', self.paymentForm, self.order)
+                self.order.payment.transaction_no = self.paymentForm.transaction_no
+                self.order.payment.account_name = self.paymentForm.account_name
+                self.order.payment.account_no = self.paymentForm.account_no
+                self.order.payment.amount = self.paymentForm.amount
+                self.order.payment.currency = self.paymentForm.currency
+                self.order.payment.date_paid = self.paymentForm.date_paid
                 vm.$popup({ message: message, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
             }).catch(({errors, message}) => {
                 if (errors) {
