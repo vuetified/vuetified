@@ -217,8 +217,52 @@ export default {
         this.fetchPanelStats()
     },
     methods: {
-        deleteOrder () {
-            console.log('delete Order')
+        deleteOrder (order) {
+            let self = this
+            if (self.can('delete_order') || self.hasRole('admin')) {
+                axios.post(route('api.order.destroy', {order: order.id})).then(() => {
+                    self.total = self.total - 1
+                    if (self.total < 0) {
+                        self.total = 0
+                    }
+                    if (order.payment.paid) {
+                        self.paid = self.paid - 1
+                        if (self.paid < 0) {
+                            self.paid = 0
+                        }
+                    }
+                    if (order.shipment.sent) {
+                        self.sent = self.sent - 1
+                        if (self.sent < 0) {
+                            self.sent = 0
+                        }
+                    }
+                    if (order.shipment.received) {
+                        self.received = self.received - 1
+                        if (self.received < 0) {
+                            self.received = 0
+                        }
+                    }
+                    if (order.done) {
+                        self.done = self.done - 1
+                        if (self.done < 0) {
+                            self.done = 0
+                        }
+                    }
+                    let index = _.findIndex(self.items, { id: order.id })
+                    self.$delete(self.items, index)
+                    vm.$popup({ message: `Order#${order.id} Deleted!`, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
+                }).catch(({errors, message}) => {
+                    if (errors) {
+                        console.log(errors)
+                    }
+                    if (message) {
+                        console.log(message)
+                    }
+                })
+            } else {
+                vm.$popup({ message: 'Action Not Authorized!', backgroundColor: '#e57373', delay: 5, color: '#fffffa' })
+            }
         },
         resetToggleForm () {
             this.toggleForm = new AppForm(App.forms.toggleForm)
