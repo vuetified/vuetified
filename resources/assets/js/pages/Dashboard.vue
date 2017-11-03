@@ -31,7 +31,7 @@
 
                 <td class="title text-xs-left primary--text">
                     <v-switch
-                        :label="`${props.item.shipment.sent ? 'Delivered' : 'On-Hold'}`"
+                        :label="`${props.item.shipment.sent ? 'Sent' : 'On-Hold'}`"
                         v-model="props.item.shipment.sent"
                         color="cyan"
                         light
