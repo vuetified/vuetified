@@ -7,6 +7,7 @@ use App\Link;
 use App\SocialAccount;
 use App\Profile;
 use Illuminate\Support\Str;
+use Spatie\Permission\Models\Permission;
 
 trait UserMutator
 {
@@ -93,5 +94,23 @@ trait UserMutator
     public function isReseller()
     {
         return $this->hasRole('reseller');
+    }
+
+    public function getCanAttribute()
+    {
+        $permissions = [];
+        foreach (Permission::all() as $permission) {
+            if (optional(\Auth::user())->can($permission->name)) {
+                $permissions[$permission->name] = true;
+            } else {
+                $permissions[$permission->name] = false;
+            }
+        }
+        return $permissions;
+    }
+
+    public function getAllPermissionsAttribute()
+    {
+        return $this->getAllPermissions()->pluck('name')->toArray();
     }
 }
