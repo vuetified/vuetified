@@ -162,4 +162,28 @@ class OrderController extends Controller
         $user->load('orders.shipment.courier','orders.payment.gateway');
         return $user;
     }
+
+    public function destroy(Order $order)
+    {
+        $courier = $order->shipment->courier;
+        if($courier){
+        $courier->delete();
+        }
+        $shipment = $order->shipment;
+        if($shipment){
+        $shipment->delete();
+        }
+        $gateway = $order->payment->gateway;
+        if($gateway){
+            $gateway->delete();
+        }
+        $payment = $order->payment;
+        if($payment){
+            $payment->delete();
+        }
+        $order->delete();
+        return response()->json([
+            'message' => 'Order #'.$order->id.' Delete'
+            ],200);
+    }
 }
