@@ -35,9 +35,12 @@ class User extends Resource
                 'sp_link_id' => $this->when($this->referralLink, optional($this->referralLink)->sp_link_id),
                 'sp_user_id' => $this->when($this->referralLink, optional($this->referralLink)->sp_user_id),
             ]),
-            'roles' => $this->when($this->hasAnyRole(Role::all()), $this->getRoleNames()),
-            'permissions' => $this->getAllPermissions()->pluck('name')->toArray(),
-            /* Load The Role For Specific User Conditionally */
+            /* override user roles attribute from Spatie */
+            'roles' => $this->when($this->roles, $this->getRoleNames()),
+            /* override user permissions attribute from Spatie */
+            'permissions' => $this->all_permissions,
+            'can' => $this->can,
+            /* Load The Role For Specific User Conditionally (UserMutator) */
             'isAdmin' => $this->when($this->isAdmin(), true),
             'isCustomer' => $this->when($this->isCustomer(), true),
             'isMerchant' => $this->when($this->isMerchant(), true),
