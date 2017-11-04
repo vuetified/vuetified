@@ -36,6 +36,22 @@
         <p class="subheader primary--text">Payment Details:</p>
     </v-flex>
   </v-layout>
+  <v-layout row v-if="order.receipt">
+    <v-flex xs12 sm12 md12  lg12  xl12>
+      <v-text-field
+      class="primary--text"
+      label="Receipt"
+      v-model="order.receipt"
+      prepend-icon="fa-file"
+      append-icon="fa-download"
+      :append-icon-cb="() => (viewAttachment(order.receipt))"
+      hint="View Receipt"
+      persistent-hint
+      :light="true"
+      readonly
+      ></v-text-field>
+    </v-flex>
+  </v-layout>
   <v-layout row>
     <v-flex xs12 sm12 md12  lg12  xl12>
       <v-text-field
@@ -172,6 +188,9 @@ export default {
         }
     },
     methods: {
+        viewAttachment (path) {
+            window.open(path)
+        },
         toProperCase (key) {
             let newStr = key.replace(/_/g, ' ')
             return newStr.replace(/\w\S*/g, function (txt) { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase() })
