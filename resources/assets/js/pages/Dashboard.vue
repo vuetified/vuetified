@@ -157,6 +157,7 @@ import CustomerDetails from '../components/dashboard/CustomerDetails.vue'
 import PaymentDetails from '../components/dashboard/PaymentDetails.vue'
 import ShippingDetails from '../components/dashboard/ShippingDetails.vue'
 import ShipmentDetails from '../components/dashboard/ShipmentDetails.vue'
+import FileUploader from '../components/dashboard/FileUploader.vue'
 
 export default {
     mixins: [Theme, Acl],
@@ -166,7 +167,8 @@ export default {
         CustomerDetails,
         PaymentDetails,
         ShippingDetails,
-        ShipmentDetails
+        ShipmentDetails,
+        FileUploader
     },
     data: () => ({
         contentClass: { 'grey': true, 'lighten-4': true, 'accent--text': true },
@@ -197,7 +199,8 @@ export default {
             {name: 'customer details', component: 'customer-details'},
             {name: 'shipping details', component: 'shipping-details'},
             {name: 'payment details', component: 'payment-details'},
-            {name: 'shipment details', component: 'shipment-details'}
+            {name: 'shipment details', component: 'shipment-details'},
+            {name: 'upload receipt', component: 'file-uploader'}
         ],
         active: {
             name: 'customer details'
@@ -368,17 +371,24 @@ export default {
         setCurrentOrder (order) {
             this.dialog = true
             this.current_order = order
+            let fileUploader = {
+                requestKey: 'file',
+                multiple: false,
+                putUrl: ``,
+                postUrl: `${route('api.media.receiptUploader', {order: this.current_order.id})}`
+            }
             /* Check for Shipment Type if Meet Up Or Pick Up Remove Shipping Details From Tabs */
             let customer = Object.assign({name: 'customer details', component: 'customer-details'}, JSON.parse(this.current_order.customer_details))
             let shipping = Object.assign({name: 'shipping details', component: 'shipping-details'}, JSON.parse(this.current_order.shipping_details))
             let payment = Object.assign({name: 'payment details', component: 'payment-details'}, this.current_order.payment)
             let shipment = Object.assign({name: 'shipment details', component: 'shipment-details'}, this.current_order.shipment)
-
+            let uploads = Object.assign({name: 'upload receipt', component: 'file-uploader'}, fileUploader)
             this.tabs = [
                 customer,
                 shipping,
                 payment,
-                shipment
+                shipment,
+                uploads
             ]
         },
         fetchPanelStats () {
