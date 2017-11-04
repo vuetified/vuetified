@@ -1,7 +1,6 @@
 [
     { "name": "SM Olongapo", "group": "Pick Up Location", "avatar": "/img/courier/sm.png", "slug": "sm-olongapo",
         "details": {
-            "rate": 0,
             "address": "Olongapo",
             "working_days": "Mon-Fri",
             "open_hrs": "10am-6pm"
@@ -10,7 +9,6 @@
     },
     { "name": "Meet Up", "group": "Meet Up", "avatar": "/img/courier/meetup.png", "slug": "meet-up",
         "details": {
-            "rate": 0,
             "contact_person": "Uriah Galang",
             "contact_no": "90121212",
             "messenger": "@uriahg17",
