@@ -16,7 +16,7 @@ class OrderDetailsConstroller extends Controller
 
     public function updateCustomerDetails(Order $order,Request $request)
     {
-        $this->isMarkDone($request,$order);
+        $this->isMarkDone($order);
 
         $order->customer_details = json_encode($request->customer_details);
 
@@ -29,7 +29,7 @@ class OrderDetailsConstroller extends Controller
 
     public function updateShippingDetails(Order $order,Request $request)
     {
-        $this->isMarkDone($request,$order);
+        $this->isMarkDone($order);
 
         $order->shipping_details = json_encode($request->shipping_details);
 
@@ -42,7 +42,7 @@ class OrderDetailsConstroller extends Controller
 
     public function updatePaymentDetails(Order $order,Request $request)
     {
-        $this->isMarkDone($request,$order);
+        $this->isMarkDone($order);
         $gateway = $order->payment;
         $gateway->transaction_no = $request->transaction_no;
         $gateway->account_name = $request->account_name;
@@ -58,7 +58,7 @@ class OrderDetailsConstroller extends Controller
 
     public function updateShipmentDetails(Order $order,Request $request)
     {
-        $this->isMarkDone($request,$order);
+        $this->isMarkDone($order);
         $shipment = $order->shipment;
         $shipment->tracking_no = $request->tracking_no;
         $shipment->sent = $request->sent;
@@ -71,7 +71,7 @@ class OrderDetailsConstroller extends Controller
             ],200);
     }
 
-    private function isMarkDone(Request $request,$order)
+    private function isMarkDone($order)
     {
         if($order && $order->done){
             throw new OrderArchive;
