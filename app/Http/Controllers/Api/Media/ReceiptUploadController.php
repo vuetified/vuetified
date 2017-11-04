@@ -15,19 +15,26 @@ class ReceiptUploadController extends Controller
 
     public function upload(Order $order, Request $request)
     {
-        $payment = $order->payment;
-        // return $path;
-        $payment->addMediaFromRequest('file')
-        ->preservingOriginal()
-        ->toMediaCollection('receipts', 'local');
-
-        // $payment->getMedia('receipts')->first()
-            // ->getPath()
-            // getUrl()
-        // $payment->getFirstMedia('receipts')
-            // getUrl() // this will get the original image
-            // getUrl('thumb')
-        // $payment->getFirstMediaUrl('receipts', 'thumb')
-        return $payment->getMedia();
+        $file = $order->getMedia('receipts')->first();
+        if(!$file){
+            /* add new receipt */
+            $order->getMedia('receipts');
+            $order->addMediaFromRequest('file')
+            ->preservingOriginal()
+            ->toMediaCollection('receipts');
+        }else {
+            /* delete old receipt and replace with new one */
+            $file->delete();
+            $order->getMedia('receipts');
+            $order->addMediaFromRequest('file')
+            ->preservingOriginal()
+            ->toMediaCollection('receipts');
+        }
+        $order = $order->fresh();
+        $order->load(['shipment.courier', 'payment.gateway'])->toArray();
+        return response()->json([
+            'order' => $order,
+            'message' => 'Receipt Uploaded'
+        ],200);
     }
 }
