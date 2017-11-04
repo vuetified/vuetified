@@ -9,10 +9,6 @@ use App\Order;
 class Cash extends Model
 {
     protected $table = "cash_payments";
-    
-    protected $casts = [
-        'uploads' => 'array',
-    ];
 
     public function gateway()
     {

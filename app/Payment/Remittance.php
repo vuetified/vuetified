@@ -10,10 +10,6 @@ class Remittance extends Model
 {
     protected $table = "wired_payments";
 
-    protected $casts = [
-        'uploads' => 'array',
-    ];
-
     public function gateway()
     {
         return $this->belongsTo(Gateway::class);

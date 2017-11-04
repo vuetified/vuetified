@@ -12,7 +12,6 @@ class PickUp extends Model
 
     protected $casts = [
         'shipping_fee' => 'double',
-        'uploads' => 'array',
         'sent' => 'boolean',
         'received' => 'boolean'
     ];

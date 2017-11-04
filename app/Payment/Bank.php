@@ -10,10 +10,6 @@ class Bank extends Model
 {
     protected $table = "bank_payments";
 
-    protected $casts = [
-        'uploads' => 'array',
-    ];
-
     public function gateway()
     {
         return $this->belongsTo(Gateway::class);

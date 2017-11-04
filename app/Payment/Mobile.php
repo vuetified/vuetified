@@ -10,10 +10,6 @@ class Mobile extends Model
 {
     protected $table = "mobile_payments";
 
-    protected $casts = [
-        'uploads' => 'array',
-    ];
-
     public function gateway()
     {
         return $this->belongsTo(Gateway::class);
