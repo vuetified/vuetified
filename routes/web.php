@@ -1,6 +1,4 @@
 <?php
-/* test dashboard panel count */
-
 Route::get('/getPanelStats', 'Api\Order\OrderController@getPanelStats')->name('api.panel.stats');
 /* Test Order Mailables */
 Route::get('/mailable', function () {

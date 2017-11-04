@@ -48,5 +48,8 @@ Route::post('/orders/{order}/customer-details', 'Api\Order\OrderDetailsConstroll
 Route::post('/orders/{order}/shipping-details', 'Api\Order\OrderDetailsConstroller@updateShippingDetails')->name('api.orders.shipping_details');
 Route::post('/orders/{order}/payment-details', 'Api\Order\OrderDetailsConstroller@updatePaymentDetails')->name('api.orders.payment_details');
 Route::post('/orders/{order}/shipment-details', 'Api\Order\OrderDetailsConstroller@updateShipmentDetails')->name('api.orders.shipment_details');
+
+Route::post('orders/{order}/receipts', 'Api\Media\ReceiptUploadController@upload')->name('api.media.receiptUploader');
+
 // Route::post('/checkout', 'Api\CheckoutController@checkout')->name('api.product.show');
 // Checkout Will Save A New Order For Specific Authenticated User
