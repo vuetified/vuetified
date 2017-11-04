@@ -122,7 +122,7 @@ export default {
             self.addressForm.busy = true
             App.post(route('api.orders.shipping_details', {order: self.order.id}), self.addressForm).then(({message}) => {
                 self.addressForm.busy = false
-                self.order.shipping_details = self.addressForm.shipping_details
+                self.order.shipping_details = JSON.stringify(self.addressForm.shipping_details)
                 vm.$popup({ message: message, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
             }).catch(({errors, message}) => {
                 if (errors) {

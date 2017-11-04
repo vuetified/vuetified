@@ -85,7 +85,7 @@ export default {
             self.customerForm.busy = true
             App.post(route('api.orders.customer_details', {order: self.order.id}), self.customerForm).then(({message}) => {
                 self.customerForm.busy = false
-                self.order.customer_details = self.customerForm.customer_details
+                self.order.customer_details = JSON.stringify(self.customerForm.customer_details)
                 vm.$popup({ message: message, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
             }).catch(({errors, message}) => {
                 if (errors) {
