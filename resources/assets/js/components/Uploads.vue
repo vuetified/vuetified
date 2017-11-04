@@ -239,8 +239,15 @@
 import ImageCompressor from '@xkeshi/image-compressor'
 import FileUpload from 'vue-upload-component'
 export default {
+    props: ['fileKey', 'putUrl', 'postUrl'],
     components: {
         FileUpload
+    },
+    mounted () {
+        this.postAction = this.postUrl ? this.postUrl : ' /uploads/post'
+        this.putAction = this.putUrl ? this.putUrl : null
+        this.name = this.fileKey ? this.fileKey : 'file'
+        this.headers['Authorization'] = `Bearer ${vm.$cookie.get('access_token')}`
     },
     data () {
         return {
@@ -268,7 +275,9 @@ export default {
             postAction: '/uploads/post',
             putAction: '/uploads/put',
             headers: {
-                'X-Csrf-Token': App.csrfToken
+                'X-Csrf-Token': App.csrfToken,
+                /* added access token */
+                'Authorization': ''
             },
             data: {
                 '_csrf_token': App.csrfToken
