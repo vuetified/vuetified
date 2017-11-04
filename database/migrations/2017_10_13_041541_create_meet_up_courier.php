@@ -23,7 +23,6 @@ class CreateMeetUpCourier extends Migration
             $table->timestamp('date_sent')->nullable();
             $table->boolean('received')->default(0);
             $table->timestamp('date_received')->nullable();
-            $table->text('uploads')->nullable();
             $table->timestamps();
         });
     }

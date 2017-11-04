@@ -21,7 +21,6 @@ class CreateBankPayment extends Migration
             $table->string('account_no')->nullable(); // mobile no.
             $table->double('amount', 15, 2);
             $table->string('currency')->default('PHP');
-            $table->text('uploads')->nullable(); // attachment Image Uploads
             $table->boolean('paid')->default(0);
             $table->timestamp('date_paid')->nullable(); // Day Payment is Settled
             $table->timestamps();
