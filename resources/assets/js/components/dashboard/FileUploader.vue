@@ -378,7 +378,12 @@ export default {
                 }
 
                 if (newFile.error && !oldFile.error) {
-                    vm.$popup({ message: 'Fail to Upload Receipt', backgroundColor: '#e57373', delay: 5, color: '#fffffa' })
+                    console.log(newFile.response.message)
+                    if (newFile.response.message) {
+                        vm.$popup({ message: newFile.response.message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' })
+                    } else {
+                        vm.$popup({ message: 'Server Error', backgroundColor: '#e57373', delay: 5, color: '#fffffa' })
+                    }
                 }
 
                 if (newFile.success && !oldFile.success) {
