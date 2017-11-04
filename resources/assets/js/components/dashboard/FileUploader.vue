@@ -244,7 +244,16 @@ export default {
         FileUpload
     },
     mounted () {
-        this.prepareTab()
+        let self = this
+        /* We may pass this on Tab Object on Dashboard */
+        self.putAction = ''
+        self.name = 'file'
+        self.multiple = false
+        self.headers['Authorization'] = `Bearer ${this.$cookie.get('access_token')}`
+        /* change post URL */
+        Bus.$on('setOrderID', (id) => {
+            self.postAction = `${route('api.media.receiptUploader', {order: id})}`
+        })
     },
     data () {
         return {
@@ -290,13 +299,6 @@ export default {
         }
     },
     methods: {
-        prepareTab () {
-            this.postAction = this.tab.postUrl ? this.tab.postUrl : ' /uploads/post'
-            this.putAction = this.tab.putUrl ? this.tab.putUrl : null
-            this.name = this.tab.requestKey ? this.tab.requestKey : 'file'
-            this.multiple = !!this.tab.multiple
-            this.headers['Authorization'] = `Bearer ${this.$cookie.get('access_token')}`
-        },
         progress (props) {
             return Math.round(props)
         },
@@ -360,7 +362,7 @@ export default {
         // add, update, remove File Event
         inputFile (newFile, oldFile) {
             if (newFile && oldFile) {
-                // update
+                console.log('added new file', newFile, oldFile)
 
                 if (newFile.active && !oldFile.active) {
                     // beforeSend
@@ -372,15 +374,16 @@ export default {
                 }
 
                 if (newFile.progress !== oldFile.progress) {
-                    // progress
+                    console.log('progress', newFile.progress)
                 }
 
                 if (newFile.error && !oldFile.error) {
-                    // error
+                    vm.$popup({ message: 'Fail to Upload Receipt', backgroundColor: '#e57373', delay: 5, color: '#fffffa' })
                 }
 
                 if (newFile.success && !oldFile.success) {
-                    // success
+                    Bus.$emit('receipt-uploaded', newFile.response.order)
+                    vm.$popup({ message: newFile.response.message, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
                 }
             }
 
