@@ -92,6 +92,10 @@ class OrderController extends Controller
         $received = $this->getReceivedCount($user);
         $done = $this->getDone($user);
         $orders = $user->orders->toArray();
+        /* return all Orders if Admin */
+        if(\Auth::user()->isAdmin()){
+            $orders = Order::with('shipment.courier','payment.gateway')->get();
+        }
         
         return response()->json([
             'orders' => $orders,
