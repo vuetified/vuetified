@@ -38703,7 +38703,7 @@ if (hadRuntime) {
 
 "use strict";
 var Categories = function Categories() {
-    return __webpack_require__.e/* import() */(5).then(__webpack_require__.bind(null, 639));
+    return __webpack_require__.e/* import() */(6).then(__webpack_require__.bind(null, 639));
 };
 var Category = function Category() {
     return __webpack_require__.e/* import() */(3).then(__webpack_require__.bind(null, 640));
@@ -38762,7 +38762,7 @@ var Support = function Support() {
     return __webpack_require__.e/* import() */(7).then(__webpack_require__.bind(null, 645));
 };
 var ThankYou = function ThankYou() {
-    return __webpack_require__.e/* import() */(4).then(__webpack_require__.bind(null, 646));
+    return __webpack_require__.e/* import() */(5).then(__webpack_require__.bind(null, 646));
 };
 
 /* harmony default export */ __webpack_exports__["a"] = ([
@@ -38860,7 +38860,7 @@ var Product = function Product() {
 
 "use strict";
 var Checkout = function Checkout() {
-    return __webpack_require__.e/* import() */(6).then(__webpack_require__.bind(null, 649));
+    return __webpack_require__.e/* import() */(4).then(__webpack_require__.bind(null, 649));
 };
 var Dashboard = function Dashboard() {
     return __webpack_require__.e/* import() */(0).then(__webpack_require__.bind(null, 650));
