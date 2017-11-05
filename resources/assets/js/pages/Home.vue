@@ -11,7 +11,7 @@
 
     </div>
     <v-layout row justify-center>
-        <v-flex xs4 v-for="(video,key) in videos" :key="key" text-xs-center>
+        <v-flex xs4 v-for="(video,key) in videos" :key="key" text-xs-center pa-2>
             <v-card>
                 <v-card-media :src="video.poster"
                 :style="{ backgroundImage: 'url(' + video.poster + ')', height: imageHeight }"
@@ -19,6 +19,11 @@
                 @click="changeVideo(video)"
                 >
                 </v-card-media>
+                <v-card-title style="background-color: #103050;">
+                <v-spacer></v-spacer>
+                <span>{{ video.title }}</span>
+                <v-spacer></v-spacer>
+                </v-card-title>
             </v-card>
         </v-flex>
     </v-layout>
