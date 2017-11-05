@@ -1,13 +1,19 @@
 <template>
-    <v-list-tile  @click.native="navigate(href)">
-          <v-list-tile-action v-if="icon">
+    <v-list-tile :avatar="avatarOn"  @click.native="navigate(href)" :class="[{ styleAvatar: avatarOn }]">
+          <v-list-tile-action v-if="iconOn && !avatarOn">
             <v-icon :style="{color: isActive ? activeColor : iconColor, cursor: href ? 'pointer' : ''}">{{ icon }}</v-icon>
           </v-list-tile-action>
+          <v-list-tile-avatar v-if="iconOn && avatarOn">
+              <img :src="avatar" alt="">
+            </v-list-tile-avatar>
           <v-list-tile-content>
             <v-list-tile-title  :style="{color: isActive ? activeColor : linkColor}">
               <span :style="{cursor: href ? 'pointer' : ''}">{{ title  }}</span>
             </v-list-tile-title>
           </v-list-tile-content>
+          <v-list-tile-action v-if="iconOn && avatarOn">
+            <v-icon :style="{color: isActive ? activeColor : iconColor, cursor: href ? 'pointer' : ''}">{{ icon }}</v-icon>
+          </v-list-tile-action>
     </v-list-tile>
 </template>
 
@@ -25,6 +31,12 @@ export default {
         },
         title: {
             type: String
+        },
+        avatar: {
+            type: String,
+            default () {
+                return ''
+            }
         },
         icon: {
             type: String
@@ -54,6 +66,12 @@ export default {
         },
         isDark () {
             return this.dark === true
+        },
+        avatarOn () {
+            return !!this.avatar
+        },
+        iconOn () {
+            return !!this.icon
         }
     },
     methods: {
@@ -64,3 +82,10 @@ export default {
     }
 }
 </script>
+
+<style lang="scss" scoped>
+    .styleAvatar {
+        position: relative;
+        margin-left: -55px;
+    }
+</style>
