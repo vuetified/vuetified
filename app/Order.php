@@ -43,6 +43,6 @@ class Order extends Model implements HasMedia
 
     public function getReceiptAttribute()
     {
-        return $this->getMedia('receipts')->first()->getUrl();
+        return optional($this->getMedia('receipts')->first())->getUrl();
     }
 }
