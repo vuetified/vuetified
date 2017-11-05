@@ -3,7 +3,8 @@
         "details": {
             "address": "Olongapo",
             "working_days": "Mon-Fri",
-            "open_hrs": "10am-6pm"
+            "open_hrs": "10am-6pm",
+            "rate": 0
         },
         "model": "App\\Shipment\\PickUp"
     },
