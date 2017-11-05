@@ -228,7 +228,7 @@ export default {
         },
         async getProducts () {
             let self = this
-            let slug = {slug: self.$route.params.slug}
+            let slug = {slug: self.slug}
             await axios.get(`${route('api.category.show', slug)}/?page=${self.page}`).then((response) => {
                 self.products = response.data.data
                 self.links = response.data.links
@@ -240,6 +240,7 @@ export default {
             })
         },
         async loadProducts () {
+            let self = this
             let slug = {slug: self.slug}
             await axios.get(`${route('api.category.show', slug)}/?page=${self.page}`).then((response) => {
                 self.products = response.data.data
