@@ -2,7 +2,7 @@
   <main-layout :class="[contentClass]">
     <carousel></carousel>
     <show-case></show-case>
-    <v-layout row wrap>
+    <v-layout row wrap v-if="loaded">
         <v-flex xs12 text-xs-center>
             <youtube :video-id="youtube_id" :player-width="youtubeWidth" :player-height="youtubeHeight"></youtube>
         </v-flex>
@@ -99,7 +99,7 @@ export default {
             }
         ],
         youtube_id: 'l-nKCcfSMHc',
-        height: null
+        loaded: false
     }),
     mounted () {
         Bus.$emit('footer-content-visible', true)
@@ -107,6 +107,7 @@ export default {
     methods: {
         changeVideo (video) {
             this.youtube_id = video.youtube
+            this.loaded = true
         }
 
     },
