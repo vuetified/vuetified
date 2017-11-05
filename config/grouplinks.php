@@ -4,45 +4,42 @@ return [
 // If We Will Use Database , We Would Like To Fetch it By Order Increasing
             [
             'id'        => 1,
-            'action'    => 'fa-fa',
-            'title'     => 'Group Avatar Link',
-            'href'      => '/',
-            'active'    => true,
+            'action'    => 'fa-tags',
+            'title'     => 'Sub Categories',
+            'href'      => '/categories',
+            'active'    => false,
             'component' => null,
             'order'     => 0,
             // Relationship For Nested Sets of Menu
             'items'     => [
                                 [
                                 'id'        => 4,
-                                'title'=> 'Main', 
-                                'avatar'=> 'https://vuetifyjs.com/static/doc-images/lists/1.jpg', 
-                                'action'=> 'chat_bubble', 
+                                'title'=> 'Packages', 
+                                'avatar'=> '/img/packages.png', 
+                                'action'=> 'fa-search', 
                                 'active'=> false, 
-                                'href'=> '/', 
-                                'component'=> 'Carousel'
+                                'href'=> '/categories/packages', 
+                                'component'=> 'Category'
+                                ],
+                                [
+                                    'id'        => 5,
+                                    'title'=> 'Amazing Products', 
+                                    'avatar'=> '/img/products.jpg', 
+                                    'action'=> 'fa-search', 
+                                    'active'=> false, 
+                                    'href'=> '/categories/amazing-products', 
+                                    'component'=> 'Category'
+                                ],
+                                [
+                                    'id'        => 5,
+                                    'title'=> 'Food Cart', 
+                                    'avatar'=> '/img/foodcart.png', 
+                                    'action'=> 'fa-search', 
+                                    'active'=> false, 
+                                    'href'=> '/categories/food-cart', 
+                                    'component'=> 'Category'
                                 ],
                             ],
             ],
-            [
-            'id'        => 2,
-            'action'    => 'restaurant',
-            'title'     => 'Group Icon Link',
-            'href'      => '/support',
-            'order'     => 1,
-            'items'     => [
-                                [ 'id' => 5,'title'=> 'Breakfast & brunch', 'action'=> 'chat_bubble', 'active'=> false ],
-                                [ 'id' => 6,'title'=> 'New American', 'action'=> 'chat_bubble', 'active'=> false ],
-                                [ 'id' => 7,'title'=> 'Sushi', 'action'=> 'chat_bubble', 'active'=> false ]
-                            ]
-            ],
-            [
-            'id'        => 3,
-            'action'    => 'school',
-            'title'     => 'Normal Group Link',
-            'href'      => '/about',
-            'order'     => 2,
-            'items'     =>  [
-                                [ 'id' => 8,'title'=> 'List Item' ]
-                            ]
-            ],
+            // Add Here Array you want to add in your Group Menu Links
 ];
