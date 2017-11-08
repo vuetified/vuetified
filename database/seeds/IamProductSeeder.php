@@ -76,25 +76,25 @@ class IamProductSeeder extends Seeder
             [
                 'name' => 'Mang Siomai',
                 'image' => '/img/products/mang-siomai.jpg',
-                'price' => 700,
+                'price' => 67200,
                 'category_id' => 2,
             ],
             [
                 'name' => 'Hongkong Fried Noodles',
                 'image' => '/img/products/hongkong-fried-noodles.jpg',
-                'price' => 900,
+                'price' => 67200,
                 'category_id' => 2,
             ],
             [
                 'name' => 'Dumpling King',
                 'image' => '/img/products/dumpling-king.jpg',
-                'price' => 750,
+                'price' => 67200,
                 'category_id' => 2,
             ],
             [
                 'name' => 'Chinky Pao',
                 'image' => '/img/products/chinky-pao.jpg',
-                'price' => 900,
+                'price' => 67200,
                 'category_id' => 2,
             ]
         ];
