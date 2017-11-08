@@ -5,7 +5,7 @@ import Vuetify from 'vuetify' /* Front End Framework */
 import Vue2Filters from 'vue2-filters' /* Add Filters such as currency etc */
 import VueUp from 'vueup' /* Simple Notification */
 import VeeValidate from 'vee-validate' /* Form Validation */
-import VueTimeago from 'vue-timeago' /* Human Readable Time */
+// import VueTimeago from 'vue-timeago' /* Human Readable Time */
 // import VueAgile from 'vue-agile' /* Carousel */
 // import Bars from 'vuebars' /* Chart */
 import VueYouTubeEmbed from 'vue-youtube-embed' /* Embed Youtube Video */
@@ -51,30 +51,30 @@ const veeConfig = {
 }
 
 /* Time Ago Config */
-const timeagoConfig = {
-    name: 'timeago',
-    locale: 'en-US',
-    locales: {
-        'en-US': require('vue-timeago/locales/en-US.json')
-    }
-}
+// const timeagoConfig = {
+//     name: 'timeago',
+//     locale: 'en-US',
+//     locales: {
+//         'en-US': require('vue-timeago/locales/en-US.json')
+//     }
+// }
 
 /* Install Vue Plugins */
 
 Vue.use(Vuetify)
 Vue.use(Vue2Filters)
-Vue.use(VueUp)
+Vue.use(VueUp) /* used in almost all axios request */
 // Vue.use(VueAgile)
 // Vue.use(Bars)
-Vue.use(VueYouTubeEmbed)
-Vue.use(VueClazyLoad)
+Vue.use(VueYouTubeEmbed) /* used in home.vue */
+Vue.use(VueClazyLoad) /* used in categories.vue, products.vue, category.vue */
 // Vue.use(VueImg)
-Vue.use(VueTimeago, timeagoConfig)
+// Vue.use(VueTimeago, timeagoConfig)
 Vue.use(VeeValidate, veeConfig)
 Vue.use(Vuex)
-Vue.use(VueCookie)
+Vue.use(VueCookie) /* used in auth.js */
 Vue.use(VueVisible)
-Vue.use(VueTruncate)
+Vue.use(VueTruncate) /* used in fileUploader.vue
 /* Seed Initial State as Mixins */
 Vue.mixin(initialData)
 
