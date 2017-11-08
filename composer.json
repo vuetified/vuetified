@@ -20,6 +20,7 @@
         "laravel/tinker": "~1.0",
         "maatwebsite/excel": "~2.1.0",
         "predis/predis": "^1.1",
+        "renatomarinho/laravel-page-speed": "^1.8",
         "spatie/laravel-collection-macros": "^3.3",
         "spatie/laravel-medialibrary": "6.0.0",
         "spatie/laravel-permission": "^2.6",

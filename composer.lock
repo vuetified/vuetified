@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "d61f21ca136c87f13e6e244b515b2ba1",
+    "content-hash": "1527eec6b505ce92212df51236c7f525",
     "packages": [
         {
             "name": "barryvdh/laravel-cors",
@@ -3063,6 +3063,62 @@
                 "uuid"
             ],
             "time": "2017-08-04T13:39:04+00:00"
+        },
+        {
+            "name": "renatomarinho/laravel-page-speed",
+            "version": "1.8.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/renatomarinho/laravel-page-speed.git",
+                "reference": "1be7b76a64f0b9fc3622ec572991f8854ee29dce"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/renatomarinho/laravel-page-speed/zipball/1be7b76a64f0b9fc3622ec572991f8854ee29dce",
+                "reference": "1be7b76a64f0b9fc3622ec572991f8854ee29dce",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "5.3.* || 5.4.* || 5.5.*",
+                "php": "^5.6 || ^7.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^3.2",
+                "phpunit/phpunit": "^5.7 || ^6.0",
+                "squizlabs/php_codesniffer": "^2.3"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "RenatoMarinho\\LaravelPageSpeed\\ServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "RenatoMarinho\\LaravelPageSpeed\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Renato Marinho",
+                    "email": "renato.marinho@s2move.com"
+                }
+            ],
+            "description": "Laravel Page Speed",
+            "keywords": [
+                "html",
+                "laravel",
+                "minify",
+                "optmize",
+                "page speed"
+            ],
+            "time": "2017-11-03T22:08:15+00:00"
         },
         {
             "name": "spatie/image",
