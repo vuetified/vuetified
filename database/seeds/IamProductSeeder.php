@@ -23,7 +23,7 @@ class IamProductSeeder extends Seeder
                 'image' => '/img/foodcart.png'
             ],
             [
-                'name' => 'Amazing Products',
+                'name' => 'Supplements',
                 'image' => '/img/products.jpg'
             ],
         ];
@@ -32,37 +32,37 @@ class IamProductSeeder extends Seeder
         }
         $products = [
             [
-                'name' => 'Amazing Choco Barley Powered Drink',
+                'name' => 'Choco Barley Powered Drink',
                 'image' => '/img/products/choco-barley-powdered-drink.jpg',
                 'price' => 700,
                 'category_id' => 3,
             ],
             [
-                'name' => 'Amazing Coffee Mix with Glutathione',
+                'name' => 'Coffee Mix with Glutathione',
                 'image' => '/img/products/coffee-mix-with-glutathione.jpg',
                 'price' => 900,
                 'category_id' => 3,
             ],
             [
-                'name' => 'Amazing Coffee Mix With Tongkat-Ali',
+                'name' => 'Coffee Mix With Tongkat-Ali',
                 'image' => '/img/products/coffee-mix-with-tongkat-ali.jpg',
                 'price' => 750,
                 'category_id' => 3,
             ],
             [
-                'name' => 'Amazing Grape Juice With Garcinia Cambogia',
+                'name' => 'Grape Juice With Garcinia Cambogia',
                 'image' => '/img/products/grape-juice-with-garcinia-cambogia.jpg',
                 'price' => 900,
                 'category_id' => 3,
             ],
             [
-                'name' => 'Amazing Organic Pure Barley Capsules',
+                'name' => 'Organic Pure Barley Capsules',
                 'image' => '/img/products/organic-pure-barley-capsules.jpg',
                 'price' => 1550,
                 'category_id' => 3,
             ],
             [
-                'name' => 'Amazing Organic Pure Barley Powdered Drink',
+                'name' => 'Organic Pure Barley Powdered Drink',
                 'image' => '/img/products/organic-pure-barley-powdered-drink.jpg',
                 'price' => 900,
                 'category_id' => 3,
