@@ -7,10 +7,13 @@ use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use Gloudemans\Shoppingcart\Contracts\Buyable;
 use Gloudemans\Shoppingcart\CanBeBought;
+use Spatie\MediaLibrary\Media;
+use Spatie\MediaLibrary\HasMedia\Interfaces\HasMediaConversions;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
-class Product extends Model implements Buyable
+class Product extends Model implements Buyable, HasMediaConversions
 {
-    use Sluggable,SluggableScopeHelpers,CanBeBought;
+    use Sluggable,SluggableScopeHelpers,CanBeBought,HasMediaTrait;
 
     public function sluggable()
     {
@@ -37,5 +40,13 @@ class Product extends Model implements Buyable
     public static function findBySku($sku)
     {
         return self::whereSku($sku)->first();
+    }
+    /* uses laravel queue system , use laravel horizon */
+    public function registerMediaConversions(Media $media = null)
+    {
+        $this->addMediaConversion('thumb')
+              ->width(150)
+              ->height(150)
+              ->sharpen(10);
     }
 }

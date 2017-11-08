@@ -1,19 +1,11 @@
-show where to settle payment for manual payment
-
 // Create a Link Route which holds the sponsor
-
-
-// dashboard
-
 view 
-modal edit (upload receipt)
-
-
-add a button for received(user)
-
-add 3 endpoint to change customer details
-shipping details , and payment details
-
 add product page
 
-
+Server Side Image Optimzation
+Here's how to install all the optimizers on Ubuntu:
+sudo apt-get install jpegoptim
+sudo apt-get install optipng
+sudo apt-get install pngquant
+sudo npm install -g svgo
+sudo apt-get install gifsicle

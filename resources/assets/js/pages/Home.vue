@@ -2,11 +2,6 @@
   <main-layout :class="[contentClass]">
     <carousel></carousel>
     <show-case></show-case>
-    <v-layout row wrap v-if="loaded">
-        <v-flex xs12 text-xs-center>
-            <youtube :video-id="youtube_id" :player-width="youtubeWidth" :player-height="youtubeHeight"></youtube>
-        </v-flex>
-    </v-layout>
     <div class="pa-3">
 
     </div>
@@ -27,6 +22,17 @@
             </v-card>
         </v-flex>
     </v-layout>
+    <div class="pa-3" v-if="loaded">
+
+    </div>
+    <v-layout row wrap v-if="loaded">
+        <v-flex xs12 text-xs-center>
+            <youtube :video-id="youtube_id" :player-width="youtubeWidth" :player-height="youtubeHeight"></youtube>
+        </v-flex>
+    </v-layout>
+    <div class="pa-3">
+
+    </div>
     <logo-slider></logo-slider>
     <footer-note></footer-note>
   </main-layout>
