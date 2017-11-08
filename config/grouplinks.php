@@ -27,7 +27,7 @@ return [
                                     'avatar'=> '/img/products.jpg', 
                                     'action'=> 'fa-search', 
                                     'active'=> false, 
-                                    'href'=> '/categories/amazing-products', 
+                                    'href'=> '/categories/supplements', 
                                     'component'=> 'Category'
                                 ],
                                 [

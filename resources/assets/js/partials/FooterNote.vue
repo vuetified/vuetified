@@ -4,10 +4,12 @@
     <v-flex xs12 sm12 md3 lg3 xl3>
         <v-subheader class="headline primary--text">Featured Products</v-subheader>
         <v-list dense :class="[contentClass]">
-        <v-link title="Grape juice with Garcinia Cambogia" :href="'/products/grape-juice-with-garcinia-cambodia'"></v-link>
-        <v-link title="Organic Pure Barley Powered Drink" :href="'/products/organic-pure-barley-powered-drink'"></v-link>
-        <v-link title="Coffee Mix with Glutathione" :href="'/products/coffee-mix-with-gluthathione'"></v-link>
+        <v-link title="Grape juice with Garcinia Cambogia" :href="'/products/grape-juice-with-garcinia-cambogia'"></v-link>
+        <v-link title="Organic Pure Barley Powered Drink" :href="'/products/organic-pure-barley-powdered-drink'"></v-link>
+        <v-link title="Coffee Mix with Glutathione" :href="'/products/coffee-mix-with-glutathione'"></v-link>
         <v-link title="Choco Barley Powered Drink" :href="'/products/choco-barley-powdered-drink'"></v-link>
+        <v-link title="Organic Pure Barley Capsules" :href="'/products/organic-pure-barley-capsules'"></v-link>
+        <v-link title="Organic Pure Barley Powdered Drink" :href="'/products/organic-pure-barley-powdered-drink'"></v-link>
         </v-list>
     </v-flex>
     <v-flex xs12 sm12 md3 lg3 xl3>

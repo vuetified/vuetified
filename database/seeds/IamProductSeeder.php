@@ -32,7 +32,7 @@ class IamProductSeeder extends Seeder
         }
         $products = [
             [
-                'name' => 'Choco Barley Powered Drink',
+                'name' => 'Choco Barley Powdered Drink',
                 'image' => '/img/products/choco-barley-powdered-drink.jpg',
                 'price' => 700,
                 'category_id' => 3,
