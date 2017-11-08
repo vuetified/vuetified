@@ -1,5 +1,5 @@
 <template>
-  <main-layout :class="[contentClass]">
+  <main-layout>
       <v-container fluid grid-list-md style="padding-top:100px;">
         <v-layout row wrap>
             <v-breadcrumbs icons divider="forward">
@@ -17,7 +17,6 @@
                 </v-breadcrumbs-item>
             </v-breadcrumbs>
         </v-layout>
-        <v-divider inset></v-divider>
         <v-layout row wrap>
           <v-flex
             xs12 sm12 md3 lg3 xl3
@@ -34,7 +33,7 @@
                         <v-container fill-height fluid>
                             <v-layout fill-height>
                                 <v-flex xs12 align-end flexbox>
-                                <span class="headline" v-text="product.name"></span>
+                                <span class="body-2 white--text accent" v-text="product.name"></span>
                                 </v-flex>
                             </v-layout>
                         </v-container>
@@ -49,7 +48,7 @@
                         <v-container fill-height fluid>
                             <v-layout fill-height>
                                 <v-flex xs12 align-end flexbox>
-                                    <span class="headline" v-text="product.name"></span>
+                                    <span class="body-2 white--text accent" v-text="product.name"></span>
                                 </v-flex>
                             </v-layout>
                         </v-container>
@@ -102,15 +101,12 @@
                     </v-pagination>
                 </div>
             </v-flex>
-            <v-flex xs12>
-                <v-card flat class="grey lighten-4" height="50px"></v-card>
+            <v-flex xs12 height="50px">
             </v-flex>
         </v-layout>
         <!-- If No Pagination Then Add 50px Height -->
-        <v-layout v-else row wrap>
-            <v-flex xs12>
-                <v-card flat class="grey lighten-4" height="50px"></v-card>
-            </v-flex>
+        <v-layout v-else row wrap height="50px">
+
         </v-layout>
       </v-container>
     </v-flex>
@@ -131,7 +127,6 @@ export default {
         MainLayout
     },
     data: () => ({
-        contentClass: { 'grey': true, 'lighten-4': true, 'accent--text': true },
         currency: '₱',
         products: [],
         links: {
