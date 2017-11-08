@@ -16,7 +16,7 @@ mix.js('resources/assets/js/app.js', 'public/js')
         'lodash', 'axios', 'jquery', 'vue', 'vuex', 'vue-router', 'vuetify'
     ])
 mix.stylus('resources/assets/stylus/app.styl', 'public/css')
-mix.sourceMaps()
+// mix.sourceMaps()
 if (mix.inProduction()) {
     mix.version()
     mix.disableNotifications()
