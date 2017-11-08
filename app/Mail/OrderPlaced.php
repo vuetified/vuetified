@@ -36,11 +36,11 @@ class OrderPlaced extends Mailable implements ShouldQueue
             'gateway' => $this->order->payment->gateway,
             'items' => $cart['items'],
             'subtotal' => $cart['subtotal'],
-            'tax' => $cart['tax'] ? $cart['tax'] : 0,
+            'tax' => $cart['tax'],
             'total' => $cart['total'],
-            'net_total' => $this->getNetTotal($cart['tax'] ? $cart['tax'] : 0,$cart['subtotal'],$this->order->shipment->shipping_fee),
-            'shipping_fee' => $this->order->shipment->shipping_fee,
-            'courier' => $this->order->shipment->courier,
+            'net_total' => $this->getNetTotal($cart['tax'],$cart['subtotal'],optional($this->order->shipment)->shipping_fee),
+            'shipping_fee' => optional($this->order->shipment)->shipping_fee,
+            'courier' => optional($this->order->shipment)->courier,
             'payment_type' => str_after($this->order->payment_type, 'App\\Payment\\'),
             'currency' => $this->order->payment->currency
         ]);
@@ -51,7 +51,7 @@ class OrderPlaced extends Mailable implements ShouldQueue
         return floatval(str_replace( ',', '', $val ));
     }
 
-    private function getNetTotal($tax = 0,$subtotal,$fee)
+    private function getNetTotal($tax,$subtotal,$fee)
     {
         return number_format($this->getFloat($tax) + $this->getFloat($subtotal) + $this->getFloat($fee));
     }
