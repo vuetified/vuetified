@@ -2,7 +2,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex' /* State Management */
 import Vuetify from 'vuetify' /* Front End Framework */
-import VueDefaultValue from 'vue-default-value' /* add default directive */
 import Vue2Filters from 'vue2-filters' /* Add Filters such as currency etc */
 import VueUp from 'vueup' /* Simple Notification */
 import VeeValidate from 'vee-validate' /* Form Validation */
@@ -64,7 +63,6 @@ const timeagoConfig = {
 
 Vue.use(Vuetify)
 Vue.use(Vue2Filters)
-Vue.use(VueDefaultValue)
 Vue.use(VueUp)
 Vue.use(VueAgile)
 Vue.use(Bars)
