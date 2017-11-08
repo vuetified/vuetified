@@ -22,23 +22,24 @@
         </v-list>
     </v-flex>
     <v-flex xs12 sm12 md3 lg3 xl3>
-        <v-subheader class="headline primary--text">Compliance</v-subheader>
+        <v-subheader class="headline primary--text">Social Media</v-subheader>
         <v-list dense :class="[contentClass]">
-        <v-link title="Cookie Policy" :href="'/cookie-policy'"></v-link>
-        <v-link title="Privacy Policy" :href="'/privacy-policy'"></v-link>
-        <v-link title="Refund Policy" :href="'/refund-policy'"></v-link>
-        <v-link title="Anti-Spam Policy" :href="'/anti-spam-policy'"></v-link>
+        <v-link
+        v-for="(value,key,index) in social_accounts" :key="key" :index="index"
+        :title="toProperCase(key)" :href="value"
+        >
+        </v-link>
         </v-list>
     </v-flex>
     <v-flex xs12 sm12 md3 lg3 xl3>
-        <v-subheader class="headline primary--text">Contact Details</v-subheader>
-        <v-list dense :class="[contentClass]">
-        <v-link title="Landline" :href="'/facebook'"></v-link>
-        <v-link title="Mobile 1" :href="'/twitter'"></v-link>
-        <v-link title="Mobile 2" :href="'/instagram'"></v-link>
-        <v-link title="Mobile 3" :href="'/linkedin'"></v-link>
-        <v-link title="Viber" :href="'/youtube'"></v-link>
-        </v-list>
+    <v-subheader class="headline primary--text">Contact Details</v-subheader>
+    <v-list class="accent">
+        <v-list-tile v-for="(value,key,index) in contact_details" :key="key" :index="index">
+            <v-list-tile-content>
+            <v-list-tile-title class="caption">{{ toProperCase(key) }}: {{ toProperCase(value) }}</v-list-tile-title>
+            </v-list-tile-content>
+        </v-list-tile>
+    </v-list>
     </v-flex>
     </v-layout>
 </v-container>
@@ -49,11 +50,42 @@
 import VLink from '../components/VLink.vue'
 export default {
     data: () => ({
-        contentClass: {'accent': true}
+        contentClass: {'accent': true},
+        contact_details: {
+            contact_person: '',
+            land_line: '',
+            globe: '',
+            smart: '',
+            red_mobile: '',
+            sun_cell: '',
+            viber: '',
+            fb: '',
+            twitter: '',
+            instagram: '',
+            youtube: '',
+            linkedin: ''
+        },
+        social_accounts: {
+            facebook: 'https://facebook.com',
+            twitter: 'https://www.twitter.com',
+            instagram: 'https://instagram.com',
+            youtube: 'https://youtube.com',
+            linkedIn: 'https://linkedin.com'
+        }
         // Get Referral Cookie Info For Contact Details
     }),
     components: {
         VLink
+    },
+    methods: {
+        toProperCase (key) {
+            let newStr = key.replace(/_/g, ' ')
+            return newStr.replace(/\w\S*/g, function (txt) { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase() })
+        }
+    },
+    mounted () {
+        // this.contact_details = App.contact_details
+        // this.social_accounts = App.social_accounts
     }
 }
 </script>
