@@ -6,13 +6,13 @@ import Vue2Filters from 'vue2-filters' /* Add Filters such as currency etc */
 import VueUp from 'vueup' /* Simple Notification */
 import VeeValidate from 'vee-validate' /* Form Validation */
 import VueTimeago from 'vue-timeago' /* Human Readable Time */
-import VueAgile from 'vue-agile' /* Carousel */
-import Bars from 'vuebars' /* Chart */
+// import VueAgile from 'vue-agile' /* Carousel */
+// import Bars from 'vuebars' /* Chart */
 import VueYouTubeEmbed from 'vue-youtube-embed' /* Embed Youtube Video */
 import VueClazyLoad from 'vue-clazy-load' /* Lazyload Images */
-import VueImg from 'v-img' /* Image Gallery Directive */
-import Echo from 'laravel-echo' /* Make App Realtime */
-import VueEcho from 'vue-echo' /* Vue Wrapper for laravel echo */
+// import VueImg from 'v-img' /* Image Gallery Directive */
+// import Echo from 'laravel-echo' /* Make App Realtime */
+// import VueEcho from 'vue-echo' /* Vue Wrapper for laravel echo */
 import VueCookie from 'vue-js-cookie'
 import VueVisible from 'vue-visible'
 import initialData from './mixins/initial-state' /* Our Initial State Provided By Our App */
@@ -64,11 +64,11 @@ const timeagoConfig = {
 Vue.use(Vuetify)
 Vue.use(Vue2Filters)
 Vue.use(VueUp)
-Vue.use(VueAgile)
-Vue.use(Bars)
+// Vue.use(VueAgile)
+// Vue.use(Bars)
 Vue.use(VueYouTubeEmbed)
 Vue.use(VueClazyLoad)
-Vue.use(VueImg)
+// Vue.use(VueImg)
 Vue.use(VueTimeago, timeagoConfig)
 Vue.use(VeeValidate, veeConfig)
 Vue.use(Vuex)
@@ -97,13 +97,13 @@ Vue.filter('formatSize', function (size) {
  * If Set to Realtime then this Will be Loaded.
  */
 
-if (typeof io !== 'undefined') {
-    window.Echo = Echo
-    let EchoInstance = new Echo({
-        namespace: 'App\\Events',
-        broadcaster: 'socket.io',
-        host: `${window.location.hostname}:6001`
-    })
-    /* Install VueEcho: this.$echo */
-    Vue.use(VueEcho, EchoInstance)
-}
+// if (typeof io !== 'undefined') {
+//     window.Echo = Echo
+//     let EchoInstance = new Echo({
+//         namespace: 'App\\Events',
+//         broadcaster: 'socket.io',
+//         host: `${window.location.hostname}:6001`
+//     })
+//     /* Install VueEcho: this.$echo */
+//     Vue.use(VueEcho, EchoInstance)
+// }
