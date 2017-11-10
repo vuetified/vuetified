@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Order;
 use App\User;
 use App\Exceptions\OrderNotFound;
+use App\Exceptions\UserNameNotFound;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
 class RouteServiceProvider extends ServiceProvider
@@ -33,6 +34,13 @@ class RouteServiceProvider extends ServiceProvider
         Route::pattern('base', '[a-zA-Z0-9]+');
         Route::pattern('slug', '[a-z0-9-]+');
         Route::pattern('username', '[a-z0-9_-]{3,16}');
+        Route::bind('username', function ($value) {
+            $user = User::where('username', $value)->first();
+            if($user){
+                return $user;
+            }
+            throw new UserNameNotFound;
+        });
         Route::pattern('name', '[a-z]+');
         Route::bind('order', function ($value) {
             $order = Order::where('id', $value)->first();
