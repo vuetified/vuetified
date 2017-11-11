@@ -53,7 +53,6 @@ export default {
         contentClass: {'accent': true},
         contact_details: App.sponsor.contact_details,
         social_links: App.sponsor.social_links
-        // Get Referral Cookie Info For Contact Details
     }),
     components: {
         VLink
@@ -63,11 +62,8 @@ export default {
             let newStr = key.replace(/_/g, ' ')
             return newStr.replace(/\w\S*/g, function (txt) { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase() })
         }
-    },
-    mounted () {
-        // this.contact_details = App.contact_details
-        // this.social_accounts = App.social_accounts
     }
+
 }
 </script>
 
