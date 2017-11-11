@@ -24,6 +24,7 @@ trait ProvidesScriptVariables
             'grouplinks' => config('grouplinks'),
             'theme' => config('theme'),
             'cart' => self::getCart(),
+            'sponsor' => self::getSponsor()
             // This will only be Loaded for Authenticated users
             // Specifically Admin Role
             // Hmmf maybe we can use Resource to Dynamically Load this stuff?
@@ -49,6 +50,28 @@ trait ProvidesScriptVariables
     protected static function getCart()
     {
        return Vuetified::call(InitialFrontendState::class.'@getCart');
+    }
+
+    protected static function getSponsor()
+    {
+        if($user = request()->username){
+            return [
+                'user_id' => $user->id,
+                'name' => $user->name,
+                'username' => $user->username,
+                'profile' => $user->profile,
+            ];
+        }
+        // We Will Return a Default Sponsor
+        else{
+            $user = Vuetified::user()->first()->load('profile');
+            return [
+                'user_id' => $user->id,
+                'name' => $user->name,
+                'username' => $user->username,
+                'profile' => $user->profile,
+            ];
+        }
     }
 
 }
