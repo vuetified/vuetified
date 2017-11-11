@@ -1558,6 +1558,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -1936,6 +1937,17 @@ var render = function() {
                   title: "Dashboard",
                   href: "/dashboard",
                   icon: "dashboard"
+                }
+              })
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.getAuth
+            ? _c("v-link", {
+                attrs: {
+                  dark: _vm.darkClass,
+                  title: "Settings",
+                  href: "/settings",
+                  icon: "fa-cogs"
                 }
               })
             : _vm._e(),

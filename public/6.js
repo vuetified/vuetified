@@ -1562,6 +1562,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -1582,7 +1587,8 @@ var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_4_vuex__["createNam
         };
     },
     computed: __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends___default()({}, mapGetters({
-        getAuth: 'getAuth'
+        getAuth: 'getAuth',
+        getMe: 'getMe'
     })),
     components: {
         VLink: __WEBPACK_IMPORTED_MODULE_1__components_VLink_vue___default.a,
@@ -1902,6 +1908,15 @@ var render = function() {
           _c("v-link", {
             attrs: {
               dark: _vm.darkClass,
+              title: "Company Profile",
+              href: "/about",
+              icon: "fa-building"
+            }
+          }),
+          _vm._v(" "),
+          _c("v-link", {
+            attrs: {
+              dark: _vm.darkClass,
               title: "Products",
               href: "/products",
               icon: "fa-shopping-basket"
@@ -1933,6 +1948,17 @@ var render = function() {
             [_vm._v("Members Area")]
           ),
           _vm._v(" "),
+          _vm.getMe.isAdmin
+            ? _c("v-link", {
+                attrs: {
+                  dark: _vm.darkClass,
+                  title: "User Management",
+                  href: "/users",
+                  icon: "fa-users"
+                }
+              })
+            : _vm._e(),
+          _vm._v(" "),
           _vm.getAuth
             ? _c("v-link", {
                 attrs: {
@@ -1940,6 +1966,17 @@ var render = function() {
                   title: "Dashboard",
                   href: "/dashboard",
                   icon: "dashboard"
+                }
+              })
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.getAuth
+            ? _c("v-link", {
+                attrs: {
+                  dark: _vm.darkClass,
+                  title: "Settings",
+                  href: "/settings",
+                  icon: "fa-cogs"
                 }
               })
             : _vm._e(),

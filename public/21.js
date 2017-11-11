@@ -1,4 +1,4 @@
-webpackJsonp([5],{
+webpackJsonp([21],{
 
 /***/ 624:
 /***/ (function(module, exports) {
@@ -1564,9 +1564,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 
 
@@ -1587,8 +1584,7 @@ var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_4_vuex__["createNam
         };
     },
     computed: __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends___default()({}, mapGetters({
-        getAuth: 'getAuth',
-        getMe: 'getMe'
+        getAuth: 'getAuth'
     })),
     components: {
         VLink: __WEBPACK_IMPORTED_MODULE_1__components_VLink_vue___default.a,
@@ -1947,17 +1943,6 @@ var render = function() {
             },
             [_vm._v("Members Area")]
           ),
-          _vm._v(" "),
-          _vm.getMe.isAdmin
-            ? _c("v-link", {
-                attrs: {
-                  dark: _vm.darkClass,
-                  title: "User Management",
-                  href: "/users",
-                  icon: "fa-users"
-                }
-              })
-            : _vm._e(),
           _vm._v(" "),
           _vm.getAuth
             ? _c("v-link", {

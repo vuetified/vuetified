@@ -37479,22 +37479,19 @@ var Category = function Category() {
 
 "use strict";
 var Home = function Home() {
-    return __webpack_require__.e/* import() */(1).then(__webpack_require__.bind(null, 632));
+    return __webpack_require__.e/* import() */(0).then(__webpack_require__.bind(null, 632));
 };
 var About = function About() {
-    return __webpack_require__.e/* import() */(10).then(__webpack_require__.bind(null, 633));
+    return __webpack_require__.e/* import() */(24).then(__webpack_require__.bind(null, 633));
 };
 var Cart = function Cart() {
-    return __webpack_require__.e/* import() */(11).then(__webpack_require__.bind(null, 634));
-};
-var Courses = function Courses() {
-    return __webpack_require__.e/* import() */(9).then(__webpack_require__.bind(null, 635));
+    return __webpack_require__.e/* import() */(25).then(__webpack_require__.bind(null, 634));
 };
 var Support = function Support() {
-    return __webpack_require__.e/* import() */(7).then(__webpack_require__.bind(null, 636));
+    return __webpack_require__.e/* import() */(23).then(__webpack_require__.bind(null, 636));
 };
 var ThankYou = function ThankYou() {
-    return __webpack_require__.e/* import() */(5).then(__webpack_require__.bind(null, 637));
+    return __webpack_require__.e/* import() */(4).then(__webpack_require__.bind(null, 637));
 };
 
 /* harmony default export */ __webpack_exports__["a"] = ([
@@ -37511,14 +37508,6 @@ var ThankYou = function ThankYou() {
     path: '/cart',
     component: Cart,
     name: 'cart',
-    meta: {
-        permission: 'guest',
-        fail: '/error'
-    }
-}, {
-    path: '/courses',
-    component: Courses,
-    name: 'course',
     meta: {
         permission: 'guest',
         fail: '/error'
@@ -37592,10 +37581,16 @@ var Product = function Product() {
 
 "use strict";
 var Checkout = function Checkout() {
-    return __webpack_require__.e/* import() */(4).then(__webpack_require__.bind(null, 640));
+    return __webpack_require__.e/* import() */(7).then(__webpack_require__.bind(null, 640));
 };
 var Dashboard = function Dashboard() {
-    return __webpack_require__.e/* import() */(0).then(__webpack_require__.bind(null, 641));
+    return __webpack_require__.e/* import() */(5).then(__webpack_require__.bind(null, 641));
+};
+var Settings = function Settings() {
+    return __webpack_require__.e/* import() */(9).then(__webpack_require__.bind(null, 826));
+};
+var Users = function Users() {
+    return __webpack_require__.e/* import() */(1/* empty */).then(__webpack_require__.bind(null, 829));
 };
 
 /* harmony default export */ __webpack_exports__["a"] = ([
@@ -37610,9 +37605,27 @@ var Dashboard = function Dashboard() {
         fail: '/error'
     }
 }, {
+    path: '/settings',
+    component: Settings,
+    name: 'settings',
+    meta: {
+        requiresAuth: true,
+        permission: 'guest',
+        fail: '/error'
+    }
+}, {
     path: '/checkout',
     component: Checkout,
     name: 'checkout',
+    meta: {
+        requiresAuth: true,
+        permission: 'guest',
+        fail: '/error'
+    }
+}, {
+    path: '/users',
+    component: Users,
+    name: 'users',
     meta: {
         requiresAuth: true,
         permission: 'guest',
@@ -37836,6 +37849,22 @@ App.forms = {
         date_sent: null,
         received: false,
         date_received: null
+    },
+    contactDetailsForm: {
+        contact_person: null,
+        land_line: null,
+        globe: null,
+        smart: null,
+        red_mobile: null,
+        sun_cell: null,
+        viber: null
+    },
+    socialLinksForm: {
+        facebook: null,
+        twitter: null,
+        instagram: null,
+        youtube: null,
+        linkedIn: null
 
         // Add Other Form Object Here
     } };

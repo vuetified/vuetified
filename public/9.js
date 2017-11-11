@@ -83,53 +83,6 @@ function toComment(sourceMap) {
 
 /***/ }),
 
-/***/ 635:
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(310)
-/* script */
-var __vue_script__ = __webpack_require__(738)
-/* template */
-var __vue_template__ = __webpack_require__(739)
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources\\assets\\js\\pages\\Courses.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] Courses.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-517ae35e", Component.options)
-  } else {
-    hotAPI.reload("data-v-517ae35e", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-
 /***/ 643:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1558,6 +1511,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -1578,7 +1536,8 @@ var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_4_vuex__["createNam
         };
     },
     computed: __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends___default()({}, mapGetters({
-        getAuth: 'getAuth'
+        getAuth: 'getAuth',
+        getMe: 'getMe'
     })),
     components: {
         VLink: __WEBPACK_IMPORTED_MODULE_1__components_VLink_vue___default.a,
@@ -1898,6 +1857,15 @@ var render = function() {
           _c("v-link", {
             attrs: {
               dark: _vm.darkClass,
+              title: "Company Profile",
+              href: "/about",
+              icon: "fa-building"
+            }
+          }),
+          _vm._v(" "),
+          _c("v-link", {
+            attrs: {
+              dark: _vm.darkClass,
               title: "Products",
               href: "/products",
               icon: "fa-shopping-basket"
@@ -1929,6 +1897,17 @@ var render = function() {
             [_vm._v("Members Area")]
           ),
           _vm._v(" "),
+          _vm.getMe.isAdmin
+            ? _c("v-link", {
+                attrs: {
+                  dark: _vm.darkClass,
+                  title: "User Management",
+                  href: "/users",
+                  icon: "fa-users"
+                }
+              })
+            : _vm._e(),
+          _vm._v(" "),
           _vm.getAuth
             ? _c("v-link", {
                 attrs: {
@@ -1936,6 +1915,17 @@ var render = function() {
                   title: "Dashboard",
                   href: "/dashboard",
                   icon: "dashboard"
+                }
+              })
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.getAuth
+            ? _c("v-link", {
+                attrs: {
+                  dark: _vm.darkClass,
+                  title: "Settings",
+                  href: "/settings",
+                  icon: "fa-cogs"
                 }
               })
             : _vm._e(),
@@ -3161,14 +3151,276 @@ if (false) {
 
 /***/ }),
 
-/***/ 738:
+/***/ 826:
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(310)
+/* script */
+var __vue_script__ = __webpack_require__(827)
+/* template */
+var __vue_template__ = __webpack_require__(828)
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\pages\\Settings.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] Settings.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-78ca1ded", Component.options)
+  } else {
+    hotAPI.reload("data-v-78ca1ded", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ 827:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__layouts_Main_vue__ = __webpack_require__(652);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__layouts_Main_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__layouts_Main_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_theme__ = __webpack_require__(645);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends__ = __webpack_require__(644);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__layouts_Main_vue__ = __webpack_require__(652);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__layouts_Main_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__layouts_Main_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_theme__ = __webpack_require__(645);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vuex__ = __webpack_require__(90);
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3178,31 +3430,829 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
+
+
+var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_3_vuex__["createNamespacedHelpers"])('auth'),
+    mapGetters = _createNamespacedHelp.mapGetters;
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    mixins: [__WEBPACK_IMPORTED_MODULE_1__mixins_theme__["a" /* default */]],
+    mixins: [__WEBPACK_IMPORTED_MODULE_2__mixins_theme__["a" /* default */]],
     data: function data() {
         return {
-            contentClass: { 'grey': true, 'lighten-4': true, 'accent--text': true }
+            contentClass: { 'grey': true, 'lighten-4': true, 'accent--text': true },
+            /* for modal */
+            contact_modal: false,
+            social_modal: false,
+            /* for v-model */
+            contact_details: {},
+            social_links: {},
+            /* for modal input */
+            contact_tmp: {
+                title: null,
+                value: null
+            },
+            social_tmp: {
+                title: null,
+                value: null
+            },
+            /* form object */
+            contactDetailsForm: new AppForm(App.forms.contactDetailsForm),
+            socialLinksForm: new AppForm(App.forms.socialLinksForm),
+            profile: {},
+            name: '',
+            email: '',
+            username: '',
+            old_password: '',
+            password: '',
+            password_confirmation: ''
+
         };
     },
+    computed: __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends___default()({}, mapGetters({
+        getMe: 'getMe'
+    })),
     components: {
-        MainLayout: __WEBPACK_IMPORTED_MODULE_0__layouts_Main_vue___default.a
+        MainLayout: __WEBPACK_IMPORTED_MODULE_1__layouts_Main_vue___default.a
+    },
+    mounted: function mounted() {
+        var self = this;
+        self.social_links = self.getMe.social_links;
+        self.contact_details = self.getMe.contact_details;
+        self.profile = self.getMe.profile;
+        self.name = self.getMe.name;
+        self.email = self.getMe.email;
+        self.username = self.getMe.username;
+    },
+
+    methods: {
+        udpateProfile: function udpateProfile() {
+            console.log('update profile');
+        },
+        updateContactDetails: function updateContactDetails() {
+            var self = this;
+            for (var key in self.contact_details) {
+                self.contactDetailsForm[key] = self.getMe.contact_details[key];
+            }
+            // update getMe
+            console.log(self.contactDetailsForm);
+        },
+        updateSocialLinks: function updateSocialLinks() {
+            var self = this;
+            for (var key in self.social_links) {
+                self.socialLinksForm[key] = self.social_links[key];
+            }
+            // update getMe
+            console.log(self.socialLinksForm);
+        },
+        closeContactInput: function closeContactInput() {
+            this.contact_tmp.title = null;
+            this.contact_tmp.value = null;
+            this.contact_modal = false;
+        },
+        addContactInput: function addContactInput() {
+            this.$set(this.contact_details, this.contact_tmp.title, this.contact_tmp.value);
+            this.contact_tmp.title = null;
+            this.contact_tmp.value = null;
+            this.contact_modal = false;
+            /* send ajax to add new contact info */
+            // update getMe
+        },
+        closeSocialInput: function closeSocialInput() {
+            this.social_tmp.title = null;
+            this.social_tmp.value = null;
+            this.social_modal = false;
+        },
+        addSocialInput: function addSocialInput() {
+            this.$set(this.social_links, this.social_tmp.title, this.social_tmp.value);
+            this.social_tmp.title = null;
+            this.social_tmp.value = null;
+            this.social_modal = false;
+            /* send ajax to add new contact info */
+            // update getMe
+        },
+        toProperCase: function toProperCase(key) {
+            var newStr = key.replace(/_/g, ' ');
+            return newStr.replace(/\w\S*/g, function (txt) {
+                return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+            });
+        }
     }
 });
 
 /***/ }),
 
-/***/ 739:
+/***/ 828:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("main-layout", { class: [_vm.contentClass] }, [
-    _c("p", [_vm._v("Courses page")])
-  ])
+  return _c(
+    "main-layout",
+    { class: [_vm.contentClass], style: { paddingTop: "55px" } },
+    [
+      _c(
+        "v-tabs",
+        { attrs: { dark: "", fixed: "", icons: "", centered: "" } },
+        [
+          _c(
+            "v-tabs-bar",
+            { staticClass: "blue-grey darken-4" },
+            [
+              _c("v-tabs-slider", { attrs: { color: "primary" } }),
+              _vm._v(" "),
+              _c(
+                "v-tabs-item",
+                { attrs: { href: "#account" } },
+                [
+                  _c("v-icon", [_vm._v("fa-user")]),
+                  _vm._v("\n        Account\n      ")
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-tabs-item",
+                { attrs: { href: "#profile" } },
+                [
+                  _c("v-icon", [_vm._v("fa-address-card")]),
+                  _vm._v("\n        Profile\n      ")
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-tabs-item",
+                { attrs: { href: "#contact-details" } },
+                [
+                  _c("v-icon", [_vm._v("phone")]),
+                  _vm._v("\n        Contact Details\n      ")
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-tabs-item",
+                { attrs: { href: "#social-links" } },
+                [
+                  _c("v-icon", [_vm._v("link")]),
+                  _vm._v("\n        Social Links\n      ")
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-tabs-items",
+            [
+              _c(
+                "v-tabs-content",
+                { attrs: { id: "account" } },
+                [
+                  _c(
+                    "v-container",
+                    [
+                      _c(
+                        "v-layout",
+                        { attrs: { row: "", wrap: "" } },
+                        [
+                          _c(
+                            "v-subheader",
+                            {
+                              staticClass: "primary--text",
+                              attrs: { light: "" }
+                            },
+                            [_vm._v("\n              Edit Account\n          ")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-flex",
+                            { attrs: { xs12: "" } },
+                            [
+                              _c("v-text-field", {
+                                attrs: { label: "Username", light: "" },
+                                model: {
+                                  value: _vm.username,
+                                  callback: function($$v) {
+                                    _vm.username = $$v
+                                  },
+                                  expression: "username"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-flex",
+                            { attrs: { xs12: "" } },
+                            [
+                              _c("v-text-field", {
+                                attrs: { label: "Email", light: "" },
+                                model: {
+                                  value: _vm.email,
+                                  callback: function($$v) {
+                                    _vm.email = $$v
+                                  },
+                                  expression: "email"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-flex",
+                            { attrs: { xs12: "" } },
+                            [
+                              _c("v-text-field", {
+                                attrs: { label: "Account Name", light: "" },
+                                model: {
+                                  value: _vm.name,
+                                  callback: function($$v) {
+                                    _vm.name = $$v
+                                  },
+                                  expression: "name"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-flex",
+                            { attrs: { xs12: "" } },
+                            [
+                              _c("v-text-field", {
+                                attrs: { label: "Old Password", light: "" },
+                                model: {
+                                  value: _vm.old_password,
+                                  callback: function($$v) {
+                                    _vm.old_password = $$v
+                                  },
+                                  expression: "old_password"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-flex",
+                            { attrs: { xs12: "" } },
+                            [
+                              _c("v-text-field", {
+                                attrs: { label: "New Password", light: "" },
+                                model: {
+                                  value: _vm.password,
+                                  callback: function($$v) {
+                                    _vm.password = $$v
+                                  },
+                                  expression: "password"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-flex",
+                            { attrs: { xs12: "" } },
+                            [
+                              _c("v-text-field", {
+                                attrs: {
+                                  label: "Confirm New Password",
+                                  light: ""
+                                },
+                                model: {
+                                  value: _vm.password_confirmation,
+                                  callback: function($$v) {
+                                    _vm.password_confirmation = $$v
+                                  },
+                                  expression: "password_confirmation"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-btn",
+                            {
+                              attrs: { block: "", color: "primary" },
+                              on: {
+                                click: function($event) {
+                                  _vm.updateAccount()
+                                }
+                              }
+                            },
+                            [
+                              _vm._v("\n              Update Account "),
+                              _c("v-icon", { attrs: { right: "" } }, [
+                                _vm._v("fa-send")
+                              ])
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-tabs-content",
+                { attrs: { id: "profile" } },
+                [
+                  _c(
+                    "v-container",
+                    [
+                      _c(
+                        "v-layout",
+                        { attrs: { row: "", wrap: "" } },
+                        [
+                          _c(
+                            "v-subheader",
+                            {
+                              staticClass: "primary--text",
+                              attrs: { light: "" }
+                            },
+                            [_vm._v("\n              Edit Profile\n          ")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-flex",
+                            { attrs: { xs12: "" } },
+                            _vm._l(_vm.profile, function(value, key, index) {
+                              return _c("v-text-field", {
+                                key: key,
+                                attrs: {
+                                  label: _vm.toProperCase(key),
+                                  light: "",
+                                  index: index
+                                },
+                                model: {
+                                  value: _vm.profile[key],
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.profile, key, $$v)
+                                  },
+                                  expression: "profile[key]"
+                                }
+                              })
+                            })
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-btn",
+                            {
+                              attrs: { block: "", color: "primary" },
+                              on: {
+                                click: function($event) {
+                                  _vm.updateProfile()
+                                }
+                              }
+                            },
+                            [
+                              _vm._v("\n              Update Profile "),
+                              _c("v-icon", { attrs: { right: "" } }, [
+                                _vm._v("fa-send")
+                              ])
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-tabs-content",
+                { attrs: { id: "contact-details" } },
+                [
+                  _c(
+                    "v-container",
+                    [
+                      _c(
+                        "v-layout",
+                        { attrs: { row: "", wrap: "" } },
+                        [
+                          _c(
+                            "v-subheader",
+                            {
+                              staticClass: "primary--text",
+                              attrs: { light: "" }
+                            },
+                            [
+                              _vm._v(
+                                "\n              Contact Details\n          "
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-flex",
+                            { attrs: { xs12: "" } },
+                            _vm._l(_vm.contact_details, function(
+                              value,
+                              key,
+                              index
+                            ) {
+                              return _c("v-text-field", {
+                                key: key,
+                                attrs: {
+                                  label: _vm.toProperCase(key),
+                                  light: "",
+                                  index: index
+                                },
+                                model: {
+                                  value: _vm.contact_details[key],
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.contact_details, key, $$v)
+                                  },
+                                  expression: "contact_details[key]"
+                                }
+                              })
+                            })
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-btn",
+                            {
+                              attrs: { block: "", color: "primary" },
+                              on: {
+                                click: function($event) {
+                                  _vm.updateContactDetails()
+                                }
+                              }
+                            },
+                            [
+                              _vm._v("\n              Update Contact Details "),
+                              _c("v-icon", { attrs: { right: "" } }, [
+                                _vm._v("fa-send")
+                              ])
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-btn",
+                            {
+                              attrs: { block: "", color: "accent" },
+                              on: {
+                                click: function($event) {
+                                  _vm.contact_modal = true
+                                }
+                              }
+                            },
+                            [
+                              _vm._v("New Contact Details"),
+                              _c("v-icon", { attrs: { right: "" } }, [
+                                _vm._v("fa-plus")
+                              ])
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-dialog",
+                            {
+                              attrs: { persistent: "", width: "600px" },
+                              model: {
+                                value: _vm.contact_modal,
+                                callback: function($$v) {
+                                  _vm.contact_modal = $$v
+                                },
+                                expression: "contact_modal"
+                              }
+                            },
+                            [
+                              _c(
+                                "v-card",
+                                { attrs: { light: "" } },
+                                [
+                                  _c(
+                                    "v-card-title",
+                                    { staticClass: "headline" },
+                                    [_vm._v("Add New Contact Details")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-container",
+                                    [
+                                      _c(
+                                        "v-layout",
+                                        { attrs: { row: "", wrap: "" } },
+                                        [
+                                          _c(
+                                            "v-flex",
+                                            { attrs: { xs12: "" } },
+                                            _vm._l(_vm.contact_tmp, function(
+                                              value,
+                                              key,
+                                              index
+                                            ) {
+                                              return _c("v-text-field", {
+                                                key: key,
+                                                attrs: {
+                                                  label: _vm.toProperCase(key),
+                                                  light: "",
+                                                  index: index
+                                                },
+                                                model: {
+                                                  value: _vm.contact_tmp[key],
+                                                  callback: function($$v) {
+                                                    _vm.$set(
+                                                      _vm.contact_tmp,
+                                                      key,
+                                                      $$v
+                                                    )
+                                                  },
+                                                  expression: "contact_tmp[key]"
+                                                }
+                                              })
+                                            })
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-card-actions",
+                                    [
+                                      _c("v-spacer"),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          attrs: {
+                                            color: "green darken-1",
+                                            flat: ""
+                                          },
+                                          nativeOn: {
+                                            click: function($event) {
+                                              _vm.addContactInput()
+                                            }
+                                          }
+                                        },
+                                        [_vm._v("Create Contact Details")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          attrs: { color: "error", flat: "" },
+                                          nativeOn: {
+                                            click: function($event) {
+                                              _vm.closeContactInput()
+                                            }
+                                          }
+                                        },
+                                        [_vm._v("Cancel")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-tabs-content",
+                { attrs: { id: "social-links" } },
+                [
+                  _c(
+                    "v-container",
+                    [
+                      _c(
+                        "v-layout",
+                        { attrs: { row: "", wrap: "" } },
+                        [
+                          _c(
+                            "v-subheader",
+                            {
+                              staticClass: "primary--text",
+                              attrs: { light: "" }
+                            },
+                            [_vm._v("\n              Social Links\n          ")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-flex",
+                            { attrs: { xs12: "" } },
+                            _vm._l(_vm.social_links, function(
+                              value,
+                              key,
+                              index
+                            ) {
+                              return _c("v-text-field", {
+                                key: key,
+                                attrs: {
+                                  label: _vm.toProperCase(key),
+                                  light: "",
+                                  index: index
+                                },
+                                model: {
+                                  value: _vm.social_links[key],
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.social_links, key, $$v)
+                                  },
+                                  expression: "social_links[key]"
+                                }
+                              })
+                            })
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-btn",
+                            {
+                              attrs: { block: "", color: "primary" },
+                              nativeOn: {
+                                click: function($event) {
+                                  _vm.updateSocialLinks()
+                                }
+                              }
+                            },
+                            [
+                              _vm._v("\n              Update Social Links "),
+                              _c("v-icon", { attrs: { right: "" } }, [
+                                _vm._v("fa-send")
+                              ])
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-btn",
+                            {
+                              attrs: { block: "", color: "accent" },
+                              on: {
+                                click: function($event) {
+                                  _vm.social_modal = true
+                                }
+                              }
+                            },
+                            [
+                              _vm._v("New Social Link"),
+                              _c("v-icon", { attrs: { right: "" } }, [
+                                _vm._v("fa-plus")
+                              ])
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-dialog",
+                            {
+                              attrs: { persistent: "", width: "600px" },
+                              model: {
+                                value: _vm.social_modal,
+                                callback: function($$v) {
+                                  _vm.social_modal = $$v
+                                },
+                                expression: "social_modal"
+                              }
+                            },
+                            [
+                              _c(
+                                "v-card",
+                                { attrs: { light: "" } },
+                                [
+                                  _c(
+                                    "v-card-title",
+                                    { staticClass: "headline" },
+                                    [_vm._v("Add New Social Link")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-container",
+                                    [
+                                      _c(
+                                        "v-layout",
+                                        { attrs: { row: "", wrap: "" } },
+                                        [
+                                          _c(
+                                            "v-flex",
+                                            { attrs: { xs12: "" } },
+                                            _vm._l(_vm.social_tmp, function(
+                                              value,
+                                              key,
+                                              index
+                                            ) {
+                                              return _c("v-text-field", {
+                                                key: key,
+                                                attrs: {
+                                                  label: _vm.toProperCase(key),
+                                                  light: "",
+                                                  index: index
+                                                },
+                                                model: {
+                                                  value: _vm.social_tmp[key],
+                                                  callback: function($$v) {
+                                                    _vm.$set(
+                                                      _vm.social_tmp,
+                                                      key,
+                                                      $$v
+                                                    )
+                                                  },
+                                                  expression: "social_tmp[key]"
+                                                }
+                                              })
+                                            })
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-card-actions",
+                                    [
+                                      _c("v-spacer"),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          attrs: {
+                                            color: "green darken-1",
+                                            flat: ""
+                                          },
+                                          nativeOn: {
+                                            click: function($event) {
+                                              _vm.addSocialInput()
+                                            }
+                                          }
+                                        },
+                                        [_vm._v("Create Social Link")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          attrs: { color: "error", flat: "" },
+                                          nativeOn: {
+                                            click: function($event) {
+                                              _vm.closeSocialInput()
+                                            }
+                                          }
+                                        },
+                                        [_vm._v("Cancel")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -3210,7 +4260,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-517ae35e", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-78ca1ded", module.exports)
   }
 }
 
