@@ -19,6 +19,9 @@ Route::post('/cart/delete', 'Api\Cart\CartController@delete')->name('api.cart.de
 Route::post('/cart/destroy', 'Api\Cart\CartController@destroy')->name('api.cart.destroy');
 Route::post('/orders/create', 'Api\Order\OrderController@create')->name('api.order.create');
 /* Vue Wilcard Route Catcher */
-Route::get('/{vue?}', function () {
-    return view('app');
-})->where('vue', '[\/\w\.-]*')->name('app');
+
+Route::domain('{username}.'.config('app.domain'))->group(function () {
+    Route::get('/{vue?}', 'DomainController@sponsor')->where('vue', '[\/\w\.-]*')->name('sponsor');
+});
+
+Route::get('/{vue?}', 'DomainController@app')->where('vue', '[\/\w\.-]*')->name('app');
