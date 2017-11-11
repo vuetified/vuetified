@@ -19,6 +19,7 @@ class AdminSeeder extends Seeder
             'password' => config('admin.password'),
             'username' => config('admin.username')
         ]);
+        
         $user->assignRole('admin');
         $link = new Link();
         $link->link = $user->username;
@@ -34,6 +35,14 @@ class AdminSeeder extends Seeder
             'last_name'  => 'Doe',
         ]);
         $user->profile()->save($profile);
+        $file1 = public_path('contact_details.json');
+        $contact_details = file_get_contents($file1);
+        
+        $user->contact_details = $contact_details;
+        $file2 = public_path('social_links.json');
+        $social_links =file_get_contents($file2);
+        $user->social_links = $social_links;
+        $user->save();
         
         
     }

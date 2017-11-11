@@ -21,6 +21,8 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique()->nullable();
             $table->string('password', 60);
+            $table->text('contact_details')->nullable();
+            $table->text('social_links')->nullable();
             $table->unsignedTinyInteger('resent')->default(0);
             $table->rememberToken();
             $table->timestamps();

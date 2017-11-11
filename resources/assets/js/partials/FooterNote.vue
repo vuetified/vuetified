@@ -25,7 +25,7 @@
         <v-subheader class="headline primary--text">Social Media</v-subheader>
         <v-list dense :class="[contentClass]">
         <v-link
-        v-for="(value,key,index) in social_accounts" :key="key" :index="index"
+        v-for="(value,key,index) in social_links" :key="key" :index="index"
         :title="toProperCase(key)" :href="value"
         >
         </v-link>
@@ -51,27 +51,8 @@ import VLink from '../components/VLink.vue'
 export default {
     data: () => ({
         contentClass: {'accent': true},
-        contact_details: {
-            contact_person: '',
-            land_line: '',
-            globe: '',
-            smart: '',
-            red_mobile: '',
-            sun_cell: '',
-            viber: '',
-            fb: '',
-            twitter: '',
-            instagram: '',
-            youtube: '',
-            linkedin: ''
-        },
-        social_accounts: {
-            facebook: 'https://facebook.com',
-            twitter: 'https://www.twitter.com',
-            instagram: 'https://instagram.com',
-            youtube: 'https://youtube.com',
-            linkedIn: 'https://linkedin.com'
-        }
+        contact_details: App.sponsor.contact_details,
+        social_links: App.sponsor.social_links
         // Get Referral Cookie Info For Contact Details
     }),
     components: {

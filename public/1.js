@@ -4221,7 +4221,7 @@ exports = module.exports = __webpack_require__(624)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -4289,28 +4289,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             contentClass: { 'accent': true },
-            contact_details: {
-                contact_person: '',
-                land_line: '',
-                globe: '',
-                smart: '',
-                red_mobile: '',
-                sun_cell: '',
-                viber: '',
-                fb: '',
-                twitter: '',
-                instagram: '',
-                youtube: '',
-                linkedin: ''
-            },
-            social_accounts: {
-                facebook: 'https://facebook.com',
-                twitter: 'https://www.twitter.com',
-                instagram: 'https://instagram.com',
-                youtube: 'https://youtube.com',
-                linkedIn: 'https://linkedin.com'
-                // Get Referral Cookie Info For Contact Details
-            } };
+            contact_details: App.sponsor.contact_details,
+            social_links: App.sponsor.social_links
+            // Get Referral Cookie Info For Contact Details
+        };
     },
     components: {
         VLink: __WEBPACK_IMPORTED_MODULE_0__components_VLink_vue___default.a
@@ -4464,7 +4446,7 @@ var render = function() {
               _c(
                 "v-list",
                 { class: [_vm.contentClass], attrs: { dense: "" } },
-                _vm._l(_vm.social_accounts, function(value, key, index) {
+                _vm._l(_vm.social_links, function(value, key, index) {
                   return _c("v-link", {
                     key: key,
                     attrs: {
