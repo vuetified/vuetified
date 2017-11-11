@@ -110,6 +110,22 @@ App.forms = {
         date_sent: null,
         received: false,
         date_received: null
+    },
+    contactDetailsForm: {
+        contact_person: null,
+        land_line: null,
+        globe: null,
+        smart: null,
+        red_mobile: null,
+        sun_cell: null,
+        viber: null
+    },
+    socialLinksForm: {
+        facebook: null,
+        twitter: null,
+        instagram: null,
+        youtube: null,
+        linkedIn: null
     }
 
     // Add Other Form Object Here
