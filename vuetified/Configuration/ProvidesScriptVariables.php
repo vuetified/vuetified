@@ -60,6 +60,8 @@ trait ProvidesScriptVariables
                 'name' => $user->name,
                 'username' => $user->username,
                 'profile' => $user->profile,
+                'contact_details' => json_decode($user->contact_details,true),
+                'social_links' => json_decode($user->social_links,true)
             ];
         }
         // We Will Return a Default Sponsor
