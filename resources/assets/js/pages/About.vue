@@ -1,6 +1,6 @@
 <template>
-  <main-layout :class="[contentClass]">
-    <p>About page</p>
+  <main-layout :class="[contentClass]" :style="{ paddingTop: `100px`}">
+    <p>Company Profile</p>
   </main-layout>
 </template>
 
