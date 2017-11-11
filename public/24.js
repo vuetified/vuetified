@@ -3212,6 +3212,108 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3220,7 +3322,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mixins: [__WEBPACK_IMPORTED_MODULE_1__mixins_theme__["a" /* default */]],
     data: function data() {
         return {
-            contentClass: { 'grey': true, 'lighten-4': true, 'accent--text': true }
+            contentClass: { 'grey': true, 'lighten-4': true, 'accent--text': true },
+            showcase: [{ color: 'primary', icon: 'fa-eye', show: true, title: 'VISION', tagline: 'IAMWORLDWIDE aims to be one of the most admired direct sales companies here and around the globe. Armed with a purpose to bring real change in our people’s total well-being including one’s health, prosperity, and balance. By living for others, we help MOVE them to improved lives whatever the situation and no matter the circumstance.', xs: 12, sm: 12, md: 4, lg: 4, xl: 4 }, { color: 'accent', icon: 'fa-fa', show: true, title: 'MISSION', tagline: 'IAMWORLDWIDE’s objective is to enrich the lives of our customers, independent distributors, employees, and the community by providing them with the best-in-market business opportunities, and to be at the forefront of bringing world-class quality products to whomever and wherever they may be in the world.', xs: 12, sm: 12, md: 4, lg: 4, xl: 4 }, { color: 'pink', icon: 'fa-handshake-o', show: true, title: 'OUR PLEDGE', tagline: 'At IAMWORLDWIDE, we’re not just committed to sales and marketing. We also recognize our obligation to the world – to provide first-class quality products to our clients, to instill an environment of continuous learning and mentoring amongst colleagues, to better the lives of our distributors & the communities we serve, and to inspire others to do the same. This commitment of moving humanity is how we do business every single day. LIVE. INSPIRE. MOVE.', xs: 12, sm: 12, md: 4, lg: 4, xl: 4 }],
+            values: [{ color: 'yellow', icon: 'fa-star', show: true, title: 'Integrity First', tagline: 'We commit to provide high quality products as zealous as protecting our reputation. We value trustworthiness by choosing to do what is right even when no one is watching. We envision ourselves in the forefront of nation building by adhering to our government obligations, being proponents of transparency, and to be advocates of lawful business practices.', xs: 12, sm: 12, md: 4, lg: 4, xl: 4 }, { color: 'info', icon: 'fa-user', show: true, title: 'Empowering People', tagline: 'As a company, we are constantly redefining our objectives, expectations, and limits. Our people are our lifeblood. We strive to create an atmosphere that appreciates, inspires, and enables everyone to transcend their potentials. And we recognize their value by ensuring them the right compensation and providing them with the best packages the industry could offer.', xs: 12, sm: 12, md: 4, lg: 4, xl: 4 }, { color: 'red', icon: 'fa-heart', show: true, title: 'Shaping Spirituality', tagline: 'The IAMWORLDWIDE community seeks to honor God by making an impact on the lives of our independent distributors, employees, and customers. We are but His stewards of this business and that it exists for the purpose of impacting people for eternity, making sure that all we do in and through the business honors Him.', xs: 12, sm: 12, md: 4, lg: 4, xl: 4 }, { color: 'grey', icon: 'fa-building', show: true, title: 'Transforming Communities', tagline: 'With a business model focused on uplifting the lives of our people, we, in turn, use our talents and treasures to make a difference to those who need it most. We believe we have a responsibility to give back to the community through our IAM CARES foundation. Whether via sponsorships, community service, or fund raising events, we shall foster a culture of generosity – for in giving do we receive.', xs: 12, sm: 12, md: 4, lg: 4, xl: 4 }, { color: '', icon: '', show: true, title: '', tagline: '', xs: 12, sm: 12, md: 4, lg: 4, xl: 4 }, { color: 'blue', icon: 'fa-thumbs-up', show: true, title: 'Passion for Excellence', tagline: 'Our endeavor entails pursuing what is right, over and over again. A habituation of demanding more of ourselves than our customers would. Through our persistence in finding better ways of doing what we do, and by declaring & attaining ambitious goals, we set new standards in our industry even exceeding our own expectations. We do not rest on our achievements. Rather, we passionately build on them in our personal and professional journey, wherever we may be in the world.', xs: 12, sm: 12, md: 4, lg: 4, xl: 4 }]
         };
     },
     components: {
@@ -3239,8 +3343,326 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "main-layout",
-    { class: [_vm.contentClass], style: { paddingTop: "100px" } },
-    [_c("p", [_vm._v("Company Profile")])]
+    { class: [_vm.contentClass], style: { paddingTop: "56px" } },
+    [
+      _c(
+        "v-parallax",
+        { attrs: { src: "/img/bg.jpg" } },
+        [
+          _c(
+            "v-layout",
+            { attrs: { column: "", "align-center": "", "justify-center": "" } },
+            [
+              _c("h4", { staticClass: "white--text" }, [
+                _vm._v("ABOUT IAMWORLDWIDE CORPORATION")
+              ]),
+              _vm._v(" "),
+              _c(
+                "h5",
+                { staticClass: "white--text", attrs: { "text-xs-center": "" } },
+                [
+                  _vm._v(
+                    "\n          A company committed in upgrading the quality of life – it was designed for dedicated, honest, hardworking, and self-motivated people who want to build their own business as Independent Distributors across the globe. Our portfolio offers a diverse and comprehensive range of marketing solutions, specialty products, and services aimed to drive individuals and families to financial excellence.\n      "
+                  )
+                ]
+              )
+            ]
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-container",
+        { attrs: { light: "" } },
+        [
+          _c(
+            "v-layout",
+            { attrs: { row: "", wrap: "" } },
+            [
+              _c("v-flex", { attrs: { xs12: "" } }, [
+                _c("h2", { attrs: { light: "" } }, [
+                  _vm._v("\n                Company Profile\n            ")
+                ]),
+                _vm._v(" "),
+                _c("p", [
+                  _vm._v(
+                    "\n                IAM Worldwide is a company committed to upgrading the quality of life – it was designed for dedicated, honest, hardworking, and self-motivated people who want to build their own businesses as Independent Distributors across the globe. Our portfolio offers a diverse and comprehensive range of marketing solutions, specialty products, and services aimed to drive individuals and families to financial excellence.\n            "
+                  )
+                ]),
+                _vm._v(" "),
+                _c("p", { attrs: { "pa-5": "" } }, [
+                  _vm._v(
+                    "\n                The company was founded by Mr. Allen Marvin Yu Eder and Ms. Aika Lorraine Uy who are both seasoned network marketing professionals and entrepreneurs. With an impeccable track record for being consistent top earners from several other marketing companies, they have both built unrelenting multi-million sales teams worldwide. Through their passion for helping individuals achieve financial freedom and personal greatness, they have helped create more than a hundred millionaires over the years. The IAMWORLDWIDE leadership team has over 20 combined years of expertise in the relationship marketing industry, that they have only implemented the systems and practices into IAMWORLDWIDE that are proven to work best.\n            "
+                  )
+                ])
+              ])
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-layout",
+            { attrs: { row: "", wrap: "" } },
+            [
+              _c(
+                "v-flex",
+                { attrs: { xs12: "", md6: "", lg6: "", xl6: "", "pa-2": "" } },
+                [
+                  _c("v-card-media", {
+                    attrs: { src: "/img/am2.jpg", height: "450px", contain: "" }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-flex",
+                { attrs: { xs12: "", md6: "", lg6: "", xl6: "", "pa-2": "" } },
+                [
+                  _c("v-card-media", {
+                    attrs: {
+                      src: "/img/aika2.jpg",
+                      height: "450px",
+                      contain: ""
+                    }
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-layout",
+            { attrs: { row: "", wrap: "" } },
+            _vm._l(_vm.showcase, function(card) {
+              return _c(
+                "v-flex",
+                _vm._b(
+                  {
+                    key: card.title,
+                    staticClass: "pa-2",
+                    attrs: { "text-xs-center": "" }
+                  },
+                  "v-flex",
+                  ((_obj = {}),
+                  (_obj["xs" + card.xs] = true),
+                  (_obj["sm" + card.sm] = true),
+                  (_obj["md" + card.md] = true),
+                  (_obj["lg" + card.lg] = true),
+                  (_obj["xl" + card.xl] = true),
+                  _obj),
+                  false
+                ),
+                [
+                  card.icon
+                    ? _c(
+                        "v-btn",
+                        { attrs: { icon: "", color: card.color } },
+                        [_c("v-icon", [_vm._v(_vm._s(card.icon))])],
+                        1
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c(
+                    "v-card",
+                    {
+                      staticStyle: { "background-color": "transparent" },
+                      attrs: { flat: "" }
+                    },
+                    [
+                      _c(
+                        "v-card-actions",
+                        [
+                          _c("v-spacer"),
+                          _vm._v(" "),
+                          _c("p", {
+                            staticClass: "headline primary--text",
+                            domProps: { textContent: _vm._s(card.title) }
+                          }),
+                          _vm._v(" "),
+                          _c("v-spacer"),
+                          _vm._v(" "),
+                          _c(
+                            "v-btn",
+                            {
+                              staticClass: "accent--text",
+                              attrs: { icon: "" },
+                              nativeOn: {
+                                click: function($event) {
+                                  card.show = !card.show
+                                }
+                              }
+                            },
+                            [
+                              _c("v-icon", [
+                                _vm._v(
+                                  _vm._s(
+                                    card.show
+                                      ? "keyboard_arrow_up"
+                                      : "keyboard_arrow_down"
+                                  )
+                                )
+                              ])
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-slide-y-transition",
+                        [
+                          _c("v-card-text", {
+                            directives: [
+                              {
+                                name: "show",
+                                rawName: "v-show",
+                                value: card.show,
+                                expression: "card.show"
+                              }
+                            ],
+                            staticClass: "accent--text",
+                            domProps: { textContent: _vm._s(card.tagline) }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+              var _obj
+            })
+          ),
+          _vm._v(" "),
+          _c(
+            "v-layout",
+            { attrs: { row: "", wrap: "" } },
+            [
+              _c("v-flex", { attrs: { xs12: "" } }, [
+                _c("h2", { attrs: { light: "" } }, [
+                  _vm._v("\n                Company Core Values\n            ")
+                ])
+              ]),
+              _vm._v(" "),
+              _vm._l(_vm.values, function(card) {
+                return _c(
+                  "v-flex",
+                  _vm._b(
+                    {
+                      key: card.title,
+                      staticClass: "pa-2",
+                      attrs: { "text-xs-center": "" }
+                    },
+                    "v-flex",
+                    ((_obj = {}),
+                    (_obj["xs" + card.xs] = true),
+                    (_obj["sm" + card.sm] = true),
+                    (_obj["md" + card.md] = true),
+                    (_obj["lg" + card.lg] = true),
+                    (_obj["xl" + card.xl] = true),
+                    _obj),
+                    false
+                  ),
+                  [
+                    card.icon
+                      ? _c(
+                          "v-btn",
+                          { attrs: { icon: "", color: card.color } },
+                          [_c("v-icon", [_vm._v(_vm._s(card.icon))])],
+                          1
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _c(
+                      "v-card",
+                      {
+                        staticStyle: { "background-color": "transparent" },
+                        attrs: { flat: "" }
+                      },
+                      [
+                        _c(
+                          "v-card-actions",
+                          [
+                            _c("v-spacer"),
+                            _vm._v(" "),
+                            _c("p", {
+                              staticClass: "headline primary--text",
+                              domProps: { textContent: _vm._s(card.title) }
+                            }),
+                            _vm._v(" "),
+                            _c("v-spacer"),
+                            _vm._v(" "),
+                            card.title
+                              ? _c(
+                                  "v-btn",
+                                  {
+                                    staticClass: "accent--text",
+                                    attrs: { icon: "" },
+                                    nativeOn: {
+                                      click: function($event) {
+                                        card.show = !card.show
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c("v-icon", [
+                                      _vm._v(
+                                        _vm._s(
+                                          card.show
+                                            ? "keyboard_arrow_up"
+                                            : "keyboard_arrow_down"
+                                        )
+                                      )
+                                    ])
+                                  ],
+                                  1
+                                )
+                              : _vm._e()
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "v-slide-y-transition",
+                          [
+                            _c("v-card-text", {
+                              directives: [
+                                {
+                                  name: "show",
+                                  rawName: "v-show",
+                                  value: card.show,
+                                  expression: "card.show"
+                                }
+                              ],
+                              staticClass: "accent--text",
+                              domProps: { textContent: _vm._s(card.tagline) }
+                            })
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+                var _obj
+              })
+            ],
+            2
+          )
+        ],
+        1
+      )
+    ],
+    1
   )
 }
 var staticRenderFns = []
