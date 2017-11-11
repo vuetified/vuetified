@@ -1,7 +1,6 @@
 const Home = () => import('../pages/Home.vue')
 const About = () => import('../pages/About.vue')
 const Cart = () => import('../components/Cart.vue')
-const Courses = () => import('../pages/Courses.vue')
 const Support = () => import('../pages/Support.vue')
 const ThankYou = () => import('../pages/ThankYou.vue')
 
@@ -20,15 +19,6 @@ export default [
         path: '/cart',
         component: Cart,
         name: 'cart',
-        meta: {
-            permission: 'guest',
-            fail: '/error'
-        }
-    },
-    {
-        path: '/courses',
-        component: Courses,
-        name: 'course',
         meta: {
             permission: 'guest',
             fail: '/error'
