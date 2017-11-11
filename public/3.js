@@ -3514,7 +3514,7 @@ var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_6_vuex__["createNam
         setInCart: function setInCart() {
             var self = this;
             var items = __WEBPACK_IMPORTED_MODULE_2_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_core_js_object_values___default()(self.getItems);
-            if (items.length > 0) {
+            if (items && items.length > 0) {
                 var inCart = items.filter(function (item) {
                     return self.products.some(function (product) {
                         return product.id === item.id;
@@ -3526,6 +3526,11 @@ var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_6_vuex__["createNam
                     product.inCart = true;
                     product.qty = payload.qty;
                     self.$set(self.products, index, product);
+                });
+            } else {
+                /* when cart is emptied then remove all inCart */
+                self.products.forEach(function (product) {
+                    product.inCart = false;
                 });
             }
         },

@@ -182,7 +182,7 @@ export default {
         setInCart () {
             let self = this
             let items = Object.values(self.getItems)
-            if (items.length > 0) {
+            if (items && items.length > 0) {
                 let inCart = items.filter(function (item) {
                     return self.products.some(function (product) {
                         return product.id === item.id
@@ -194,6 +194,10 @@ export default {
                     product.inCart = true
                     product.qty = payload.qty
                     self.$set(self.products, index, product)
+                })
+            } else { /* when cart is emptied then remove all inCart */
+                self.products.forEach(product => {
+                    product.inCart = false
                 })
             }
         },
