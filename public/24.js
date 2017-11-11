@@ -3314,6 +3314,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3441,11 +3447,7 @@ var render = function() {
               return _c(
                 "v-flex",
                 _vm._b(
-                  {
-                    key: card.title,
-                    staticClass: "pa-2",
-                    attrs: { "text-xs-center": "" }
-                  },
+                  { key: card.title, staticClass: "pa-2" },
                   "v-flex",
                   ((_obj = {}),
                   (_obj["xs" + card.xs] = true),
@@ -3457,14 +3459,23 @@ var render = function() {
                   false
                 ),
                 [
-                  card.icon
-                    ? _c(
-                        "v-btn",
-                        { attrs: { icon: "", color: card.color } },
-                        [_c("v-icon", [_vm._v(_vm._s(card.icon))])],
-                        1
-                      )
-                    : _vm._e(),
+                  _c("v-card-text", [
+                    _c(
+                      "p",
+                      { staticClass: "text-xs-center" },
+                      [
+                        card.icon
+                          ? _c(
+                              "v-btn",
+                              { attrs: { icon: "", color: card.color } },
+                              [_c("v-icon", [_vm._v(_vm._s(card.icon))])],
+                              1
+                            )
+                          : _vm._e()
+                      ],
+                      1
+                    )
+                  ]),
                   _vm._v(" "),
                   _c(
                     "v-card",
@@ -3555,11 +3566,7 @@ var render = function() {
                 return _c(
                   "v-flex",
                   _vm._b(
-                    {
-                      key: card.title,
-                      staticClass: "pa-2",
-                      attrs: { "text-xs-center": "" }
-                    },
+                    { key: card.title, staticClass: "pa-2" },
                     "v-flex",
                     ((_obj = {}),
                     (_obj["xs" + card.xs] = true),
@@ -3571,14 +3578,23 @@ var render = function() {
                     false
                   ),
                   [
-                    card.icon
-                      ? _c(
-                          "v-btn",
-                          { attrs: { icon: "", color: card.color } },
-                          [_c("v-icon", [_vm._v(_vm._s(card.icon))])],
-                          1
-                        )
-                      : _vm._e(),
+                    _c("v-card-text", [
+                      _c(
+                        "p",
+                        { staticClass: "text-xs-center" },
+                        [
+                          card.icon
+                            ? _c(
+                                "v-btn",
+                                { attrs: { icon: "", color: card.color } },
+                                [_c("v-icon", [_vm._v(_vm._s(card.icon))])],
+                                1
+                              )
+                            : _vm._e()
+                        ],
+                        1
+                      )
+                    ]),
                     _vm._v(" "),
                     _c(
                       "v-card",

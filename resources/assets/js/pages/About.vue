@@ -48,11 +48,14 @@
             v-for="card in showcase"
             :key="card.title"
             class="pa-2"
-            text-xs-center
             >
-                <v-btn icon v-if="card.icon" :color="card.color">
+            <v-card-text>
+                <p class="text-xs-center">
+                    <v-btn icon v-if="card.icon" :color="card.color">
                     <v-icon>{{ card.icon }}</v-icon>
                 </v-btn>
+                </p>
+            </v-card-text>
                 <v-card flat style="background-color:transparent;">
                     <v-card-actions>
                         <v-spacer></v-spacer>
@@ -80,11 +83,14 @@
             v-for="card in values"
             :key="card.title"
             class="pa-2"
-            text-xs-center
             >
-                <v-btn icon v-if="card.icon" :color="card.color">
+                <v-card-text>
+                <p class="text-xs-center">
+                    <v-btn icon v-if="card.icon" :color="card.color">
                     <v-icon>{{ card.icon }}</v-icon>
                 </v-btn>
+                </p>
+                </v-card-text>
                 <v-card flat style="background-color:transparent;">
                     <v-card-actions>
                         <v-spacer></v-spacer>
