@@ -8,6 +8,7 @@ use App\SocialAccount;
 use App\Profile;
 use Illuminate\Support\Str;
 use Spatie\Permission\Models\Permission;
+use Illuminate\Support\Facades\Hash;
 
 trait UserMutator
 {
@@ -28,7 +29,7 @@ trait UserMutator
 
     public function setPasswordAttribute($password)
     {
-        $this->attributes['password'] = bcrypt($password);
+        $this->attributes['password'] = Hash::make($password);
     }
 
     public static function findByUsername($username)
