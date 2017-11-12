@@ -7,6 +7,11 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::post('/users/email/{email}', 'Api\UsersController@findByEmail')->name('api.user.findByEmail');
     Route::post('/users/{id}', 'Api\UsersController@show')->name('api.user.show');
 
+    Route::post('/users/settings/updateAccount', 'Api\Settings\SettingsController@updateAccount')->name('api.user.updateAccount');
+    Route::post('/users/settings/updateProfile', 'Api\Settings\SettingsController@updateProfile')->name('api.user.updateProfile');
+    Route::post('/users/settings/updateContactDetails', 'Api\Settings\SettingsController@updateContactDetails')->name('api.user.updateContactDetails');
+    Route::post('/users/settings/updateSocialLink', 'Api\Settings\SettingsController@updateSocialLink')->name('api.user.updateSocialLink');
+
     Route::post('/getAuth', 'Api\Auth\ACLController@getAuth')->name('api.auth.getAuth');
     Route::post('/auth/check', 'Api\Auth\LoginController@check')->name('api.auth.check');
 
