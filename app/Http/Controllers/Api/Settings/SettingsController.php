@@ -116,16 +116,21 @@ class SettingsController extends Controller
         $rules = array();
         foreach ($data as $key => $value) {
             /* validate alpha numeric spaces */
-            $rules[$key] = 'regex:/(^[A-Za-z0-9 ]+$)+/';
+            $rules[$key] = 'regex:/^[a-zA-Z0-9 +@#]+$/';
         }
+        $messages = [
+            'regex' => 'Contact Details Key: :attribute, Must Only Contain Alphanum spaces and (@, +, #) signs.',
+        ];
         
-        $validator = \Validator::make($data, $rules);
+        $validator = \Validator::make($data, $rules,$messages);
         if($validator->passes()){
             $user->contact_details = json_encode($request->contact_details);
             $save = $user->save();
             if($save){
                 return (new UserResouce($user->load('profile','referralLink', 'roles', 'permissions')))->additional(['message' => 'Contact Details Updated!']);
             }
+        }else {
+            return response()->json(['errors'=>$validator->errors()],422);
         }
     }
 
@@ -139,13 +144,18 @@ class SettingsController extends Controller
             /* validate url */
             $rules[$key] = 'regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/';
         }
-        $validator = \Validator::make($data, $rules);
+        $messages = [
+            'regex' => 'Social Link Key: :attribute, Is not a Valid URL',
+        ];
+        $validator = \Validator::make($data, $rules,$messages);
         if($validator->passes()){
             $user->social_links = json_encode($request->social_links);
             $save = $user->save();
             if($save){
                 return (new UserResouce($user->load('profile','referralLink', 'roles', 'permissions')))->additional(['message' => 'Social Links Updated!']);
             }
+        }else {
+            return response()->json(['errors'=>$validator->errors()],422);
         }
     }
 }
