@@ -111,21 +111,27 @@ App.forms = {
         received: false,
         date_received: null
     },
+    accountForm: {
+        email: null,
+        username: null,
+        old_password: null,
+        password: null,
+        password_confirmation: null
+    },
+    profileForm: {
+        first_name: null,
+        last_name: null,
+        contact_no: null,
+        address_1: null,
+        address_2: null,
+        city: null,
+        country: null,
+        zip_code: null,
+        state_province: null
+    },
     contactDetailsForm: {
-        contact_person: null,
-        land_line: null,
-        globe: null,
-        smart: null,
-        red_mobile: null,
-        sun_cell: null,
-        viber: null
     },
     socialLinksForm: {
-        facebook: null,
-        twitter: null,
-        instagram: null,
-        youtube: null,
-        linkedIn: null
     }
 
     // Add Other Form Object Here

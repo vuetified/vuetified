@@ -219,7 +219,7 @@
 import MainLayout from '../layouts/Main.vue'
 import Theme from '../mixins/theme'
 import { createNamespacedHelpers } from 'vuex'
-const { mapGetters } = createNamespacedHelpers('auth')
+const { mapGetters, mapMutations } = createNamespacedHelpers('auth')
 
 export default {
     mixins: [Theme],
@@ -243,13 +243,15 @@ export default {
         /* form object */
         contactDetailsForm: new AppForm(App.forms.contactDetailsForm),
         socialLinksForm: new AppForm(App.forms.socialLinksForm),
+        accountForm: new AppForm(App.forms.accountForm),
+        profileForm: new AppForm(App.forms.profileForm),
         profile: {},
-        name: '',
-        email: '',
-        username: '',
-        old_password: '',
-        password: '',
-        password_confirmation: ''
+        name: null,
+        email: null,
+        username: null,
+        old_password: null,
+        password: null,
+        password_confirmation: null
 
     }),
     computed: {
@@ -270,24 +272,145 @@ export default {
         self.username = self.getMe.username
     },
     methods: {
-        udpateProfile () {
-            console.log('update profile')
-        },
-        updateContactDetails () {
+        ...mapMutations({
+            setMe: 'setMe'
+        }),
+        prepareAccountForm () {
             let self = this
-            for (let key in self.contact_details) {
-                self.contactDetailsForm[key] = self.getMe.contact_details[key]
+            self.accountForm.name = self.name
+            self.accountForm.username = self.username
+            self.accountForm.email = self.email
+            self.accountForm.old_password = self.old_password
+            self.accountForm.password = self.password
+            self.accountForm.password_confirmation = self.password_confirmation
+            if (self.old_password === null) {
+                delete self.accountForm.old_password
+                delete self.accountForm.password
+                delete self.accountForm.password_confirmation
             }
-            // update getMe
-            console.log(self.contactDetailsForm)
         },
-        updateSocialLinks () {
+        resetAccountForm () {
             let self = this
-            for (let key in self.social_links) {
-                self.socialLinksForm[key] = self.social_links[key]
+            self.accountForm = new AppForm(App.forms.accountForm)
+        },
+        async updateAccount () {
+            let self = this
+            self.accountForm.busy = true
+            self.prepareAccountForm()
+            try {
+                const payload = (await App.post(route('api.user.updateAccount'), self.accountForm))
+                self.resetAccountForm()
+                self.setMe(payload.data)
+                vm.$popup({ message: payload.message, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
+            } catch ({errors, message}) {
+                self.accountForm.errors.set(errors)
+                self.accountForm.busy = false
+                vm.$popup({ message: message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' })
             }
-            // update getMe
-            console.log(self.socialLinksForm)
+        },
+        prepareProfileForm () {
+            let self = this
+            self.profileForm.first_name = self.profile.first_name
+            if (self.profile.first_name === null) {
+                delete self.profileForm.first_name
+            }
+            self.profileForm.last_name = self.profile.last_name
+            if (self.profile.last_name === null) {
+                delete self.profileForm.last_name
+            }
+            self.profileForm.contact_no = self.profile.contact_no
+            if (self.profile.contact_no === null) {
+                delete self.profileForm.contact_no
+            }
+            self.profileForm.address_1 = self.profile.address_1
+            if (self.profile.address_1 === null) {
+                delete self.profileForm.address_1
+            }
+            self.profileForm.address_2 = self.profile.address_2
+            if (self.profile.address_2 === null) {
+                delete self.profileForm.address_2
+            }
+            self.profileForm.city = self.profile.city
+            if (self.profile.city === null) {
+                delete self.profileForm.city
+            }
+            self.profileForm.country = self.profile.country
+            if (self.profile.country === null) {
+                delete self.profileForm.country
+            }
+            self.profileForm.zip_code = self.profile.zip_code
+            if (self.profile.zip_code === null) {
+                delete self.profileForm.zip_code
+            }
+            self.profileForm.state_province = self.profile.state_province
+            if (self.profile.state_province === null) {
+                delete self.profileForm.state_province
+            }
+        },
+        resetProfileForm () {
+            let self = this
+            self.profileForm = new AppForm(App.forms.profileForm)
+        },
+        async updateProfile () {
+            let self = this
+            self.prepareProfileForm()
+            self.profileForm.busy = true
+            try {
+                const payload = (await App.post(route('api.user.updateProfile'), self.profileForm))
+                self.resetProfileForm()
+                self.setMe(payload.data)
+                vm.$popup({ message: payload.message, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
+            } catch ({errors, message}) {
+                self.profileForm.errors.set(errors)
+                self.profileForm.busy = false
+                vm.$popup({ message: message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' })
+            }
+        },
+        prepareContactDetailsForm () {
+            let self = this
+            self.contactDetailsForm.contact_details = self.getMe.contact_details
+        },
+        resetContactDetailsForm () {
+            let self = this
+            self.contactDetailsForm = new AppForm(App.forms.contactDetailsForm)
+        },
+        async updateContactDetails () {
+            let self = this
+            self.prepareContactDetailsForm()
+            self.contactDetailsForm.busy = true
+            try {
+                const payload = (await App.post(route('api.user.updateContactDetails'), self.contactDetailsForm))
+                self.resetContactDetailsForm()
+                self.setMe(payload.data)
+                vm.$popup({ message: payload.message, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
+            } catch ({errors, message}) {
+                self.contactDetailsForm.errors.set(errors)
+                self.contactDetailsForm.busy = false
+                vm.$popup({ message: message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' })
+            }
+        },
+        prepareSocialLinkForm () {
+            let self = this
+            self.socialLinksForm.social_links = self.social_links
+        },
+        resetSocialLinkForm () {
+            let self = this
+            self.socialLinksForm = new AppForm(App.forms.socialLinksForm)
+        },
+        async updateSocialLinks () {
+            let self = this
+            self.prepareSocialLinkForm()
+            self.socialLinksForm.busy = true
+            try {
+                const payload = (await App.post(route('api.user.updateSocialLink'), self.socialLinksForm))
+                self.resetSocialLinkForm()
+                self.setMe(payload.data)
+                vm.$popup({ message: payload.message, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
+            } catch ({errors, message}) {
+                self.socialLinksForm.errors.set(errors)
+                self.socialLinksForm.busy = false
+                vm.$popup({ message: message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' })
+            }
         },
         closeContactInput () {
             this.contact_tmp.title = null
