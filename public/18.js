@@ -1,14 +1,14 @@
-webpackJsonp([15],{
+webpackJsonp([18],{
 
-/***/ 626:
+/***/ 629:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(310)
 /* script */
-var __vue_script__ = __webpack_require__(691)
+var __vue_script__ = __webpack_require__(697)
 /* template */
-var __vue_template__ = __webpack_require__(692)
+var __vue_template__ = __webpack_require__(698)
 /* styles */
 var __vue_styles__ = null
 /* scopeId */
@@ -22,9 +22,9 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\js\\pages\\Login.vue"
+Component.options.__file = "resources\\assets\\js\\pages\\ResetPassword.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] Login.vue: functional components are not supported with templates, they should use render functions.")}
+if (Component.options.functional) {console.error("[vue-loader] ResetPassword.vue: functional components are not supported with templates, they should use render functions.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -33,9 +33,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-063b5a0f", Component.options)
+    hotAPI.createRecord("data-v-8fde7da0", Component.options)
   } else {
-    hotAPI.reload("data-v-063b5a0f", Component.options)
+    hotAPI.reload("data-v-8fde7da0", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -146,113 +146,14 @@ module.exports = !$assign || __webpack_require__(69)(function () {
 
 /***/ }),
 
-/***/ 684:
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(310)
-/* script */
-var __vue_script__ = null
-/* template */
-var __vue_template__ = __webpack_require__(685)
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources\\assets\\js\\layouts\\ModalLayout.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] ModalLayout.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-d721983c", Component.options)
-  } else {
-    hotAPI.reload("data-v-d721983c", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-
-/***/ 685:
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("v-app", { attrs: { standalone: "" } }, [
-    _c(
-      "main",
-      [
-        _c(
-          "v-container",
-          {
-            staticClass: "pa-0 ma-0 white",
-            attrs: { transition: "slide-x-transition", fluid: "" }
-          },
-          [
-            _c(
-              "v-card",
-              { attrs: { flat: true } },
-              [
-                _vm._t("toolbar"),
-                _vm._v(" "),
-                _vm._t("default"),
-                _vm._v(" "),
-                _vm._t("footer")
-              ],
-              2
-            )
-          ],
-          1
-        )
-      ],
-      1
-    )
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-d721983c", module.exports)
-  }
-}
-
-/***/ }),
-
-/***/ 691:
+/***/ 697:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends__ = __webpack_require__(646);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__layouts_ModalLayout__ = __webpack_require__(684);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__layouts_ModalLayout___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__layouts_ModalLayout__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__(90);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(90);
 
 //
 //
@@ -326,20 +227,48 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
-
-var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["createNamespacedHelpers"])('auth'),
-    mapActions = _createNamespacedHelp.mapActions,
-    mapGetters = _createNamespacedHelp.mapGetters;
+var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["createNamespacedHelpers"])('auth'),
+    mapGetters = _createNamespacedHelp.mapGetters,
+    mapActions = _createNamespacedHelp.mapActions;
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['token'],
     data: function data() {
         return {
-            loginForm: new AppForm(App.forms.loginForm),
-            password_visible: false
+            passwordResetForm: new AppForm(App.forms.passwordResetForm),
+            password_visible: false,
+            rules: {
+                password: {
+                    required: function required(value) {
+                        return !!value || 'Password is Required.';
+                    },
+                    min: function min(value) {
+                        return value.length > 5 || 'Password is Below 6 Characters';
+                    }
+                },
+                password_confirmation: function password_confirmation(value, password) {
+                    return value === password || 'Password Confirmation is Does Not Match.';
+                },
 
+                username: {
+                    required: function required(value) {
+                        return !!value || 'Email is Required.';
+                    },
+                    email: function email(value) {
+                        var pattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                        return pattern.test(value) || 'Invalid e-mail.';
+                    }
+                }
+
+            }
         };
     },
     computed: __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends___default()({
@@ -351,58 +280,45 @@ var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["createNam
     })),
     mounted: function mounted() {
         var self = this;
-        /* Make Sure We Only Load Login Page If Not Authenticated */
+        /* Make Sure We Only Load Reset Password Page If Not Authenticated */
         if (self.getAuth) {
             /* nextick make sure our modal wount be visible before redirect */
             return self.$nextTick(function () {
                 return self.$router.go(-1);
             });
         }
+        /* Show Reset Password Modal */
+        self.$modal.show('reset-password');
+        self.passwordResetForm.token = self.token;
     },
 
-    methods: __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends___default()({
-        resetPassword: function resetPassword() {
-            var self = this;
-            self.$nextTick(function () {
-                return self.$router.push({ name: 'forgotpassword' });
-            });
-        },
+    methods: __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends___default()({}, mapActions({
+        reset: 'passwordreset'
+    }), {
         goHome: function goHome() {
             var self = this;
+            self.$modal.hide('reset-password');
             self.$nextTick(function () {
                 return self.$router.push({ name: 'home' });
             });
         },
-        goToRegister: function goToRegister() {
-            var self = this;
-            self.$nextTick(function () {
-                return self.$router.push({ name: 'register' });
-            });
-        },
         redirectBack: function redirectBack() {
             var self = this;
+            self.$modal.hide('reset-password');
             return self.$nextTick(function () {
                 return self.$router.go(-1);
             });
         },
-        login: function login() {
+        resetPassword: function resetPassword() {
             var self = this;
-            self.$validator.validateAll();
-            if (!self.errors.any()) {
-                self.submit(self.loginForm);
-            }
+            self.reset(self.passwordResetForm);
         }
-    }, mapActions({
-        submit: 'login'
-    })),
-    components: {
-        ModalLayout: __WEBPACK_IMPORTED_MODULE_1__layouts_ModalLayout___default.a
-    }
+    })
 });
 
 /***/ }),
 
-/***/ 692:
+/***/ 698:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -410,7 +326,16 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "modal-layout",
+    "modal",
+    {
+      attrs: {
+        name: "reset-password",
+        adaptive: true,
+        width: "100%",
+        height: "100%",
+        clickToClose: false
+      }
+    },
     [
       _c(
         "v-card",
@@ -423,14 +348,18 @@ var render = function() {
               _c(
                 "v-btn",
                 {
-                  attrs: { flat: "", icon: "", color: "primary" },
+                  attrs: { icon: "" },
                   nativeOn: {
                     click: function($event) {
                       _vm.redirectBack()
                     }
                   }
                 },
-                [_c("v-icon", [_vm._v("arrow_back")])],
+                [
+                  _c("v-icon", { staticClass: "primary--text" }, [
+                    _vm._v("arrow_back")
+                  ])
+                ],
                 1
               ),
               _vm._v(" "),
@@ -439,7 +368,7 @@ var render = function() {
               _c(
                 "v-toolbar-title",
                 { staticClass: "text-xs-center primary--text" },
-                [_vm._v("Customer Login Page")]
+                [_vm._v("Reset Password")]
               ),
               _vm._v(" "),
               _c("v-spacer"),
@@ -450,14 +379,19 @@ var render = function() {
                   _c(
                     "v-btn",
                     {
-                      attrs: { flat: "", color: "primary" },
+                      staticClass: "primary--text",
+                      attrs: { flat: "" },
                       nativeOn: {
                         click: function($event) {
                           _vm.goHome()
                         }
                       }
                     },
-                    [_c("v-icon", [_vm._v("fa-home")])],
+                    [
+                      _c("v-icon", { attrs: { right: "", dark: "" } }, [
+                        _vm._v("fa-home")
+                      ])
+                    ],
                     1
                   )
                 ],
@@ -478,7 +412,7 @@ var render = function() {
                     on: {
                       submit: function($event) {
                         $event.preventDefault()
-                        _vm.login()
+                        _vm.resetPassword()
                       }
                     }
                   },
@@ -503,31 +437,23 @@ var render = function() {
                           },
                           [
                             _c("v-text-field", {
-                              directives: [
-                                {
-                                  name: "validate",
-                                  rawName: "v-validate",
-                                  value: "required|email",
-                                  expression: "'required|email'"
-                                }
-                              ],
                               staticClass: "primary--text",
                               attrs: {
                                 name: "username",
-                                label: "Type Your Account Email",
-                                "error-messages": _vm.errors.collect(
-                                  "username"
-                                ),
-                                "data-vv-name": "username",
+                                label: "Email",
+                                rules: [
+                                  _vm.rules.username.required,
+                                  _vm.rules.username.email
+                                ],
                                 "prepend-icon": "email",
-                                counter: "255"
+                                counter: "60"
                               },
                               model: {
-                                value: _vm.loginForm.username,
+                                value: _vm.passwordResetForm.username,
                                 callback: function($$v) {
-                                  _vm.loginForm.username = $$v
+                                  _vm.passwordResetForm.username = $$v
                                 },
-                                expression: "loginForm.username"
+                                expression: "passwordResetForm.username"
                               }
                             })
                           ],
@@ -557,19 +483,11 @@ var render = function() {
                           },
                           [
                             _c("v-text-field", {
-                              directives: [
-                                {
-                                  name: "validate",
-                                  rawName: "v-validate",
-                                  value: "required|min:6",
-                                  expression: "'required|min:6'"
-                                }
-                              ],
                               staticClass: "primary--text",
                               attrs: {
                                 name: "password",
-                                label: "Enter your password",
-                                hint: "At least 6 characters",
+                                label: "New Password",
+                                min: "8",
                                 "append-icon": _vm.icon,
                                 "append-icon-cb": function() {
                                   return (_vm.password_visible = !_vm.password_visible)
@@ -577,19 +495,79 @@ var render = function() {
                                 type: !_vm.password_visible
                                   ? "password"
                                   : "text",
-                                "error-messages": _vm.errors.collect(
-                                  "password"
-                                ),
-                                "data-vv-name": "password",
-                                counter: "255",
-                                "prepend-icon": "fa-key"
+                                rules: [
+                                  _vm.rules.password.required,
+                                  _vm.rules.password.min
+                                ],
+                                "prepend-icon": "fa-key",
+                                counter: "60"
                               },
                               model: {
-                                value: _vm.loginForm.password,
+                                value: _vm.passwordResetForm.password,
                                 callback: function($$v) {
-                                  _vm.loginForm.password = $$v
+                                  _vm.passwordResetForm.password = $$v
                                 },
-                                expression: "loginForm.password"
+                                expression: "passwordResetForm.password"
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "v-layout",
+                      { attrs: { row: "" } },
+                      [
+                        _c(
+                          "v-flex",
+                          {
+                            attrs: {
+                              xs12: "",
+                              sm12: "",
+                              md4: "",
+                              "offset-md4": "",
+                              lg4: "",
+                              "offset-lg4": "",
+                              xl4: "",
+                              "offset-xl4": ""
+                            }
+                          },
+                          [
+                            _c("v-text-field", {
+                              staticClass: "primary--text",
+                              attrs: {
+                                name: "password_confirmation",
+                                label: "Confirm New Password",
+                                "append-icon": _vm.icon,
+                                "append-icon-cb": function() {
+                                  return (_vm.password_visible = !_vm.password_visible)
+                                },
+                                type: !_vm.password_visible
+                                  ? "password"
+                                  : "text",
+                                rules: [
+                                  function(value) {
+                                    return (
+                                      value ===
+                                        _vm.passwordResetForm.password ||
+                                      "Password Confirmation is Does Not Match."
+                                    )
+                                  }
+                                ],
+                                "prepend-icon": "fa-copy",
+                                counter: "60"
+                              },
+                              model: {
+                                value:
+                                  _vm.passwordResetForm.password_confirmation,
+                                callback: function($$v) {
+                                  _vm.passwordResetForm.password_confirmation = $$v
+                                },
+                                expression:
+                                  "passwordResetForm.password_confirmation"
                               }
                             })
                           ],
@@ -618,69 +596,17 @@ var render = function() {
                           "v-btn",
                           {
                             class: {
-                              primary: !_vm.loginForm.busy,
-                              error: _vm.loginForm.busy
+                              primary: !_vm.passwordResetForm.busy,
+                              error: _vm.passwordResetForm.busy
                             },
                             attrs: {
-                              loading: _vm.loginForm.busy,
-                              disabled: _vm.errors.any(),
+                              loading: _vm.passwordResetForm.busy,
+                              disabled: _vm.passwordResetForm.busy,
                               type: "submit",
                               block: ""
                             }
                           },
-                          [_vm._v("Login")]
-                        )
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "v-flex",
-                      {
-                        attrs: {
-                          xs12: "",
-                          sm12: "",
-                          md4: "",
-                          "offset-md4": "",
-                          lg4: "",
-                          "offset-lg4": "",
-                          xl4: "",
-                          "offset-xl4": ""
-                        }
-                      },
-                      [
-                        _c(
-                          "v-card-actions",
-                          [
-                            _c(
-                              "v-btn",
-                              {
-                                staticClass: "info--text info",
-                                attrs: { block: "", flat: "" },
-                                nativeOn: {
-                                  click: function($event) {
-                                    _vm.goToRegister()
-                                  }
-                                }
-                              },
-                              [_vm._v("No Account Yet?")]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "v-btn",
-                              {
-                                staticClass: "error--text error",
-                                attrs: { block: "", flat: "" },
-                                nativeOn: {
-                                  click: function($event) {
-                                    _vm.resetPassword()
-                                  }
-                                }
-                              },
-                              [_vm._v("Forgot Password?")]
-                            )
-                          ],
-                          1
+                          [_vm._v("Reset Password")]
                         )
                       ],
                       1
@@ -705,7 +631,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-063b5a0f", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-8fde7da0", module.exports)
   }
 }
 
