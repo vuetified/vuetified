@@ -1944,7 +1944,7 @@ var render = function() {
             [_vm._v("Members Area")]
           ),
           _vm._v(" "),
-          _vm.getMe.isAdmin
+          _vm.getAuth && _vm.getMe.isAdmin
             ? _c("v-link", {
                 attrs: {
                   dark: _vm.darkClass,

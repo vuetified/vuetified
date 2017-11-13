@@ -17,7 +17,7 @@
         <category-link :dark="darkClass" :items="grouplinks"></category-link>
         <v-subheader :class="{'blue-grey--text': !isDark, 'text--lighten-1': !isDark, 'white--text': isDark}">Members Area</v-subheader>
         <!-- Admin Only Accessible -->
-        <v-link v-if="getMe.isAdmin" :dark="darkClass"  title="User Management"  :href="'/users'" icon="fa-users"></v-link>
+        <v-link v-if="getAuth && getMe.isAdmin" :dark="darkClass"  title="User Management"  :href="'/users'" icon="fa-users"></v-link>
         <!-- Normal User Links -->
         <v-link v-if="getAuth" :dark="darkClass"  title="Dashboard"  :href="'/dashboard'" icon="dashboard"></v-link>
         <v-link v-if="getAuth" :dark="darkClass"  title="Settings"  :href="'/settings'" icon="fa-cogs"></v-link>

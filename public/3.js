@@ -83,23 +83,23 @@ function toComment(sourceMap) {
 
 /***/ }),
 
-/***/ 632:
+/***/ 638:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(705)
+  __webpack_require__(746)
 }
 var normalizeComponent = __webpack_require__(310)
 /* script */
-var __vue_script__ = __webpack_require__(707)
+var __vue_script__ = __webpack_require__(748)
 /* template */
-var __vue_template__ = __webpack_require__(708)
+var __vue_template__ = __webpack_require__(749)
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = "data-v-72583948"
+var __vue_scopeId__ = "data-v-d316aaa4"
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -109,9 +109,9 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\js\\pages\\Category.vue"
+Component.options.__file = "resources\\assets\\js\\pages\\Products.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] Category.vue: functional components are not supported with templates, they should use render functions.")}
+if (Component.options.functional) {console.error("[vue-loader] Products.vue: functional components are not supported with templates, they should use render functions.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -120,9 +120,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-72583948", Component.options)
+    hotAPI.createRecord("data-v-d316aaa4", Component.options)
   } else {
-    hotAPI.reload("data-v-72583948", Component.options)
+    hotAPI.reload("data-v-d316aaa4", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -1948,7 +1948,7 @@ var render = function() {
             [_vm._v("Members Area")]
           ),
           _vm._v(" "),
-          _vm.getMe.isAdmin
+          _vm.getAuth && _vm.getMe.isAdmin
             ? _c("v-link", {
                 attrs: {
                   dark: _vm.darkClass,
@@ -3257,23 +3257,23 @@ module.exports = function (isEntries) {
 
 /***/ }),
 
-/***/ 705:
+/***/ 746:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(706);
+var content = __webpack_require__(747);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(645)("5605446a", content, false);
+var update = __webpack_require__(645)("3c5f5344", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-72583948\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Category.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-72583948\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Category.vue");
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-d316aaa4\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Products.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-d316aaa4\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Products.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -3284,7 +3284,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 706:
+/***/ 747:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(625)(undefined);
@@ -3292,14 +3292,14 @@ exports = module.exports = __webpack_require__(625)(undefined);
 
 
 // module
-exports.push([module.i, "\n.breadcrumbs li[data-v-72583948]:not(:last-child):after {\n    color: #009688;\n    content: attr(data-divider);\n    vertical-align: middle;\n}\n", ""]);
+exports.push([module.i, "\n.breadcrumbs li[data-v-d316aaa4]:not(:last-child):after {\n    color: #009688;\n    content: attr(data-divider);\n    vertical-align: middle;\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
 
-/***/ 707:
+/***/ 748:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3436,12 +3436,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 
 
@@ -3452,7 +3446,7 @@ var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_6_vuex__["createNam
     mapGetters = _createNamespacedHelp.mapGetters;
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['slug', 'query'],
+    props: ['query'],
     mixins: [__WEBPACK_IMPORTED_MODULE_5__mixins_theme__["a" /* default */]],
     components: {
         MainLayout: __WEBPACK_IMPORTED_MODULE_4__layouts_Main_vue___default.a
@@ -3556,15 +3550,15 @@ var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_6_vuex__["createNam
         },
         getProducts: function () {
             var _ref = __WEBPACK_IMPORTED_MODULE_1_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_regenerator___default.a.mark(function _callee() {
-                var self, slug;
+                var self, page;
                 return __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
                     while (1) {
                         switch (_context.prev = _context.next) {
                             case 0:
                                 self = this;
-                                slug = { slug: self.slug };
+                                page = self.$route.query.page || 1;
                                 _context.next = 4;
-                                return axios.get(route('api.category.show', slug) + '/?page=' + self.page).then(function (response) {
+                                return axios.get(route('api.product.index') + '/?page=' + page).then(function (response) {
                                     self.products = response.data.data;
                                     self.links = response.data.links;
                                     self.meta = response.data.meta;
@@ -3574,7 +3568,7 @@ var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_6_vuex__["createNam
                                         message = _ref2.message;
 
                                     console.log(errors);
-                                    self.$popup({ message: message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' });
+                                    vm.$popup({ message: message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' });
                                 });
 
                             case 4:
@@ -3593,29 +3587,28 @@ var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_6_vuex__["createNam
         }(),
         loadProducts: function () {
             var _ref3 = __WEBPACK_IMPORTED_MODULE_1_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_regenerator___default.a.mark(function _callee2() {
-                var self, slug;
+                var self;
                 return __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
                     while (1) {
                         switch (_context2.prev = _context2.next) {
                             case 0:
                                 self = this;
-                                slug = { slug: self.slug };
-                                _context2.next = 4;
-                                return axios.get(route('api.category.show', slug) + '/?page=' + self.page).then(function (response) {
+                                _context2.next = 3;
+                                return axios.get(route('api.product.index') + '/?page=' + self.page).then(function (response) {
                                     self.products = response.data.data;
                                     self.links = response.data.links;
                                     self.meta = response.data.meta;
                                     self.setInCart();
-                                    vm.$popup({ message: self.$route.params.slug + ' Page: ' + self.page, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' });
+                                    vm.$popup({ message: 'Product Page: ' + self.page, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' });
                                 }).catch(function (_ref4) {
                                     var errors = _ref4.errors,
                                         message = _ref4.message;
 
                                     console.log(errors);
-                                    self.$popup({ message: message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' });
+                                    vm.$popup({ message: message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' });
                                 });
 
-                            case 4:
+                            case 3:
                             case 'end':
                                 return _context2.stop();
                         }
@@ -3643,20 +3636,23 @@ var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_6_vuex__["createNam
             },
             deep: true
         },
+        /* change page value then */
         page: function page(newValue) {
             var self = this;
             self.page = newValue;
-            self.$router.push({ name: 'category.show', query: { page: newValue }, params: { slug: self.$route.params.slug } });
-            vm.$popup({ message: self.$route.params.slug + ' Page: ' + self.page, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' });
+            self.$router.push({ name: 'product.index', query: { page: newValue } });
+            vm.$popup({ message: 'Product Page: ' + self.page, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' });
         },
 
+        /* after change page and new route is push then load new products */
         '$route': 'loadProducts'
+
     }
 });
 
 /***/ }),
 
-/***/ 708:
+/***/ 749:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -3693,24 +3689,8 @@ var render = function() {
                     [_vm._v("\n                  Home\n              ")]
                   ),
                   _vm._v(" "),
-                  _c(
-                    "v-breadcrumbs-item",
-                    {
-                      attrs: {
-                        "active-class": "primary--text",
-                        disabled: false,
-                        to: "/categories"
-                      }
-                    },
-                    [_vm._v("\n                  Categories\n              ")]
-                  ),
-                  _vm._v(" "),
                   _c("v-breadcrumbs-item", { attrs: { disabled: true } }, [
-                    _vm._v(
-                      "\n                  " +
-                        _vm._s(_vm._f("capitalize")(_vm.slug)) +
-                        "\n              "
-                    )
+                    _vm._v("\n                  Products\n              ")
                   ])
                 ],
                 1
@@ -3739,7 +3719,6 @@ var render = function() {
                 [
                   _c(
                     "v-card",
-                    { attrs: { dark: "" } },
                     [
                       _c(
                         "clazy-load",
@@ -4076,7 +4055,9 @@ var render = function() {
                       ],
                       1
                     )
-                  ])
+                  ]),
+                  _vm._v(" "),
+                  _c("v-flex", { attrs: { xs12: "", height: "50px" } })
                 ],
                 1
               )
@@ -4094,7 +4075,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-72583948", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-d316aaa4", module.exports)
   }
 }
 

@@ -83,15 +83,15 @@ function toComment(sourceMap) {
 
 /***/ }),
 
-/***/ 636:
+/***/ 643:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(310)
 /* script */
-var __vue_script__ = __webpack_require__(740)
+var __vue_script__ = __webpack_require__(840)
 /* template */
-var __vue_template__ = __webpack_require__(741)
+var __vue_template__ = __webpack_require__(841)
 /* styles */
 var __vue_styles__ = null
 /* scopeId */
@@ -105,9 +105,9 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\js\\pages\\Support.vue"
+Component.options.__file = "resources\\assets\\js\\pages\\Users.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] Support.vue: functional components are not supported with templates, they should use render functions.")}
+if (Component.options.functional) {console.error("[vue-loader] Users.vue: functional components are not supported with templates, they should use render functions.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -116,9 +116,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-31eb4816", Component.options)
+    hotAPI.createRecord("data-v-fc04dda4", Component.options)
   } else {
-    hotAPI.reload("data-v-31eb4816", Component.options)
+    hotAPI.reload("data-v-fc04dda4", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -1944,7 +1944,7 @@ var render = function() {
             [_vm._v("Members Area")]
           ),
           _vm._v(" "),
-          _vm.getMe.isAdmin
+          _vm.getAuth && _vm.getMe.isAdmin
             ? _c("v-link", {
                 attrs: {
                   dark: _vm.darkClass,
@@ -3198,7 +3198,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 740:
+/***/ 840:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3230,16 +3230,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 741:
+/***/ 841:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("main-layout", { class: [_vm.contentClass] }, [
-    _c("p", [_vm._v("Support")])
-  ])
+  return _c(
+    "main-layout",
+    { class: [_vm.contentClass], style: { paddingTop: "100px" } },
+    [_c("p", [_vm._v("Users Management")])]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -3247,7 +3249,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-31eb4816", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-fc04dda4", module.exports)
   }
 }
 
