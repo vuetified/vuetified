@@ -3364,7 +3364,7 @@ exports = module.exports = __webpack_require__(625)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -3388,6 +3388,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3536,26 +3555,34 @@ var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_4_vuex__["createNam
 
                                 self.resetAccountForm();
                                 self.setMe(payload.data);
+                                self.old_password = null;
+                                self.password = null;
+                                self.password_confirmation = null;
                                 vm.$popup({ message: payload.message, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' });
-                                _context.next = 19;
+                                _context.next = 22;
                                 break;
 
-                            case 12:
-                                _context.prev = 12;
+                            case 15:
+                                _context.prev = 15;
                                 _context.t0 = _context['catch'](3);
                                 errors = _context.t0.errors;
                                 message = _context.t0.message;
 
                                 self.accountForm.errors.set(errors);
                                 self.accountForm.busy = false;
-                                vm.$popup({ message: message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' });
+                                /* for wrong password */
+                                if (errors.old_password[0]) {
+                                    vm.$popup({ message: errors.old_password[0], backgroundColor: '#e57373', delay: 5, color: '#fffffa' });
+                                } else {
+                                    vm.$popup({ message: message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' });
+                                }
 
-                            case 19:
+                            case 22:
                             case 'end':
                                 return _context.stop();
                         }
                     }
-                }, _callee, this, [[3, 12]]);
+                }, _callee, this, [[3, 15]]);
             }));
 
             function updateAccount() {
@@ -3635,7 +3662,24 @@ var render = function() {
                 { attrs: { xs12: "" } },
                 [
                   _c("v-text-field", {
-                    attrs: { label: "Username", light: "" },
+                    directives: [
+                      {
+                        name: "validate",
+                        rawName: "v-validate",
+                        value: {
+                          required: true,
+                          regex: /^[a-zA-Z0-9][a-zA-Z0-9.-]+[a-zA-Z0-9]$/
+                        },
+                        expression:
+                          "{ required: true, regex: /^[a-zA-Z0-9][a-zA-Z0-9.-]+[a-zA-Z0-9]$/ }"
+                      }
+                    ],
+                    attrs: {
+                      label: "Username",
+                      light: "",
+                      "error-messages": _vm.errors.collect("username"),
+                      "data-vv-name": "username"
+                    },
                     model: {
                       value: _vm.username,
                       callback: function($$v) {
@@ -3653,7 +3697,20 @@ var render = function() {
                 { attrs: { xs12: "" } },
                 [
                   _c("v-text-field", {
-                    attrs: { label: "Email", light: "" },
+                    directives: [
+                      {
+                        name: "validate",
+                        rawName: "v-validate",
+                        value: { required: true, email: true },
+                        expression: "{ required: true, email: true }"
+                      }
+                    ],
+                    attrs: {
+                      label: "Email",
+                      light: "",
+                      "error-messages": _vm.errors.collect("email"),
+                      "data-vv-name": "email"
+                    },
                     model: {
                       value: _vm.email,
                       callback: function($$v) {
@@ -3671,7 +3728,21 @@ var render = function() {
                 { attrs: { xs12: "" } },
                 [
                   _c("v-text-field", {
-                    attrs: { label: "Account Name", light: "" },
+                    directives: [
+                      {
+                        name: "validate",
+                        rawName: "v-validate",
+                        value: { required: true, regex: /^[a-zA-Z0-9 ]+$/ },
+                        expression:
+                          "{ required: true, regex: /^[a-zA-Z0-9 ]+$/ }"
+                      }
+                    ],
+                    attrs: {
+                      label: "Account Name",
+                      light: "",
+                      "error-messages": _vm.errors.collect("name"),
+                      "data-vv-name": "name"
+                    },
                     model: {
                       value: _vm.name,
                       callback: function($$v) {
@@ -3689,7 +3760,21 @@ var render = function() {
                 { attrs: { xs12: "" } },
                 [
                   _c("v-text-field", {
-                    attrs: { label: "Old Password", light: "" },
+                    directives: [
+                      {
+                        name: "validate",
+                        rawName: "v-validate",
+                        value: { min: 6, regex: /^([a-zA-Z0-9@*#]{6,15})$/ },
+                        expression:
+                          "{ min: 6,regex: /^([a-zA-Z0-9@*#]{6,15})$/ }"
+                      }
+                    ],
+                    attrs: {
+                      label: "Current Password",
+                      light: "",
+                      "error-messages": _vm.errors.collect("current password"),
+                      "data-vv-name": "current password"
+                    },
                     model: {
                       value: _vm.old_password,
                       callback: function($$v) {
@@ -3707,7 +3792,22 @@ var render = function() {
                 { attrs: { xs12: "" } },
                 [
                   _c("v-text-field", {
-                    attrs: { label: "New Password", light: "" },
+                    directives: [
+                      {
+                        name: "validate",
+                        rawName: "v-validate",
+                        value: { min: 6, regex: /^([a-zA-Z0-9@*#]{6,15})$/ },
+                        expression:
+                          "{ min: 6,regex: /^([a-zA-Z0-9@*#]{6,15})$/ }"
+                      }
+                    ],
+                    attrs: {
+                      label: "New Password",
+                      light: "",
+                      name: "password",
+                      "error-messages": _vm.errors.collect("new password"),
+                      "data-vv-name": "new password"
+                    },
                     model: {
                       value: _vm.password,
                       callback: function($$v) {
@@ -3725,7 +3825,22 @@ var render = function() {
                 { attrs: { xs12: "" } },
                 [
                   _c("v-text-field", {
-                    attrs: { label: "Confirm New Password", light: "" },
+                    directives: [
+                      {
+                        name: "validate",
+                        rawName: "v-validate",
+                        value: "confirmed:password",
+                        expression: "'confirmed:password'"
+                      }
+                    ],
+                    attrs: {
+                      label: "Confirm New Password",
+                      light: "",
+                      "error-messages": _vm.errors.collect(
+                        "confirm new password"
+                      ),
+                      "data-vv-name": "confirm new password"
+                    },
                     model: {
                       value: _vm.password_confirmation,
                       callback: function($$v) {
@@ -4420,7 +4535,7 @@ exports = module.exports = __webpack_require__(625)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -4442,6 +4557,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
+//
+//
+//
 //
 //
 //
@@ -4650,11 +4768,24 @@ var render = function() {
                 { attrs: { xs12: "" } },
                 _vm._l(_vm.profile, function(value, key, index) {
                   return _c("v-text-field", {
+                    directives: [
+                      {
+                        name: "validate",
+                        rawName: "v-validate",
+                        value: { required: true, regex: /^[a-zA-Z0-9 +@#]+$/ },
+                        expression:
+                          "{ required: true, regex: /^[a-zA-Z0-9 +@#]+$/ }"
+                      }
+                    ],
                     key: key,
                     attrs: {
                       label: _vm.toProperCase(key),
                       light: "",
-                      index: index
+                      index: index,
+                      "error-messages": _vm.errors.collect(
+                        _vm.toProperCase(key)
+                      ),
+                      "data-vv-name": _vm.toProperCase(key)
                     },
                     model: {
                       value: _vm.profile[key],

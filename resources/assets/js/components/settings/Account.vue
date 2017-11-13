@@ -17,6 +17,9 @@
                     label="Username"
                     v-model="username"
                     light
+                    v-validate="{ required: true, regex: /^[a-zA-Z0-9][a-zA-Z0-9.-]+[a-zA-Z0-9]$/ }"
+                    :error-messages="errors.collect('username')"
+                    data-vv-name="username"
                     >
                     </v-text-field>
                 </v-flex>
@@ -25,6 +28,9 @@
                     label="Email"
                     v-model="email"
                     light
+                    v-validate="{ required: true, email: true }"
+                    :error-messages="errors.collect('email')"
+                    data-vv-name="email"
                     >
                     </v-text-field>
                 </v-flex>
@@ -33,14 +39,20 @@
                     label="Account Name"
                     v-model="name"
                     light
+                    v-validate="{ required: true, regex: /^[a-zA-Z0-9 ]+$/ }"
+                    :error-messages="errors.collect('name')"
+                    data-vv-name="name"
                     >
                     </v-text-field>
                 </v-flex>
                 <v-flex xs12>
                     <v-text-field
-                    label="Old Password"
+                    label="Current Password"
                     v-model="old_password"
                     light
+                    v-validate="{ min: 6,regex: /^([a-zA-Z0-9@*#]{6,15})$/ }"
+                    :error-messages="errors.collect('current password')"
+                    data-vv-name="current password"
                     >
                     </v-text-field>
                 </v-flex>
@@ -49,6 +61,10 @@
                     label="New Password"
                     v-model="password"
                     light
+                    name="password"
+                    v-validate="{ min: 6,regex: /^([a-zA-Z0-9@*#]{6,15})$/ }"
+                    :error-messages="errors.collect('new password')"
+                    data-vv-name="new password"
                     >
                     </v-text-field>
                 </v-flex>
@@ -57,6 +73,9 @@
                     label="Confirm New Password"
                     v-model="password_confirmation"
                     light
+                    v-validate="'confirmed:password'"
+                    :error-messages="errors.collect('confirm new password')"
+                    data-vv-name="confirm new password"
                     >
                     </v-text-field>
                 </v-flex>
@@ -130,11 +149,19 @@ export default {
                 const payload = (await App.post(route('api.user.updateAccount'), self.accountForm))
                 self.resetAccountForm()
                 self.setMe(payload.data)
+                self.old_password = null
+                self.password = null
+                self.password_confirmation = null
                 vm.$popup({ message: payload.message, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
             } catch ({errors, message}) {
                 self.accountForm.errors.set(errors)
                 self.accountForm.busy = false
-                vm.$popup({ message: message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' })
+                /* for wrong password */
+                if (errors.old_password[0]) {
+                    vm.$popup({ message: errors.old_password[0], backgroundColor: '#e57373', delay: 5, color: '#fffffa' })
+                } else {
+                    vm.$popup({ message: message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' })
+                }
             }
         }
     }

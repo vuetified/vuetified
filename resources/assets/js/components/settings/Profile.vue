@@ -16,6 +16,9 @@
                     v-model="profile[key]"
                     light
                     v-for="(value,key,index) in profile" :key="key" :index="index"
+                    v-validate="{ required: true, regex: /^[a-zA-Z0-9 +@#]+$/ }"
+                    :error-messages="errors.collect(toProperCase(key))"
+                    :data-vv-name="toProperCase(key)"
                     >
                     </v-text-field>
                 </v-flex>
