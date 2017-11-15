@@ -21,7 +21,7 @@ class UsersController extends Controller
 
     public function index(Request $request)
     {
-        return new UserCollection(User::with('profile','referralLink', 'roles', 'permissions')->paginate(10));
+        return new UserCollection(User::all()->load('profile','referralLink', 'roles', 'permissions', 'sponsor.referralLink')->paginate(10));
     }
 
     public function show($id)
