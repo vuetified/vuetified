@@ -245,15 +245,16 @@ export default {
     },
     mounted () {
         let self = this
-        /* We may pass this on Tab Object on Dashboard */
+        /* Set Put URL Empty (optional) */
         self.putAction = ''
+        /* Set Request Name */
         self.name = 'file'
+        /* Set File Upload to Single */
         self.multiple = false
+        /* Add Passport Access Token */
         self.headers['Authorization'] = `Bearer ${this.$cookie.get('access_token')}`
         /* change post URL */
-        Bus.$on('setOrderID', (id) => {
-            self.postAction = `${route('api.media.receiptUploader', {order: id})}`
-        })
+        self.postAction = route('api.media.receiptUploader', {order: this.order.id})
     },
     data () {
         return {
