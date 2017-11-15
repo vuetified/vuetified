@@ -22,5 +22,6 @@ class DatabaseSeeder extends Seeder
         '--password' => true,
         '-n'    => true,
         ]);
+        $this->call(UsersSeeder::class);
     }
 }
