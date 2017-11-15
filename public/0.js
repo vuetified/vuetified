@@ -3770,7 +3770,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         setCurrentOrder: function setCurrentOrder(order) {
             this.dialog = true;
             this.current_order = order;
-            Bus.$emit('setOrderID', order.id);
             /* Check for Shipment Type if Meet Up Or Pick Up Remove Shipping Details From Tabs */
             var customer = __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_core_js_object_assign___default()({ name: 'customer details', component: 'customer-details' }, JSON.parse(this.current_order.customer_details));
             var shipping = __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_core_js_object_assign___default()({ name: 'shipping details', component: 'shipping-details' }, JSON.parse(this.current_order.shipping_details));
@@ -7075,15 +7074,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     mounted: function mounted() {
         var self = this;
-        /* We may pass this on Tab Object on Dashboard */
+        /* Set Put URL Empty (optional) */
         self.putAction = '';
+        /* Set Request Name */
         self.name = 'file';
+        /* Set File Upload to Single */
         self.multiple = false;
+        /* Add Passport Access Token */
         self.headers['Authorization'] = 'Bearer ' + this.$cookie.get('access_token');
         /* change post URL */
-        Bus.$on('setOrderID', function (id) {
-            self.postAction = '' + route('api.media.receiptUploader', { order: id });
-        });
+        self.postAction = route('api.media.receiptUploader', { order: this.order.id });
     },
     data: function data() {
         return {
