@@ -379,7 +379,6 @@ export default {
         setCurrentOrder (order) {
             this.dialog = true
             this.current_order = order
-            Bus.$emit('setOrderID', order.id)
             /* Check for Shipment Type if Meet Up Or Pick Up Remove Shipping Details From Tabs */
             let customer = Object.assign({name: 'customer details', component: 'customer-details'}, JSON.parse(this.current_order.customer_details))
             let shipping = Object.assign({name: 'shipping details', component: 'shipping-details'}, JSON.parse(this.current_order.shipping_details))
