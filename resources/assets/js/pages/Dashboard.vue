@@ -383,16 +383,22 @@ export default {
             /* Check for Shipment Type if Meet Up Or Pick Up Remove Shipping Details From Tabs */
             let customer = Object.assign({name: 'customer details', component: 'customer-details'}, JSON.parse(this.current_order.customer_details))
             let shipping = Object.assign({name: 'shipping details', component: 'shipping-details'}, JSON.parse(this.current_order.shipping_details))
-            let payment = Object.assign({name: 'payment details', component: 'payment-details'}, this.current_order.payment)
-            let shipment = Object.assign({name: 'shipment details', component: 'shipment-details'}, this.current_order.shipment)
             let uploads = Object.assign({name: 'upload receipt', component: 'file-uploader'})
             this.tabs = [
                 customer,
-                shipping,
-                payment,
-                shipment,
-                uploads
+                shipping
             ]
+            let payment = null
+            if (this.current_order.payment) {
+                payment = Object.assign({name: 'payment details', component: 'payment-details'}, this.current_order.payment)
+                this.tabs.push(payment)
+            }
+            let shipment = null
+            if (this.current_order.shipment) {
+                shipment = Object.assign({name: 'shipment details', component: 'shipment-details'}, this.current_order.shipment)
+                this.tabs.push(shipment)
+            }
+            this.tabs.push(uploads)
         },
         fetchPanelStats () {
             let self = this
