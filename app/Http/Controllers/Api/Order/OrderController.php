@@ -112,7 +112,7 @@ class OrderController extends Controller
         $orders = $user->orders;
         $count = 0;
         foreach($orders as $order){
-            if($order->shipment->sent){
+            if(optional($order->shipment)->sent){
                 $count++;
             }
         }
@@ -124,7 +124,7 @@ class OrderController extends Controller
         $orders = $user->orders;
         $count = 0;
         foreach($orders as $order){
-            if($order->payment->paid){
+            if(optional($order->payment)->paid){
                 $count++;
             }
         }
@@ -141,7 +141,7 @@ class OrderController extends Controller
         $orders = $user->orders;
         $count = 0;
         foreach($orders as $order){
-            if($order->shipment->received){
+            if(optional($order->shipment)->received){
                 $count++;
             }
         }
@@ -169,7 +169,7 @@ class OrderController extends Controller
 
     public function destroy(Order $order)
     {
-        $courier = $order->shipment->courier;
+        $courier = optional($order->shipment)->courier;
         if($courier){
         $courier->delete();
         }
@@ -177,7 +177,7 @@ class OrderController extends Controller
         if($shipment){
         $shipment->delete();
         }
-        $gateway = $order->payment->gateway;
+        $gateway = optional($order->payment)->gateway;
         if($gateway){
             $gateway->delete();
         }
