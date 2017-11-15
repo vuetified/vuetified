@@ -4,6 +4,9 @@ namespace App\Http\Resources\User;
 
 use Illuminate\Http\Resources\Json\Resource;
 use App\Role;
+use App\Http\Resources\User\Sponsor as SponsorResource;
+use App\Http\Resources\User\Link as LinkResource;
+use App\Http\Resources\User\Profile as ProfileResource;
 
 class User extends Resource
 {
@@ -21,32 +24,25 @@ class User extends Resource
             'username' => $this->username,
             'email' => $this->email,
             'photo_url' => $this->photo_url,
+            /* list all contact info the user has (publicly available) in homepage */
             'contact_details' => json_decode($this->contact_details,true),
+            /* list all social links the user has (publicly available) in homepage */
             'social_links' => json_decode($this->social_links,true),
-            'profile' => $this->when($this->profile,[
-                'first_name' => $this->when($this->profile, optional($this->profile)->first_name),
-                'last_name' => $this->when($this->profile, optional($this->profile)->last_name),
-                'contact_no' => $this->when($this->profile, optional($this->profile)->contact_no),
-                'address_1' => $this->when($this->profile, optional($this->profile)->address_1),
-                'address_2' => $this->when($this->profile, optional($this->profile)->address_2),
-                'city' => $this->when($this->profile, optional($this->profile)->city),
-                'country' => $this->when($this->profile, optional($this->profile)->country),
-                'zip_code' => $this->when($this->profile, optional($this->profile)->zip_code),
-                'state_province' => $this->when($this->profile, optional($this->profile)->state_province),
-            ]),
-            'referral_link' => $this->when($this->referralLink,[
-                'id' => $this->when($this->referralLink, optional($this->referralLink)->id),
-                'link' => $this->when($this->referralLink, optional($this->referralLink)->link),
-                'active' => $this->when($this->referralLink, optional($this->referralLink)->active),
-                'sp_link_id' => $this->when($this->referralLink, optional($this->referralLink)->sp_link_id),
-                'sp_user_id' => $this->when($this->referralLink, optional($this->referralLink)->sp_user_id),
-            ]),
-            /* override user roles attribute from Spatie */
+            /* load the user profile that will be use as default for payment and shipment */
+            'profile' => new ProfileResource($this->whenLoaded('profile')),
+            /* load referral link details */
+            'referral_link' => new LinkResource($this->whenLoaded('referralLink')),
+            /* load sponsor and link details */
+            'sponsor' =>  new SponsorResource($this->whenLoaded('sponsor')),
+            /* list all roles */
             'roles' => $this->when($this->roles, $this->getRoleNames()),
-            /* override user permissions attribute from Spatie */
+            /* list all users inherited permissions from any role */
             'permissions' => $this->all_permissions,
+            /* list all granted permissions to a user */
+            /* use mainly in our vue auth permission check */
             'can' => $this->can,
-            /* Load The Role For Specific User Conditionally (UserMutator) */
+            /* specific role check */
+            /* use mainly in our vue auth role check */
             'isAdmin' => $this->when($this->isAdmin(), true),
             'isCustomer' => $this->when($this->isCustomer(), true),
             'isMerchant' => $this->when($this->isMerchant(), true),
