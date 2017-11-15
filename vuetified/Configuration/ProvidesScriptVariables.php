@@ -54,7 +54,8 @@ trait ProvidesScriptVariables
 
     protected static function getSponsor()
     {
-        if($user = request()->username){
+        if($link = request()->referrallink){
+            $user = Vuetified::user()->find($link->user_id);
             return [
                 'user_id' => $user->id,
                 'name' => $user->name,
