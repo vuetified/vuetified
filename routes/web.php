@@ -20,7 +20,7 @@ Route::post('/cart/destroy', 'Api\Cart\CartController@destroy')->name('api.cart.
 Route::post('/orders/create', 'Api\Order\OrderController@create')->name('api.order.create');
 /* Vue Wilcard Route Catcher */
 
-Route::domain('{username}.'.config('app.domain'))->group(function () {
+Route::domain('{referrallink}.'.config('app.domain'))->group(function () {
     Route::get('/{vue?}', 'DomainController@sponsor')->where('vue', '[\/\w\.-]*')->name('sponsor');
 });
 
