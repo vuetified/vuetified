@@ -31,8 +31,8 @@ class AdminSeeder extends Seeder
         $link->sp_user_id = null;
         $link->save();
         $profile = Profile::create([
-            'first_name' => 'John',
-            'last_name'  => 'Doe',
+            'first_name' => 'Super',
+            'last_name'  => 'Admin',
         ]);
         $user->profile()->save($profile);
         $file1 = public_path('contact_details.json');
