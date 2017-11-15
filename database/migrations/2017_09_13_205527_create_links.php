@@ -21,7 +21,7 @@ class CreateLinks extends Migration
             $table->unsignedBigInteger('sp_user_id')->nullable();
             $table->unsignedBigInteger('sp_link_id')->nullable();
             $table->boolean('active')->default(0);
-            $table->timestamp('date_activated');
+            $table->timestamp('date_activated')->nullable();
             $table->timestamps();
         });
     }
