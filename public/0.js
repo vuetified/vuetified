@@ -3774,10 +3774,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             /* Check for Shipment Type if Meet Up Or Pick Up Remove Shipping Details From Tabs */
             var customer = __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_core_js_object_assign___default()({ name: 'customer details', component: 'customer-details' }, JSON.parse(this.current_order.customer_details));
             var shipping = __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_core_js_object_assign___default()({ name: 'shipping details', component: 'shipping-details' }, JSON.parse(this.current_order.shipping_details));
-            var payment = __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_core_js_object_assign___default()({ name: 'payment details', component: 'payment-details' }, this.current_order.payment);
-            var shipment = __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_core_js_object_assign___default()({ name: 'shipment details', component: 'shipment-details' }, this.current_order.shipment);
             var uploads = __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_core_js_object_assign___default()({ name: 'upload receipt', component: 'file-uploader' });
-            this.tabs = [customer, shipping, payment, shipment, uploads];
+            this.tabs = [customer, shipping];
+            var payment = null;
+            if (this.current_order.payment) {
+                payment = __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_core_js_object_assign___default()({ name: 'payment details', component: 'payment-details' }, this.current_order.payment);
+                this.tabs.push(payment);
+            }
+            var shipment = null;
+            if (this.current_order.shipment) {
+                shipment = __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_core_js_object_assign___default()({ name: 'shipment details', component: 'shipment-details' }, this.current_order.shipment);
+                this.tabs.push(shipment);
+            }
+            this.tabs.push(uploads);
         },
         fetchPanelStats: function fetchPanelStats() {
             var self = this;
