@@ -3518,6 +3518,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -3790,7 +3792,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         totalAmount: function totalAmount(item) {
             var cart = JSON.parse(item.cart);
-            var total = this.parseNumber(cart.total) + parseFloat(item.shipment.shipping_fee);
+            var total = null;
+            if (item.shipment) {
+                total = this.parseNumber(cart.total) + parseFloat(item.shipment.shipping_fee);
+            } else {
+                total = this.parseNumber(cart.total);
+            }
             return total.toFixed(2);
         }
     },
@@ -10243,30 +10250,32 @@ var render = function() {
                             "td",
                             { staticClass: "title text-xs-left primary--text" },
                             [
-                              _c("v-switch", {
-                                attrs: {
-                                  label:
-                                    "" +
-                                    (props.item.shipment.sent
-                                      ? "Sent"
-                                      : "On-Hold"),
-                                  color: "cyan",
-                                  light: "",
-                                  disabled: !_vm.hasRole("admin")
-                                },
-                                on: {
-                                  change: function($event) {
-                                    _vm.toggleSent(props.item)
-                                  }
-                                },
-                                model: {
-                                  value: props.item.shipment.sent,
-                                  callback: function($$v) {
-                                    props.item.shipment.sent = $$v
-                                  },
-                                  expression: "props.item.shipment.sent"
-                                }
-                              })
+                              props.item.shipment
+                                ? _c("v-switch", {
+                                    attrs: {
+                                      label:
+                                        "" +
+                                        (props.item.shipment.sent
+                                          ? "Sent"
+                                          : "On-Hold"),
+                                      color: "cyan",
+                                      light: "",
+                                      disabled: !_vm.hasRole("admin")
+                                    },
+                                    on: {
+                                      change: function($event) {
+                                        _vm.toggleSent(props.item)
+                                      }
+                                    },
+                                    model: {
+                                      value: props.item.shipment.sent,
+                                      callback: function($$v) {
+                                        props.item.shipment.sent = $$v
+                                      },
+                                      expression: "props.item.shipment.sent"
+                                    }
+                                  })
+                                : _vm._e()
                             ],
                             1
                           ),
@@ -10275,29 +10284,31 @@ var render = function() {
                             "td",
                             { staticClass: "title text-xs-left primary--text" },
                             [
-                              _c("v-switch", {
-                                attrs: {
-                                  label:
-                                    "" +
-                                    (props.item.shipment.received
-                                      ? "Received"
-                                      : "Pending"),
-                                  color: "light-green",
-                                  light: ""
-                                },
-                                on: {
-                                  change: function($event) {
-                                    _vm.toggleReceived(props.item)
-                                  }
-                                },
-                                model: {
-                                  value: props.item.shipment.received,
-                                  callback: function($$v) {
-                                    props.item.shipment.received = $$v
-                                  },
-                                  expression: "props.item.shipment.received"
-                                }
-                              })
+                              props.item.shipment
+                                ? _c("v-switch", {
+                                    attrs: {
+                                      label:
+                                        "" +
+                                        (props.item.shipment.received
+                                          ? "Received"
+                                          : "Pending"),
+                                      color: "light-green",
+                                      light: ""
+                                    },
+                                    on: {
+                                      change: function($event) {
+                                        _vm.toggleReceived(props.item)
+                                      }
+                                    },
+                                    model: {
+                                      value: props.item.shipment.received,
+                                      callback: function($$v) {
+                                        props.item.shipment.received = $$v
+                                      },
+                                      expression: "props.item.shipment.received"
+                                    }
+                                  })
+                                : _vm._e()
                             ],
                             1
                           ),

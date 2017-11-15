@@ -37869,7 +37869,8 @@ App.forms = {
         state_province: null
     },
     contactDetailsForm: {},
-    socialLinksForm: {}
+    socialLinksForm: {},
+    usersForm: {}
 
     // Add Other Form Object Here
 };
