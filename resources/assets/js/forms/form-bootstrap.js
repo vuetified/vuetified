@@ -132,6 +132,9 @@ App.forms = {
     contactDetailsForm: {
     },
     socialLinksForm: {
+    },
+    usersForm: {
+
     }
 
     // Add Other Form Object Here
