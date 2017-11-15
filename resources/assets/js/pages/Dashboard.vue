@@ -37,6 +37,7 @@
                         light
                         :disabled="!hasRole('admin')"
                         @change="toggleSent(props.item)"
+                        v-if="props.item.shipment"
                         >
                     </v-switch>
                 </td>
@@ -47,6 +48,7 @@
                         color="light-green"
                         light
                         @change="toggleReceived(props.item)"
+                        v-if="props.item.shipment"
                         >
                     </v-switch>
                 </td>
@@ -405,7 +407,12 @@ export default {
         },
         totalAmount (item) {
             let cart = JSON.parse(item.cart)
-            let total = this.parseNumber(cart.total) + parseFloat(item.shipment.shipping_fee)
+            let total = null
+            if (item.shipment) {
+                total = this.parseNumber(cart.total) + parseFloat(item.shipment.shipping_fee)
+            } else {
+                total = this.parseNumber(cart.total)
+            }
             return total.toFixed(2)
         }
     },
