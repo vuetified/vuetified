@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class DomainController extends Controller
 {
-    public function sponsor($username)
+    public function sponsor(Request $request)
     {
         return view('app');
     }
