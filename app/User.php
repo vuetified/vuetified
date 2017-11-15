@@ -69,4 +69,15 @@ class User extends Authenticatable
         return $this->hasMany(Order::class);
     }
 
+
+    public function sponsor()
+    {
+        return $this->belongsTo(User::class, 'sp_id');
+    }
+
+    public static function last()
+    {
+        return self::latest()->first();
+    }
+
 }
