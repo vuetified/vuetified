@@ -103,8 +103,8 @@
                         </v-card-media>
 
                         <v-card-actions>
-                            <v-btn flat color="primary">Impersonate <v-icon right>fa-user-secret</v-icon></v-btn>
-                            <v-btn flat color="error">Ban Account <v-icon right>fa-ban </v-icon></v-btn>
+                            <v-btn flat color="success" v-if="!props.item.active">Activate Account <v-icon right>done_all</v-icon></v-btn>
+                            <v-btn flat color="error" v-if="!props.item.banned">Ban Account <v-icon right>fa-ban </v-icon></v-btn>
                         </v-card-actions>
 
                         <v-card-title>
