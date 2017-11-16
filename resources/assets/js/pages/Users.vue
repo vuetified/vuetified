@@ -2,21 +2,36 @@
 <main-layout  :style="{ paddingTop: `100px`, backgroundColor: `white` }">
     <v-container fluid>
         <!-- User Main Detail -->
+        <v-card light flat>
+            <v-card-title>
+                <v-text-field
+                append-icon="search"
+                label="Search Users"
+                single-line
+                hide-details
+                v-model="search"
+                light
+                ></v-text-field>
+            </v-card-title>
+        </v-card>
         <v-data-table
         :headers="headers"
         :items="items"
+        :search="search"
         light
+        item-key="name"
+        expand
         >
             <template slot="items" scope="props">
                 <tr>
                     <td class="title text-xs-left primary--text">
-                        <v-avatar @click="props.expanded = !props.expanded">
-                            <img :src="props.item.photo_url" :alt="props.item.name" style="cursor:pointer;">
-                        </v-avatar>
+                        {{ props.item.id }}
+                    </td>
+                    <td class="title text-xs-left primary--text">
                         {{ props.item.name }}
                     </td>
                     <td class="title text-xs-left primary--text">
-                        <v-avatar v-if="props.item.sponsor" >
+                        <v-avatar v-if="props.item.sponsor">
                             <img :src="props.item.sponsor.photo_url" :alt="props.item.sponsor.name">
                         </v-avatar>
                         <span v-if="props.item.sponsor">{{ props.item.sponsor.name }}</span>
@@ -50,7 +65,11 @@
                         </v-chip>
                     </td>
                     <td class="title text-xs-center">
-                        <v-btn :disabled="!can('edit_user')"  flat icon color="accent" @click.native="setCurrentUser(props.item)">
+                        <v-btn light  flat icon :class="{'amber--text': props.expanded, 'amber': props.expanded, 'teal': !props.expanded, 'teal--text': !props.expanded }" @click="props.expanded = !props.expanded">
+                            <v-icon v-if="!props.expanded">fa-expand</v-icon>
+                            <v-icon v-if="props.expanded">fa-compress</v-icon>
+                        </v-btn>
+                        <v-btn :disabled="!can('edit_user')"  flat icon color="accent" @click.native="editUser(props.item)">
                             <v-icon>fa-edit</v-icon>
                         </v-btn>
                         <v-btn :disabled="!can('delete_user')" flat icon color="error" @click.native="deleteUser(props.item)">
@@ -60,14 +79,133 @@
                 </tr>
             </template>
 
-            <template slot="expand" scope="props">
-                <!-- User Other Details -->
-                <v-subheader class="accent--text">Email: {{ props.item.email }}</v-subheader>
-                <v-subheader class="accent--text">Username: {{ props.item.username }}</v-subheader>
-            </template>
-
             <template slot="pageText" scope="{ pageStart, pageStop }">
                 From {{ pageStart }} to {{ pageStop }}
+            </template>
+
+            <template slot="expand" scope="props">
+                <v-container fluid>
+                    <v-card light flat text-xs-center>
+                        <v-card-media
+                            class="white--text blue-grey"
+                            height="75px"
+                        >
+                        <v-container fill-height fluid>
+                        <v-layout fill-height>
+                            <v-flex xs12 align-end flexbox>
+                            <v-avatar text-xs-left>
+                            <img :src="props.item.photo_url" :alt="props.item.name">
+                            </v-avatar>
+                            <span class="headline">{{ props.item.name }}</span>
+                            </v-flex>
+                        </v-layout>
+                        </v-container>
+                        </v-card-media>
+
+                        <v-card-actions>
+                            <v-btn flat color="primary">Impersonate <v-icon right>fa-user-secret</v-icon></v-btn>
+                            <v-btn flat color="error">Ban Account <v-icon right>fa-ban </v-icon></v-btn>
+                        </v-card-actions>
+
+                        <v-card-title>
+                            <v-container fluid>
+                                <p class="title info--text">Account Details</p>
+                                <v-layout row wrap>
+                                    <v-flex xs12>
+                                    <v-text-field
+                                        label="Username"
+                                        v-model="props.item.username"
+                                        prepend-icon="fa-at"
+                                        light
+                                        readonly
+                                        >
+                                    </v-text-field>
+                                    </v-flex>
+                                    <v-flex xs12>
+                                        <v-text-field
+                                        label="Email"
+                                        v-model="props.item.email"
+                                        prepend-icon="fa-envelope"
+                                        light
+                                        readonly
+                                        >
+                                        </v-text-field>
+                                    </v-flex>
+                                </v-layout>
+                                <p class="title info--text" v-if="props.item.roles">Assigned Roles</p>
+                                <v-layout row wrap>
+                                    <v-flex xs12>
+                                        <v-select
+                                            fluid
+                                            light
+                                            chips
+                                            tags
+                                            prepend-icon="fa-tags"
+                                            readonly
+                                            v-model="props.item.roles"
+                                        >
+                                        <template slot="selection" scope="data">
+                                            <v-chip
+                                            light
+                                            :selected="data.selected"
+                                            >
+                                            <v-avatar
+                                            class="blue-grey"
+                                            >
+                                            {{ data.item.charAt(0).toUpperCase() }}
+                                            </v-avatar>
+                                            {{ data.item }}
+                                            </v-chip>
+                                        </template>
+                                        </v-select>
+                                    </v-flex>
+                                </v-layout>
+                                <p class="title info--text" v-if="props.item.permissions">Assigned Permissions</p>
+                                <v-layout row wrap>
+                                    <v-flex xs12>
+                                        <v-select
+                                            fluid
+                                            light
+                                            chips
+                                            tags
+                                            prepend-icon="fa-tags"
+                                            readonly
+                                            v-model="props.item.permissions"
+                                        >
+                                        <template slot="selection" scope="data">
+                                            <v-chip
+                                            light
+                                            :selected="data.selected"
+                                            >
+                                            <v-avatar
+                                            class="brown"
+                                            >
+                                            {{ data.item.charAt(0).toUpperCase() }}
+                                            </v-avatar>
+                                            {{ data.item }}
+                                            </v-chip>
+                                        </template>
+                                        </v-select>
+                                    </v-flex>
+                                </v-layout>
+                                <p class="title info--text" v-if="props.item.profile">Profile Details</p>
+                                <v-layout row wrap>
+                                    <v-flex xs12 v-for="(profile,key) in props.item.profile" :key="key">
+                                        <v-text-field
+                                        :label="toProperCase(key)"
+                                        v-model="props.item.profile[key]"
+                                        light
+                                        readonly
+                                        >
+                                        </v-text-field>
+                                    </v-flex>
+                                </v-layout>
+
+                            </v-container>
+                        </v-card-title>
+
+                </v-card>
+                </v-container>
             </template>
 
         </v-data-table>
@@ -79,7 +217,6 @@
 import MainLayout from '../layouts/Main.vue'
 import Theme from '../mixins/theme'
 import Acl from '../mixins/acl'
-import VLink from '../components/VLink.vue'
 
 export default {
     mixins: [Theme, Acl],
@@ -88,21 +225,21 @@ export default {
         dialog: false,
         /* table */
         headers: [
-            /* remove sort and value since we cant access dot anotation in item */
-            { text: 'Name', value: 'id', align: 'left', sortable: true },
-            { text: 'Sponsor', align: 'left', sortable: false },
-            { text: 'Shop Link', align: 'left', sortable: false },
-            { text: 'Account Type', align: 'left', sortable: false },
-            { text: 'Actions', align: 'center', sortable: false }
+            { text: 'ID', value: 'id', align: 'left', sortable: true },
+            { text: 'Name', value: 'name', align: 'left', sortable: true },
+            { text: 'Sponsor', value: 'sponsor.name', align: 'left', sortable: true },
+            { text: 'Shop Link', value: 'referral_link.link', align: 'left', sortable: true },
+            { text: 'Roles', value: 'roles', align: 'left', sortable: false },
+            { text: 'Actions', value: 'actions', align: 'center', sortable: false }
         ],
         items: [],
         current_user: {},
         usersForm: new AppForm(App.forms.usersForm),
-        toggleForm: new AppForm(App.forms.toggleForm)
+        toggleForm: new AppForm(App.forms.toggleForm),
+        search: ''
     }),
     components: {
-        MainLayout,
-        VLink
+        MainLayout
     },
     mounted () {
         let self = this
@@ -123,11 +260,39 @@ export default {
                 vm.$popup({ message: message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' })
             }
         },
-        deleteUser () {
-            console.log('delete user')
+        editUser (user) {
+            /* Apply this after successful ajax request //
+            let index = _.findIndex(self.items, { id: user.id })
+            self.$set(self.items, index, response.data.user)
+            */
+            // redirect to edit User page
+            console.log('edit user', user)
         },
-        setCurrentUser () {
-            console.log('set current user')
+        deleteUser (user) {
+            let self = this
+            /* delete item */
+            // you cant delete an admin account
+            // but we can only downgrade it to other role
+            // except if your email is = admin@
+            let index = _.findIndex(self.items, { id: user.id })
+            self.$delete(self.items, index)
+        },
+        viewUser (user) {
+            // redirect to view User page
+            console.log('view user', user)
+        },
+        toProperCase (key) {
+            let newStr = key.replace(/_/g, ' ')
+            return newStr.replace(/\w\S*/g, function (txt) { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase() })
+        }
+
+    },
+    watch: {
+        items: {
+            handler: function () {
+                console.log('items changed')
+            },
+            deep: true
         }
     }
 }
