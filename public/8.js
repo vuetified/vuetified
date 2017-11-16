@@ -3934,29 +3934,33 @@ var render = function() {
                             _c(
                               "v-card-actions",
                               [
-                                _c(
-                                  "v-btn",
-                                  { attrs: { flat: "", color: "primary" } },
-                                  [
-                                    _vm._v("Impersonate "),
-                                    _c("v-icon", { attrs: { right: "" } }, [
-                                      _vm._v("fa-user-secret")
-                                    ])
-                                  ],
-                                  1
-                                ),
+                                !props.item.active
+                                  ? _c(
+                                      "v-btn",
+                                      { attrs: { flat: "", color: "success" } },
+                                      [
+                                        _vm._v("Activate Account "),
+                                        _c("v-icon", { attrs: { right: "" } }, [
+                                          _vm._v("done_all")
+                                        ])
+                                      ],
+                                      1
+                                    )
+                                  : _vm._e(),
                                 _vm._v(" "),
-                                _c(
-                                  "v-btn",
-                                  { attrs: { flat: "", color: "error" } },
-                                  [
-                                    _vm._v("Ban Account "),
-                                    _c("v-icon", { attrs: { right: "" } }, [
-                                      _vm._v("fa-ban ")
-                                    ])
-                                  ],
-                                  1
-                                )
+                                !props.item.banned
+                                  ? _c(
+                                      "v-btn",
+                                      { attrs: { flat: "", color: "error" } },
+                                      [
+                                        _vm._v("Ban Account "),
+                                        _c("v-icon", { attrs: { right: "" } }, [
+                                          _vm._v("fa-ban ")
+                                        ])
+                                      ],
+                                      1
+                                    )
+                                  : _vm._e()
                               ],
                               1
                             ),
