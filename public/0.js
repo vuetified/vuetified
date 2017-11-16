@@ -3520,6 +3520,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -10175,7 +10176,12 @@ var render = function() {
             { attrs: { fluid: "" } },
             [
               _c("v-data-table", {
-                attrs: { headers: _vm.headers, items: _vm.items, light: "" },
+                attrs: {
+                  headers: _vm.headers,
+                  items: _vm.items,
+                  light: "",
+                  expand: ""
+                },
                 scopedSlots: _vm._u([
                   {
                     key: "items",
