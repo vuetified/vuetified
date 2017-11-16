@@ -8,6 +8,7 @@
                 :headers="headers"
                 :items="items"
                 light
+                expand
             >
             <template slot="items" scope="props">
             <tr>
