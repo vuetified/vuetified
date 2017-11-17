@@ -142,7 +142,12 @@ App.forms = {
         link: '',
         link_id: '',
         user_id: ''
+    },
+    rolesForm: {
+        roles: []
+    },
+    permissionsForm: {
+        permissions: []
     }
-
     // Add Other Form Object Here
 }
