@@ -11,6 +11,7 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::post('/users/settings/updateProfile', 'Api\Settings\SettingsController@updateProfile')->name('api.user.updateProfile');
     Route::post('/users/settings/updateContactDetails', 'Api\Settings\SettingsController@updateContactDetails')->name('api.user.updateContactDetails');
     Route::post('/users/settings/updateSocialLink', 'Api\Settings\SettingsController@updateSocialLink')->name('api.user.updateSocialLink');
+    Route::post('/users/settings/updateReferralLink', 'Api\Settings\SettingsController@updateReferralLink')->name('api.user.updateReferralLink');
 
     Route::post('/getAuth', 'Api\Auth\ACLController@getAuth')->name('api.auth.getAuth');
     Route::post('/auth/check', 'Api\Auth\LoginController@check')->name('api.auth.check');
