@@ -137,6 +137,11 @@ App.forms = {
     },
     usersForm: {
 
+    },
+    linkForm: {
+        link: '',
+        link_id: '',
+        user_id: ''
     }
 
     // Add Other Form Object Here
