@@ -6,13 +6,6 @@
             <v-layout row wrap>
                 <p class="primary--text">Account Details</p>
                 <v-flex xs12>
-                    <v-alert color="primary" icon="fa-link" value="true">
-                        <v-list dense light class="primary">
-                            <v-link  link-color="white" :dark="false"  :title="`Your Online Shop Link : ${href}`" :href="href"></v-link>
-                        </v-list>
-                    </v-alert>
-                </v-flex>
-                <v-flex xs12>
                     <v-text-field
                     label="Username"
                     v-model="username"
@@ -88,7 +81,6 @@
 </template>
 
 <script>
-import VLink from '../VLink.vue'
 import { createNamespacedHelpers } from 'vuex'
 const { mapGetters, mapMutations } = createNamespacedHelpers('auth')
 
@@ -105,13 +97,7 @@ export default {
     computed: {
         ...mapGetters({
             getMe: 'getMe'
-        }),
-        href () {
-            return `http://${this.username}.${App.site.domain}`
-        }
-    },
-    components: {
-        VLink
+        })
     },
     mounted () {
         let self = this
