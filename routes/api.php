@@ -7,6 +7,11 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::post('/users/email/{email}', 'Api\UsersController@findByEmail')->name('api.user.findByEmail');
     Route::post('/users/{id}', 'Api\UsersController@show')->name('api.user.show');
 
+    Route::get('/permissions', 'Api\Auth\PermissionRolesController@getAllPermissions')->name('api.permissions.index');
+    Route::get('/roles', 'Api\Auth\PermissionRolesController@getAllRoles')->name('api.roles.index');
+    Route::post('/users/{id}/syncRoles', 'Api\Auth\PermissionRolesController@syncRoles')->name('api.user.roles.sync');
+    Route::post('/users/{id}/syncPermissions', 'Api\Auth\PermissionRolesController@syncPermissions')->name('api.user.permissions.sync');
+
     Route::post('/users/settings/updateAccount', 'Api\Settings\SettingsController@updateAccount')->name('api.user.updateAccount');
     Route::post('/users/settings/updateProfile', 'Api\Settings\SettingsController@updateProfile')->name('api.user.updateProfile');
     Route::post('/users/settings/updateContactDetails', 'Api\Settings\SettingsController@updateContactDetails')->name('api.user.updateContactDetails');
