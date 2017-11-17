@@ -38,6 +38,7 @@ class RegisterController extends Controller
 			'sponsor' => [
 				'sometimes',
 				'required',
+				/* will check for userid if correct */
 				new CheckSponsor
 			]
 		]);
