@@ -3977,7 +3977,7 @@ exports = module.exports = __webpack_require__(625)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -3993,12 +3993,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_regenerator__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_asyncToGenerator__ = __webpack_require__(62);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_asyncToGenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_asyncToGenerator__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends__ = __webpack_require__(646);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vuex__ = __webpack_require__(90);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_core_js_object_keys__ = __webpack_require__(854);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_core_js_object_keys___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_core_js_object_keys__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends__ = __webpack_require__(646);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__NewContactDetails_vue__ = __webpack_require__(858);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__NewContactDetails_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__NewContactDetails_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vuex__ = __webpack_require__(90);
 
 
 
+
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -4070,45 +4082,91 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_3_vuex__["createNamespacedHelpers"])('auth'),
+
+var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_5_vuex__["createNamespacedHelpers"])('auth'),
     mapGetters = _createNamespacedHelp.mapGetters,
     mapMutations = _createNamespacedHelp.mapMutations;
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    components: {
+        NewContactDetails: __WEBPACK_IMPORTED_MODULE_4__NewContactDetails_vue___default.a
+    },
     data: function data() {
         return {
-            contact_modal: false,
+            contentClass: { 'grey': true, 'lighten-4': true, 'accent--text': true },
             contact_details: {},
-            contact_tmp: {
-                title: null,
-                value: null
-            },
-            contactDetailsForm: new AppForm(App.forms.contactDetailsForm)
+            contactDetailsForm: new AppForm(App.forms.contactDetailsForm),
+            hasContactKeys: false
         };
     },
-    computed: __WEBPACK_IMPORTED_MODULE_2_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends___default()({}, mapGetters({
+    computed: __WEBPACK_IMPORTED_MODULE_3_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends___default()({}, mapGetters({
         getMe: 'getMe'
     })),
     mounted: function mounted() {
         var self = this;
-        self.contact_details = self.getMe.contact_details;
+        /* check the return value when we dont have contact details its an array it should be an empty objec */
+        if (!_.isEmpty(self.getMe.contact_details)) {
+            self.contact_details = self.getMe.contact_details;
+            self.hasContactKeys = true;
+        } else if (self.getMe.contact_details.length > 0) {
+            self.contact_details = self.getMe.contact_details;
+            self.hasContactKeys = true;
+        } else {
+            self.contact_details = {};
+            self.hasContactKeys = false;
+        }
+        Bus.$on('update-contact-details', function (contact) {
+            self.contact_details[contact.title] = contact.value;
+            self.updateContactDetails();
+        });
     },
 
-    methods: __WEBPACK_IMPORTED_MODULE_2_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends___default()({}, mapMutations({
+    methods: __WEBPACK_IMPORTED_MODULE_3_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends___default()({}, mapMutations({
         setMe: 'setMe'
     }), {
+        isEmpty: function isEmpty(obj) {
+            return __WEBPACK_IMPORTED_MODULE_2_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_core_js_object_keys___default()(obj).length === 0;
+        },
+        openModal: function openModal() {
+            Bus.$emit('add-new-contact-details');
+        },
+        deleteContactDetails: function () {
+            var _ref = __WEBPACK_IMPORTED_MODULE_1_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_regenerator___default.a.mark(function _callee(key) {
+                var self;
+                return __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+                    while (1) {
+                        switch (_context.prev = _context.next) {
+                            case 0:
+                                self = this;
+
+                                delete self.contact_details[key];
+                                _context.next = 4;
+                                return self.updateContactDetails();
+
+                            case 4:
+                                if (_.isEmpty(self.contact_details)) {
+                                    self.hasContactKeys = false;
+                                }
+
+                            case 5:
+                            case 'end':
+                                return _context.stop();
+                        }
+                    }
+                }, _callee, this);
+            }));
+
+            function deleteContactDetails(_x) {
+                return _ref.apply(this, arguments);
+            }
+
+            return deleteContactDetails;
+        }(),
         toProperCase: function toProperCase(key) {
             var newStr = key.replace(/_/g, ' ');
             return newStr.replace(/\w\S*/g, function (txt) {
                 return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
             });
-        },
-        isDisabled: function isDisabled(object) {
-            if (object.title && object.value) {
-                return false;
-            } else {
-                return true;
-            }
         },
         prepareContactDetailsForm: function prepareContactDetailsForm() {
             var self = this;
@@ -4119,75 +4177,70 @@ var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_3_vuex__["createNam
             self.contactDetailsForm = new AppForm(App.forms.contactDetailsForm);
         },
         updateContactDetails: function () {
-            var _ref = __WEBPACK_IMPORTED_MODULE_1_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_regenerator___default.a.mark(function _callee() {
+            var _ref2 = __WEBPACK_IMPORTED_MODULE_1_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_regenerator___default.a.mark(function _callee2() {
                 var self, payload, errors, message;
-                return __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+                return __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
                     while (1) {
-                        switch (_context.prev = _context.next) {
+                        switch (_context2.prev = _context2.next) {
                             case 0:
                                 self = this;
 
+                                console.log('1');
                                 self.prepareContactDetailsForm();
+                                console.log('2');
                                 self.$validator.validateAll();
+                                console.log('3');
 
                                 if (self.errors.any()) {
-                                    _context.next = 21;
+                                    _context2.next = 31;
                                     break;
                                 }
 
+                                console.log('4');
                                 self.contactDetailsForm.busy = true;
-                                _context.prev = 5;
-                                _context.next = 8;
+                                console.log('5');
+                                _context2.prev = 10;
+                                _context2.next = 13;
                                 return App.post(route('api.user.updateContactDetails'), self.contactDetailsForm);
 
-                            case 8:
-                                payload = _context.sent;
+                            case 13:
+                                payload = _context2.sent;
 
+                                console.log('6');
                                 self.resetContactDetailsForm();
+                                console.log('7');
                                 self.setMe(payload.data);
+                                console.log('8');
+                                self.hasContactKeys = true;
+                                console.log('9');
                                 vm.$popup({ message: payload.message, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' });
-                                _context.next = 21;
+                                _context2.next = 31;
                                 break;
 
-                            case 14:
-                                _context.prev = 14;
-                                _context.t0 = _context['catch'](5);
-                                errors = _context.t0.errors;
-                                message = _context.t0.message;
+                            case 24:
+                                _context2.prev = 24;
+                                _context2.t0 = _context2['catch'](10);
+                                errors = _context2.t0.errors;
+                                message = _context2.t0.message;
 
                                 self.contactDetailsForm.errors.set(errors);
                                 self.contactDetailsForm.busy = false;
                                 vm.$popup({ message: message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' });
 
-                            case 21:
+                            case 31:
                             case 'end':
-                                return _context.stop();
+                                return _context2.stop();
                         }
                     }
-                }, _callee, this, [[5, 14]]);
+                }, _callee2, this, [[10, 24]]);
             }));
 
             function updateContactDetails() {
-                return _ref.apply(this, arguments);
+                return _ref2.apply(this, arguments);
             }
 
             return updateContactDetails;
-        }(),
-        closeContactInput: function closeContactInput() {
-            this.contact_tmp.title = null;
-            this.contact_tmp.value = null;
-            this.contact_modal = false;
-        },
-        addContactInput: function addContactInput() {
-            if (this.contact_tmp.title && this.contact_tmp.value) {
-                this.$set(this.contact_details, this.contact_tmp.title, this.contact_tmp.value);
-            }
-            this.contact_tmp.title = null;
-            this.contact_tmp.value = null;
-            this.contact_modal = false;
-            /* send ajax to add new contact info */
-            // update getMe
-        }
+        }()
     })
 
 });
@@ -4208,216 +4261,66 @@ var render = function() {
       _c(
         "v-container",
         [
-          _c(
-            "v-layout",
-            { attrs: { row: "", wrap: "" } },
-            [
-              _c("p", { staticClass: "primary--text" }, [
-                _vm._v("Contact Details")
-              ]),
-              _vm._v(" "),
-              _c(
-                "v-flex",
-                { attrs: { xs12: "" } },
+          _vm.hasContactKeys
+            ? _c(
+                "v-layout",
+                { attrs: { row: "", wrap: "" } },
                 [
                   _c(
-                    "v-alert",
-                    {
-                      attrs: {
-                        color: "primary",
-                        icon: "warning",
-                        value: "true"
-                      }
-                    },
+                    "v-flex",
+                    { attrs: { xs6: "" } },
                     [
-                      _c("span", { staticClass: "white--text" }, [
-                        _vm._v(
-                          "** This Will Be Displayed Publicly in The Homepage **"
-                        )
-                      ])
-                    ]
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-flex",
-                { attrs: { xs12: "" } },
-                _vm._l(_vm.contact_details, function(value, key, index) {
-                  return _c("v-text-field", {
-                    directives: [
-                      {
-                        name: "validate",
-                        rawName: "v-validate",
-                        value: { required: true, regex: /^[a-zA-Z0-9 +@#]+$/ },
-                        expression:
-                          "{ required: true, regex: /^[a-zA-Z0-9 +@#]+$/ }"
-                      }
-                    ],
-                    key: key,
-                    attrs: {
-                      label: _vm.toProperCase(key),
-                      light: "",
-                      index: index,
-                      "error-messages": _vm.errors.collect(key),
-                      "data-vv-name": key
-                    },
-                    model: {
-                      value: _vm.contact_details[key],
-                      callback: function($$v) {
-                        _vm.$set(_vm.contact_details, key, $$v)
-                      },
-                      expression: "contact_details[key]"
-                    }
-                  })
-                })
-              ),
-              _vm._v(" "),
-              _c(
-                "v-btn",
-                {
-                  staticClass: "white--text",
-                  class: {
-                    primary: !_vm.contactDetailsForm.busy,
-                    error: _vm.contactDetailsForm.busy
-                  },
-                  attrs: {
-                    block: "",
-                    color: "primary",
-                    disabled: _vm.errors.any(),
-                    loading: _vm.contactDetailsForm.busy,
-                    light: ""
-                  },
-                  on: {
-                    click: function($event) {
-                      _vm.updateContactDetails()
-                    }
-                  }
-                },
-                [
-                  _vm._v("\n                Update Contact Details "),
-                  _c("v-icon", { attrs: { right: "" } }, [_vm._v("fa-send")])
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-btn",
-                {
-                  attrs: { block: "", color: "accent" },
-                  on: {
-                    click: function($event) {
-                      _vm.contact_modal = true
-                    }
-                  }
-                },
-                [
-                  _vm._v("New Contact Details"),
-                  _c("v-icon", { attrs: { right: "" } }, [_vm._v("fa-plus")])
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-dialog",
-                {
-                  attrs: { persistent: "", width: "600px" },
-                  model: {
-                    value: _vm.contact_modal,
-                    callback: function($$v) {
-                      _vm.contact_modal = $$v
-                    },
-                    expression: "contact_modal"
-                  }
-                },
-                [
-                  _c(
-                    "v-card",
-                    { attrs: { light: "" } },
-                    [
-                      _c("v-card-title", { staticClass: "headline" }, [
-                        _vm._v("Add New Contact Details")
-                      ]),
-                      _vm._v(" "),
                       _c(
-                        "v-container",
+                        "v-btn",
+                        {
+                          staticClass: "white--text",
+                          class: {
+                            primary: !_vm.contactDetailsForm.busy,
+                            error: _vm.contactDetailsForm.busy
+                          },
+                          attrs: {
+                            block: "",
+                            disabled: _vm.errors.any(),
+                            loading: _vm.contactDetailsForm.busy,
+                            light: ""
+                          },
+                          nativeOn: {
+                            click: function($event) {
+                              _vm.updateContactDetails()
+                            }
+                          }
+                        },
                         [
-                          _c(
-                            "v-layout",
-                            { attrs: { row: "", wrap: "" } },
-                            [
-                              _c(
-                                "v-flex",
-                                { attrs: { xs12: "" } },
-                                _vm._l(_vm.contact_tmp, function(
-                                  value,
-                                  key,
-                                  index
-                                ) {
-                                  return _c("v-text-field", {
-                                    key: key,
-                                    attrs: {
-                                      label: _vm.toProperCase(key),
-                                      light: "",
-                                      index: index
-                                    },
-                                    model: {
-                                      value: _vm.contact_tmp[key],
-                                      callback: function($$v) {
-                                        _vm.$set(_vm.contact_tmp, key, $$v)
-                                      },
-                                      expression: "contact_tmp[key]"
-                                    }
-                                  })
-                                })
-                              )
-                            ],
-                            1
-                          )
+                          _vm._v("Update Contact Details\n                "),
+                          _c("v-icon", { attrs: { right: "" } }, [
+                            _vm._v("fa-send")
+                          ])
                         ],
                         1
-                      ),
-                      _vm._v(" "),
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-flex",
+                    { attrs: { xs6: "" } },
+                    [
                       _c(
-                        "v-card-actions",
+                        "v-btn",
+                        {
+                          attrs: { block: "", color: "accent" },
+                          nativeOn: {
+                            click: function($event) {
+                              _vm.openModal()
+                            }
+                          }
+                        },
                         [
-                          _c("v-spacer"),
-                          _vm._v(" "),
-                          _c(
-                            "v-btn",
-                            {
-                              attrs: {
-                                color: "green darken-1",
-                                flat: "",
-                                disabled: _vm.isDisabled(_vm.contact_tmp),
-                                light: ""
-                              },
-                              nativeOn: {
-                                click: function($event) {
-                                  _vm.addContactInput()
-                                }
-                              }
-                            },
-                            [
-                              _vm._v(
-                                "\n                        Create Contact Details"
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-btn",
-                            {
-                              attrs: { color: "error", flat: "" },
-                              nativeOn: {
-                                click: function($event) {
-                                  _vm.closeContactInput()
-                                }
-                              }
-                            },
-                            [_vm._v("Cancel")]
-                          )
+                          _vm._v("Create Contact Details\n                "),
+                          _c("v-icon", { attrs: { right: "" } }, [
+                            _vm._v("fa-plus")
+                          ])
                         ],
                         1
                       )
@@ -4427,9 +4330,154 @@ var render = function() {
                 ],
                 1
               )
-            ],
-            1
-          )
+            : _c(
+                "v-layout",
+                { attrs: { row: "", wrap: "" } },
+                [
+                  _c(
+                    "v-flex",
+                    { attrs: { xs12: "" } },
+                    [
+                      _c(
+                        "v-btn",
+                        {
+                          attrs: { block: "", color: "accent" },
+                          nativeOn: {
+                            click: function($event) {
+                              _vm.openModal()
+                            }
+                          }
+                        },
+                        [
+                          _vm._v("Create Contact Details\n                "),
+                          _c("v-icon", { attrs: { right: "" } }, [
+                            _vm._v("fa-plus")
+                          ])
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+          _vm._v(" "),
+          _vm.hasContactKeys
+            ? _c(
+                "v-layout",
+                { attrs: { row: "", wrap: "" } },
+                [
+                  _c("p", { staticClass: "primary--text" }, [
+                    _vm._v("Contact Details")
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "v-flex",
+                    { attrs: { xs12: "" } },
+                    [
+                      _c(
+                        "v-alert",
+                        {
+                          attrs: {
+                            color: "primary",
+                            icon: "warning",
+                            value: "true"
+                          }
+                        },
+                        [
+                          _c("span", { staticClass: "white--text" }, [
+                            _vm._v(
+                              "** This Will Be Displayed Publicly in The Homepage **"
+                            )
+                          ])
+                        ]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-flex",
+                    { attrs: { xs12: "" } },
+                    _vm._l(_vm.contact_details, function(value, key, index) {
+                      return _c("v-text-field", {
+                        directives: [
+                          {
+                            name: "validate",
+                            rawName: "v-validate",
+                            value: {
+                              required: true,
+                              regex: /^[a-zA-Z0-9 +@#]+$/
+                            },
+                            expression:
+                              "{ required: true, regex: /^[a-zA-Z0-9 +@#]+$/}"
+                          }
+                        ],
+                        key: key,
+                        attrs: {
+                          label: _vm.toProperCase(key),
+                          light: "",
+                          index: index,
+                          "error-messages": _vm.errors.collect(key),
+                          "data-vv-name": key,
+                          "append-icon": "fa-trash",
+                          "append-icon-cb": function() {
+                            return _vm.deleteContactDetails(key)
+                          }
+                        },
+                        model: {
+                          value: _vm.contact_details[key],
+                          callback: function($$v) {
+                            _vm.$set(_vm.contact_details, key, $$v)
+                          },
+                          expression: "contact_details[key]"
+                        }
+                      })
+                    })
+                  )
+                ],
+                1
+              )
+            : _c(
+                "v-layout",
+                { attrs: { row: "", wrap: "" } },
+                [
+                  _c(
+                    "v-flex",
+                    { attrs: { xs12: "", "text-xs-center": "" } },
+                    [
+                      _c(
+                        "v-card",
+                        {
+                          class: [_vm.contentClass],
+                          attrs: { light: "", flat: "" }
+                        },
+                        [
+                          _c("v-card-text", [
+                            _c("h4", [_vm._v("No Contact Details Yet!")]),
+                            _vm._v(" "),
+                            _c("p", { staticClass: "title" }, [
+                              _vm._v("Create Your First Contact Details.")
+                            ]),
+                            _vm._v(" "),
+                            _c("p", { staticClass: "body-2" }, [
+                              _vm._v(
+                                "Note: This Will Displayed In Your Homepage."
+                              )
+                            ])
+                          ])
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+          _vm._v(" "),
+          _c("new-contact-details")
         ],
         1
       )
@@ -5023,6 +5071,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -5040,7 +5089,6 @@ var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_5_vuex__["createNam
             contentClass: { 'grey': true, 'lighten-4': true, 'accent--text': true },
             social_links: {},
             socialLinksForm: new AppForm(App.forms.socialLinksForm),
-            modal: false,
             hasSocialKeys: false
         };
     },
@@ -5209,15 +5257,13 @@ var render = function() {
                       _c(
                         "v-btn",
                         {
+                          staticClass: "white--text",
                           class: {
                             primary: !_vm.socialLinksForm.busy,
-                            "primary--text": !_vm.socialLinksForm.busy,
-                            error: _vm.socialLinksForm.busy,
-                            "error--text": _vm.socialLinksForm.busy
+                            error: _vm.socialLinksForm.busy
                           },
                           attrs: {
                             block: "",
-                            outline: "",
                             disabled: _vm.errors.any(),
                             loading: _vm.socialLinksForm.busy,
                             light: ""
@@ -5247,7 +5293,7 @@ var render = function() {
                       _c(
                         "v-btn",
                         {
-                          attrs: { block: "", outline: "", color: "accent" },
+                          attrs: { block: "", color: "accent" },
                           nativeOn: {
                             click: function($event) {
                               _vm.openModal()
@@ -5279,7 +5325,7 @@ var render = function() {
                       _c(
                         "v-btn",
                         {
-                          attrs: { block: "", outline: "", color: "accent" },
+                          attrs: { block: "", color: "accent" },
                           nativeOn: {
                             click: function($event) {
                               _vm.openModal()
@@ -5921,6 +5967,355 @@ module.exports = function (KEY, exec) {
   $export($export.S + $export.F * fails(function () { fn(1); }), 'Object', exp);
 };
 
+
+/***/ }),
+
+/***/ 858:
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(859)
+}
+var normalizeComponent = __webpack_require__(310)
+/* script */
+var __vue_script__ = __webpack_require__(861)
+/* template */
+var __vue_template__ = __webpack_require__(862)
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\settings\\NewContactDetails.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] NewContactDetails.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-5f3c6260", Component.options)
+  } else {
+    hotAPI.reload("data-v-5f3c6260", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ 859:
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(860);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(645)("f2ce7b18", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5f3c6260\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./NewContactDetails.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5f3c6260\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./NewContactDetails.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ 860:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(625)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ 861:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            contact_modal: false,
+            contact_tmp: {
+                title: null,
+                value: null
+            },
+            contactDetailsForm: new AppForm(App.forms.contactDetailsForm)
+        };
+    },
+    mounted: function mounted() {
+        var self = this;
+        Bus.$on('add-new-contact-details', function () {
+            self.contact_modal = true;
+        });
+    },
+
+    methods: {
+        isDisabled: function isDisabled() {
+            var self = this;
+            if (!self.errors.any()) {
+                return false;
+            } else {
+                return true;
+            }
+        },
+        closeContactInput: function closeContactInput() {
+            this.contact_tmp.title = null;
+            this.contact_tmp.value = null;
+            this.contact_modal = false;
+        },
+        addContactInput: function addContactInput() {
+            if (this.contact_tmp.title && this.contact_tmp.value) {
+                Bus.$emit('update-contact-details', this.contact_tmp);
+            }
+            this.contact_tmp.title = null;
+            this.contact_tmp.value = null;
+            this.contact_modal = false;
+        }
+    }
+});
+
+/***/ }),
+
+/***/ 862:
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-dialog",
+    {
+      attrs: { persistent: "", width: "600px" },
+      model: {
+        value: _vm.contact_modal,
+        callback: function($$v) {
+          _vm.contact_modal = $$v
+        },
+        expression: "contact_modal"
+      }
+    },
+    [
+      _c(
+        "v-card",
+        { attrs: { light: "" } },
+        [
+          _c("v-card-title", { staticClass: "headline" }, [
+            _vm._v("Add New Contact Details")
+          ]),
+          _vm._v(" "),
+          _c(
+            "v-container",
+            [
+              _c(
+                "v-layout",
+                { attrs: { row: "", wrap: "" } },
+                [
+                  _c(
+                    "v-flex",
+                    { attrs: { xs12: "" } },
+                    [
+                      _c("v-text-field", {
+                        directives: [
+                          {
+                            name: "validate",
+                            rawName: "v-validate",
+                            value: { required: true, regex: /^[a-z0-9_]*$/ },
+                            expression:
+                              "{ required: true, regex: /^[a-z0-9_]*$/}"
+                          }
+                        ],
+                        attrs: {
+                          label: "Contact Details Name",
+                          "error-messages": _vm.errors.collect(
+                            "contact details title"
+                          ),
+                          "data-vv-name": "contact details title",
+                          light: ""
+                        },
+                        model: {
+                          value: _vm.contact_tmp["title"],
+                          callback: function($$v) {
+                            _vm.$set(_vm.contact_tmp, "title", $$v)
+                          },
+                          expression: "contact_tmp['title']"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("v-text-field", {
+                        directives: [
+                          {
+                            name: "validate",
+                            rawName: "v-validate",
+                            value: {
+                              required: true,
+                              regex: /^[a-zA-Z0-9 +@#]+$/
+                            },
+                            expression:
+                              "{ required: true, regex: /^[a-zA-Z0-9 +@#]+$/ }"
+                          }
+                        ],
+                        attrs: {
+                          label: "Contact Details Value",
+                          light: "",
+                          "error-messages": _vm.errors.collect(
+                            "contact details value"
+                          ),
+                          "data-vv-name": "contact details value"
+                        },
+                        model: {
+                          value: _vm.contact_tmp["value"],
+                          callback: function($$v) {
+                            _vm.$set(_vm.contact_tmp, "value", $$v)
+                          },
+                          expression: "contact_tmp['value']"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-card-actions",
+            [
+              _c("v-spacer"),
+              _vm._v(" "),
+              _c(
+                "v-btn",
+                {
+                  attrs: {
+                    color: "green darken-1",
+                    flat: "",
+                    disabled: _vm.isDisabled(),
+                    light: ""
+                  },
+                  nativeOn: {
+                    click: function($event) {
+                      _vm.addContactInput()
+                    }
+                  }
+                },
+                [_vm._v("\n        Create Contact Details\n        ")]
+              ),
+              _vm._v(" "),
+              _c(
+                "v-btn",
+                {
+                  attrs: { color: "error", flat: "" },
+                  nativeOn: {
+                    click: function($event) {
+                      _vm.closeContactInput()
+                    }
+                  }
+                },
+                [_vm._v("Cancel")]
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-5f3c6260", module.exports)
+  }
+}
 
 /***/ })
 

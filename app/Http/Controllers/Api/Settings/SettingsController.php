@@ -20,7 +20,7 @@ class SettingsController extends Controller
 
     public function updateAccount(Request $request)
     {
-        $user = $request->user_id ? Vuetified::user()->find($request->user_id) : $request->user();
+        $user = $request->user_id ? \Vuetified::user()->find($request->user_id) : $request->user();
 
         $data = request()->validate([
             'email' => [
@@ -54,7 +54,7 @@ class SettingsController extends Controller
     public function updateProfile(Request $request)
     {
         
-        $user = $request->user_id ? Vuetified::user()->find($request->user_id) : $request->user();
+        $user = $request->user_id ? \Vuetified::user()->find($request->user_id) : $request->user();
         $data = request()->validate([
             'first_name' => [
                 'sometimes',
@@ -111,7 +111,7 @@ class SettingsController extends Controller
 
     public function updateContactDetails(Request $request)
     {
-        $user = $request->user_id ? Vuetified::user()->find($request->user_id) : $request->user();
+        $user = $request->user_id ? \Vuetified::user()->find($request->user_id) : $request->user();
         $data = $request->contact_details;
         $rules = array();
         foreach ($data as $key => $value) {
@@ -136,7 +136,7 @@ class SettingsController extends Controller
 
     public function updateSocialLink(Request $request)
     {
-        $user = $request->user_id ? Vuetified::user()->find($request->user_id) : $request->user();
+        $user = $request->user_id ? \Vuetified::user()->find($request->user_id) : $request->user();
         $data = $request->social_links;
         $rules = array();
         foreach($data as $key)
@@ -156,6 +156,23 @@ class SettingsController extends Controller
             }
         }else {
             return response()->json(['errors'=>$validator->errors()],422);
+        }
+    }
+
+    public function updateReferralLink(Request $request)
+    {
+        $user = $request->user_id ? \Vuetified::user()->find($request->user_id) : $request->user();
+        $link = $user->referralLink;
+        $data = request()->validate([
+            'link' => [
+                'regex:/^[a-zA-Z0-9 +@#]+$/',
+                Rule::unique('links')->ignore($link->id),
+            ]
+        ]);
+        
+        $updated = $link->update($data);
+        if($updated){
+            return (new UserResouce($user->load('profile','referralLink', 'roles', 'permissions')))->additional(['message' => 'Referral Link Updated!']);
         }
     }
 }
