@@ -119,6 +119,8 @@ export default {
             /* nextick make sure our modal would not be visible before redirect */
             return self.$nextTick(() => self.$router.go(-1))
         }
+        self.registerForm.role = 'customer'
+        self.registerForm.sponsor_id = self.$store.getters['referral/getSponsor']['user_id']
     },
     methods: {
         ...mapActions({
