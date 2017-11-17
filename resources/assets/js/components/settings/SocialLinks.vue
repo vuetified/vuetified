@@ -5,17 +5,18 @@
         <v-container>
             <v-layout row wrap v-if="hasSocialKeys">
                 <v-flex xs6>
-                <v-btn block outline @click.native="updateSocialLinks()"
+                <v-btn block @click.native="updateSocialLinks()"
                 :disabled="errors.any()"
                 :loading="socialLinksForm.busy"
-                :class="{primary: !socialLinksForm.busy ,'primary--text': !socialLinksForm.busy, error: socialLinksForm.busy, 'error--text': socialLinksForm.busy}"
+                class="white--text"
+                :class="{primary: !socialLinksForm.busy , error: socialLinksForm.busy }"
                 light
                 >Update Links
                     <v-icon right>fa-send</v-icon>
                 </v-btn>
                 </v-flex>
                 <v-flex xs6>
-                <v-btn block outline color="accent" @click.native="openModal()"
+                <v-btn block color="accent" @click.native="openModal()"
                 >Create Social Link
                     <v-icon right>fa-plus</v-icon>
                 </v-btn>
@@ -23,7 +24,7 @@
             </v-layout>
             <v-layout row wrap v-else>
                 <v-flex xs12>
-                <v-btn block outline color="accent" @click.native="openModal()"
+                <v-btn block color="accent" @click.native="openModal()"
                 >Create Social Link
                     <v-icon right>fa-plus</v-icon>
                 </v-btn>
