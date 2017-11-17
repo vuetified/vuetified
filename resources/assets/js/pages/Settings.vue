@@ -8,6 +8,10 @@
           <v-icon>fa-user</v-icon>
           Account
         </v-tabs-item>
+        <v-tabs-item href="#referral-link">
+          <v-icon>timeline</v-icon>
+          Link
+        </v-tabs-item>
         <v-tabs-item href="#profile">
           <v-icon>fa-address-card</v-icon>
           Profile
@@ -27,6 +31,7 @@
       <v-tabs-items>
           <!-- tab contents -->
           <account></account>
+          <referral-link></referral-link>
           <profile></profile>
           <contact-details></contact-details>
           <social-links></social-links>
@@ -39,6 +44,7 @@
 <script>
 import MainLayout from '../layouts/Main.vue'
 import Account from '../components/settings/Account.vue'
+import ReferralLink from '../components/settings/ReferralLink.vue'
 import ContactDetails from '../components/settings/ContactDetails.vue'
 import Profile from '../components/settings/Profile.vue'
 import SocialLinks from '../components/settings/SocialLinks.vue'
@@ -52,6 +58,7 @@ export default {
     components: {
         MainLayout,
         Account,
+        ReferralLink,
         ContactDetails,
         Profile,
         SocialLinks
