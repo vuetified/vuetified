@@ -3470,6 +3470,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -3487,7 +3489,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             current_user: {},
             usersForm: new AppForm(App.forms.usersForm),
             toggleForm: new AppForm(App.forms.toggleForm),
-            search: ''
+            search: '',
+            roles: [],
+            permissions: []
         };
     },
     components: {
@@ -3495,11 +3499,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     mounted: function mounted() {
         var self = this;
+        self.fetchRoles();
+        self.fetchPermissions();
         self.fetchUsers();
     },
 
     methods: {
-        fetchUsers: function () {
+        fetchRoles: function () {
             var _ref = __WEBPACK_IMPORTED_MODULE_1_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_regenerator___default.a.mark(function _callee() {
                 var self, payload, errors, message;
                 return __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
@@ -3507,26 +3513,118 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         switch (_context.prev = _context.next) {
                             case 0:
                                 self = this;
+                                _context.prev = 1;
+                                _context.next = 4;
+                                return axios.get(route('api.roles.index'));
+
+                            case 4:
+                                payload = _context.sent;
+
+                                self.roles = payload.data;
+                                _context.next = 14;
+                                break;
+
+                            case 8:
+                                _context.prev = 8;
+                                _context.t0 = _context['catch'](1);
+                                errors = _context.t0.errors;
+                                message = _context.t0.message;
+
+                                if (errors) {
+                                    console.log('fetchRoles:errors', errors);
+                                }
+                                if (message) {
+                                    console.log('fetchRoles:error-message', message);
+                                }
+
+                            case 14:
+                            case 'end':
+                                return _context.stop();
+                        }
+                    }
+                }, _callee, this, [[1, 8]]);
+            }));
+
+            function fetchRoles() {
+                return _ref.apply(this, arguments);
+            }
+
+            return fetchRoles;
+        }(),
+        fetchPermissions: function () {
+            var _ref3 = __WEBPACK_IMPORTED_MODULE_1_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_regenerator___default.a.mark(function _callee2() {
+                var self, payload, errors, message;
+                return __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+                    while (1) {
+                        switch (_context2.prev = _context2.next) {
+                            case 0:
+                                self = this;
+                                _context2.prev = 1;
+                                _context2.next = 4;
+                                return axios.get(route('api.permissions.index'));
+
+                            case 4:
+                                payload = _context2.sent;
+
+                                self.roles = payload.data;
+                                _context2.next = 14;
+                                break;
+
+                            case 8:
+                                _context2.prev = 8;
+                                _context2.t0 = _context2['catch'](1);
+                                errors = _context2.t0.errors;
+                                message = _context2.t0.message;
+
+                                if (errors) {
+                                    console.log('fetchRoles:errors', errors);
+                                }
+                                if (message) {
+                                    console.log('fetchRoles:error-message', message);
+                                }
+
+                            case 14:
+                            case 'end':
+                                return _context2.stop();
+                        }
+                    }
+                }, _callee2, this, [[1, 8]]);
+            }));
+
+            function fetchPermissions() {
+                return _ref3.apply(this, arguments);
+            }
+
+            return fetchPermissions;
+        }(),
+        fetchUsers: function () {
+            var _ref5 = __WEBPACK_IMPORTED_MODULE_1_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_regenerator___default.a.mark(function _callee3() {
+                var self, payload, errors, message;
+                return __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
+                    while (1) {
+                        switch (_context3.prev = _context3.next) {
+                            case 0:
+                                self = this;
 
                                 self.usersForm.busy = true;
-                                _context.prev = 2;
-                                _context.next = 5;
+                                _context3.prev = 2;
+                                _context3.next = 5;
                                 return App.post(route('api.user.index'), self.usersForm);
 
                             case 5:
-                                payload = _context.sent;
+                                payload = _context3.sent;
 
                                 self.items = payload.data;
                                 self.usersForm = new AppForm(App.forms.usersForm);
                                 vm.$popup({ message: payload.message, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' });
-                                _context.next = 18;
+                                _context3.next = 18;
                                 break;
 
                             case 11:
-                                _context.prev = 11;
-                                _context.t0 = _context['catch'](2);
-                                errors = _context.t0.errors;
-                                message = _context.t0.message;
+                                _context3.prev = 11;
+                                _context3.t0 = _context3['catch'](2);
+                                errors = _context3.t0.errors;
+                                message = _context3.t0.message;
 
                                 self.usersForm.errors.set(errors);
                                 self.usersForm.busy = false;
@@ -3534,14 +3632,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
                             case 18:
                             case 'end':
-                                return _context.stop();
+                                return _context3.stop();
                         }
                     }
-                }, _callee, this, [[2, 11]]);
+                }, _callee3, this, [[2, 11]]);
             }));
 
             function fetchUsers() {
-                return _ref.apply(this, arguments);
+                return _ref5.apply(this, arguments);
             }
 
             return fetchUsers;
@@ -4050,6 +4148,7 @@ var render = function() {
                                           [
                                             _c("v-select", {
                                               attrs: {
+                                                items: _vm.roles,
                                                 fluid: "",
                                                 light: "",
                                                 chips: "",
@@ -4137,6 +4236,7 @@ var render = function() {
                                           [
                                             _c("v-select", {
                                               attrs: {
+                                                items: _vm.permissions,
                                                 fluid: "",
                                                 light: "",
                                                 chips: "",

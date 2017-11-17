@@ -381,6 +381,8 @@ var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["createNam
                 return self.$router.go(-1);
             });
         }
+        self.registerForm.role = 'customer';
+        self.registerForm.sponsor_id = self.$store.getters['referral/getSponsor']['user_id'];
     },
 
     methods: __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends___default()({}, mapActions({

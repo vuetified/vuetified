@@ -37774,7 +37774,9 @@ App.forms = {
         name: '',
         email: '',
         password: '',
-        password_confirmation: ''
+        password_confirmation: '',
+        role: '',
+        sponsor_id: ''
     },
     checkOutForm: {
         cart: {

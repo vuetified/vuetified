@@ -4922,7 +4922,7 @@ exports = module.exports = __webpack_require__(625)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -4938,12 +4938,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_regenerator__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_asyncToGenerator__ = __webpack_require__(62);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_asyncToGenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_asyncToGenerator__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends__ = __webpack_require__(646);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vuex__ = __webpack_require__(90);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_core_js_object_keys__ = __webpack_require__(854);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_core_js_object_keys___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_core_js_object_keys__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends__ = __webpack_require__(646);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__NewSocialLink__ = __webpack_require__(849);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__NewSocialLink___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__NewSocialLink__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vuex__ = __webpack_require__(90);
 
 
 
+
+//
+//
+//
 //
 //
 //
@@ -5018,40 +5026,88 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_3_vuex__["createNamespacedHelpers"])('auth'),
+
+var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_5_vuex__["createNamespacedHelpers"])('auth'),
     mapGetters = _createNamespacedHelp.mapGetters,
     mapMutations = _createNamespacedHelp.mapMutations;
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    components: {
+        NewSocialLink: __WEBPACK_IMPORTED_MODULE_4__NewSocialLink___default.a
+    },
     data: function data() {
         return {
-            social_modal: false,
+            contentClass: { 'grey': true, 'lighten-4': true, 'accent--text': true },
             social_links: {},
-            social_tmp: {
-                title: null,
-                value: null
-            },
-            socialLinksForm: new AppForm(App.forms.socialLinksForm)
+            socialLinksForm: new AppForm(App.forms.socialLinksForm),
+            modal: false,
+            hasSocialKeys: false
         };
     },
-    computed: __WEBPACK_IMPORTED_MODULE_2_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends___default()({}, mapGetters({
+    computed: __WEBPACK_IMPORTED_MODULE_3_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends___default()({}, mapGetters({
         getMe: 'getMe'
     })),
     mounted: function mounted() {
         var self = this;
-        self.social_links = self.getMe.social_links;
+        /* check the return value when we dont have social links its an array it should be an empty objec */
+        if (!_.isEmpty(self.getMe.social_links)) {
+            self.social_links = self.getMe.social_links;
+            self.hasSocialKeys = true;
+        } else if (self.getMe.social_links.length > 0) {
+            self.social_links = self.getMe.social_links;
+            self.hasSocialKeys = true;
+        } else {
+            self.social_links = {};
+            self.hasSocialKeys = false;
+        }
+
+        Bus.$on('update-social-link', function (link) {
+            self.social_links[link.title] = link.value;
+            self.updateSocialLinks();
+        });
     },
 
-    methods: __WEBPACK_IMPORTED_MODULE_2_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends___default()({}, mapMutations({
+    methods: __WEBPACK_IMPORTED_MODULE_3_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends___default()({}, mapMutations({
         setMe: 'setMe'
     }), {
-        isDisabled: function isDisabled(object) {
-            if (object.title && object.value) {
-                return false;
-            } else {
-                return true;
-            }
+        isEmpty: function isEmpty(obj) {
+            return __WEBPACK_IMPORTED_MODULE_2_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_core_js_object_keys___default()(obj).length === 0;
         },
+        openModal: function openModal() {
+            Bus.$emit('add-new-social-link');
+        },
+        deleteSocialKey: function () {
+            var _ref = __WEBPACK_IMPORTED_MODULE_1_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_regenerator___default.a.mark(function _callee(key) {
+                var self;
+                return __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+                    while (1) {
+                        switch (_context.prev = _context.next) {
+                            case 0:
+                                self = this;
+
+                                delete self.social_links[key];
+                                _context.next = 4;
+                                return self.updateSocialLinks();
+
+                            case 4:
+                                if (_.isEmpty(self.social_links)) {
+                                    self.hasSocialKeys = false;
+                                }
+
+                            case 5:
+                            case 'end':
+                                return _context.stop();
+                        }
+                    }
+                }, _callee, this);
+            }));
+
+            function deleteSocialKey(_x) {
+                return _ref.apply(this, arguments);
+            }
+
+            return deleteSocialKey;
+        }(),
         prepareSocialLinkForm: function prepareSocialLinkForm() {
             var self = this;
             self.socialLinksForm.social_links = self.social_links;
@@ -5061,11 +5117,11 @@ var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_3_vuex__["createNam
             self.socialLinksForm = new AppForm(App.forms.socialLinksForm);
         },
         updateSocialLinks: function () {
-            var _ref = __WEBPACK_IMPORTED_MODULE_1_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_regenerator___default.a.mark(function _callee() {
+            var _ref2 = __WEBPACK_IMPORTED_MODULE_1_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_regenerator___default.a.mark(function _callee2() {
                 var self, payload, errors, message;
-                return __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+                return __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
                     while (1) {
-                        switch (_context.prev = _context.next) {
+                        switch (_context2.prev = _context2.next) {
                             case 0:
                                 self = this;
 
@@ -5073,63 +5129,49 @@ var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_3_vuex__["createNam
                                 self.$validator.validateAll();
 
                                 if (self.errors.any()) {
-                                    _context.next = 21;
+                                    _context2.next = 22;
                                     break;
                                 }
 
                                 self.socialLinksForm.busy = true;
-                                _context.prev = 5;
-                                _context.next = 8;
+                                _context2.prev = 5;
+                                _context2.next = 8;
                                 return App.post(route('api.user.updateSocialLink'), self.socialLinksForm);
 
                             case 8:
-                                payload = _context.sent;
+                                payload = _context2.sent;
 
                                 self.resetSocialLinkForm();
                                 self.setMe(payload.data);
+                                self.hasSocialKeys = true;
                                 vm.$popup({ message: payload.message, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' });
-                                _context.next = 21;
+                                _context2.next = 22;
                                 break;
 
-                            case 14:
-                                _context.prev = 14;
-                                _context.t0 = _context['catch'](5);
-                                errors = _context.t0.errors;
-                                message = _context.t0.message;
+                            case 15:
+                                _context2.prev = 15;
+                                _context2.t0 = _context2['catch'](5);
+                                errors = _context2.t0.errors;
+                                message = _context2.t0.message;
 
                                 self.socialLinksForm.errors.set(errors);
                                 self.socialLinksForm.busy = false;
                                 vm.$popup({ message: message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' });
 
-                            case 21:
+                            case 22:
                             case 'end':
-                                return _context.stop();
+                                return _context2.stop();
                         }
                     }
-                }, _callee, this, [[5, 14]]);
+                }, _callee2, this, [[5, 15]]);
             }));
 
             function updateSocialLinks() {
-                return _ref.apply(this, arguments);
+                return _ref2.apply(this, arguments);
             }
 
             return updateSocialLinks;
         }(),
-        closeSocialInput: function closeSocialInput() {
-            this.social_tmp.title = null;
-            this.social_tmp.value = null;
-            this.social_modal = false;
-        },
-        addSocialInput: function addSocialInput() {
-            if (this.social_tmp.title && this.social_tmp.value) {
-                this.$set(this.social_links, this.social_tmp.title, this.social_tmp.value);
-            }
-            this.social_tmp.title = null;
-            this.social_tmp.value = null;
-            this.social_modal = false;
-            /* send ajax to add new contact info */
-            // update getMe
-        },
         toProperCase: function toProperCase(key) {
             var newStr = key.replace(/_/g, ' ');
             return newStr.replace(/\w\S*/g, function (txt) {
@@ -5155,219 +5197,68 @@ var render = function() {
       _c(
         "v-container",
         [
-          _c(
-            "v-layout",
-            { attrs: { row: "", wrap: "" } },
-            [
-              _c("p", { staticClass: "primary--text" }, [
-                _vm._v("Social Links")
-              ]),
-              _vm._v(" "),
-              _c(
-                "v-flex",
-                { attrs: { xs12: "" } },
+          _vm.hasSocialKeys
+            ? _c(
+                "v-layout",
+                { attrs: { row: "", wrap: "" } },
                 [
                   _c(
-                    "v-alert",
-                    {
-                      attrs: {
-                        color: "primary",
-                        icon: "warning",
-                        value: "true"
-                      }
-                    },
+                    "v-flex",
+                    { attrs: { xs6: "" } },
                     [
-                      _c("span", { staticClass: "white--text" }, [
-                        _vm._v(
-                          "** This Will Be Displayed Publicly in The Homepage **"
-                        )
-                      ])
-                    ]
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-flex",
-                { attrs: { xs12: "" } },
-                _vm._l(_vm.social_links, function(value, key, index) {
-                  return _c("v-text-field", {
-                    directives: [
-                      {
-                        name: "validate",
-                        rawName: "v-validate",
-                        value: {
-                          required: true,
-                          regex: /^((https?):\/\/)?(www.)?[a-z0-9]+\.[a-z]+(\/[a-zA-Z0-9#.]+\/?)*$/
-                        },
-                        expression:
-                          "{ required: true, regex: /^((https?):\\/\\/)?(www.)?[a-z0-9]+\\.[a-z]+(\\/[a-zA-Z0-9#.]+\\/?)*$/ }"
-                      }
-                    ],
-                    key: key,
-                    attrs: {
-                      label: _vm.toProperCase(key),
-                      light: "",
-                      index: index,
-                      "error-messages": _vm.errors.collect(key),
-                      "data-vv-name": key
-                    },
-                    model: {
-                      value: _vm.social_links[key],
-                      callback: function($$v) {
-                        _vm.$set(_vm.social_links, key, $$v)
-                      },
-                      expression: "social_links[key]"
-                    }
-                  })
-                })
-              ),
-              _vm._v(" "),
-              _c(
-                "v-btn",
-                {
-                  staticClass: "white--text",
-                  class: {
-                    primary: !_vm.socialLinksForm.busy,
-                    error: _vm.socialLinksForm.busy
-                  },
-                  attrs: {
-                    block: "",
-                    color: "primary",
-                    disabled: _vm.errors.any(),
-                    loading: _vm.socialLinksForm.busy,
-                    light: ""
-                  },
-                  nativeOn: {
-                    click: function($event) {
-                      _vm.updateSocialLinks()
-                    }
-                  }
-                },
-                [
-                  _vm._v("Update Social Links\n                "),
-                  _c("v-icon", { attrs: { right: "" } }, [_vm._v("fa-send")])
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-btn",
-                {
-                  attrs: { block: "", color: "accent" },
-                  on: {
-                    click: function($event) {
-                      _vm.social_modal = true
-                    }
-                  }
-                },
-                [
-                  _vm._v("New Social Link\n                "),
-                  _c("v-icon", { attrs: { right: "" } }, [_vm._v("fa-plus")])
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-dialog",
-                {
-                  attrs: { persistent: "", width: "600px" },
-                  model: {
-                    value: _vm.social_modal,
-                    callback: function($$v) {
-                      _vm.social_modal = $$v
-                    },
-                    expression: "social_modal"
-                  }
-                },
-                [
-                  _c(
-                    "v-card",
-                    { attrs: { light: "" } },
-                    [
-                      _c("v-card-title", { staticClass: "headline" }, [
-                        _vm._v("Add New Social Link")
-                      ]),
-                      _vm._v(" "),
                       _c(
-                        "v-container",
+                        "v-btn",
+                        {
+                          class: {
+                            primary: !_vm.socialLinksForm.busy,
+                            "primary--text": !_vm.socialLinksForm.busy,
+                            error: _vm.socialLinksForm.busy,
+                            "error--text": _vm.socialLinksForm.busy
+                          },
+                          attrs: {
+                            block: "",
+                            outline: "",
+                            disabled: _vm.errors.any(),
+                            loading: _vm.socialLinksForm.busy,
+                            light: ""
+                          },
+                          nativeOn: {
+                            click: function($event) {
+                              _vm.updateSocialLinks()
+                            }
+                          }
+                        },
                         [
-                          _c(
-                            "v-layout",
-                            { attrs: { row: "", wrap: "" } },
-                            [
-                              _c(
-                                "v-flex",
-                                { attrs: { xs12: "" } },
-                                _vm._l(_vm.social_tmp, function(
-                                  value,
-                                  key,
-                                  index
-                                ) {
-                                  return _c("v-text-field", {
-                                    key: key,
-                                    attrs: {
-                                      label: _vm.toProperCase(key),
-                                      light: "",
-                                      index: index
-                                    },
-                                    model: {
-                                      value: _vm.social_tmp[key],
-                                      callback: function($$v) {
-                                        _vm.$set(_vm.social_tmp, key, $$v)
-                                      },
-                                      expression: "social_tmp[key]"
-                                    }
-                                  })
-                                })
-                              )
-                            ],
-                            1
-                          )
+                          _vm._v("Update Links\n                "),
+                          _c("v-icon", { attrs: { right: "" } }, [
+                            _vm._v("fa-send")
+                          ])
                         ],
                         1
-                      ),
-                      _vm._v(" "),
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-flex",
+                    { attrs: { xs6: "" } },
+                    [
                       _c(
-                        "v-card-actions",
+                        "v-btn",
+                        {
+                          attrs: { block: "", outline: "", color: "accent" },
+                          nativeOn: {
+                            click: function($event) {
+                              _vm.openModal()
+                            }
+                          }
+                        },
                         [
-                          _c("v-spacer"),
-                          _vm._v(" "),
-                          _c(
-                            "v-btn",
-                            {
-                              attrs: {
-                                color: "green darken-1",
-                                flat: "",
-                                disabled: _vm.isDisabled(_vm.social_tmp),
-                                light: ""
-                              },
-                              nativeOn: {
-                                click: function($event) {
-                                  _vm.addSocialInput()
-                                }
-                              }
-                            },
-                            [
-                              _vm._v(
-                                "\n                    Create Social Link\n                    "
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-btn",
-                            {
-                              attrs: { color: "error", flat: "" },
-                              nativeOn: {
-                                click: function($event) {
-                                  _vm.closeSocialInput()
-                                }
-                              }
-                            },
-                            [_vm._v("Cancel")]
-                          )
+                          _vm._v("Create Social Link\n                "),
+                          _c("v-icon", { attrs: { right: "" } }, [
+                            _vm._v("fa-plus")
+                          ])
                         ],
                         1
                       )
@@ -5377,9 +5268,154 @@ var render = function() {
                 ],
                 1
               )
-            ],
-            1
-          )
+            : _c(
+                "v-layout",
+                { attrs: { row: "", wrap: "" } },
+                [
+                  _c(
+                    "v-flex",
+                    { attrs: { xs12: "" } },
+                    [
+                      _c(
+                        "v-btn",
+                        {
+                          attrs: { block: "", outline: "", color: "accent" },
+                          nativeOn: {
+                            click: function($event) {
+                              _vm.openModal()
+                            }
+                          }
+                        },
+                        [
+                          _vm._v("Create Social Link\n                "),
+                          _c("v-icon", { attrs: { right: "" } }, [
+                            _vm._v("fa-plus")
+                          ])
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+          _vm._v(" "),
+          _vm.hasSocialKeys
+            ? _c(
+                "v-layout",
+                { attrs: { row: "", wrap: "" } },
+                [
+                  _c("p", { staticClass: "primary--text" }, [
+                    _vm._v("Social Links")
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "v-flex",
+                    { attrs: { xs12: "" } },
+                    [
+                      _c(
+                        "v-alert",
+                        {
+                          attrs: {
+                            color: "primary",
+                            icon: "warning",
+                            value: "true"
+                          }
+                        },
+                        [
+                          _c("span", { staticClass: "white--text" }, [
+                            _vm._v(
+                              "** This Will Be Displayed Publicly in The Homepage **"
+                            )
+                          ])
+                        ]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-flex",
+                    { attrs: { xs12: "" } },
+                    _vm._l(_vm.social_links, function(value, key, index) {
+                      return _c("v-text-field", {
+                        directives: [
+                          {
+                            name: "validate",
+                            rawName: "v-validate",
+                            value: {
+                              required: true,
+                              regex: /^((https?):\/\/)?(www.)?[a-z0-9]+\.[a-z]+(\/[a-zA-Z0-9#.]+\/?)*$/
+                            },
+                            expression:
+                              "{ required: true, regex: /^((https?):\\/\\/)?(www.)?[a-z0-9]+\\.[a-z]+(\\/[a-zA-Z0-9#.]+\\/?)*$/ }"
+                          }
+                        ],
+                        key: key,
+                        attrs: {
+                          label: _vm.toProperCase(key),
+                          light: "",
+                          index: index,
+                          "error-messages": _vm.errors.collect(key),
+                          "data-vv-name": key,
+                          "append-icon": "fa-trash",
+                          "append-icon-cb": function() {
+                            return _vm.deleteSocialKey(key)
+                          }
+                        },
+                        model: {
+                          value: _vm.social_links[key],
+                          callback: function($$v) {
+                            _vm.$set(_vm.social_links, key, $$v)
+                          },
+                          expression: "social_links[key]"
+                        }
+                      })
+                    })
+                  )
+                ],
+                1
+              )
+            : _c(
+                "v-layout",
+                { attrs: { row: "", wrap: "" } },
+                [
+                  _c(
+                    "v-flex",
+                    { attrs: { xs12: "", "text-xs-center": "" } },
+                    [
+                      _c(
+                        "v-card",
+                        {
+                          class: [_vm.contentClass],
+                          attrs: { light: "", flat: "" }
+                        },
+                        [
+                          _c("v-card-text", [
+                            _c("h4", [_vm._v("NO SOCIAL LINKS YET!")]),
+                            _vm._v(" "),
+                            _c("p", { staticClass: "title" }, [
+                              _vm._v("Create Your First Social Link.")
+                            ]),
+                            _vm._v(" "),
+                            _c("p", { staticClass: "body-2" }, [
+                              _vm._v(
+                                "Note: This Will Displayed In Your Homepage."
+                              )
+                            ])
+                          ])
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+          _vm._v(" "),
+          _c("new-social-link")
         ],
         1
       )
@@ -5492,6 +5528,399 @@ if (false) {
      require("vue-hot-reload-api").rerender("data-v-78ca1ded", module.exports)
   }
 }
+
+/***/ }),
+
+/***/ 849:
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(850)
+}
+var normalizeComponent = __webpack_require__(310)
+/* script */
+var __vue_script__ = __webpack_require__(852)
+/* template */
+var __vue_template__ = __webpack_require__(853)
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\settings\\NewSocialLink.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] NewSocialLink.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-691e3436", Component.options)
+  } else {
+    hotAPI.reload("data-v-691e3436", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ 850:
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(851);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(645)("d866066a", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-691e3436\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./NewSocialLink.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-691e3436\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./NewSocialLink.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ 851:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(625)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ 852:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            social_modal: false,
+            social_tmp: {
+                title: null,
+                value: null
+            },
+            socialLinksForm: new AppForm(App.forms.socialLinksForm)
+        };
+    },
+    mounted: function mounted() {
+        var self = this;
+        Bus.$on('add-new-social-link', function () {
+            self.social_modal = true;
+        });
+    },
+
+    methods: {
+        isDisabled: function isDisabled() {
+            var self = this;
+            if (!self.errors.any()) {
+                return false;
+            } else {
+                return true;
+            }
+        },
+        closeSocialInput: function closeSocialInput() {
+            this.social_tmp.title = null;
+            this.social_tmp.value = null;
+            this.social_modal = false;
+        },
+        addSocialInput: function addSocialInput() {
+            if (this.social_tmp.title && this.social_tmp.value) {
+                Bus.$emit('update-social-link', this.social_tmp);
+            }
+            this.social_tmp.title = null;
+            this.social_tmp.value = null;
+            this.social_modal = false;
+        }
+    }
+});
+
+/***/ }),
+
+/***/ 853:
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-dialog",
+    {
+      attrs: { persistent: "", width: "600px" },
+      model: {
+        value: _vm.social_modal,
+        callback: function($$v) {
+          _vm.social_modal = $$v
+        },
+        expression: "social_modal"
+      }
+    },
+    [
+      _c(
+        "v-card",
+        { attrs: { light: "" } },
+        [
+          _c("v-card-title", { staticClass: "headline" }, [
+            _vm._v("Add New Social Link")
+          ]),
+          _vm._v(" "),
+          _c(
+            "v-container",
+            [
+              _c(
+                "v-layout",
+                { attrs: { row: "", wrap: "" } },
+                [
+                  _c(
+                    "v-flex",
+                    { attrs: { xs12: "" } },
+                    [
+                      _c("v-text-field", {
+                        directives: [
+                          {
+                            name: "validate",
+                            rawName: "v-validate",
+                            value: { required: true },
+                            expression: "{ required: true}"
+                          }
+                        ],
+                        attrs: {
+                          label: "Site Name",
+                          "error-messages": _vm.errors.collect("site name"),
+                          "data-vv-name": "site name",
+                          light: ""
+                        },
+                        model: {
+                          value: _vm.social_tmp["title"],
+                          callback: function($$v) {
+                            _vm.$set(_vm.social_tmp, "title", $$v)
+                          },
+                          expression: "social_tmp['title']"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("v-text-field", {
+                        directives: [
+                          {
+                            name: "validate",
+                            rawName: "v-validate",
+                            value: {
+                              required: true,
+                              regex: /^((https?):\/\/)?(www.)?[a-z0-9]+\.[a-z]+(\/[a-zA-Z0-9#.]+\/?)*$/
+                            },
+                            expression:
+                              "{ required: true, regex: /^((https?):\\/\\/)?(www.)?[a-z0-9]+\\.[a-z]+(\\/[a-zA-Z0-9#.]+\\/?)*$/ }"
+                          }
+                        ],
+                        attrs: {
+                          label: "Site Url",
+                          light: "",
+                          "error-messages": _vm.errors.collect("site url"),
+                          "data-vv-name": "site url"
+                        },
+                        model: {
+                          value: _vm.social_tmp["value"],
+                          callback: function($$v) {
+                            _vm.$set(_vm.social_tmp, "value", $$v)
+                          },
+                          expression: "social_tmp['value']"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-card-actions",
+            [
+              _c("v-spacer"),
+              _vm._v(" "),
+              _c(
+                "v-btn",
+                {
+                  attrs: {
+                    color: "green darken-1",
+                    flat: "",
+                    disabled: _vm.isDisabled(),
+                    light: ""
+                  },
+                  nativeOn: {
+                    click: function($event) {
+                      _vm.addSocialInput()
+                    }
+                  }
+                },
+                [_vm._v("\n        Create Social Link\n        ")]
+              ),
+              _vm._v(" "),
+              _c(
+                "v-btn",
+                {
+                  attrs: { color: "error", flat: "" },
+                  nativeOn: {
+                    click: function($event) {
+                      _vm.closeSocialInput()
+                    }
+                  }
+                },
+                [_vm._v("Cancel")]
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-691e3436", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ 854:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = { "default": __webpack_require__(855), __esModule: true };
+
+/***/ }),
+
+/***/ 855:
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(856);
+module.exports = __webpack_require__(31).Object.keys;
+
+
+/***/ }),
+
+/***/ 856:
+/***/ (function(module, exports, __webpack_require__) {
+
+// 19.1.2.14 Object.keys(O)
+var toObject = __webpack_require__(312);
+var $keys = __webpack_require__(91);
+
+__webpack_require__(857)('keys', function () {
+  return function keys(it) {
+    return $keys(toObject(it));
+  };
+});
+
+
+/***/ }),
+
+/***/ 857:
+/***/ (function(module, exports, __webpack_require__) {
+
+// most Object methods by ES6 should accept primitives
+var $export = __webpack_require__(60);
+var core = __webpack_require__(31);
+var fails = __webpack_require__(69);
+module.exports = function (KEY, exec) {
+  var fn = (core.Object || {})[KEY] || Object[KEY];
+  var exp = {};
+  exp[KEY] = exec(fn);
+  $export($export.S + $export.F * fails(function () { fn(1); }), 'Object', exp);
+};
+
 
 /***/ })
 
