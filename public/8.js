@@ -3245,16 +3245,39 @@ if (false) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_regenerator__ = __webpack_require__(61);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_regenerator__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_asyncToGenerator__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_asyncToGenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_asyncToGenerator__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__layouts_Main_vue__ = __webpack_require__(654);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__layouts_Main_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__layouts_Main_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_theme__ = __webpack_require__(647);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__mixins_acl__ = __webpack_require__(690);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_toConsumableArray__ = __webpack_require__(868);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_toConsumableArray___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_toConsumableArray__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_regenerator__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_regenerator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_asyncToGenerator__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_asyncToGenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_asyncToGenerator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__layouts_Main_vue__ = __webpack_require__(654);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__layouts_Main_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__layouts_Main_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__mixins_theme__ = __webpack_require__(647);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__mixins_acl__ = __webpack_require__(690);
 
 
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3478,7 +3501,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    mixins: [__WEBPACK_IMPORTED_MODULE_3__mixins_theme__["a" /* default */], __WEBPACK_IMPORTED_MODULE_4__mixins_acl__["a" /* default */]],
+    mixins: [__WEBPACK_IMPORTED_MODULE_4__mixins_theme__["a" /* default */], __WEBPACK_IMPORTED_MODULE_5__mixins_acl__["a" /* default */]],
     data: function data() {
         return {
             contentClass: { 'grey': true, 'lighten-4': true, 'accent--text': true },
@@ -3491,11 +3514,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             toggleForm: new AppForm(App.forms.toggleForm),
             search: '',
             roles: [],
-            permissions: []
+            permissions: [],
+            rolesForm: new AppForm(App.forms.rolesForm),
+            permissionsForm: new AppForm(App.forms.permissionsForm)
         };
     },
     components: {
-        MainLayout: __WEBPACK_IMPORTED_MODULE_2__layouts_Main_vue___default.a
+        MainLayout: __WEBPACK_IMPORTED_MODULE_3__layouts_Main_vue___default.a
     },
     mounted: function mounted() {
         var self = this;
@@ -3506,9 +3531,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         fetchRoles: function () {
-            var _ref = __WEBPACK_IMPORTED_MODULE_1_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_regenerator___default.a.mark(function _callee() {
+            var _ref = __WEBPACK_IMPORTED_MODULE_2_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_1_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_regenerator___default.a.mark(function _callee() {
                 var self, payload, errors, message;
-                return __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+                return __WEBPACK_IMPORTED_MODULE_1_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
                     while (1) {
                         switch (_context.prev = _context.next) {
                             case 0:
@@ -3552,9 +3577,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             return fetchRoles;
         }(),
         fetchPermissions: function () {
-            var _ref3 = __WEBPACK_IMPORTED_MODULE_1_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_regenerator___default.a.mark(function _callee2() {
+            var _ref3 = __WEBPACK_IMPORTED_MODULE_2_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_1_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_regenerator___default.a.mark(function _callee2() {
                 var self, payload, errors, message;
-                return __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+                return __WEBPACK_IMPORTED_MODULE_1_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
                     while (1) {
                         switch (_context2.prev = _context2.next) {
                             case 0:
@@ -3566,7 +3591,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                             case 4:
                                 payload = _context2.sent;
 
-                                self.roles = payload.data;
+                                self.permissions = payload.data;
                                 _context2.next = 14;
                                 break;
 
@@ -3598,9 +3623,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             return fetchPermissions;
         }(),
         fetchUsers: function () {
-            var _ref5 = __WEBPACK_IMPORTED_MODULE_1_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_regenerator___default.a.mark(function _callee3() {
+            var _ref5 = __WEBPACK_IMPORTED_MODULE_2_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_1_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_regenerator___default.a.mark(function _callee3() {
                 var self, payload, errors, message;
-                return __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
+                return __WEBPACK_IMPORTED_MODULE_1_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
                     while (1) {
                         switch (_context3.prev = _context3.next) {
                             case 0:
@@ -3670,14 +3695,128 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             return newStr.replace(/\w\S*/g, function (txt) {
                 return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
             });
+        },
+        changeRoles: function () {
+            var _ref7 = __WEBPACK_IMPORTED_MODULE_2_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_1_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_regenerator___default.a.mark(function _callee4(item) {
+                var self, payload, message;
+                return __WEBPACK_IMPORTED_MODULE_1_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
+                    while (1) {
+                        switch (_context4.prev = _context4.next) {
+                            case 0:
+                                self = this;
+
+                                self.rolesForm.roles = item.roles;
+                                _context4.prev = 2;
+
+                                self.rolesForm.busy = true;
+                                _context4.next = 6;
+                                return App.post(route('api.user.roles.sync', { id: item.id }), self.rolesForm);
+
+                            case 6:
+                                payload = _context4.sent;
+
+                                item.permissions = payload.data.permissions;
+                                self.rolesForm.busy = false;
+                                self.rolesForm = new AppForm(App.forms.rolesForm);
+                                vm.$popup({ message: payload.message, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' });
+                                _context4.next = 18;
+                                break;
+
+                            case 13:
+                                _context4.prev = 13;
+                                _context4.t0 = _context4['catch'](2);
+                                message = _context4.t0.message;
+
+                                if (message) {
+                                    vm.$popup({ message: message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' });
+                                }
+                                self.rolesForm.busy = false;
+
+                            case 18:
+                            case 'end':
+                                return _context4.stop();
+                        }
+                    }
+                }, _callee4, this, [[2, 13]]);
+            }));
+
+            function changeRoles(_x) {
+                return _ref7.apply(this, arguments);
+            }
+
+            return changeRoles;
+        }(),
+        removeRole: function removeRole(role, roles) {
+            roles.splice(roles.indexOf(role), 1);
+            roles = [].concat(__WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_toConsumableArray___default()(roles));
+        },
+        changePermissions: function () {
+            var _ref9 = __WEBPACK_IMPORTED_MODULE_2_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_1_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_regenerator___default.a.mark(function _callee5(item) {
+                var self, payload, message;
+                return __WEBPACK_IMPORTED_MODULE_1_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee5$(_context5) {
+                    while (1) {
+                        switch (_context5.prev = _context5.next) {
+                            case 0:
+                                /* make ajax call to update permissions to this user */
+                                self = this;
+
+                                self.permissionsForm.permissions = item.permissions;
+                                _context5.prev = 2;
+
+                                self.permissionsForm.busy = true;
+                                _context5.next = 6;
+                                return App.post(route('api.user.permissions.sync', { id: item.id }), self.permissionsForm);
+
+                            case 6:
+                                payload = _context5.sent;
+
+                                self.permissionsForm.busy = false;
+                                self.permissionsForm = new AppForm(App.forms.permissionsForm);
+                                vm.$popup({ message: payload.message, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' });
+                                _context5.next = 17;
+                                break;
+
+                            case 12:
+                                _context5.prev = 12;
+                                _context5.t0 = _context5['catch'](2);
+                                message = _context5.t0.message;
+
+                                if (message) {
+                                    vm.$popup({ message: message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' });
+                                }
+                                self.permissionsForm.busy = false;
+
+                            case 17:
+                            case 'end':
+                                return _context5.stop();
+                        }
+                    }
+                }, _callee5, this, [[2, 12]]);
+            }));
+
+            function changePermissions(_x2) {
+                return _ref9.apply(this, arguments);
+            }
+
+            return changePermissions;
+        }(),
+        removePermission: function removePermission(permission, permissions) {
+            permissions.splice(permissions.indexOf(permission), 1);
+            permissions = [].concat(__WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_toConsumableArray___default()(permissions));
         }
     },
     watch: {
         items: {
-            handler: function handler() {
-                console.log('items changed');
+            handler: function handler(newValue) {
+                console.log('items changed', newValue);
             },
             deep: true
+        },
+        roles: function roles(newValue) {
+            console.log('new Roles', newValue);
+        },
+        permissions: function permissions(newValue) {
+            console.log('new Permissions', newValue);
         }
     }
 });
@@ -3903,25 +4042,6 @@ var render = function() {
                             "v-btn",
                             {
                               attrs: {
-                                disabled: !_vm.can("edit_user"),
-                                flat: "",
-                                icon: "",
-                                color: "accent"
-                              },
-                              nativeOn: {
-                                click: function($event) {
-                                  _vm.editUser(props.item)
-                                }
-                              }
-                            },
-                            [_c("v-icon", [_vm._v("fa-edit")])],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-btn",
-                            {
-                              attrs: {
                                 disabled: !_vm.can("delete_user"),
                                 flat: "",
                                 icon: "",
@@ -4030,40 +4150,6 @@ var render = function() {
                             ),
                             _vm._v(" "),
                             _c(
-                              "v-card-actions",
-                              [
-                                !props.item.active
-                                  ? _c(
-                                      "v-btn",
-                                      { attrs: { flat: "", color: "success" } },
-                                      [
-                                        _vm._v("Activate Account "),
-                                        _c("v-icon", { attrs: { right: "" } }, [
-                                          _vm._v("done_all")
-                                        ])
-                                      ],
-                                      1
-                                    )
-                                  : _vm._e(),
-                                _vm._v(" "),
-                                !props.item.banned
-                                  ? _c(
-                                      "v-btn",
-                                      { attrs: { flat: "", color: "error" } },
-                                      [
-                                        _vm._v("Ban Account "),
-                                        _c("v-icon", { attrs: { right: "" } }, [
-                                          _vm._v("fa-ban ")
-                                        ])
-                                      ],
-                                      1
-                                    )
-                                  : _vm._e()
-                              ],
-                              1
-                            ),
-                            _vm._v(" "),
-                            _c(
                               "v-card-title",
                               [
                                 _c(
@@ -4148,13 +4234,20 @@ var render = function() {
                                           [
                                             _c("v-select", {
                                               attrs: {
+                                                color: "blue-grey",
                                                 items: _vm.roles,
-                                                fluid: "",
                                                 light: "",
                                                 chips: "",
                                                 tags: "",
-                                                "prepend-icon": "fa-tags",
-                                                readonly: ""
+                                                disabled: props.item.id === 1,
+                                                clearable: "",
+                                                "deletable-chips": "",
+                                                "prepend-icon": "fa-tags"
+                                              },
+                                              on: {
+                                                input: function($event) {
+                                                  _vm.changeRoles(props.item)
+                                                }
                                               },
                                               scopedSlots: _vm._u([
                                                 {
@@ -4166,8 +4259,19 @@ var render = function() {
                                                         {
                                                           attrs: {
                                                             light: "",
+                                                            close: "",
                                                             selected:
                                                               data.selected
+                                                          },
+                                                          on: {
+                                                            input: function(
+                                                              $event
+                                                            ) {
+                                                              _vm.removeRole(
+                                                                data.item,
+                                                                props.item.roles
+                                                              )
+                                                            }
                                                           }
                                                         },
                                                         [
@@ -4222,7 +4326,7 @@ var render = function() {
                                       ? _c(
                                           "p",
                                           { staticClass: "title info--text" },
-                                          [_vm._v("Assigned Permissions")]
+                                          [_vm._v("Role Inherited Permissions")]
                                         )
                                       : _vm._e(),
                                     _vm._v(" "),
@@ -4236,13 +4340,12 @@ var render = function() {
                                           [
                                             _c("v-select", {
                                               attrs: {
+                                                color: "brown",
                                                 items: _vm.permissions,
-                                                fluid: "",
                                                 light: "",
-                                                chips: "",
+                                                disabled: "",
                                                 tags: "",
-                                                "prepend-icon": "fa-tags",
-                                                readonly: ""
+                                                "prepend-icon": "fa-tags"
                                               },
                                               scopedSlots: _vm._u([
                                                 {
@@ -4383,6 +4486,112 @@ if (false) {
      require("vue-hot-reload-api").rerender("data-v-fc04dda4", module.exports)
   }
 }
+
+/***/ }),
+
+/***/ 868:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _from = __webpack_require__(869);
+
+var _from2 = _interopRequireDefault(_from);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function (arr) {
+  if (Array.isArray(arr)) {
+    for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) {
+      arr2[i] = arr[i];
+    }
+
+    return arr2;
+  } else {
+    return (0, _from2.default)(arr);
+  }
+};
+
+/***/ }),
+
+/***/ 869:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = { "default": __webpack_require__(870), __esModule: true };
+
+/***/ }),
+
+/***/ 870:
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(134);
+__webpack_require__(871);
+module.exports = __webpack_require__(31).Array.from;
+
+
+/***/ }),
+
+/***/ 871:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var ctx = __webpack_require__(71);
+var $export = __webpack_require__(60);
+var toObject = __webpack_require__(312);
+var call = __webpack_require__(330);
+var isArrayIter = __webpack_require__(331);
+var toLength = __webpack_require__(140);
+var createProperty = __webpack_require__(872);
+var getIterFn = __webpack_require__(332);
+
+$export($export.S + $export.F * !__webpack_require__(337)(function (iter) { Array.from(iter); }), 'Array', {
+  // 22.1.2.1 Array.from(arrayLike, mapfn = undefined, thisArg = undefined)
+  from: function from(arrayLike /* , mapfn = undefined, thisArg = undefined */) {
+    var O = toObject(arrayLike);
+    var C = typeof this == 'function' ? this : Array;
+    var aLen = arguments.length;
+    var mapfn = aLen > 1 ? arguments[1] : undefined;
+    var mapping = mapfn !== undefined;
+    var index = 0;
+    var iterFn = getIterFn(O);
+    var length, result, step, iterator;
+    if (mapping) mapfn = ctx(mapfn, aLen > 2 ? arguments[2] : undefined, 2);
+    // if object isn't iterable or it's array with default iterator - use simple case
+    if (iterFn != undefined && !(C == Array && isArrayIter(iterFn))) {
+      for (iterator = iterFn.call(O), result = new C(); !(step = iterator.next()).done; index++) {
+        createProperty(result, index, mapping ? call(iterator, mapfn, [step.value, index], true) : step.value);
+      }
+    } else {
+      length = toLength(O.length);
+      for (result = new C(length); length > index; index++) {
+        createProperty(result, index, mapping ? mapfn(O[index], index) : O[index]);
+      }
+    }
+    result.length = index;
+    return result;
+  }
+});
+
+
+/***/ }),
+
+/***/ 872:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var $defineProperty = __webpack_require__(39);
+var createDesc = __webpack_require__(73);
+
+module.exports = function (object, index, value) {
+  if (index in object) $defineProperty.f(object, index, createDesc(0, value));
+  else object[index] = value;
+};
+
 
 /***/ })
 
