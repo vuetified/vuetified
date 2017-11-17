@@ -136,6 +136,7 @@
                                 <v-layout row wrap>
                                     <v-flex xs12>
                                         <v-select
+                                            :items="roles"
                                             fluid
                                             light
                                             chips
@@ -164,6 +165,7 @@
                                 <v-layout row wrap>
                                     <v-flex xs12>
                                         <v-select
+                                            :items="permissions"
                                             fluid
                                             light
                                             chips
@@ -236,16 +238,48 @@ export default {
         current_user: {},
         usersForm: new AppForm(App.forms.usersForm),
         toggleForm: new AppForm(App.forms.toggleForm),
-        search: ''
+        search: '',
+        roles: [],
+        permissions: []
     }),
     components: {
         MainLayout
     },
     mounted () {
         let self = this
+        self.fetchRoles()
+        self.fetchPermissions()
         self.fetchUsers()
     },
     methods: {
+        async fetchRoles () {
+            let self = this
+            try {
+                const payload = (await axios.get(route('api.roles.index')))
+                self.roles = payload.data
+            } catch ({errors, message}) {
+                if (errors) {
+                    console.log('fetchRoles:errors', errors)
+                }
+                if (message) {
+                    console.log('fetchRoles:error-message', message)
+                }
+            }
+        },
+        async fetchPermissions () {
+            let self = this
+            try {
+                const payload = (await axios.get(route('api.permissions.index')))
+                self.roles = payload.data
+            } catch ({errors, message}) {
+                if (errors) {
+                    console.log('fetchRoles:errors', errors)
+                }
+                if (message) {
+                    console.log('fetchRoles:error-message', message)
+                }
+            }
+        },
         async fetchUsers () {
             let self = this
             self.usersForm.busy = true
