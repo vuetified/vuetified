@@ -37872,10 +37872,14 @@ App.forms = {
     },
     contactDetailsForm: {},
     socialLinksForm: {},
-    usersForm: {}
+    usersForm: {},
+    linkForm: {
+        link: '',
+        link_id: '',
+        user_id: ''
 
-    // Add Other Form Object Here
-};
+        // Add Other Form Object Here
+    } };
 
 /***/ }),
 /* 575 */
