@@ -86,7 +86,6 @@ export default {
         contentClass: { 'grey': true, 'lighten-4': true, 'accent--text': true },
         social_links: {},
         socialLinksForm: new AppForm(App.forms.socialLinksForm),
-        modal: false,
         hasSocialKeys: false
     }),
     computed: {
