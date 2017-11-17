@@ -1,9 +1,37 @@
 <template>
     <v-tabs-content
-        id="contact-details"
+    id="contact-details"
     >
         <v-container>
-            <v-layout row wrap>
+            <v-layout row wrap v-if="hasContactKeys">
+                <v-flex xs6>
+                <v-btn block @click.native="updateContactDetails()"
+                :disabled="errors.any()"
+                :loading="contactDetailsForm.busy"
+                class="white--text"
+                :class="{primary: !contactDetailsForm.busy , error: contactDetailsForm.busy }"
+                light
+                >Update Contact Details
+                    <v-icon right>fa-send</v-icon>
+                </v-btn>
+                </v-flex>
+                <v-flex xs6>
+                <v-btn block color="accent" @click.native="openModal()"
+                >Create Contact Details
+                    <v-icon right>fa-plus</v-icon>
+                </v-btn>
+                </v-flex>
+            </v-layout>
+            <v-layout row wrap v-else>
+                <v-flex xs12>
+                <v-btn block color="accent" @click.native="openModal()"
+                >Create Contact Details
+                    <v-icon right>fa-plus</v-icon>
+                </v-btn>
+                </v-flex>
+            </v-layout>
+
+            <v-layout row wrap v-if="hasContactKeys">
                 <p class="primary--text">Contact Details</p>
                 <v-flex xs12>
                     <v-alert color="primary" icon="warning" value="true">
@@ -16,68 +44,48 @@
                     v-model="contact_details[key]"
                     light
                     v-for="(value,key,index) in contact_details" :key="key" :index="index"
-                    v-validate="{ required: true, regex: /^[a-zA-Z0-9 +@#]+$/ }"
+                    v-validate="{ required: true, regex: /^[a-zA-Z0-9 +@#]+$/}"
                     :error-messages="errors.collect(key)"
                     :data-vv-name="key"
+                    append-icon="fa-trash"
+                    :append-icon-cb="() => (deleteContactDetails(key))"
                     >
                     </v-text-field>
                 </v-flex>
-                <v-btn block color="primary" @click="updateContactDetails()"
-                :disabled="errors.any()"
-                :loading="contactDetailsForm.busy"
-                class="white--text"
-                light
-                :class="{primary: !contactDetailsForm.busy, error: contactDetailsForm.busy}"
-                >
-                    Update Contact Details <v-icon right>fa-send</v-icon>
-                </v-btn>
-                <v-btn block color="accent" @click="contact_modal = true">New Contact Details<v-icon right>fa-plus</v-icon></v-btn>
-                <v-dialog v-model="contact_modal" persistent width="600px">
-                    <v-card light>
-                        <v-card-title class="headline">Add New Contact Details</v-card-title>
-                        <v-container>
-                            <v-layout row wrap>
-                                <v-flex xs12>
-                                    <v-text-field
-                                    :label="toProperCase(key)"
-                                    v-model="contact_tmp[key]"
-                                    light
-                                    v-for="(value,key,index) in contact_tmp" :key="key" :index="index"
-                                    >
-                                    </v-text-field>
-                                </v-flex>
-                            </v-layout>
-                        </v-container>
 
-                        <v-card-actions>
-                            <v-spacer></v-spacer>
-                            <v-btn
-                            color="green darken-1" flat @click.native="addContactInput()"
-                            :disabled="isDisabled(contact_tmp)"
-                            light
-                            >
-                            Create Contact Details</v-btn>
-                            <v-btn color="error" flat @click.native="closeContactInput()">Cancel</v-btn>
-                        </v-card-actions>
-                    </v-card>
-                </v-dialog>
             </v-layout>
+
+            <v-layout row wrap v-else>
+                <v-flex xs12 text-xs-center>
+                    <v-card light :class="[contentClass]" flat >
+                            <v-card-text>
+                            <h4>No Contact Details Yet!</h4>
+                            <p class="title">Create Your First Contact Details.</p>
+                            <p class="body-2">Note: This Will Displayed In Your Homepage.</p>
+                        </v-card-text>
+                    </v-card>
+                </v-flex>
+            </v-layout>
+
+            <new-contact-details></new-contact-details>
+
         </v-container>
     </v-tabs-content>
 </template>
 
 <script>
+import NewContactDetails from './NewContactDetails.vue'
 import { createNamespacedHelpers } from 'vuex'
 const { mapGetters, mapMutations } = createNamespacedHelpers('auth')
 export default {
+    components: {
+        NewContactDetails
+    },
     data: () => ({
-        contact_modal: false,
+        contentClass: { 'grey': true, 'lighten-4': true, 'accent--text': true },
         contact_details: {},
-        contact_tmp: {
-            title: null,
-            value: null
-        },
-        contactDetailsForm: new AppForm(App.forms.contactDetailsForm)
+        contactDetailsForm: new AppForm(App.forms.contactDetailsForm),
+        hasContactKeys: false
     }),
     computed: {
         ...mapGetters({
@@ -86,22 +94,43 @@ export default {
     },
     mounted () {
         let self = this
-        self.contact_details = self.getMe.contact_details
+        /* check the return value when we dont have contact details its an array it should be an empty objec */
+        if (!_.isEmpty(self.getMe.contact_details)) {
+            self.contact_details = self.getMe.contact_details
+            self.hasContactKeys = true
+        } else if (self.getMe.contact_details.length > 0) {
+            self.contact_details = self.getMe.contact_details
+            self.hasContactKeys = true
+        } else {
+            self.contact_details = {}
+            self.hasContactKeys = false
+        }
+        Bus.$on('update-contact-details', (contact) => {
+            self.contact_details[contact.title] = contact.value
+            self.updateContactDetails()
+        })
     },
     methods: {
         ...mapMutations({
             setMe: 'setMe'
         }),
+        isEmpty (obj) {
+            return Object.keys(obj).length === 0
+        },
+        openModal () {
+            Bus.$emit('add-new-contact-details')
+        },
+        async deleteContactDetails (key) {
+            let self = this
+            delete self.contact_details[key]
+            await self.updateContactDetails()
+            if (_.isEmpty(self.contact_details)) {
+                self.hasContactKeys = false
+            }
+        },
         toProperCase (key) {
             let newStr = key.replace(/_/g, ' ')
             return newStr.replace(/\w\S*/g, function (txt) { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase() })
-        },
-        isDisabled (object) {
-            if (object.title && object.value) {
-                return false
-            } else {
-                return true
-            }
         },
         prepareContactDetailsForm () {
             let self = this
@@ -113,14 +142,24 @@ export default {
         },
         async updateContactDetails () {
             let self = this
+            console.log('1')
             self.prepareContactDetailsForm()
+            console.log('2')
             self.$validator.validateAll()
+            console.log('3')
             if (!self.errors.any()) {
+                console.log('4')
                 self.contactDetailsForm.busy = true
+                console.log('5')
                 try {
                     const payload = (await App.post(route('api.user.updateContactDetails'), self.contactDetailsForm))
+                    console.log('6')
                     self.resetContactDetailsForm()
+                    console.log('7')
                     self.setMe(payload.data)
+                    console.log('8')
+                    self.hasContactKeys = true
+                    console.log('9')
                     vm.$popup({ message: payload.message, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
                 } catch ({errors, message}) {
                     self.contactDetailsForm.errors.set(errors)
@@ -128,21 +167,6 @@ export default {
                     vm.$popup({ message: message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' })
                 }
             }
-        },
-        closeContactInput () {
-            this.contact_tmp.title = null
-            this.contact_tmp.value = null
-            this.contact_modal = false
-        },
-        addContactInput () {
-            if (this.contact_tmp.title && this.contact_tmp.value) {
-                this.$set(this.contact_details, this.contact_tmp.title, this.contact_tmp.value)
-            }
-            this.contact_tmp.title = null
-            this.contact_tmp.value = null
-            this.contact_modal = false
-            /* send ajax to add new contact info */
-            // update getMe
         }
 
     }
