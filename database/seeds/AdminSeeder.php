@@ -14,6 +14,7 @@ class AdminSeeder extends Seeder
     public function run()
     {
         $user = User::create([
+            'id' => 1,
             'name' => config('admin.name'),
             'email' => config('admin.email'),
             'password' => config('admin.password'),
@@ -22,6 +23,7 @@ class AdminSeeder extends Seeder
         
         $user->assignRole('admin');
         $link = new Link();
+        $link->id = 1;
         $link->link = $user->username;
         $link->active = true;
         $link->date_activated = \Carbon\Carbon::now();
