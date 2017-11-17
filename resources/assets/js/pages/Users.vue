@@ -69,9 +69,12 @@
                             <v-icon v-if="!props.expanded">fa-expand</v-icon>
                             <v-icon v-if="props.expanded">fa-compress</v-icon>
                         </v-btn>
+                        <!--
+                        removed edit button
                         <v-btn :disabled="!can('edit_user')"  flat icon color="accent" @click.native="editUser(props.item)">
                             <v-icon>fa-edit</v-icon>
                         </v-btn>
+                        -->
                         <v-btn :disabled="!can('delete_user')" flat icon color="error" @click.native="deleteUser(props.item)">
                             <v-icon>fa-trash</v-icon>
                         </v-btn>
@@ -101,12 +104,13 @@
                         </v-layout>
                         </v-container>
                         </v-card-media>
-
+                        <!--
+                        Add if you have activation and bann in database
                         <v-card-actions>
                             <v-btn flat color="success" v-if="!props.item.active">Activate Account <v-icon right>done_all</v-icon></v-btn>
                             <v-btn flat color="error" v-if="!props.item.banned">Ban Account <v-icon right>fa-ban </v-icon></v-btn>
                         </v-card-actions>
-
+                        -->
                         <v-card-title>
                             <v-container fluid>
                                 <p class="title info--text">Account Details</p>
@@ -136,18 +140,23 @@
                                 <v-layout row wrap>
                                     <v-flex xs12>
                                         <v-select
+                                            @input="changeRoles(props.item)"
+                                            color="blue-grey"
                                             :items="roles"
-                                            fluid
                                             light
                                             chips
                                             tags
+                                            :disabled="props.item.id === 1"
+                                            clearable
+                                            deletable-chips
                                             prepend-icon="fa-tags"
-                                            readonly
                                             v-model="props.item.roles"
                                         >
                                         <template slot="selection" scope="data">
                                             <v-chip
                                             light
+                                            close
+                                            @input="removeRole(data.item,props.item.roles)"
                                             :selected="data.selected"
                                             >
                                             <v-avatar
@@ -161,20 +170,31 @@
                                         </v-select>
                                     </v-flex>
                                 </v-layout>
-                                <p class="title info--text" v-if="props.item.permissions">Assigned Permissions</p>
+                                <p class="title info--text" v-if="props.item.permissions">Role Inherited Permissions</p>
                                 <v-layout row wrap>
                                     <v-flex xs12>
-                                        <v-select
-                                            :items="permissions"
-                                            fluid
-                                            light
+                                        <!-- Enable update permissions -->
+                                        <!--
                                             chips
+                                            deletable-chips
+                                            clearable
+                                            @input="changePermissions(props.item)"
+                                            -->
+                                        <v-select
+                                            color="brown"
+                                            :items="permissions"
+                                            light
+                                            disabled
                                             tags
                                             prepend-icon="fa-tags"
-                                            readonly
                                             v-model="props.item.permissions"
                                         >
                                         <template slot="selection" scope="data">
+                                            <!-- Enable update permissions -->
+                                            <!--
+                                                close
+                                                @input="removePermission(data.item,props.item.permissions)"
+                                                -->
                                             <v-chip
                                             light
                                             :selected="data.selected"
@@ -240,7 +260,9 @@ export default {
         toggleForm: new AppForm(App.forms.toggleForm),
         search: '',
         roles: [],
-        permissions: []
+        permissions: [],
+        rolesForm: new AppForm(App.forms.rolesForm),
+        permissionsForm: new AppForm(App.forms.permissionsForm)
     }),
     components: {
         MainLayout
@@ -270,7 +292,7 @@ export default {
             let self = this
             try {
                 const payload = (await axios.get(route('api.permissions.index')))
-                self.roles = payload.data
+                self.permissions = payload.data
             } catch ({errors, message}) {
                 if (errors) {
                     console.log('fetchRoles:errors', errors)
@@ -318,15 +340,63 @@ export default {
         toProperCase (key) {
             let newStr = key.replace(/_/g, ' ')
             return newStr.replace(/\w\S*/g, function (txt) { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase() })
+        },
+        async changeRoles (item) {
+            let self = this
+            self.rolesForm.roles = item.roles
+            try {
+                self.rolesForm.busy = true
+                const payload = (await App.post(route('api.user.roles.sync', {id: item.id}), self.rolesForm))
+                item.permissions = payload.data.permissions
+                self.rolesForm.busy = false
+                self.rolesForm = new AppForm(App.forms.rolesForm)
+                vm.$popup({ message: payload.message, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
+            } catch ({message}) {
+                if (message) {
+                    vm.$popup({ message: message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' })
+                }
+                self.rolesForm.busy = false
+            }
+        },
+        removeRole (role, roles) {
+            roles.splice(roles.indexOf(role), 1)
+            roles = [...roles]
+        },
+        async changePermissions (item) {
+            /* make ajax call to update permissions to this user */
+            let self = this
+            self.permissionsForm.permissions = item.permissions
+            try {
+                self.permissionsForm.busy = true
+                const payload = (await App.post(route('api.user.permissions.sync', {id: item.id}), self.permissionsForm))
+                self.permissionsForm.busy = false
+                self.permissionsForm = new AppForm(App.forms.permissionsForm)
+                vm.$popup({ message: payload.message, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
+            } catch ({message}) {
+                if (message) {
+                    vm.$popup({ message: message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' })
+                }
+                self.permissionsForm.busy = false
+            }
+        },
+        removePermission (permission, permissions) {
+            permissions.splice(permissions.indexOf(permission), 1)
+            permissions = [...permissions]
         }
 
     },
     watch: {
         items: {
-            handler: function () {
-                console.log('items changed')
+            handler: function (newValue) {
+                console.log('items changed', newValue)
             },
             deep: true
+        },
+        roles (newValue) {
+            console.log('new Roles', newValue)
+        },
+        permissions (newValue) {
+            console.log('new Permissions', newValue)
         }
     }
 }
