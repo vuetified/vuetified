@@ -48,7 +48,7 @@ class RegisterController extends Controller
     		'email' => request('username'),
     		'password' => request('password')
 		]);
-		
+
 		/* create an empty profile */
 		$profile = new Profile();
 		$user->profile()->save($profile);
