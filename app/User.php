@@ -75,9 +75,38 @@ class User extends Authenticatable
         return $this->belongsTo(User::class, 'sp_id');
     }
 
+    public function referrals()
+    {
+        return $this->hasMany(User::class, 'sp_id');
+    }
+
     public static function last()
     {
         return self::latest()->first();
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($user) {
+            /* Our Default Referral Link if No Cookie Is Present */
+            $user->sp_id = optional(User::first())->id;
+            /* change this */
+            $sponsorID = \Cookie::get('sponsor');
+            
+            /* if cookie is present */
+            if ($sponsorID) {
+                $sponsor = User::find($sponsorID);
+                $user->sp_id = $sponsor->id;
+            }
+            /* override cookie with current request */
+            if($sponsorID = request()->sponsor_id){
+                $sponsor = User::find($sponsorID);
+                $user->sp_id = $sponsor->id;
+            }
+
+        });
     }
 
 }
