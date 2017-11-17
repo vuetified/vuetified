@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\User;
 use App\Link;
+use App\Profile;
 
 class UsersSeeder extends Seeder
 {
@@ -24,6 +25,8 @@ class UsersSeeder extends Seeder
             $user->sp_id = optional($sponsor)->id;
             $user->assignRole('customer');
             $user->save();
+            $profile = factory(Profile::class,1)->create()->first();
+            $user->profile()->save($profile);
         });
         /* merchant */
         factory(User::class, 1)->create()->each(function ($user) {
@@ -36,6 +39,8 @@ class UsersSeeder extends Seeder
             $user->sp_id = optional($sponsor)->id;
             $user->assignRole('merchant');
             $user->save();
+            $profile = factory(Profile::class,1)->create()->first();
+            $user->profile()->save($profile);
         });
         /* reseller */
         factory(User::class, 1)->create()->each(function ($user) {
@@ -48,6 +53,8 @@ class UsersSeeder extends Seeder
             $user->sp_id = optional($sponsor)->id;
             $user->assignRole('reseller');
             $user->save();
+            $profile = factory(Profile::class,1)->create()->first();
+            $user->profile()->save($profile);
         });
     }
 }
