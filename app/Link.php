@@ -26,6 +26,13 @@ class Link extends Model
     
     protected $dates = ['created_at', 'updated_at', 'date_activated'];
 
+    // protected $appends = ['sponsor_name'];
+
+    public function getSponsorName()
+    {
+        // return $this->attributes['admin'] == 'yes';
+    }
+
     public static function boot()
     {
         parent::boot();
@@ -34,10 +41,20 @@ class Link extends Model
             /* Our Default Referral Link if No Cookie Is Present */
             $link->sp_user_id = optional(User::first())->id;
             $link->sp_link_id = optional(self::first())->id;
-            $cookie = \Cookie::get('sponsor');
-            if ($cookie) {
-                $link->sp_user_id = $cookie['user_id'];
-                $link->sp_link_id = $cookie['id'];
+            /* change this */
+            $userID = \Cookie::get('sponsor');
+            
+            /* if cookie is present */
+            if ($userID) {
+                $user = User::find($userID);
+                $link->sp_user_id = $userID;
+                $link->sp_link_id = $user->referralLink->id;
+            }
+            /* override cookie with current request */
+            if($sponsor = request()->sponsor_id){
+                $user = User::find($sponsor);
+                $link->sp_user_id = $user->id;
+                $link->sp_link_id = $user->referralLink->id;
             }
 
         });
@@ -122,5 +139,10 @@ class Link extends Model
         }
 
         return $sponsor->id;
+    }
+
+    public static function last()
+    {
+        return self::latest()->first();
     }
 }
