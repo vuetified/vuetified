@@ -12,6 +12,10 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::post('/users/{id}/syncRoles', 'Api\Auth\PermissionRolesController@syncRoles')->name('api.user.roles.sync');
     Route::post('/users/{id}/syncPermissions', 'Api\Auth\PermissionRolesController@syncPermissions')->name('api.user.permissions.sync');
 
+
+    Route::get('/users/{id}/activateLink', 'Api\Link\ActivationController@activateLink')->name('api.user.link.activate');
+    Route::get('/users/{id}/deactivateLink', 'Api\Link\ActivationController@deactivateLink')->name('api.user.link.deactivate');
+
     Route::post('/users/settings/updateAccount', 'Api\Settings\SettingsController@updateAccount')->name('api.user.updateAccount');
     Route::post('/users/settings/updateProfile', 'Api\Settings\SettingsController@updateProfile')->name('api.user.updateProfile');
     Route::post('/users/settings/updateContactDetails', 'Api\Settings\SettingsController@updateContactDetails')->name('api.user.updateContactDetails');
