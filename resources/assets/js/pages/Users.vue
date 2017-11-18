@@ -104,13 +104,10 @@
                         </v-layout>
                         </v-container>
                         </v-card-media>
-                        <!--
-                        Add if you have activation and bann in database
                         <v-card-actions>
-                            <v-btn flat color="success" v-if="!props.item.active">Activate Account <v-icon right>done_all</v-icon></v-btn>
-                            <v-btn flat color="error" v-if="!props.item.banned">Ban Account <v-icon right>fa-ban </v-icon></v-btn>
+                            <v-btn flat @click="activateLink(props.item)" color="success" v-if="!props.item.referral_link.active">Activate Link <v-icon right>done_all</v-icon></v-btn>
+                            <v-btn flat @click="deactivateLink(props.item)" color="error" v-if="props.item.referral_link.active">Deactivate Link <v-icon right>fa-ban </v-icon></v-btn>
                         </v-card-actions>
-                        -->
                         <v-card-title>
                             <v-container fluid>
                                 <p class="title info--text">Account Details</p>
@@ -274,6 +271,32 @@ export default {
         self.fetchUsers()
     },
     methods: {
+        async activateLink (user) {
+            try {
+                let payload = (await axios.get(route('api.user.link.activate', {id: user.id})))
+                user.referral_link.active = true
+                vm.$popup({ message: payload.data.message, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
+            } catch ({message}) {
+                if (message) {
+                    vm.$popup({ message: message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' })
+                }
+            }
+        },
+        async deactivateLink (user) {
+            if (user.id === 1) {
+                vm.$popup({ message: 'You Cant Deactivate Super Admin Link', backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
+            } else {
+                try {
+                    let payload = (await axios.get(route('api.user.link.deactivate', {id: user.id})))
+                    user.referral_link.active = false
+                    vm.$popup({ message: payload.data.message, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
+                } catch ({message}) {
+                    if (message) {
+                        vm.$popup({ message: message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' })
+                    }
+                }
+            }
+        },
         async fetchRoles () {
             let self = this
             try {
@@ -309,11 +332,15 @@ export default {
                 const payload = (await App.post(route('api.user.index'), self.usersForm))
                 self.items = payload.data
                 self.usersForm = new AppForm(App.forms.usersForm)
-                vm.$popup({ message: payload.message, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
+                vm.$popup({ message: 'Users Loaded!', backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
             } catch ({errors, message}) {
-                self.usersForm.errors.set(errors)
+                if (errors) {
+                    self.usersForm.errors.set(errors)
+                }
+                if (message) {
+                    vm.$popup({ message: message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' })
+                }
                 self.usersForm.busy = false
-                vm.$popup({ message: message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' })
             }
         },
         editUser (user) {
