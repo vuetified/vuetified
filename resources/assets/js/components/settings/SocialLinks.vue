@@ -96,7 +96,10 @@ export default {
     mounted () {
         let self = this
         /* check the return value when we dont have social links its an array it should be an empty objec */
-        if (!_.isEmpty(self.getMe.social_links)) {
+        if (self.getMe.social_links === null) {
+            self.social_links = {}
+            self.hasSocialKeys = false
+        } else if (!_.isEmpty(self.getMe.social_links)) {
             self.social_links = self.getMe.social_links
             self.hasSocialKeys = true
         } else if (self.getMe.social_links.length > 0) {

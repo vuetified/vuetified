@@ -95,7 +95,10 @@ export default {
     mounted () {
         let self = this
         /* check the return value when we dont have contact details its an array it should be an empty objec */
-        if (!_.isEmpty(self.getMe.contact_details)) {
+        if (self.getMe.contact_details === null) {
+            self.contact_details = {}
+            self.hasContactKeys = false
+        } else if (!_.isEmpty(self.getMe.contact_details)) {
             self.contact_details = self.getMe.contact_details
             self.hasContactKeys = true
         } else if (self.getMe.contact_details.length > 0) {
