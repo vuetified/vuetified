@@ -39,6 +39,7 @@
 
                     <td class="title text-xs-left primary--text">
                         <v-btn flat color="accent"
+                        v-if="activeLink(props.item.referral_link.active)"
                         :href="`http://${ props.item.referral_link.link }.${ App.site.domain }`"
                         target="_blank"
                         >
@@ -271,6 +272,9 @@ export default {
         self.fetchUsers()
     },
     methods: {
+        activeLink (link) {
+            return !!link
+        },
         async activateLink (user) {
             try {
                 let payload = (await axios.get(route('api.user.link.activate', {id: user.id})))
