@@ -46,10 +46,11 @@ class RouteServiceProvider extends ServiceProvider
         Route::pattern('referrallink', '[a-z0-9_-]{3,16}');
         Route::bind('referrallink', function ($value) {
             $link = Link::findByLink($value);
-            if($link){
+            if(optional($link)->active){
                 return $link;
+            }else {
+             throw new LinkNotFound;
             }
-            throw new LinkNotFound;
         });
         Route::pattern('name', '[a-z]+');
         Route::bind('order', function ($value) {
