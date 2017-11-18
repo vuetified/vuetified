@@ -8,7 +8,7 @@
           <v-icon>fa-user</v-icon>
           Account
         </v-tabs-item>
-        <v-tabs-item href="#referral-link">
+        <v-tabs-item href="#referral-link" v-if="active">
           <v-icon>timeline</v-icon>
           Link
         </v-tabs-item>
@@ -17,12 +17,12 @@
           Profile
         </v-tabs-item>
             <!-- for reseller account only -->
-        <v-tabs-item href="#contact-details">
+        <v-tabs-item href="#contact-details" v-if="active">
           <v-icon>phone</v-icon>
           Contact Details
         </v-tabs-item>
             <!-- for reseller account only -->
-        <v-tabs-item href="#social-links">
+        <v-tabs-item href="#social-links" v-if="active">
           <v-icon>link</v-icon>
           Social Links
         </v-tabs-item>
@@ -31,10 +31,10 @@
       <v-tabs-items>
           <!-- tab contents -->
           <account></account>
-          <referral-link></referral-link>
+          <referral-link v-if="active"></referral-link>
           <profile></profile>
-          <contact-details></contact-details>
-          <social-links></social-links>
+          <contact-details v-if="active"></contact-details>
+          <social-links v-if="active"></social-links>
           <!-- tab contents -->
       </v-tabs-items>
     </v-tabs>
@@ -62,6 +62,12 @@ export default {
         ContactDetails,
         Profile,
         SocialLinks
+    },
+    computed: {
+        /* need to logout to reflect changes in account */
+        active () {
+            return !!this.$store.getters['auth/getMe']['referral_link']['active']
+        }
     }
 }
 </script>
