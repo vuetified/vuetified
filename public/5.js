@@ -3580,43 +3580,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     while (1) {
                         switch (_context2.prev = _context2.next) {
                             case 0:
-                                if (!(user.id === 1)) {
-                                    _context2.next = 4;
-                                    break;
-                                }
-
-                                vm.$popup({ message: 'You Cant Deactivate Super Admin Link', backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' });
-                                _context2.next = 16;
-                                break;
-
-                            case 4:
-                                _context2.prev = 4;
-                                _context2.next = 7;
+                                _context2.prev = 0;
+                                _context2.next = 3;
                                 return axios.get(route('api.user.link.deactivate', { id: user.id }));
 
-                            case 7:
+                            case 3:
                                 payload = _context2.sent;
 
                                 user.referral_link.active = false;
                                 vm.$popup({ message: payload.data.message, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' });
-                                _context2.next = 16;
+                                _context2.next = 12;
                                 break;
 
-                            case 12:
-                                _context2.prev = 12;
-                                _context2.t0 = _context2['catch'](4);
+                            case 8:
+                                _context2.prev = 8;
+                                _context2.t0 = _context2['catch'](0);
                                 message = _context2.t0.message;
 
                                 if (message) {
                                     vm.$popup({ message: message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' });
                                 }
 
-                            case 16:
+                            case 12:
                             case 'end':
                                 return _context2.stop();
                         }
                     }
-                }, _callee2, this, [[4, 12]]);
+                }, _callee2, this, [[0, 8]]);
             }));
 
             function deactivateLink(_x2) {

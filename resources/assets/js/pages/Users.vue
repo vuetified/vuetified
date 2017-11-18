@@ -287,17 +287,13 @@ export default {
             }
         },
         async deactivateLink (user) {
-            if (user.id === 1) {
-                vm.$popup({ message: 'You Cant Deactivate Super Admin Link', backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
-            } else {
-                try {
-                    let payload = (await axios.get(route('api.user.link.deactivate', {id: user.id})))
-                    user.referral_link.active = false
-                    vm.$popup({ message: payload.data.message, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
-                } catch ({message}) {
-                    if (message) {
-                        vm.$popup({ message: message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' })
-                    }
+            try {
+                let payload = (await axios.get(route('api.user.link.deactivate', {id: user.id})))
+                user.referral_link.active = false
+                vm.$popup({ message: payload.data.message, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
+            } catch ({message}) {
+                if (message) {
+                    vm.$popup({ message: message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' })
                 }
             }
         },
