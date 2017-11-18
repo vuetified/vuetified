@@ -3492,6 +3492,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -3527,6 +3528,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     methods: {
+        activeLink: function activeLink(link) {
+            return !!link;
+        },
         activateLink: function () {
             var _ref = __WEBPACK_IMPORTED_MODULE_2_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_1_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_regenerator___default.a.mark(function _callee(user) {
                 var payload, message;
@@ -4136,36 +4140,38 @@ var render = function() {
                         "td",
                         { staticClass: "title text-xs-left primary--text" },
                         [
-                          _c(
-                            "v-btn",
-                            {
-                              attrs: {
-                                flat: "",
-                                color: "accent",
-                                href:
-                                  "http://" +
-                                  props.item.referral_link.link +
-                                  "." +
-                                  _vm.App.site.domain,
-                                target: "_blank"
-                              }
-                            },
-                            [
-                              _c("v-icon", { attrs: { left: "" } }, [
-                                _vm._v("fa-link")
-                              ]),
-                              _vm._v(" "),
-                              _c("span", [
-                                _vm._v(
-                                  "http://" +
-                                    _vm._s(props.item.referral_link.link) +
-                                    "." +
-                                    _vm._s(_vm.App.site.domain)
-                                )
-                              ])
-                            ],
-                            1
-                          )
+                          _vm.activeLink(props.item.referral_link.active)
+                            ? _c(
+                                "v-btn",
+                                {
+                                  attrs: {
+                                    flat: "",
+                                    color: "accent",
+                                    href:
+                                      "http://" +
+                                      props.item.referral_link.link +
+                                      "." +
+                                      _vm.App.site.domain,
+                                    target: "_blank"
+                                  }
+                                },
+                                [
+                                  _c("v-icon", { attrs: { left: "" } }, [
+                                    _vm._v("fa-link")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("span", [
+                                    _vm._v(
+                                      "http://" +
+                                        _vm._s(props.item.referral_link.link) +
+                                        "." +
+                                        _vm._s(_vm.App.site.domain)
+                                    )
+                                  ])
+                                ],
+                                1
+                              )
+                            : _vm._e()
                         ],
                         1
                       ),
