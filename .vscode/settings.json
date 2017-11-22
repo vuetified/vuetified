@@ -1,6 +1,7 @@
 // Place your settings in this file to overwrite the default settings
 {
     // Override Your Fonts
+    "createtmpfile.deleteOnExit": true,
     "window.openFilesInNewWindow": "on",
     "workbench.statusBar.visible": false,
     "explorer.openEditors.visible": 0,
