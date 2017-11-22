@@ -1,18 +1,25 @@
-// You Need Plugins To Use This Check vscode-plugins.md for List of Used Plugins
+// Place your settings in this file to overwrite the default settings
 {
-    /* Make Sure To Switch Language to Blade in Using Blade Snippets */
+    // Override Your Fonts
+    "window.openFilesInNewWindow": "on",
+    "workbench.statusBar.visible": false,
+    "explorer.openEditors.visible": 0,
+    "editor.minimap.enabled": false,
+    "terminal.integrated.fontFamily": "DejaVuSansMonoForPowerline NF",
+    "terminal.integrated.fontSize": 16,
+    "window.zoomLevel": 0,
+    "editor.fontFamily": "Fira Code Light",
+    "editor.fontSize": 19,
+    "editor.fontLigatures": true,
     "files.associations": {
         "*.blade.php": "blade"
     },
-    /* Enable Emmet on Blade and Vue */
     "emmet.includeLanguages": {
         "blade": "html",
         "vue-html": "html"
     },
     "emmet.triggerExpansionOnTab": true,
-    /* Add Your Workbench Theme Icon Here */
-    "workbench.iconTheme": "vscode-great-icons",
-    /* Auto Rename Start and Ending of Tags */
+    // Edit Both Start and Ending of Tags For Specific language
     "auto-rename-tag.activationOnLanguage": [
         "html",
         "xml",
@@ -21,22 +28,21 @@
         "blade",
         "vue"
     ],
-    /* Exclude Vendor Folders During Search and Replace (GLOBAL) */
+    // Exclude Vendor Folders During Search and Replace
     "files.watcherExclude": {
-        "**/vendor/**": true,
+        "**/vendor/**": false,
         "**/node_modules/**": true
     },
-    /* Exclude Vendor Folders During Search and Replace (GLOBAL) */
     "search.exclude": {
         "**/vendor/**": false,
         "**/node_modules/**": true
     },
     "search.useIgnoreFiles": false,
-    /* remove crlf error on eslint */
+    // remove crlf error on eslint
     "files.eol": "\n",
-    /* Use Eslint Instead of JS Validate */
+    // remove dynamic import error after adding eslint package to it
     "javascript.validate.enable": false,
-    /* eslint configs */
+    // eslint configs
     "eslint.enable": true,
     "eslint.options": {
         "extensions": [
@@ -66,15 +72,15 @@
     ],
     "eslint.run": "onSave",
     "eslint.autoFixOnSave": true,
-    /* PHP Config */
-    "php.validate.run": "onSave",
+    "php.validate.run": "onType",
     "php.suggest.basic": false,
     "phpformatter.composer": true,
-    /* Composer Path */
     "composer.executablePath": "C:\\ProgramData\\ComposerSetup\\bin\\composer.bat",
-    /* Downloaded from http://windows.php.net/download/ */
+    // Downloaded from http://windows.php.net/download/
     "php.validate.executablePath": "C:\\php\\php.exe",
-    /* Closing Tag Config */
+    "[html]": {
+        
+    },
     "auto-close-tag.enableAutoCloseTag": true,
     "auto-close-tag.excludedTags": [
         "area",
@@ -95,15 +101,33 @@
         "wbr"
     ],
     "auto-close-tag.enableAutoCloseSelfClosingTag": true,
-    /* Autocomplete Css Class , in class="" just press ctrl + space to see suggestions */
     "css.fileExtensions": [ "css", "scss","styl"],
-    /* Add Here Your CSS CLass You Want to Use */
     "css.remoteStyleSheets": [
-        // "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css",
-    ],
+        // "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+      ],
+    "advancedNewFile.exclude": {
+        "node_modules": true,
+        "node_modules_electron": true,
+        "dev": true,
+        "dist": true
+    },
+    "advancedNewFile.showInformationMessages": false,
+    "editor.tabCompletion": true,
     "namespaceResolver.exclude": "**/node_modules/**",  // Exclude glob pattern while finding files
     "namespaceResolver.showMessageOnStatusBar": false,  // Show message on status bar instead of notification box
     "namespaceResolver.autoSort": true,                 // Auto sort after imports
     "namespaceResolver.sortAlphabetically": false,      // Sort imports in alphabetical order instead of line length
-    "namespaceResolver.leadingSeparator": true        // Expand class with leading namespace separator
+    "namespaceResolver.leadingSeparator": true,
+    "workbench.colorTheme": "One Dark Pro Vivid",
+    "sync.gist": "bb232eb1abd0734a815b658a91b9cba5",
+    "sync.lastUpload": "2017-11-22T09:36:02.503Z",
+    "sync.autoDownload": false,
+    "sync.autoUpload": false,
+    "sync.lastDownload": "",
+    "sync.forceDownload": false,
+    "sync.anonymousGist": false,
+    "sync.host": "",
+    "sync.pathPrefix": "",
+    "sync.quietSync": false,
+    "sync.askGistName": false // Expand class with leading namespace separator
 }
