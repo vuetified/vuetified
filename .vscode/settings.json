@@ -4,7 +4,7 @@
     "background.enabled": true,
     "background.useDefault": false,
     "background.customImages": [
-        "file:///C:/Users/uriah/Pictures/thousand-sunny.png",
+        "file:///C:/Users/uriah/Pictures/laravel.png",
     ],
     "background.style": {
         "opacity": ".8"
