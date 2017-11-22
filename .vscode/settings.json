@@ -1,10 +1,6 @@
 // Place your settings in this file to overwrite the default settings
 {
     // Override Your Fonts
-    "importCost.typescriptExtensions": [
-        "\\.vue?$"
-    ],
-    "importCost.smallPackageColor": "#e2ffff",
     "background.enabled": true,
     "background.useDefault": false,
     "background.customImages": [
