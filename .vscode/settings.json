@@ -11,7 +11,7 @@
     },
     "emmet.triggerExpansionOnTab": true,
     /* Add Your Workbench Theme Icon Here */
-    "workbench.iconTheme": null,
+    "workbench.iconTheme": "vscode-great-icons",
     /* Auto Rename Start and Ending of Tags */
     "auto-rename-tag.activationOnLanguage": [
         "html",
@@ -28,9 +28,10 @@
     },
     /* Exclude Vendor Folders During Search and Replace (GLOBAL) */
     "search.exclude": {
-        "**/vendor/**": true,
+        "**/vendor/**": false,
         "**/node_modules/**": true
     },
+    "search.useIgnoreFiles": false,
     /* remove crlf error on eslint */
     "files.eol": "\n",
     /* Use Eslint Instead of JS Validate */
@@ -104,5 +105,5 @@
     "namespaceResolver.showMessageOnStatusBar": false,  // Show message on status bar instead of notification box
     "namespaceResolver.autoSort": true,                 // Auto sort after imports
     "namespaceResolver.sortAlphabetically": false,      // Sort imports in alphabetical order instead of line length
-    "namespaceResolver.leadingSeparator": true          // Expand class with leading namespace separator
+    "namespaceResolver.leadingSeparator": true        // Expand class with leading namespace separator
 }
