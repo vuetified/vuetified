@@ -1,5 +1,5 @@
 <template>
-  <main-layout>
+  <main-layout :class="[contentClass]">
       <v-container fluid grid-list-md style="padding-top:100px;">
         <v-layout row wrap>
             <v-breadcrumbs icons divider="forward">
@@ -13,7 +13,7 @@
                 <v-breadcrumbs-item
                 :disabled="true"
                 >
-                    Products
+                    <span class="blue-grey--text">Products</span>
                 </v-breadcrumbs-item>
             </v-breadcrumbs>
         </v-layout>
@@ -127,6 +127,7 @@ export default {
         MainLayout
     },
     data: () => ({
+        contentClass: { 'grey': true, 'lighten-4': true, 'accent--text': true },
         currency: '₱',
         products: [],
         links: {
