@@ -3453,6 +3453,7 @@ var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_6_vuex__["createNam
     },
     data: function data() {
         return {
+            contentClass: { 'grey': true, 'lighten-4': true, 'accent--text': true },
             currency: '₱',
             products: [],
             links: {
@@ -3661,6 +3662,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "main-layout",
+    { class: [_vm.contentClass] },
     [
       _c(
         "v-container",
@@ -3690,7 +3692,9 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("v-breadcrumbs-item", { attrs: { disabled: true } }, [
-                    _vm._v("\n                  Products\n              ")
+                    _c("span", { staticClass: "blue-grey--text" }, [
+                      _vm._v("Products")
+                    ])
                   ])
                 ],
                 1

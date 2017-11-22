@@ -3508,6 +3508,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "main-layout",
+    { class: [_vm.contentClass] },
     [
       _c(
         "v-container",
@@ -3537,7 +3538,9 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("v-breadcrumbs-item", { attrs: { disabled: true } }, [
-                    _vm._v("\n                  Categories\n              ")
+                    _c("span", { staticClass: "blue-grey--text" }, [
+                      _vm._v("Categories")
+                    ])
                   ])
                 ],
                 1

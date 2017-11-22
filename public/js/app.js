@@ -20898,9 +20898,9 @@ window.moment.defineLocale('en-short', {
 
 window.moment.locale('en');
 
-// if (window.$ === undefined || window.jQuery === undefined) {
-//     window.$ = window.jQuery = require('jquery')
-// }
+if (window.$ === undefined || window.jQuery === undefined) {
+    window.$ = window.jQuery = __webpack_require__(265);
+}
 
 /* Load Only Once Babel Polyfill */
 
@@ -20910,10 +20910,9 @@ if (!global._babelPolyfill) {
 
 /* Bootstrap Vue Plugins */
 
-// if ($('#app').length > 0) {
-//     require('./vuestrap')
-// }
-__webpack_require__(551);
+if ($('#app').length > 0) {
+    __webpack_require__(551);
+}
 
 /* Load Axios */
 window.axios = __webpack_require__(304);
