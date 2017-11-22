@@ -1,6 +1,14 @@
 // Place your settings in this file to overwrite the default settings
 {
     // Override Your Fonts
+    "background.enabled": true,
+    "background.useDefault": false,
+    "background.customImages": [
+        "file:///C:/Users/uriah/Pictures/thousand-sunny.png",
+    ],
+    "background.style": {
+        "opacity": ".8"
+    },
     "createtmpfile.deleteOnExit": true,
     "window.openFilesInNewWindow": "on",
     "workbench.statusBar.visible": false,
