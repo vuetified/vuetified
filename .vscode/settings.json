@@ -118,7 +118,7 @@
     "namespaceResolver.autoSort": true,                 // Auto sort after imports
     "namespaceResolver.sortAlphabetically": false,      // Sort imports in alphabetical order instead of line length
     "namespaceResolver.leadingSeparator": true,
-    "workbench.colorTheme": "One Dark Pro Vivid",
+    "workbench.colorTheme": "Material Theme",
     "sync.gist": "bb232eb1abd0734a815b658a91b9cba5",
     "sync.lastUpload": "2017-11-22T09:36:02.503Z",
     "sync.autoDownload": false,
