@@ -120,7 +120,7 @@
     "namespaceResolver.leadingSeparator": true,
     "workbench.colorTheme": "Material Theme",
     "sync.gist": "bb232eb1abd0734a815b658a91b9cba5",
-    "sync.lastUpload": "2017-11-22T09:36:02.503Z",
+    "sync.lastUpload": "2017-11-22T09:53:46.675Z",
     "sync.autoDownload": false,
     "sync.autoUpload": false,
     "sync.lastDownload": "",
@@ -129,5 +129,20 @@
     "sync.host": "",
     "sync.pathPrefix": "",
     "sync.quietSync": false,
-    "sync.askGistName": false // Expand class with leading namespace separator
+    "sync.askGistName": false,
+    "workbench.colorCustomizations": {
+        "activityBarBadge.background": "#FF4081",
+        "list.activeSelectionForeground": "#FF4081",
+        "list.inactiveSelectionForeground": "#FF4081",
+        "list.highlightForeground": "#FF4081",
+        "scrollbarSlider.activeBackground": "#FF408150",
+        "editorSuggestWidget.highlightForeground": "#FF4081",
+        "textLink.foreground": "#FF4081",
+        "progressBar.background": "#FF4081",
+        "pickerGroup.foreground": "#FF4081",
+        "tab.activeBorder": "#FF4081"
+    },
+    "materialTheme.cache.workbench.settings": {
+        "accent": "Pink"
+    } // Expand class with leading namespace separator
 }
