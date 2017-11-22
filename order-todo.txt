@@ -1,6 +1,18 @@
-// Create a Link Route which holds the sponsor
+delete user account recurssive  with link , roles, permissions
 view 
 add product page
+add product upload
+product crud
+logo mvp and sentinels
+112,000 standard food cart
+collapsible 73600 
+73000
+product gallery upload any images...
+add support page
+add vue meta to each route component
+
+merchant roles has product crud, category crud , user crud...
+where all the other user type sign in his subdomain
 
 Server Side Image Optimzation
 Here's how to install all the optimizers on Ubuntu:
@@ -9,3 +21,6 @@ sudo apt-get install optipng
 sudo apt-get install pngquant
 sudo npm install -g svgo
 sudo apt-get install gifsicle
+
+jhona video
+bXrfnC-yxGU
