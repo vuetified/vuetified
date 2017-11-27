@@ -18,6 +18,7 @@
                 :drop="drop"
                 :drop-directory="dropDirectory"
                 :add-index="addIndex"
+                :name="name"
                 v-model="files"
                 @input-filter="inputFilter"
                 @input-file="inputFile"
@@ -247,6 +248,7 @@ export default {
         this.postAction = this.postUrl ? this.postUrl : ' /uploads/post'
         this.putAction = this.putUrl ? this.putUrl : null
         this.headers['Authorization'] = `Bearer ${vm.$cookie.get('access_token')}`
+        this.name = this.fileKey
         if (this.single) {
             this.multiple = false
         }
@@ -359,7 +361,7 @@ export default {
         inputFile (newFile, oldFile) {
             if (newFile && oldFile) {
                 // update
-                console.log(newFile)
+                // console.log(newFile)
 
                 if (newFile.active && !oldFile.active) {
                     // beforeSend
@@ -379,7 +381,10 @@ export default {
                 }
 
                 if (newFile.success && !oldFile.success) {
-                    // success
+                    Bus.$emit('file-uploaded', newFile.response)
+                    if (newFile.response.message) {
+                        vm.$popup({ message: newFile.response.message, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
+                    }
                 }
             }
 
@@ -404,6 +409,13 @@ export default {
     watch: {
         fileKey (newValue) {
             this.name = newValue
+        },
+        single (newValue) {
+            if (newValue) {
+                this.multiple = false
+            } else {
+                this.multiple = true
+            }
         }
     }
 }
