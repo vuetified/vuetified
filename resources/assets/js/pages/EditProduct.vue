@@ -59,7 +59,7 @@
                             </v-card-media>
                             <!-- Image -->
                             <!-- Gallery -->
-                            <v-container fill-height fluid v-if="product.photos !== null && product.photos !== undefined && product.photos.length > 0">
+                            <v-container fill-height fluid v-if="product.photos.length > 0">
                                 <v-layout fill-height>
                                     <v-flex xs12 align-end flexbox>
                                         <div
@@ -184,72 +184,14 @@
         </v-layout>
         <!-- Product Decsription -->
         <!-- Add Option Modal -->
-        <v-layout row wrap>
-            <v-dialog v-model="option_modal" persistent max-width="500px">
-                <v-card light>
-                <v-card-title>
-                    <span class="headline">Add Product Package</span>
-                </v-card-title>
-                <v-card-text>
-                    <v-container fluid>
-                    <v-layout row wrap>
-                        <v-flex xs12>
-                        <v-text-field
-                        label="Name"
-                        required
-                        light
-                        v-model="tmp_option.name"
-                        v-validate="{ required: true}"
-                        :error-messages="errors.collect('package key')"
-                        data-vv-name="name"
-                        >
-                        </v-text-field>
-                        </v-flex>
-                    </v-layout>
-                    <v-layout row wrap>
-                        <v-flex xs12>
-                        <v-text-field
-                        label="Value"
-                        required
-                        light
-                        v-model="tmp_option.value"
-                        v-validate="{ required: true}"
-                        :error-messages="errors.collect('package value')"
-                        data-vv-name="package value"
-                        >
-                        </v-text-field>
-                        </v-flex>
-                    </v-layout>
-                    </v-container>
-                    <small>*indicates required field</small>
-                </v-card-text>
-                <v-card-actions>
-                    <v-spacer></v-spacer>
-                    <v-btn color="blue darken-1" flat @click="closeOptionModal">Close</v-btn>
-                    <v-btn color="blue darken-1" flat @click="addOption">Save</v-btn>
-                </v-card-actions>
-                </v-card>
-            </v-dialog>
-        </v-layout>
+        <package-modal></package-modal>
         <!-- Add Option Modal -->
         <!-- Add Featured Image Modal -->
-        <v-dialog v-model="image_modal" fullscreen transition="dialog-bottom-transition" :overlay="false">
-            <v-card :light="true">
-            <v-toolbar  color="accent">
-                <v-btn icon @click.native="image_modal = false" class="error--text">
-                <v-icon>close</v-icon>
-                </v-btn>
-                <v-spacer></v-spacer>
-                <v-toolbar-title class="primary--text">Upload Featured Image</v-toolbar-title>
-                <v-spacer></v-spacer>
-            </v-toolbar>
-            <v-container fluid>
-                <uploads file-key="image" :post-url="postUrl" :single="true"></uploads>
-            </v-layout>
-            </v-container>
-            </v-card>
-        </v-dialog>
+        <image-uploader></image-uploader>
         <!-- Add Featured Image Modal -->
+        <!-- Add Gallery Image Modal -->
+        <gallery-uploader></gallery-uploader>
+        <!-- Add Gallery Image Modal -->
 
     </v-container>
   </main-layout>
@@ -260,7 +202,9 @@ import MainLayout from '../layouts/Main.vue'
 import Theme from '../mixins/theme'
 import Acl from '../mixins/acl'
 import TextEditor from '../components/TextEditor.vue'
-import Uploads from '../components/Uploads.vue'
+import ImageUploader from '../components/products/ImageUploader.vue'
+import PackageModal from '../components/products/PackageModal.vue'
+import GalleryUploader from '../components/products/GalleryUploader.vue'
 
 export default {
     props: ['slug'],
@@ -268,7 +212,9 @@ export default {
     components: {
         MainLayout,
         TextEditor,
-        Uploads
+        ImageUploader,
+        PackageModal,
+        GalleryUploader
     },
     data: () => ({
         contentClass: { 'grey': true, 'lighten-4': true, 'accent--text': true },
@@ -283,7 +229,7 @@ export default {
             slug: null,
             excerpt: null,
             image: null,
-            photos: null,
+            photos: [],
             inCart: false,
             options: {},
             price: 0,
@@ -292,20 +238,9 @@ export default {
             maximum: 99
         },
         current_image: '',
-        image_modal: null,
-        gallery_modal: false,
-        option_modal: false,
-        tmp_option: {
-            name: '',
-            value: ''
-        },
         text_editor_id: 'product-editor'
     }),
-    computed: {
-        postUrl () {
-            return route('api.product.uploadImage', {slug: this.slug})
-        }
-    },
+
     created () {
         this.getProduct()
     },
@@ -315,11 +250,17 @@ export default {
         Bus.$on(`${self.text_editor_id}-updated`, (description) => {
             self.editProductForm.description = description
         })
+        Bus.$on('file-uploaded', (response) => {
+            self.product.image = response.path
+            self.current_image = response.path
+        })
+        //! Create Component To Avoid Duplication Of Updating File
+        //! File Uploaded Also For Gallery
+        Bus.$on('multi-file-uploaded', (response) => {
+            self.product.photos.push(response.path)
+        })
     },
     methods: {
-        uploadImage (formData) {
-            console.log('upload-image')
-        },
         setCurrentImage (index) {
             this.current_image = this.product.photos[index]
         },
@@ -336,7 +277,7 @@ export default {
                 self.editProductForm.currency = self.product.currency
                 self.editProductForm.excerpt = self.product.excerpt
                 self.editProductForm.slug = self.product.slug
-                self.editProductForm.options = self.product.options ? self.product.options : []
+                self.editProductForm.options = self.product.options
             }).catch(({errors, message}) => {
                 console.log(errors)
                 self.$router.push({name: 'error'})
@@ -356,7 +297,7 @@ export default {
                 self.editProductForm.currency = self.product.currency
                 self.editProductForm.excerpt = self.product.excerpt
                 self.editProductForm.slug = self.product.slug
-                self.editProductForm.options = self.product.options ? self.product.options : []
+                self.editProductForm.options = self.product.options
                 vm.$popup({ message: 'Product Updated!', backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
             }).catch(({errors, message}) => {
                 console.log(errors)
@@ -375,26 +316,7 @@ export default {
             return words.join(' ')
         },
         openOptionModal () {
-            this.option_modal = true
-        },
-        closeOptionModal () {
-            this.option_modal = false
-        },
-        addOption () {
-            let self = this
-
-            let index = _.findIndex(self.editProductForm.options, ['name', self.tmp_option.name])
-            if (index >= 0) {
-                self.$set(self.editProductForm.options, index, self.tmp_option)
-            } else {
-                self.editProductForm.options.push(self.tmp_option)
-            }
-            self.updateProduct()
-            self.tmp_option = {
-                name: '',
-                value: ''
-            }
-            self.closeOptionModal()
+            Bus.$emit('open-package-modal')
         },
         deleteOption (index) {
             let self = this
@@ -402,28 +324,15 @@ export default {
             self.updateProduct()
         },
         editPrimaryImage () {
-            this.image_modal = true
-        },
-        closeImageModal () {
-            this.image_modal = false
+            Bus.$emit('edit-product-image')
         },
         editGallerImages () {
-            this.gallery_modal = true
-        },
-        closeGalleryModal () {
-            this.gallery_modal = false
-        },
-        uploadGalleryImages () {
-            console.log('uploading gallery images')
-        },
-        updateDescription () {
-            console.log('updating description')
+            Bus.$emit('edit-gallery-images')
         }
     },
     watch: {
         'editProductForm.options' (newValue) {
             this.editProductForm.options = newValue
-            console.log(newValue)
         }
     }
 
