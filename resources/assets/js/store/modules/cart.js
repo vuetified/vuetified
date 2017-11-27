@@ -19,12 +19,14 @@ const getters = {
 
 const actions = {
     /* Tested Working */
-    /* form : sku */
-    async addItem ({ commit, state }, sku) {
+    /* form : id, qty, options  */
+    // ? Variations happens if there is an options
+    async addItem ({ commit, state }, { id, qty, options }) {
         commit('newForm')
         state.form.busy = true
-        state.form.qty = 1
-        state.form.sku = sku
+        state.form.qty = qty
+        state.form.id = id
+        state.form.options = options
         try {
             const payload = await App.post(route('api.cart.add'), state.form)
             commit('setItems', payload.cart.items)
@@ -42,6 +44,7 @@ const actions = {
             vm.$popup({ message: message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' })
         }
     },
+
     /* Tested Working */
     /* form : product.id */
     async removeItem ({commit, state}, id) {
@@ -87,12 +90,11 @@ const actions = {
         }
     },
     /* form: id and qty */
-    async updateItem ({ commit, state }, { id, qty }) {
+    async updateItem ({ commit, state }, { rowId, qty }) {
         commit('newForm')
         state.form.busy = true
+        state.form.rowId = rowId
         state.form.qty = qty
-        let item = _.find(state.items, function (i) { return i.id === id })
-        state.form.rowId = item.rowId
         try {
             const payload = await App.post(route('api.cart.update'), state.form)
             commit('setItems', payload.cart.items)
