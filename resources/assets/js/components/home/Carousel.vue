@@ -2,8 +2,8 @@
   <v-carousel icon="crop_square" class="primary--text">
         <v-carousel-item  v-for="(item,i) in images" :src="item.src" :key="i">
             <div class="caption text-xs-center">
-            <h3 class="white--text"> {{ item.headline }}</h3>
-            <h5 class="white--text" >{{ item.subheader }}</h5>
+            <h3 class="white--text"> <span style="background-color:#103050;opacity:0.75;">{{ item.headline }}</span></h3>
+            <p class="white--text headline" ><span style="background-color:#607D8B;opacity:0.75;">{{ item.subheader }}</span></p>
             <v-btn class="primary white--text" @click.native.prevent="goToLink(item.buttonlink)">{{ item.buttontext }} <v-icon right dark>{{ item.icon }}</v-icon></v-btn>
             </div>
         </v-carousel-item>
@@ -11,7 +11,9 @@
 </template>
 
 <script>
+import Acl from '../../mixins/acl'
 export default {
+    mixins: [Acl],
     data: () => ({
         images: [
             {src: '/img/parallax1.jpg', headline: 'Amazing Organic Health Products', 'subheader': 'Choose From A Wide Variety of Health And Organic Products', 'buttontext': 'See All Products', 'buttonlink': '/products', 'icon': 'shopping_basket'},
@@ -23,6 +25,16 @@ export default {
     methods: {
         goToLink (link) {
             this.$router.push({ path: link })
+        }
+    },
+    mounted () {
+        let self = this
+        if (self.isLoggedIn()) {
+            self.images.forEach(image => {
+                if (image.buttonlink === '/register') {
+                    image.buttonlink = '/dashboard'
+                }
+            })
         }
     }
 }
