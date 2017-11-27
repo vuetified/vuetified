@@ -26,8 +26,8 @@ class Product extends Resource
             'description' => $this->description,
             'price' => $this->price,
             'image' => $this->image,
-            'photos' => $this->photos,
-            'options' => $this->options,
+            'photos' => $this->photos ?? [],
+            'options' => $this->options ?? [],
             'inCart' => false,
             'qty' => 0
         ];
