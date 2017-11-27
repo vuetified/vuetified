@@ -23,6 +23,8 @@
                     <span class="blue-grey--text">{{ slug | capitalize }}</span>
                 </v-breadcrumbs-item>
             </v-breadcrumbs>
+            <v-spacer></v-spacer>
+            <v-btn v-if="hasRole('admin')" icon color="primary" :to="`/products/${slug}/edit`"><v-icon>fa-edit</v-icon></v-btn>
         </v-layout>
         <v-layout row wrap>
             <!-- left side -->
@@ -32,26 +34,18 @@
                     <v-flex d-flex xs12 text-xs-right>
                         <v-card color="grey lighten-4" flat light>
                             <v-card-title class="title primary--text">
+
                                 <v-spacer></v-spacer>
                                 {{ titleCase(slug) }}
                                 <v-spacer></v-spacer>
-                                <!-- InCart -->
-                                <v-badge color="grey lighten-4" style="cursor:pointer;">
-                                        <span  slot="badge" class="teal--text caption">999</span>
-                                        <v-icon color="teal">shopping_cart</v-icon>
-                                </v-badge>
-                                <!-- InCart -->
-                            </v-card-title>
-                            <v-card-text>
-                                    <!-- Remove Item From Cart -->
-                                     <v-badge style="cursor:pointer;">
-                                        <v-icon color="red">remove_shopping_cart</v-icon>
-                                    </v-badge>
-                                    <!-- Remove Item From Cart -->
-                            </v-card-text>
 
+                            </v-card-title>
+
+                            <!-- Image Placeholder -->
                             <div v-if="!current_image" style="background-color:#d3d3d3;height:322px;width:483px;margin: auto;width: 50%;">
                             </div>
+                            <!-- Image Placeholder -->
+                            <!-- Image -->
                             <v-card-media
                             v-else
                             :src="current_image"
@@ -59,13 +53,14 @@
                             contain
                             >
                             </v-card-media>
+                            <!-- Image -->
                             <!-- Gallery -->
-                            <v-container fill-height fluid v-if="product.gallery !== null && product.gallery.length > 0">
+                            <v-container fill-height fluid v-if="product.photos !== null && product.photos !== undefined && product.photos.length > 0">
                                 <v-layout fill-height>
                                     <v-flex xs12 align-end flexbox>
                                         <div
                                         class="image"
-                                        v-for="(image,key) in product.gallery"
+                                        v-for="(image,key) in product.photos"
                                         :key="key"
                                         @click="setCurrentImage(key)"
                                         :style="{ backgroundImage: 'url(' + image + ')', width: '50px', height: '50px' }"
@@ -80,12 +75,48 @@
                     <!-- Product Image -->
                     <!-- Action Buttons -->
                     <v-flex d-flex xs12>
-                        <!-- QTY INPUT -->
-                        <v-card-text>
-                            <v-slider  color="teal" :min="1" :max="999" v-model="product.qty" step="1" light track-color="red darken-4" :label="`QTY: ${product.qty}`"></v-slider>
-                            <v-text-field single-line :min="1" :max="999" light v-model="product.qty" type="number"></v-text-field>
+                        <!-- INPUT FIELDS -->
+                        <v-card-text light>
+                            <v-slider
+                            color="teal"
+                            :min="1"
+                            :max="1000"
+                            v-model.number="product.qty"
+                            step="1"
+                            light
+                            track-color="amber darken-4"
+                            :label="`QTY: ${product.qty}`"
+                            >
+                            </v-slider>
+                            <v-text-field
+                            single-line
+                            light
+                            v-model.number="product.qty"
+                            type="number"
+                            >
+                            </v-text-field>
+                            <!-- product.options -->
+                            <v-select
+                            v-if="hasPackages"
+                            light
+                            color="info"
+                            :items="product.options"
+                            item-text="value"
+                            v-model="option"
+                            label="Select Package"
+                            single-line
+                            return-object
+                            auto
+                            append-icon="fa-cubes"
+                            hide-details
+                            v-validate="{ required: true}"
+                            :error-messages="errors.collect('package')"
+                            data-vv-name="package"
+                            >
+                            </v-select>
+                             <!-- product.options -->
                         </v-card-text>
-                        <!-- QTY INPUT -->
+                        <!-- INPUT FIELDS -->
                     </v-flex>
                     <v-flex d-flex xs12>
                         <!-- ADD TO CART -->
@@ -107,6 +138,11 @@
                     <!-- Product Details -->
                     <v-flex d-flex xs12>
                         <v-card color="grey lighten-4" flat light>
+                            <v-card-title class="title primary--text">
+                                <v-spacer></v-spacer>
+                                Product Details:
+                                <v-spacer></v-spacer>
+                            </v-card-title>
                             <!-- Product Description HTML -->
                             <v-card-text v-html="product.description">
                             </v-card-text>
@@ -125,10 +161,13 @@
 <script>
 import MainLayout from '../layouts/Main.vue'
 import Theme from '../mixins/theme'
+import Acl from '../mixins/acl'
+import { createNamespacedHelpers } from 'vuex'
+const { mapActions } = createNamespacedHelpers('cart')
 
 export default {
     props: ['slug'],
-    mixins: [Theme],
+    mixins: [Theme, Acl],
     components: {
         MainLayout
     },
@@ -136,32 +175,57 @@ export default {
         contentClass: { 'grey': true, 'lighten-4': true, 'accent--text': true },
         currency: '₱',
         product: {
-            available: null,
-            description: null,
-            gallery: [
-
-            ],
             id: null,
-            image: null,
-            inCart: false,
+            description: null,
+            category: null,
+            category_id: null,
+            sku: null,
             name: null,
-            options: {
-
-            },
+            slug: null,
+            excerpt: null,
+            image: null,
+            photos: null,
+            inCart: false,
+            options: {},
             price: 0,
-            qty: 0,
-            rating_cache: null,
-            maximum: 99
+            qty: 1,
+            currency: null
         },
-        current_image: ''
+        current_image: '',
+        option: null,
+        count: 0
     }),
+    computed: {
+        hasPackages () {
+            return !_.isEmpty(this.product.options)
+        }
+    },
     created () {
         let self = this
         self.getProduct()
     },
     methods: {
+        ...mapActions({
+            addItem: 'addItem'
+        }),
+        async addToCart () {
+            let self = this
+            let option = {}
+            /* use vee validate for select */
+            self.$validator.validateAll()
+            if (!self.errors.any()) {
+                /* for packages */
+                if (this.hasPackages) {
+                    option[self.option.name] = self.option.value
+                }
+                let payload = {qty: self.product.qty, id: self.product.id, options: option}
+                await self.addItem(payload)
+            } else {
+                vm.$popup({ message: 'Please Pick A Package', backgroundColor: '#e57373', delay: 5, color: '#fffffa' })
+            }
+        },
         setCurrentImage (index) {
-            this.current_image = this.product.gallery[index]
+            this.current_image = this.product.photos[index]
         },
         async getProduct () {
             let self = this
@@ -203,8 +267,5 @@ export default {
     color: #009688;
     content: attr(data-divider);
     vertical-align: middle;
-}
-button:disabled {
-    color: red !important;
 }
 </style>
