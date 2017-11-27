@@ -157,6 +157,7 @@ App.forms = {
         name: '',
         slug: '',
         sku: '',
+        price: 0,
         description: '',
         options: []
     }
