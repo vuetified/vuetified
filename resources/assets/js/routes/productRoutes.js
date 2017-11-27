@@ -1,5 +1,7 @@
 const Products = () => import('../pages/Products.vue')
 const Product = () => import('../pages/Product.vue')
+//* much better if we can use the same Product page for edit
+const EditProduct = () => import('../pages/EditProduct.vue')
 
 export default [
     {
@@ -20,6 +22,17 @@ export default [
         component: Product,
         props: true,
         name: 'product.show',
+        meta: {
+            permission: 'guest',
+            fail: '/error'
+        }
+    },
+    //* much better if we can use the same Product page for edit
+    {
+        path: '/products/:slug/edit',
+        component: EditProduct,
+        props: true,
+        name: 'product.edit',
         meta: {
             permission: 'guest',
             fail: '/error'
