@@ -1,5 +1,8 @@
 export default {
     methods: {
+        isLoggedIn () {
+            return !!this.$store.getters['auth/getMe']
+        },
         hasRole (payload) {
             let me = this.$store.getters['auth/getMe']
             return _.includes(me.roles, payload)
