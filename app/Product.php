@@ -13,7 +13,16 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
 class Product extends Model implements Buyable, HasMediaConversions
 {
+
     use Sluggable,SluggableScopeHelpers,CanBeBought,HasMediaTrait;
+
+    protected $fillable = [
+        'name', 'slug', 'category_id', 'sku', 'excerpt', 'description', 'options', 'currency'
+    ];
+
+    protected $casts = [
+        'options' => 'array', 
+    ];
 
     public function sluggable()
     {
