@@ -1,14 +1,14 @@
 webpackJsonp([13],{
 
-/***/ 637:
+/***/ 636:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(310)
 /* script */
-var __vue_script__ = __webpack_require__(739)
+var __vue_script__ = __webpack_require__(741)
 /* template */
-var __vue_template__ = __webpack_require__(743)
+var __vue_template__ = __webpack_require__(745)
 /* styles */
 var __vue_styles__ = null
 /* scopeId */
@@ -243,28 +243,28 @@ if (false) {
 
 /***/ }),
 
-/***/ 689:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__(690), __esModule: true };
-
-/***/ }),
-
 /***/ 690:
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(691);
-module.exports = __webpack_require__(31).Object.values;
-
+module.exports = { "default": __webpack_require__(691), __esModule: true };
 
 /***/ }),
 
 /***/ 691:
 /***/ (function(module, exports, __webpack_require__) {
 
+__webpack_require__(692);
+module.exports = __webpack_require__(31).Object.values;
+
+
+/***/ }),
+
+/***/ 692:
+/***/ (function(module, exports, __webpack_require__) {
+
 // https://github.com/tc39/proposal-object-values-entries
 var $export = __webpack_require__(60);
-var $values = __webpack_require__(692)(false);
+var $values = __webpack_require__(693)(false);
 
 $export($export.S, 'Object', {
   values: function values(it) {
@@ -275,7 +275,7 @@ $export($export.S, 'Object', {
 
 /***/ }),
 
-/***/ 692:
+/***/ 693:
 /***/ (function(module, exports, __webpack_require__) {
 
 var getKeys = __webpack_require__(91);
@@ -298,7 +298,7 @@ module.exports = function (isEntries) {
 
 /***/ }),
 
-/***/ 739:
+/***/ 741:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -307,7 +307,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__layouts_ModalLayout__ = __webpack_require__(687);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__layouts_ModalLayout___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__layouts_ModalLayout__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Basket_vue__ = __webpack_require__(740);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Basket_vue__ = __webpack_require__(742);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Basket_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__Basket_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vuex__ = __webpack_require__(90);
 
@@ -385,15 +385,15 @@ var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_3_vuex__["createNam
 
 /***/ }),
 
-/***/ 740:
+/***/ 742:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(310)
 /* script */
-var __vue_script__ = __webpack_require__(741)
+var __vue_script__ = __webpack_require__(743)
 /* template */
-var __vue_template__ = __webpack_require__(742)
+var __vue_template__ = __webpack_require__(744)
 /* styles */
 var __vue_styles__ = null
 /* scopeId */
@@ -432,12 +432,12 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 741:
+/***/ 743:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_core_js_object_values__ = __webpack_require__(689);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_core_js_object_values__ = __webpack_require__(690);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_core_js_object_values___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_core_js_object_values__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends__ = __webpack_require__(649);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends__);
@@ -661,7 +661,7 @@ var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["createNam
 
 /***/ }),
 
-/***/ 742:
+/***/ 744:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -1027,7 +1027,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 743:
+/***/ 745:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {

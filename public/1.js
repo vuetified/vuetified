@@ -95,7 +95,7 @@ var normalizeComponent = __webpack_require__(310)
 /* script */
 var __vue_script__ = __webpack_require__(814)
 /* template */
-var __vue_template__ = __webpack_require__(843)
+var __vue_template__ = __webpack_require__(841)
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
@@ -3158,61 +3158,6 @@ if (false) {
 /***/ }),
 
 /***/ 689:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__(690), __esModule: true };
-
-/***/ }),
-
-/***/ 690:
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(691);
-module.exports = __webpack_require__(31).Object.values;
-
-
-/***/ }),
-
-/***/ 691:
-/***/ (function(module, exports, __webpack_require__) {
-
-// https://github.com/tc39/proposal-object-values-entries
-var $export = __webpack_require__(60);
-var $values = __webpack_require__(692)(false);
-
-$export($export.S, 'Object', {
-  values: function values(it) {
-    return $values(it);
-  }
-});
-
-
-/***/ }),
-
-/***/ 692:
-/***/ (function(module, exports, __webpack_require__) {
-
-var getKeys = __webpack_require__(91);
-var toIObject = __webpack_require__(53);
-var isEnum = __webpack_require__(92).f;
-module.exports = function (isEntries) {
-  return function (it) {
-    var O = toIObject(it);
-    var keys = getKeys(O);
-    var length = keys.length;
-    var i = 0;
-    var result = [];
-    var key;
-    while (length > i) if (isEnum.call(O, key = keys[i++])) {
-      result.push(isEntries ? [key, O[key]] : O[key]);
-    } return result;
-  };
-};
-
-
-/***/ }),
-
-/***/ 693:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3251,6 +3196,2163 @@ module.exports = function (isEntries) {
         }
     }
 });
+
+/***/ }),
+
+/***/ 690:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = { "default": __webpack_require__(691), __esModule: true };
+
+/***/ }),
+
+/***/ 691:
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(692);
+module.exports = __webpack_require__(31).Object.values;
+
+
+/***/ }),
+
+/***/ 692:
+/***/ (function(module, exports, __webpack_require__) {
+
+// https://github.com/tc39/proposal-object-values-entries
+var $export = __webpack_require__(60);
+var $values = __webpack_require__(693)(false);
+
+$export($export.S, 'Object', {
+  values: function values(it) {
+    return $values(it);
+  }
+});
+
+
+/***/ }),
+
+/***/ 693:
+/***/ (function(module, exports, __webpack_require__) {
+
+var getKeys = __webpack_require__(91);
+var toIObject = __webpack_require__(53);
+var isEnum = __webpack_require__(92).f;
+module.exports = function (isEntries) {
+  return function (it) {
+    var O = toIObject(it);
+    var keys = getKeys(O);
+    var length = keys.length;
+    var i = 0;
+    var result = [];
+    var key;
+    while (length > i) if (isEnum.call(O, key = keys[i++])) {
+      result.push(isEntries ? [key, O[key]] : O[key]);
+    } return result;
+  };
+};
+
+
+/***/ }),
+
+/***/ 694:
+/***/ (function(module, exports, __webpack_require__) {
+
+/*!
+ * Image Compressor v0.5.2
+ * https://github.com/xkeshi/image-compressor
+ *
+ * Copyright (c) 2017 Xkeshi
+ * Released under the MIT license
+ *
+ * Date: 2017-10-09T02:40:37.129Z
+ */
+
+(function (global, factory) {
+	 true ? module.exports = factory() :
+	typeof define === 'function' && define.amd ? define(factory) :
+	(global.ImageCompressor = factory());
+}(this, (function () { 'use strict';
+
+function createCommonjsModule(fn, module) {
+	return module = { exports: {} }, fn(module, module.exports), module.exports;
+}
+
+var canvasToBlob = createCommonjsModule(function (module) {
+/*
+ * JavaScript Canvas to Blob
+ * https://github.com/blueimp/JavaScript-Canvas-to-Blob
+ *
+ * Copyright 2012, Sebastian Tschan
+ * https://blueimp.net
+ *
+ * Licensed under the MIT license:
+ * https://opensource.org/licenses/MIT
+ *
+ * Based on stackoverflow user Stoive's code snippet:
+ * http://stackoverflow.com/q/4998908
+ */
+
+/* global atob, Blob, define */
+
+(function (window) {
+  'use strict';
+
+  var CanvasPrototype =
+    window.HTMLCanvasElement && window.HTMLCanvasElement.prototype;
+  var hasBlobConstructor =
+    window.Blob &&
+    (function () {
+      try {
+        return Boolean(new Blob())
+      } catch (e) {
+        return false
+      }
+    })();
+  var hasArrayBufferViewSupport =
+    hasBlobConstructor &&
+    window.Uint8Array &&
+    (function () {
+      try {
+        return new Blob([new Uint8Array(100)]).size === 100
+      } catch (e) {
+        return false
+      }
+    })();
+  var BlobBuilder =
+    window.BlobBuilder ||
+    window.WebKitBlobBuilder ||
+    window.MozBlobBuilder ||
+    window.MSBlobBuilder;
+  var dataURIPattern = /^data:((.*?)(;charset=.*?)?)(;base64)?,/;
+  var dataURLtoBlob =
+    (hasBlobConstructor || BlobBuilder) &&
+    window.atob &&
+    window.ArrayBuffer &&
+    window.Uint8Array &&
+    function (dataURI) {
+      var matches,
+        mediaType,
+        isBase64,
+        dataString,
+        byteString,
+        arrayBuffer,
+        intArray,
+        i,
+        bb;
+      // Parse the dataURI components as per RFC 2397
+      matches = dataURI.match(dataURIPattern);
+      if (!matches) {
+        throw new Error('invalid data URI')
+      }
+      // Default to text/plain;charset=US-ASCII
+      mediaType = matches[2]
+        ? matches[1]
+        : 'text/plain' + (matches[3] || ';charset=US-ASCII');
+      isBase64 = !!matches[4];
+      dataString = dataURI.slice(matches[0].length);
+      if (isBase64) {
+        // Convert base64 to raw binary data held in a string:
+        byteString = atob(dataString);
+      } else {
+        // Convert base64/URLEncoded data component to raw binary:
+        byteString = decodeURIComponent(dataString);
+      }
+      // Write the bytes of the string to an ArrayBuffer:
+      arrayBuffer = new ArrayBuffer(byteString.length);
+      intArray = new Uint8Array(arrayBuffer);
+      for (i = 0; i < byteString.length; i += 1) {
+        intArray[i] = byteString.charCodeAt(i);
+      }
+      // Write the ArrayBuffer (or ArrayBufferView) to a blob:
+      if (hasBlobConstructor) {
+        return new Blob([hasArrayBufferViewSupport ? intArray : arrayBuffer], {
+          type: mediaType
+        })
+      }
+      bb = new BlobBuilder();
+      bb.append(arrayBuffer);
+      return bb.getBlob(mediaType)
+    };
+  if (window.HTMLCanvasElement && !CanvasPrototype.toBlob) {
+    if (CanvasPrototype.mozGetAsFile) {
+      CanvasPrototype.toBlob = function (callback, type, quality) {
+        var self = this;
+        setTimeout(function () {
+          if (quality && CanvasPrototype.toDataURL && dataURLtoBlob) {
+            callback(dataURLtoBlob(self.toDataURL(type, quality)));
+          } else {
+            callback(self.mozGetAsFile('blob', type));
+          }
+        });
+      };
+    } else if (CanvasPrototype.toDataURL && dataURLtoBlob) {
+      CanvasPrototype.toBlob = function (callback, type, quality) {
+        var self = this;
+        setTimeout(function () {
+          callback(dataURLtoBlob(self.toDataURL(type, quality)));
+        });
+      };
+    }
+  }
+  if (false) {
+    undefined(function () {
+      return dataURLtoBlob
+    });
+  } else if ('object' === 'object' && module.exports) {
+    module.exports = dataURLtoBlob;
+  } else {
+    window.dataURLtoBlob = dataURLtoBlob;
+  }
+})(window);
+});
+
+/* globals Blob */
+'use strict';
+var toString = Object.prototype.toString;
+
+var isBlob = function (x) {
+	return x instanceof Blob || toString.call(x) === '[object Blob]';
+};
+
+var DEFAULTS = {
+  /**
+   * Indicates if read the image's Exif Orientation information,
+   * and then rotate or flip the image automatically.
+   * @type {boolean}
+   */
+  checkOrientation: true,
+
+  /**
+   * The max width of the output image.
+   * @type {number}
+   */
+  maxWidth: Infinity,
+
+  /**
+   * The max height of the output image.
+   * @type {number}
+   */
+  maxHeight: Infinity,
+
+  /**
+   * The min width of the output image.
+   * @type {number}
+   */
+  minWidth: 0,
+
+  /**
+   * The min height of the output image.
+   * @type {number}
+   */
+  minHeight: 0,
+
+  /**
+   * The width of the output image.
+   * If not specified, the natural width of the source image will be used.
+   * @type {number}
+   */
+  width: undefined,
+
+  /**
+   * The height of the output image.
+   * If not specified, the natural height of the source image will be used.
+   * @type {number}
+   */
+  height: undefined,
+
+  /**
+   * The quality of the output image.
+   * It must be a number between `0` and `1`,
+   * and only available for `image/jpeg` and `image/webp` images.
+   * Check out {@link https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toBlob canvas.toBlob}.
+   * @type {number}
+   */
+  quality: 0.8,
+
+  /**
+   * The mime type of the output image.
+   * By default, the original mime type of the source image file will be used.
+   * @type {string}
+   */
+  mimeType: 'auto',
+
+  /**
+   * PNG files over this value (5M by default) will be converted to JPEGs.
+   * To disable this, just set the value to `Infinity`.
+   * Check out {@link https://github.com/xkeshi/image-compressor/issues/2 #2}.
+   * @type {number}
+   */
+  convertSize: 5000000,
+
+  /**
+   * The success callback for the image compressing process.
+   * @type {Function}
+   * @param {File} file - The compressed image File object.
+   * @example
+   * function (file) { console.log(file) }
+   */
+  success: null,
+
+  /**
+   * The error callback for the image compressing process.
+   * @type {Function}
+   * @param {Error} err - An Error object.
+   * @example
+   * function (err) { console.log(err.message) }
+   */
+  error: null
+};
+
+var REGEXP_IMAGE_TYPE = /^image\/.+$/;
+
+/**
+ * Check if the given value is a mime type of image.
+ * @param {*} value - The value to check.
+ * @returns {boolean} Returns `true` if the given is a mime type of image, else `false`.
+ */
+function isImageType(value) {
+  return REGEXP_IMAGE_TYPE.test(value);
+}
+
+/**
+ * Convert image type to extension.
+ * @param {string} value - The image type to convert.
+ * @param {boolean} [includeDot=true] - Include a leading dot or not.
+ * @returns {boolean} Returns the image extension.
+ */
+function imageTypeToExtension(value) {
+  var includeDot = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+
+  var extension = isImageType(value) ? value.substr(6) : '';
+
+  if (extension === 'jpeg') {
+    extension = 'jpg';
+  }
+
+  if (extension && includeDot) {
+    extension = '.' + extension;
+  }
+
+  return extension;
+}
+
+var fromCharCode = String.fromCharCode;
+
+/**
+ * Get string from char code in data view.
+ * @param {DataView} dataView - The data view for read.
+ * @param {number} start - The start index.
+ * @param {number} length - The read length.
+ * @returns {string} The read result.
+ */
+
+function getStringFromCharCode(dataView, start, length) {
+  var str = '';
+  var i = void 0;
+
+  length += start;
+
+  for (i = start; i < length; i += 1) {
+    str += fromCharCode(dataView.getUint8(i));
+  }
+
+  return str;
+}
+
+var _window$1 = window;
+var btoa = _window$1.btoa;
+
+/**
+ * Transform array buffer to Data URL.
+ * @param {ArrayBuffer} arrayBuffer - The array buffer to transform.
+ * @param {string} mimeType - The mime type of the Data URL.
+ * @returns {string} The result Data URL.
+ */
+
+function arrayBufferToDataURL(arrayBuffer, mimeType) {
+  var uint8 = new Uint8Array(arrayBuffer);
+  var length = uint8.length;
+
+  var data = '';
+  var i = void 0;
+
+  // TypedArray.prototype.forEach is not supported in some browsers.
+  for (i = 0; i < length; i += 1) {
+    data += fromCharCode(uint8[i]);
+  }
+
+  return 'data:' + mimeType + ';base64,' + btoa(data);
+}
+
+/**
+ * Get orientation value from given array buffer.
+ * @param {ArrayBuffer} arrayBuffer - The array buffer to read.
+ * @returns {number} The read orientation value.
+ */
+function getOrientation(arrayBuffer) {
+  var dataView = new DataView(arrayBuffer);
+  var orientation = void 0;
+  var littleEndian = void 0;
+  var app1Start = void 0;
+  var ifdStart = void 0;
+
+  // Only handle JPEG image (start by 0xFFD8)
+  if (dataView.getUint8(0) === 0xFF && dataView.getUint8(1) === 0xD8) {
+    var length = dataView.byteLength;
+    var offset = 2;
+
+    while (offset < length) {
+      if (dataView.getUint8(offset) === 0xFF && dataView.getUint8(offset + 1) === 0xE1) {
+        app1Start = offset;
+        break;
+      }
+
+      offset += 1;
+    }
+  }
+
+  if (app1Start) {
+    var exifIDCode = app1Start + 4;
+    var tiffOffset = app1Start + 10;
+
+    if (getStringFromCharCode(dataView, exifIDCode, 4) === 'Exif') {
+      var endianness = dataView.getUint16(tiffOffset);
+
+      littleEndian = endianness === 0x4949;
+
+      if (littleEndian || endianness === 0x4D4D /* bigEndian */) {
+          if (dataView.getUint16(tiffOffset + 2, littleEndian) === 0x002A) {
+            var firstIFDOffset = dataView.getUint32(tiffOffset + 4, littleEndian);
+
+            if (firstIFDOffset >= 0x00000008) {
+              ifdStart = tiffOffset + firstIFDOffset;
+            }
+          }
+        }
+    }
+  }
+
+  if (ifdStart) {
+    var _length = dataView.getUint16(ifdStart, littleEndian);
+    var _offset = void 0;
+    var i = void 0;
+
+    for (i = 0; i < _length; i += 1) {
+      _offset = ifdStart + i * 12 + 2;
+
+      if (dataView.getUint16(_offset, littleEndian) === 0x0112 /* Orientation */) {
+          // 8 is the offset of the current tag's value
+          _offset += 8;
+
+          // Get the original orientation value
+          orientation = dataView.getUint16(_offset, littleEndian);
+
+          // Override the orientation with its default value
+          dataView.setUint16(_offset, 1, littleEndian);
+          break;
+        }
+    }
+  }
+
+  return orientation;
+}
+
+/**
+ * Parse Exif Orientation value.
+ * @param {number} orientation - The orientation to parse.
+ * @returns {Object} The parsed result.
+ */
+function parseOrientation(orientation) {
+  var rotate = 0;
+  var scaleX = 1;
+  var scaleY = 1;
+
+  switch (orientation) {
+    // Flip horizontal
+    case 2:
+      scaleX = -1;
+      break;
+
+    // Rotate left 180°
+    case 3:
+      rotate = -180;
+      break;
+
+    // Flip vertical
+    case 4:
+      scaleY = -1;
+      break;
+
+    // Flip vertical and rotate right 90°
+    case 5:
+      rotate = 90;
+      scaleY = -1;
+      break;
+
+    // Rotate right 90°
+    case 6:
+      rotate = 90;
+      break;
+
+    // Flip horizontal and rotate right 90°
+    case 7:
+      rotate = 90;
+      scaleX = -1;
+      break;
+
+    // Rotate left 90°
+    case 8:
+      rotate = -90;
+      break;
+
+    default:
+  }
+
+  return {
+    rotate: rotate,
+    scaleX: scaleX,
+    scaleY: scaleY
+  };
+}
+
+var asyncGenerator = function () {
+  function AwaitValue(value) {
+    this.value = value;
+  }
+
+  function AsyncGenerator(gen) {
+    var front, back;
+
+    function send(key, arg) {
+      return new Promise(function (resolve, reject) {
+        var request = {
+          key: key,
+          arg: arg,
+          resolve: resolve,
+          reject: reject,
+          next: null
+        };
+
+        if (back) {
+          back = back.next = request;
+        } else {
+          front = back = request;
+          resume(key, arg);
+        }
+      });
+    }
+
+    function resume(key, arg) {
+      try {
+        var result = gen[key](arg);
+        var value = result.value;
+
+        if (value instanceof AwaitValue) {
+          Promise.resolve(value.value).then(function (arg) {
+            resume("next", arg);
+          }, function (arg) {
+            resume("throw", arg);
+          });
+        } else {
+          settle(result.done ? "return" : "normal", result.value);
+        }
+      } catch (err) {
+        settle("throw", err);
+      }
+    }
+
+    function settle(type, value) {
+      switch (type) {
+        case "return":
+          front.resolve({
+            value: value,
+            done: true
+          });
+          break;
+
+        case "throw":
+          front.reject(value);
+          break;
+
+        default:
+          front.resolve({
+            value: value,
+            done: false
+          });
+          break;
+      }
+
+      front = front.next;
+
+      if (front) {
+        resume(front.key, front.arg);
+      } else {
+        back = null;
+      }
+    }
+
+    this._invoke = send;
+
+    if (typeof gen.return !== "function") {
+      this.return = undefined;
+    }
+  }
+
+  if (typeof Symbol === "function" && Symbol.asyncIterator) {
+    AsyncGenerator.prototype[Symbol.asyncIterator] = function () {
+      return this;
+    };
+  }
+
+  AsyncGenerator.prototype.next = function (arg) {
+    return this._invoke("next", arg);
+  };
+
+  AsyncGenerator.prototype.throw = function (arg) {
+    return this._invoke("throw", arg);
+  };
+
+  AsyncGenerator.prototype.return = function (arg) {
+    return this._invoke("return", arg);
+  };
+
+  return {
+    wrap: function (fn) {
+      return function () {
+        return new AsyncGenerator(fn.apply(this, arguments));
+      };
+    },
+    await: function (value) {
+      return new AwaitValue(value);
+    }
+  };
+}();
+
+
+
+
+
+var classCallCheck = function (instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+};
+
+var createClass = function () {
+  function defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];
+      descriptor.enumerable = descriptor.enumerable || false;
+      descriptor.configurable = true;
+      if ("value" in descriptor) descriptor.writable = true;
+      Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }
+
+  return function (Constructor, protoProps, staticProps) {
+    if (protoProps) defineProperties(Constructor.prototype, protoProps);
+    if (staticProps) defineProperties(Constructor, staticProps);
+    return Constructor;
+  };
+}();
+
+
+
+
+
+
+
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];
+
+    for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }
+
+  return target;
+};
+
+var _window = window;
+var ArrayBuffer$1 = _window.ArrayBuffer;
+var FileReader = _window.FileReader;
+
+var URL = window.URL || window.webkitURL;
+var REGEXP_EXTENSION = /\.\w+$/;
+
+/**
+ * Creates a new image compressor.
+ * @class
+ */
+
+var ImageCompressor = function () {
+  /**
+   * The constructor of ImageCompressor.
+   * @param {File|Blob} file - The target image file for compressing.
+   * @param {Object} [options] - The options for compressing.
+   */
+  function ImageCompressor(file, options) {
+    classCallCheck(this, ImageCompressor);
+
+    this.result = null;
+
+    if (file) {
+      this.compress(file, options);
+    }
+  }
+
+  /**
+   * The main compress method.
+   * @param {File|Blob} file - The target image file for compressing.
+   * @param {Object} [options] - The options for compressing.
+   * @returns {Promise} - A Promise instance.
+   */
+
+
+  createClass(ImageCompressor, [{
+    key: 'compress',
+    value: function compress(file, options) {
+      var _this = this;
+
+      var image = new Image();
+
+      options = _extends({}, DEFAULTS, options);
+
+      if (!ArrayBuffer$1) {
+        options.checkOrientation = false;
+      }
+
+      return new Promise(function (resolve, reject) {
+        if (!isBlob(file)) {
+          reject(new Error('The first argument must be a File or Blob object.'));
+          return;
+        }
+
+        var mimeType = file.type;
+
+        if (!isImageType(mimeType)) {
+          reject(new Error('The first argument must be an image File or Blob object.'));
+          return;
+        }
+
+        if (!URL && !FileReader) {
+          reject(new Error('The current browser does not support image compression.'));
+          return;
+        }
+
+        if (URL && !options.checkOrientation) {
+          resolve(URL.createObjectURL(file));
+        } else if (FileReader) {
+          var reader = new FileReader();
+          var checkOrientation = options.checkOrientation && mimeType === 'image/jpeg';
+
+          reader.onload = function (_ref) {
+            var target = _ref.target;
+            var result = target.result;
+
+
+            resolve(checkOrientation ? _extends({
+              url: arrayBufferToDataURL(result, mimeType)
+            }, parseOrientation(getOrientation(result))) : {
+              url: result
+            });
+          };
+          reader.onabort = reject;
+          reader.onerror = reject;
+
+          if (checkOrientation) {
+            reader.readAsArrayBuffer(file);
+          } else {
+            reader.readAsDataURL(file);
+          }
+        }
+      }).then(function (data) {
+        return new Promise(function (resolve, reject) {
+          image.onload = function () {
+            return resolve(_extends({}, data, {
+              naturalWidth: image.naturalWidth,
+              naturalHeight: image.naturalHeight
+            }));
+          };
+          image.onabort = reject;
+          image.onerror = reject;
+          image.alt = file.name;
+          image.src = data.url;
+        });
+      }).then(function (_ref2) {
+        var naturalWidth = _ref2.naturalWidth,
+            naturalHeight = _ref2.naturalHeight,
+            _ref2$rotate = _ref2.rotate,
+            rotate = _ref2$rotate === undefined ? 0 : _ref2$rotate,
+            _ref2$scaleX = _ref2.scaleX,
+            scaleX = _ref2$scaleX === undefined ? 1 : _ref2$scaleX,
+            _ref2$scaleY = _ref2.scaleY,
+            scaleY = _ref2$scaleY === undefined ? 1 : _ref2$scaleY;
+        return new Promise(function (resolve) {
+          var canvas = document.createElement('canvas');
+          var context = canvas.getContext('2d');
+          var aspectRatio = naturalWidth / naturalHeight;
+          var maxWidth = Math.max(options.maxWidth, 0) || Infinity;
+          var maxHeight = Math.max(options.maxHeight, 0) || Infinity;
+          var minWidth = Math.max(options.minWidth, 0) || 0;
+          var minHeight = Math.max(options.minHeight, 0) || 0;
+          var width = naturalWidth;
+          var height = naturalHeight;
+
+          if (maxWidth < Infinity && maxHeight < Infinity) {
+            if (maxHeight * aspectRatio > maxWidth) {
+              maxHeight = maxWidth / aspectRatio;
+            } else {
+              maxWidth = maxHeight * aspectRatio;
+            }
+          } else if (maxWidth < Infinity) {
+            maxHeight = maxWidth / aspectRatio;
+          } else if (maxHeight < Infinity) {
+            maxWidth = maxHeight * aspectRatio;
+          }
+
+          if (minWidth > 0 && minHeight > 0) {
+            if (minHeight * aspectRatio > minWidth) {
+              minHeight = minWidth / aspectRatio;
+            } else {
+              minWidth = minHeight * aspectRatio;
+            }
+          } else if (minWidth > 0) {
+            minHeight = minWidth / aspectRatio;
+          } else if (minHeight > 0) {
+            minWidth = minHeight * aspectRatio;
+          }
+
+          if (options.width > 0) {
+            var _options = options;
+            width = _options.width;
+
+            height = width / aspectRatio;
+          } else if (options.height > 0) {
+            var _options2 = options;
+            height = _options2.height;
+
+            width = height * aspectRatio;
+          }
+
+          width = Math.min(Math.max(width, minWidth), maxWidth);
+          height = Math.min(Math.max(height, minHeight), maxHeight);
+
+          var destX = -width / 2;
+          var destY = -height / 2;
+          var destWidth = width;
+          var destHeight = height;
+
+          if (Math.abs(rotate) % 180 === 90) {
+            var _width$height = {
+              width: height,
+              height: width
+            };
+            width = _width$height.width;
+            height = _width$height.height;
+          }
+
+          canvas.width = width;
+          canvas.height = height;
+
+          // Override the default fill color (#000, black)
+          context.fillStyle = 'transparent';
+          context.fillRect(0, 0, width, height);
+          context.save();
+          context.translate(width / 2, height / 2);
+          context.rotate(rotate * Math.PI / 180);
+          context.scale(scaleX, scaleY);
+          context.drawImage(image, Math.floor(destX), Math.floor(destY), Math.floor(destWidth), Math.floor(destHeight));
+          context.restore();
+
+          if (!isImageType(options.mimeType)) {
+            options.mimeType = file.type;
+          }
+
+          // Converts PNG files over the `convertSize` to JPEGs.
+          if (file.size > options.convertSize && options.mimeType === 'image/png') {
+            options.mimeType = 'image/jpeg';
+          }
+
+          if (canvas.toBlob) {
+            canvas.toBlob(resolve, options.mimeType, options.quality);
+          } else {
+            resolve(canvasToBlob(canvas.toDataURL(options.mimeType, options.quality)));
+          }
+        });
+      }).then(function (result) {
+        if (URL) {
+          URL.revokeObjectURL(image.src);
+        }
+
+        if (result) {
+          // Returns original file if the result is greater than it and without size related options
+          if (result.size > file.size && !(options.width > 0 || options.height > 0 || options.maxWidth < Infinity || options.maxHeight < Infinity || options.minWidth > 0 || options.minHeight > 0)) {
+            result = file;
+          } else {
+            var date = new Date();
+
+            result.lastModified = date.getTime();
+            result.lastModifiedDate = date;
+            result.name = file.name;
+
+            // Convert the extension to match its type
+            if (result.name && result.type !== file.type) {
+              result.name = result.name.replace(REGEXP_EXTENSION, imageTypeToExtension(result.type));
+            }
+          }
+        } else {
+          // Returns original file if the result is null in some cases.
+          result = file;
+        }
+
+        _this.result = result;
+
+        if (options.success) {
+          options.success(result);
+        }
+
+        return Promise.resolve(result);
+      }).catch(function (err) {
+        if (!options.error) {
+          throw err;
+        }
+
+        options.error(err);
+      });
+    }
+  }]);
+  return ImageCompressor;
+}();
+
+return ImageCompressor;
+
+})));
+
+
+/***/ }),
+
+/***/ 695:
+/***/ (function(module, exports, __webpack_require__) {
+
+/*!
+ * Name: vue-upload-component
+ * Version: 2.6.3
+ * Author: LianYue
+ */
+(function (global, factory) {
+	 true ? module.exports = factory() :
+	typeof define === 'function' && define.amd ? define(factory) :
+	(global.VueUploadComponent = factory());
+}(this, (function () { 'use strict';
+
+(function () {
+  if (typeof document !== 'undefined') {
+    var head = document.head || document.getElementsByTagName('head')[0],
+        style = document.createElement('style'),
+        css = "";style.type = 'text/css';if (style.styleSheet) {
+      style.styleSheet.cssText = css;
+    } else {
+      style.appendChild(document.createTextNode(css));
+    }head.appendChild(style);
+  }
+})();
+
+var InputFile = { render: function render() {
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('input', { attrs: { "type": "file", "name": _vm.$parent.name, "id": _vm.$parent.inputId || _vm.$parent.name, "accept": _vm.$parent.accept, "webkitdirectory": _vm.$parent.directory && _vm.$parent.features.directory, "directory": _vm.$parent.directory && _vm.$parent.features.directory, "multiple": _vm.$parent.multiple && _vm.$parent.features.html5 }, on: { "change": _vm.change } });
+  }, staticRenderFns: [],
+  methods: {
+    change: function change(e) {
+      this.$destroy();
+      this.$parent.addInputFile(e.target);
+      // eslint-disable-next-line
+      new this.constructor({
+        parent: this.$parent,
+        el: this.$el
+      });
+    }
+  }
+};
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+(function () {
+  if (typeof document !== 'undefined') {
+    var head = document.head || document.getElementsByTagName('head')[0],
+        style = document.createElement('style'),
+        css = " .file-uploads { overflow: hidden; position: relative; text-align: center; display: inline-block; } .file-uploads.file-uploads-html4 input[type=\"file\"] { opacity: 0; font-size: 20em; z-index: 1; top: 0; left: 0; right: 0; bottom: 0; position: absolute; width: 100%; height: 100%; } .file-uploads.file-uploads-html5 input[type=\"file\"] { overflow: hidden; position: fixed; width: 1px; height: 1px; z-index: -1; opacity: 0; } ";style.type = 'text/css';if (style.styleSheet) {
+      style.styleSheet.cssText = css;
+    } else {
+      style.appendChild(document.createTextNode(css));
+    }head.appendChild(style);
+  }
+})();
+
+var FileUpload = { render: function render() {
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('label', { class: _vm.className }, [_vm._t("default"), _vm._v(" "), _c('input-file')], 2);
+  }, staticRenderFns: [],
+  components: {
+    InputFile: InputFile
+  },
+  props: {
+    inputId: {
+      type: String
+    },
+
+    name: {
+      type: String,
+      default: 'file'
+    },
+
+    accept: {
+      type: String
+    },
+
+    multiple: {
+      type: Boolean
+    },
+
+    addIndex: {
+      type: [Boolean, Number]
+    },
+
+    directory: {
+      type: Boolean
+    },
+
+    postAction: {
+      type: String
+    },
+
+    putAction: {
+      type: String
+    },
+
+    headers: {
+      type: Object,
+      default: Object
+    },
+
+    data: {
+      type: Object,
+      default: Object
+    },
+
+    timeout: {
+      type: Number,
+      default: 0
+    },
+
+    drop: {
+      default: false
+    },
+
+    dropDirectory: {
+      type: Boolean,
+      default: true
+    },
+
+    size: {
+      type: Number,
+      default: 0
+    },
+
+    extensions: {
+      default: Array
+    },
+
+    value: {
+      type: Array,
+      default: Array
+    },
+
+    thread: {
+      type: Number,
+      default: 1
+    }
+  },
+
+  data: function data() {
+    return {
+      files: this.value,
+      features: {
+        html5: true,
+        directory: false,
+        drag: false
+      },
+
+      active: false,
+      dropActive: false,
+
+      uploading: 0,
+
+      destroy: false
+    };
+  },
+
+
+  /**
+   * mounted
+   * @return {[type]} [description]
+   */
+  mounted: function mounted() {
+    var input = document.createElement('input');
+    input.type = 'file';
+    input.multiple = true;
+
+    // html5 特征
+    if (window.FormData && input.files) {
+      // 上传目录特征
+      if (typeof input.webkitdirectory === 'boolean' || typeof input.directory === 'boolean') {
+        this.features.directory = true;
+      }
+
+      // 拖拽特征
+      if (this.features.html5 && typeof input.ondrop !== 'undefined') {
+        this.features.drop = true;
+      }
+    } else {
+      this.features.html5 = false;
+    }
+
+    // files 定位缓存
+    this.maps = {};
+
+    this.$nextTick(function () {
+
+      // 更新下父级
+      if (this.$parent) {
+        this.$parent.$forceUpdate();
+      }
+
+      // 拖拽渲染
+      this.watchDrop(this.drop);
+    });
+  },
+
+
+  /**
+   * beforeDestroy
+   * @return {[type]} [description]
+   */
+  beforeDestroy: function beforeDestroy() {
+    // 已销毁
+    this.destroy = true;
+
+    // 设置成不激活
+    this.active = false;
+  },
+
+
+  computed: {
+    /**
+     * uploading 正在上传的线程
+     * @return {[type]} [description]
+     */
+
+    /**
+     * uploaded 文件列表是否全部已上传
+     * @return {[type]} [description]
+     */
+    uploaded: function uploaded() {
+      var file = void 0;
+      for (var i = 0; i < this.files.length; i++) {
+        file = this.files[i];
+        if (file.fileObject && !file.error && !file.success) {
+          return false;
+        }
+      }
+      return true;
+    },
+    className: function className() {
+      return ['file-uploads', this.features.html5 ? 'file-uploads-html5' : 'file-uploads-html4', this.features.directory && this.directory ? 'file-uploads-directory' : undefined, this.features.drop && this.drop ? 'file-uploads-drop' : undefined];
+    }
+  },
+
+  watch: {
+    active: function active(_active) {
+      this.watchActive(_active);
+    },
+    dropActive: function dropActive() {
+      if (this.$parent) {
+        this.$parent.$forceUpdate();
+      }
+    },
+    drop: function drop(value) {
+      this.watchDrop(value);
+    },
+    value: function value(files) {
+      if (this.files === files) {
+        return;
+      }
+      this.files = files;
+
+      var oldMaps = this.maps;
+
+      // 重写 maps 缓存
+      this.maps = {};
+      for (var i = 0; i < this.files.length; i++) {
+        var file = this.files[i];
+        this.maps[file.id] = file;
+      }
+
+      // add, update
+      for (var key in this.maps) {
+        var newFile = this.maps[key];
+        var oldFile = oldMaps[key];
+        if (newFile !== oldFile) {
+          this.emitFile(newFile, oldFile);
+        }
+      }
+
+      // delete
+      for (var _key in oldMaps) {
+        if (!this.maps[_key]) {
+          this.emitFile(undefined, oldMaps[_key]);
+        }
+      }
+    }
+  },
+
+  methods: {
+
+    // 清空
+    clear: function clear() {
+      if (this.files.length) {
+        var files = this.files;
+        this.files = [];
+
+        // 定位
+        this.maps = {};
+
+        // 事件
+        this.emitInput();
+        for (var i = 0; i < files.length; i++) {
+          this.emitFile(undefined, files[i]);
+        }
+      }
+      return true;
+    },
+
+
+    // 选择
+    get: function get(id) {
+      if (!id) {
+        return false;
+      }
+
+      if ((typeof id === 'undefined' ? 'undefined' : _typeof(id)) === 'object') {
+        return this.maps[id.id] || false;
+      }
+
+      return this.maps[id] || false;
+    },
+
+
+    // 添加
+    add: function add(_files) {
+      var index = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.addIndex;
+
+      var files = _files;
+      var isArray = files instanceof Array;
+
+      // 不是数组整理成数组
+      if (!isArray) {
+        files = [files];
+      }
+
+      // 遍历规范对象
+      var addFiles = [];
+      for (var i = 0; i < files.length; i++) {
+        var file = files[i];
+        if (this.features.html5 && file instanceof Blob) {
+          file = {
+            file: file,
+            size: file.size,
+            name: file.webkitRelativePath || file.relativePath || file.name || 'unknown',
+            type: file.type
+          };
+        }
+        var fileObject = false;
+        if (file.fileObject === false) {
+          // false
+        } else if (file.fileObject) {
+          fileObject = true;
+        } else if (typeof Element !== 'undefined' && file.el instanceof Element) {
+          fileObject = true;
+        } else if (typeof Blob !== 'undefined' && file.file instanceof Blob) {
+          fileObject = true;
+        }
+        if (fileObject) {
+          file = _extends({
+            fileObject: true,
+            size: -1,
+            name: 'Filename',
+            type: '',
+            active: false,
+            error: '',
+            success: false,
+            putAction: this.putAction,
+            postAction: this.postAction,
+            timeout: this.timeout
+          }, file, {
+            response: {},
+
+            progress: '0.00', // 只读
+            speed: 0 // 只读
+            // xhr: false,                // 只读
+            // iframe: false,             // 只读
+          });
+
+          file.data = _extends({}, this.data, file.data ? file.data : {});
+
+          file.headers = _extends({}, this.headers, file.headers ? file.headers : {});
+        }
+
+        // 必须包含 id
+        if (!file.id) {
+          file.id = Math.random().toString(36).substr(2);
+        }
+
+        if (this.emitFilter(file, undefined)) {
+          continue;
+        }
+
+        addFiles.push(file);
+
+        // 只允许单个文件
+        if (!this.multiple) {
+          break;
+        }
+      }
+
+      // 没有文件
+      if (!addFiles.length) {
+        return false;
+      }
+
+      // 只允许单个文件 删除所有
+      if (!this.multiple) {
+        this.clear();
+      }
+
+      // 添加进去 files
+      var newFiles = void 0;
+      if (index === true || index === 0) {
+        newFiles = addFiles.concat(this.files);
+      } else if (index) {
+        newFiles = addFiles.concat([]);
+        newFiles.splice(index, 0, addFiles);
+      } else {
+        newFiles = this.files.concat(addFiles);
+      }
+
+      this.files = newFiles;
+
+      // 定位
+      for (var _i = 0; _i < addFiles.length; _i++) {
+        var _file2 = addFiles[_i];
+        this.maps[_file2.id] = _file2;
+      }
+
+      // 事件
+      this.emitInput();
+      for (var _i2 = 0; _i2 < addFiles.length; _i2++) {
+        this.emitFile(addFiles[_i2], undefined);
+      }
+
+      return isArray ? addFiles : addFiles[0];
+    },
+
+
+    // 添加表单文件
+    addInputFile: function addInputFile(el) {
+      var files = [];
+      if (el.files) {
+        for (var i = 0; i < el.files.length; i++) {
+          var file = el.files[i];
+          files.push({
+            size: file.size,
+            name: file.webkitRelativePath || file.relativePath || file.name,
+            type: file.type,
+            file: file,
+            el: el
+          });
+        }
+      } else {
+        files.push({
+          name: el.value.replace(/^.*?([^\/\\\r\n]+)$/, '$1'),
+          el: el
+        });
+      }
+      return this.add(files);
+    },
+
+
+    // 添加 DataTransfer
+    addDataTransfer: function addDataTransfer(dataTransfer) {
+      var _this = this;
+
+      var files = [];
+      if (dataTransfer.items && dataTransfer.items.length) {
+        var items = [];
+        for (var i = 0; i < dataTransfer.items.length; i++) {
+          var item = dataTransfer.items[i];
+          if (item.getAsEntry) {
+            item = item.getAsEntry();
+          } else if (item.webkitGetAsEntry) {
+            item = item.webkitGetAsEntry();
+          } else {
+            item = item.getAsFile();
+          }
+          if (item) {
+            items.push(item);
+          }
+        }
+
+        return new Promise(function (resolve, reject) {
+          var forEach = function forEach(i) {
+            var item = items[i];
+            // 结束 或者已有文件了
+            if (!item || !_this.multiple && files.length) {
+              return resolve(_this.add(files));
+            }
+            _this.getEntry(item).then(function (results) {
+              files.push.apply(files, _toConsumableArray(results));
+              forEach(i + 1);
+            });
+          };
+          forEach(0);
+        });
+      }
+
+      if (dataTransfer.files.length) {
+        for (var _i3 = 0; _i3 < dataTransfer.files.length; _i3++) {
+          files.push(dataTransfer.files[_i3]);
+          if (!this.multiple) {
+            break;
+          }
+        }
+        return Promise.resolve(this.add(files));
+      }
+
+      return Promise.resolve([]);
+    },
+
+
+    // 获得 entry
+    getEntry: function getEntry(entry) {
+      var _this2 = this;
+
+      var path = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+
+      return new Promise(function (resolve, reject) {
+        if (entry.isFile) {
+          entry.file(function (file) {
+            resolve([{
+              size: file.size,
+              name: path + file.name,
+              type: file.type,
+              file: file
+            }]);
+          });
+        } else if (entry.isDirectory && _this2.dropDirectory) {
+          entry.createReader().readEntries(function (entries) {
+            var files = [];
+            var forEach = function forEach(i) {
+              if (!entries[i] || files.length && !_this2.multiple) {
+                return resolve(files);
+              }
+              _this2.getEntry(entries[i], path + entry.name + '/').then(function (results) {
+                files.push.apply(files, _toConsumableArray(results));
+                forEach(i + 1);
+              });
+            };
+            forEach(0);
+          });
+        } else {
+          resolve([]);
+        }
+      });
+    },
+    replace: function replace(id1, id2) {
+      var file1 = this.get(id1);
+      var file2 = this.get(id2);
+      if (!file1 || !file2 || file1 === file2) {
+        return false;
+      }
+      var files = this.files.concat([]);
+      var index1 = files.indexOf(file1);
+      var index2 = files.indexOf(file2);
+      if (index1 === -1 || index2 === -1) {
+        return false;
+      }
+      files[index1] = file2;
+      files[index2] = file1;
+      this.files = files;
+      this.emitInput();
+      return true;
+    },
+
+
+    // 移除
+    remove: function remove(id) {
+      var file = this.get(id);
+      if (file) {
+        if (this.emitFilter(undefined, file)) {
+          return false;
+        }
+        var files = this.files.concat([]);
+        var index = files.indexOf(file);
+        if (index === -1) {
+          console.error('remove', file);
+          return false;
+        }
+        files.splice(index, 1);
+        this.files = files;
+
+        // 定位
+        delete this.maps[file.id];
+
+        // 事件
+        this.emitInput();
+        this.emitFile(undefined, file);
+      }
+      return file;
+    },
+
+
+    // 更新
+    update: function update(id, data) {
+      var file = this.get(id);
+      if (file) {
+        var newFile = _extends({}, file, data);
+        // 停用必须加上错误
+        if (file.fileObject && file.active && !newFile.active && !newFile.error && !newFile.success) {
+          newFile.error = 'abort';
+        }
+
+        if (this.emitFilter(newFile, file)) {
+          return false;
+        }
+
+        var files = this.files.concat([]);
+        var index = files.indexOf(file);
+        if (index === -1) {
+          console.error('update', file);
+          return false;
+        }
+        files.splice(index, 1, newFile);
+        this.files = files;
+
+        // 删除  旧定位 写入 新定位 （已便支持修改id)
+        delete this.maps[file.id];
+        this.maps[newFile.id] = newFile;
+
+        // 事件
+        this.emitInput();
+        this.emitFile(newFile, file);
+        return newFile;
+      }
+      return false;
+    },
+
+
+    // 预处理 事件 过滤器
+    emitFilter: function emitFilter(newFile, oldFile) {
+      var isPrevent = false;
+      this.$emit('input-filter', newFile, oldFile, function () {
+        isPrevent = true;
+        return isPrevent;
+      });
+      return isPrevent;
+    },
+
+
+    // 处理后 事件 分发
+    emitFile: function emitFile(newFile, oldFile) {
+      this.$emit('input-file', newFile, oldFile);
+      if (newFile && newFile.fileObject && newFile.active && (!oldFile || !oldFile.active)) {
+        this.uploading++;
+        // 激活
+        this.$nextTick(function () {
+          var _this3 = this;
+
+          setTimeout(function () {
+            _this3.upload(newFile).then(function () {
+              // eslint-disable-next-line
+              newFile = _this3.get(newFile);
+              if (newFile && newFile.fileObject) {
+                _this3.update(newFile, {
+                  active: false,
+                  success: !newFile.error
+                });
+              }
+            }).catch(function (e) {
+              _this3.update(newFile, {
+                active: false,
+                success: false,
+                error: e.code || e.error || e.message || e
+              });
+            });
+          }, parseInt(Math.random() * 50 + 50, 10));
+        });
+      } else if ((!newFile || !newFile.fileObject || !newFile.active) && oldFile && oldFile.fileObject && oldFile.active) {
+        // 停止
+        this.uploading--;
+      }
+
+      // 自动延续激活
+      if (this.active && (Boolean(newFile) !== Boolean(oldFile) || newFile.active !== oldFile.active)) {
+        this.watchActive(true);
+      }
+    },
+    emitInput: function emitInput() {
+      this.$emit('input', this.files);
+    },
+
+
+    // 上传
+    upload: function upload(id) {
+      var file = this.get(id);
+
+      // 被删除
+      if (!file) {
+        return Promise.reject('not_exists');
+      }
+
+      // 不是文件对象
+      if (!file.fileObject) {
+        return Promise.reject('file_object');
+      }
+
+      // 有错误直接响应
+      if (file.error) {
+        return Promise.reject(file.error);
+      }
+
+      // 已完成直接响应
+      if (file.success) {
+        return Promise.resolve(file);
+      }
+
+      // 后缀
+      var extensions = this.extensions;
+      if (extensions && (extensions.length || typeof extensions.length === 'undefined')) {
+        if ((typeof extensions === 'undefined' ? 'undefined' : _typeof(extensions)) !== 'object' || !(extensions instanceof RegExp)) {
+          if (typeof extensions === 'string') {
+            extensions = extensions.split(',').map(function (value) {
+              return value.trim();
+            }).filter(function (value) {
+              return value;
+            });
+          }
+          extensions = new RegExp('\\.(' + extensions.join('|').replace(/\./g, '\\.') + ')$', 'i');
+        }
+        if (file.name.search(extensions) === -1) {
+          return Promise.reject('extension');
+        }
+      }
+
+      // 大小
+      if (this.size > 0 && file.size >= 0 && file.size > this.size) {
+        return Promise.reject('size');
+      }
+
+      if (this.features.html5 && file.putAction) {
+        return this.uploadPut(file);
+      } else if (this.features.html5) {
+        return this.uploadHtml5(file);
+      } else {
+        return this.uploadHtml4(file);
+      }
+    },
+    uploadPut: function uploadPut(file) {
+      var querys = [];
+      var value = void 0;
+      for (var key in file.data) {
+        value = file.data[key];
+        if (value !== null && value !== undefined) {
+          querys.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+        }
+      }
+      var queryString = querys.length ? (file.putAction.indexOf('?') === -1 ? '?' : '&') + querys.join('&') : '';
+      var xhr = new XMLHttpRequest();
+      xhr.open('PUT', file.putAction + queryString);
+      return this.uploadXhr(xhr, file, file.file);
+    },
+    uploadHtml5: function uploadHtml5(file) {
+      var form = new window.FormData();
+      var value = void 0;
+      for (var key in file.data) {
+        value = file.data[key];
+        if (value && (typeof value === 'undefined' ? 'undefined' : _typeof(value)) === 'object' && typeof value.toString !== 'function') {
+          if (value instanceof File) {
+            form.append(key, value, value.name);
+          } else {
+            form.append(key, JSON.stringify(value));
+          }
+        } else if (value !== null && value !== undefined) {
+          form.append(key, value);
+        }
+      }
+      form.append(this.name, file.file, file.file.filename || file.name);
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', file.postAction);
+      return this.uploadXhr(xhr, file, form);
+    },
+    uploadXhr: function uploadXhr(xhr, _file, body) {
+      var _this4 = this;
+
+      var file = _file;
+      var speedTime = 0;
+      var speedLoaded = 0;
+
+      // 进度条
+      xhr.upload.onprogress = function (e) {
+        // 还未开始上传 已删除 未激活
+        file = _this4.get(file);
+        if (!e.lengthComputable || !file || !file.fileObject || !file.active) {
+          return;
+        }
+
+        // 进度 速度 每秒更新一次
+        var speedTime2 = Math.round(Date.now() / 1000);
+        if (speedTime2 === speedTime) {
+          return;
+        }
+        speedTime = speedTime2;
+
+        file = _this4.update(file, {
+          progress: (e.loaded / e.total * 100).toFixed(2),
+          speed: e.loaded - speedLoaded
+        });
+        speedLoaded = e.loaded;
+      };
+
+      // 检查激活状态
+      var interval = setInterval(function () {
+        file = _this4.get(file);
+        if (file && file.fileObject && !file.success && !file.error && file.active) {
+          return;
+        }
+
+        if (interval) {
+          clearInterval(interval);
+          interval = false;
+        }
+
+        try {
+          xhr.abort();
+          xhr.timeout = 1;
+        } catch (e) {}
+      }, 100);
+
+      return new Promise(function (resolve, reject) {
+        var complete = void 0;
+        var fn = function fn(e) {
+          // 已经处理过了
+          if (complete) {
+            return;
+          }
+          complete = true;
+          if (interval) {
+            clearInterval(interval);
+            interval = false;
+          }
+
+          file = _this4.get(file);
+
+          // 不存在直接响应
+          if (!file) {
+            return reject('not_exists');
+          }
+
+          // 不是文件对象
+          if (!file.fileObject) {
+            return reject('file_object');
+          }
+
+          // 有错误自动响应
+          if (file.error) {
+            return reject(file.error);
+          }
+
+          // 未激活
+          if (!file.active) {
+            return reject('abort');
+          }
+
+          // 已完成 直接相应
+          if (file.success) {
+            return resolve(file);
+          }
+
+          var data = {};
+
+          switch (e.type) {
+            case 'timeout':
+            case 'abort':
+              data.error = e.type;
+              break;
+            case 'error':
+              if (!xhr.status) {
+                data.error = 'network';
+              } else if (xhr.status >= 500) {
+                data.error = 'server';
+              } else if (xhr.status >= 400) {
+                data.error = 'denied';
+              }
+              break;
+            default:
+              if (xhr.status >= 500) {
+                data.error = 'server';
+              } else if (xhr.status >= 400) {
+                data.error = 'denied';
+              } else {
+                data.progress = '100.00';
+              }
+          }
+
+          if (xhr.responseText) {
+            var contentType = xhr.getResponseHeader('Content-Type');
+            if (contentType && contentType.indexOf('/json') !== -1) {
+              data.response = JSON.parse(xhr.responseText);
+            } else {
+              data.response = xhr.responseText;
+            }
+          }
+
+          // 更新
+          file = _this4.update(file, data);
+
+          // 相应错误
+          if (file.error) {
+            return reject(file.error);
+          }
+
+          // 响应
+          return resolve(file);
+        };
+
+        // 事件
+        xhr.onload = fn;
+        xhr.onerror = fn;
+        xhr.onabort = fn;
+        xhr.ontimeout = fn;
+
+        // 超时
+        if (file.timeout) {
+          xhr.timeout = file.timeout;
+        }
+
+        // headers
+        for (var key in file.headers) {
+          xhr.setRequestHeader(key, file.headers[key]);
+        }
+
+        // 更新 xhr
+        file = _this4.update(file, { xhr: xhr });
+
+        // 开始上传
+        xhr.send(body);
+      });
+    },
+    uploadHtml4: function uploadHtml4(_file) {
+      var _this5 = this;
+
+      var file = _file;
+      var onKeydown = function onKeydown(e) {
+        if (e.keyCode === 27) {
+          e.preventDefault();
+        }
+      };
+
+      var iframe = document.createElement('iframe');
+      iframe.id = 'upload-iframe-' + file.id;
+      iframe.name = 'upload-iframe-' + file.id;
+      iframe.src = 'about:blank';
+      iframe.setAttribute('style', 'width:1px;height:1px;top:-999em;position:absolute; margin-top:-999em;');
+
+      var form = document.createElement('form');
+
+      form.action = file.postAction;
+
+      form.name = 'upload-form-' + file.id;
+
+      form.setAttribute('method', 'POST');
+      form.setAttribute('target', 'upload-iframe-' + file.id);
+      form.setAttribute('enctype', 'multipart/form-data');
+
+      var value = void 0;
+      var input = void 0;
+      for (var key in file.data) {
+        value = file.data[key];
+        if (value && (typeof value === 'undefined' ? 'undefined' : _typeof(value)) === 'object' && typeof value.toString !== 'function') {
+          value = JSON.stringify(value);
+        }
+        if (value !== null && value !== undefined) {
+          input = document.createElement('input');
+          input.type = 'hidden';
+          input.name = key;
+          form.appendChild(input);
+        }
+      }
+      form.appendChild(file.el);
+
+      document.body.appendChild(iframe).appendChild(form);
+
+      var getResponseData = function getResponseData() {
+        var doc = void 0;
+        try {
+          if (iframe.contentWindow) {
+            doc = iframe.contentWindow.document;
+          }
+        } catch (err) {}
+        if (!doc) {
+          try {
+            doc = iframe.contentDocument ? iframe.contentDocument : iframe.document;
+          } catch (err) {
+            doc = iframe.document;
+          }
+        }
+        if (doc && doc.body) {
+          return doc.body.innerHTML;
+        }
+        return null;
+      };
+
+      return new Promise(function (resolve, reject) {
+        setTimeout(function () {
+          file = _this5.update(file, { iframe: iframe });
+
+          // 不存在
+          if (!file) {
+            return reject('not_exists');
+          }
+
+          // 定时检查
+          var interval = setInterval(function () {
+            file = _this5.get(file);
+            if (file && file.fileObject && !file.success && !file.error && file.active) {
+              return;
+            }
+
+            if (interval) {
+              clearInterval(interval);
+              interval = false;
+            }
+
+            iframe.onabort({ type: file ? 'abort' : 'not_exists' });
+          }, 100);
+
+          var complete = void 0;
+          var fn = function fn(e) {
+            // 已经处理过了
+            if (complete) {
+              return;
+            }
+            complete = true;
+
+            if (interval) {
+              clearInterval(interval);
+              interval = false;
+            }
+
+            // 关闭 esc 事件
+            document.body.removeEventListener('keydown', onKeydown);
+
+            file = _this5.get(file);
+
+            // 不存在直接响应
+            if (!file) {
+              return reject('not_exists');
+            }
+
+            // 不是文件对象
+            if (!file.fileObject) {
+              return reject('file_object');
+            }
+
+            // 有错误自动响应
+            if (file.error) {
+              return reject(file.error);
+            }
+
+            // 未激活
+            if (!file.active) {
+              return reject('abort');
+            }
+
+            // 已完成 直接相应
+            if (file.success) {
+              return resolve(file);
+            }
+
+            var response = getResponseData();
+            var data = {};
+            switch (e.type) {
+              case 'abort':
+                data.error = 'abort';
+                break;
+              case 'error':
+                if (file.error) {
+                  data.error = file.error;
+                } else if (response === null) {
+                  data.error = 'network';
+                } else {
+                  data.error = 'denied';
+                }
+                break;
+              default:
+                if (file.error) {
+                  data.error = file.error;
+                } else if (data === null) {
+                  data.error = 'network';
+                } else {
+                  data.progress = '100.00';
+                }
+            }
+
+            if (response !== null) {
+              if (response && response.substr(0, 1) === '{' && response.substr(response.length - 1, 1) === '}') {
+                try {
+                  response = JSON.parse(response);
+                } catch (err) {}
+              }
+              data.response = response;
+            }
+
+            // 更新
+            file = _this5.update(file, data);
+
+            if (file.error) {
+              return reject(file.error);
+            }
+
+            // 响应
+            return resolve(file);
+          };
+
+          // 添加事件
+          iframe.onload = fn;
+          iframe.onerror = fn;
+          iframe.onabort = fn;
+
+          // 禁止 esc 键
+          document.body.addEventListener('keydown', onKeydown);
+
+          // 提交
+          form.submit();
+        }, 50);
+      }).then(function (res) {
+        iframe.parentNode && iframe.parentNode.removeChild(iframe);
+        return res;
+      }).catch(function (res) {
+        iframe.parentNode && iframe.parentNode.removeChild(iframe);
+        return res;
+      });
+    },
+    watchActive: function watchActive(active) {
+      var file = void 0;
+      var index = 0;
+      while (file = this.files[index]) {
+        index++;
+        if (!file.fileObject) {
+          // 不是文件对象
+        } else if (active && !this.destroy) {
+          if (this.uploading >= this.thread || this.uploading && !this.features.html5) {
+            break;
+          }
+          if (!file.active && !file.error && !file.success) {
+            this.update(file, { active: true });
+          }
+        } else {
+          if (file.active) {
+            this.update(file, { active: false });
+          }
+        }
+      }
+      if (this.uploading === 0) {
+        this.active = false;
+      }
+    },
+    watchDrop: function watchDrop(_el) {
+      var el = _el;
+      if (!this.features.drop) {
+        return;
+      }
+
+      // 移除挂载
+      if (this.dropElement) {
+        try {
+          document.removeEventListener('dragenter', this.onDragenter, false);
+          document.removeEventListener('dragleave', this.onDragleave, false);
+          this.dropElement.removeEventListener('dragover', this.onDragover, false);
+          this.dropElement.removeEventListener('drop', this.onDrop, false);
+        } catch (e) {}
+      }
+
+      if (!el) {
+        el = false;
+      } else if (typeof el === 'string') {
+        el = document.querySelector(el) || this.$root.$el.querySelector(el);
+      } else if (el === true) {
+        el = this.$parent.$el;
+      }
+
+      this.dropElement = el;
+
+      if (this.dropElement) {
+        document.addEventListener('dragenter', this.onDragenter, false);
+        document.addEventListener('dragleave', this.onDragleave, false);
+        this.dropElement.addEventListener('dragover', this.onDragover, false);
+        this.dropElement.addEventListener('drop', this.onDrop, false);
+      }
+    },
+    onDragenter: function onDragenter(e) {
+      e.preventDefault();
+      if (!this.dropActive) {
+        this.dropActive = true;
+      }
+    },
+    onDragleave: function onDragleave(e) {
+      e.preventDefault();
+      if (e.target.nodeName === 'HTML' || e.screenX === 0 && e.screenY === 0 && e.screenY === 0 && !e.fromElement && e.offsetX < 0) {
+        this.dropActive = false;
+      }
+    },
+    onDragover: function onDragover(e) {
+      e.preventDefault();
+    },
+    onDrop: function onDrop(e) {
+      e.preventDefault();
+      this.dropActive = false;
+      this.addDataTransfer(e.dataTransfer);
+    }
+  }
+};
+
+var FileUpload$1 = Object.freeze({
+	default: FileUpload
+});
+
+var require$$0 = ( FileUpload$1 && FileUpload ) || FileUpload$1;
+
+var src = require$$0;
+
+return src;
+
+})));
+//# sourceMappingURL=vue-upload-component.js.map
+
 
 /***/ }),
 
@@ -3303,12 +5405,12 @@ exports.push([module.i, "\nthead.datatable__progress[data-v-c5205e8c] {\n    dis
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_core_js_object_assign__ = __webpack_require__(652);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_core_js_object_assign___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_core_js_object_assign__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_core_js_object_values__ = __webpack_require__(689);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_core_js_object_values__ = __webpack_require__(690);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_core_js_object_values___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_core_js_object_values__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__layouts_Main_vue__ = __webpack_require__(657);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__layouts_Main_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__layouts_Main_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_theme__ = __webpack_require__(650);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__mixins_acl__ = __webpack_require__(693);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__mixins_acl__ = __webpack_require__(689);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__partials_DashPanels_vue__ = __webpack_require__(815);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__partials_DashPanels_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__partials_DashPanels_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_dashboard_CustomerDetails_vue__ = __webpack_require__(818);
@@ -3536,10 +5638,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         var self = this;
         self.fetchPanelStats();
-        Bus.$on('receipt-uploaded', function (order) {
-            var index = _.findIndex(self.items, { id: order.id });
-            self.$set(self.items, index, order);
-            self.current_order = order;
+        Bus.$on('file-uploaded', function (response) {
+            var index = _.findIndex(self.items, { id: response.order.id });
+            self.$set(self.items, index, response.order);
+            self.current_order = response.order;
         });
     },
 
@@ -3726,6 +5828,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         setCurrentOrder: function setCurrentOrder(order) {
             this.dialog = true;
             this.current_order = order;
+            Bus.$emit('set-order', this.current_order);
             /* Check for Shipment Type if Meet Up Or Pick Up Remove Shipping Details From Tabs */
             var customer = __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_core_js_object_assign___default()({ name: 'customer details', component: 'customer-details' }, JSON.parse(this.current_order.customer_details));
             var shipping = __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_core_js_object_assign___default()({ name: 'shipping details', component: 'shipping-details' }, JSON.parse(this.current_order.shipping_details));
@@ -6042,7 +8145,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_acl__ = __webpack_require__(693);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_acl__ = __webpack_require__(689);
 //
 //
 //
@@ -6735,7 +8838,7 @@ var normalizeComponent = __webpack_require__(310)
 /* script */
 var __vue_script__ = __webpack_require__(839)
 /* template */
-var __vue_template__ = __webpack_require__(842)
+var __vue_template__ = __webpack_require__(840)
 /* styles */
 var __vue_styles__ = null
 /* scopeId */
@@ -6779,9 +8882,9 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__xkeshi_image_compressor__ = __webpack_require__(840);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__xkeshi_image_compressor__ = __webpack_require__(694);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__xkeshi_image_compressor___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__xkeshi_image_compressor__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_upload_component__ = __webpack_require__(841);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_upload_component__ = __webpack_require__(695);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_upload_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue_upload_component__);
 //
 //
@@ -7039,7 +9142,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         /* Add Passport Access Token */
         self.headers['Authorization'] = 'Bearer ' + this.$cookie.get('access_token');
         /* change post URL */
-        self.postAction = route('api.media.receiptUploader', { order: this.order.id });
+        /* Hack For Missing Order On FileUploader Component */
+        Bus.$on('set-order', function (order) {
+            self.postAction = route('api.media.receiptUploader', { order: order.id });
+        });
     },
     data: function data() {
         return {
@@ -7145,8 +9251,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         // add, update, remove File Event
         inputFile: function inputFile(newFile, oldFile) {
             if (newFile && oldFile) {
-                console.log('added new file', newFile, oldFile);
-
                 if (newFile.active && !oldFile.active) {
                     // beforeSend
 
@@ -7156,12 +9260,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     }
                 }
 
-                if (newFile.progress !== oldFile.progress) {
-                    console.log('progress', newFile.progress);
-                }
+                if (newFile.progress !== oldFile.progress) {}
 
                 if (newFile.error && !oldFile.error) {
-                    console.log(newFile.response.message);
                     if (newFile.response.message) {
                         vm.$popup({ message: newFile.response.message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' });
                     } else {
@@ -7170,7 +9271,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 }
 
                 if (newFile.success && !oldFile.success) {
-                    Bus.$emit('receipt-uploaded', newFile.response.order);
+                    Bus.$emit('file-uploaded', newFile.response.order);
                     vm.$popup({ message: newFile.response.message, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' });
                 }
             }
@@ -7198,2108 +9299,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /***/ }),
 
 /***/ 840:
-/***/ (function(module, exports, __webpack_require__) {
-
-/*!
- * Image Compressor v0.5.2
- * https://github.com/xkeshi/image-compressor
- *
- * Copyright (c) 2017 Xkeshi
- * Released under the MIT license
- *
- * Date: 2017-10-09T02:40:37.129Z
- */
-
-(function (global, factory) {
-	 true ? module.exports = factory() :
-	typeof define === 'function' && define.amd ? define(factory) :
-	(global.ImageCompressor = factory());
-}(this, (function () { 'use strict';
-
-function createCommonjsModule(fn, module) {
-	return module = { exports: {} }, fn(module, module.exports), module.exports;
-}
-
-var canvasToBlob = createCommonjsModule(function (module) {
-/*
- * JavaScript Canvas to Blob
- * https://github.com/blueimp/JavaScript-Canvas-to-Blob
- *
- * Copyright 2012, Sebastian Tschan
- * https://blueimp.net
- *
- * Licensed under the MIT license:
- * https://opensource.org/licenses/MIT
- *
- * Based on stackoverflow user Stoive's code snippet:
- * http://stackoverflow.com/q/4998908
- */
-
-/* global atob, Blob, define */
-
-(function (window) {
-  'use strict';
-
-  var CanvasPrototype =
-    window.HTMLCanvasElement && window.HTMLCanvasElement.prototype;
-  var hasBlobConstructor =
-    window.Blob &&
-    (function () {
-      try {
-        return Boolean(new Blob())
-      } catch (e) {
-        return false
-      }
-    })();
-  var hasArrayBufferViewSupport =
-    hasBlobConstructor &&
-    window.Uint8Array &&
-    (function () {
-      try {
-        return new Blob([new Uint8Array(100)]).size === 100
-      } catch (e) {
-        return false
-      }
-    })();
-  var BlobBuilder =
-    window.BlobBuilder ||
-    window.WebKitBlobBuilder ||
-    window.MozBlobBuilder ||
-    window.MSBlobBuilder;
-  var dataURIPattern = /^data:((.*?)(;charset=.*?)?)(;base64)?,/;
-  var dataURLtoBlob =
-    (hasBlobConstructor || BlobBuilder) &&
-    window.atob &&
-    window.ArrayBuffer &&
-    window.Uint8Array &&
-    function (dataURI) {
-      var matches,
-        mediaType,
-        isBase64,
-        dataString,
-        byteString,
-        arrayBuffer,
-        intArray,
-        i,
-        bb;
-      // Parse the dataURI components as per RFC 2397
-      matches = dataURI.match(dataURIPattern);
-      if (!matches) {
-        throw new Error('invalid data URI')
-      }
-      // Default to text/plain;charset=US-ASCII
-      mediaType = matches[2]
-        ? matches[1]
-        : 'text/plain' + (matches[3] || ';charset=US-ASCII');
-      isBase64 = !!matches[4];
-      dataString = dataURI.slice(matches[0].length);
-      if (isBase64) {
-        // Convert base64 to raw binary data held in a string:
-        byteString = atob(dataString);
-      } else {
-        // Convert base64/URLEncoded data component to raw binary:
-        byteString = decodeURIComponent(dataString);
-      }
-      // Write the bytes of the string to an ArrayBuffer:
-      arrayBuffer = new ArrayBuffer(byteString.length);
-      intArray = new Uint8Array(arrayBuffer);
-      for (i = 0; i < byteString.length; i += 1) {
-        intArray[i] = byteString.charCodeAt(i);
-      }
-      // Write the ArrayBuffer (or ArrayBufferView) to a blob:
-      if (hasBlobConstructor) {
-        return new Blob([hasArrayBufferViewSupport ? intArray : arrayBuffer], {
-          type: mediaType
-        })
-      }
-      bb = new BlobBuilder();
-      bb.append(arrayBuffer);
-      return bb.getBlob(mediaType)
-    };
-  if (window.HTMLCanvasElement && !CanvasPrototype.toBlob) {
-    if (CanvasPrototype.mozGetAsFile) {
-      CanvasPrototype.toBlob = function (callback, type, quality) {
-        var self = this;
-        setTimeout(function () {
-          if (quality && CanvasPrototype.toDataURL && dataURLtoBlob) {
-            callback(dataURLtoBlob(self.toDataURL(type, quality)));
-          } else {
-            callback(self.mozGetAsFile('blob', type));
-          }
-        });
-      };
-    } else if (CanvasPrototype.toDataURL && dataURLtoBlob) {
-      CanvasPrototype.toBlob = function (callback, type, quality) {
-        var self = this;
-        setTimeout(function () {
-          callback(dataURLtoBlob(self.toDataURL(type, quality)));
-        });
-      };
-    }
-  }
-  if (false) {
-    undefined(function () {
-      return dataURLtoBlob
-    });
-  } else if ('object' === 'object' && module.exports) {
-    module.exports = dataURLtoBlob;
-  } else {
-    window.dataURLtoBlob = dataURLtoBlob;
-  }
-})(window);
-});
-
-/* globals Blob */
-'use strict';
-var toString = Object.prototype.toString;
-
-var isBlob = function (x) {
-	return x instanceof Blob || toString.call(x) === '[object Blob]';
-};
-
-var DEFAULTS = {
-  /**
-   * Indicates if read the image's Exif Orientation information,
-   * and then rotate or flip the image automatically.
-   * @type {boolean}
-   */
-  checkOrientation: true,
-
-  /**
-   * The max width of the output image.
-   * @type {number}
-   */
-  maxWidth: Infinity,
-
-  /**
-   * The max height of the output image.
-   * @type {number}
-   */
-  maxHeight: Infinity,
-
-  /**
-   * The min width of the output image.
-   * @type {number}
-   */
-  minWidth: 0,
-
-  /**
-   * The min height of the output image.
-   * @type {number}
-   */
-  minHeight: 0,
-
-  /**
-   * The width of the output image.
-   * If not specified, the natural width of the source image will be used.
-   * @type {number}
-   */
-  width: undefined,
-
-  /**
-   * The height of the output image.
-   * If not specified, the natural height of the source image will be used.
-   * @type {number}
-   */
-  height: undefined,
-
-  /**
-   * The quality of the output image.
-   * It must be a number between `0` and `1`,
-   * and only available for `image/jpeg` and `image/webp` images.
-   * Check out {@link https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toBlob canvas.toBlob}.
-   * @type {number}
-   */
-  quality: 0.8,
-
-  /**
-   * The mime type of the output image.
-   * By default, the original mime type of the source image file will be used.
-   * @type {string}
-   */
-  mimeType: 'auto',
-
-  /**
-   * PNG files over this value (5M by default) will be converted to JPEGs.
-   * To disable this, just set the value to `Infinity`.
-   * Check out {@link https://github.com/xkeshi/image-compressor/issues/2 #2}.
-   * @type {number}
-   */
-  convertSize: 5000000,
-
-  /**
-   * The success callback for the image compressing process.
-   * @type {Function}
-   * @param {File} file - The compressed image File object.
-   * @example
-   * function (file) { console.log(file) }
-   */
-  success: null,
-
-  /**
-   * The error callback for the image compressing process.
-   * @type {Function}
-   * @param {Error} err - An Error object.
-   * @example
-   * function (err) { console.log(err.message) }
-   */
-  error: null
-};
-
-var REGEXP_IMAGE_TYPE = /^image\/.+$/;
-
-/**
- * Check if the given value is a mime type of image.
- * @param {*} value - The value to check.
- * @returns {boolean} Returns `true` if the given is a mime type of image, else `false`.
- */
-function isImageType(value) {
-  return REGEXP_IMAGE_TYPE.test(value);
-}
-
-/**
- * Convert image type to extension.
- * @param {string} value - The image type to convert.
- * @param {boolean} [includeDot=true] - Include a leading dot or not.
- * @returns {boolean} Returns the image extension.
- */
-function imageTypeToExtension(value) {
-  var includeDot = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
-
-  var extension = isImageType(value) ? value.substr(6) : '';
-
-  if (extension === 'jpeg') {
-    extension = 'jpg';
-  }
-
-  if (extension && includeDot) {
-    extension = '.' + extension;
-  }
-
-  return extension;
-}
-
-var fromCharCode = String.fromCharCode;
-
-/**
- * Get string from char code in data view.
- * @param {DataView} dataView - The data view for read.
- * @param {number} start - The start index.
- * @param {number} length - The read length.
- * @returns {string} The read result.
- */
-
-function getStringFromCharCode(dataView, start, length) {
-  var str = '';
-  var i = void 0;
-
-  length += start;
-
-  for (i = start; i < length; i += 1) {
-    str += fromCharCode(dataView.getUint8(i));
-  }
-
-  return str;
-}
-
-var _window$1 = window;
-var btoa = _window$1.btoa;
-
-/**
- * Transform array buffer to Data URL.
- * @param {ArrayBuffer} arrayBuffer - The array buffer to transform.
- * @param {string} mimeType - The mime type of the Data URL.
- * @returns {string} The result Data URL.
- */
-
-function arrayBufferToDataURL(arrayBuffer, mimeType) {
-  var uint8 = new Uint8Array(arrayBuffer);
-  var length = uint8.length;
-
-  var data = '';
-  var i = void 0;
-
-  // TypedArray.prototype.forEach is not supported in some browsers.
-  for (i = 0; i < length; i += 1) {
-    data += fromCharCode(uint8[i]);
-  }
-
-  return 'data:' + mimeType + ';base64,' + btoa(data);
-}
-
-/**
- * Get orientation value from given array buffer.
- * @param {ArrayBuffer} arrayBuffer - The array buffer to read.
- * @returns {number} The read orientation value.
- */
-function getOrientation(arrayBuffer) {
-  var dataView = new DataView(arrayBuffer);
-  var orientation = void 0;
-  var littleEndian = void 0;
-  var app1Start = void 0;
-  var ifdStart = void 0;
-
-  // Only handle JPEG image (start by 0xFFD8)
-  if (dataView.getUint8(0) === 0xFF && dataView.getUint8(1) === 0xD8) {
-    var length = dataView.byteLength;
-    var offset = 2;
-
-    while (offset < length) {
-      if (dataView.getUint8(offset) === 0xFF && dataView.getUint8(offset + 1) === 0xE1) {
-        app1Start = offset;
-        break;
-      }
-
-      offset += 1;
-    }
-  }
-
-  if (app1Start) {
-    var exifIDCode = app1Start + 4;
-    var tiffOffset = app1Start + 10;
-
-    if (getStringFromCharCode(dataView, exifIDCode, 4) === 'Exif') {
-      var endianness = dataView.getUint16(tiffOffset);
-
-      littleEndian = endianness === 0x4949;
-
-      if (littleEndian || endianness === 0x4D4D /* bigEndian */) {
-          if (dataView.getUint16(tiffOffset + 2, littleEndian) === 0x002A) {
-            var firstIFDOffset = dataView.getUint32(tiffOffset + 4, littleEndian);
-
-            if (firstIFDOffset >= 0x00000008) {
-              ifdStart = tiffOffset + firstIFDOffset;
-            }
-          }
-        }
-    }
-  }
-
-  if (ifdStart) {
-    var _length = dataView.getUint16(ifdStart, littleEndian);
-    var _offset = void 0;
-    var i = void 0;
-
-    for (i = 0; i < _length; i += 1) {
-      _offset = ifdStart + i * 12 + 2;
-
-      if (dataView.getUint16(_offset, littleEndian) === 0x0112 /* Orientation */) {
-          // 8 is the offset of the current tag's value
-          _offset += 8;
-
-          // Get the original orientation value
-          orientation = dataView.getUint16(_offset, littleEndian);
-
-          // Override the orientation with its default value
-          dataView.setUint16(_offset, 1, littleEndian);
-          break;
-        }
-    }
-  }
-
-  return orientation;
-}
-
-/**
- * Parse Exif Orientation value.
- * @param {number} orientation - The orientation to parse.
- * @returns {Object} The parsed result.
- */
-function parseOrientation(orientation) {
-  var rotate = 0;
-  var scaleX = 1;
-  var scaleY = 1;
-
-  switch (orientation) {
-    // Flip horizontal
-    case 2:
-      scaleX = -1;
-      break;
-
-    // Rotate left 180°
-    case 3:
-      rotate = -180;
-      break;
-
-    // Flip vertical
-    case 4:
-      scaleY = -1;
-      break;
-
-    // Flip vertical and rotate right 90°
-    case 5:
-      rotate = 90;
-      scaleY = -1;
-      break;
-
-    // Rotate right 90°
-    case 6:
-      rotate = 90;
-      break;
-
-    // Flip horizontal and rotate right 90°
-    case 7:
-      rotate = 90;
-      scaleX = -1;
-      break;
-
-    // Rotate left 90°
-    case 8:
-      rotate = -90;
-      break;
-
-    default:
-  }
-
-  return {
-    rotate: rotate,
-    scaleX: scaleX,
-    scaleY: scaleY
-  };
-}
-
-var asyncGenerator = function () {
-  function AwaitValue(value) {
-    this.value = value;
-  }
-
-  function AsyncGenerator(gen) {
-    var front, back;
-
-    function send(key, arg) {
-      return new Promise(function (resolve, reject) {
-        var request = {
-          key: key,
-          arg: arg,
-          resolve: resolve,
-          reject: reject,
-          next: null
-        };
-
-        if (back) {
-          back = back.next = request;
-        } else {
-          front = back = request;
-          resume(key, arg);
-        }
-      });
-    }
-
-    function resume(key, arg) {
-      try {
-        var result = gen[key](arg);
-        var value = result.value;
-
-        if (value instanceof AwaitValue) {
-          Promise.resolve(value.value).then(function (arg) {
-            resume("next", arg);
-          }, function (arg) {
-            resume("throw", arg);
-          });
-        } else {
-          settle(result.done ? "return" : "normal", result.value);
-        }
-      } catch (err) {
-        settle("throw", err);
-      }
-    }
-
-    function settle(type, value) {
-      switch (type) {
-        case "return":
-          front.resolve({
-            value: value,
-            done: true
-          });
-          break;
-
-        case "throw":
-          front.reject(value);
-          break;
-
-        default:
-          front.resolve({
-            value: value,
-            done: false
-          });
-          break;
-      }
-
-      front = front.next;
-
-      if (front) {
-        resume(front.key, front.arg);
-      } else {
-        back = null;
-      }
-    }
-
-    this._invoke = send;
-
-    if (typeof gen.return !== "function") {
-      this.return = undefined;
-    }
-  }
-
-  if (typeof Symbol === "function" && Symbol.asyncIterator) {
-    AsyncGenerator.prototype[Symbol.asyncIterator] = function () {
-      return this;
-    };
-  }
-
-  AsyncGenerator.prototype.next = function (arg) {
-    return this._invoke("next", arg);
-  };
-
-  AsyncGenerator.prototype.throw = function (arg) {
-    return this._invoke("throw", arg);
-  };
-
-  AsyncGenerator.prototype.return = function (arg) {
-    return this._invoke("return", arg);
-  };
-
-  return {
-    wrap: function (fn) {
-      return function () {
-        return new AsyncGenerator(fn.apply(this, arguments));
-      };
-    },
-    await: function (value) {
-      return new AwaitValue(value);
-    }
-  };
-}();
-
-
-
-
-
-var classCallCheck = function (instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-};
-
-var createClass = function () {
-  function defineProperties(target, props) {
-    for (var i = 0; i < props.length; i++) {
-      var descriptor = props[i];
-      descriptor.enumerable = descriptor.enumerable || false;
-      descriptor.configurable = true;
-      if ("value" in descriptor) descriptor.writable = true;
-      Object.defineProperty(target, descriptor.key, descriptor);
-    }
-  }
-
-  return function (Constructor, protoProps, staticProps) {
-    if (protoProps) defineProperties(Constructor.prototype, protoProps);
-    if (staticProps) defineProperties(Constructor, staticProps);
-    return Constructor;
-  };
-}();
-
-
-
-
-
-
-
-var _extends = Object.assign || function (target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i];
-
-    for (var key in source) {
-      if (Object.prototype.hasOwnProperty.call(source, key)) {
-        target[key] = source[key];
-      }
-    }
-  }
-
-  return target;
-};
-
-var _window = window;
-var ArrayBuffer$1 = _window.ArrayBuffer;
-var FileReader = _window.FileReader;
-
-var URL = window.URL || window.webkitURL;
-var REGEXP_EXTENSION = /\.\w+$/;
-
-/**
- * Creates a new image compressor.
- * @class
- */
-
-var ImageCompressor = function () {
-  /**
-   * The constructor of ImageCompressor.
-   * @param {File|Blob} file - The target image file for compressing.
-   * @param {Object} [options] - The options for compressing.
-   */
-  function ImageCompressor(file, options) {
-    classCallCheck(this, ImageCompressor);
-
-    this.result = null;
-
-    if (file) {
-      this.compress(file, options);
-    }
-  }
-
-  /**
-   * The main compress method.
-   * @param {File|Blob} file - The target image file for compressing.
-   * @param {Object} [options] - The options for compressing.
-   * @returns {Promise} - A Promise instance.
-   */
-
-
-  createClass(ImageCompressor, [{
-    key: 'compress',
-    value: function compress(file, options) {
-      var _this = this;
-
-      var image = new Image();
-
-      options = _extends({}, DEFAULTS, options);
-
-      if (!ArrayBuffer$1) {
-        options.checkOrientation = false;
-      }
-
-      return new Promise(function (resolve, reject) {
-        if (!isBlob(file)) {
-          reject(new Error('The first argument must be a File or Blob object.'));
-          return;
-        }
-
-        var mimeType = file.type;
-
-        if (!isImageType(mimeType)) {
-          reject(new Error('The first argument must be an image File or Blob object.'));
-          return;
-        }
-
-        if (!URL && !FileReader) {
-          reject(new Error('The current browser does not support image compression.'));
-          return;
-        }
-
-        if (URL && !options.checkOrientation) {
-          resolve(URL.createObjectURL(file));
-        } else if (FileReader) {
-          var reader = new FileReader();
-          var checkOrientation = options.checkOrientation && mimeType === 'image/jpeg';
-
-          reader.onload = function (_ref) {
-            var target = _ref.target;
-            var result = target.result;
-
-
-            resolve(checkOrientation ? _extends({
-              url: arrayBufferToDataURL(result, mimeType)
-            }, parseOrientation(getOrientation(result))) : {
-              url: result
-            });
-          };
-          reader.onabort = reject;
-          reader.onerror = reject;
-
-          if (checkOrientation) {
-            reader.readAsArrayBuffer(file);
-          } else {
-            reader.readAsDataURL(file);
-          }
-        }
-      }).then(function (data) {
-        return new Promise(function (resolve, reject) {
-          image.onload = function () {
-            return resolve(_extends({}, data, {
-              naturalWidth: image.naturalWidth,
-              naturalHeight: image.naturalHeight
-            }));
-          };
-          image.onabort = reject;
-          image.onerror = reject;
-          image.alt = file.name;
-          image.src = data.url;
-        });
-      }).then(function (_ref2) {
-        var naturalWidth = _ref2.naturalWidth,
-            naturalHeight = _ref2.naturalHeight,
-            _ref2$rotate = _ref2.rotate,
-            rotate = _ref2$rotate === undefined ? 0 : _ref2$rotate,
-            _ref2$scaleX = _ref2.scaleX,
-            scaleX = _ref2$scaleX === undefined ? 1 : _ref2$scaleX,
-            _ref2$scaleY = _ref2.scaleY,
-            scaleY = _ref2$scaleY === undefined ? 1 : _ref2$scaleY;
-        return new Promise(function (resolve) {
-          var canvas = document.createElement('canvas');
-          var context = canvas.getContext('2d');
-          var aspectRatio = naturalWidth / naturalHeight;
-          var maxWidth = Math.max(options.maxWidth, 0) || Infinity;
-          var maxHeight = Math.max(options.maxHeight, 0) || Infinity;
-          var minWidth = Math.max(options.minWidth, 0) || 0;
-          var minHeight = Math.max(options.minHeight, 0) || 0;
-          var width = naturalWidth;
-          var height = naturalHeight;
-
-          if (maxWidth < Infinity && maxHeight < Infinity) {
-            if (maxHeight * aspectRatio > maxWidth) {
-              maxHeight = maxWidth / aspectRatio;
-            } else {
-              maxWidth = maxHeight * aspectRatio;
-            }
-          } else if (maxWidth < Infinity) {
-            maxHeight = maxWidth / aspectRatio;
-          } else if (maxHeight < Infinity) {
-            maxWidth = maxHeight * aspectRatio;
-          }
-
-          if (minWidth > 0 && minHeight > 0) {
-            if (minHeight * aspectRatio > minWidth) {
-              minHeight = minWidth / aspectRatio;
-            } else {
-              minWidth = minHeight * aspectRatio;
-            }
-          } else if (minWidth > 0) {
-            minHeight = minWidth / aspectRatio;
-          } else if (minHeight > 0) {
-            minWidth = minHeight * aspectRatio;
-          }
-
-          if (options.width > 0) {
-            var _options = options;
-            width = _options.width;
-
-            height = width / aspectRatio;
-          } else if (options.height > 0) {
-            var _options2 = options;
-            height = _options2.height;
-
-            width = height * aspectRatio;
-          }
-
-          width = Math.min(Math.max(width, minWidth), maxWidth);
-          height = Math.min(Math.max(height, minHeight), maxHeight);
-
-          var destX = -width / 2;
-          var destY = -height / 2;
-          var destWidth = width;
-          var destHeight = height;
-
-          if (Math.abs(rotate) % 180 === 90) {
-            var _width$height = {
-              width: height,
-              height: width
-            };
-            width = _width$height.width;
-            height = _width$height.height;
-          }
-
-          canvas.width = width;
-          canvas.height = height;
-
-          // Override the default fill color (#000, black)
-          context.fillStyle = 'transparent';
-          context.fillRect(0, 0, width, height);
-          context.save();
-          context.translate(width / 2, height / 2);
-          context.rotate(rotate * Math.PI / 180);
-          context.scale(scaleX, scaleY);
-          context.drawImage(image, Math.floor(destX), Math.floor(destY), Math.floor(destWidth), Math.floor(destHeight));
-          context.restore();
-
-          if (!isImageType(options.mimeType)) {
-            options.mimeType = file.type;
-          }
-
-          // Converts PNG files over the `convertSize` to JPEGs.
-          if (file.size > options.convertSize && options.mimeType === 'image/png') {
-            options.mimeType = 'image/jpeg';
-          }
-
-          if (canvas.toBlob) {
-            canvas.toBlob(resolve, options.mimeType, options.quality);
-          } else {
-            resolve(canvasToBlob(canvas.toDataURL(options.mimeType, options.quality)));
-          }
-        });
-      }).then(function (result) {
-        if (URL) {
-          URL.revokeObjectURL(image.src);
-        }
-
-        if (result) {
-          // Returns original file if the result is greater than it and without size related options
-          if (result.size > file.size && !(options.width > 0 || options.height > 0 || options.maxWidth < Infinity || options.maxHeight < Infinity || options.minWidth > 0 || options.minHeight > 0)) {
-            result = file;
-          } else {
-            var date = new Date();
-
-            result.lastModified = date.getTime();
-            result.lastModifiedDate = date;
-            result.name = file.name;
-
-            // Convert the extension to match its type
-            if (result.name && result.type !== file.type) {
-              result.name = result.name.replace(REGEXP_EXTENSION, imageTypeToExtension(result.type));
-            }
-          }
-        } else {
-          // Returns original file if the result is null in some cases.
-          result = file;
-        }
-
-        _this.result = result;
-
-        if (options.success) {
-          options.success(result);
-        }
-
-        return Promise.resolve(result);
-      }).catch(function (err) {
-        if (!options.error) {
-          throw err;
-        }
-
-        options.error(err);
-      });
-    }
-  }]);
-  return ImageCompressor;
-}();
-
-return ImageCompressor;
-
-})));
-
-
-/***/ }),
-
-/***/ 841:
-/***/ (function(module, exports, __webpack_require__) {
-
-/*!
- * Name: vue-upload-component
- * Version: 2.6.3
- * Author: LianYue
- */
-(function (global, factory) {
-	 true ? module.exports = factory() :
-	typeof define === 'function' && define.amd ? define(factory) :
-	(global.VueUploadComponent = factory());
-}(this, (function () { 'use strict';
-
-(function () {
-  if (typeof document !== 'undefined') {
-    var head = document.head || document.getElementsByTagName('head')[0],
-        style = document.createElement('style'),
-        css = "";style.type = 'text/css';if (style.styleSheet) {
-      style.styleSheet.cssText = css;
-    } else {
-      style.appendChild(document.createTextNode(css));
-    }head.appendChild(style);
-  }
-})();
-
-var InputFile = { render: function render() {
-    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('input', { attrs: { "type": "file", "name": _vm.$parent.name, "id": _vm.$parent.inputId || _vm.$parent.name, "accept": _vm.$parent.accept, "webkitdirectory": _vm.$parent.directory && _vm.$parent.features.directory, "directory": _vm.$parent.directory && _vm.$parent.features.directory, "multiple": _vm.$parent.multiple && _vm.$parent.features.html5 }, on: { "change": _vm.change } });
-  }, staticRenderFns: [],
-  methods: {
-    change: function change(e) {
-      this.$destroy();
-      this.$parent.addInputFile(e.target);
-      // eslint-disable-next-line
-      new this.constructor({
-        parent: this.$parent,
-        el: this.$el
-      });
-    }
-  }
-};
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
-(function () {
-  if (typeof document !== 'undefined') {
-    var head = document.head || document.getElementsByTagName('head')[0],
-        style = document.createElement('style'),
-        css = " .file-uploads { overflow: hidden; position: relative; text-align: center; display: inline-block; } .file-uploads.file-uploads-html4 input[type=\"file\"] { opacity: 0; font-size: 20em; z-index: 1; top: 0; left: 0; right: 0; bottom: 0; position: absolute; width: 100%; height: 100%; } .file-uploads.file-uploads-html5 input[type=\"file\"] { overflow: hidden; position: fixed; width: 1px; height: 1px; z-index: -1; opacity: 0; } ";style.type = 'text/css';if (style.styleSheet) {
-      style.styleSheet.cssText = css;
-    } else {
-      style.appendChild(document.createTextNode(css));
-    }head.appendChild(style);
-  }
-})();
-
-var FileUpload = { render: function render() {
-    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('label', { class: _vm.className }, [_vm._t("default"), _vm._v(" "), _c('input-file')], 2);
-  }, staticRenderFns: [],
-  components: {
-    InputFile: InputFile
-  },
-  props: {
-    inputId: {
-      type: String
-    },
-
-    name: {
-      type: String,
-      default: 'file'
-    },
-
-    accept: {
-      type: String
-    },
-
-    multiple: {
-      type: Boolean
-    },
-
-    addIndex: {
-      type: [Boolean, Number]
-    },
-
-    directory: {
-      type: Boolean
-    },
-
-    postAction: {
-      type: String
-    },
-
-    putAction: {
-      type: String
-    },
-
-    headers: {
-      type: Object,
-      default: Object
-    },
-
-    data: {
-      type: Object,
-      default: Object
-    },
-
-    timeout: {
-      type: Number,
-      default: 0
-    },
-
-    drop: {
-      default: false
-    },
-
-    dropDirectory: {
-      type: Boolean,
-      default: true
-    },
-
-    size: {
-      type: Number,
-      default: 0
-    },
-
-    extensions: {
-      default: Array
-    },
-
-    value: {
-      type: Array,
-      default: Array
-    },
-
-    thread: {
-      type: Number,
-      default: 1
-    }
-  },
-
-  data: function data() {
-    return {
-      files: this.value,
-      features: {
-        html5: true,
-        directory: false,
-        drag: false
-      },
-
-      active: false,
-      dropActive: false,
-
-      uploading: 0,
-
-      destroy: false
-    };
-  },
-
-
-  /**
-   * mounted
-   * @return {[type]} [description]
-   */
-  mounted: function mounted() {
-    var input = document.createElement('input');
-    input.type = 'file';
-    input.multiple = true;
-
-    // html5 特征
-    if (window.FormData && input.files) {
-      // 上传目录特征
-      if (typeof input.webkitdirectory === 'boolean' || typeof input.directory === 'boolean') {
-        this.features.directory = true;
-      }
-
-      // 拖拽特征
-      if (this.features.html5 && typeof input.ondrop !== 'undefined') {
-        this.features.drop = true;
-      }
-    } else {
-      this.features.html5 = false;
-    }
-
-    // files 定位缓存
-    this.maps = {};
-
-    this.$nextTick(function () {
-
-      // 更新下父级
-      if (this.$parent) {
-        this.$parent.$forceUpdate();
-      }
-
-      // 拖拽渲染
-      this.watchDrop(this.drop);
-    });
-  },
-
-
-  /**
-   * beforeDestroy
-   * @return {[type]} [description]
-   */
-  beforeDestroy: function beforeDestroy() {
-    // 已销毁
-    this.destroy = true;
-
-    // 设置成不激活
-    this.active = false;
-  },
-
-
-  computed: {
-    /**
-     * uploading 正在上传的线程
-     * @return {[type]} [description]
-     */
-
-    /**
-     * uploaded 文件列表是否全部已上传
-     * @return {[type]} [description]
-     */
-    uploaded: function uploaded() {
-      var file = void 0;
-      for (var i = 0; i < this.files.length; i++) {
-        file = this.files[i];
-        if (file.fileObject && !file.error && !file.success) {
-          return false;
-        }
-      }
-      return true;
-    },
-    className: function className() {
-      return ['file-uploads', this.features.html5 ? 'file-uploads-html5' : 'file-uploads-html4', this.features.directory && this.directory ? 'file-uploads-directory' : undefined, this.features.drop && this.drop ? 'file-uploads-drop' : undefined];
-    }
-  },
-
-  watch: {
-    active: function active(_active) {
-      this.watchActive(_active);
-    },
-    dropActive: function dropActive() {
-      if (this.$parent) {
-        this.$parent.$forceUpdate();
-      }
-    },
-    drop: function drop(value) {
-      this.watchDrop(value);
-    },
-    value: function value(files) {
-      if (this.files === files) {
-        return;
-      }
-      this.files = files;
-
-      var oldMaps = this.maps;
-
-      // 重写 maps 缓存
-      this.maps = {};
-      for (var i = 0; i < this.files.length; i++) {
-        var file = this.files[i];
-        this.maps[file.id] = file;
-      }
-
-      // add, update
-      for (var key in this.maps) {
-        var newFile = this.maps[key];
-        var oldFile = oldMaps[key];
-        if (newFile !== oldFile) {
-          this.emitFile(newFile, oldFile);
-        }
-      }
-
-      // delete
-      for (var _key in oldMaps) {
-        if (!this.maps[_key]) {
-          this.emitFile(undefined, oldMaps[_key]);
-        }
-      }
-    }
-  },
-
-  methods: {
-
-    // 清空
-    clear: function clear() {
-      if (this.files.length) {
-        var files = this.files;
-        this.files = [];
-
-        // 定位
-        this.maps = {};
-
-        // 事件
-        this.emitInput();
-        for (var i = 0; i < files.length; i++) {
-          this.emitFile(undefined, files[i]);
-        }
-      }
-      return true;
-    },
-
-
-    // 选择
-    get: function get(id) {
-      if (!id) {
-        return false;
-      }
-
-      if ((typeof id === 'undefined' ? 'undefined' : _typeof(id)) === 'object') {
-        return this.maps[id.id] || false;
-      }
-
-      return this.maps[id] || false;
-    },
-
-
-    // 添加
-    add: function add(_files) {
-      var index = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.addIndex;
-
-      var files = _files;
-      var isArray = files instanceof Array;
-
-      // 不是数组整理成数组
-      if (!isArray) {
-        files = [files];
-      }
-
-      // 遍历规范对象
-      var addFiles = [];
-      for (var i = 0; i < files.length; i++) {
-        var file = files[i];
-        if (this.features.html5 && file instanceof Blob) {
-          file = {
-            file: file,
-            size: file.size,
-            name: file.webkitRelativePath || file.relativePath || file.name || 'unknown',
-            type: file.type
-          };
-        }
-        var fileObject = false;
-        if (file.fileObject === false) {
-          // false
-        } else if (file.fileObject) {
-          fileObject = true;
-        } else if (typeof Element !== 'undefined' && file.el instanceof Element) {
-          fileObject = true;
-        } else if (typeof Blob !== 'undefined' && file.file instanceof Blob) {
-          fileObject = true;
-        }
-        if (fileObject) {
-          file = _extends({
-            fileObject: true,
-            size: -1,
-            name: 'Filename',
-            type: '',
-            active: false,
-            error: '',
-            success: false,
-            putAction: this.putAction,
-            postAction: this.postAction,
-            timeout: this.timeout
-          }, file, {
-            response: {},
-
-            progress: '0.00', // 只读
-            speed: 0 // 只读
-            // xhr: false,                // 只读
-            // iframe: false,             // 只读
-          });
-
-          file.data = _extends({}, this.data, file.data ? file.data : {});
-
-          file.headers = _extends({}, this.headers, file.headers ? file.headers : {});
-        }
-
-        // 必须包含 id
-        if (!file.id) {
-          file.id = Math.random().toString(36).substr(2);
-        }
-
-        if (this.emitFilter(file, undefined)) {
-          continue;
-        }
-
-        addFiles.push(file);
-
-        // 只允许单个文件
-        if (!this.multiple) {
-          break;
-        }
-      }
-
-      // 没有文件
-      if (!addFiles.length) {
-        return false;
-      }
-
-      // 只允许单个文件 删除所有
-      if (!this.multiple) {
-        this.clear();
-      }
-
-      // 添加进去 files
-      var newFiles = void 0;
-      if (index === true || index === 0) {
-        newFiles = addFiles.concat(this.files);
-      } else if (index) {
-        newFiles = addFiles.concat([]);
-        newFiles.splice(index, 0, addFiles);
-      } else {
-        newFiles = this.files.concat(addFiles);
-      }
-
-      this.files = newFiles;
-
-      // 定位
-      for (var _i = 0; _i < addFiles.length; _i++) {
-        var _file2 = addFiles[_i];
-        this.maps[_file2.id] = _file2;
-      }
-
-      // 事件
-      this.emitInput();
-      for (var _i2 = 0; _i2 < addFiles.length; _i2++) {
-        this.emitFile(addFiles[_i2], undefined);
-      }
-
-      return isArray ? addFiles : addFiles[0];
-    },
-
-
-    // 添加表单文件
-    addInputFile: function addInputFile(el) {
-      var files = [];
-      if (el.files) {
-        for (var i = 0; i < el.files.length; i++) {
-          var file = el.files[i];
-          files.push({
-            size: file.size,
-            name: file.webkitRelativePath || file.relativePath || file.name,
-            type: file.type,
-            file: file,
-            el: el
-          });
-        }
-      } else {
-        files.push({
-          name: el.value.replace(/^.*?([^\/\\\r\n]+)$/, '$1'),
-          el: el
-        });
-      }
-      return this.add(files);
-    },
-
-
-    // 添加 DataTransfer
-    addDataTransfer: function addDataTransfer(dataTransfer) {
-      var _this = this;
-
-      var files = [];
-      if (dataTransfer.items && dataTransfer.items.length) {
-        var items = [];
-        for (var i = 0; i < dataTransfer.items.length; i++) {
-          var item = dataTransfer.items[i];
-          if (item.getAsEntry) {
-            item = item.getAsEntry();
-          } else if (item.webkitGetAsEntry) {
-            item = item.webkitGetAsEntry();
-          } else {
-            item = item.getAsFile();
-          }
-          if (item) {
-            items.push(item);
-          }
-        }
-
-        return new Promise(function (resolve, reject) {
-          var forEach = function forEach(i) {
-            var item = items[i];
-            // 结束 或者已有文件了
-            if (!item || !_this.multiple && files.length) {
-              return resolve(_this.add(files));
-            }
-            _this.getEntry(item).then(function (results) {
-              files.push.apply(files, _toConsumableArray(results));
-              forEach(i + 1);
-            });
-          };
-          forEach(0);
-        });
-      }
-
-      if (dataTransfer.files.length) {
-        for (var _i3 = 0; _i3 < dataTransfer.files.length; _i3++) {
-          files.push(dataTransfer.files[_i3]);
-          if (!this.multiple) {
-            break;
-          }
-        }
-        return Promise.resolve(this.add(files));
-      }
-
-      return Promise.resolve([]);
-    },
-
-
-    // 获得 entry
-    getEntry: function getEntry(entry) {
-      var _this2 = this;
-
-      var path = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
-
-      return new Promise(function (resolve, reject) {
-        if (entry.isFile) {
-          entry.file(function (file) {
-            resolve([{
-              size: file.size,
-              name: path + file.name,
-              type: file.type,
-              file: file
-            }]);
-          });
-        } else if (entry.isDirectory && _this2.dropDirectory) {
-          entry.createReader().readEntries(function (entries) {
-            var files = [];
-            var forEach = function forEach(i) {
-              if (!entries[i] || files.length && !_this2.multiple) {
-                return resolve(files);
-              }
-              _this2.getEntry(entries[i], path + entry.name + '/').then(function (results) {
-                files.push.apply(files, _toConsumableArray(results));
-                forEach(i + 1);
-              });
-            };
-            forEach(0);
-          });
-        } else {
-          resolve([]);
-        }
-      });
-    },
-    replace: function replace(id1, id2) {
-      var file1 = this.get(id1);
-      var file2 = this.get(id2);
-      if (!file1 || !file2 || file1 === file2) {
-        return false;
-      }
-      var files = this.files.concat([]);
-      var index1 = files.indexOf(file1);
-      var index2 = files.indexOf(file2);
-      if (index1 === -1 || index2 === -1) {
-        return false;
-      }
-      files[index1] = file2;
-      files[index2] = file1;
-      this.files = files;
-      this.emitInput();
-      return true;
-    },
-
-
-    // 移除
-    remove: function remove(id) {
-      var file = this.get(id);
-      if (file) {
-        if (this.emitFilter(undefined, file)) {
-          return false;
-        }
-        var files = this.files.concat([]);
-        var index = files.indexOf(file);
-        if (index === -1) {
-          console.error('remove', file);
-          return false;
-        }
-        files.splice(index, 1);
-        this.files = files;
-
-        // 定位
-        delete this.maps[file.id];
-
-        // 事件
-        this.emitInput();
-        this.emitFile(undefined, file);
-      }
-      return file;
-    },
-
-
-    // 更新
-    update: function update(id, data) {
-      var file = this.get(id);
-      if (file) {
-        var newFile = _extends({}, file, data);
-        // 停用必须加上错误
-        if (file.fileObject && file.active && !newFile.active && !newFile.error && !newFile.success) {
-          newFile.error = 'abort';
-        }
-
-        if (this.emitFilter(newFile, file)) {
-          return false;
-        }
-
-        var files = this.files.concat([]);
-        var index = files.indexOf(file);
-        if (index === -1) {
-          console.error('update', file);
-          return false;
-        }
-        files.splice(index, 1, newFile);
-        this.files = files;
-
-        // 删除  旧定位 写入 新定位 （已便支持修改id)
-        delete this.maps[file.id];
-        this.maps[newFile.id] = newFile;
-
-        // 事件
-        this.emitInput();
-        this.emitFile(newFile, file);
-        return newFile;
-      }
-      return false;
-    },
-
-
-    // 预处理 事件 过滤器
-    emitFilter: function emitFilter(newFile, oldFile) {
-      var isPrevent = false;
-      this.$emit('input-filter', newFile, oldFile, function () {
-        isPrevent = true;
-        return isPrevent;
-      });
-      return isPrevent;
-    },
-
-
-    // 处理后 事件 分发
-    emitFile: function emitFile(newFile, oldFile) {
-      this.$emit('input-file', newFile, oldFile);
-      if (newFile && newFile.fileObject && newFile.active && (!oldFile || !oldFile.active)) {
-        this.uploading++;
-        // 激活
-        this.$nextTick(function () {
-          var _this3 = this;
-
-          setTimeout(function () {
-            _this3.upload(newFile).then(function () {
-              // eslint-disable-next-line
-              newFile = _this3.get(newFile);
-              if (newFile && newFile.fileObject) {
-                _this3.update(newFile, {
-                  active: false,
-                  success: !newFile.error
-                });
-              }
-            }).catch(function (e) {
-              _this3.update(newFile, {
-                active: false,
-                success: false,
-                error: e.code || e.error || e.message || e
-              });
-            });
-          }, parseInt(Math.random() * 50 + 50, 10));
-        });
-      } else if ((!newFile || !newFile.fileObject || !newFile.active) && oldFile && oldFile.fileObject && oldFile.active) {
-        // 停止
-        this.uploading--;
-      }
-
-      // 自动延续激活
-      if (this.active && (Boolean(newFile) !== Boolean(oldFile) || newFile.active !== oldFile.active)) {
-        this.watchActive(true);
-      }
-    },
-    emitInput: function emitInput() {
-      this.$emit('input', this.files);
-    },
-
-
-    // 上传
-    upload: function upload(id) {
-      var file = this.get(id);
-
-      // 被删除
-      if (!file) {
-        return Promise.reject('not_exists');
-      }
-
-      // 不是文件对象
-      if (!file.fileObject) {
-        return Promise.reject('file_object');
-      }
-
-      // 有错误直接响应
-      if (file.error) {
-        return Promise.reject(file.error);
-      }
-
-      // 已完成直接响应
-      if (file.success) {
-        return Promise.resolve(file);
-      }
-
-      // 后缀
-      var extensions = this.extensions;
-      if (extensions && (extensions.length || typeof extensions.length === 'undefined')) {
-        if ((typeof extensions === 'undefined' ? 'undefined' : _typeof(extensions)) !== 'object' || !(extensions instanceof RegExp)) {
-          if (typeof extensions === 'string') {
-            extensions = extensions.split(',').map(function (value) {
-              return value.trim();
-            }).filter(function (value) {
-              return value;
-            });
-          }
-          extensions = new RegExp('\\.(' + extensions.join('|').replace(/\./g, '\\.') + ')$', 'i');
-        }
-        if (file.name.search(extensions) === -1) {
-          return Promise.reject('extension');
-        }
-      }
-
-      // 大小
-      if (this.size > 0 && file.size >= 0 && file.size > this.size) {
-        return Promise.reject('size');
-      }
-
-      if (this.features.html5 && file.putAction) {
-        return this.uploadPut(file);
-      } else if (this.features.html5) {
-        return this.uploadHtml5(file);
-      } else {
-        return this.uploadHtml4(file);
-      }
-    },
-    uploadPut: function uploadPut(file) {
-      var querys = [];
-      var value = void 0;
-      for (var key in file.data) {
-        value = file.data[key];
-        if (value !== null && value !== undefined) {
-          querys.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
-        }
-      }
-      var queryString = querys.length ? (file.putAction.indexOf('?') === -1 ? '?' : '&') + querys.join('&') : '';
-      var xhr = new XMLHttpRequest();
-      xhr.open('PUT', file.putAction + queryString);
-      return this.uploadXhr(xhr, file, file.file);
-    },
-    uploadHtml5: function uploadHtml5(file) {
-      var form = new window.FormData();
-      var value = void 0;
-      for (var key in file.data) {
-        value = file.data[key];
-        if (value && (typeof value === 'undefined' ? 'undefined' : _typeof(value)) === 'object' && typeof value.toString !== 'function') {
-          if (value instanceof File) {
-            form.append(key, value, value.name);
-          } else {
-            form.append(key, JSON.stringify(value));
-          }
-        } else if (value !== null && value !== undefined) {
-          form.append(key, value);
-        }
-      }
-      form.append(this.name, file.file, file.file.filename || file.name);
-      var xhr = new XMLHttpRequest();
-      xhr.open('POST', file.postAction);
-      return this.uploadXhr(xhr, file, form);
-    },
-    uploadXhr: function uploadXhr(xhr, _file, body) {
-      var _this4 = this;
-
-      var file = _file;
-      var speedTime = 0;
-      var speedLoaded = 0;
-
-      // 进度条
-      xhr.upload.onprogress = function (e) {
-        // 还未开始上传 已删除 未激活
-        file = _this4.get(file);
-        if (!e.lengthComputable || !file || !file.fileObject || !file.active) {
-          return;
-        }
-
-        // 进度 速度 每秒更新一次
-        var speedTime2 = Math.round(Date.now() / 1000);
-        if (speedTime2 === speedTime) {
-          return;
-        }
-        speedTime = speedTime2;
-
-        file = _this4.update(file, {
-          progress: (e.loaded / e.total * 100).toFixed(2),
-          speed: e.loaded - speedLoaded
-        });
-        speedLoaded = e.loaded;
-      };
-
-      // 检查激活状态
-      var interval = setInterval(function () {
-        file = _this4.get(file);
-        if (file && file.fileObject && !file.success && !file.error && file.active) {
-          return;
-        }
-
-        if (interval) {
-          clearInterval(interval);
-          interval = false;
-        }
-
-        try {
-          xhr.abort();
-          xhr.timeout = 1;
-        } catch (e) {}
-      }, 100);
-
-      return new Promise(function (resolve, reject) {
-        var complete = void 0;
-        var fn = function fn(e) {
-          // 已经处理过了
-          if (complete) {
-            return;
-          }
-          complete = true;
-          if (interval) {
-            clearInterval(interval);
-            interval = false;
-          }
-
-          file = _this4.get(file);
-
-          // 不存在直接响应
-          if (!file) {
-            return reject('not_exists');
-          }
-
-          // 不是文件对象
-          if (!file.fileObject) {
-            return reject('file_object');
-          }
-
-          // 有错误自动响应
-          if (file.error) {
-            return reject(file.error);
-          }
-
-          // 未激活
-          if (!file.active) {
-            return reject('abort');
-          }
-
-          // 已完成 直接相应
-          if (file.success) {
-            return resolve(file);
-          }
-
-          var data = {};
-
-          switch (e.type) {
-            case 'timeout':
-            case 'abort':
-              data.error = e.type;
-              break;
-            case 'error':
-              if (!xhr.status) {
-                data.error = 'network';
-              } else if (xhr.status >= 500) {
-                data.error = 'server';
-              } else if (xhr.status >= 400) {
-                data.error = 'denied';
-              }
-              break;
-            default:
-              if (xhr.status >= 500) {
-                data.error = 'server';
-              } else if (xhr.status >= 400) {
-                data.error = 'denied';
-              } else {
-                data.progress = '100.00';
-              }
-          }
-
-          if (xhr.responseText) {
-            var contentType = xhr.getResponseHeader('Content-Type');
-            if (contentType && contentType.indexOf('/json') !== -1) {
-              data.response = JSON.parse(xhr.responseText);
-            } else {
-              data.response = xhr.responseText;
-            }
-          }
-
-          // 更新
-          file = _this4.update(file, data);
-
-          // 相应错误
-          if (file.error) {
-            return reject(file.error);
-          }
-
-          // 响应
-          return resolve(file);
-        };
-
-        // 事件
-        xhr.onload = fn;
-        xhr.onerror = fn;
-        xhr.onabort = fn;
-        xhr.ontimeout = fn;
-
-        // 超时
-        if (file.timeout) {
-          xhr.timeout = file.timeout;
-        }
-
-        // headers
-        for (var key in file.headers) {
-          xhr.setRequestHeader(key, file.headers[key]);
-        }
-
-        // 更新 xhr
-        file = _this4.update(file, { xhr: xhr });
-
-        // 开始上传
-        xhr.send(body);
-      });
-    },
-    uploadHtml4: function uploadHtml4(_file) {
-      var _this5 = this;
-
-      var file = _file;
-      var onKeydown = function onKeydown(e) {
-        if (e.keyCode === 27) {
-          e.preventDefault();
-        }
-      };
-
-      var iframe = document.createElement('iframe');
-      iframe.id = 'upload-iframe-' + file.id;
-      iframe.name = 'upload-iframe-' + file.id;
-      iframe.src = 'about:blank';
-      iframe.setAttribute('style', 'width:1px;height:1px;top:-999em;position:absolute; margin-top:-999em;');
-
-      var form = document.createElement('form');
-
-      form.action = file.postAction;
-
-      form.name = 'upload-form-' + file.id;
-
-      form.setAttribute('method', 'POST');
-      form.setAttribute('target', 'upload-iframe-' + file.id);
-      form.setAttribute('enctype', 'multipart/form-data');
-
-      var value = void 0;
-      var input = void 0;
-      for (var key in file.data) {
-        value = file.data[key];
-        if (value && (typeof value === 'undefined' ? 'undefined' : _typeof(value)) === 'object' && typeof value.toString !== 'function') {
-          value = JSON.stringify(value);
-        }
-        if (value !== null && value !== undefined) {
-          input = document.createElement('input');
-          input.type = 'hidden';
-          input.name = key;
-          form.appendChild(input);
-        }
-      }
-      form.appendChild(file.el);
-
-      document.body.appendChild(iframe).appendChild(form);
-
-      var getResponseData = function getResponseData() {
-        var doc = void 0;
-        try {
-          if (iframe.contentWindow) {
-            doc = iframe.contentWindow.document;
-          }
-        } catch (err) {}
-        if (!doc) {
-          try {
-            doc = iframe.contentDocument ? iframe.contentDocument : iframe.document;
-          } catch (err) {
-            doc = iframe.document;
-          }
-        }
-        if (doc && doc.body) {
-          return doc.body.innerHTML;
-        }
-        return null;
-      };
-
-      return new Promise(function (resolve, reject) {
-        setTimeout(function () {
-          file = _this5.update(file, { iframe: iframe });
-
-          // 不存在
-          if (!file) {
-            return reject('not_exists');
-          }
-
-          // 定时检查
-          var interval = setInterval(function () {
-            file = _this5.get(file);
-            if (file && file.fileObject && !file.success && !file.error && file.active) {
-              return;
-            }
-
-            if (interval) {
-              clearInterval(interval);
-              interval = false;
-            }
-
-            iframe.onabort({ type: file ? 'abort' : 'not_exists' });
-          }, 100);
-
-          var complete = void 0;
-          var fn = function fn(e) {
-            // 已经处理过了
-            if (complete) {
-              return;
-            }
-            complete = true;
-
-            if (interval) {
-              clearInterval(interval);
-              interval = false;
-            }
-
-            // 关闭 esc 事件
-            document.body.removeEventListener('keydown', onKeydown);
-
-            file = _this5.get(file);
-
-            // 不存在直接响应
-            if (!file) {
-              return reject('not_exists');
-            }
-
-            // 不是文件对象
-            if (!file.fileObject) {
-              return reject('file_object');
-            }
-
-            // 有错误自动响应
-            if (file.error) {
-              return reject(file.error);
-            }
-
-            // 未激活
-            if (!file.active) {
-              return reject('abort');
-            }
-
-            // 已完成 直接相应
-            if (file.success) {
-              return resolve(file);
-            }
-
-            var response = getResponseData();
-            var data = {};
-            switch (e.type) {
-              case 'abort':
-                data.error = 'abort';
-                break;
-              case 'error':
-                if (file.error) {
-                  data.error = file.error;
-                } else if (response === null) {
-                  data.error = 'network';
-                } else {
-                  data.error = 'denied';
-                }
-                break;
-              default:
-                if (file.error) {
-                  data.error = file.error;
-                } else if (data === null) {
-                  data.error = 'network';
-                } else {
-                  data.progress = '100.00';
-                }
-            }
-
-            if (response !== null) {
-              if (response && response.substr(0, 1) === '{' && response.substr(response.length - 1, 1) === '}') {
-                try {
-                  response = JSON.parse(response);
-                } catch (err) {}
-              }
-              data.response = response;
-            }
-
-            // 更新
-            file = _this5.update(file, data);
-
-            if (file.error) {
-              return reject(file.error);
-            }
-
-            // 响应
-            return resolve(file);
-          };
-
-          // 添加事件
-          iframe.onload = fn;
-          iframe.onerror = fn;
-          iframe.onabort = fn;
-
-          // 禁止 esc 键
-          document.body.addEventListener('keydown', onKeydown);
-
-          // 提交
-          form.submit();
-        }, 50);
-      }).then(function (res) {
-        iframe.parentNode && iframe.parentNode.removeChild(iframe);
-        return res;
-      }).catch(function (res) {
-        iframe.parentNode && iframe.parentNode.removeChild(iframe);
-        return res;
-      });
-    },
-    watchActive: function watchActive(active) {
-      var file = void 0;
-      var index = 0;
-      while (file = this.files[index]) {
-        index++;
-        if (!file.fileObject) {
-          // 不是文件对象
-        } else if (active && !this.destroy) {
-          if (this.uploading >= this.thread || this.uploading && !this.features.html5) {
-            break;
-          }
-          if (!file.active && !file.error && !file.success) {
-            this.update(file, { active: true });
-          }
-        } else {
-          if (file.active) {
-            this.update(file, { active: false });
-          }
-        }
-      }
-      if (this.uploading === 0) {
-        this.active = false;
-      }
-    },
-    watchDrop: function watchDrop(_el) {
-      var el = _el;
-      if (!this.features.drop) {
-        return;
-      }
-
-      // 移除挂载
-      if (this.dropElement) {
-        try {
-          document.removeEventListener('dragenter', this.onDragenter, false);
-          document.removeEventListener('dragleave', this.onDragleave, false);
-          this.dropElement.removeEventListener('dragover', this.onDragover, false);
-          this.dropElement.removeEventListener('drop', this.onDrop, false);
-        } catch (e) {}
-      }
-
-      if (!el) {
-        el = false;
-      } else if (typeof el === 'string') {
-        el = document.querySelector(el) || this.$root.$el.querySelector(el);
-      } else if (el === true) {
-        el = this.$parent.$el;
-      }
-
-      this.dropElement = el;
-
-      if (this.dropElement) {
-        document.addEventListener('dragenter', this.onDragenter, false);
-        document.addEventListener('dragleave', this.onDragleave, false);
-        this.dropElement.addEventListener('dragover', this.onDragover, false);
-        this.dropElement.addEventListener('drop', this.onDrop, false);
-      }
-    },
-    onDragenter: function onDragenter(e) {
-      e.preventDefault();
-      if (!this.dropActive) {
-        this.dropActive = true;
-      }
-    },
-    onDragleave: function onDragleave(e) {
-      e.preventDefault();
-      if (e.target.nodeName === 'HTML' || e.screenX === 0 && e.screenY === 0 && e.screenY === 0 && !e.fromElement && e.offsetX < 0) {
-        this.dropActive = false;
-      }
-    },
-    onDragover: function onDragover(e) {
-      e.preventDefault();
-    },
-    onDrop: function onDrop(e) {
-      e.preventDefault();
-      this.dropActive = false;
-      this.addDataTransfer(e.dataTransfer);
-    }
-  }
-};
-
-var FileUpload$1 = Object.freeze({
-	default: FileUpload
-});
-
-var require$$0 = ( FileUpload$1 && FileUpload ) || FileUpload$1;
-
-var src = require$$0;
-
-return src;
-
-})));
-//# sourceMappingURL=vue-upload-component.js.map
-
-
-/***/ }),
-
-/***/ 842:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -10099,7 +10098,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 843:
+/***/ 841:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {

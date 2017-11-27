@@ -1,6 +1,6 @@
 webpackJsonp([3],{
 
-/***/ 571:
+/***/ 570:
 /***/ (function(module, exports) {
 
 
@@ -179,7 +179,58 @@ function toComment(sourceMap) {
 
 /***/ }),
 
-/***/ 627:
+/***/ 641:
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(760)
+}
+var normalizeComponent = __webpack_require__(310)
+/* script */
+var __vue_script__ = __webpack_require__(762)
+/* template */
+var __vue_template__ = __webpack_require__(777)
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-89c65caa"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\pages\\EditProduct.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] EditProduct.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-89c65caa", Component.options)
+  } else {
+    hotAPI.reload("data-v-89c65caa", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ 642:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -225,7 +276,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(571);
+var	fixUrls = __webpack_require__(570);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -535,57 +586,6 @@ function updateLink (link, options, obj) {
 
 	if(oldSrc) URL.revokeObjectURL(oldSrc);
 }
-
-
-/***/ }),
-
-/***/ 642:
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(758)
-}
-var normalizeComponent = __webpack_require__(310)
-/* script */
-var __vue_script__ = __webpack_require__(760)
-/* template */
-var __vue_template__ = __webpack_require__(777)
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = "data-v-89c65caa"
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources\\assets\\js\\pages\\EditProduct.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] EditProduct.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-89c65caa", Component.options)
-  } else {
-    hotAPI.reload("data-v-89c65caa", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
 
 
 /***/ }),
@@ -3613,7 +3613,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 693:
+/***/ 689:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3655,13 +3655,2115 @@ if (false) {
 
 /***/ }),
 
-/***/ 758:
+/***/ 694:
+/***/ (function(module, exports, __webpack_require__) {
+
+/*!
+ * Image Compressor v0.5.2
+ * https://github.com/xkeshi/image-compressor
+ *
+ * Copyright (c) 2017 Xkeshi
+ * Released under the MIT license
+ *
+ * Date: 2017-10-09T02:40:37.129Z
+ */
+
+(function (global, factory) {
+	 true ? module.exports = factory() :
+	typeof define === 'function' && define.amd ? define(factory) :
+	(global.ImageCompressor = factory());
+}(this, (function () { 'use strict';
+
+function createCommonjsModule(fn, module) {
+	return module = { exports: {} }, fn(module, module.exports), module.exports;
+}
+
+var canvasToBlob = createCommonjsModule(function (module) {
+/*
+ * JavaScript Canvas to Blob
+ * https://github.com/blueimp/JavaScript-Canvas-to-Blob
+ *
+ * Copyright 2012, Sebastian Tschan
+ * https://blueimp.net
+ *
+ * Licensed under the MIT license:
+ * https://opensource.org/licenses/MIT
+ *
+ * Based on stackoverflow user Stoive's code snippet:
+ * http://stackoverflow.com/q/4998908
+ */
+
+/* global atob, Blob, define */
+
+(function (window) {
+  'use strict';
+
+  var CanvasPrototype =
+    window.HTMLCanvasElement && window.HTMLCanvasElement.prototype;
+  var hasBlobConstructor =
+    window.Blob &&
+    (function () {
+      try {
+        return Boolean(new Blob())
+      } catch (e) {
+        return false
+      }
+    })();
+  var hasArrayBufferViewSupport =
+    hasBlobConstructor &&
+    window.Uint8Array &&
+    (function () {
+      try {
+        return new Blob([new Uint8Array(100)]).size === 100
+      } catch (e) {
+        return false
+      }
+    })();
+  var BlobBuilder =
+    window.BlobBuilder ||
+    window.WebKitBlobBuilder ||
+    window.MozBlobBuilder ||
+    window.MSBlobBuilder;
+  var dataURIPattern = /^data:((.*?)(;charset=.*?)?)(;base64)?,/;
+  var dataURLtoBlob =
+    (hasBlobConstructor || BlobBuilder) &&
+    window.atob &&
+    window.ArrayBuffer &&
+    window.Uint8Array &&
+    function (dataURI) {
+      var matches,
+        mediaType,
+        isBase64,
+        dataString,
+        byteString,
+        arrayBuffer,
+        intArray,
+        i,
+        bb;
+      // Parse the dataURI components as per RFC 2397
+      matches = dataURI.match(dataURIPattern);
+      if (!matches) {
+        throw new Error('invalid data URI')
+      }
+      // Default to text/plain;charset=US-ASCII
+      mediaType = matches[2]
+        ? matches[1]
+        : 'text/plain' + (matches[3] || ';charset=US-ASCII');
+      isBase64 = !!matches[4];
+      dataString = dataURI.slice(matches[0].length);
+      if (isBase64) {
+        // Convert base64 to raw binary data held in a string:
+        byteString = atob(dataString);
+      } else {
+        // Convert base64/URLEncoded data component to raw binary:
+        byteString = decodeURIComponent(dataString);
+      }
+      // Write the bytes of the string to an ArrayBuffer:
+      arrayBuffer = new ArrayBuffer(byteString.length);
+      intArray = new Uint8Array(arrayBuffer);
+      for (i = 0; i < byteString.length; i += 1) {
+        intArray[i] = byteString.charCodeAt(i);
+      }
+      // Write the ArrayBuffer (or ArrayBufferView) to a blob:
+      if (hasBlobConstructor) {
+        return new Blob([hasArrayBufferViewSupport ? intArray : arrayBuffer], {
+          type: mediaType
+        })
+      }
+      bb = new BlobBuilder();
+      bb.append(arrayBuffer);
+      return bb.getBlob(mediaType)
+    };
+  if (window.HTMLCanvasElement && !CanvasPrototype.toBlob) {
+    if (CanvasPrototype.mozGetAsFile) {
+      CanvasPrototype.toBlob = function (callback, type, quality) {
+        var self = this;
+        setTimeout(function () {
+          if (quality && CanvasPrototype.toDataURL && dataURLtoBlob) {
+            callback(dataURLtoBlob(self.toDataURL(type, quality)));
+          } else {
+            callback(self.mozGetAsFile('blob', type));
+          }
+        });
+      };
+    } else if (CanvasPrototype.toDataURL && dataURLtoBlob) {
+      CanvasPrototype.toBlob = function (callback, type, quality) {
+        var self = this;
+        setTimeout(function () {
+          callback(dataURLtoBlob(self.toDataURL(type, quality)));
+        });
+      };
+    }
+  }
+  if (false) {
+    undefined(function () {
+      return dataURLtoBlob
+    });
+  } else if ('object' === 'object' && module.exports) {
+    module.exports = dataURLtoBlob;
+  } else {
+    window.dataURLtoBlob = dataURLtoBlob;
+  }
+})(window);
+});
+
+/* globals Blob */
+'use strict';
+var toString = Object.prototype.toString;
+
+var isBlob = function (x) {
+	return x instanceof Blob || toString.call(x) === '[object Blob]';
+};
+
+var DEFAULTS = {
+  /**
+   * Indicates if read the image's Exif Orientation information,
+   * and then rotate or flip the image automatically.
+   * @type {boolean}
+   */
+  checkOrientation: true,
+
+  /**
+   * The max width of the output image.
+   * @type {number}
+   */
+  maxWidth: Infinity,
+
+  /**
+   * The max height of the output image.
+   * @type {number}
+   */
+  maxHeight: Infinity,
+
+  /**
+   * The min width of the output image.
+   * @type {number}
+   */
+  minWidth: 0,
+
+  /**
+   * The min height of the output image.
+   * @type {number}
+   */
+  minHeight: 0,
+
+  /**
+   * The width of the output image.
+   * If not specified, the natural width of the source image will be used.
+   * @type {number}
+   */
+  width: undefined,
+
+  /**
+   * The height of the output image.
+   * If not specified, the natural height of the source image will be used.
+   * @type {number}
+   */
+  height: undefined,
+
+  /**
+   * The quality of the output image.
+   * It must be a number between `0` and `1`,
+   * and only available for `image/jpeg` and `image/webp` images.
+   * Check out {@link https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toBlob canvas.toBlob}.
+   * @type {number}
+   */
+  quality: 0.8,
+
+  /**
+   * The mime type of the output image.
+   * By default, the original mime type of the source image file will be used.
+   * @type {string}
+   */
+  mimeType: 'auto',
+
+  /**
+   * PNG files over this value (5M by default) will be converted to JPEGs.
+   * To disable this, just set the value to `Infinity`.
+   * Check out {@link https://github.com/xkeshi/image-compressor/issues/2 #2}.
+   * @type {number}
+   */
+  convertSize: 5000000,
+
+  /**
+   * The success callback for the image compressing process.
+   * @type {Function}
+   * @param {File} file - The compressed image File object.
+   * @example
+   * function (file) { console.log(file) }
+   */
+  success: null,
+
+  /**
+   * The error callback for the image compressing process.
+   * @type {Function}
+   * @param {Error} err - An Error object.
+   * @example
+   * function (err) { console.log(err.message) }
+   */
+  error: null
+};
+
+var REGEXP_IMAGE_TYPE = /^image\/.+$/;
+
+/**
+ * Check if the given value is a mime type of image.
+ * @param {*} value - The value to check.
+ * @returns {boolean} Returns `true` if the given is a mime type of image, else `false`.
+ */
+function isImageType(value) {
+  return REGEXP_IMAGE_TYPE.test(value);
+}
+
+/**
+ * Convert image type to extension.
+ * @param {string} value - The image type to convert.
+ * @param {boolean} [includeDot=true] - Include a leading dot or not.
+ * @returns {boolean} Returns the image extension.
+ */
+function imageTypeToExtension(value) {
+  var includeDot = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+
+  var extension = isImageType(value) ? value.substr(6) : '';
+
+  if (extension === 'jpeg') {
+    extension = 'jpg';
+  }
+
+  if (extension && includeDot) {
+    extension = '.' + extension;
+  }
+
+  return extension;
+}
+
+var fromCharCode = String.fromCharCode;
+
+/**
+ * Get string from char code in data view.
+ * @param {DataView} dataView - The data view for read.
+ * @param {number} start - The start index.
+ * @param {number} length - The read length.
+ * @returns {string} The read result.
+ */
+
+function getStringFromCharCode(dataView, start, length) {
+  var str = '';
+  var i = void 0;
+
+  length += start;
+
+  for (i = start; i < length; i += 1) {
+    str += fromCharCode(dataView.getUint8(i));
+  }
+
+  return str;
+}
+
+var _window$1 = window;
+var btoa = _window$1.btoa;
+
+/**
+ * Transform array buffer to Data URL.
+ * @param {ArrayBuffer} arrayBuffer - The array buffer to transform.
+ * @param {string} mimeType - The mime type of the Data URL.
+ * @returns {string} The result Data URL.
+ */
+
+function arrayBufferToDataURL(arrayBuffer, mimeType) {
+  var uint8 = new Uint8Array(arrayBuffer);
+  var length = uint8.length;
+
+  var data = '';
+  var i = void 0;
+
+  // TypedArray.prototype.forEach is not supported in some browsers.
+  for (i = 0; i < length; i += 1) {
+    data += fromCharCode(uint8[i]);
+  }
+
+  return 'data:' + mimeType + ';base64,' + btoa(data);
+}
+
+/**
+ * Get orientation value from given array buffer.
+ * @param {ArrayBuffer} arrayBuffer - The array buffer to read.
+ * @returns {number} The read orientation value.
+ */
+function getOrientation(arrayBuffer) {
+  var dataView = new DataView(arrayBuffer);
+  var orientation = void 0;
+  var littleEndian = void 0;
+  var app1Start = void 0;
+  var ifdStart = void 0;
+
+  // Only handle JPEG image (start by 0xFFD8)
+  if (dataView.getUint8(0) === 0xFF && dataView.getUint8(1) === 0xD8) {
+    var length = dataView.byteLength;
+    var offset = 2;
+
+    while (offset < length) {
+      if (dataView.getUint8(offset) === 0xFF && dataView.getUint8(offset + 1) === 0xE1) {
+        app1Start = offset;
+        break;
+      }
+
+      offset += 1;
+    }
+  }
+
+  if (app1Start) {
+    var exifIDCode = app1Start + 4;
+    var tiffOffset = app1Start + 10;
+
+    if (getStringFromCharCode(dataView, exifIDCode, 4) === 'Exif') {
+      var endianness = dataView.getUint16(tiffOffset);
+
+      littleEndian = endianness === 0x4949;
+
+      if (littleEndian || endianness === 0x4D4D /* bigEndian */) {
+          if (dataView.getUint16(tiffOffset + 2, littleEndian) === 0x002A) {
+            var firstIFDOffset = dataView.getUint32(tiffOffset + 4, littleEndian);
+
+            if (firstIFDOffset >= 0x00000008) {
+              ifdStart = tiffOffset + firstIFDOffset;
+            }
+          }
+        }
+    }
+  }
+
+  if (ifdStart) {
+    var _length = dataView.getUint16(ifdStart, littleEndian);
+    var _offset = void 0;
+    var i = void 0;
+
+    for (i = 0; i < _length; i += 1) {
+      _offset = ifdStart + i * 12 + 2;
+
+      if (dataView.getUint16(_offset, littleEndian) === 0x0112 /* Orientation */) {
+          // 8 is the offset of the current tag's value
+          _offset += 8;
+
+          // Get the original orientation value
+          orientation = dataView.getUint16(_offset, littleEndian);
+
+          // Override the orientation with its default value
+          dataView.setUint16(_offset, 1, littleEndian);
+          break;
+        }
+    }
+  }
+
+  return orientation;
+}
+
+/**
+ * Parse Exif Orientation value.
+ * @param {number} orientation - The orientation to parse.
+ * @returns {Object} The parsed result.
+ */
+function parseOrientation(orientation) {
+  var rotate = 0;
+  var scaleX = 1;
+  var scaleY = 1;
+
+  switch (orientation) {
+    // Flip horizontal
+    case 2:
+      scaleX = -1;
+      break;
+
+    // Rotate left 180°
+    case 3:
+      rotate = -180;
+      break;
+
+    // Flip vertical
+    case 4:
+      scaleY = -1;
+      break;
+
+    // Flip vertical and rotate right 90°
+    case 5:
+      rotate = 90;
+      scaleY = -1;
+      break;
+
+    // Rotate right 90°
+    case 6:
+      rotate = 90;
+      break;
+
+    // Flip horizontal and rotate right 90°
+    case 7:
+      rotate = 90;
+      scaleX = -1;
+      break;
+
+    // Rotate left 90°
+    case 8:
+      rotate = -90;
+      break;
+
+    default:
+  }
+
+  return {
+    rotate: rotate,
+    scaleX: scaleX,
+    scaleY: scaleY
+  };
+}
+
+var asyncGenerator = function () {
+  function AwaitValue(value) {
+    this.value = value;
+  }
+
+  function AsyncGenerator(gen) {
+    var front, back;
+
+    function send(key, arg) {
+      return new Promise(function (resolve, reject) {
+        var request = {
+          key: key,
+          arg: arg,
+          resolve: resolve,
+          reject: reject,
+          next: null
+        };
+
+        if (back) {
+          back = back.next = request;
+        } else {
+          front = back = request;
+          resume(key, arg);
+        }
+      });
+    }
+
+    function resume(key, arg) {
+      try {
+        var result = gen[key](arg);
+        var value = result.value;
+
+        if (value instanceof AwaitValue) {
+          Promise.resolve(value.value).then(function (arg) {
+            resume("next", arg);
+          }, function (arg) {
+            resume("throw", arg);
+          });
+        } else {
+          settle(result.done ? "return" : "normal", result.value);
+        }
+      } catch (err) {
+        settle("throw", err);
+      }
+    }
+
+    function settle(type, value) {
+      switch (type) {
+        case "return":
+          front.resolve({
+            value: value,
+            done: true
+          });
+          break;
+
+        case "throw":
+          front.reject(value);
+          break;
+
+        default:
+          front.resolve({
+            value: value,
+            done: false
+          });
+          break;
+      }
+
+      front = front.next;
+
+      if (front) {
+        resume(front.key, front.arg);
+      } else {
+        back = null;
+      }
+    }
+
+    this._invoke = send;
+
+    if (typeof gen.return !== "function") {
+      this.return = undefined;
+    }
+  }
+
+  if (typeof Symbol === "function" && Symbol.asyncIterator) {
+    AsyncGenerator.prototype[Symbol.asyncIterator] = function () {
+      return this;
+    };
+  }
+
+  AsyncGenerator.prototype.next = function (arg) {
+    return this._invoke("next", arg);
+  };
+
+  AsyncGenerator.prototype.throw = function (arg) {
+    return this._invoke("throw", arg);
+  };
+
+  AsyncGenerator.prototype.return = function (arg) {
+    return this._invoke("return", arg);
+  };
+
+  return {
+    wrap: function (fn) {
+      return function () {
+        return new AsyncGenerator(fn.apply(this, arguments));
+      };
+    },
+    await: function (value) {
+      return new AwaitValue(value);
+    }
+  };
+}();
+
+
+
+
+
+var classCallCheck = function (instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+};
+
+var createClass = function () {
+  function defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];
+      descriptor.enumerable = descriptor.enumerable || false;
+      descriptor.configurable = true;
+      if ("value" in descriptor) descriptor.writable = true;
+      Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }
+
+  return function (Constructor, protoProps, staticProps) {
+    if (protoProps) defineProperties(Constructor.prototype, protoProps);
+    if (staticProps) defineProperties(Constructor, staticProps);
+    return Constructor;
+  };
+}();
+
+
+
+
+
+
+
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];
+
+    for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }
+
+  return target;
+};
+
+var _window = window;
+var ArrayBuffer$1 = _window.ArrayBuffer;
+var FileReader = _window.FileReader;
+
+var URL = window.URL || window.webkitURL;
+var REGEXP_EXTENSION = /\.\w+$/;
+
+/**
+ * Creates a new image compressor.
+ * @class
+ */
+
+var ImageCompressor = function () {
+  /**
+   * The constructor of ImageCompressor.
+   * @param {File|Blob} file - The target image file for compressing.
+   * @param {Object} [options] - The options for compressing.
+   */
+  function ImageCompressor(file, options) {
+    classCallCheck(this, ImageCompressor);
+
+    this.result = null;
+
+    if (file) {
+      this.compress(file, options);
+    }
+  }
+
+  /**
+   * The main compress method.
+   * @param {File|Blob} file - The target image file for compressing.
+   * @param {Object} [options] - The options for compressing.
+   * @returns {Promise} - A Promise instance.
+   */
+
+
+  createClass(ImageCompressor, [{
+    key: 'compress',
+    value: function compress(file, options) {
+      var _this = this;
+
+      var image = new Image();
+
+      options = _extends({}, DEFAULTS, options);
+
+      if (!ArrayBuffer$1) {
+        options.checkOrientation = false;
+      }
+
+      return new Promise(function (resolve, reject) {
+        if (!isBlob(file)) {
+          reject(new Error('The first argument must be a File or Blob object.'));
+          return;
+        }
+
+        var mimeType = file.type;
+
+        if (!isImageType(mimeType)) {
+          reject(new Error('The first argument must be an image File or Blob object.'));
+          return;
+        }
+
+        if (!URL && !FileReader) {
+          reject(new Error('The current browser does not support image compression.'));
+          return;
+        }
+
+        if (URL && !options.checkOrientation) {
+          resolve(URL.createObjectURL(file));
+        } else if (FileReader) {
+          var reader = new FileReader();
+          var checkOrientation = options.checkOrientation && mimeType === 'image/jpeg';
+
+          reader.onload = function (_ref) {
+            var target = _ref.target;
+            var result = target.result;
+
+
+            resolve(checkOrientation ? _extends({
+              url: arrayBufferToDataURL(result, mimeType)
+            }, parseOrientation(getOrientation(result))) : {
+              url: result
+            });
+          };
+          reader.onabort = reject;
+          reader.onerror = reject;
+
+          if (checkOrientation) {
+            reader.readAsArrayBuffer(file);
+          } else {
+            reader.readAsDataURL(file);
+          }
+        }
+      }).then(function (data) {
+        return new Promise(function (resolve, reject) {
+          image.onload = function () {
+            return resolve(_extends({}, data, {
+              naturalWidth: image.naturalWidth,
+              naturalHeight: image.naturalHeight
+            }));
+          };
+          image.onabort = reject;
+          image.onerror = reject;
+          image.alt = file.name;
+          image.src = data.url;
+        });
+      }).then(function (_ref2) {
+        var naturalWidth = _ref2.naturalWidth,
+            naturalHeight = _ref2.naturalHeight,
+            _ref2$rotate = _ref2.rotate,
+            rotate = _ref2$rotate === undefined ? 0 : _ref2$rotate,
+            _ref2$scaleX = _ref2.scaleX,
+            scaleX = _ref2$scaleX === undefined ? 1 : _ref2$scaleX,
+            _ref2$scaleY = _ref2.scaleY,
+            scaleY = _ref2$scaleY === undefined ? 1 : _ref2$scaleY;
+        return new Promise(function (resolve) {
+          var canvas = document.createElement('canvas');
+          var context = canvas.getContext('2d');
+          var aspectRatio = naturalWidth / naturalHeight;
+          var maxWidth = Math.max(options.maxWidth, 0) || Infinity;
+          var maxHeight = Math.max(options.maxHeight, 0) || Infinity;
+          var minWidth = Math.max(options.minWidth, 0) || 0;
+          var minHeight = Math.max(options.minHeight, 0) || 0;
+          var width = naturalWidth;
+          var height = naturalHeight;
+
+          if (maxWidth < Infinity && maxHeight < Infinity) {
+            if (maxHeight * aspectRatio > maxWidth) {
+              maxHeight = maxWidth / aspectRatio;
+            } else {
+              maxWidth = maxHeight * aspectRatio;
+            }
+          } else if (maxWidth < Infinity) {
+            maxHeight = maxWidth / aspectRatio;
+          } else if (maxHeight < Infinity) {
+            maxWidth = maxHeight * aspectRatio;
+          }
+
+          if (minWidth > 0 && minHeight > 0) {
+            if (minHeight * aspectRatio > minWidth) {
+              minHeight = minWidth / aspectRatio;
+            } else {
+              minWidth = minHeight * aspectRatio;
+            }
+          } else if (minWidth > 0) {
+            minHeight = minWidth / aspectRatio;
+          } else if (minHeight > 0) {
+            minWidth = minHeight * aspectRatio;
+          }
+
+          if (options.width > 0) {
+            var _options = options;
+            width = _options.width;
+
+            height = width / aspectRatio;
+          } else if (options.height > 0) {
+            var _options2 = options;
+            height = _options2.height;
+
+            width = height * aspectRatio;
+          }
+
+          width = Math.min(Math.max(width, minWidth), maxWidth);
+          height = Math.min(Math.max(height, minHeight), maxHeight);
+
+          var destX = -width / 2;
+          var destY = -height / 2;
+          var destWidth = width;
+          var destHeight = height;
+
+          if (Math.abs(rotate) % 180 === 90) {
+            var _width$height = {
+              width: height,
+              height: width
+            };
+            width = _width$height.width;
+            height = _width$height.height;
+          }
+
+          canvas.width = width;
+          canvas.height = height;
+
+          // Override the default fill color (#000, black)
+          context.fillStyle = 'transparent';
+          context.fillRect(0, 0, width, height);
+          context.save();
+          context.translate(width / 2, height / 2);
+          context.rotate(rotate * Math.PI / 180);
+          context.scale(scaleX, scaleY);
+          context.drawImage(image, Math.floor(destX), Math.floor(destY), Math.floor(destWidth), Math.floor(destHeight));
+          context.restore();
+
+          if (!isImageType(options.mimeType)) {
+            options.mimeType = file.type;
+          }
+
+          // Converts PNG files over the `convertSize` to JPEGs.
+          if (file.size > options.convertSize && options.mimeType === 'image/png') {
+            options.mimeType = 'image/jpeg';
+          }
+
+          if (canvas.toBlob) {
+            canvas.toBlob(resolve, options.mimeType, options.quality);
+          } else {
+            resolve(canvasToBlob(canvas.toDataURL(options.mimeType, options.quality)));
+          }
+        });
+      }).then(function (result) {
+        if (URL) {
+          URL.revokeObjectURL(image.src);
+        }
+
+        if (result) {
+          // Returns original file if the result is greater than it and without size related options
+          if (result.size > file.size && !(options.width > 0 || options.height > 0 || options.maxWidth < Infinity || options.maxHeight < Infinity || options.minWidth > 0 || options.minHeight > 0)) {
+            result = file;
+          } else {
+            var date = new Date();
+
+            result.lastModified = date.getTime();
+            result.lastModifiedDate = date;
+            result.name = file.name;
+
+            // Convert the extension to match its type
+            if (result.name && result.type !== file.type) {
+              result.name = result.name.replace(REGEXP_EXTENSION, imageTypeToExtension(result.type));
+            }
+          }
+        } else {
+          // Returns original file if the result is null in some cases.
+          result = file;
+        }
+
+        _this.result = result;
+
+        if (options.success) {
+          options.success(result);
+        }
+
+        return Promise.resolve(result);
+      }).catch(function (err) {
+        if (!options.error) {
+          throw err;
+        }
+
+        options.error(err);
+      });
+    }
+  }]);
+  return ImageCompressor;
+}();
+
+return ImageCompressor;
+
+})));
+
+
+/***/ }),
+
+/***/ 695:
+/***/ (function(module, exports, __webpack_require__) {
+
+/*!
+ * Name: vue-upload-component
+ * Version: 2.6.3
+ * Author: LianYue
+ */
+(function (global, factory) {
+	 true ? module.exports = factory() :
+	typeof define === 'function' && define.amd ? define(factory) :
+	(global.VueUploadComponent = factory());
+}(this, (function () { 'use strict';
+
+(function () {
+  if (typeof document !== 'undefined') {
+    var head = document.head || document.getElementsByTagName('head')[0],
+        style = document.createElement('style'),
+        css = "";style.type = 'text/css';if (style.styleSheet) {
+      style.styleSheet.cssText = css;
+    } else {
+      style.appendChild(document.createTextNode(css));
+    }head.appendChild(style);
+  }
+})();
+
+var InputFile = { render: function render() {
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('input', { attrs: { "type": "file", "name": _vm.$parent.name, "id": _vm.$parent.inputId || _vm.$parent.name, "accept": _vm.$parent.accept, "webkitdirectory": _vm.$parent.directory && _vm.$parent.features.directory, "directory": _vm.$parent.directory && _vm.$parent.features.directory, "multiple": _vm.$parent.multiple && _vm.$parent.features.html5 }, on: { "change": _vm.change } });
+  }, staticRenderFns: [],
+  methods: {
+    change: function change(e) {
+      this.$destroy();
+      this.$parent.addInputFile(e.target);
+      // eslint-disable-next-line
+      new this.constructor({
+        parent: this.$parent,
+        el: this.$el
+      });
+    }
+  }
+};
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+(function () {
+  if (typeof document !== 'undefined') {
+    var head = document.head || document.getElementsByTagName('head')[0],
+        style = document.createElement('style'),
+        css = " .file-uploads { overflow: hidden; position: relative; text-align: center; display: inline-block; } .file-uploads.file-uploads-html4 input[type=\"file\"] { opacity: 0; font-size: 20em; z-index: 1; top: 0; left: 0; right: 0; bottom: 0; position: absolute; width: 100%; height: 100%; } .file-uploads.file-uploads-html5 input[type=\"file\"] { overflow: hidden; position: fixed; width: 1px; height: 1px; z-index: -1; opacity: 0; } ";style.type = 'text/css';if (style.styleSheet) {
+      style.styleSheet.cssText = css;
+    } else {
+      style.appendChild(document.createTextNode(css));
+    }head.appendChild(style);
+  }
+})();
+
+var FileUpload = { render: function render() {
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('label', { class: _vm.className }, [_vm._t("default"), _vm._v(" "), _c('input-file')], 2);
+  }, staticRenderFns: [],
+  components: {
+    InputFile: InputFile
+  },
+  props: {
+    inputId: {
+      type: String
+    },
+
+    name: {
+      type: String,
+      default: 'file'
+    },
+
+    accept: {
+      type: String
+    },
+
+    multiple: {
+      type: Boolean
+    },
+
+    addIndex: {
+      type: [Boolean, Number]
+    },
+
+    directory: {
+      type: Boolean
+    },
+
+    postAction: {
+      type: String
+    },
+
+    putAction: {
+      type: String
+    },
+
+    headers: {
+      type: Object,
+      default: Object
+    },
+
+    data: {
+      type: Object,
+      default: Object
+    },
+
+    timeout: {
+      type: Number,
+      default: 0
+    },
+
+    drop: {
+      default: false
+    },
+
+    dropDirectory: {
+      type: Boolean,
+      default: true
+    },
+
+    size: {
+      type: Number,
+      default: 0
+    },
+
+    extensions: {
+      default: Array
+    },
+
+    value: {
+      type: Array,
+      default: Array
+    },
+
+    thread: {
+      type: Number,
+      default: 1
+    }
+  },
+
+  data: function data() {
+    return {
+      files: this.value,
+      features: {
+        html5: true,
+        directory: false,
+        drag: false
+      },
+
+      active: false,
+      dropActive: false,
+
+      uploading: 0,
+
+      destroy: false
+    };
+  },
+
+
+  /**
+   * mounted
+   * @return {[type]} [description]
+   */
+  mounted: function mounted() {
+    var input = document.createElement('input');
+    input.type = 'file';
+    input.multiple = true;
+
+    // html5 特征
+    if (window.FormData && input.files) {
+      // 上传目录特征
+      if (typeof input.webkitdirectory === 'boolean' || typeof input.directory === 'boolean') {
+        this.features.directory = true;
+      }
+
+      // 拖拽特征
+      if (this.features.html5 && typeof input.ondrop !== 'undefined') {
+        this.features.drop = true;
+      }
+    } else {
+      this.features.html5 = false;
+    }
+
+    // files 定位缓存
+    this.maps = {};
+
+    this.$nextTick(function () {
+
+      // 更新下父级
+      if (this.$parent) {
+        this.$parent.$forceUpdate();
+      }
+
+      // 拖拽渲染
+      this.watchDrop(this.drop);
+    });
+  },
+
+
+  /**
+   * beforeDestroy
+   * @return {[type]} [description]
+   */
+  beforeDestroy: function beforeDestroy() {
+    // 已销毁
+    this.destroy = true;
+
+    // 设置成不激活
+    this.active = false;
+  },
+
+
+  computed: {
+    /**
+     * uploading 正在上传的线程
+     * @return {[type]} [description]
+     */
+
+    /**
+     * uploaded 文件列表是否全部已上传
+     * @return {[type]} [description]
+     */
+    uploaded: function uploaded() {
+      var file = void 0;
+      for (var i = 0; i < this.files.length; i++) {
+        file = this.files[i];
+        if (file.fileObject && !file.error && !file.success) {
+          return false;
+        }
+      }
+      return true;
+    },
+    className: function className() {
+      return ['file-uploads', this.features.html5 ? 'file-uploads-html5' : 'file-uploads-html4', this.features.directory && this.directory ? 'file-uploads-directory' : undefined, this.features.drop && this.drop ? 'file-uploads-drop' : undefined];
+    }
+  },
+
+  watch: {
+    active: function active(_active) {
+      this.watchActive(_active);
+    },
+    dropActive: function dropActive() {
+      if (this.$parent) {
+        this.$parent.$forceUpdate();
+      }
+    },
+    drop: function drop(value) {
+      this.watchDrop(value);
+    },
+    value: function value(files) {
+      if (this.files === files) {
+        return;
+      }
+      this.files = files;
+
+      var oldMaps = this.maps;
+
+      // 重写 maps 缓存
+      this.maps = {};
+      for (var i = 0; i < this.files.length; i++) {
+        var file = this.files[i];
+        this.maps[file.id] = file;
+      }
+
+      // add, update
+      for (var key in this.maps) {
+        var newFile = this.maps[key];
+        var oldFile = oldMaps[key];
+        if (newFile !== oldFile) {
+          this.emitFile(newFile, oldFile);
+        }
+      }
+
+      // delete
+      for (var _key in oldMaps) {
+        if (!this.maps[_key]) {
+          this.emitFile(undefined, oldMaps[_key]);
+        }
+      }
+    }
+  },
+
+  methods: {
+
+    // 清空
+    clear: function clear() {
+      if (this.files.length) {
+        var files = this.files;
+        this.files = [];
+
+        // 定位
+        this.maps = {};
+
+        // 事件
+        this.emitInput();
+        for (var i = 0; i < files.length; i++) {
+          this.emitFile(undefined, files[i]);
+        }
+      }
+      return true;
+    },
+
+
+    // 选择
+    get: function get(id) {
+      if (!id) {
+        return false;
+      }
+
+      if ((typeof id === 'undefined' ? 'undefined' : _typeof(id)) === 'object') {
+        return this.maps[id.id] || false;
+      }
+
+      return this.maps[id] || false;
+    },
+
+
+    // 添加
+    add: function add(_files) {
+      var index = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.addIndex;
+
+      var files = _files;
+      var isArray = files instanceof Array;
+
+      // 不是数组整理成数组
+      if (!isArray) {
+        files = [files];
+      }
+
+      // 遍历规范对象
+      var addFiles = [];
+      for (var i = 0; i < files.length; i++) {
+        var file = files[i];
+        if (this.features.html5 && file instanceof Blob) {
+          file = {
+            file: file,
+            size: file.size,
+            name: file.webkitRelativePath || file.relativePath || file.name || 'unknown',
+            type: file.type
+          };
+        }
+        var fileObject = false;
+        if (file.fileObject === false) {
+          // false
+        } else if (file.fileObject) {
+          fileObject = true;
+        } else if (typeof Element !== 'undefined' && file.el instanceof Element) {
+          fileObject = true;
+        } else if (typeof Blob !== 'undefined' && file.file instanceof Blob) {
+          fileObject = true;
+        }
+        if (fileObject) {
+          file = _extends({
+            fileObject: true,
+            size: -1,
+            name: 'Filename',
+            type: '',
+            active: false,
+            error: '',
+            success: false,
+            putAction: this.putAction,
+            postAction: this.postAction,
+            timeout: this.timeout
+          }, file, {
+            response: {},
+
+            progress: '0.00', // 只读
+            speed: 0 // 只读
+            // xhr: false,                // 只读
+            // iframe: false,             // 只读
+          });
+
+          file.data = _extends({}, this.data, file.data ? file.data : {});
+
+          file.headers = _extends({}, this.headers, file.headers ? file.headers : {});
+        }
+
+        // 必须包含 id
+        if (!file.id) {
+          file.id = Math.random().toString(36).substr(2);
+        }
+
+        if (this.emitFilter(file, undefined)) {
+          continue;
+        }
+
+        addFiles.push(file);
+
+        // 只允许单个文件
+        if (!this.multiple) {
+          break;
+        }
+      }
+
+      // 没有文件
+      if (!addFiles.length) {
+        return false;
+      }
+
+      // 只允许单个文件 删除所有
+      if (!this.multiple) {
+        this.clear();
+      }
+
+      // 添加进去 files
+      var newFiles = void 0;
+      if (index === true || index === 0) {
+        newFiles = addFiles.concat(this.files);
+      } else if (index) {
+        newFiles = addFiles.concat([]);
+        newFiles.splice(index, 0, addFiles);
+      } else {
+        newFiles = this.files.concat(addFiles);
+      }
+
+      this.files = newFiles;
+
+      // 定位
+      for (var _i = 0; _i < addFiles.length; _i++) {
+        var _file2 = addFiles[_i];
+        this.maps[_file2.id] = _file2;
+      }
+
+      // 事件
+      this.emitInput();
+      for (var _i2 = 0; _i2 < addFiles.length; _i2++) {
+        this.emitFile(addFiles[_i2], undefined);
+      }
+
+      return isArray ? addFiles : addFiles[0];
+    },
+
+
+    // 添加表单文件
+    addInputFile: function addInputFile(el) {
+      var files = [];
+      if (el.files) {
+        for (var i = 0; i < el.files.length; i++) {
+          var file = el.files[i];
+          files.push({
+            size: file.size,
+            name: file.webkitRelativePath || file.relativePath || file.name,
+            type: file.type,
+            file: file,
+            el: el
+          });
+        }
+      } else {
+        files.push({
+          name: el.value.replace(/^.*?([^\/\\\r\n]+)$/, '$1'),
+          el: el
+        });
+      }
+      return this.add(files);
+    },
+
+
+    // 添加 DataTransfer
+    addDataTransfer: function addDataTransfer(dataTransfer) {
+      var _this = this;
+
+      var files = [];
+      if (dataTransfer.items && dataTransfer.items.length) {
+        var items = [];
+        for (var i = 0; i < dataTransfer.items.length; i++) {
+          var item = dataTransfer.items[i];
+          if (item.getAsEntry) {
+            item = item.getAsEntry();
+          } else if (item.webkitGetAsEntry) {
+            item = item.webkitGetAsEntry();
+          } else {
+            item = item.getAsFile();
+          }
+          if (item) {
+            items.push(item);
+          }
+        }
+
+        return new Promise(function (resolve, reject) {
+          var forEach = function forEach(i) {
+            var item = items[i];
+            // 结束 或者已有文件了
+            if (!item || !_this.multiple && files.length) {
+              return resolve(_this.add(files));
+            }
+            _this.getEntry(item).then(function (results) {
+              files.push.apply(files, _toConsumableArray(results));
+              forEach(i + 1);
+            });
+          };
+          forEach(0);
+        });
+      }
+
+      if (dataTransfer.files.length) {
+        for (var _i3 = 0; _i3 < dataTransfer.files.length; _i3++) {
+          files.push(dataTransfer.files[_i3]);
+          if (!this.multiple) {
+            break;
+          }
+        }
+        return Promise.resolve(this.add(files));
+      }
+
+      return Promise.resolve([]);
+    },
+
+
+    // 获得 entry
+    getEntry: function getEntry(entry) {
+      var _this2 = this;
+
+      var path = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+
+      return new Promise(function (resolve, reject) {
+        if (entry.isFile) {
+          entry.file(function (file) {
+            resolve([{
+              size: file.size,
+              name: path + file.name,
+              type: file.type,
+              file: file
+            }]);
+          });
+        } else if (entry.isDirectory && _this2.dropDirectory) {
+          entry.createReader().readEntries(function (entries) {
+            var files = [];
+            var forEach = function forEach(i) {
+              if (!entries[i] || files.length && !_this2.multiple) {
+                return resolve(files);
+              }
+              _this2.getEntry(entries[i], path + entry.name + '/').then(function (results) {
+                files.push.apply(files, _toConsumableArray(results));
+                forEach(i + 1);
+              });
+            };
+            forEach(0);
+          });
+        } else {
+          resolve([]);
+        }
+      });
+    },
+    replace: function replace(id1, id2) {
+      var file1 = this.get(id1);
+      var file2 = this.get(id2);
+      if (!file1 || !file2 || file1 === file2) {
+        return false;
+      }
+      var files = this.files.concat([]);
+      var index1 = files.indexOf(file1);
+      var index2 = files.indexOf(file2);
+      if (index1 === -1 || index2 === -1) {
+        return false;
+      }
+      files[index1] = file2;
+      files[index2] = file1;
+      this.files = files;
+      this.emitInput();
+      return true;
+    },
+
+
+    // 移除
+    remove: function remove(id) {
+      var file = this.get(id);
+      if (file) {
+        if (this.emitFilter(undefined, file)) {
+          return false;
+        }
+        var files = this.files.concat([]);
+        var index = files.indexOf(file);
+        if (index === -1) {
+          console.error('remove', file);
+          return false;
+        }
+        files.splice(index, 1);
+        this.files = files;
+
+        // 定位
+        delete this.maps[file.id];
+
+        // 事件
+        this.emitInput();
+        this.emitFile(undefined, file);
+      }
+      return file;
+    },
+
+
+    // 更新
+    update: function update(id, data) {
+      var file = this.get(id);
+      if (file) {
+        var newFile = _extends({}, file, data);
+        // 停用必须加上错误
+        if (file.fileObject && file.active && !newFile.active && !newFile.error && !newFile.success) {
+          newFile.error = 'abort';
+        }
+
+        if (this.emitFilter(newFile, file)) {
+          return false;
+        }
+
+        var files = this.files.concat([]);
+        var index = files.indexOf(file);
+        if (index === -1) {
+          console.error('update', file);
+          return false;
+        }
+        files.splice(index, 1, newFile);
+        this.files = files;
+
+        // 删除  旧定位 写入 新定位 （已便支持修改id)
+        delete this.maps[file.id];
+        this.maps[newFile.id] = newFile;
+
+        // 事件
+        this.emitInput();
+        this.emitFile(newFile, file);
+        return newFile;
+      }
+      return false;
+    },
+
+
+    // 预处理 事件 过滤器
+    emitFilter: function emitFilter(newFile, oldFile) {
+      var isPrevent = false;
+      this.$emit('input-filter', newFile, oldFile, function () {
+        isPrevent = true;
+        return isPrevent;
+      });
+      return isPrevent;
+    },
+
+
+    // 处理后 事件 分发
+    emitFile: function emitFile(newFile, oldFile) {
+      this.$emit('input-file', newFile, oldFile);
+      if (newFile && newFile.fileObject && newFile.active && (!oldFile || !oldFile.active)) {
+        this.uploading++;
+        // 激活
+        this.$nextTick(function () {
+          var _this3 = this;
+
+          setTimeout(function () {
+            _this3.upload(newFile).then(function () {
+              // eslint-disable-next-line
+              newFile = _this3.get(newFile);
+              if (newFile && newFile.fileObject) {
+                _this3.update(newFile, {
+                  active: false,
+                  success: !newFile.error
+                });
+              }
+            }).catch(function (e) {
+              _this3.update(newFile, {
+                active: false,
+                success: false,
+                error: e.code || e.error || e.message || e
+              });
+            });
+          }, parseInt(Math.random() * 50 + 50, 10));
+        });
+      } else if ((!newFile || !newFile.fileObject || !newFile.active) && oldFile && oldFile.fileObject && oldFile.active) {
+        // 停止
+        this.uploading--;
+      }
+
+      // 自动延续激活
+      if (this.active && (Boolean(newFile) !== Boolean(oldFile) || newFile.active !== oldFile.active)) {
+        this.watchActive(true);
+      }
+    },
+    emitInput: function emitInput() {
+      this.$emit('input', this.files);
+    },
+
+
+    // 上传
+    upload: function upload(id) {
+      var file = this.get(id);
+
+      // 被删除
+      if (!file) {
+        return Promise.reject('not_exists');
+      }
+
+      // 不是文件对象
+      if (!file.fileObject) {
+        return Promise.reject('file_object');
+      }
+
+      // 有错误直接响应
+      if (file.error) {
+        return Promise.reject(file.error);
+      }
+
+      // 已完成直接响应
+      if (file.success) {
+        return Promise.resolve(file);
+      }
+
+      // 后缀
+      var extensions = this.extensions;
+      if (extensions && (extensions.length || typeof extensions.length === 'undefined')) {
+        if ((typeof extensions === 'undefined' ? 'undefined' : _typeof(extensions)) !== 'object' || !(extensions instanceof RegExp)) {
+          if (typeof extensions === 'string') {
+            extensions = extensions.split(',').map(function (value) {
+              return value.trim();
+            }).filter(function (value) {
+              return value;
+            });
+          }
+          extensions = new RegExp('\\.(' + extensions.join('|').replace(/\./g, '\\.') + ')$', 'i');
+        }
+        if (file.name.search(extensions) === -1) {
+          return Promise.reject('extension');
+        }
+      }
+
+      // 大小
+      if (this.size > 0 && file.size >= 0 && file.size > this.size) {
+        return Promise.reject('size');
+      }
+
+      if (this.features.html5 && file.putAction) {
+        return this.uploadPut(file);
+      } else if (this.features.html5) {
+        return this.uploadHtml5(file);
+      } else {
+        return this.uploadHtml4(file);
+      }
+    },
+    uploadPut: function uploadPut(file) {
+      var querys = [];
+      var value = void 0;
+      for (var key in file.data) {
+        value = file.data[key];
+        if (value !== null && value !== undefined) {
+          querys.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+        }
+      }
+      var queryString = querys.length ? (file.putAction.indexOf('?') === -1 ? '?' : '&') + querys.join('&') : '';
+      var xhr = new XMLHttpRequest();
+      xhr.open('PUT', file.putAction + queryString);
+      return this.uploadXhr(xhr, file, file.file);
+    },
+    uploadHtml5: function uploadHtml5(file) {
+      var form = new window.FormData();
+      var value = void 0;
+      for (var key in file.data) {
+        value = file.data[key];
+        if (value && (typeof value === 'undefined' ? 'undefined' : _typeof(value)) === 'object' && typeof value.toString !== 'function') {
+          if (value instanceof File) {
+            form.append(key, value, value.name);
+          } else {
+            form.append(key, JSON.stringify(value));
+          }
+        } else if (value !== null && value !== undefined) {
+          form.append(key, value);
+        }
+      }
+      form.append(this.name, file.file, file.file.filename || file.name);
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', file.postAction);
+      return this.uploadXhr(xhr, file, form);
+    },
+    uploadXhr: function uploadXhr(xhr, _file, body) {
+      var _this4 = this;
+
+      var file = _file;
+      var speedTime = 0;
+      var speedLoaded = 0;
+
+      // 进度条
+      xhr.upload.onprogress = function (e) {
+        // 还未开始上传 已删除 未激活
+        file = _this4.get(file);
+        if (!e.lengthComputable || !file || !file.fileObject || !file.active) {
+          return;
+        }
+
+        // 进度 速度 每秒更新一次
+        var speedTime2 = Math.round(Date.now() / 1000);
+        if (speedTime2 === speedTime) {
+          return;
+        }
+        speedTime = speedTime2;
+
+        file = _this4.update(file, {
+          progress: (e.loaded / e.total * 100).toFixed(2),
+          speed: e.loaded - speedLoaded
+        });
+        speedLoaded = e.loaded;
+      };
+
+      // 检查激活状态
+      var interval = setInterval(function () {
+        file = _this4.get(file);
+        if (file && file.fileObject && !file.success && !file.error && file.active) {
+          return;
+        }
+
+        if (interval) {
+          clearInterval(interval);
+          interval = false;
+        }
+
+        try {
+          xhr.abort();
+          xhr.timeout = 1;
+        } catch (e) {}
+      }, 100);
+
+      return new Promise(function (resolve, reject) {
+        var complete = void 0;
+        var fn = function fn(e) {
+          // 已经处理过了
+          if (complete) {
+            return;
+          }
+          complete = true;
+          if (interval) {
+            clearInterval(interval);
+            interval = false;
+          }
+
+          file = _this4.get(file);
+
+          // 不存在直接响应
+          if (!file) {
+            return reject('not_exists');
+          }
+
+          // 不是文件对象
+          if (!file.fileObject) {
+            return reject('file_object');
+          }
+
+          // 有错误自动响应
+          if (file.error) {
+            return reject(file.error);
+          }
+
+          // 未激活
+          if (!file.active) {
+            return reject('abort');
+          }
+
+          // 已完成 直接相应
+          if (file.success) {
+            return resolve(file);
+          }
+
+          var data = {};
+
+          switch (e.type) {
+            case 'timeout':
+            case 'abort':
+              data.error = e.type;
+              break;
+            case 'error':
+              if (!xhr.status) {
+                data.error = 'network';
+              } else if (xhr.status >= 500) {
+                data.error = 'server';
+              } else if (xhr.status >= 400) {
+                data.error = 'denied';
+              }
+              break;
+            default:
+              if (xhr.status >= 500) {
+                data.error = 'server';
+              } else if (xhr.status >= 400) {
+                data.error = 'denied';
+              } else {
+                data.progress = '100.00';
+              }
+          }
+
+          if (xhr.responseText) {
+            var contentType = xhr.getResponseHeader('Content-Type');
+            if (contentType && contentType.indexOf('/json') !== -1) {
+              data.response = JSON.parse(xhr.responseText);
+            } else {
+              data.response = xhr.responseText;
+            }
+          }
+
+          // 更新
+          file = _this4.update(file, data);
+
+          // 相应错误
+          if (file.error) {
+            return reject(file.error);
+          }
+
+          // 响应
+          return resolve(file);
+        };
+
+        // 事件
+        xhr.onload = fn;
+        xhr.onerror = fn;
+        xhr.onabort = fn;
+        xhr.ontimeout = fn;
+
+        // 超时
+        if (file.timeout) {
+          xhr.timeout = file.timeout;
+        }
+
+        // headers
+        for (var key in file.headers) {
+          xhr.setRequestHeader(key, file.headers[key]);
+        }
+
+        // 更新 xhr
+        file = _this4.update(file, { xhr: xhr });
+
+        // 开始上传
+        xhr.send(body);
+      });
+    },
+    uploadHtml4: function uploadHtml4(_file) {
+      var _this5 = this;
+
+      var file = _file;
+      var onKeydown = function onKeydown(e) {
+        if (e.keyCode === 27) {
+          e.preventDefault();
+        }
+      };
+
+      var iframe = document.createElement('iframe');
+      iframe.id = 'upload-iframe-' + file.id;
+      iframe.name = 'upload-iframe-' + file.id;
+      iframe.src = 'about:blank';
+      iframe.setAttribute('style', 'width:1px;height:1px;top:-999em;position:absolute; margin-top:-999em;');
+
+      var form = document.createElement('form');
+
+      form.action = file.postAction;
+
+      form.name = 'upload-form-' + file.id;
+
+      form.setAttribute('method', 'POST');
+      form.setAttribute('target', 'upload-iframe-' + file.id);
+      form.setAttribute('enctype', 'multipart/form-data');
+
+      var value = void 0;
+      var input = void 0;
+      for (var key in file.data) {
+        value = file.data[key];
+        if (value && (typeof value === 'undefined' ? 'undefined' : _typeof(value)) === 'object' && typeof value.toString !== 'function') {
+          value = JSON.stringify(value);
+        }
+        if (value !== null && value !== undefined) {
+          input = document.createElement('input');
+          input.type = 'hidden';
+          input.name = key;
+          form.appendChild(input);
+        }
+      }
+      form.appendChild(file.el);
+
+      document.body.appendChild(iframe).appendChild(form);
+
+      var getResponseData = function getResponseData() {
+        var doc = void 0;
+        try {
+          if (iframe.contentWindow) {
+            doc = iframe.contentWindow.document;
+          }
+        } catch (err) {}
+        if (!doc) {
+          try {
+            doc = iframe.contentDocument ? iframe.contentDocument : iframe.document;
+          } catch (err) {
+            doc = iframe.document;
+          }
+        }
+        if (doc && doc.body) {
+          return doc.body.innerHTML;
+        }
+        return null;
+      };
+
+      return new Promise(function (resolve, reject) {
+        setTimeout(function () {
+          file = _this5.update(file, { iframe: iframe });
+
+          // 不存在
+          if (!file) {
+            return reject('not_exists');
+          }
+
+          // 定时检查
+          var interval = setInterval(function () {
+            file = _this5.get(file);
+            if (file && file.fileObject && !file.success && !file.error && file.active) {
+              return;
+            }
+
+            if (interval) {
+              clearInterval(interval);
+              interval = false;
+            }
+
+            iframe.onabort({ type: file ? 'abort' : 'not_exists' });
+          }, 100);
+
+          var complete = void 0;
+          var fn = function fn(e) {
+            // 已经处理过了
+            if (complete) {
+              return;
+            }
+            complete = true;
+
+            if (interval) {
+              clearInterval(interval);
+              interval = false;
+            }
+
+            // 关闭 esc 事件
+            document.body.removeEventListener('keydown', onKeydown);
+
+            file = _this5.get(file);
+
+            // 不存在直接响应
+            if (!file) {
+              return reject('not_exists');
+            }
+
+            // 不是文件对象
+            if (!file.fileObject) {
+              return reject('file_object');
+            }
+
+            // 有错误自动响应
+            if (file.error) {
+              return reject(file.error);
+            }
+
+            // 未激活
+            if (!file.active) {
+              return reject('abort');
+            }
+
+            // 已完成 直接相应
+            if (file.success) {
+              return resolve(file);
+            }
+
+            var response = getResponseData();
+            var data = {};
+            switch (e.type) {
+              case 'abort':
+                data.error = 'abort';
+                break;
+              case 'error':
+                if (file.error) {
+                  data.error = file.error;
+                } else if (response === null) {
+                  data.error = 'network';
+                } else {
+                  data.error = 'denied';
+                }
+                break;
+              default:
+                if (file.error) {
+                  data.error = file.error;
+                } else if (data === null) {
+                  data.error = 'network';
+                } else {
+                  data.progress = '100.00';
+                }
+            }
+
+            if (response !== null) {
+              if (response && response.substr(0, 1) === '{' && response.substr(response.length - 1, 1) === '}') {
+                try {
+                  response = JSON.parse(response);
+                } catch (err) {}
+              }
+              data.response = response;
+            }
+
+            // 更新
+            file = _this5.update(file, data);
+
+            if (file.error) {
+              return reject(file.error);
+            }
+
+            // 响应
+            return resolve(file);
+          };
+
+          // 添加事件
+          iframe.onload = fn;
+          iframe.onerror = fn;
+          iframe.onabort = fn;
+
+          // 禁止 esc 键
+          document.body.addEventListener('keydown', onKeydown);
+
+          // 提交
+          form.submit();
+        }, 50);
+      }).then(function (res) {
+        iframe.parentNode && iframe.parentNode.removeChild(iframe);
+        return res;
+      }).catch(function (res) {
+        iframe.parentNode && iframe.parentNode.removeChild(iframe);
+        return res;
+      });
+    },
+    watchActive: function watchActive(active) {
+      var file = void 0;
+      var index = 0;
+      while (file = this.files[index]) {
+        index++;
+        if (!file.fileObject) {
+          // 不是文件对象
+        } else if (active && !this.destroy) {
+          if (this.uploading >= this.thread || this.uploading && !this.features.html5) {
+            break;
+          }
+          if (!file.active && !file.error && !file.success) {
+            this.update(file, { active: true });
+          }
+        } else {
+          if (file.active) {
+            this.update(file, { active: false });
+          }
+        }
+      }
+      if (this.uploading === 0) {
+        this.active = false;
+      }
+    },
+    watchDrop: function watchDrop(_el) {
+      var el = _el;
+      if (!this.features.drop) {
+        return;
+      }
+
+      // 移除挂载
+      if (this.dropElement) {
+        try {
+          document.removeEventListener('dragenter', this.onDragenter, false);
+          document.removeEventListener('dragleave', this.onDragleave, false);
+          this.dropElement.removeEventListener('dragover', this.onDragover, false);
+          this.dropElement.removeEventListener('drop', this.onDrop, false);
+        } catch (e) {}
+      }
+
+      if (!el) {
+        el = false;
+      } else if (typeof el === 'string') {
+        el = document.querySelector(el) || this.$root.$el.querySelector(el);
+      } else if (el === true) {
+        el = this.$parent.$el;
+      }
+
+      this.dropElement = el;
+
+      if (this.dropElement) {
+        document.addEventListener('dragenter', this.onDragenter, false);
+        document.addEventListener('dragleave', this.onDragleave, false);
+        this.dropElement.addEventListener('dragover', this.onDragover, false);
+        this.dropElement.addEventListener('drop', this.onDrop, false);
+      }
+    },
+    onDragenter: function onDragenter(e) {
+      e.preventDefault();
+      if (!this.dropActive) {
+        this.dropActive = true;
+      }
+    },
+    onDragleave: function onDragleave(e) {
+      e.preventDefault();
+      if (e.target.nodeName === 'HTML' || e.screenX === 0 && e.screenY === 0 && e.screenY === 0 && !e.fromElement && e.offsetX < 0) {
+        this.dropActive = false;
+      }
+    },
+    onDragover: function onDragover(e) {
+      e.preventDefault();
+    },
+    onDrop: function onDrop(e) {
+      e.preventDefault();
+      this.dropActive = false;
+      this.addDataTransfer(e.dataTransfer);
+    }
+  }
+};
+
+var FileUpload$1 = Object.freeze({
+	default: FileUpload
+});
+
+var require$$0 = ( FileUpload$1 && FileUpload ) || FileUpload$1;
+
+var src = require$$0;
+
+return src;
+
+})));
+//# sourceMappingURL=vue-upload-component.js.map
+
+
+/***/ }),
+
+/***/ 760:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(759);
+var content = __webpack_require__(761);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -3682,7 +5784,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 759:
+/***/ 761:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(626)(undefined);
@@ -3697,7 +5799,7 @@ exports.push([module.i, "\n.image[data-v-89c65caa] {\n    float: left;\n    back
 
 /***/ }),
 
-/***/ 760:
+/***/ 762:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3709,11 +5811,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__layouts_Main_vue__ = __webpack_require__(657);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__layouts_Main_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__layouts_Main_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_theme__ = __webpack_require__(650);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__mixins_acl__ = __webpack_require__(693);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_TextEditor_vue__ = __webpack_require__(761);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__mixins_acl__ = __webpack_require__(689);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_TextEditor_vue__ = __webpack_require__(763);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_TextEditor_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_TextEditor_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_Uploads_vue__ = __webpack_require__(900);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_Uploads_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__components_Uploads_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_products_ImageUploader_vue__ = __webpack_require__(898);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_products_ImageUploader_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__components_products_ImageUploader_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_products_PackageModal_vue__ = __webpack_require__(903);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_products_PackageModal_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__components_products_PackageModal_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_products_GalleryUploader_vue__ = __webpack_require__(908);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_products_GalleryUploader_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__components_products_GalleryUploader_vue__);
 
 
 //
@@ -3915,64 +6021,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
+
 
 
 
@@ -3986,7 +6036,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     components: {
         MainLayout: __WEBPACK_IMPORTED_MODULE_2__layouts_Main_vue___default.a,
         TextEditor: __WEBPACK_IMPORTED_MODULE_5__components_TextEditor_vue___default.a,
-        Uploads: __WEBPACK_IMPORTED_MODULE_6__components_Uploads_vue___default.a
+        ImageUploader: __WEBPACK_IMPORTED_MODULE_6__components_products_ImageUploader_vue___default.a,
+        PackageModal: __WEBPACK_IMPORTED_MODULE_7__components_products_PackageModal_vue___default.a,
+        GalleryUploader: __WEBPACK_IMPORTED_MODULE_8__components_products_GalleryUploader_vue___default.a
     },
     data: function data() {
         return {
@@ -4002,7 +6054,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 slug: null,
                 excerpt: null,
                 image: null,
-                photos: null,
+                photos: [],
                 inCart: false,
                 options: {},
                 price: 0,
@@ -4011,21 +6063,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 maximum: 99
             },
             current_image: '',
-            image_modal: null,
-            gallery_modal: false,
-            option_modal: false,
-            tmp_option: {
-                name: '',
-                value: ''
-            },
             text_editor_id: 'product-editor'
         };
     },
-    computed: {
-        postUrl: function postUrl() {
-            return route('api.product.uploadImage', { slug: this.slug });
-        }
-    },
+
     created: function created() {
         this.getProduct();
     },
@@ -4035,12 +6076,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         Bus.$on(self.text_editor_id + '-updated', function (description) {
             self.editProductForm.description = description;
         });
+        Bus.$on('file-uploaded', function (response) {
+            self.product.image = response.path;
+            self.current_image = response.path;
+        });
+        //! Create Component To Avoid Duplication Of Updating File
+        //! File Uploaded Also For Gallery
+        Bus.$on('multi-file-uploaded', function (response) {
+            self.product.photos.push(response.path);
+        });
     },
 
     methods: {
-        uploadImage: function uploadImage(formData) {
-            console.log('upload-image');
-        },
         setCurrentImage: function setCurrentImage(index) {
             this.current_image = this.product.photos[index];
         },
@@ -4064,7 +6111,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                                     self.editProductForm.currency = self.product.currency;
                                     self.editProductForm.excerpt = self.product.excerpt;
                                     self.editProductForm.slug = self.product.slug;
-                                    self.editProductForm.options = self.product.options ? self.product.options : [];
+                                    self.editProductForm.options = self.product.options;
                                 }).catch(function (_ref2) {
                                     var errors = _ref2.errors,
                                         message = _ref2.message;
@@ -4108,7 +6155,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                                     self.editProductForm.currency = self.product.currency;
                                     self.editProductForm.excerpt = self.product.excerpt;
                                     self.editProductForm.slug = self.product.slug;
-                                    self.editProductForm.options = self.product.options ? self.product.options : [];
+                                    self.editProductForm.options = self.product.options;
                                     vm.$popup({ message: 'Product Updated!', backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' });
                                 }).catch(function (_ref4) {
                                     var errors = _ref4.errors,
@@ -4144,26 +6191,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             return words.join(' ');
         },
         openOptionModal: function openOptionModal() {
-            this.option_modal = true;
-        },
-        closeOptionModal: function closeOptionModal() {
-            this.option_modal = false;
-        },
-        addOption: function addOption() {
-            var self = this;
-
-            var index = _.findIndex(self.editProductForm.options, ['name', self.tmp_option.name]);
-            if (index >= 0) {
-                self.$set(self.editProductForm.options, index, self.tmp_option);
-            } else {
-                self.editProductForm.options.push(self.tmp_option);
-            }
-            self.updateProduct();
-            self.tmp_option = {
-                name: '',
-                value: ''
-            };
-            self.closeOptionModal();
+            Bus.$emit('open-package-modal');
         },
         deleteOption: function deleteOption(index) {
             var self = this;
@@ -4171,28 +6199,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             self.updateProduct();
         },
         editPrimaryImage: function editPrimaryImage() {
-            this.image_modal = true;
-        },
-        closeImageModal: function closeImageModal() {
-            this.image_modal = false;
+            Bus.$emit('edit-product-image');
         },
         editGallerImages: function editGallerImages() {
-            this.gallery_modal = true;
-        },
-        closeGalleryModal: function closeGalleryModal() {
-            this.gallery_modal = false;
-        },
-        uploadGalleryImages: function uploadGalleryImages() {
-            console.log('uploading gallery images');
-        },
-        updateDescription: function updateDescription() {
-            console.log('updating description');
+            Bus.$emit('edit-gallery-images');
         }
     },
     watch: {
         'editProductForm.options': function editProductFormOptions(newValue) {
             this.editProductForm.options = newValue;
-            console.log(newValue);
         }
     }
 
@@ -4200,19 +6215,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 761:
+/***/ 763:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(762)
+  __webpack_require__(764)
 }
 var normalizeComponent = __webpack_require__(310)
 /* script */
-var __vue_script__ = __webpack_require__(764)
+var __vue_script__ = __webpack_require__(766)
 /* template */
-var __vue_template__ = __webpack_require__(776)
+var __vue_template__ = __webpack_require__(773)
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
@@ -4251,13 +6266,13 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 762:
+/***/ 764:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(763);
+var content = __webpack_require__(765);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -4278,7 +6293,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 763:
+/***/ 765:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(626)(undefined);
@@ -4293,16 +6308,16 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 /***/ }),
 
-/***/ 764:
+/***/ 766:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_trumbowyg__ = __webpack_require__(765);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_trumbowyg__ = __webpack_require__(767);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_trumbowyg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_trumbowyg__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_trumbowyg_dist_ui_trumbowyg_css__ = __webpack_require__(768);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_trumbowyg_dist_ui_trumbowyg_css__ = __webpack_require__(770);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_trumbowyg_dist_ui_trumbowyg_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_trumbowyg_dist_ui_trumbowyg_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_trumbowyg_dist_plugins_noembed_trumbowyg_noembed_min_js__ = __webpack_require__(770);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_trumbowyg_dist_plugins_noembed_trumbowyg_noembed_min_js__ = __webpack_require__(772);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_trumbowyg_dist_plugins_noembed_trumbowyg_noembed_min_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_trumbowyg_dist_plugins_noembed_trumbowyg_noembed_min_js__);
 //
 //
@@ -4439,12 +6454,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 765:
+/***/ 767:
 /***/ (function(module, exports, __webpack_require__) {
 
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(true)
-		module.exports = factory(__webpack_require__(135), __webpack_require__(766), __webpack_require__(767));
+		module.exports = factory(__webpack_require__(135), __webpack_require__(768), __webpack_require__(769));
 	else if(typeof define === 'function' && define.amd)
 		define("VueTrumbowyg", ["jquery", "trumbowyg", "trumbowyg/dist/ui/icons.svg"], factory);
 	else if(typeof exports === 'object')
@@ -4851,7 +6866,7 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 
 /***/ }),
 
-/***/ 766:
+/***/ 768:
 /***/ (function(module, exports) {
 
 /**
@@ -6546,20 +8561,20 @@ Object.defineProperty(jQuery.trumbowyg, 'defaultOptions', {
 
 /***/ }),
 
-/***/ 767:
+/***/ 769:
 /***/ (function(module, exports) {
 
 module.exports = "/fonts/vendor/trumbowyg/dist/ui/icons.svg?fe14a6066b297f1848cbaafa1efb22c5";
 
 /***/ }),
 
-/***/ 768:
+/***/ 770:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(769);
+var content = __webpack_require__(771);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -6567,7 +8582,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(627)(content, options);
+var update = __webpack_require__(642)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -6585,7 +8600,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 769:
+/***/ 771:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(626)(undefined);
@@ -6600,14 +8615,14 @@ exports.push([module.i, "/**\n * Trumbowyg v2.8.1 - A lightweight WYSIWYG editor
 
 /***/ }),
 
-/***/ 770:
+/***/ 772:
 /***/ (function(module, exports) {
 
 !function(e){"use strict";var r={proxy:"https://noembed.com/embed?nowrap=on",urlFiled:"url",data:[],success:void 0,error:void 0};e.extend(!0,e.trumbowyg,{langs:{en:{noembed:"Noembed",noembedError:"Error"},sk:{noembedError:"Chyba"},fr:{noembedError:"Erreur"},cs:{noembedError:"Chyba"},ru:{noembedError:"Ошибка"},ja:{noembedError:"エラー"}},plugins:{noembed:{init:function(o){o.o.plugins.noembed=e.extend(!0,{},r,o.o.plugins.noembed||{});var n={fn:function(){var r=o.openModalInsert(o.lang.noembed,{url:{label:"URL",required:!0}},function(n){e.ajax({url:o.o.plugins.noembed.proxy,type:"GET",data:n,cache:!1,dataType:"json",success:o.o.plugins.noembed.success||function(n){n.html?(o.execCmd("insertHTML",n.html),setTimeout(function(){o.closeModal()},250)):o.addErrorOnModalField(e("input[type=text]",r),n.error)},error:o.o.plugins.noembed.error||function(){o.addErrorOnModalField(e("input[type=text]",r),o.lang.noembedError)}})})}};o.addBtnDef("noembed",n)}}}})}(jQuery);
 
 /***/ }),
 
-/***/ 776:
+/***/ 773:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -6637,2980 +8652,15 @@ if (false) {
 
 /***/ }),
 
-/***/ 777:
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm.product
-    ? _c(
-        "main-layout",
-        { class: [_vm.contentClass], style: { paddingTop: "100px" } },
-        [
-          _c(
-            "v-container",
-            { attrs: { fluid: "", "grid-list-md": "" } },
-            [
-              _c(
-                "v-layout",
-                { attrs: { row: "", wrap: "" } },
-                [
-                  _c(
-                    "v-breadcrumbs",
-                    { attrs: { icons: "", divider: "forward", light: "" } },
-                    [
-                      _c(
-                        "v-breadcrumbs-item",
-                        {
-                          attrs: {
-                            "active-class": "primary--text",
-                            disabled: false,
-                            to: "/"
-                          }
-                        },
-                        [_vm._v("\n              Home\n              ")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-breadcrumbs-item",
-                        {
-                          attrs: {
-                            "active-class": "primary--text",
-                            disabled: false,
-                            to: "/products"
-                          }
-                        },
-                        [_vm._v("\n              Products\n              ")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-breadcrumbs-item",
-                        {
-                          attrs: {
-                            "active-class": "primary--text",
-                            disabled: false,
-                            to: "/products/" + _vm.slug
-                          }
-                        },
-                        [
-                          _vm._v(
-                            "\n              " +
-                              _vm._s(_vm._f("capitalize")(_vm.slug)) +
-                              "\n              "
-                          )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("v-breadcrumbs-item", { attrs: { disabled: true } }, [
-                        _c("span", { staticClass: "blue-grey--text" }, [
-                          _vm._v("Edit")
-                        ])
-                      ])
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-layout",
-                { attrs: { row: "", wrap: "" } },
-                [
-                  _c(
-                    "v-flex",
-                    {
-                      attrs: {
-                        "d-flex": "",
-                        xs12: "",
-                        sm12: "",
-                        md6: "",
-                        lg6: ""
-                      }
-                    },
-                    [
-                      _c(
-                        "v-layout",
-                        { attrs: { row: "", wrap: "", "fill-height": "" } },
-                        [
-                          _c(
-                            "v-flex",
-                            {
-                              attrs: {
-                                "d-flex": "",
-                                xs12: "",
-                                "text-xs-right": ""
-                              }
-                            },
-                            [
-                              _c(
-                                "v-card",
-                                {
-                                  attrs: {
-                                    color: "grey lighten-4",
-                                    flat: "",
-                                    light: ""
-                                  }
-                                },
-                                [
-                                  _c(
-                                    "v-card-title",
-                                    { staticClass: "title accent--text" },
-                                    [
-                                      _c("v-spacer"),
-                                      _vm._v(
-                                        "\n                              Edit " +
-                                          _vm._s(_vm.titleCase(_vm.slug)) +
-                                          "\n                              "
-                                      ),
-                                      _c("v-spacer")
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  !_vm.current_image
-                                    ? _c("div", {
-                                        staticStyle: {
-                                          "background-color": "#d3d3d3",
-                                          height: "322px",
-                                          width: "50%",
-                                          margin: "auto"
-                                        }
-                                      })
-                                    : _c("v-card-media", {
-                                        attrs: {
-                                          src: _vm.current_image,
-                                          height: "322px",
-                                          contain: ""
-                                        }
-                                      }),
-                                  _vm._v(" "),
-                                  _vm.product.photos !== null &&
-                                  _vm.product.photos !== undefined &&
-                                  _vm.product.photos.length > 0
-                                    ? _c(
-                                        "v-container",
-                                        {
-                                          attrs: {
-                                            "fill-height": "",
-                                            fluid: ""
-                                          }
-                                        },
-                                        [
-                                          _c(
-                                            "v-layout",
-                                            { attrs: { "fill-height": "" } },
-                                            [
-                                              _c(
-                                                "v-flex",
-                                                {
-                                                  attrs: {
-                                                    xs12: "",
-                                                    "align-end": "",
-                                                    flexbox: ""
-                                                  }
-                                                },
-                                                _vm._l(
-                                                  _vm.product.photos,
-                                                  function(image, key) {
-                                                    return _c("div", {
-                                                      key: key,
-                                                      staticClass: "image",
-                                                      style: {
-                                                        backgroundImage:
-                                                          "url(" + image + ")",
-                                                        width: "50px",
-                                                        height: "50px"
-                                                      },
-                                                      on: {
-                                                        click: function(
-                                                          $event
-                                                        ) {
-                                                          _vm.setCurrentImage(
-                                                            key
-                                                          )
-                                                        }
-                                                      }
-                                                    })
-                                                  }
-                                                )
-                                              )
-                                            ],
-                                            1
-                                          )
-                                        ],
-                                        1
-                                      )
-                                    : _vm._e()
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-flex",
-                            {
-                              attrs: {
-                                "d-flex": "",
-                                xs10: "",
-                                "offset-xs1": "",
-                                "pl-5": "",
-                                "pr-5": ""
-                              }
-                            },
-                            [
-                              _c(
-                                "v-card",
-                                {
-                                  attrs: { color: "grey lighten-4", flat: "" }
-                                },
-                                [
-                                  _c(
-                                    "v-card-actions",
-                                    [
-                                      _c(
-                                        "v-btn",
-                                        {
-                                          attrs: {
-                                            light: "",
-                                            flat: "",
-                                            block: "",
-                                            color: "green"
-                                          },
-                                          on: { click: _vm.editPrimaryImage }
-                                        },
-                                        [
-                                          _vm._v("Upload Product Image"),
-                                          _c(
-                                            "v-icon",
-                                            { attrs: { right: "" } },
-                                            [_vm._v("photo")]
-                                          )
-                                        ],
-                                        1
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "v-btn",
-                                        {
-                                          attrs: {
-                                            light: "",
-                                            flat: "",
-                                            block: "",
-                                            color: "teal"
-                                          },
-                                          on: { click: _vm.editGallerImages }
-                                        },
-                                        [
-                                          _vm._v("Upload Gallery Images"),
-                                          _c(
-                                            "v-icon",
-                                            { attrs: { right: "" } },
-                                            [_vm._v("photo_library")]
-                                          )
-                                        ],
-                                        1
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-flex",
-                    {
-                      attrs: {
-                        "d-flex": "",
-                        xs12: "",
-                        sm12: "",
-                        md6: "",
-                        lg6: ""
-                      }
-                    },
-                    [
-                      _c(
-                        "v-layout",
-                        { attrs: { row: "", wrap: "" } },
-                        [
-                          _c(
-                            "v-flex",
-                            {
-                              attrs: {
-                                "d-flex": "",
-                                xs10: "",
-                                "offset-xs1": "",
-                                "pl-5": "",
-                                "pr-5": ""
-                              }
-                            },
-                            [
-                              _c(
-                                "v-card",
-                                {
-                                  attrs: {
-                                    color: "grey lighten-4",
-                                    flat: "",
-                                    light: ""
-                                  }
-                                },
-                                [
-                                  _c(
-                                    "v-card-title",
-                                    { staticClass: "title accent--text" },
-                                    [
-                                      _c("v-spacer"),
-                                      _vm._v(
-                                        "\n                              Product Details:\n                              "
-                                      ),
-                                      _c("v-spacer"),
-                                      _vm._v(" "),
-                                      _c(
-                                        "v-btn",
-                                        {
-                                          attrs: {
-                                            icon: "",
-                                            color: "teal lighten-2"
-                                          },
-                                          on: { click: _vm.updateProduct }
-                                        },
-                                        [_c("v-icon", [_vm._v("fa-save")])],
-                                        1
-                                      )
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c("v-text-field", {
-                                    attrs: { light: "", label: "Name" },
-                                    model: {
-                                      value: _vm.editProductForm.name,
-                                      callback: function($$v) {
-                                        _vm.editProductForm.name = $$v
-                                      },
-                                      expression: "editProductForm.name"
-                                    }
-                                  }),
-                                  _vm._v(" "),
-                                  _c("v-text-field", {
-                                    attrs: { light: "", label: "Slug" },
-                                    model: {
-                                      value: _vm.editProductForm.slug,
-                                      callback: function($$v) {
-                                        _vm.editProductForm.slug = $$v
-                                      },
-                                      expression: "editProductForm.slug"
-                                    }
-                                  }),
-                                  _vm._v(" "),
-                                  _c("v-text-field", {
-                                    attrs: { light: "", label: "Sku" },
-                                    model: {
-                                      value: _vm.editProductForm.sku,
-                                      callback: function($$v) {
-                                        _vm.editProductForm.sku = $$v
-                                      },
-                                      expression: "editProductForm.sku"
-                                    }
-                                  }),
-                                  _vm._v(" "),
-                                  _c("v-text-field", {
-                                    attrs: {
-                                      light: "",
-                                      label: "Currency",
-                                      disabled: ""
-                                    },
-                                    model: {
-                                      value: _vm.editProductForm.currency,
-                                      callback: function($$v) {
-                                        _vm.editProductForm.currency = $$v
-                                      },
-                                      expression: "editProductForm.currency"
-                                    }
-                                  }),
-                                  _vm._v(" "),
-                                  _c("v-text-field", {
-                                    attrs: {
-                                      light: "",
-                                      label: "Excerpt",
-                                      "multi-line": ""
-                                    },
-                                    model: {
-                                      value: _vm.editProductForm.excerpt,
-                                      callback: function($$v) {
-                                        _vm.editProductForm.excerpt = $$v
-                                      },
-                                      expression: "editProductForm.excerpt"
-                                    }
-                                  })
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-layout",
-                { attrs: { row: "", wrap: "" } },
-                [
-                  _c(
-                    "v-flex",
-                    {
-                      attrs: {
-                        xs10: "",
-                        "offset-xs1": "",
-                        "pl-5": "",
-                        "pr-5": ""
-                      }
-                    },
-                    [
-                      _c(
-                        "v-card",
-                        {
-                          attrs: {
-                            color: "grey lighten-4",
-                            flat: "",
-                            light: ""
-                          }
-                        },
-                        [
-                          _c(
-                            "v-card-title",
-                            { staticClass: "title accent--text" },
-                            [
-                              _c("v-spacer"),
-                              _vm._v(
-                                "\n                      Packages:\n                      "
-                              ),
-                              _c("v-spacer"),
-                              _vm._v(" "),
-                              _c(
-                                "v-btn",
-                                {
-                                  attrs: { icon: "", color: "green lighten-2" },
-                                  on: { click: _vm.openOptionModal }
-                                },
-                                [_c("v-icon", [_vm._v("fa-plus")])],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _vm.editProductForm.options.length > 0
-                    ? _c(
-                        "v-flex",
-                        {
-                          attrs: {
-                            xs10: "",
-                            "offset-xs1": "",
-                            "pl-5": "",
-                            "pr-5": ""
-                          }
-                        },
-                        _vm._l(_vm.editProductForm.options, function(
-                          option,
-                          key
-                        ) {
-                          return _c("v-text-field", {
-                            key: key,
-                            attrs: {
-                              label: option.name,
-                              light: "",
-                              "append-icon": "fa-trash",
-                              color: "primary",
-                              "append-icon-cb": function() {
-                                return _vm.deleteOption(key)
-                              }
-                            },
-                            model: {
-                              value: option.value,
-                              callback: function($$v) {
-                                option.value = $$v
-                              },
-                              expression: "option.value"
-                            }
-                          })
-                        })
-                      )
-                    : _vm._e()
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-layout",
-                { attrs: { row: "", wrap: "" } },
-                [
-                  _c(
-                    "v-flex",
-                    {
-                      attrs: {
-                        xs10: "",
-                        "offset-xs1": "",
-                        "pl-5": "",
-                        "pr-5": ""
-                      }
-                    },
-                    [
-                      _c(
-                        "v-card",
-                        {
-                          attrs: {
-                            color: "grey lighten-4",
-                            flat: "",
-                            light: ""
-                          }
-                        },
-                        [
-                          _c(
-                            "v-card-title",
-                            { staticClass: "title accent--text" },
-                            [
-                              _c("v-spacer"),
-                              _vm._v(
-                                "\n                      Product Description:\n                      "
-                              ),
-                              _c("v-spacer"),
-                              _vm._v(" "),
-                              _c(
-                                "v-btn",
-                                {
-                                  attrs: { icon: "", color: "info" },
-                                  on: { click: _vm.updateProduct }
-                                },
-                                [_c("v-icon", [_vm._v("fa-save")])],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-flex",
-                    {
-                      attrs: {
-                        xs10: "",
-                        "pl-5": "",
-                        "pr-5": "",
-                        "offset-xs1": ""
-                      }
-                    },
-                    [
-                      _c("text-editor", {
-                        attrs: {
-                          id: _vm.text_editor_id,
-                          html: _vm.editProductForm.description,
-                          "upload-link": "/products/" + _vm.slug + "/uploads",
-                          disabled: false
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-layout",
-                { attrs: { row: "", wrap: "" } },
-                [
-                  _c(
-                    "v-dialog",
-                    {
-                      attrs: { persistent: "", "max-width": "500px" },
-                      model: {
-                        value: _vm.option_modal,
-                        callback: function($$v) {
-                          _vm.option_modal = $$v
-                        },
-                        expression: "option_modal"
-                      }
-                    },
-                    [
-                      _c(
-                        "v-card",
-                        { attrs: { light: "" } },
-                        [
-                          _c("v-card-title", [
-                            _c("span", { staticClass: "headline" }, [
-                              _vm._v("Add Product Package")
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "v-card-text",
-                            [
-                              _c(
-                                "v-container",
-                                { attrs: { fluid: "" } },
-                                [
-                                  _c(
-                                    "v-layout",
-                                    { attrs: { row: "", wrap: "" } },
-                                    [
-                                      _c(
-                                        "v-flex",
-                                        { attrs: { xs12: "" } },
-                                        [
-                                          _c("v-text-field", {
-                                            directives: [
-                                              {
-                                                name: "validate",
-                                                rawName: "v-validate",
-                                                value: { required: true },
-                                                expression: "{ required: true}"
-                                              }
-                                            ],
-                                            attrs: {
-                                              label: "Name",
-                                              required: "",
-                                              light: "",
-                                              "error-messages": _vm.errors.collect(
-                                                "package key"
-                                              ),
-                                              "data-vv-name": "name"
-                                            },
-                                            model: {
-                                              value: _vm.tmp_option.name,
-                                              callback: function($$v) {
-                                                _vm.tmp_option.name = $$v
-                                              },
-                                              expression: "tmp_option.name"
-                                            }
-                                          })
-                                        ],
-                                        1
-                                      )
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-layout",
-                                    { attrs: { row: "", wrap: "" } },
-                                    [
-                                      _c(
-                                        "v-flex",
-                                        { attrs: { xs12: "" } },
-                                        [
-                                          _c("v-text-field", {
-                                            directives: [
-                                              {
-                                                name: "validate",
-                                                rawName: "v-validate",
-                                                value: { required: true },
-                                                expression: "{ required: true}"
-                                              }
-                                            ],
-                                            attrs: {
-                                              label: "Value",
-                                              required: "",
-                                              light: "",
-                                              "error-messages": _vm.errors.collect(
-                                                "package value"
-                                              ),
-                                              "data-vv-name": "package value"
-                                            },
-                                            model: {
-                                              value: _vm.tmp_option.value,
-                                              callback: function($$v) {
-                                                _vm.tmp_option.value = $$v
-                                              },
-                                              expression: "tmp_option.value"
-                                            }
-                                          })
-                                        ],
-                                        1
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c("small", [_vm._v("*indicates required field")])
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-card-actions",
-                            [
-                              _c("v-spacer"),
-                              _vm._v(" "),
-                              _c(
-                                "v-btn",
-                                {
-                                  attrs: { color: "blue darken-1", flat: "" },
-                                  on: { click: _vm.closeOptionModal }
-                                },
-                                [_vm._v("Close")]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-btn",
-                                {
-                                  attrs: { color: "blue darken-1", flat: "" },
-                                  on: { click: _vm.addOption }
-                                },
-                                [_vm._v("Save")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-dialog",
-                {
-                  attrs: {
-                    fullscreen: "",
-                    transition: "dialog-bottom-transition",
-                    overlay: false
-                  },
-                  model: {
-                    value: _vm.image_modal,
-                    callback: function($$v) {
-                      _vm.image_modal = $$v
-                    },
-                    expression: "image_modal"
-                  }
-                },
-                [
-                  _c(
-                    "v-card",
-                    { attrs: { light: true } },
-                    [
-                      _c(
-                        "v-toolbar",
-                        { attrs: { color: "accent" } },
-                        [
-                          _c(
-                            "v-btn",
-                            {
-                              staticClass: "error--text",
-                              attrs: { icon: "" },
-                              nativeOn: {
-                                click: function($event) {
-                                  _vm.image_modal = false
-                                }
-                              }
-                            },
-                            [_c("v-icon", [_vm._v("close")])],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c("v-spacer"),
-                          _vm._v(" "),
-                          _c(
-                            "v-toolbar-title",
-                            { staticClass: "primary--text" },
-                            [_vm._v("Upload Featured Image")]
-                          ),
-                          _vm._v(" "),
-                          _c("v-spacer")
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-container",
-                        { attrs: { fluid: "" } },
-                        [
-                          _c("uploads", {
-                            attrs: {
-                              "file-key": "image",
-                              "post-url": _vm.postUrl,
-                              single: true
-                            }
-                          })
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          )
-        ],
-        1
-      )
-    : _vm._e()
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-89c65caa", module.exports)
-  }
-}
-
-/***/ }),
-
-/***/ 840:
-/***/ (function(module, exports, __webpack_require__) {
-
-/*!
- * Image Compressor v0.5.2
- * https://github.com/xkeshi/image-compressor
- *
- * Copyright (c) 2017 Xkeshi
- * Released under the MIT license
- *
- * Date: 2017-10-09T02:40:37.129Z
- */
-
-(function (global, factory) {
-	 true ? module.exports = factory() :
-	typeof define === 'function' && define.amd ? define(factory) :
-	(global.ImageCompressor = factory());
-}(this, (function () { 'use strict';
-
-function createCommonjsModule(fn, module) {
-	return module = { exports: {} }, fn(module, module.exports), module.exports;
-}
-
-var canvasToBlob = createCommonjsModule(function (module) {
-/*
- * JavaScript Canvas to Blob
- * https://github.com/blueimp/JavaScript-Canvas-to-Blob
- *
- * Copyright 2012, Sebastian Tschan
- * https://blueimp.net
- *
- * Licensed under the MIT license:
- * https://opensource.org/licenses/MIT
- *
- * Based on stackoverflow user Stoive's code snippet:
- * http://stackoverflow.com/q/4998908
- */
-
-/* global atob, Blob, define */
-
-(function (window) {
-  'use strict';
-
-  var CanvasPrototype =
-    window.HTMLCanvasElement && window.HTMLCanvasElement.prototype;
-  var hasBlobConstructor =
-    window.Blob &&
-    (function () {
-      try {
-        return Boolean(new Blob())
-      } catch (e) {
-        return false
-      }
-    })();
-  var hasArrayBufferViewSupport =
-    hasBlobConstructor &&
-    window.Uint8Array &&
-    (function () {
-      try {
-        return new Blob([new Uint8Array(100)]).size === 100
-      } catch (e) {
-        return false
-      }
-    })();
-  var BlobBuilder =
-    window.BlobBuilder ||
-    window.WebKitBlobBuilder ||
-    window.MozBlobBuilder ||
-    window.MSBlobBuilder;
-  var dataURIPattern = /^data:((.*?)(;charset=.*?)?)(;base64)?,/;
-  var dataURLtoBlob =
-    (hasBlobConstructor || BlobBuilder) &&
-    window.atob &&
-    window.ArrayBuffer &&
-    window.Uint8Array &&
-    function (dataURI) {
-      var matches,
-        mediaType,
-        isBase64,
-        dataString,
-        byteString,
-        arrayBuffer,
-        intArray,
-        i,
-        bb;
-      // Parse the dataURI components as per RFC 2397
-      matches = dataURI.match(dataURIPattern);
-      if (!matches) {
-        throw new Error('invalid data URI')
-      }
-      // Default to text/plain;charset=US-ASCII
-      mediaType = matches[2]
-        ? matches[1]
-        : 'text/plain' + (matches[3] || ';charset=US-ASCII');
-      isBase64 = !!matches[4];
-      dataString = dataURI.slice(matches[0].length);
-      if (isBase64) {
-        // Convert base64 to raw binary data held in a string:
-        byteString = atob(dataString);
-      } else {
-        // Convert base64/URLEncoded data component to raw binary:
-        byteString = decodeURIComponent(dataString);
-      }
-      // Write the bytes of the string to an ArrayBuffer:
-      arrayBuffer = new ArrayBuffer(byteString.length);
-      intArray = new Uint8Array(arrayBuffer);
-      for (i = 0; i < byteString.length; i += 1) {
-        intArray[i] = byteString.charCodeAt(i);
-      }
-      // Write the ArrayBuffer (or ArrayBufferView) to a blob:
-      if (hasBlobConstructor) {
-        return new Blob([hasArrayBufferViewSupport ? intArray : arrayBuffer], {
-          type: mediaType
-        })
-      }
-      bb = new BlobBuilder();
-      bb.append(arrayBuffer);
-      return bb.getBlob(mediaType)
-    };
-  if (window.HTMLCanvasElement && !CanvasPrototype.toBlob) {
-    if (CanvasPrototype.mozGetAsFile) {
-      CanvasPrototype.toBlob = function (callback, type, quality) {
-        var self = this;
-        setTimeout(function () {
-          if (quality && CanvasPrototype.toDataURL && dataURLtoBlob) {
-            callback(dataURLtoBlob(self.toDataURL(type, quality)));
-          } else {
-            callback(self.mozGetAsFile('blob', type));
-          }
-        });
-      };
-    } else if (CanvasPrototype.toDataURL && dataURLtoBlob) {
-      CanvasPrototype.toBlob = function (callback, type, quality) {
-        var self = this;
-        setTimeout(function () {
-          callback(dataURLtoBlob(self.toDataURL(type, quality)));
-        });
-      };
-    }
-  }
-  if (false) {
-    undefined(function () {
-      return dataURLtoBlob
-    });
-  } else if ('object' === 'object' && module.exports) {
-    module.exports = dataURLtoBlob;
-  } else {
-    window.dataURLtoBlob = dataURLtoBlob;
-  }
-})(window);
-});
-
-/* globals Blob */
-'use strict';
-var toString = Object.prototype.toString;
-
-var isBlob = function (x) {
-	return x instanceof Blob || toString.call(x) === '[object Blob]';
-};
-
-var DEFAULTS = {
-  /**
-   * Indicates if read the image's Exif Orientation information,
-   * and then rotate or flip the image automatically.
-   * @type {boolean}
-   */
-  checkOrientation: true,
-
-  /**
-   * The max width of the output image.
-   * @type {number}
-   */
-  maxWidth: Infinity,
-
-  /**
-   * The max height of the output image.
-   * @type {number}
-   */
-  maxHeight: Infinity,
-
-  /**
-   * The min width of the output image.
-   * @type {number}
-   */
-  minWidth: 0,
-
-  /**
-   * The min height of the output image.
-   * @type {number}
-   */
-  minHeight: 0,
-
-  /**
-   * The width of the output image.
-   * If not specified, the natural width of the source image will be used.
-   * @type {number}
-   */
-  width: undefined,
-
-  /**
-   * The height of the output image.
-   * If not specified, the natural height of the source image will be used.
-   * @type {number}
-   */
-  height: undefined,
-
-  /**
-   * The quality of the output image.
-   * It must be a number between `0` and `1`,
-   * and only available for `image/jpeg` and `image/webp` images.
-   * Check out {@link https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toBlob canvas.toBlob}.
-   * @type {number}
-   */
-  quality: 0.8,
-
-  /**
-   * The mime type of the output image.
-   * By default, the original mime type of the source image file will be used.
-   * @type {string}
-   */
-  mimeType: 'auto',
-
-  /**
-   * PNG files over this value (5M by default) will be converted to JPEGs.
-   * To disable this, just set the value to `Infinity`.
-   * Check out {@link https://github.com/xkeshi/image-compressor/issues/2 #2}.
-   * @type {number}
-   */
-  convertSize: 5000000,
-
-  /**
-   * The success callback for the image compressing process.
-   * @type {Function}
-   * @param {File} file - The compressed image File object.
-   * @example
-   * function (file) { console.log(file) }
-   */
-  success: null,
-
-  /**
-   * The error callback for the image compressing process.
-   * @type {Function}
-   * @param {Error} err - An Error object.
-   * @example
-   * function (err) { console.log(err.message) }
-   */
-  error: null
-};
-
-var REGEXP_IMAGE_TYPE = /^image\/.+$/;
-
-/**
- * Check if the given value is a mime type of image.
- * @param {*} value - The value to check.
- * @returns {boolean} Returns `true` if the given is a mime type of image, else `false`.
- */
-function isImageType(value) {
-  return REGEXP_IMAGE_TYPE.test(value);
-}
-
-/**
- * Convert image type to extension.
- * @param {string} value - The image type to convert.
- * @param {boolean} [includeDot=true] - Include a leading dot or not.
- * @returns {boolean} Returns the image extension.
- */
-function imageTypeToExtension(value) {
-  var includeDot = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
-
-  var extension = isImageType(value) ? value.substr(6) : '';
-
-  if (extension === 'jpeg') {
-    extension = 'jpg';
-  }
-
-  if (extension && includeDot) {
-    extension = '.' + extension;
-  }
-
-  return extension;
-}
-
-var fromCharCode = String.fromCharCode;
-
-/**
- * Get string from char code in data view.
- * @param {DataView} dataView - The data view for read.
- * @param {number} start - The start index.
- * @param {number} length - The read length.
- * @returns {string} The read result.
- */
-
-function getStringFromCharCode(dataView, start, length) {
-  var str = '';
-  var i = void 0;
-
-  length += start;
-
-  for (i = start; i < length; i += 1) {
-    str += fromCharCode(dataView.getUint8(i));
-  }
-
-  return str;
-}
-
-var _window$1 = window;
-var btoa = _window$1.btoa;
-
-/**
- * Transform array buffer to Data URL.
- * @param {ArrayBuffer} arrayBuffer - The array buffer to transform.
- * @param {string} mimeType - The mime type of the Data URL.
- * @returns {string} The result Data URL.
- */
-
-function arrayBufferToDataURL(arrayBuffer, mimeType) {
-  var uint8 = new Uint8Array(arrayBuffer);
-  var length = uint8.length;
-
-  var data = '';
-  var i = void 0;
-
-  // TypedArray.prototype.forEach is not supported in some browsers.
-  for (i = 0; i < length; i += 1) {
-    data += fromCharCode(uint8[i]);
-  }
-
-  return 'data:' + mimeType + ';base64,' + btoa(data);
-}
-
-/**
- * Get orientation value from given array buffer.
- * @param {ArrayBuffer} arrayBuffer - The array buffer to read.
- * @returns {number} The read orientation value.
- */
-function getOrientation(arrayBuffer) {
-  var dataView = new DataView(arrayBuffer);
-  var orientation = void 0;
-  var littleEndian = void 0;
-  var app1Start = void 0;
-  var ifdStart = void 0;
-
-  // Only handle JPEG image (start by 0xFFD8)
-  if (dataView.getUint8(0) === 0xFF && dataView.getUint8(1) === 0xD8) {
-    var length = dataView.byteLength;
-    var offset = 2;
-
-    while (offset < length) {
-      if (dataView.getUint8(offset) === 0xFF && dataView.getUint8(offset + 1) === 0xE1) {
-        app1Start = offset;
-        break;
-      }
-
-      offset += 1;
-    }
-  }
-
-  if (app1Start) {
-    var exifIDCode = app1Start + 4;
-    var tiffOffset = app1Start + 10;
-
-    if (getStringFromCharCode(dataView, exifIDCode, 4) === 'Exif') {
-      var endianness = dataView.getUint16(tiffOffset);
-
-      littleEndian = endianness === 0x4949;
-
-      if (littleEndian || endianness === 0x4D4D /* bigEndian */) {
-          if (dataView.getUint16(tiffOffset + 2, littleEndian) === 0x002A) {
-            var firstIFDOffset = dataView.getUint32(tiffOffset + 4, littleEndian);
-
-            if (firstIFDOffset >= 0x00000008) {
-              ifdStart = tiffOffset + firstIFDOffset;
-            }
-          }
-        }
-    }
-  }
-
-  if (ifdStart) {
-    var _length = dataView.getUint16(ifdStart, littleEndian);
-    var _offset = void 0;
-    var i = void 0;
-
-    for (i = 0; i < _length; i += 1) {
-      _offset = ifdStart + i * 12 + 2;
-
-      if (dataView.getUint16(_offset, littleEndian) === 0x0112 /* Orientation */) {
-          // 8 is the offset of the current tag's value
-          _offset += 8;
-
-          // Get the original orientation value
-          orientation = dataView.getUint16(_offset, littleEndian);
-
-          // Override the orientation with its default value
-          dataView.setUint16(_offset, 1, littleEndian);
-          break;
-        }
-    }
-  }
-
-  return orientation;
-}
-
-/**
- * Parse Exif Orientation value.
- * @param {number} orientation - The orientation to parse.
- * @returns {Object} The parsed result.
- */
-function parseOrientation(orientation) {
-  var rotate = 0;
-  var scaleX = 1;
-  var scaleY = 1;
-
-  switch (orientation) {
-    // Flip horizontal
-    case 2:
-      scaleX = -1;
-      break;
-
-    // Rotate left 180°
-    case 3:
-      rotate = -180;
-      break;
-
-    // Flip vertical
-    case 4:
-      scaleY = -1;
-      break;
-
-    // Flip vertical and rotate right 90°
-    case 5:
-      rotate = 90;
-      scaleY = -1;
-      break;
-
-    // Rotate right 90°
-    case 6:
-      rotate = 90;
-      break;
-
-    // Flip horizontal and rotate right 90°
-    case 7:
-      rotate = 90;
-      scaleX = -1;
-      break;
-
-    // Rotate left 90°
-    case 8:
-      rotate = -90;
-      break;
-
-    default:
-  }
-
-  return {
-    rotate: rotate,
-    scaleX: scaleX,
-    scaleY: scaleY
-  };
-}
-
-var asyncGenerator = function () {
-  function AwaitValue(value) {
-    this.value = value;
-  }
-
-  function AsyncGenerator(gen) {
-    var front, back;
-
-    function send(key, arg) {
-      return new Promise(function (resolve, reject) {
-        var request = {
-          key: key,
-          arg: arg,
-          resolve: resolve,
-          reject: reject,
-          next: null
-        };
-
-        if (back) {
-          back = back.next = request;
-        } else {
-          front = back = request;
-          resume(key, arg);
-        }
-      });
-    }
-
-    function resume(key, arg) {
-      try {
-        var result = gen[key](arg);
-        var value = result.value;
-
-        if (value instanceof AwaitValue) {
-          Promise.resolve(value.value).then(function (arg) {
-            resume("next", arg);
-          }, function (arg) {
-            resume("throw", arg);
-          });
-        } else {
-          settle(result.done ? "return" : "normal", result.value);
-        }
-      } catch (err) {
-        settle("throw", err);
-      }
-    }
-
-    function settle(type, value) {
-      switch (type) {
-        case "return":
-          front.resolve({
-            value: value,
-            done: true
-          });
-          break;
-
-        case "throw":
-          front.reject(value);
-          break;
-
-        default:
-          front.resolve({
-            value: value,
-            done: false
-          });
-          break;
-      }
-
-      front = front.next;
-
-      if (front) {
-        resume(front.key, front.arg);
-      } else {
-        back = null;
-      }
-    }
-
-    this._invoke = send;
-
-    if (typeof gen.return !== "function") {
-      this.return = undefined;
-    }
-  }
-
-  if (typeof Symbol === "function" && Symbol.asyncIterator) {
-    AsyncGenerator.prototype[Symbol.asyncIterator] = function () {
-      return this;
-    };
-  }
-
-  AsyncGenerator.prototype.next = function (arg) {
-    return this._invoke("next", arg);
-  };
-
-  AsyncGenerator.prototype.throw = function (arg) {
-    return this._invoke("throw", arg);
-  };
-
-  AsyncGenerator.prototype.return = function (arg) {
-    return this._invoke("return", arg);
-  };
-
-  return {
-    wrap: function (fn) {
-      return function () {
-        return new AsyncGenerator(fn.apply(this, arguments));
-      };
-    },
-    await: function (value) {
-      return new AwaitValue(value);
-    }
-  };
-}();
-
-
-
-
-
-var classCallCheck = function (instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-};
-
-var createClass = function () {
-  function defineProperties(target, props) {
-    for (var i = 0; i < props.length; i++) {
-      var descriptor = props[i];
-      descriptor.enumerable = descriptor.enumerable || false;
-      descriptor.configurable = true;
-      if ("value" in descriptor) descriptor.writable = true;
-      Object.defineProperty(target, descriptor.key, descriptor);
-    }
-  }
-
-  return function (Constructor, protoProps, staticProps) {
-    if (protoProps) defineProperties(Constructor.prototype, protoProps);
-    if (staticProps) defineProperties(Constructor, staticProps);
-    return Constructor;
-  };
-}();
-
-
-
-
-
-
-
-var _extends = Object.assign || function (target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i];
-
-    for (var key in source) {
-      if (Object.prototype.hasOwnProperty.call(source, key)) {
-        target[key] = source[key];
-      }
-    }
-  }
-
-  return target;
-};
-
-var _window = window;
-var ArrayBuffer$1 = _window.ArrayBuffer;
-var FileReader = _window.FileReader;
-
-var URL = window.URL || window.webkitURL;
-var REGEXP_EXTENSION = /\.\w+$/;
-
-/**
- * Creates a new image compressor.
- * @class
- */
-
-var ImageCompressor = function () {
-  /**
-   * The constructor of ImageCompressor.
-   * @param {File|Blob} file - The target image file for compressing.
-   * @param {Object} [options] - The options for compressing.
-   */
-  function ImageCompressor(file, options) {
-    classCallCheck(this, ImageCompressor);
-
-    this.result = null;
-
-    if (file) {
-      this.compress(file, options);
-    }
-  }
-
-  /**
-   * The main compress method.
-   * @param {File|Blob} file - The target image file for compressing.
-   * @param {Object} [options] - The options for compressing.
-   * @returns {Promise} - A Promise instance.
-   */
-
-
-  createClass(ImageCompressor, [{
-    key: 'compress',
-    value: function compress(file, options) {
-      var _this = this;
-
-      var image = new Image();
-
-      options = _extends({}, DEFAULTS, options);
-
-      if (!ArrayBuffer$1) {
-        options.checkOrientation = false;
-      }
-
-      return new Promise(function (resolve, reject) {
-        if (!isBlob(file)) {
-          reject(new Error('The first argument must be a File or Blob object.'));
-          return;
-        }
-
-        var mimeType = file.type;
-
-        if (!isImageType(mimeType)) {
-          reject(new Error('The first argument must be an image File or Blob object.'));
-          return;
-        }
-
-        if (!URL && !FileReader) {
-          reject(new Error('The current browser does not support image compression.'));
-          return;
-        }
-
-        if (URL && !options.checkOrientation) {
-          resolve(URL.createObjectURL(file));
-        } else if (FileReader) {
-          var reader = new FileReader();
-          var checkOrientation = options.checkOrientation && mimeType === 'image/jpeg';
-
-          reader.onload = function (_ref) {
-            var target = _ref.target;
-            var result = target.result;
-
-
-            resolve(checkOrientation ? _extends({
-              url: arrayBufferToDataURL(result, mimeType)
-            }, parseOrientation(getOrientation(result))) : {
-              url: result
-            });
-          };
-          reader.onabort = reject;
-          reader.onerror = reject;
-
-          if (checkOrientation) {
-            reader.readAsArrayBuffer(file);
-          } else {
-            reader.readAsDataURL(file);
-          }
-        }
-      }).then(function (data) {
-        return new Promise(function (resolve, reject) {
-          image.onload = function () {
-            return resolve(_extends({}, data, {
-              naturalWidth: image.naturalWidth,
-              naturalHeight: image.naturalHeight
-            }));
-          };
-          image.onabort = reject;
-          image.onerror = reject;
-          image.alt = file.name;
-          image.src = data.url;
-        });
-      }).then(function (_ref2) {
-        var naturalWidth = _ref2.naturalWidth,
-            naturalHeight = _ref2.naturalHeight,
-            _ref2$rotate = _ref2.rotate,
-            rotate = _ref2$rotate === undefined ? 0 : _ref2$rotate,
-            _ref2$scaleX = _ref2.scaleX,
-            scaleX = _ref2$scaleX === undefined ? 1 : _ref2$scaleX,
-            _ref2$scaleY = _ref2.scaleY,
-            scaleY = _ref2$scaleY === undefined ? 1 : _ref2$scaleY;
-        return new Promise(function (resolve) {
-          var canvas = document.createElement('canvas');
-          var context = canvas.getContext('2d');
-          var aspectRatio = naturalWidth / naturalHeight;
-          var maxWidth = Math.max(options.maxWidth, 0) || Infinity;
-          var maxHeight = Math.max(options.maxHeight, 0) || Infinity;
-          var minWidth = Math.max(options.minWidth, 0) || 0;
-          var minHeight = Math.max(options.minHeight, 0) || 0;
-          var width = naturalWidth;
-          var height = naturalHeight;
-
-          if (maxWidth < Infinity && maxHeight < Infinity) {
-            if (maxHeight * aspectRatio > maxWidth) {
-              maxHeight = maxWidth / aspectRatio;
-            } else {
-              maxWidth = maxHeight * aspectRatio;
-            }
-          } else if (maxWidth < Infinity) {
-            maxHeight = maxWidth / aspectRatio;
-          } else if (maxHeight < Infinity) {
-            maxWidth = maxHeight * aspectRatio;
-          }
-
-          if (minWidth > 0 && minHeight > 0) {
-            if (minHeight * aspectRatio > minWidth) {
-              minHeight = minWidth / aspectRatio;
-            } else {
-              minWidth = minHeight * aspectRatio;
-            }
-          } else if (minWidth > 0) {
-            minHeight = minWidth / aspectRatio;
-          } else if (minHeight > 0) {
-            minWidth = minHeight * aspectRatio;
-          }
-
-          if (options.width > 0) {
-            var _options = options;
-            width = _options.width;
-
-            height = width / aspectRatio;
-          } else if (options.height > 0) {
-            var _options2 = options;
-            height = _options2.height;
-
-            width = height * aspectRatio;
-          }
-
-          width = Math.min(Math.max(width, minWidth), maxWidth);
-          height = Math.min(Math.max(height, minHeight), maxHeight);
-
-          var destX = -width / 2;
-          var destY = -height / 2;
-          var destWidth = width;
-          var destHeight = height;
-
-          if (Math.abs(rotate) % 180 === 90) {
-            var _width$height = {
-              width: height,
-              height: width
-            };
-            width = _width$height.width;
-            height = _width$height.height;
-          }
-
-          canvas.width = width;
-          canvas.height = height;
-
-          // Override the default fill color (#000, black)
-          context.fillStyle = 'transparent';
-          context.fillRect(0, 0, width, height);
-          context.save();
-          context.translate(width / 2, height / 2);
-          context.rotate(rotate * Math.PI / 180);
-          context.scale(scaleX, scaleY);
-          context.drawImage(image, Math.floor(destX), Math.floor(destY), Math.floor(destWidth), Math.floor(destHeight));
-          context.restore();
-
-          if (!isImageType(options.mimeType)) {
-            options.mimeType = file.type;
-          }
-
-          // Converts PNG files over the `convertSize` to JPEGs.
-          if (file.size > options.convertSize && options.mimeType === 'image/png') {
-            options.mimeType = 'image/jpeg';
-          }
-
-          if (canvas.toBlob) {
-            canvas.toBlob(resolve, options.mimeType, options.quality);
-          } else {
-            resolve(canvasToBlob(canvas.toDataURL(options.mimeType, options.quality)));
-          }
-        });
-      }).then(function (result) {
-        if (URL) {
-          URL.revokeObjectURL(image.src);
-        }
-
-        if (result) {
-          // Returns original file if the result is greater than it and without size related options
-          if (result.size > file.size && !(options.width > 0 || options.height > 0 || options.maxWidth < Infinity || options.maxHeight < Infinity || options.minWidth > 0 || options.minHeight > 0)) {
-            result = file;
-          } else {
-            var date = new Date();
-
-            result.lastModified = date.getTime();
-            result.lastModifiedDate = date;
-            result.name = file.name;
-
-            // Convert the extension to match its type
-            if (result.name && result.type !== file.type) {
-              result.name = result.name.replace(REGEXP_EXTENSION, imageTypeToExtension(result.type));
-            }
-          }
-        } else {
-          // Returns original file if the result is null in some cases.
-          result = file;
-        }
-
-        _this.result = result;
-
-        if (options.success) {
-          options.success(result);
-        }
-
-        return Promise.resolve(result);
-      }).catch(function (err) {
-        if (!options.error) {
-          throw err;
-        }
-
-        options.error(err);
-      });
-    }
-  }]);
-  return ImageCompressor;
-}();
-
-return ImageCompressor;
-
-})));
-
-
-/***/ }),
-
-/***/ 841:
-/***/ (function(module, exports, __webpack_require__) {
-
-/*!
- * Name: vue-upload-component
- * Version: 2.6.3
- * Author: LianYue
- */
-(function (global, factory) {
-	 true ? module.exports = factory() :
-	typeof define === 'function' && define.amd ? define(factory) :
-	(global.VueUploadComponent = factory());
-}(this, (function () { 'use strict';
-
-(function () {
-  if (typeof document !== 'undefined') {
-    var head = document.head || document.getElementsByTagName('head')[0],
-        style = document.createElement('style'),
-        css = "";style.type = 'text/css';if (style.styleSheet) {
-      style.styleSheet.cssText = css;
-    } else {
-      style.appendChild(document.createTextNode(css));
-    }head.appendChild(style);
-  }
-})();
-
-var InputFile = { render: function render() {
-    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('input', { attrs: { "type": "file", "name": _vm.$parent.name, "id": _vm.$parent.inputId || _vm.$parent.name, "accept": _vm.$parent.accept, "webkitdirectory": _vm.$parent.directory && _vm.$parent.features.directory, "directory": _vm.$parent.directory && _vm.$parent.features.directory, "multiple": _vm.$parent.multiple && _vm.$parent.features.html5 }, on: { "change": _vm.change } });
-  }, staticRenderFns: [],
-  methods: {
-    change: function change(e) {
-      this.$destroy();
-      this.$parent.addInputFile(e.target);
-      // eslint-disable-next-line
-      new this.constructor({
-        parent: this.$parent,
-        el: this.$el
-      });
-    }
-  }
-};
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
-(function () {
-  if (typeof document !== 'undefined') {
-    var head = document.head || document.getElementsByTagName('head')[0],
-        style = document.createElement('style'),
-        css = " .file-uploads { overflow: hidden; position: relative; text-align: center; display: inline-block; } .file-uploads.file-uploads-html4 input[type=\"file\"] { opacity: 0; font-size: 20em; z-index: 1; top: 0; left: 0; right: 0; bottom: 0; position: absolute; width: 100%; height: 100%; } .file-uploads.file-uploads-html5 input[type=\"file\"] { overflow: hidden; position: fixed; width: 1px; height: 1px; z-index: -1; opacity: 0; } ";style.type = 'text/css';if (style.styleSheet) {
-      style.styleSheet.cssText = css;
-    } else {
-      style.appendChild(document.createTextNode(css));
-    }head.appendChild(style);
-  }
-})();
-
-var FileUpload = { render: function render() {
-    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('label', { class: _vm.className }, [_vm._t("default"), _vm._v(" "), _c('input-file')], 2);
-  }, staticRenderFns: [],
-  components: {
-    InputFile: InputFile
-  },
-  props: {
-    inputId: {
-      type: String
-    },
-
-    name: {
-      type: String,
-      default: 'file'
-    },
-
-    accept: {
-      type: String
-    },
-
-    multiple: {
-      type: Boolean
-    },
-
-    addIndex: {
-      type: [Boolean, Number]
-    },
-
-    directory: {
-      type: Boolean
-    },
-
-    postAction: {
-      type: String
-    },
-
-    putAction: {
-      type: String
-    },
-
-    headers: {
-      type: Object,
-      default: Object
-    },
-
-    data: {
-      type: Object,
-      default: Object
-    },
-
-    timeout: {
-      type: Number,
-      default: 0
-    },
-
-    drop: {
-      default: false
-    },
-
-    dropDirectory: {
-      type: Boolean,
-      default: true
-    },
-
-    size: {
-      type: Number,
-      default: 0
-    },
-
-    extensions: {
-      default: Array
-    },
-
-    value: {
-      type: Array,
-      default: Array
-    },
-
-    thread: {
-      type: Number,
-      default: 1
-    }
-  },
-
-  data: function data() {
-    return {
-      files: this.value,
-      features: {
-        html5: true,
-        directory: false,
-        drag: false
-      },
-
-      active: false,
-      dropActive: false,
-
-      uploading: 0,
-
-      destroy: false
-    };
-  },
-
-
-  /**
-   * mounted
-   * @return {[type]} [description]
-   */
-  mounted: function mounted() {
-    var input = document.createElement('input');
-    input.type = 'file';
-    input.multiple = true;
-
-    // html5 特征
-    if (window.FormData && input.files) {
-      // 上传目录特征
-      if (typeof input.webkitdirectory === 'boolean' || typeof input.directory === 'boolean') {
-        this.features.directory = true;
-      }
-
-      // 拖拽特征
-      if (this.features.html5 && typeof input.ondrop !== 'undefined') {
-        this.features.drop = true;
-      }
-    } else {
-      this.features.html5 = false;
-    }
-
-    // files 定位缓存
-    this.maps = {};
-
-    this.$nextTick(function () {
-
-      // 更新下父级
-      if (this.$parent) {
-        this.$parent.$forceUpdate();
-      }
-
-      // 拖拽渲染
-      this.watchDrop(this.drop);
-    });
-  },
-
-
-  /**
-   * beforeDestroy
-   * @return {[type]} [description]
-   */
-  beforeDestroy: function beforeDestroy() {
-    // 已销毁
-    this.destroy = true;
-
-    // 设置成不激活
-    this.active = false;
-  },
-
-
-  computed: {
-    /**
-     * uploading 正在上传的线程
-     * @return {[type]} [description]
-     */
-
-    /**
-     * uploaded 文件列表是否全部已上传
-     * @return {[type]} [description]
-     */
-    uploaded: function uploaded() {
-      var file = void 0;
-      for (var i = 0; i < this.files.length; i++) {
-        file = this.files[i];
-        if (file.fileObject && !file.error && !file.success) {
-          return false;
-        }
-      }
-      return true;
-    },
-    className: function className() {
-      return ['file-uploads', this.features.html5 ? 'file-uploads-html5' : 'file-uploads-html4', this.features.directory && this.directory ? 'file-uploads-directory' : undefined, this.features.drop && this.drop ? 'file-uploads-drop' : undefined];
-    }
-  },
-
-  watch: {
-    active: function active(_active) {
-      this.watchActive(_active);
-    },
-    dropActive: function dropActive() {
-      if (this.$parent) {
-        this.$parent.$forceUpdate();
-      }
-    },
-    drop: function drop(value) {
-      this.watchDrop(value);
-    },
-    value: function value(files) {
-      if (this.files === files) {
-        return;
-      }
-      this.files = files;
-
-      var oldMaps = this.maps;
-
-      // 重写 maps 缓存
-      this.maps = {};
-      for (var i = 0; i < this.files.length; i++) {
-        var file = this.files[i];
-        this.maps[file.id] = file;
-      }
-
-      // add, update
-      for (var key in this.maps) {
-        var newFile = this.maps[key];
-        var oldFile = oldMaps[key];
-        if (newFile !== oldFile) {
-          this.emitFile(newFile, oldFile);
-        }
-      }
-
-      // delete
-      for (var _key in oldMaps) {
-        if (!this.maps[_key]) {
-          this.emitFile(undefined, oldMaps[_key]);
-        }
-      }
-    }
-  },
-
-  methods: {
-
-    // 清空
-    clear: function clear() {
-      if (this.files.length) {
-        var files = this.files;
-        this.files = [];
-
-        // 定位
-        this.maps = {};
-
-        // 事件
-        this.emitInput();
-        for (var i = 0; i < files.length; i++) {
-          this.emitFile(undefined, files[i]);
-        }
-      }
-      return true;
-    },
-
-
-    // 选择
-    get: function get(id) {
-      if (!id) {
-        return false;
-      }
-
-      if ((typeof id === 'undefined' ? 'undefined' : _typeof(id)) === 'object') {
-        return this.maps[id.id] || false;
-      }
-
-      return this.maps[id] || false;
-    },
-
-
-    // 添加
-    add: function add(_files) {
-      var index = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.addIndex;
-
-      var files = _files;
-      var isArray = files instanceof Array;
-
-      // 不是数组整理成数组
-      if (!isArray) {
-        files = [files];
-      }
-
-      // 遍历规范对象
-      var addFiles = [];
-      for (var i = 0; i < files.length; i++) {
-        var file = files[i];
-        if (this.features.html5 && file instanceof Blob) {
-          file = {
-            file: file,
-            size: file.size,
-            name: file.webkitRelativePath || file.relativePath || file.name || 'unknown',
-            type: file.type
-          };
-        }
-        var fileObject = false;
-        if (file.fileObject === false) {
-          // false
-        } else if (file.fileObject) {
-          fileObject = true;
-        } else if (typeof Element !== 'undefined' && file.el instanceof Element) {
-          fileObject = true;
-        } else if (typeof Blob !== 'undefined' && file.file instanceof Blob) {
-          fileObject = true;
-        }
-        if (fileObject) {
-          file = _extends({
-            fileObject: true,
-            size: -1,
-            name: 'Filename',
-            type: '',
-            active: false,
-            error: '',
-            success: false,
-            putAction: this.putAction,
-            postAction: this.postAction,
-            timeout: this.timeout
-          }, file, {
-            response: {},
-
-            progress: '0.00', // 只读
-            speed: 0 // 只读
-            // xhr: false,                // 只读
-            // iframe: false,             // 只读
-          });
-
-          file.data = _extends({}, this.data, file.data ? file.data : {});
-
-          file.headers = _extends({}, this.headers, file.headers ? file.headers : {});
-        }
-
-        // 必须包含 id
-        if (!file.id) {
-          file.id = Math.random().toString(36).substr(2);
-        }
-
-        if (this.emitFilter(file, undefined)) {
-          continue;
-        }
-
-        addFiles.push(file);
-
-        // 只允许单个文件
-        if (!this.multiple) {
-          break;
-        }
-      }
-
-      // 没有文件
-      if (!addFiles.length) {
-        return false;
-      }
-
-      // 只允许单个文件 删除所有
-      if (!this.multiple) {
-        this.clear();
-      }
-
-      // 添加进去 files
-      var newFiles = void 0;
-      if (index === true || index === 0) {
-        newFiles = addFiles.concat(this.files);
-      } else if (index) {
-        newFiles = addFiles.concat([]);
-        newFiles.splice(index, 0, addFiles);
-      } else {
-        newFiles = this.files.concat(addFiles);
-      }
-
-      this.files = newFiles;
-
-      // 定位
-      for (var _i = 0; _i < addFiles.length; _i++) {
-        var _file2 = addFiles[_i];
-        this.maps[_file2.id] = _file2;
-      }
-
-      // 事件
-      this.emitInput();
-      for (var _i2 = 0; _i2 < addFiles.length; _i2++) {
-        this.emitFile(addFiles[_i2], undefined);
-      }
-
-      return isArray ? addFiles : addFiles[0];
-    },
-
-
-    // 添加表单文件
-    addInputFile: function addInputFile(el) {
-      var files = [];
-      if (el.files) {
-        for (var i = 0; i < el.files.length; i++) {
-          var file = el.files[i];
-          files.push({
-            size: file.size,
-            name: file.webkitRelativePath || file.relativePath || file.name,
-            type: file.type,
-            file: file,
-            el: el
-          });
-        }
-      } else {
-        files.push({
-          name: el.value.replace(/^.*?([^\/\\\r\n]+)$/, '$1'),
-          el: el
-        });
-      }
-      return this.add(files);
-    },
-
-
-    // 添加 DataTransfer
-    addDataTransfer: function addDataTransfer(dataTransfer) {
-      var _this = this;
-
-      var files = [];
-      if (dataTransfer.items && dataTransfer.items.length) {
-        var items = [];
-        for (var i = 0; i < dataTransfer.items.length; i++) {
-          var item = dataTransfer.items[i];
-          if (item.getAsEntry) {
-            item = item.getAsEntry();
-          } else if (item.webkitGetAsEntry) {
-            item = item.webkitGetAsEntry();
-          } else {
-            item = item.getAsFile();
-          }
-          if (item) {
-            items.push(item);
-          }
-        }
-
-        return new Promise(function (resolve, reject) {
-          var forEach = function forEach(i) {
-            var item = items[i];
-            // 结束 或者已有文件了
-            if (!item || !_this.multiple && files.length) {
-              return resolve(_this.add(files));
-            }
-            _this.getEntry(item).then(function (results) {
-              files.push.apply(files, _toConsumableArray(results));
-              forEach(i + 1);
-            });
-          };
-          forEach(0);
-        });
-      }
-
-      if (dataTransfer.files.length) {
-        for (var _i3 = 0; _i3 < dataTransfer.files.length; _i3++) {
-          files.push(dataTransfer.files[_i3]);
-          if (!this.multiple) {
-            break;
-          }
-        }
-        return Promise.resolve(this.add(files));
-      }
-
-      return Promise.resolve([]);
-    },
-
-
-    // 获得 entry
-    getEntry: function getEntry(entry) {
-      var _this2 = this;
-
-      var path = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
-
-      return new Promise(function (resolve, reject) {
-        if (entry.isFile) {
-          entry.file(function (file) {
-            resolve([{
-              size: file.size,
-              name: path + file.name,
-              type: file.type,
-              file: file
-            }]);
-          });
-        } else if (entry.isDirectory && _this2.dropDirectory) {
-          entry.createReader().readEntries(function (entries) {
-            var files = [];
-            var forEach = function forEach(i) {
-              if (!entries[i] || files.length && !_this2.multiple) {
-                return resolve(files);
-              }
-              _this2.getEntry(entries[i], path + entry.name + '/').then(function (results) {
-                files.push.apply(files, _toConsumableArray(results));
-                forEach(i + 1);
-              });
-            };
-            forEach(0);
-          });
-        } else {
-          resolve([]);
-        }
-      });
-    },
-    replace: function replace(id1, id2) {
-      var file1 = this.get(id1);
-      var file2 = this.get(id2);
-      if (!file1 || !file2 || file1 === file2) {
-        return false;
-      }
-      var files = this.files.concat([]);
-      var index1 = files.indexOf(file1);
-      var index2 = files.indexOf(file2);
-      if (index1 === -1 || index2 === -1) {
-        return false;
-      }
-      files[index1] = file2;
-      files[index2] = file1;
-      this.files = files;
-      this.emitInput();
-      return true;
-    },
-
-
-    // 移除
-    remove: function remove(id) {
-      var file = this.get(id);
-      if (file) {
-        if (this.emitFilter(undefined, file)) {
-          return false;
-        }
-        var files = this.files.concat([]);
-        var index = files.indexOf(file);
-        if (index === -1) {
-          console.error('remove', file);
-          return false;
-        }
-        files.splice(index, 1);
-        this.files = files;
-
-        // 定位
-        delete this.maps[file.id];
-
-        // 事件
-        this.emitInput();
-        this.emitFile(undefined, file);
-      }
-      return file;
-    },
-
-
-    // 更新
-    update: function update(id, data) {
-      var file = this.get(id);
-      if (file) {
-        var newFile = _extends({}, file, data);
-        // 停用必须加上错误
-        if (file.fileObject && file.active && !newFile.active && !newFile.error && !newFile.success) {
-          newFile.error = 'abort';
-        }
-
-        if (this.emitFilter(newFile, file)) {
-          return false;
-        }
-
-        var files = this.files.concat([]);
-        var index = files.indexOf(file);
-        if (index === -1) {
-          console.error('update', file);
-          return false;
-        }
-        files.splice(index, 1, newFile);
-        this.files = files;
-
-        // 删除  旧定位 写入 新定位 （已便支持修改id)
-        delete this.maps[file.id];
-        this.maps[newFile.id] = newFile;
-
-        // 事件
-        this.emitInput();
-        this.emitFile(newFile, file);
-        return newFile;
-      }
-      return false;
-    },
-
-
-    // 预处理 事件 过滤器
-    emitFilter: function emitFilter(newFile, oldFile) {
-      var isPrevent = false;
-      this.$emit('input-filter', newFile, oldFile, function () {
-        isPrevent = true;
-        return isPrevent;
-      });
-      return isPrevent;
-    },
-
-
-    // 处理后 事件 分发
-    emitFile: function emitFile(newFile, oldFile) {
-      this.$emit('input-file', newFile, oldFile);
-      if (newFile && newFile.fileObject && newFile.active && (!oldFile || !oldFile.active)) {
-        this.uploading++;
-        // 激活
-        this.$nextTick(function () {
-          var _this3 = this;
-
-          setTimeout(function () {
-            _this3.upload(newFile).then(function () {
-              // eslint-disable-next-line
-              newFile = _this3.get(newFile);
-              if (newFile && newFile.fileObject) {
-                _this3.update(newFile, {
-                  active: false,
-                  success: !newFile.error
-                });
-              }
-            }).catch(function (e) {
-              _this3.update(newFile, {
-                active: false,
-                success: false,
-                error: e.code || e.error || e.message || e
-              });
-            });
-          }, parseInt(Math.random() * 50 + 50, 10));
-        });
-      } else if ((!newFile || !newFile.fileObject || !newFile.active) && oldFile && oldFile.fileObject && oldFile.active) {
-        // 停止
-        this.uploading--;
-      }
-
-      // 自动延续激活
-      if (this.active && (Boolean(newFile) !== Boolean(oldFile) || newFile.active !== oldFile.active)) {
-        this.watchActive(true);
-      }
-    },
-    emitInput: function emitInput() {
-      this.$emit('input', this.files);
-    },
-
-
-    // 上传
-    upload: function upload(id) {
-      var file = this.get(id);
-
-      // 被删除
-      if (!file) {
-        return Promise.reject('not_exists');
-      }
-
-      // 不是文件对象
-      if (!file.fileObject) {
-        return Promise.reject('file_object');
-      }
-
-      // 有错误直接响应
-      if (file.error) {
-        return Promise.reject(file.error);
-      }
-
-      // 已完成直接响应
-      if (file.success) {
-        return Promise.resolve(file);
-      }
-
-      // 后缀
-      var extensions = this.extensions;
-      if (extensions && (extensions.length || typeof extensions.length === 'undefined')) {
-        if ((typeof extensions === 'undefined' ? 'undefined' : _typeof(extensions)) !== 'object' || !(extensions instanceof RegExp)) {
-          if (typeof extensions === 'string') {
-            extensions = extensions.split(',').map(function (value) {
-              return value.trim();
-            }).filter(function (value) {
-              return value;
-            });
-          }
-          extensions = new RegExp('\\.(' + extensions.join('|').replace(/\./g, '\\.') + ')$', 'i');
-        }
-        if (file.name.search(extensions) === -1) {
-          return Promise.reject('extension');
-        }
-      }
-
-      // 大小
-      if (this.size > 0 && file.size >= 0 && file.size > this.size) {
-        return Promise.reject('size');
-      }
-
-      if (this.features.html5 && file.putAction) {
-        return this.uploadPut(file);
-      } else if (this.features.html5) {
-        return this.uploadHtml5(file);
-      } else {
-        return this.uploadHtml4(file);
-      }
-    },
-    uploadPut: function uploadPut(file) {
-      var querys = [];
-      var value = void 0;
-      for (var key in file.data) {
-        value = file.data[key];
-        if (value !== null && value !== undefined) {
-          querys.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
-        }
-      }
-      var queryString = querys.length ? (file.putAction.indexOf('?') === -1 ? '?' : '&') + querys.join('&') : '';
-      var xhr = new XMLHttpRequest();
-      xhr.open('PUT', file.putAction + queryString);
-      return this.uploadXhr(xhr, file, file.file);
-    },
-    uploadHtml5: function uploadHtml5(file) {
-      var form = new window.FormData();
-      var value = void 0;
-      for (var key in file.data) {
-        value = file.data[key];
-        if (value && (typeof value === 'undefined' ? 'undefined' : _typeof(value)) === 'object' && typeof value.toString !== 'function') {
-          if (value instanceof File) {
-            form.append(key, value, value.name);
-          } else {
-            form.append(key, JSON.stringify(value));
-          }
-        } else if (value !== null && value !== undefined) {
-          form.append(key, value);
-        }
-      }
-      form.append(this.name, file.file, file.file.filename || file.name);
-      var xhr = new XMLHttpRequest();
-      xhr.open('POST', file.postAction);
-      return this.uploadXhr(xhr, file, form);
-    },
-    uploadXhr: function uploadXhr(xhr, _file, body) {
-      var _this4 = this;
-
-      var file = _file;
-      var speedTime = 0;
-      var speedLoaded = 0;
-
-      // 进度条
-      xhr.upload.onprogress = function (e) {
-        // 还未开始上传 已删除 未激活
-        file = _this4.get(file);
-        if (!e.lengthComputable || !file || !file.fileObject || !file.active) {
-          return;
-        }
-
-        // 进度 速度 每秒更新一次
-        var speedTime2 = Math.round(Date.now() / 1000);
-        if (speedTime2 === speedTime) {
-          return;
-        }
-        speedTime = speedTime2;
-
-        file = _this4.update(file, {
-          progress: (e.loaded / e.total * 100).toFixed(2),
-          speed: e.loaded - speedLoaded
-        });
-        speedLoaded = e.loaded;
-      };
-
-      // 检查激活状态
-      var interval = setInterval(function () {
-        file = _this4.get(file);
-        if (file && file.fileObject && !file.success && !file.error && file.active) {
-          return;
-        }
-
-        if (interval) {
-          clearInterval(interval);
-          interval = false;
-        }
-
-        try {
-          xhr.abort();
-          xhr.timeout = 1;
-        } catch (e) {}
-      }, 100);
-
-      return new Promise(function (resolve, reject) {
-        var complete = void 0;
-        var fn = function fn(e) {
-          // 已经处理过了
-          if (complete) {
-            return;
-          }
-          complete = true;
-          if (interval) {
-            clearInterval(interval);
-            interval = false;
-          }
-
-          file = _this4.get(file);
-
-          // 不存在直接响应
-          if (!file) {
-            return reject('not_exists');
-          }
-
-          // 不是文件对象
-          if (!file.fileObject) {
-            return reject('file_object');
-          }
-
-          // 有错误自动响应
-          if (file.error) {
-            return reject(file.error);
-          }
-
-          // 未激活
-          if (!file.active) {
-            return reject('abort');
-          }
-
-          // 已完成 直接相应
-          if (file.success) {
-            return resolve(file);
-          }
-
-          var data = {};
-
-          switch (e.type) {
-            case 'timeout':
-            case 'abort':
-              data.error = e.type;
-              break;
-            case 'error':
-              if (!xhr.status) {
-                data.error = 'network';
-              } else if (xhr.status >= 500) {
-                data.error = 'server';
-              } else if (xhr.status >= 400) {
-                data.error = 'denied';
-              }
-              break;
-            default:
-              if (xhr.status >= 500) {
-                data.error = 'server';
-              } else if (xhr.status >= 400) {
-                data.error = 'denied';
-              } else {
-                data.progress = '100.00';
-              }
-          }
-
-          if (xhr.responseText) {
-            var contentType = xhr.getResponseHeader('Content-Type');
-            if (contentType && contentType.indexOf('/json') !== -1) {
-              data.response = JSON.parse(xhr.responseText);
-            } else {
-              data.response = xhr.responseText;
-            }
-          }
-
-          // 更新
-          file = _this4.update(file, data);
-
-          // 相应错误
-          if (file.error) {
-            return reject(file.error);
-          }
-
-          // 响应
-          return resolve(file);
-        };
-
-        // 事件
-        xhr.onload = fn;
-        xhr.onerror = fn;
-        xhr.onabort = fn;
-        xhr.ontimeout = fn;
-
-        // 超时
-        if (file.timeout) {
-          xhr.timeout = file.timeout;
-        }
-
-        // headers
-        for (var key in file.headers) {
-          xhr.setRequestHeader(key, file.headers[key]);
-        }
-
-        // 更新 xhr
-        file = _this4.update(file, { xhr: xhr });
-
-        // 开始上传
-        xhr.send(body);
-      });
-    },
-    uploadHtml4: function uploadHtml4(_file) {
-      var _this5 = this;
-
-      var file = _file;
-      var onKeydown = function onKeydown(e) {
-        if (e.keyCode === 27) {
-          e.preventDefault();
-        }
-      };
-
-      var iframe = document.createElement('iframe');
-      iframe.id = 'upload-iframe-' + file.id;
-      iframe.name = 'upload-iframe-' + file.id;
-      iframe.src = 'about:blank';
-      iframe.setAttribute('style', 'width:1px;height:1px;top:-999em;position:absolute; margin-top:-999em;');
-
-      var form = document.createElement('form');
-
-      form.action = file.postAction;
-
-      form.name = 'upload-form-' + file.id;
-
-      form.setAttribute('method', 'POST');
-      form.setAttribute('target', 'upload-iframe-' + file.id);
-      form.setAttribute('enctype', 'multipart/form-data');
-
-      var value = void 0;
-      var input = void 0;
-      for (var key in file.data) {
-        value = file.data[key];
-        if (value && (typeof value === 'undefined' ? 'undefined' : _typeof(value)) === 'object' && typeof value.toString !== 'function') {
-          value = JSON.stringify(value);
-        }
-        if (value !== null && value !== undefined) {
-          input = document.createElement('input');
-          input.type = 'hidden';
-          input.name = key;
-          form.appendChild(input);
-        }
-      }
-      form.appendChild(file.el);
-
-      document.body.appendChild(iframe).appendChild(form);
-
-      var getResponseData = function getResponseData() {
-        var doc = void 0;
-        try {
-          if (iframe.contentWindow) {
-            doc = iframe.contentWindow.document;
-          }
-        } catch (err) {}
-        if (!doc) {
-          try {
-            doc = iframe.contentDocument ? iframe.contentDocument : iframe.document;
-          } catch (err) {
-            doc = iframe.document;
-          }
-        }
-        if (doc && doc.body) {
-          return doc.body.innerHTML;
-        }
-        return null;
-      };
-
-      return new Promise(function (resolve, reject) {
-        setTimeout(function () {
-          file = _this5.update(file, { iframe: iframe });
-
-          // 不存在
-          if (!file) {
-            return reject('not_exists');
-          }
-
-          // 定时检查
-          var interval = setInterval(function () {
-            file = _this5.get(file);
-            if (file && file.fileObject && !file.success && !file.error && file.active) {
-              return;
-            }
-
-            if (interval) {
-              clearInterval(interval);
-              interval = false;
-            }
-
-            iframe.onabort({ type: file ? 'abort' : 'not_exists' });
-          }, 100);
-
-          var complete = void 0;
-          var fn = function fn(e) {
-            // 已经处理过了
-            if (complete) {
-              return;
-            }
-            complete = true;
-
-            if (interval) {
-              clearInterval(interval);
-              interval = false;
-            }
-
-            // 关闭 esc 事件
-            document.body.removeEventListener('keydown', onKeydown);
-
-            file = _this5.get(file);
-
-            // 不存在直接响应
-            if (!file) {
-              return reject('not_exists');
-            }
-
-            // 不是文件对象
-            if (!file.fileObject) {
-              return reject('file_object');
-            }
-
-            // 有错误自动响应
-            if (file.error) {
-              return reject(file.error);
-            }
-
-            // 未激活
-            if (!file.active) {
-              return reject('abort');
-            }
-
-            // 已完成 直接相应
-            if (file.success) {
-              return resolve(file);
-            }
-
-            var response = getResponseData();
-            var data = {};
-            switch (e.type) {
-              case 'abort':
-                data.error = 'abort';
-                break;
-              case 'error':
-                if (file.error) {
-                  data.error = file.error;
-                } else if (response === null) {
-                  data.error = 'network';
-                } else {
-                  data.error = 'denied';
-                }
-                break;
-              default:
-                if (file.error) {
-                  data.error = file.error;
-                } else if (data === null) {
-                  data.error = 'network';
-                } else {
-                  data.progress = '100.00';
-                }
-            }
-
-            if (response !== null) {
-              if (response && response.substr(0, 1) === '{' && response.substr(response.length - 1, 1) === '}') {
-                try {
-                  response = JSON.parse(response);
-                } catch (err) {}
-              }
-              data.response = response;
-            }
-
-            // 更新
-            file = _this5.update(file, data);
-
-            if (file.error) {
-              return reject(file.error);
-            }
-
-            // 响应
-            return resolve(file);
-          };
-
-          // 添加事件
-          iframe.onload = fn;
-          iframe.onerror = fn;
-          iframe.onabort = fn;
-
-          // 禁止 esc 键
-          document.body.addEventListener('keydown', onKeydown);
-
-          // 提交
-          form.submit();
-        }, 50);
-      }).then(function (res) {
-        iframe.parentNode && iframe.parentNode.removeChild(iframe);
-        return res;
-      }).catch(function (res) {
-        iframe.parentNode && iframe.parentNode.removeChild(iframe);
-        return res;
-      });
-    },
-    watchActive: function watchActive(active) {
-      var file = void 0;
-      var index = 0;
-      while (file = this.files[index]) {
-        index++;
-        if (!file.fileObject) {
-          // 不是文件对象
-        } else if (active && !this.destroy) {
-          if (this.uploading >= this.thread || this.uploading && !this.features.html5) {
-            break;
-          }
-          if (!file.active && !file.error && !file.success) {
-            this.update(file, { active: true });
-          }
-        } else {
-          if (file.active) {
-            this.update(file, { active: false });
-          }
-        }
-      }
-      if (this.uploading === 0) {
-        this.active = false;
-      }
-    },
-    watchDrop: function watchDrop(_el) {
-      var el = _el;
-      if (!this.features.drop) {
-        return;
-      }
-
-      // 移除挂载
-      if (this.dropElement) {
-        try {
-          document.removeEventListener('dragenter', this.onDragenter, false);
-          document.removeEventListener('dragleave', this.onDragleave, false);
-          this.dropElement.removeEventListener('dragover', this.onDragover, false);
-          this.dropElement.removeEventListener('drop', this.onDrop, false);
-        } catch (e) {}
-      }
-
-      if (!el) {
-        el = false;
-      } else if (typeof el === 'string') {
-        el = document.querySelector(el) || this.$root.$el.querySelector(el);
-      } else if (el === true) {
-        el = this.$parent.$el;
-      }
-
-      this.dropElement = el;
-
-      if (this.dropElement) {
-        document.addEventListener('dragenter', this.onDragenter, false);
-        document.addEventListener('dragleave', this.onDragleave, false);
-        this.dropElement.addEventListener('dragover', this.onDragover, false);
-        this.dropElement.addEventListener('drop', this.onDrop, false);
-      }
-    },
-    onDragenter: function onDragenter(e) {
-      e.preventDefault();
-      if (!this.dropActive) {
-        this.dropActive = true;
-      }
-    },
-    onDragleave: function onDragleave(e) {
-      e.preventDefault();
-      if (e.target.nodeName === 'HTML' || e.screenX === 0 && e.screenY === 0 && e.screenY === 0 && !e.fromElement && e.offsetX < 0) {
-        this.dropActive = false;
-      }
-    },
-    onDragover: function onDragover(e) {
-      e.preventDefault();
-    },
-    onDrop: function onDrop(e) {
-      e.preventDefault();
-      this.dropActive = false;
-      this.addDataTransfer(e.dataTransfer);
-    }
-  }
-};
-
-var FileUpload$1 = Object.freeze({
-	default: FileUpload
-});
-
-var require$$0 = ( FileUpload$1 && FileUpload ) || FileUpload$1;
-
-var src = require$$0;
-
-return src;
-
-})));
-//# sourceMappingURL=vue-upload-component.js.map
-
-
-/***/ }),
-
-/***/ 900:
+/***/ 774:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(310)
 /* script */
-var __vue_script__ = __webpack_require__(901)
+var __vue_script__ = __webpack_require__(775)
 /* template */
-var __vue_template__ = __webpack_require__(902)
+var __vue_template__ = __webpack_require__(776)
 /* styles */
 var __vue_styles__ = null
 /* scopeId */
@@ -9649,15 +8699,16 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 901:
+/***/ 775:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__xkeshi_image_compressor__ = __webpack_require__(840);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__xkeshi_image_compressor__ = __webpack_require__(694);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__xkeshi_image_compressor___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__xkeshi_image_compressor__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_upload_component__ = __webpack_require__(841);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_upload_component__ = __webpack_require__(695);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_upload_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue_upload_component__);
+//
 //
 //
 //
@@ -9907,6 +8958,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.postAction = this.postUrl ? this.postUrl : ' /uploads/post';
         this.putAction = this.putUrl ? this.putUrl : null;
         this.headers['Authorization'] = 'Bearer ' + vm.$cookie.get('access_token');
+        this.name = this.fileKey;
         if (this.single) {
             this.multiple = false;
         }
@@ -10016,7 +9068,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         inputFile: function inputFile(newFile, oldFile) {
             if (newFile && oldFile) {
                 // update
-                console.log(newFile);
+                // console.log(newFile)
 
                 if (newFile.active && !oldFile.active) {
                     // beforeSend
@@ -10036,7 +9088,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 }
 
                 if (newFile.success && !oldFile.success) {
-                    // success
+                    Bus.$emit('file-uploaded', newFile.response);
+                    if (newFile.response.message) {
+                        vm.$popup({ message: newFile.response.message, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' });
+                    }
                 }
             }
 
@@ -10061,13 +9116,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     watch: {
         fileKey: function fileKey(newValue) {
             this.name = newValue;
+        },
+        single: function single(newValue) {
+            if (newValue) {
+                this.multiple = false;
+            } else {
+                this.multiple = true;
+            }
         }
     }
 });
 
 /***/ }),
 
-/***/ 902:
+/***/ 776:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -10107,7 +9169,8 @@ var render = function() {
                     data: _vm.data,
                     drop: _vm.drop,
                     "drop-directory": _vm.dropDirectory,
-                    "add-index": _vm.addIndex
+                    "add-index": _vm.addIndex,
+                    name: _vm.name
                   },
                   on: {
                     "input-filter": _vm.inputFilter,
@@ -10862,6 +9925,2736 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
      require("vue-hot-reload-api").rerender("data-v-5721c990", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ 777:
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm.product
+    ? _c(
+        "main-layout",
+        { class: [_vm.contentClass], style: { paddingTop: "100px" } },
+        [
+          _c(
+            "v-container",
+            { attrs: { fluid: "", "grid-list-md": "" } },
+            [
+              _c(
+                "v-layout",
+                { attrs: { row: "", wrap: "" } },
+                [
+                  _c(
+                    "v-breadcrumbs",
+                    { attrs: { icons: "", divider: "forward", light: "" } },
+                    [
+                      _c(
+                        "v-breadcrumbs-item",
+                        {
+                          attrs: {
+                            "active-class": "primary--text",
+                            disabled: false,
+                            to: "/"
+                          }
+                        },
+                        [_vm._v("\n              Home\n              ")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-breadcrumbs-item",
+                        {
+                          attrs: {
+                            "active-class": "primary--text",
+                            disabled: false,
+                            to: "/products"
+                          }
+                        },
+                        [_vm._v("\n              Products\n              ")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-breadcrumbs-item",
+                        {
+                          attrs: {
+                            "active-class": "primary--text",
+                            disabled: false,
+                            to: "/products/" + _vm.slug
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n              " +
+                              _vm._s(_vm._f("capitalize")(_vm.slug)) +
+                              "\n              "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("v-breadcrumbs-item", { attrs: { disabled: true } }, [
+                        _c("span", { staticClass: "blue-grey--text" }, [
+                          _vm._v("Edit")
+                        ])
+                      ])
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-layout",
+                { attrs: { row: "", wrap: "" } },
+                [
+                  _c(
+                    "v-flex",
+                    {
+                      attrs: {
+                        "d-flex": "",
+                        xs12: "",
+                        sm12: "",
+                        md6: "",
+                        lg6: ""
+                      }
+                    },
+                    [
+                      _c(
+                        "v-layout",
+                        { attrs: { row: "", wrap: "", "fill-height": "" } },
+                        [
+                          _c(
+                            "v-flex",
+                            {
+                              attrs: {
+                                "d-flex": "",
+                                xs12: "",
+                                "text-xs-right": ""
+                              }
+                            },
+                            [
+                              _c(
+                                "v-card",
+                                {
+                                  attrs: {
+                                    color: "grey lighten-4",
+                                    flat: "",
+                                    light: ""
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "v-card-title",
+                                    { staticClass: "title accent--text" },
+                                    [
+                                      _c("v-spacer"),
+                                      _vm._v(
+                                        "\n                              Edit " +
+                                          _vm._s(_vm.titleCase(_vm.slug)) +
+                                          "\n                              "
+                                      ),
+                                      _c("v-spacer")
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  !_vm.current_image
+                                    ? _c("div", {
+                                        staticStyle: {
+                                          "background-color": "#d3d3d3",
+                                          height: "322px",
+                                          width: "50%",
+                                          margin: "auto"
+                                        }
+                                      })
+                                    : _c("v-card-media", {
+                                        attrs: {
+                                          src: _vm.current_image,
+                                          height: "322px",
+                                          contain: ""
+                                        }
+                                      }),
+                                  _vm._v(" "),
+                                  _vm.product.photos.length > 0
+                                    ? _c(
+                                        "v-container",
+                                        {
+                                          attrs: {
+                                            "fill-height": "",
+                                            fluid: ""
+                                          }
+                                        },
+                                        [
+                                          _c(
+                                            "v-layout",
+                                            { attrs: { "fill-height": "" } },
+                                            [
+                                              _c(
+                                                "v-flex",
+                                                {
+                                                  attrs: {
+                                                    xs12: "",
+                                                    "align-end": "",
+                                                    flexbox: ""
+                                                  }
+                                                },
+                                                _vm._l(
+                                                  _vm.product.photos,
+                                                  function(image, key) {
+                                                    return _c("div", {
+                                                      key: key,
+                                                      staticClass: "image",
+                                                      style: {
+                                                        backgroundImage:
+                                                          "url(" + image + ")",
+                                                        width: "50px",
+                                                        height: "50px"
+                                                      },
+                                                      on: {
+                                                        click: function(
+                                                          $event
+                                                        ) {
+                                                          _vm.setCurrentImage(
+                                                            key
+                                                          )
+                                                        }
+                                                      }
+                                                    })
+                                                  }
+                                                )
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    : _vm._e()
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-flex",
+                            {
+                              attrs: {
+                                "d-flex": "",
+                                xs10: "",
+                                "offset-xs1": "",
+                                "pl-5": "",
+                                "pr-5": ""
+                              }
+                            },
+                            [
+                              _c(
+                                "v-card",
+                                {
+                                  attrs: { color: "grey lighten-4", flat: "" }
+                                },
+                                [
+                                  _c(
+                                    "v-card-actions",
+                                    [
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          attrs: {
+                                            light: "",
+                                            flat: "",
+                                            block: "",
+                                            color: "green"
+                                          },
+                                          on: { click: _vm.editPrimaryImage }
+                                        },
+                                        [
+                                          _vm._v("Upload Product Image"),
+                                          _c(
+                                            "v-icon",
+                                            { attrs: { right: "" } },
+                                            [_vm._v("photo")]
+                                          )
+                                        ],
+                                        1
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          attrs: {
+                                            light: "",
+                                            flat: "",
+                                            block: "",
+                                            color: "teal"
+                                          },
+                                          on: { click: _vm.editGallerImages }
+                                        },
+                                        [
+                                          _vm._v("Upload Gallery Images"),
+                                          _c(
+                                            "v-icon",
+                                            { attrs: { right: "" } },
+                                            [_vm._v("photo_library")]
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-flex",
+                    {
+                      attrs: {
+                        "d-flex": "",
+                        xs12: "",
+                        sm12: "",
+                        md6: "",
+                        lg6: ""
+                      }
+                    },
+                    [
+                      _c(
+                        "v-layout",
+                        { attrs: { row: "", wrap: "" } },
+                        [
+                          _c(
+                            "v-flex",
+                            {
+                              attrs: {
+                                "d-flex": "",
+                                xs10: "",
+                                "offset-xs1": "",
+                                "pl-5": "",
+                                "pr-5": ""
+                              }
+                            },
+                            [
+                              _c(
+                                "v-card",
+                                {
+                                  attrs: {
+                                    color: "grey lighten-4",
+                                    flat: "",
+                                    light: ""
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "v-card-title",
+                                    { staticClass: "title accent--text" },
+                                    [
+                                      _c("v-spacer"),
+                                      _vm._v(
+                                        "\n                              Product Details:\n                              "
+                                      ),
+                                      _c("v-spacer"),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          attrs: {
+                                            icon: "",
+                                            color: "teal lighten-2"
+                                          },
+                                          on: { click: _vm.updateProduct }
+                                        },
+                                        [_c("v-icon", [_vm._v("fa-save")])],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c("v-text-field", {
+                                    attrs: { light: "", label: "Name" },
+                                    model: {
+                                      value: _vm.editProductForm.name,
+                                      callback: function($$v) {
+                                        _vm.editProductForm.name = $$v
+                                      },
+                                      expression: "editProductForm.name"
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("v-text-field", {
+                                    attrs: { light: "", label: "Slug" },
+                                    model: {
+                                      value: _vm.editProductForm.slug,
+                                      callback: function($$v) {
+                                        _vm.editProductForm.slug = $$v
+                                      },
+                                      expression: "editProductForm.slug"
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("v-text-field", {
+                                    attrs: { light: "", label: "Sku" },
+                                    model: {
+                                      value: _vm.editProductForm.sku,
+                                      callback: function($$v) {
+                                        _vm.editProductForm.sku = $$v
+                                      },
+                                      expression: "editProductForm.sku"
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("v-text-field", {
+                                    attrs: {
+                                      light: "",
+                                      label: "Currency",
+                                      disabled: ""
+                                    },
+                                    model: {
+                                      value: _vm.editProductForm.currency,
+                                      callback: function($$v) {
+                                        _vm.editProductForm.currency = $$v
+                                      },
+                                      expression: "editProductForm.currency"
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("v-text-field", {
+                                    attrs: {
+                                      light: "",
+                                      label: "Excerpt",
+                                      "multi-line": ""
+                                    },
+                                    model: {
+                                      value: _vm.editProductForm.excerpt,
+                                      callback: function($$v) {
+                                        _vm.editProductForm.excerpt = $$v
+                                      },
+                                      expression: "editProductForm.excerpt"
+                                    }
+                                  })
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-layout",
+                { attrs: { row: "", wrap: "" } },
+                [
+                  _c(
+                    "v-flex",
+                    {
+                      attrs: {
+                        xs10: "",
+                        "offset-xs1": "",
+                        "pl-5": "",
+                        "pr-5": ""
+                      }
+                    },
+                    [
+                      _c(
+                        "v-card",
+                        {
+                          attrs: {
+                            color: "grey lighten-4",
+                            flat: "",
+                            light: ""
+                          }
+                        },
+                        [
+                          _c(
+                            "v-card-title",
+                            { staticClass: "title accent--text" },
+                            [
+                              _c("v-spacer"),
+                              _vm._v(
+                                "\n                      Packages:\n                      "
+                              ),
+                              _c("v-spacer"),
+                              _vm._v(" "),
+                              _c(
+                                "v-btn",
+                                {
+                                  attrs: { icon: "", color: "green lighten-2" },
+                                  on: { click: _vm.openOptionModal }
+                                },
+                                [_c("v-icon", [_vm._v("fa-plus")])],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _vm.editProductForm.options.length > 0
+                    ? _c(
+                        "v-flex",
+                        {
+                          attrs: {
+                            xs10: "",
+                            "offset-xs1": "",
+                            "pl-5": "",
+                            "pr-5": ""
+                          }
+                        },
+                        _vm._l(_vm.editProductForm.options, function(
+                          option,
+                          key
+                        ) {
+                          return _c("v-text-field", {
+                            key: key,
+                            attrs: {
+                              label: option.name,
+                              light: "",
+                              "append-icon": "fa-trash",
+                              color: "primary",
+                              "append-icon-cb": function() {
+                                return _vm.deleteOption(key)
+                              }
+                            },
+                            model: {
+                              value: option.value,
+                              callback: function($$v) {
+                                option.value = $$v
+                              },
+                              expression: "option.value"
+                            }
+                          })
+                        })
+                      )
+                    : _vm._e()
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-layout",
+                { attrs: { row: "", wrap: "" } },
+                [
+                  _c(
+                    "v-flex",
+                    {
+                      attrs: {
+                        xs10: "",
+                        "offset-xs1": "",
+                        "pl-5": "",
+                        "pr-5": ""
+                      }
+                    },
+                    [
+                      _c(
+                        "v-card",
+                        {
+                          attrs: {
+                            color: "grey lighten-4",
+                            flat: "",
+                            light: ""
+                          }
+                        },
+                        [
+                          _c(
+                            "v-card-title",
+                            { staticClass: "title accent--text" },
+                            [
+                              _c("v-spacer"),
+                              _vm._v(
+                                "\n                      Product Description:\n                      "
+                              ),
+                              _c("v-spacer"),
+                              _vm._v(" "),
+                              _c(
+                                "v-btn",
+                                {
+                                  attrs: { icon: "", color: "info" },
+                                  on: { click: _vm.updateProduct }
+                                },
+                                [_c("v-icon", [_vm._v("fa-save")])],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-flex",
+                    {
+                      attrs: {
+                        xs10: "",
+                        "pl-5": "",
+                        "pr-5": "",
+                        "offset-xs1": ""
+                      }
+                    },
+                    [
+                      _c("text-editor", {
+                        attrs: {
+                          id: _vm.text_editor_id,
+                          html: _vm.editProductForm.description,
+                          "upload-link": "/products/" + _vm.slug + "/uploads",
+                          disabled: false
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("package-modal"),
+              _vm._v(" "),
+              _c("image-uploader"),
+              _vm._v(" "),
+              _c("gallery-uploader")
+            ],
+            1
+          )
+        ],
+        1
+      )
+    : _vm._e()
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-89c65caa", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ 898:
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(899)
+}
+var normalizeComponent = __webpack_require__(310)
+/* script */
+var __vue_script__ = __webpack_require__(901)
+/* template */
+var __vue_template__ = __webpack_require__(902)
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\products\\ImageUploader.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] ImageUploader.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-4d8ddbf0", Component.options)
+  } else {
+    hotAPI.reload("data-v-4d8ddbf0", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ 899:
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(900);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(648)("2cb65a80", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4d8ddbf0\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ImageUploader.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4d8ddbf0\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ImageUploader.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ 900:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(626)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ 901:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Uploads_vue__ = __webpack_require__(774);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Uploads_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Uploads_vue__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    components: {
+        Uploads: __WEBPACK_IMPORTED_MODULE_0__Uploads_vue___default.a
+    },
+    data: function data() {
+        return {
+            image_modal: false,
+            fileKey: 'image'
+        };
+    },
+    computed: {
+        postUrl: function postUrl() {
+            return route('api.product.uploadImage', { slug: this.$route.params.slug });
+        }
+    },
+    mounted: function mounted() {
+        var _this = this;
+
+        Bus.$on('edit-product-image', function () {
+            _this.image_modal = true;
+        });
+    },
+
+    methods: {
+        closeImageModal: function closeImageModal() {
+            this.image_modal = false;
+        }
+    }
+});
+
+/***/ }),
+
+/***/ 902:
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-dialog",
+    {
+      attrs: { fullscreen: "", transition: "dialog-bottom-transition" },
+      model: {
+        value: _vm.image_modal,
+        callback: function($$v) {
+          _vm.image_modal = $$v
+        },
+        expression: "image_modal"
+      }
+    },
+    [
+      _c(
+        "v-card",
+        { attrs: { light: true } },
+        [
+          _c(
+            "v-toolbar",
+            { attrs: { color: "accent" } },
+            [
+              _c(
+                "v-btn",
+                {
+                  staticClass: "error--text",
+                  attrs: { icon: "" },
+                  on: { click: _vm.closeImageModal }
+                },
+                [_c("v-icon", [_vm._v("close")])],
+                1
+              ),
+              _vm._v(" "),
+              _c("v-spacer"),
+              _vm._v(" "),
+              _c("v-toolbar-title", { staticClass: "primary--text" }, [
+                _vm._v("Upload Featured Image")
+              ]),
+              _vm._v(" "),
+              _c("v-spacer")
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("uploads", {
+            attrs: {
+              "file-key": _vm.fileKey,
+              "post-url": _vm.postUrl,
+              single: true
+            }
+          })
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-4d8ddbf0", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ 903:
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(904)
+}
+var normalizeComponent = __webpack_require__(310)
+/* script */
+var __vue_script__ = __webpack_require__(906)
+/* template */
+var __vue_template__ = __webpack_require__(907)
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\products\\PackageModal.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] PackageModal.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-648e1138", Component.options)
+  } else {
+    hotAPI.reload("data-v-648e1138", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ 904:
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(905);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(648)("b52c4860", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-648e1138\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./PackageModal.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-648e1138\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./PackageModal.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ 905:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(626)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ 906:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            option_modal: false,
+            tmp_option: {
+                name: '',
+                value: ''
+            }
+        };
+    },
+    mounted: function mounted() {
+        var _this = this;
+
+        Bus.$on('open-package-modal', function () {
+            _this.option_modal = true;
+        });
+    },
+
+    methods: {
+        closeOptionModal: function closeOptionModal() {
+            this.option_modal = false;
+        },
+        addOption: function addOption() {
+            var self = this;
+            Bus.$emit('package-added', self.tmp_option);
+            self.tmp_option = {
+                name: '',
+                value: ''
+            };
+            self.closeOptionModal();
+        }
+    }
+});
+
+/***/ }),
+
+/***/ 907:
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-layout",
+    { attrs: { row: "", wrap: "" } },
+    [
+      _c(
+        "v-dialog",
+        {
+          attrs: { persistent: "", "max-width": "500px" },
+          model: {
+            value: _vm.option_modal,
+            callback: function($$v) {
+              _vm.option_modal = $$v
+            },
+            expression: "option_modal"
+          }
+        },
+        [
+          _c(
+            "v-card",
+            { attrs: { light: "" } },
+            [
+              _c("v-card-title", [
+                _c("span", { staticClass: "headline" }, [
+                  _vm._v("Add Product Package")
+                ])
+              ]),
+              _vm._v(" "),
+              _c(
+                "v-card-text",
+                [
+                  _c(
+                    "v-container",
+                    { attrs: { fluid: "" } },
+                    [
+                      _c(
+                        "v-layout",
+                        { attrs: { row: "", wrap: "" } },
+                        [
+                          _c(
+                            "v-flex",
+                            { attrs: { xs12: "" } },
+                            [
+                              _c("v-text-field", {
+                                directives: [
+                                  {
+                                    name: "validate",
+                                    rawName: "v-validate",
+                                    value: { required: true },
+                                    expression: "{ required: true}"
+                                  }
+                                ],
+                                attrs: {
+                                  label: "Name",
+                                  required: "",
+                                  light: "",
+                                  "error-messages": _vm.errors.collect(
+                                    "package key"
+                                  ),
+                                  "data-vv-name": "name"
+                                },
+                                model: {
+                                  value: _vm.tmp_option.name,
+                                  callback: function($$v) {
+                                    _vm.tmp_option.name = $$v
+                                  },
+                                  expression: "tmp_option.name"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-layout",
+                        { attrs: { row: "", wrap: "" } },
+                        [
+                          _c(
+                            "v-flex",
+                            { attrs: { xs12: "" } },
+                            [
+                              _c("v-text-field", {
+                                directives: [
+                                  {
+                                    name: "validate",
+                                    rawName: "v-validate",
+                                    value: { required: true },
+                                    expression: "{ required: true}"
+                                  }
+                                ],
+                                attrs: {
+                                  label: "Value",
+                                  required: "",
+                                  light: "",
+                                  "error-messages": _vm.errors.collect(
+                                    "package value"
+                                  ),
+                                  "data-vv-name": "package value"
+                                },
+                                model: {
+                                  value: _vm.tmp_option.value,
+                                  callback: function($$v) {
+                                    _vm.tmp_option.value = $$v
+                                  },
+                                  expression: "tmp_option.value"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("small", [_vm._v("*indicates required field")])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-card-actions",
+                [
+                  _c("v-spacer"),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: { color: "blue darken-1", flat: "" },
+                      on: { click: _vm.closeOptionModal }
+                    },
+                    [_vm._v("Close")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: { color: "blue darken-1", flat: "" },
+                      on: { click: _vm.addOption }
+                    },
+                    [_vm._v("Save")]
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-648e1138", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ 908:
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(909)
+}
+var normalizeComponent = __webpack_require__(310)
+/* script */
+var __vue_script__ = __webpack_require__(911)
+/* template */
+var __vue_template__ = __webpack_require__(912)
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\products\\GalleryUploader.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] GalleryUploader.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-105fffbf", Component.options)
+  } else {
+    hotAPI.reload("data-v-105fffbf", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ 909:
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(910);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(648)("52809b59", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-105fffbf\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./GalleryUploader.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-105fffbf\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./GalleryUploader.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ 910:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(626)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ 911:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__MultiUploads_vue__ = __webpack_require__(913);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__MultiUploads_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__MultiUploads_vue__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    components: {
+        MultiUploads: __WEBPACK_IMPORTED_MODULE_0__MultiUploads_vue___default.a
+    },
+    data: function data() {
+        return {
+            gallery_modal: false,
+            fileKey: 'photos'
+
+        };
+    },
+    computed: {
+        postUrl: function postUrl() {
+            return route('api.product.uploadGalleryImages', { slug: this.$route.params.slug });
+        }
+    },
+    mounted: function mounted() {
+        var self = this;
+        Bus.$on('edit-gallery-images', function () {
+            self.gallery_modal = true;
+        });
+    },
+
+    methods: {
+        closeGalleryModal: function closeGalleryModal() {
+            this.gallery_modal = false;
+        },
+        uploadGalleryImages: function uploadGalleryImages() {
+            console.log('uploading gallery images');
+        }
+    }
+});
+
+/***/ }),
+
+/***/ 912:
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-dialog",
+    {
+      attrs: { fullscreen: "", transition: "dialog-bottom-transition" },
+      model: {
+        value: _vm.gallery_modal,
+        callback: function($$v) {
+          _vm.gallery_modal = $$v
+        },
+        expression: "gallery_modal"
+      }
+    },
+    [
+      _c(
+        "v-card",
+        { attrs: { light: true } },
+        [
+          _c(
+            "v-toolbar",
+            { attrs: { color: "accent" } },
+            [
+              _c(
+                "v-btn",
+                {
+                  staticClass: "error--text",
+                  attrs: { icon: "" },
+                  on: { click: _vm.closeGalleryModal }
+                },
+                [_c("v-icon", [_vm._v("close")])],
+                1
+              ),
+              _vm._v(" "),
+              _c("v-spacer"),
+              _vm._v(" "),
+              _c("v-toolbar-title", { staticClass: "primary--text" }, [
+                _vm._v("Upload Product Gallery Images")
+              ]),
+              _vm._v(" "),
+              _c("v-spacer")
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("multi-uploads", {
+            attrs: { "file-key": _vm.fileKey, "post-url": _vm.postUrl }
+          })
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-105fffbf", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ 913:
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(310)
+/* script */
+var __vue_script__ = __webpack_require__(914)
+/* template */
+var __vue_template__ = __webpack_require__(915)
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\MultiUploads.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] MultiUploads.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-04113ae3", Component.options)
+  } else {
+    hotAPI.reload("data-v-04113ae3", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ 914:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__xkeshi_image_compressor__ = __webpack_require__(694);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__xkeshi_image_compressor___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__xkeshi_image_compressor__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_upload_component__ = __webpack_require__(695);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_upload_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue_upload_component__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['fileKey', 'putUrl', 'postUrl', 'single'],
+    components: {
+        FileUpload: __WEBPACK_IMPORTED_MODULE_1_vue_upload_component___default.a
+    },
+    mounted: function mounted() {
+        this.postAction = this.postUrl ? this.postUrl : ' /uploads/post';
+        this.putAction = this.putUrl ? this.putUrl : null;
+        this.headers['Authorization'] = 'Bearer ' + vm.$cookie.get('access_token');
+        this.name = this.fileKey;
+        if (this.single) {
+            this.multiple = false;
+        }
+    },
+    data: function data() {
+        return {
+            th: [{ text: 'Thumb', value: 'thumb', align: 'left', sortable: true }, { text: 'Name', value: 'name', align: 'left', sortable: true }, { text: 'Size', value: 'size', align: 'left', sortable: true }, { text: 'Progress', value: 'progress', align: 'left', sortable: true }, { text: 'Status', value: 'speed', align: 'left', sortable: true }, { text: 'Actions', align: 'center', sortable: false }],
+            files: [],
+            /* file config */
+            accept: 'image/png,image/gif,image/jpeg,image/webp',
+            extensions: 'gif,jpg,jpeg,png,webp',
+            minSize: 1024,
+            size: 1024 * 1024 * 10,
+            multiple: true,
+            directory: false,
+            drop: true,
+            dropDirectory: true,
+            addIndex: false,
+            thread: 3,
+            name: 'file',
+            postAction: '/uploads/post',
+            putAction: '/uploads/put',
+            headers: {
+                'X-Csrf-Token': App.csrfToken,
+                /* added access token */
+                'Authorization': ''
+            },
+            data: {
+                '_csrf_token': App.csrfToken
+            },
+            autoCompress: 1024 * 1024,
+            uploadAuto: false,
+            /* file option */
+            isOption: false,
+            /* file name validation */
+            maxInput: function maxInput(v) {
+                return v.length <= 30 || 'Input too long!';
+            },
+            /* file per page */
+            perPageData: [10, 25, 50, { text: 'All', value: -1 }]
+        };
+    },
+
+    methods: {
+        progress: function progress(props) {
+            return Math.round(props);
+        },
+        remove: function remove(file) {
+            this.$refs.upload.remove(file);
+        },
+        inputFilter: function inputFilter(newFile, oldFile, prevent) {
+            var _this = this;
+
+            if (newFile && !oldFile) {
+                // Before adding a file
+                // 添加文件前
+
+                // Filter system files or hide files
+                // 过滤系统文件 和隐藏文件
+                if (/(\/|^)(Thumbs\.db|desktop\.ini|\..+)$/.test(newFile.name)) {
+                    return prevent();
+                }
+
+                // Filter php html js file
+                // 过滤 php html js 文件
+                if (/\.(php5?|html?|jsx?)$/i.test(newFile.name)) {
+                    return prevent();
+                }
+
+                // Automatic compression
+                // 自动压缩
+                if (newFile.file && newFile.type.substr(0, 6) === 'image/' && this.autoCompress > 0 && this.autoCompress < newFile.size) {
+                    newFile.error = 'compressing';
+                    var imageCompressor = new __WEBPACK_IMPORTED_MODULE_0__xkeshi_image_compressor___default.a(null, {
+                        convertSize: Infinity,
+                        maxWidth: 512,
+                        maxHeight: 512
+                    });
+                    imageCompressor.compress(newFile.file).then(function (file) {
+                        _this.$refs.upload.update(newFile, { error: '', file: file, size: file.size, type: file.type });
+                    }).catch(function (err) {
+                        _this.$refs.upload.update(newFile, { error: err.message || 'compress' });
+                    });
+                }
+            }
+
+            if (newFile && (!oldFile || newFile.file !== oldFile.file)) {
+                // Create a blob field
+                // 创建 blob 字段
+                newFile.blob = '';
+                var URL = window.URL || window.webkitURL;
+                if (URL && URL.createObjectURL) {
+                    newFile.blob = URL.createObjectURL(newFile.file);
+                }
+
+                // Thumbnails
+                // 缩略图
+                newFile.thumb = '';
+                if (newFile.blob && newFile.type.substr(0, 6) === 'image/') {
+                    newFile.thumb = newFile.blob;
+                }
+            }
+        },
+
+
+        // add, update, remove File Event
+        inputFile: function inputFile(newFile, oldFile) {
+            if (newFile && oldFile) {
+                // update
+                // console.log(newFile)
+
+                if (newFile.active && !oldFile.active) {
+                    // beforeSend
+
+                    // min size
+                    if (newFile.size >= 0 && this.minSize > 0 && newFile.size < this.minSize) {
+                        this.$refs.upload.update(newFile, { error: 'size' });
+                    }
+                }
+
+                if (newFile.progress !== oldFile.progress) {
+                    // progress
+                }
+
+                if (newFile.error && !oldFile.error) {
+                    // error
+                }
+
+                if (newFile.success && !oldFile.success) {
+                    Bus.$emit('multi-file-uploaded', newFile.response);
+                    if (newFile.response.message) {
+                        console.log('Success:', newFile.response.message);
+                    }
+                }
+            }
+
+            if (!newFile && oldFile) {
+                // remove
+                if (oldFile.success && oldFile.response.id) {
+                    // $.ajax({
+                    //   type: 'DELETE',
+                    //   url: '/upload/delete?id=' + oldFile.response.id,
+                    // })
+                }
+            }
+
+            // Automatically activate upload
+            if (Boolean(newFile) !== Boolean(oldFile) || oldFile.error !== newFile.error) {
+                if (this.uploadAuto && !this.$refs.upload.active) {
+                    this.$refs.upload.active = true;
+                }
+            }
+        }
+    },
+    watch: {
+        fileKey: function fileKey(newValue) {
+            this.name = newValue;
+        },
+        single: function single(newValue) {
+            if (newValue) {
+                this.multiple = false;
+            } else {
+                this.multiple = true;
+            }
+        }
+    }
+});
+
+/***/ }),
+
+/***/ 915:
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-container",
+    { attrs: { fluid: "" } },
+    [
+      _c(
+        "v-layout",
+        { attrs: { row: "", wrap: "" } },
+        [
+          _c("v-spacer"),
+          _vm._v(" "),
+          _c(
+            "v-btn",
+            { attrs: { color: "blue", flat: "" } },
+            [
+              _c(
+                "file-upload",
+                {
+                  ref: "upload",
+                  staticStyle: { cursor: "pointer", margin: "10px" },
+                  attrs: {
+                    "post-action": _vm.postAction,
+                    "put-action": _vm.putAction,
+                    extensions: _vm.extensions,
+                    accept: _vm.accept,
+                    multiple: _vm.multiple,
+                    directory: _vm.directory,
+                    size: _vm.size || 0,
+                    thread:
+                      _vm.thread < 1 ? 1 : _vm.thread > 5 ? 5 : _vm.thread,
+                    headers: _vm.headers,
+                    data: _vm.data,
+                    drop: _vm.drop,
+                    "drop-directory": _vm.dropDirectory,
+                    "add-index": _vm.addIndex,
+                    name: _vm.name
+                  },
+                  on: {
+                    "input-filter": _vm.inputFilter,
+                    "input-file": _vm.inputFile
+                  },
+                  model: {
+                    value: _vm.files,
+                    callback: function($$v) {
+                      _vm.files = $$v
+                    },
+                    expression: "files"
+                  }
+                },
+                [_vm._v("\n                Choose Files\n                ")]
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-btn",
+            {
+              attrs: { flat: "", icon: "", color: "amber lighten-2" },
+              nativeOn: {
+                click: function($event) {
+                  _vm.isOption = !_vm.isOption
+                }
+              }
+            },
+            [_c("v-icon", [_vm._v("fa-cog")])],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      !_vm.isOption
+        ? _c(
+            "v-layout",
+            { attrs: { row: "", wrap: "" } },
+            [
+              _c("v-data-table", {
+                attrs: {
+                  headers: _vm.th,
+                  items: _vm.files,
+                  light: true,
+                  "no-data-text":
+                    "Click `Choose Files` Button To Upload Files.",
+                  "rows-per-page-items": _vm.perPageData
+                },
+                scopedSlots: _vm._u([
+                  {
+                    key: "items",
+                    fn: function(props) {
+                      return [
+                        _c(
+                          "td",
+                          { staticClass: "title text-xs-left primary--text" },
+                          [
+                            props.item.thumb
+                              ? _c("img", {
+                                  attrs: {
+                                    src: props.item.thumb,
+                                    width: "40",
+                                    height: "auto"
+                                  }
+                                })
+                              : _c("span", [_vm._v("No Image")])
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          { staticClass: "title text-xs-left primary--text" },
+                          [
+                            _c(
+                              "v-edit-dialog",
+                              { attrs: { large: "", lazy: "" } },
+                              [
+                                _c("span", { staticClass: "primary--text" }, [
+                                  _vm._v(
+                                    _vm._s(
+                                      _vm._f("truncate")(props.item.name, 20)
+                                    )
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "mt-3 text-xs-center title primary--text",
+                                    attrs: { slot: "input" },
+                                    slot: "input"
+                                  },
+                                  [_vm._v("Update Name")]
+                                ),
+                                _vm._v(" "),
+                                _c("v-text-field", {
+                                  attrs: {
+                                    slot: "input",
+                                    label: "Edit",
+                                    "single-line": "",
+                                    counter: "",
+                                    autofocus: "",
+                                    rules: [_vm.maxInput]
+                                  },
+                                  slot: "input",
+                                  model: {
+                                    value: props.item.name,
+                                    callback: function($$v) {
+                                      props.item.name = $$v
+                                    },
+                                    expression: "props.item.name"
+                                  }
+                                })
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          { staticClass: "title text-xs-left primary--text" },
+                          [
+                            _vm._v(
+                              _vm._s(_vm._f("formatSize")(props.item.size))
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          { staticClass: "title text-xs-left primary--text" },
+                          [
+                            props.item.active || props.item.progress !== "0.00"
+                              ? _c(
+                                  "v-progress-circular",
+                                  {
+                                    attrs: {
+                                      size: 45,
+                                      width: 5,
+                                      rotate: 360,
+                                      value: _vm.progress(props.item.progress),
+                                      color: "teal"
+                                    }
+                                  },
+                                  [
+                                    _c("span", { staticClass: "caption" }, [
+                                      _vm._v(
+                                        _vm._s(
+                                          _vm.progress(props.item.progress)
+                                        )
+                                      )
+                                    ])
+                                  ]
+                                )
+                              : _vm._e()
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        props.item.error
+                          ? _c(
+                              "td",
+                              {
+                                staticClass: "title text-xs-left primary--text"
+                              },
+                              [_vm._v(_vm._s(props.item.error))]
+                            )
+                          : props.item.success
+                            ? _c(
+                                "td",
+                                {
+                                  staticClass:
+                                    "title text-xs-left primary--text"
+                                },
+                                [_vm._v("success")]
+                              )
+                            : props.item.active
+                              ? _c(
+                                  "td",
+                                  {
+                                    staticClass:
+                                      "title text-xs-left primary--text"
+                                  },
+                                  [_vm._v("active")]
+                                )
+                              : _c("td", {
+                                  staticClass:
+                                    "title text-xs-left primary--text"
+                                }),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          { staticClass: "title text-xs-center primary--text" },
+                          [
+                            props.item.active
+                              ? _c(
+                                  "v-btn",
+                                  {
+                                    attrs: {
+                                      flat: "",
+                                      icon: "",
+                                      color: "red darken-4"
+                                    },
+                                    nativeOn: {
+                                      click: function($event) {
+                                        props.item.active
+                                          ? _vm.$refs.upload.update(
+                                              props.item,
+                                              { error: "cancel" }
+                                            )
+                                          : false
+                                      }
+                                    }
+                                  },
+                                  [_c("v-icon", [_vm._v("fa-times")])],
+                                  1
+                                )
+                              : props.item.error &&
+                                props.item.error !== "compressing" &&
+                                _vm.$refs.upload.features.html5
+                                ? _c(
+                                    "v-btn",
+                                    {
+                                      attrs: {
+                                        flat: "",
+                                        icon: "",
+                                        color: "info"
+                                      },
+                                      nativeOn: {
+                                        click: function($event) {
+                                          _vm.$refs.upload.update(props.item, {
+                                            active: true,
+                                            error: "",
+                                            progress: "0.00"
+                                          })
+                                        }
+                                      }
+                                    },
+                                    [_c("v-icon", [_vm._v("fa-refresh")])],
+                                    1
+                                  )
+                                : _c(
+                                    "v-btn",
+                                    {
+                                      attrs: {
+                                        flat: "",
+                                        icon: "",
+                                        color: "blue"
+                                      },
+                                      nativeOn: {
+                                        click: function($event) {
+                                          props.item.success ||
+                                          props.item.error === "compressing"
+                                            ? false
+                                            : _vm.$refs.upload.update(
+                                                props.item,
+                                                { active: true }
+                                              )
+                                        }
+                                      }
+                                    },
+                                    [_c("v-icon", [_vm._v("fa-upload")])],
+                                    1
+                                  ),
+                            _vm._v(" "),
+                            _c(
+                              "v-btn",
+                              {
+                                attrs: {
+                                  flat: "",
+                                  icon: "",
+                                  color: "red lighten-2"
+                                },
+                                nativeOn: {
+                                  click: function($event) {
+                                    _vm.remove(props.item)
+                                  }
+                                }
+                              },
+                              [_c("v-icon", [_vm._v("fa-trash")])],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      ]
+                    }
+                  }
+                ])
+              })
+            ],
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      !_vm.isOption
+        ? _c(
+            "v-layout",
+            { attrs: { row: "", wrap: "" } },
+            [
+              _c("v-spacer"),
+              _vm._v(" "),
+              _c(
+                "v-btn",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.files.length > 0,
+                      expression: "files.length > 0"
+                    }
+                  ],
+                  attrs: { color: "teal lighten-2" },
+                  nativeOn: {
+                    click: function($event) {
+                      _vm.$refs.upload.active = true
+                    }
+                  }
+                },
+                [
+                  _vm._v("Start Upload "),
+                  _c("v-icon", { attrs: { right: "" } }, [_vm._v("play_arrow")])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-btn",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.$refs.upload && _vm.$refs.upload.active,
+                      expression: "$refs.upload && $refs.upload.active"
+                    }
+                  ],
+                  attrs: { color: "error" },
+                  nativeOn: {
+                    click: function($event) {
+                      _vm.$refs.upload.active = false
+                    }
+                  }
+                },
+                [
+                  _vm._v("Stop Upload "),
+                  _c("v-icon", { attrs: { right: "" } }, [_vm._v("stop")])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm.$refs.upload &&
+              !_vm.$refs.upload.active &&
+              _vm.files.length > 0
+                ? _c(
+                    "v-btn",
+                    {
+                      attrs: { color: "red lighten-2" },
+                      nativeOn: {
+                        click: function($event) {
+                          _vm.files = []
+                        }
+                      }
+                    },
+                    [
+                      _vm._v("Remove All Files "),
+                      _c("v-icon", { attrs: { right: "" } }, [
+                        _vm._v("fa-times")
+                      ])
+                    ],
+                    1
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _c("v-spacer")
+            ],
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.isOption
+        ? _c(
+            "v-layout",
+            { attrs: { row: "", wrap: "" } },
+            [
+              _c(
+                "v-flex",
+                { attrs: { xs12: "" } },
+                [
+                  _c("v-text-field", {
+                    directives: [
+                      {
+                        name: "validate",
+                        rawName: "v-validate",
+                        value: "required",
+                        expression: "'required'"
+                      }
+                    ],
+                    attrs: {
+                      "append-icon": "fa-file-code-o ",
+                      label: "Accept",
+                      color: "info",
+                      light: true,
+                      hint: "Allow upload mime type",
+                      "persistent-hint": "",
+                      "error-messages": _vm.errors.collect("mime-type"),
+                      "data-vv-name": "mime-type"
+                    },
+                    model: {
+                      value: _vm.accept,
+                      callback: function($$v) {
+                        _vm.accept = $$v
+                      },
+                      expression: "accept"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-flex",
+                { attrs: { xs12: "" } },
+                [
+                  _c("v-text-field", {
+                    directives: [
+                      {
+                        name: "validate",
+                        rawName: "v-validate",
+                        value: "required",
+                        expression: "'required'"
+                      }
+                    ],
+                    attrs: {
+                      "append-icon": "fa-cogs",
+                      label: "Extensions",
+                      color: "info",
+                      light: true,
+                      hint: "Allow upload file extension",
+                      "persistent-hint": "",
+                      "error-messages": _vm.errors.collect("extension"),
+                      "data-vv-name": "extension"
+                    },
+                    model: {
+                      value: _vm.extensions,
+                      callback: function($$v) {
+                        _vm.extensions = $$v
+                      },
+                      expression: "extensions"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-flex",
+                { attrs: { xs12: "" } },
+                [
+                  _c("v-text-field", {
+                    attrs: {
+                      "append-icon": "http",
+                      label: "Put Url",
+                      color: "info",
+                      light: true,
+                      hint:
+                        "Disabled if Empty, After the shutdown, use the POST method to upload",
+                      "persistent-hint": ""
+                    },
+                    model: {
+                      value: _vm.putAction,
+                      callback: function($$v) {
+                        _vm.putAction = $$v
+                      },
+                      expression: "putAction"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-flex",
+                { attrs: { xs12: "" } },
+                [
+                  _c("v-text-field", {
+                    directives: [
+                      {
+                        name: "validate",
+                        rawName: "v-validate",
+                        value: "required",
+                        expression: "'required'"
+                      }
+                    ],
+                    attrs: {
+                      "append-icon": "http",
+                      label: "Post Url",
+                      color: "info",
+                      light: true,
+                      hint: "Default Post URL",
+                      "persistent-hint": "",
+                      "error-messages": _vm.errors.collect("post-url"),
+                      "data-vv-name": "post-url"
+                    },
+                    model: {
+                      value: _vm.postAction,
+                      callback: function($$v) {
+                        _vm.postAction = $$v
+                      },
+                      expression: "postAction"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-flex",
+                { attrs: { xs12: "" } },
+                [
+                  _c("v-text-field", {
+                    directives: [
+                      {
+                        name: "validate",
+                        rawName: "v-validate",
+                        value: "required|numeric|min_value:1",
+                        expression: "'required|numeric|min_value:1'"
+                      }
+                    ],
+                    attrs: {
+                      "append-icon": "fa-cubes",
+                      label: "Thread",
+                      color: "info",
+                      light: true,
+                      hint:
+                        "Also upload the number of files at the same time (number of threads)",
+                      "persistent-hint": "",
+                      "error-messages": _vm.errors.collect("thread"),
+                      "data-vv-name": "thread"
+                    },
+                    model: {
+                      value: _vm.thread,
+                      callback: function($$v) {
+                        _vm.thread = $$v
+                      },
+                      expression: "thread"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-flex",
+                { attrs: { xs12: "" } },
+                [
+                  _c("v-text-field", {
+                    directives: [
+                      {
+                        name: "validate",
+                        rawName: "v-validate",
+                        value: "required",
+                        expression: "'required'"
+                      }
+                    ],
+                    attrs: {
+                      "append-icon": "trending_up",
+                      label: "Max size",
+                      color: "info",
+                      light: true,
+                      hint: "Size Unit in byte",
+                      "persistent-hint": "",
+                      "error-messages": _vm.errors.collect("max-size"),
+                      "data-vv-name": "max-size"
+                    },
+                    model: {
+                      value: _vm.size,
+                      callback: function($$v) {
+                        _vm.size = _vm._n($$v)
+                      },
+                      expression: "size"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-flex",
+                { attrs: { xs12: "" } },
+                [
+                  _c("v-text-field", {
+                    directives: [
+                      {
+                        name: "validate",
+                        rawName: "v-validate",
+                        value: "required",
+                        expression: "'required'"
+                      }
+                    ],
+                    attrs: {
+                      "append-icon": "trending_down",
+                      label: "Min size",
+                      color: "info",
+                      light: true,
+                      hint: "Size Unit in byte",
+                      "persistent-hint": "",
+                      "error-messages": _vm.errors.collect("min-size"),
+                      "data-vv-name": "min-size"
+                    },
+                    model: {
+                      value: _vm.minSize,
+                      callback: function($$v) {
+                        _vm.minSize = _vm._n($$v)
+                      },
+                      expression: "minSize"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-flex",
+                { attrs: { xs12: "" } },
+                [
+                  _c("v-text-field", {
+                    directives: [
+                      {
+                        name: "validate",
+                        rawName: "v-validate",
+                        value: "required",
+                        expression: "'required'"
+                      }
+                    ],
+                    attrs: {
+                      "append-icon": "fa-compress",
+                      label: "Automatically compress",
+                      color: "info",
+                      light: true,
+                      "error-messages": _vm.errors.collect("auto-compress"),
+                      "data-vv-name": "auto-compress"
+                    },
+                    model: {
+                      value: _vm.autoCompress,
+                      callback: function($$v) {
+                        _vm.autoCompress = _vm._n($$v)
+                      },
+                      expression: "autoCompress"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm.autoCompress > 0
+                    ? _c("p", { staticClass: "grey--text caption" }, [
+                        _vm._v(
+                          "More than " +
+                            _vm._s(_vm._f("formatSize")(_vm.autoCompress)) +
+                            " files are automatically compressed"
+                        )
+                      ])
+                    : _c("p", { staticClass: "grey--text caption" }, [
+                        _vm._v("Set up automatic compression")
+                      ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-flex",
+                { attrs: { xs12: "" } },
+                [
+                  _c("v-checkbox", {
+                    attrs: {
+                      label: "Drag and drop upload: " + _vm.drop.toString(),
+                      light: ""
+                    },
+                    model: {
+                      value: _vm.drop,
+                      callback: function($$v) {
+                        _vm.drop = $$v
+                      },
+                      expression: "drop"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-flex",
+                { attrs: { xs12: "" } },
+                [
+                  _c("v-checkbox", {
+                    attrs: {
+                      label:
+                        "Not checked, filter the dragged folder: " +
+                        _vm.dropDirectory.toString(),
+                      light: ""
+                    },
+                    model: {
+                      value: _vm.dropDirectory,
+                      callback: function($$v) {
+                        _vm.dropDirectory = $$v
+                      },
+                      expression: "dropDirectory"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-flex",
+                { attrs: { xs12: "" } },
+                [
+                  _c("v-checkbox", {
+                    attrs: {
+                      label:
+                        "Automatically activate upload: " +
+                        _vm.uploadAuto.toString(),
+                      light: ""
+                    },
+                    model: {
+                      value: _vm.uploadAuto,
+                      callback: function($$v) {
+                        _vm.uploadAuto = $$v
+                      },
+                      expression: "uploadAuto"
+                    }
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          )
+        : _vm._e()
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-04113ae3", module.exports)
   }
 }
 
