@@ -222,10 +222,10 @@ export default {
     mounted () {
         let self = this
         self.fetchPanelStats()
-        Bus.$on('receipt-uploaded', (order) => {
-            let index = _.findIndex(self.items, { id: order.id })
-            self.$set(self.items, index, order)
-            self.current_order = order
+        Bus.$on('file-uploaded', (response) => {
+            let index = _.findIndex(self.items, { id: response.order.id })
+            self.$set(self.items, index, response.order)
+            self.current_order = response.order
         })
     },
     methods: {
@@ -380,6 +380,7 @@ export default {
         setCurrentOrder (order) {
             this.dialog = true
             this.current_order = order
+            Bus.$emit('set-order', this.current_order)
             /* Check for Shipment Type if Meet Up Or Pick Up Remove Shipping Details From Tabs */
             let customer = Object.assign({name: 'customer details', component: 'customer-details'}, JSON.parse(this.current_order.customer_details))
             let shipping = Object.assign({name: 'shipping details', component: 'shipping-details'}, JSON.parse(this.current_order.shipping_details))
