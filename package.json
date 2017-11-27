@@ -60,6 +60,7 @@
     "vue-router": "^2.7.0",
     "vue-template-compiler": "^2.4.4",
     "vue-timeago": "^3.3.6",
+    "vue-trumbowyg": "^3.1.1",
     "vue-truncate-filter": "^1.1.7",
     "vue-upload-component": "^2.6.3",
     "vue-visible": "^1.0.2",
