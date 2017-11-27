@@ -24,7 +24,7 @@
                 </v-breadcrumbs-item>
             </v-breadcrumbs>
             <v-spacer></v-spacer>
-            <v-btn v-if="hasRole('admin')" icon color="primary" :to="`/products/${slug}/edit`"><v-icon>fa-edit</v-icon></v-btn>
+            <v-btn v-if="isLoggedIn() && hasRole('admin')" icon color="primary" :to="`/products/${slug}/edit`"><v-icon>fa-edit</v-icon></v-btn>
         </v-layout>
         <v-layout row wrap>
             <!-- left side -->
@@ -184,7 +184,7 @@ export default {
             slug: null,
             excerpt: null,
             image: null,
-            photos: null,
+            photos: [],
             inCart: false,
             options: {},
             price: 0,
