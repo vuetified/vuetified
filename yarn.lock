@@ -7607,6 +7607,10 @@ trim-right@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/trim-right/-/trim-right-1.0.1.tgz#cb2e1203067e0c8de1f614094b9fe45704ea6003"
 
+trumbowyg@^2.8.1:
+  version "2.8.1"
+  resolved "https://registry.yarnpkg.com/trumbowyg/-/trumbowyg-2.8.1.tgz#1bc05b32e760f8f28a49db63076d8bcb3bf072de"
+
 tryit@^1.0.1:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/tryit/-/tryit-1.0.3.tgz#393be730a9446fd1ead6da59a014308f36c289cb"
@@ -8025,6 +8029,12 @@ vue-template-es2015-compiler@^1.5.3:
 vue-timeago@^3.3.6:
   version "3.3.6"
   resolved "https://registry.yarnpkg.com/vue-timeago/-/vue-timeago-3.3.6.tgz#c849042ddaf159f24c80ac317211a0d4b427e5fc"
+
+vue-trumbowyg@^3.1.1:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/vue-trumbowyg/-/vue-trumbowyg-3.1.1.tgz#286e5fddf8d11ff1033132e750a750c387f79e18"
+  dependencies:
+    trumbowyg "^2.8.1"
 
 vue-truncate-filter@^1.1.7:
   version "1.1.7"
