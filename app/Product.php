@@ -17,7 +17,7 @@ class Product extends Model implements Buyable, HasMediaConversions
     use Sluggable,SluggableScopeHelpers,CanBeBought,HasMediaTrait;
 
     protected $fillable = [
-        'name', 'slug', 'category_id', 'sku', 'excerpt', 'description', 'options', 'currency'
+        'name', 'slug', 'category_id', 'sku', 'excerpt', 'description', 'options', 'currency', 'price'
     ];
 
     protected $casts = [
