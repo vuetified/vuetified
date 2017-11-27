@@ -254,7 +254,10 @@ export default {
         /* Add Passport Access Token */
         self.headers['Authorization'] = `Bearer ${this.$cookie.get('access_token')}`
         /* change post URL */
-        self.postAction = route('api.media.receiptUploader', {order: this.order.id})
+        /* Hack For Missing Order On FileUploader Component */
+        Bus.$on('set-order', (order) => {
+            self.postAction = route('api.media.receiptUploader', {order: order.id})
+        })
     },
     data () {
         return {
@@ -363,8 +366,6 @@ export default {
         // add, update, remove File Event
         inputFile (newFile, oldFile) {
             if (newFile && oldFile) {
-                console.log('added new file', newFile, oldFile)
-
                 if (newFile.active && !oldFile.active) {
                     // beforeSend
 
@@ -375,11 +376,9 @@ export default {
                 }
 
                 if (newFile.progress !== oldFile.progress) {
-                    console.log('progress', newFile.progress)
                 }
 
                 if (newFile.error && !oldFile.error) {
-                    console.log(newFile.response.message)
                     if (newFile.response.message) {
                         vm.$popup({ message: newFile.response.message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' })
                     } else {
@@ -388,7 +387,7 @@ export default {
                 }
 
                 if (newFile.success && !oldFile.success) {
-                    Bus.$emit('receipt-uploaded', newFile.response.order)
+                    Bus.$emit('file-uploaded', newFile.response.order)
                     vm.$popup({ message: newFile.response.message, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
                 }
             }
