@@ -33,6 +33,10 @@ class ProductsController extends Controller
                 'present',
                 'regex:/(^[A-Za-z0-9 ]+$)+/'
             ],
+            'price' => [
+                'present',
+                'regex:/^\d*(\.\d{1,2})?$/'
+            ],
             'slug' => [
                 'present',
                 'regex:/^[a-z0-9]+(?:-[a-z0-9]+)*$/'
