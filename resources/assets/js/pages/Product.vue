@@ -55,7 +55,7 @@
                             </v-card-media>
                             <!-- Image -->
                             <!-- Gallery -->
-                            <v-container fill-height fluid v-if="product.photos !== null && product.photos !== undefined && product.photos.length > 0">
+                            <v-container fill-height fluid v-if="product.photos.length > 0">
                                 <v-layout fill-height>
                                     <v-flex xs12 align-end flexbox>
                                         <div
