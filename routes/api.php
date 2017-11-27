@@ -52,6 +52,8 @@ Route::get('/categories/{slug}', 'Api\CategoriesController@show')->name('api.cat
 
 Route::get('/products', 'Api\ProductsController@index')->name('api.product.index');
 Route::get('/products/{slug}', 'Api\ProductsController@show')->name('api.product.show');
+Route::post('/products/{slug}/edit', 'Api\ProductsController@update')->name('api.product.update');
+Route::post('/products/{slug}/uploadImage', 'Api\ProductsController@uploadImage')->name('api.product.uploadImage');
 
 Route::post('/orders/{order}/toggle/paid', 'Api\Order\ToggleOrderController@togglePaid')->name('api.toggle.paid');
 Route::post('/orders/{order}/toggle/sent', 'Api\Order\ToggleOrderController@toggleSent')->name('api.toggle.sent');
