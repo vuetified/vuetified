@@ -121,6 +121,11 @@
                             ></v-text-field>
                             <v-text-field
                             light
+                            label="Price"
+                            v-model="editProductForm.price"
+                            ></v-text-field>
+                            <v-text-field
+                            light
                             label="Currency"
                             v-model="editProductForm.currency"
                             disabled
@@ -259,6 +264,17 @@ export default {
         Bus.$on('multi-file-uploaded', (response) => {
             self.product.photos.push(response.path)
         })
+        Bus.$on('package-added', (option) => {
+            console.log('package-added')
+            let self = this
+            let index = _.findIndex(self.editProductForm.options, ['name', option.name])
+            if (index >= 0) {
+                self.$set(self.editProductForm.options, index, option)
+            } else {
+                self.editProductForm.options.push(option)
+            }
+            self.updateProduct()
+        })
     },
     methods: {
         setCurrentImage (index) {
@@ -275,6 +291,7 @@ export default {
                 self.editProductForm.description = self.product.description
                 self.editProductForm.sku = self.product.sku
                 self.editProductForm.currency = self.product.currency
+                self.editProductForm.price = self.product.price
                 self.editProductForm.excerpt = self.product.excerpt
                 self.editProductForm.slug = self.product.slug
                 self.editProductForm.options = self.product.options
@@ -294,6 +311,7 @@ export default {
                 self.editProductForm.category_id = self.product.category_id
                 self.editProductForm.description = self.product.description
                 self.editProductForm.sku = self.product.sku
+                self.editProductForm.price = self.product.price
                 self.editProductForm.currency = self.product.currency
                 self.editProductForm.excerpt = self.product.excerpt
                 self.editProductForm.slug = self.product.slug
