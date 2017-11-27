@@ -3619,6 +3619,9 @@ if (false) {
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = ({
     methods: {
+        isLoggedIn: function isLoggedIn() {
+            return !!this.$store.getters['auth/getMe'];
+        },
         hasRole: function hasRole(payload) {
             var me = this.$store.getters['auth/getMe'];
             return _.includes(me.roles, payload);
@@ -6021,6 +6024,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -6071,6 +6079,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.getProduct();
     },
     mounted: function mounted() {
+        var _this = this;
+
         var self = this;
         this.getProduct();
         Bus.$on(self.text_editor_id + '-updated', function (description) {
@@ -6084,6 +6094,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         //! File Uploaded Also For Gallery
         Bus.$on('multi-file-uploaded', function (response) {
             self.product.photos.push(response.path);
+        });
+        Bus.$on('package-added', function (option) {
+            console.log('package-added');
+            var self = _this;
+            var index = _.findIndex(self.editProductForm.options, ['name', option.name]);
+            if (index >= 0) {
+                self.$set(self.editProductForm.options, index, option);
+            } else {
+                self.editProductForm.options.push(option);
+            }
+            self.updateProduct();
         });
     },
 
@@ -6109,6 +6130,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                                     self.editProductForm.description = self.product.description;
                                     self.editProductForm.sku = self.product.sku;
                                     self.editProductForm.currency = self.product.currency;
+                                    self.editProductForm.price = self.product.price;
                                     self.editProductForm.excerpt = self.product.excerpt;
                                     self.editProductForm.slug = self.product.slug;
                                     self.editProductForm.options = self.product.options;
@@ -6152,6 +6174,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                                     self.editProductForm.category_id = self.product.category_id;
                                     self.editProductForm.description = self.product.description;
                                     self.editProductForm.sku = self.product.sku;
+                                    self.editProductForm.price = self.product.price;
                                     self.editProductForm.currency = self.product.currency;
                                     self.editProductForm.excerpt = self.product.excerpt;
                                     self.editProductForm.slug = self.product.slug;
@@ -10316,6 +10339,17 @@ var render = function() {
                                         _vm.editProductForm.sku = $$v
                                       },
                                       expression: "editProductForm.sku"
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("v-text-field", {
+                                    attrs: { light: "", label: "Price" },
+                                    model: {
+                                      value: _vm.editProductForm.price,
+                                      callback: function($$v) {
+                                        _vm.editProductForm.price = $$v
+                                      },
+                                      expression: "editProductForm.price"
                                     }
                                   }),
                                   _vm._v(" "),

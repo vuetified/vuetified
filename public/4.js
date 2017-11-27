@@ -3159,6 +3159,9 @@ if (false) {
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = ({
     methods: {
+        isLoggedIn: function isLoggedIn() {
+            return !!this.$store.getters['auth/getMe'];
+        },
         hasRole: function hasRole(payload) {
             var me = this.$store.getters['auth/getMe'];
             return _.includes(me.roles, payload);

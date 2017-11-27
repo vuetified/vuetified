@@ -602,7 +602,6 @@ var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["createNam
     mounted: function mounted() {
         var self = this;
         self.items = __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_core_js_object_values___default()(self.getItems);
-        console.log(self.items);
         self.selected = self.items;
         self.tax = self.getTax;
         self.subtotal = self.getSubTotal;

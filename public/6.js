@@ -3163,6 +3163,9 @@ if (false) {
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = ({
     methods: {
+        isLoggedIn: function isLoggedIn() {
+            return !!this.$store.getters['auth/getMe'];
+        },
         hasRole: function hasRole(payload) {
             var me = this.$store.getters['auth/getMe'];
             return _.includes(me.roles, payload);
@@ -3449,7 +3452,7 @@ var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_6_vuex__["createNam
                 slug: null,
                 excerpt: null,
                 image: null,
-                photos: null,
+                photos: [],
                 inCart: false,
                 options: {},
                 price: 0,
@@ -3634,7 +3637,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("v-spacer"),
                   _vm._v(" "),
-                  _vm.hasRole("admin")
+                  _vm.isLoggedIn() && _vm.hasRole("admin")
                     ? _c(
                         "v-btn",
                         {

@@ -3157,6 +3157,51 @@ if (false) {
 
 /***/ }),
 
+/***/ 689:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ({
+    methods: {
+        isLoggedIn: function isLoggedIn() {
+            return !!this.$store.getters['auth/getMe'];
+        },
+        hasRole: function hasRole(payload) {
+            var me = this.$store.getters['auth/getMe'];
+            return _.includes(me.roles, payload);
+        },
+        hasPermission: function hasPermission(payload) {
+            var me = this.$store.getters['auth/getMe'];
+            return _.includes(me.permissions, payload);
+        },
+        hasAnyPermission: function hasAnyPermission(permissions) {
+            var me = this.$store.getters['auth/getMe'];
+            return permissions.some(function (p) {
+                return me.permissions.includes(p);
+            });
+        },
+        hasAnyRole: function hasAnyRole(roles) {
+            var me = this.$store.getters['auth/getMe'];
+            return roles.some(function (r) {
+                return me.roles.includes(r);
+            });
+        },
+        hasAllRoles: function hasAllRoles(roles) {
+            var me = this.$store.getters['auth/getMe'];
+            return _.difference(roles, me.roles).length === 0;
+        },
+        hasAllPermissions: function hasAllPermissions(permissions) {
+            var me = this.$store.getters['auth/getMe'];
+            return _.difference(permissions, me.permissions).length === 0;
+        },
+        can: function can(permission) {
+            return this.$store.getters['auth/getMe'].can[permission];
+        }
+    }
+});
+
+/***/ }),
+
 /***/ 715:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3712,7 +3757,7 @@ exports = module.exports = __webpack_require__(626)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -3724,6 +3769,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_acl__ = __webpack_require__(689);
 //
 //
 //
@@ -3737,7 +3783,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+    mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_acl__["a" /* default */]],
     data: function data() {
         return {
             images: [{ src: '/img/parallax1.jpg', headline: 'Amazing Organic Health Products', 'subheader': 'Choose From A Wide Variety of Health And Organic Products', 'buttontext': 'See All Products', 'buttonlink': '/products', 'icon': 'shopping_basket' }, { src: '/img/parallax2.jpg', headline: 'Competetive Low Cost Foodcart Franchise', 'subheader': 'Start For As Low As P16,888 ONLY!', 'buttontext': 'Be A Franchisee Now!', 'buttonlink': '/categories/food-cart', 'icon': 'store_mall_directory' }, { src: '/img/parallax3.jpg', headline: 'Want To Resell Our Product?', 'subheader': 'Why Not Get Paid For Referring New Consumer?', 'buttontext': 'Be A Reseller', 'buttonlink': '/register', 'icon': 'person_pin' }, { src: '/img/parallax4.jpg', headline: 'Interested But Still Undecided?', 'subheader': 'Our Customer Service Is Open For Your Questions', 'buttontext': 'Contact Us', 'buttonlink': '/support', 'icon': 'textsms' }]
@@ -3746,6 +3794,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         goToLink: function goToLink(link) {
             this.$router.push({ path: link });
+        }
+    },
+    mounted: function mounted() {
+        var self = this;
+        if (self.isLoggedIn()) {
+            self.images.forEach(function (image) {
+                if (image.buttonlink === '/register') {
+                    image.buttonlink = '/dashboard';
+                }
+            });
         }
     }
 });
@@ -3769,11 +3827,29 @@ var render = function() {
           { staticClass: "caption text-xs-center" },
           [
             _c("h3", { staticClass: "white--text" }, [
-              _vm._v(" " + _vm._s(item.headline))
+              _c(
+                "span",
+                {
+                  staticStyle: {
+                    "background-color": "#103050",
+                    opacity: "0.75"
+                  }
+                },
+                [_vm._v(_vm._s(item.headline))]
+              )
             ]),
             _vm._v(" "),
-            _c("h5", { staticClass: "white--text" }, [
-              _vm._v(_vm._s(item.subheader))
+            _c("p", { staticClass: "white--text headline" }, [
+              _c(
+                "span",
+                {
+                  staticStyle: {
+                    "background-color": "#607D8B",
+                    opacity: "0.75"
+                  }
+                },
+                [_vm._v(_vm._s(item.subheader))]
+              )
             ]),
             _vm._v(" "),
             _c(

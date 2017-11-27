@@ -3163,6 +3163,9 @@ if (false) {
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = ({
     methods: {
+        isLoggedIn: function isLoggedIn() {
+            return !!this.$store.getters['auth/getMe'];
+        },
         hasRole: function hasRole(payload) {
             var me = this.$store.getters['auth/getMe'];
             return _.includes(me.roles, payload);
@@ -5578,6 +5581,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -5870,9 +5877,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     watch: {
         items: {
-            handler: function handler() {
-                console.log('items changed');
-            },
+            handler: function handler() {},
             deep: true
         }
     }
@@ -10404,7 +10409,35 @@ var render = function() {
                               fn: function(orders) {
                                 return [
                                   _c("td", { staticClass: "text-xs-left" }, [
-                                    _vm._v(_vm._s(orders.item.name))
+                                    _c(
+                                      "span",
+                                      { staticClass: "primary--text" },
+                                      [_vm._v(_vm._s(orders.item.name))]
+                                    ),
+                                    _vm._v(" "),
+                                    orders.item.options !== {}
+                                      ? _c(
+                                          "span",
+                                          _vm._l(orders.item.options, function(
+                                            option,
+                                            key
+                                          ) {
+                                            return _c(
+                                              "span",
+                                              {
+                                                key: key,
+                                                staticClass:
+                                                  "info--text caption"
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "(" + _vm._s(option) + ")"
+                                                )
+                                              ]
+                                            )
+                                          })
+                                        )
+                                      : _vm._e()
                                   ]),
                                   _vm._v(" "),
                                   _c("td", { staticClass: "text-xs-left" }, [
