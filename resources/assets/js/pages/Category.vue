@@ -64,34 +64,10 @@
               </clazy-load>
               <v-card-actions class="accent">
                 <span class="body-2">{{product.price | currency(currency)}}</span>
-                <v-tooltip right lazy>
-                <v-btn flat icon color="teal lighten-4" slot="activator" @click.native="showProduct(product.slug)">
-                <v-icon>fa-info-circle</v-icon>
-                </v-btn>
-                <span>View | {{product.name}} Details</span>
-                </v-tooltip>
                 <v-spacer></v-spacer>
-                <v-tooltip left lazy v-if="product.inCart">
-                <v-btn flat icon color="error" slot="activator" @click.native="removeFromCart(product)" v-if="product.inCart">
-                <v-icon>remove_shopping_cart</v-icon>
+                <v-btn flat icon color="primary" slot="activator" @click.native="showProduct(product.slug)">
+                <v-icon>fa-shopping-bag</v-icon>
                 </v-btn>
-                <span>Remove | {{product.name}} in Cart</span>
-                </v-tooltip>
-                <v-tooltip left lazy v-if="product.inCart">
-                <v-btn flat icon color="primary" slot="activator" @click.native="viewCart()" v-if="product.inCart">
-                <v-badge left>
-                <span slot="badge">{{ product.qty }}</span>
-                <v-icon>shopping_cart</v-icon>
-                </v-badge>
-                </v-btn>
-                <span>{{ product.name }} Qty: {{ product.qty }}</span>
-                </v-tooltip>
-                <v-tooltip left lazy>
-                <v-btn flat icon color="info" slot="activator" @click.native="addToCart(product)">
-                <v-icon>add_shopping_cart</v-icon>
-                </v-btn>
-                <span>Add To Cart | {{product.name}}</span>
-                </v-tooltip>
                 <!-- Add Other Action buttons Here -->
               </v-card-actions>
             </v-card>
@@ -123,8 +99,6 @@
 <script>
 import MainLayout from '../layouts/Main.vue'
 import Theme from '../mixins/theme'
-import { createNamespacedHelpers } from 'vuex'
-const { mapActions, mapGetters } = createNamespacedHelpers('cart')
 
 export default {
     props: ['slug', 'query'],
@@ -154,9 +128,6 @@ export default {
         page: 1
     }),
     computed: {
-        ...mapGetters({
-            getItems: 'getItems'
-        }),
         length () {
             let self = this
             return Math.round(self.meta.total / (self.meta.per_page))
@@ -181,33 +152,6 @@ export default {
         self.page = parseInt(self.query.page)
     },
     methods: {
-        ...mapActions({
-            addItem: 'addItem',
-            removeItem: 'removeItem'
-        }),
-        /* Adapter for product and cart Items */
-        setInCart () {
-            let self = this
-            let items = Object.values(self.getItems)
-            if (items && items.length > 0) {
-                let inCart = items.filter(function (item) {
-                    return self.products.some(function (product) {
-                        return product.id === item.id
-                    })
-                })
-                inCart.forEach(function (payload) {
-                    let product = _.find(self.products, { id: payload.id })
-                    let index = _.findIndex(self.products, { id: payload.id })
-                    product.inCart = true
-                    product.qty = payload.qty
-                    self.$set(self.products, index, product)
-                })
-            } else { /* when cart is emptied then remove all inCart */
-                self.products.forEach(product => {
-                    product.inCart = false
-                })
-            }
-        },
         showProduct (slug) {
             let self = this
             self.$router.push({ name: 'product.show', params: { slug: slug } })
@@ -216,18 +160,6 @@ export default {
             let self = this
             self.$router.push({ name: 'cart' })
         },
-        addToCart (product) {
-            let self = this
-            product.inCart = true
-            product.qty = product.qty || 1
-            self.addItem(product.sku)
-        },
-        removeFromCart (product) {
-            let self = this
-            product.qty = 0
-            product.inCart = false
-            self.removeItem(product.id)
-        },
         async getProducts () {
             let self = this
             let slug = {slug: self.slug}
@@ -235,7 +167,6 @@ export default {
                 self.products = response.data.data
                 self.links = response.data.links
                 self.meta = response.data.meta
-                self.setInCart()
             }).catch(({errors, message}) => {
                 console.log(errors)
                 self.$popup({ message: message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' })
@@ -248,7 +179,6 @@ export default {
                 self.products = response.data.data
                 self.links = response.data.links
                 self.meta = response.data.meta
-                self.setInCart()
                 vm.$popup({ message: `${self.$route.params.slug} Page: ${self.page}`, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
             }).catch(({errors, message}) => {
                 console.log(errors)
@@ -258,11 +188,6 @@ export default {
 
     },
     watch: {
-        getItems () {
-            let self = this
-            /* if items in cart change we should Set what is in the cart */
-            self.setInCart()
-        },
         products: {
             handler: function () {
                 console.log('Products Array Updated')
