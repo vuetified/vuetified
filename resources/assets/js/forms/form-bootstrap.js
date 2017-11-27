@@ -8,9 +8,10 @@ _.extend(App, http)
 // All Fields Declared Here When Initiated Will Be Reactive
 App.forms = {
     cartForm: {
-        'sku': '',
+        'id': null,
+        'options': {},
         'qty': 0,
-        'rowId': ''
+        'rowId': null
     },
     passwordResetForm: {
         username: '',
@@ -148,6 +149,16 @@ App.forms = {
     },
     permissionsForm: {
         permissions: []
+    },
+    editProductForm: {
+        'category_id': '',
+        currency: '',
+        excerpt: '',
+        name: '',
+        slug: '',
+        sku: '',
+        description: '',
+        options: []
     }
     // Add Other Form Object Here
 }
