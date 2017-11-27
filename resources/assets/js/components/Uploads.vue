@@ -239,15 +239,17 @@
 import ImageCompressor from '@xkeshi/image-compressor'
 import FileUpload from 'vue-upload-component'
 export default {
-    props: ['fileKey', 'putUrl', 'postUrl'],
+    props: ['fileKey', 'putUrl', 'postUrl', 'single'],
     components: {
         FileUpload
     },
     mounted () {
         this.postAction = this.postUrl ? this.postUrl : ' /uploads/post'
         this.putAction = this.putUrl ? this.putUrl : null
-        this.name = this.fileKey ? this.fileKey : 'file'
         this.headers['Authorization'] = `Bearer ${vm.$cookie.get('access_token')}`
+        if (this.single) {
+            this.multiple = false
+        }
     },
     data () {
         return {
@@ -357,6 +359,7 @@ export default {
         inputFile (newFile, oldFile) {
             if (newFile && oldFile) {
                 // update
+                console.log(newFile)
 
                 if (newFile.active && !oldFile.active) {
                     // beforeSend
@@ -396,6 +399,11 @@ export default {
                     this.$refs.upload.active = true
                 }
             }
+        }
+    },
+    watch: {
+        fileKey (newValue) {
+            this.name = newValue
         }
     }
 }

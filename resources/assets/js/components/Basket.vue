@@ -38,7 +38,11 @@
                     >
                     </v-checkbox>
                 </td>
-                <td class="title text-xs-left primary--text">{{ props.item.name }}</td>
+                <td class="title text-xs-left primary--text">{{ props.item.name }}
+                    <span v-if="props.item.options !== {}">
+                        <span  class="info--text caption" v-for="(option,key) in props.item.options" :key="key">({{ option }})</span>
+                    </span>
+                </td>
                 <td class="title text-xs-left primary--text">{{ props.item.qty }}</td>
                 <td class="title text-xs-left primary--text">{{ props.item.price | currency(currency) }}</td>
                 <td class="title text-xs-left primary--text">{{ props.item.subtotal | currency(currency) }}</td>
@@ -154,6 +158,7 @@ export default {
     mounted () {
         let self = this
         self.items = Object.values(self.getItems)
+        console.log(self.items)
         self.selected = self.items
         self.tax = self.getTax
         self.subtotal = self.getSubTotal
@@ -170,7 +175,7 @@ export default {
             if (tmp.qty > 999) {
                 tmp.qty = 999
             }
-            let payload = {qty: tmp.qty, id: tmp.id}
+            let payload = {qty: tmp.qty, rowId: tmp.rowId}
 
             this.updateItem(payload)
         },
