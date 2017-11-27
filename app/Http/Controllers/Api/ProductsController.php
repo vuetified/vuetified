@@ -77,14 +77,10 @@ class ProductsController extends Controller
         }
 
     }
-
-    public function uploadImage(Request $request,$slug)
+    public function uploadGalleryImages(Request $request,$slug)
     {
-        
-        $path = Storage::putFile('image', $request->file('image'));
-        return $path;
         $validator = \Validator::make($request->all(), [
-            'file' => [
+            'photos' => [
                 'required',
                 'mimes:jpeg,bmp,png,psd,pdf,ppt,pptx,doc,docx,dotx,xls,txt,odt',
                 'max:10000'
@@ -94,14 +90,38 @@ class ProductsController extends Controller
             return response()->json(['errors' => $validator->errors()->all(),'message' => 'Failed To Upload Image'],409);
         }
         $product = Product::findBySlug($slug);
-        return $file = $this->uploaded($request,'image');
+        $path = $this->uploaded($request,'photos');
+        $path = str_replace("public","",$path);
+        return  response()->json(['path' => $path,'message' => 'Product Image Uploaded!'],200);
+    }
+    public function uploadImage(Request $request,$slug)
+    {   
+        $validator = \Validator::make($request->all(), [
+            'image' => [
+                'required',
+                'mimes:jpeg,bmp,png,psd,pdf,ppt,pptx,doc,docx,dotx,xls,txt,odt',
+                'max:10000'
+            ],
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()->all(),'message' => 'Failed To Upload Image'],409);
+        }
+        $product = Product::findBySlug($slug);
+        $path = $this->uploaded($request,'image');
+        $path = str_replace("public","",$path);
+        $product->image =$path;
+        $product->save();
+        return  response()->json(['path' => $path,'message' => 'Product Image Uploaded!'],200);
     }
 
     private function uploaded($request,$key)
     {
-        $storage_path = storage_path('app/public/'.$this->getBucket($request));
-        $file = $request->file($key);
-        return $file->move($storage_path, $file->getClientOriginalName() . '.' . $file->getClientOriginalExtension());
+        return $path = Storage::putFile('public/'.$this->getBucket($request), $request->file($key));
+    }
+
+    private function getPath($request)
+    {
+        return $storage_path = storage_path('app/public/'.$this->getBucket($request));
     }
 
     private function getBucket($request)
@@ -110,7 +130,7 @@ class ProductsController extends Controller
             return 'products';
         }
         if($request->has('photos')){
-           return  'gallery';
+           return  'photos';
         }
     }
 }
