@@ -15,13 +15,6 @@
         <img v-if="showLogo"   :src="logo" :style="[logoStyle]"  alt="vuejs">
         <v-spacer></v-spacer>
         <!-- Add Here All Your Nav Icons -->
-
-        <v-tooltip left>
-        <v-btn flat icon color="error" slot="activator" @click="emptyCart()" v-if="count > 0">
-        <v-icon>remove_shopping_cart</v-icon>
-        </v-btn>
-        <span>Empty | Cart</span>
-        </v-tooltip>
         <v-tooltip left>
         <v-btn flat icon color="primary" slot="activator" @click="openCart()">
         <v-badge left>
@@ -37,7 +30,7 @@
 <script>
 import Theme from '../mixins/theme'
 import { createNamespacedHelpers } from 'vuex'
-const { mapState, mapActions } = createNamespacedHelpers('cart')
+const { mapState } = createNamespacedHelpers('cart')
 
 export default {
     mixins: [Theme],
@@ -61,16 +54,9 @@ export default {
         self.count = self.getCount
     },
     methods: {
-        ...mapActions({
-            destroyCart: 'destroyCart'
-        }),
         /* Use Vuetify Modal */
         openShoppingCart () {
             Bus.$emit('shopping-cart-open')
-        },
-        emptyCart () {
-            let self = this
-            self.destroyCart()
         },
         toggleDrawer () {
             Bus.$emit('toggleDrawer')
