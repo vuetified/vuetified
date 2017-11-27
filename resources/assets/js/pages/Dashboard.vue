@@ -89,7 +89,11 @@
                             <th class="text-xs-left">Subtotal</th>
                     </template>
                         <template slot="items" scope="orders">
-                        <td class="text-xs-left">{{ orders.item.name }}</td>
+                        <td class="text-xs-left"><span class="primary--text">{{ orders.item.name }}</span>
+                            <span v-if="orders.item.options !== {}">
+                                <span  class="info--text caption" v-for="(option,key) in orders.item.options" :key="key">({{ option }})</span>
+                            </span>
+                        </td>
                         <td class="text-xs-left">{{ orders.item.qty }}</td>
                         <td class="text-xs-left">{{ orders.item.price | currency(currency) }}</td>
                         <td class="text-xs-left">{{ parseFloat(orders.item.tax).toFixed(2) | currency(currency) }}</td>
@@ -426,7 +430,6 @@ export default {
     watch: {
         items: {
             handler: function () {
-                console.log('items changed')
             },
             deep: true
         }
