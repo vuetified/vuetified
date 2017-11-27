@@ -158,7 +158,6 @@ export default {
     mounted () {
         let self = this
         self.items = Object.values(self.getItems)
-        console.log(self.items)
         self.selected = self.items
         self.tax = self.getTax
         self.subtotal = self.getSubTotal
