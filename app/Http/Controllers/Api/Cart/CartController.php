@@ -12,8 +12,19 @@ class CartController extends Controller
     // form input sky, qty
     public function add(Request $request)
     {
-        $product = Product::findBySku($request->sku);
-        $cartItem = Cart::add($product->id, $product->name, $request->qty, $product->price);
+        $product = Product::find($request->id);
+        $cart = [];
+        $cart['id'] = $product->id;
+        $cart['name'] = $product->name;
+        if($request->has('qty')){
+            $cart['qty'] = $request->qty;
+        }
+        $cart['price'] = $product->price;
+        if($request->has('options')){
+            $cart['options'] = $request->options;
+        }
+        $cartItem = Cart::add($cart);
+        
         // $cartItem->associate('Product');
 
         $items = Cart::content();
