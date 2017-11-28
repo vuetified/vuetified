@@ -69,5 +69,6 @@ Route::post('/orders/{order}/shipment-details', 'Api\Order\OrderDetailsConstroll
 
 Route::post('/orders/{order}/receipts', 'Api\Media\ReceiptUploadController@upload')->name('api.media.receiptUploader');
 
+Route::post('/@inquiry', 'Api\InquiryController@inquiry')->name('api.@inquiry');
 // Route::post('/checkout', 'Api\CheckoutController@checkout')->name('api.product.show');
 // Checkout Will Save A New Order For Specific Authenticated User
