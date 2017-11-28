@@ -15,10 +15,10 @@
     <v-flex xs12 sm12 md3 lg3 xl3>
         <v-subheader class="headline primary--text">Featured Food Carts</v-subheader>
         <v-list dense :class="[contentClass]">
-        <v-link title="Mang Siomai" :href="'/products/mang-siomai'"></v-link>
-        <v-link title="Hongkong Fried Noodles" :href="'/products/hongkong-fried-noodles'"></v-link>
-        <v-link title="Dumpling King" :href="'/products/dumpling-king'"></v-link>
-        <v-link title="Chinky Pao" :href="'/products/chinky-pao'"></v-link>
+        <v-link title="Mang Siomai" :href="'/products/mang-siomai-collapsible'"></v-link>
+        <v-link title="Hongkong Fried Noodles" :href="'/products/hongkong-fried-noodles-collapsible'"></v-link>
+        <v-link title="Dumpling King" :href="'/products/dumpling-king-collapsible'"></v-link>
+        <v-link title="Chinky Pao" :href="'/products/chinky-pao-collapsible'"></v-link>
         </v-list>
     </v-flex>
     <v-flex xs12 sm12 md3 lg3 xl3>
