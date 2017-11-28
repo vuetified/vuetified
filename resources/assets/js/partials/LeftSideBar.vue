@@ -5,12 +5,14 @@
       height="100%"
       enable-resize-watcher
       v-model="drawer"
+      class="accent"
     >
       <v-list dense>
         <!-- V-For Links From Menu -->
         <v-link :dark="darkClass" v-for="link in links" :key="link.id" :title="link.title" :href="link.href" :icon="link.action"></v-link>
         <!-- Individual Link (Custom Additional) -->
         <v-link :dark="darkClass"  title="Company Profile" :href="'/about'"   icon="fa-building"></v-link>
+        <v-link :dark="darkClass"  title="Support" :href="'/support'"   icon="fa-life-ring"></v-link>
         <v-link :dark="darkClass"  title="Products" :href="'/products'"   icon="fa-shopping-basket"></v-link>
         <v-link :dark="darkClass"  title="Categories" :href="'/categories'"   icon="fa-tag"></v-link>
         <!-- Expandable Group Links from Group Link -->
