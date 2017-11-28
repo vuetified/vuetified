@@ -160,6 +160,14 @@ App.forms = {
         price: 0,
         description: '',
         options: []
+    },
+    contactForm: {
+        name: '',
+        email: '',
+        subject: '',
+        message: '',
+        contact_no: '',
+        sponsor_id: ''
     }
     // Add Other Form Object Here
 }
