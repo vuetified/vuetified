@@ -89,13 +89,13 @@ function toComment(sourceMap) {
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(889)
+  __webpack_require__(907)
 }
 var normalizeComponent = __webpack_require__(310)
 /* script */
-var __vue_script__ = __webpack_require__(891)
+var __vue_script__ = __webpack_require__(909)
 /* template */
-var __vue_template__ = __webpack_require__(892)
+var __vue_template__ = __webpack_require__(910)
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
@@ -487,13 +487,13 @@ if (false) {
 
 /***/ }),
 
-/***/ 889:
+/***/ 907:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(890);
+var content = __webpack_require__(908);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -514,7 +514,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 890:
+/***/ 908:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(626)(undefined);
@@ -529,7 +529,7 @@ exports.push([module.i, "\n.cls-1[data-v-6ba62439] {\n  fill: #ffc541;\n}\n.cls-
 
 /***/ }),
 
-/***/ 891:
+/***/ 909:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -721,7 +721,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 892:
+/***/ 910:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {

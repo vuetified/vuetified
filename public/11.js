@@ -87,15 +87,19 @@ function toComment(sourceMap) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(912)
+}
 var normalizeComponent = __webpack_require__(310)
 /* script */
 var __vue_script__ = __webpack_require__(746)
 /* template */
-var __vue_template__ = __webpack_require__(747)
+var __vue_template__ = __webpack_require__(914)
 /* styles */
-var __vue_styles__ = null
+var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = null
+var __vue_scopeId__ = "data-v-31eb4816"
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -1518,6 +1522,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -1825,6 +1831,7 @@ var render = function() {
   return _c(
     "v-navigation-drawer",
     {
+      staticClass: "accent",
       attrs: {
         temporary: "",
         "hide-overlay": "",
@@ -1862,6 +1869,15 @@ var render = function() {
               title: "Company Profile",
               href: "/about",
               icon: "fa-building"
+            }
+          }),
+          _vm._v(" "),
+          _c("v-link", {
+            attrs: {
+              dark: _vm.darkClass,
+              title: "Support",
+              href: "/support",
+              icon: "fa-life-ring"
             }
           }),
           _vm._v(" "),
@@ -3158,9 +3174,120 @@ if (false) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__layouts_Main_vue__ = __webpack_require__(657);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__layouts_Main_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__layouts_Main_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_theme__ = __webpack_require__(650);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_regenerator__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_regenerator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_asyncToGenerator__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_asyncToGenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_asyncToGenerator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__layouts_Main_vue__ = __webpack_require__(657);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__layouts_Main_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__layouts_Main_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_theme__ = __webpack_require__(650);
+
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3172,29 +3299,532 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    mixins: [__WEBPACK_IMPORTED_MODULE_1__mixins_theme__["a" /* default */]],
+    mixins: [__WEBPACK_IMPORTED_MODULE_3__mixins_theme__["a" /* default */]],
     data: function data() {
         return {
-            contentClass: { 'grey': true, 'lighten-4': true, 'accent--text': true }
+            contentClass: { 'grey': true, 'lighten-4': true, 'accent--text': true },
+            name: '',
+            email: '',
+            subject: '',
+            message: '',
+            contact_no: '',
+            sponsor_id: App.sponsor.user_id,
+            contact_details: App.sponsor.contact_details,
+            contactForm: new AppForm(App.forms.contactForm)
         };
     },
     components: {
-        MainLayout: __WEBPACK_IMPORTED_MODULE_0__layouts_Main_vue___default.a
+        MainLayout: __WEBPACK_IMPORTED_MODULE_2__layouts_Main_vue___default.a
+    },
+    methods: {
+        resetForm: function resetForm() {
+            this.contactForm = new AppForm(App.forms.contactForm);
+            this.name = '';
+            this.email = '';
+            this.message = '';
+            this.subject = '';
+            this.contact_no = '';
+        },
+        submit: function () {
+            var _ref = __WEBPACK_IMPORTED_MODULE_1_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_regenerator___default.a.mark(function _callee() {
+                var self;
+                return __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+                    while (1) {
+                        switch (_context.prev = _context.next) {
+                            case 0:
+                                self = this;
+
+                                self.contactForm.name = self.name;
+                                self.contactForm.email = self.email;
+                                self.contactForm.subject = self.subject;
+                                self.contactForm.message = self.message;
+                                self.contactForm.sponsor_id = self.sponsor_id;
+                                self.contactForm.contact_no = self.contact_no;
+                                self.$validator.validateAll();
+
+                                if (self.errors.any()) {
+                                    _context.next = 12;
+                                    break;
+                                }
+
+                                self.contactForm.startProcessing();
+                                _context.next = 12;
+                                return axios.post(route('api.@inquiry'), self.contactForm).then(function (_ref2) {
+                                    var data = _ref2.data;
+
+                                    self.resetForm();
+                                    self.clearErrors();
+                                    vm.$popup({ message: data.message, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' });
+                                }).catch(function (_ref3) {
+                                    var response = _ref3.response;
+
+                                    self.contactForm.setErrors(response.data.errors);
+                                    self.contactForm.busy = false;
+                                    vm.$popup({ message: response.data.message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' });
+                                });
+
+                            case 12:
+                            case 'end':
+                                return _context.stop();
+                        }
+                    }
+                }, _callee, this);
+            }));
+
+            function submit() {
+                return _ref.apply(this, arguments);
+            }
+
+            return submit;
+        }(),
+        clearErrors: function clearErrors() {
+            this.errors.clear();
+        },
+        toProperCase: function toProperCase(key) {
+            var newStr = key.replace(/_/g, ' ');
+            return newStr.replace(/\w\S*/g, function (txt) {
+                return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+            });
+        }
     }
 });
 
 /***/ }),
 
-/***/ 747:
+/***/ 912:
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(913);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(648)("2e1096c0", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-31eb4816\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Support.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-31eb4816\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Support.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ 913:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(626)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n.breadcrumbs li[data-v-31eb4816]:not(:last-child):after {\n    color: #009688;\n    content: attr(data-divider);\n    vertical-align: middle;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ 914:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("main-layout", { class: [_vm.contentClass] }, [
-    _c("p", [_vm._v("Support")])
-  ])
+  return _c(
+    "main-layout",
+    { class: [_vm.contentClass], style: { paddingTop: "100px" } },
+    [
+      _c(
+        "v-container",
+        { attrs: { fluid: "" } },
+        [
+          _c(
+            "v-layout",
+            { attrs: { row: "", wrap: "" } },
+            [
+              _c(
+                "v-breadcrumbs",
+                { attrs: { icons: "", divider: "forward", light: "" } },
+                [
+                  _c(
+                    "v-breadcrumbs-item",
+                    {
+                      attrs: {
+                        "active-class": "primary--text",
+                        disabled: false,
+                        to: "/"
+                      }
+                    },
+                    [_vm._v("\n              Home\n              ")]
+                  ),
+                  _vm._v(" "),
+                  _c("v-breadcrumbs-item", { attrs: { disabled: true } }, [
+                    _c("span", { staticClass: "blue-grey--text" }, [
+                      _vm._v("Support")
+                    ])
+                  ])
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-layout",
+            { attrs: { row: "", wrap: "" } },
+            [
+              _c(
+                "v-flex",
+                {
+                  attrs: { "d-flex": "", xs12: "", sm12: "", md6: "", lg6: "" }
+                },
+                [
+                  _c(
+                    "v-layout",
+                    { attrs: { row: "", wrap: "" } },
+                    [
+                      _c(
+                        "v-flex",
+                        {
+                          attrs: {
+                            "d-flex": "",
+                            xs12: "",
+                            "text-xs-center": ""
+                          }
+                        },
+                        [
+                          _c(
+                            "v-container",
+                            { attrs: { "fill-height": "", fluid: "" } },
+                            [
+                              _c(
+                                "v-layout",
+                                { attrs: { "fill-height": "" } },
+                                [
+                                  _c(
+                                    "v-flex",
+                                    {
+                                      attrs: { xs12: "", "text-xs-center": "" }
+                                    },
+                                    [
+                                      _c(
+                                        "p",
+                                        {
+                                          staticClass: "headline primary--text"
+                                        },
+                                        [_vm._v("Inquire Now")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("v-text-field", {
+                                        directives: [
+                                          {
+                                            name: "validate",
+                                            rawName: "v-validate",
+                                            value: "required|max:255",
+                                            expression: "'required|max:255'"
+                                          }
+                                        ],
+                                        attrs: {
+                                          light: "",
+                                          name: "name",
+                                          label: "Full Name",
+                                          "data-vv-name": "name",
+                                          "error-messages": _vm.errors.collect(
+                                            "name"
+                                          )
+                                        },
+                                        model: {
+                                          value: _vm.name,
+                                          callback: function($$v) {
+                                            _vm.name = $$v
+                                          },
+                                          expression: "name"
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c("v-text-field", {
+                                        directives: [
+                                          {
+                                            name: "validate",
+                                            rawName: "v-validate",
+                                            value: "required|email",
+                                            expression: "'required|email'"
+                                          }
+                                        ],
+                                        attrs: {
+                                          light: "",
+                                          name: "email",
+                                          label: "Email",
+                                          "data-vv-name": "email",
+                                          "error-messages": _vm.errors.collect(
+                                            "email"
+                                          )
+                                        },
+                                        model: {
+                                          value: _vm.email,
+                                          callback: function($$v) {
+                                            _vm.email = $$v
+                                          },
+                                          expression: "email"
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c("v-text-field", {
+                                        directives: [
+                                          {
+                                            name: "validate",
+                                            rawName: "v-validate",
+                                            value: {
+                                              required: true,
+                                              regex: /^\+?\d+$/
+                                            },
+                                            expression:
+                                              "{ required: true, regex: /^\\+?\\d+$/ }"
+                                          }
+                                        ],
+                                        attrs: {
+                                          light: "",
+                                          name: "contact_no",
+                                          label: "Contact No.",
+                                          "data-vv-name": "contact no",
+                                          "error-messages": _vm.errors.collect(
+                                            "contact no"
+                                          )
+                                        },
+                                        model: {
+                                          value: _vm.contact_no,
+                                          callback: function($$v) {
+                                            _vm.contact_no = $$v
+                                          },
+                                          expression: "contact_no"
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c("v-text-field", {
+                                        directives: [
+                                          {
+                                            name: "validate",
+                                            rawName: "v-validate",
+                                            value: "required",
+                                            expression: "'required'"
+                                          }
+                                        ],
+                                        attrs: {
+                                          light: "",
+                                          name: "subject",
+                                          label: "Subject",
+                                          "data-vv-name": "subject",
+                                          "error-messages": _vm.errors.collect(
+                                            "subject"
+                                          )
+                                        },
+                                        model: {
+                                          value: _vm.subject,
+                                          callback: function($$v) {
+                                            _vm.subject = $$v
+                                          },
+                                          expression: "subject"
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c("v-text-field", {
+                                        directives: [
+                                          {
+                                            name: "validate",
+                                            rawName: "v-validate",
+                                            value: "required",
+                                            expression: "'required'"
+                                          }
+                                        ],
+                                        attrs: {
+                                          light: "",
+                                          name: "message",
+                                          label: "Message",
+                                          "data-vv-name": "message",
+                                          "error-messages": _vm.errors.collect(
+                                            "message"
+                                          ),
+                                          "multi-line": ""
+                                        },
+                                        model: {
+                                          value: _vm.message,
+                                          callback: function($$v) {
+                                            _vm.message = $$v
+                                          },
+                                          expression: "message"
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          staticClass: "white--text",
+                                          class: {
+                                            accent: !_vm.contactForm.busy,
+                                            error: _vm.contactForm.busy
+                                          },
+                                          attrs: {
+                                            light: "",
+                                            loading: _vm.contactForm.busy,
+                                            disabled: _vm.errors.any(),
+                                            block: ""
+                                          },
+                                          on: { click: _vm.submit }
+                                        },
+                                        [
+                                          _vm._v("Send"),
+                                          _c(
+                                            "v-icon",
+                                            { attrs: { right: "" } },
+                                            [_vm._v("send")]
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-flex",
+                {
+                  attrs: { "d-flex": "", xs12: "", sm12: "", md6: "", lg6: "" }
+                },
+                [
+                  _c(
+                    "v-layout",
+                    { attrs: { row: "", wrap: "" } },
+                    [
+                      _c(
+                        "v-flex",
+                        { attrs: { xs12: "", "text-xs-center": "" } },
+                        [
+                          _c(
+                            "v-container",
+                            { attrs: { "fill-height": "", fluid: "" } },
+                            [
+                              _c(
+                                "v-layout",
+                                { attrs: { "fill-height": "" } },
+                                [
+                                  _c(
+                                    "v-flex",
+                                    {
+                                      attrs: {
+                                        xs12: "",
+                                        "text-xs-center": "",
+                                        "align-end": "",
+                                        flexbox: ""
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "p",
+                                        {
+                                          staticClass: "headline primary--text"
+                                        },
+                                        [_vm._v("Sellers Info")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-list",
+                                        { staticClass: "grey lighten-4" },
+                                        _vm._l(_vm.contact_details, function(
+                                          value,
+                                          key,
+                                          index
+                                        ) {
+                                          return _c(
+                                            "v-list-tile",
+                                            {
+                                              key: key,
+                                              attrs: { index: index }
+                                            },
+                                            [
+                                              _c(
+                                                "v-list-tile-content",
+                                                [
+                                                  _c(
+                                                    "v-list-tile-title",
+                                                    {
+                                                      staticClass:
+                                                        "title blue-grey--text"
+                                                    },
+                                                    [
+                                                      _vm._v(
+                                                        _vm._s(
+                                                          _vm.toProperCase(key)
+                                                        ) +
+                                                          ": " +
+                                                          _vm._s(
+                                                            _vm.toProperCase(
+                                                              value
+                                                            )
+                                                          )
+                                                      )
+                                                    ]
+                                                  )
+                                                ],
+                                                1
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        })
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

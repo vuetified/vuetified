@@ -89,9 +89,9 @@ function toComment(sourceMap) {
 var disposed = false
 var normalizeComponent = __webpack_require__(310)
 /* script */
-var __vue_script__ = __webpack_require__(882)
+var __vue_script__ = __webpack_require__(900)
 /* template */
-var __vue_template__ = __webpack_require__(888)
+var __vue_template__ = __webpack_require__(906)
 /* styles */
 var __vue_styles__ = null
 /* scopeId */
@@ -1518,6 +1518,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -1825,6 +1827,7 @@ var render = function() {
   return _c(
     "v-navigation-drawer",
     {
+      staticClass: "accent",
       attrs: {
         temporary: "",
         "hide-overlay": "",
@@ -1862,6 +1865,15 @@ var render = function() {
               title: "Company Profile",
               href: "/about",
               icon: "fa-building"
+            }
+          }),
+          _vm._v(" "),
+          _c("v-link", {
+            attrs: {
+              dark: _vm.darkClass,
+              title: "Support",
+              href: "/support",
+              icon: "fa-life-ring"
             }
           }),
           _vm._v(" "),
@@ -3198,12 +3210,12 @@ if (false) {
 
 /***/ }),
 
-/***/ 882:
+/***/ 900:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_toConsumableArray__ = __webpack_require__(883);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_toConsumableArray__ = __webpack_require__(901);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_toConsumableArray___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_toConsumableArray__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_regenerator__ = __webpack_require__(61);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_regenerator__);
@@ -3870,7 +3882,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 883:
+/***/ 901:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3878,7 +3890,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 exports.__esModule = true;
 
-var _from = __webpack_require__(884);
+var _from = __webpack_require__(902);
 
 var _from2 = _interopRequireDefault(_from);
 
@@ -3898,24 +3910,24 @@ exports.default = function (arr) {
 
 /***/ }),
 
-/***/ 884:
+/***/ 902:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = { "default": __webpack_require__(885), __esModule: true };
+module.exports = { "default": __webpack_require__(903), __esModule: true };
 
 /***/ }),
 
-/***/ 885:
+/***/ 903:
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(133);
-__webpack_require__(886);
+__webpack_require__(904);
 module.exports = __webpack_require__(31).Array.from;
 
 
 /***/ }),
 
-/***/ 886:
+/***/ 904:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3926,7 +3938,7 @@ var toObject = __webpack_require__(311);
 var call = __webpack_require__(314);
 var isArrayIter = __webpack_require__(315);
 var toLength = __webpack_require__(134);
-var createProperty = __webpack_require__(887);
+var createProperty = __webpack_require__(905);
 var getIterFn = __webpack_require__(316);
 
 $export($export.S + $export.F * !__webpack_require__(317)(function (iter) { Array.from(iter); }), 'Array', {
@@ -3960,7 +3972,7 @@ $export($export.S + $export.F * !__webpack_require__(317)(function (iter) { Arra
 
 /***/ }),
 
-/***/ 887:
+/***/ 905:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3976,7 +3988,7 @@ module.exports = function (object, index, value) {
 
 /***/ }),
 
-/***/ 888:
+/***/ 906:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {

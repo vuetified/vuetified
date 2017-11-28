@@ -1518,6 +1518,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -1825,6 +1827,7 @@ var render = function() {
   return _c(
     "v-navigation-drawer",
     {
+      staticClass: "accent",
       attrs: {
         temporary: "",
         "hide-overlay": "",
@@ -1862,6 +1865,15 @@ var render = function() {
               title: "Company Profile",
               href: "/about",
               icon: "fa-building"
+            }
+          }),
+          _vm._v(" "),
+          _c("v-link", {
+            attrs: {
+              dark: _vm.darkClass,
+              title: "Support",
+              href: "/support",
+              icon: "fa-life-ring"
             }
           }),
           _vm._v(" "),

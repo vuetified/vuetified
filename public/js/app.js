@@ -37479,7 +37479,7 @@ var Category = function Category() {
 
 "use strict";
 var Home = function Home() {
-    return __webpack_require__.e/* import() */(2).then(__webpack_require__.bind(null, 634));
+    return __webpack_require__.e/* import() */(3).then(__webpack_require__.bind(null, 634));
 };
 var About = function About() {
     return __webpack_require__.e/* import() */(12).then(__webpack_require__.bind(null, 635));
@@ -37551,7 +37551,7 @@ var Product = function Product() {
 };
 //* much better if we can use the same Product page for edit
 var EditProduct = function EditProduct() {
-    return __webpack_require__.e/* import() */(3).then(__webpack_require__.bind(null, 641));
+    return __webpack_require__.e/* import() */(1).then(__webpack_require__.bind(null, 641));
 };
 
 /* harmony default export */ __webpack_exports__["a"] = ([{
@@ -37600,7 +37600,7 @@ var Checkout = function Checkout() {
     return __webpack_require__.e/* import() */(5).then(__webpack_require__.bind(null, 643));
 };
 var Dashboard = function Dashboard() {
-    return __webpack_require__.e/* import() */(1).then(__webpack_require__.bind(null, 644));
+    return __webpack_require__.e/* import() */(2).then(__webpack_require__.bind(null, 644));
 };
 var Settings = function Settings() {
     return __webpack_require__.e/* import() */(0).then(__webpack_require__.bind(null, 645));
@@ -37911,6 +37911,14 @@ App.forms = {
         price: 0,
         description: '',
         options: []
+    },
+    contactForm: {
+        name: '',
+        email: '',
+        subject: '',
+        message: '',
+        contact_no: '',
+        sponsor_id: ''
         // Add Other Form Object Here
     } };
 
