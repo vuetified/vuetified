@@ -259,8 +259,6 @@ export default {
             self.product.image = response.path
             self.current_image = response.path
         })
-        //! Create Component To Avoid Duplication Of Updating File
-        //! File Uploaded Also For Gallery
         Bus.$on('multi-file-uploaded', (response) => {
             self.product.photos.push(response.path)
         })
