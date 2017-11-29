@@ -83,23 +83,23 @@ function toComment(sourceMap) {
 
 /***/ }),
 
-/***/ 632:
+/***/ 633:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(707)
+  __webpack_require__(711)
 }
 var normalizeComponent = __webpack_require__(310)
 /* script */
-var __vue_script__ = __webpack_require__(709)
+var __vue_script__ = __webpack_require__(713)
 /* template */
-var __vue_template__ = __webpack_require__(710)
+var __vue_template__ = __webpack_require__(714)
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = "data-v-4c5b9ee6"
+var __vue_scopeId__ = "data-v-72583948"
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -109,9 +109,9 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\js\\pages\\Categories.vue"
+Component.options.__file = "resources\\assets\\js\\pages\\Category.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] Categories.vue: functional components are not supported with templates, they should use render functions.")}
+if (Component.options.functional) {console.error("[vue-loader] Category.vue: functional components are not supported with templates, they should use render functions.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -120,9 +120,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-4c5b9ee6", Component.options)
+    hotAPI.createRecord("data-v-72583948", Component.options)
   } else {
-    hotAPI.reload("data-v-4c5b9ee6", Component.options)
+    hotAPI.reload("data-v-72583948", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -3169,23 +3169,23 @@ if (false) {
 
 /***/ }),
 
-/***/ 707:
+/***/ 711:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(708);
+var content = __webpack_require__(712);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(648)("471c1784", content, false);
+var update = __webpack_require__(648)("5605446a", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4c5b9ee6\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Categories.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4c5b9ee6\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Categories.vue");
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-72583948\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Category.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-72583948\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Category.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -3196,7 +3196,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 708:
+/***/ 712:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(626)(undefined);
@@ -3204,14 +3204,14 @@ exports = module.exports = __webpack_require__(626)(undefined);
 
 
 // module
-exports.push([module.i, "\n.breadcrumbs li[data-v-4c5b9ee6]:not(:last-child):after {\n    color: #009688;\n    content: attr(data-divider);\n    vertical-align: middle;\n}\n", ""]);
+exports.push([module.i, "\n.breadcrumbs li[data-v-72583948]:not(:last-child):after {\n    color: #009688;\n    content: attr(data-divider);\n    vertical-align: middle;\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
 
-/***/ 709:
+/***/ 713:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3317,17 +3317,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['query'],
+    props: ['slug', 'query'],
     mixins: [__WEBPACK_IMPORTED_MODULE_3__mixins_theme__["a" /* default */]],
+    components: {
+        MainLayout: __WEBPACK_IMPORTED_MODULE_2__layouts_Main_vue___default.a
+    },
     data: function data() {
         return {
             contentClass: { 'grey': true, 'lighten-4': true, 'accent--text': true },
-            categories: [],
+            currency: '₱',
+            products: [],
             links: {
                 first: null,
                 last: null,
@@ -3353,12 +3363,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         noPagination: function noPagination() {
             var self = this;
-            return self.meta.total === self.meta.per_page;
+            if (self.meta.total === self.meta.per_page) {
+                return true;
+            } else if (self.meta.per_page > self.meta.total) {
+                return true;
+            } else {
+                return false;
+            }
         }
     },
     created: function created() {
-        var self = this;
-        self.getCategories();
+        /* important if redirecting back to populate our product list */
+        this.getProducts();
     },
     mounted: function mounted() {
         var self = this;
@@ -3366,27 +3382,34 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     methods: {
-        getCategories: function () {
+        showProduct: function showProduct(slug) {
+            var self = this;
+            self.$router.push({ name: 'product.show', params: { slug: slug } });
+        },
+        viewCart: function viewCart() {
+            var self = this;
+            self.$router.push({ name: 'cart' });
+        },
+        getProducts: function () {
             var _ref = __WEBPACK_IMPORTED_MODULE_1_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_regenerator___default.a.mark(function _callee() {
-                var self, page;
+                var self, slug;
                 return __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
                     while (1) {
                         switch (_context.prev = _context.next) {
                             case 0:
                                 self = this;
-                                page = self.$route.query.page || 1;
+                                slug = { slug: self.slug };
                                 _context.next = 4;
-                                return axios.get(route('api.category.index') + '?page=' + page).then(function (response) {
-                                    self.categories = response.data.data;
+                                return axios.get(route('api.category.show', slug) + '/?page=' + self.page).then(function (response) {
+                                    self.products = response.data.data;
                                     self.links = response.data.links;
                                     self.meta = response.data.meta;
-                                    // vm.$popup({ message: `Category Page: ${page}`, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
                                 }).catch(function (_ref2) {
                                     var errors = _ref2.errors,
                                         message = _ref2.message;
 
                                     console.log(errors);
-                                    vm.$popup({ message: message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' });
+                                    self.$popup({ message: message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' });
                                 });
 
                             case 4:
@@ -3397,35 +3420,36 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 }, _callee, this);
             }));
 
-            function getCategories() {
+            function getProducts() {
                 return _ref.apply(this, arguments);
             }
 
-            return getCategories;
+            return getProducts;
         }(),
-        loadCategories: function () {
+        loadProducts: function () {
             var _ref3 = __WEBPACK_IMPORTED_MODULE_1_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_regenerator___default.a.mark(function _callee2() {
-                var self;
+                var self, slug;
                 return __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
                     while (1) {
                         switch (_context2.prev = _context2.next) {
                             case 0:
                                 self = this;
-                                _context2.next = 3;
-                                return axios.get(route('api.category.index') + '?page=' + self.page).then(function (response) {
-                                    self.categories = response.data.data;
+                                slug = { slug: self.slug };
+                                _context2.next = 4;
+                                return axios.get(route('api.category.show', slug) + '/?page=' + self.page).then(function (response) {
+                                    self.products = response.data.data;
                                     self.links = response.data.links;
                                     self.meta = response.data.meta;
-                                    // vm.$popup({ message: `Category Page: ${self.page}`, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
+                                    vm.$popup({ message: self.$route.params.slug + ' Page: ' + self.page, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' });
                                 }).catch(function (_ref4) {
                                     var errors = _ref4.errors,
                                         message = _ref4.message;
 
                                     console.log(errors);
-                                    vm.$popup({ message: message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' });
+                                    self.$popup({ message: message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' });
                                 });
 
-                            case 3:
+                            case 4:
                             case 'end':
                                 return _context2.stop();
                         }
@@ -3433,40 +3457,34 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 }, _callee2, this);
             }));
 
-            function loadCategories() {
+            function loadProducts() {
                 return _ref3.apply(this, arguments);
             }
 
-            return loadCategories;
-        }(),
-        showCategory: function showCategory(slug) {
-            var self = this;
-            self.$router.push({ name: 'category.show', params: { slug: slug } });
-        }
-    },
-    components: {
-        MainLayout: __WEBPACK_IMPORTED_MODULE_2__layouts_Main_vue___default.a
+            return loadProducts;
+        }()
     },
     watch: {
-        page: function page(newValue) {
-            var self = this;
-            self.page = newValue;
-            self.$router.push({ name: 'category.index', query: { page: newValue } });
-        },
-
-        categories: {
+        products: {
             handler: function handler() {
-                console.log('Categories Array Updated');
+                console.log('Products Array Updated');
             },
             deep: true
         },
-        '$route': 'loadCategories'
+        page: function page(newValue) {
+            var self = this;
+            self.page = newValue;
+            self.$router.push({ name: 'category.show', query: { page: newValue }, params: { slug: self.$route.params.slug } });
+            vm.$popup({ message: self.$route.params.slug + ' Page: ' + self.page, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' });
+        },
+
+        '$route': 'loadProducts'
     }
 });
 
 /***/ }),
 
-/***/ 710:
+/***/ 714:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -3504,9 +3522,21 @@ var render = function() {
                     [_vm._v("\n                  Home\n              ")]
                   ),
                   _vm._v(" "),
+                  _c(
+                    "v-breadcrumbs-item",
+                    {
+                      attrs: {
+                        "active-class": "primary--text",
+                        disabled: false,
+                        to: "/categories"
+                      }
+                    },
+                    [_vm._v("\n                  Categories\n              ")]
+                  ),
+                  _vm._v(" "),
                   _c("v-breadcrumbs-item", { attrs: { disabled: true } }, [
                     _c("span", { staticClass: "blue-grey--text" }, [
-                      _vm._v("Categories")
+                      _vm._v(_vm._s(_vm._f("capitalize")(_vm.slug)))
                     ])
                   ])
                 ],
@@ -3518,32 +3548,29 @@ var render = function() {
           _vm._v(" "),
           _c(
             "v-layout",
-            {
-              staticStyle: { "padding-top": "100px" },
-              attrs: { row: "", wrap: "" }
-            },
-            _vm._l(_vm.categories, function(category, index) {
+            { attrs: { row: "", wrap: "" } },
+            _vm._l(_vm.products, function(product, index) {
               return _c(
                 "v-flex",
                 {
-                  key: category.slug,
+                  key: product.slug,
                   attrs: {
                     xs12: "",
                     sm12: "",
-                    md4: "",
-                    lg4: "",
-                    xl4: "",
+                    md3: "",
+                    lg3: "",
+                    xl3: "",
                     index: index
                   }
                 },
                 [
                   _c(
                     "v-card",
-                    { attrs: { dark: true } },
+                    { attrs: { dark: "" } },
                     [
                       _c(
                         "clazy-load",
-                        { attrs: { src: category.image } },
+                        { attrs: { src: product.image } },
                         [
                           _c(
                             "transition",
@@ -3555,10 +3582,7 @@ var render = function() {
                               _c(
                                 "v-card-media",
                                 {
-                                  attrs: {
-                                    src: category.image,
-                                    height: "200px"
-                                  }
+                                  attrs: { src: product.image, height: "200px" }
                                 },
                                 [
                                   _c(
@@ -3580,10 +3604,11 @@ var render = function() {
                                             },
                                             [
                                               _c("span", {
-                                                staticClass: "headline",
+                                                staticClass:
+                                                  "body-2 white--text accent",
                                                 domProps: {
                                                   textContent: _vm._s(
-                                                    category.name
+                                                    product.name
                                                   )
                                                 }
                                               })
@@ -3638,10 +3663,11 @@ var render = function() {
                                             },
                                             [
                                               _c("span", {
-                                                staticClass: "headline",
+                                                staticClass:
+                                                  "body-2 white--text accent",
                                                 domProps: {
                                                   textContent: _vm._s(
-                                                    category.name
+                                                    product.name
                                                   )
                                                 }
                                               })
@@ -3668,7 +3694,11 @@ var render = function() {
                         { staticClass: "accent" },
                         [
                           _c("span", { staticClass: "body-2" }, [
-                            _vm._v("View Product List")
+                            _vm._v(
+                              _vm._s(
+                                _vm._f("currency")(product.price, _vm.currency)
+                              )
+                            )
                           ]),
                           _vm._v(" "),
                           _c("v-spacer"),
@@ -3682,14 +3712,14 @@ var render = function() {
                                 icon: "",
                                 color: "primary"
                               },
-                              on: {
+                              nativeOn: {
                                 click: function($event) {
-                                  _vm.showCategory(category.slug)
+                                  _vm.showProduct(product.slug)
                                 }
                               },
                               slot: "activator"
                             },
-                            [_c("v-icon", [_vm._v("fa-list")])],
+                            [_c("v-icon", [_vm._v("fa-shopping-bag")])],
                             1
                           )
                         ],
@@ -3719,7 +3749,7 @@ var render = function() {
                           model: {
                             value: _vm.page,
                             callback: function($$v) {
-                              _vm.page = $$v
+                              _vm.page = _vm._n($$v)
                             },
                             expression: "page"
                           }
@@ -3727,9 +3757,7 @@ var render = function() {
                       ],
                       1
                     )
-                  ]),
-                  _vm._v(" "),
-                  _c("v-flex", { attrs: { xs12: "", height: "50px" } })
+                  ])
                 ],
                 1
               )
@@ -3747,7 +3775,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-4c5b9ee6", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-72583948", module.exports)
   }
 }
 
