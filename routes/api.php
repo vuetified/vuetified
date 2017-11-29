@@ -37,6 +37,11 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('/hasAllRoles', 'Api\Auth\ACLController@hasAllRoles')->name('api.auth.hasAllRoles');
 
     Route::post('/auth/logout', 'Api\Auth\LoginController@logout')->name('api.auth.logout');
+
+    Route::post('/products/{slug}/edit', 'Api\ProductsController@update')->name('api.product.update');
+    Route::post('/products/{slug}/uploadImage', 'Api\ProductsController@uploadImage')->name('api.product.uploadImage');
+    Route::post('/products/{slug}/uploadGalleryImages', 'Api\ProductsController@uploadGalleryImages')->name('api.product.uploadGalleryImages');
+
 });
 
 Route::post('/auth/register', 'Api\Auth\RegisterController@register')->name('api.auth.register');
@@ -51,10 +56,8 @@ Route::get('/categories', 'Api\CategoriesController@index')->name('api.category.
 Route::get('/categories/{slug}', 'Api\CategoriesController@show')->name('api.category.show');
 
 Route::get('/products', 'Api\ProductsController@index')->name('api.product.index');
+Route::get('/categories/{slug}/featured', 'Api\ProductsController@getFeaturedProducts')->name('api.product.getFeaturedProducts');
 Route::get('/products/{slug}', 'Api\ProductsController@show')->name('api.product.show');
-Route::post('/products/{slug}/edit', 'Api\ProductsController@update')->name('api.product.update');
-Route::post('/products/{slug}/uploadImage', 'Api\ProductsController@uploadImage')->name('api.product.uploadImage');
-Route::post('/products/{slug}/uploadGalleryImages', 'Api\ProductsController@uploadGalleryImages')->name('api.product.uploadGalleryImages');
 
 Route::post('/orders/{order}/toggle/paid', 'Api\Order\ToggleOrderController@togglePaid')->name('api.toggle.paid');
 Route::post('/orders/{order}/toggle/sent', 'Api\Order\ToggleOrderController@toggleSent')->name('api.toggle.sent');

@@ -4301,7 +4301,7 @@ exports = module.exports = __webpack_require__(626)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -4355,14 +4355,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -4370,17 +4362,36 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             contentClass: { 'accent': true },
             contact_details: App.sponsor.contact_details,
-            social_links: App.sponsor.social_links
+            social_links: App.sponsor.social_links,
+            products: [],
+            foodcarts: []
         };
     },
     components: {
         VLink: __WEBPACK_IMPORTED_MODULE_0__components_VLink_vue___default.a
     },
+    mounted: function mounted() {
+        this.getFoodCart();
+        this.getSupplements();
+    },
+
     methods: {
         toProperCase: function toProperCase(key) {
             var newStr = key.replace(/_/g, ' ');
             return newStr.replace(/\w\S*/g, function (txt) {
                 return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+            });
+        },
+        getFoodCart: function getFoodCart() {
+            var self = this;
+            axios.get(route('api.product.getFeaturedProducts', { slug: 'food-cart' })).then(function (response) {
+                self.foodcarts = response.data;
+            });
+        },
+        getSupplements: function getSupplements() {
+            var self = this;
+            axios.get(route('api.product.getFeaturedProducts', { slug: 'supplements' })).then(function (response) {
+                self.products = response.data;
             });
         }
     }
@@ -4419,50 +4430,15 @@ var render = function() {
               _c(
                 "v-list",
                 { class: [_vm.contentClass], attrs: { dense: "" } },
-                [
-                  _c("v-link", {
+                _vm._l(_vm.products, function(product, key) {
+                  return _c("v-link", {
+                    key: key,
                     attrs: {
-                      title: "Grape juice with Garcinia Cambogia",
-                      href: "/products/grape-juice-with-garcinia-cambogia"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("v-link", {
-                    attrs: {
-                      title: "Organic Pure Barley Powered Drink",
-                      href: "/products/organic-pure-barley-powdered-drink"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("v-link", {
-                    attrs: {
-                      title: "Coffee Mix with Glutathione",
-                      href: "/products/coffee-mix-with-glutathione"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("v-link", {
-                    attrs: {
-                      title: "Choco Barley Powered Drink",
-                      href: "/products/choco-barley-powdered-drink"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("v-link", {
-                    attrs: {
-                      title: "Organic Pure Barley Capsules",
-                      href: "/products/organic-pure-barley-capsules"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("v-link", {
-                    attrs: {
-                      title: "Organic Pure Barley Powdered Drink",
-                      href: "/products/organic-pure-barley-powdered-drink"
+                      title: _vm.toProperCase(product.name),
+                      href: "/products/" + product.slug
                     }
                   })
-                ],
-                1
+                })
               )
             ],
             1
@@ -4479,36 +4455,15 @@ var render = function() {
               _c(
                 "v-list",
                 { class: [_vm.contentClass], attrs: { dense: "" } },
-                [
-                  _c("v-link", {
+                _vm._l(_vm.foodcarts, function(foodcart, key) {
+                  return _c("v-link", {
+                    key: key,
                     attrs: {
-                      title: "Mang Siomai",
-                      href: "/products/mang-siomai-collapsible"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("v-link", {
-                    attrs: {
-                      title: "Hongkong Fried Noodles",
-                      href: "/products/hongkong-fried-noodles-collapsible"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("v-link", {
-                    attrs: {
-                      title: "Dumpling King",
-                      href: "/products/dumpling-king-collapsible"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("v-link", {
-                    attrs: {
-                      title: "Chinky Pao",
-                      href: "/products/chinky-pao-collapsible"
+                      title: _vm.toProperCase(foodcart.name),
+                      href: "/products/" + foodcart.slug
                     }
                   })
-                ],
-                1
+                })
               )
             ],
             1

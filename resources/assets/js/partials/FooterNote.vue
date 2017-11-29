@@ -4,21 +4,13 @@
     <v-flex xs12 sm12 md3 lg3 xl3>
         <v-subheader class="headline primary--text">Featured Products</v-subheader>
         <v-list dense :class="[contentClass]">
-        <v-link title="Grape juice with Garcinia Cambogia" :href="'/products/grape-juice-with-garcinia-cambogia'"></v-link>
-        <v-link title="Organic Pure Barley Powered Drink" :href="'/products/organic-pure-barley-powdered-drink'"></v-link>
-        <v-link title="Coffee Mix with Glutathione" :href="'/products/coffee-mix-with-glutathione'"></v-link>
-        <v-link title="Choco Barley Powered Drink" :href="'/products/choco-barley-powdered-drink'"></v-link>
-        <v-link title="Organic Pure Barley Capsules" :href="'/products/organic-pure-barley-capsules'"></v-link>
-        <v-link title="Organic Pure Barley Powdered Drink" :href="'/products/organic-pure-barley-powdered-drink'"></v-link>
+        <v-link v-for="(product,key) in products" :key="key" :title="toProperCase(product.name)" :href="`/products/${product.slug}`"></v-link>
         </v-list>
     </v-flex>
     <v-flex xs12 sm12 md3 lg3 xl3>
         <v-subheader class="headline primary--text">Featured Food Carts</v-subheader>
         <v-list dense :class="[contentClass]">
-        <v-link title="Mang Siomai" :href="'/products/mang-siomai-collapsible'"></v-link>
-        <v-link title="Hongkong Fried Noodles" :href="'/products/hongkong-fried-noodles-collapsible'"></v-link>
-        <v-link title="Dumpling King" :href="'/products/dumpling-king-collapsible'"></v-link>
-        <v-link title="Chinky Pao" :href="'/products/chinky-pao-collapsible'"></v-link>
+        <v-link v-for="(foodcart,key) in foodcarts" :key="key" :title="toProperCase(foodcart.name)" :href="`/products/${foodcart.slug}`"></v-link>
         </v-list>
     </v-flex>
     <v-flex xs12 sm12 md3 lg3 xl3>
@@ -52,15 +44,33 @@ export default {
     data: () => ({
         contentClass: {'accent': true},
         contact_details: App.sponsor.contact_details,
-        social_links: App.sponsor.social_links
+        social_links: App.sponsor.social_links,
+        products: [],
+        foodcarts: []
     }),
     components: {
         VLink
+    },
+    mounted () {
+        this.getFoodCart()
+        this.getSupplements()
     },
     methods: {
         toProperCase (key) {
             let newStr = key.replace(/_/g, ' ')
             return newStr.replace(/\w\S*/g, function (txt) { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase() })
+        },
+        getFoodCart () {
+            let self = this
+            axios.get(route('api.product.getFeaturedProducts', {slug: 'food-cart'})).then((response) => {
+                self.foodcarts = response.data
+            })
+        },
+        getSupplements () {
+            let self = this
+            axios.get(route('api.product.getFeaturedProducts', {slug: 'supplements'})).then((response) => {
+                self.products = response.data
+            })
         }
     }
 

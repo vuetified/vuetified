@@ -36,36 +36,42 @@ class IamProductSeeder extends Seeder
                 'image' => '/img/products/choco-barley-powdered-drink.jpg',
                 'price' => 700,
                 'category_id' => 3,
+                'featured' => true
             ],
             [
                 'name' => 'Coffee Mix with Glutathione',
                 'image' => '/img/products/coffee-mix-with-glutathione.jpg',
                 'price' => 900,
                 'category_id' => 3,
+                'featured' => true
             ],
             [
                 'name' => 'Coffee Mix With Tongkat-Ali',
                 'image' => '/img/products/coffee-mix-with-tongkat-ali.jpg',
                 'price' => 750,
                 'category_id' => 3,
+                'featured' => true
             ],
             [
                 'name' => 'Grape Juice With Garcinia Cambogia',
                 'image' => '/img/products/grape-juice-with-garcinia-cambogia.jpg',
                 'price' => 900,
                 'category_id' => 3,
+                'featured' => true
             ],
             [
                 'name' => 'Organic Pure Barley Capsules',
                 'image' => '/img/products/organic-pure-barley-capsules.jpg',
                 'price' => 1550,
                 'category_id' => 3,
+                'featured' => true
             ],
             [
                 'name' => 'Organic Pure Barley Powdered Drink',
                 'image' => '/img/products/organic-pure-barley-powdered-drink.jpg',
                 'price' => 900,
                 'category_id' => 3,
+                'featured' => true
             ]
         ];
         foreach($products as $product){
@@ -84,6 +90,7 @@ class IamProductSeeder extends Seeder
                 'image' => '/img/products/mang-siomai.jpg',
                 'price' => 67200,
                 'category_id' => 2,
+                'featured' => true
             ],
             [
                 'name' => 'Hongkong Fried Noodles Standard',
@@ -96,6 +103,7 @@ class IamProductSeeder extends Seeder
                 'image' => '/img/products/hongkong-fried-noodles.jpg',
                 'price' => 67200,
                 'category_id' => 2,
+                'featured' => true
             ],
             [
                 'name' => 'Dumpling King Standard',
@@ -108,6 +116,7 @@ class IamProductSeeder extends Seeder
                 'image' => '/img/products/dumpling-king.jpg',
                 'price' => 67200,
                 'category_id' => 2,
+                'featured' => true
             ],
             [
                 'name' => 'Chinky Pao Standard',
@@ -120,6 +129,7 @@ class IamProductSeeder extends Seeder
                 'image' => '/img/products/chinky-pao.jpg',
                 'price' => 67200,
                 'category_id' => 2,
+                'featured' => true
             ]
         ];
         foreach($foodcarts as $cart){

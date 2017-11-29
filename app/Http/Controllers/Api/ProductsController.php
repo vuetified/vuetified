@@ -10,6 +10,7 @@ use App\Http\Resources\Product\ProductCollection;
 use App\Http\Resources\Product\Product as ProductResource;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Storage;
+use App\Category;
 
 class ProductsController extends Controller
 {
@@ -79,6 +80,14 @@ class ProductsController extends Controller
             return new ProductResource($product);
         }
 
+    }
+    public function getFeaturedProducts(Request $request,$slug)
+    {
+        $c = Category::findBySlug($slug);
+        if($c){
+            $p = Product::where('category_id',$c->id)->where('featured', true)->get();
+            return $p;
+        }
     }
     public function uploadGalleryImages(Request $request,$slug)
     {
