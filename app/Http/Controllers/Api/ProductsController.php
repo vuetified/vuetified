@@ -85,7 +85,7 @@ class ProductsController extends Controller
         $validator = \Validator::make($request->all(), [
             'photos' => [
                 'required',
-                'mimes:jpeg,bmp,png,psd,pdf,ppt,pptx,doc,docx,dotx,xls,txt,odt',
+                'mimes:jpeg,bmp,png,gif',
                 'max:10000'
             ],
         ]);
@@ -110,7 +110,7 @@ class ProductsController extends Controller
         $validator = \Validator::make($request->all(), [
             'image' => [
                 'required',
-                'mimes:jpeg,bmp,png,psd,pdf,ppt,pptx,doc,docx,dotx,xls,txt,odt',
+                'mimes:jpeg,bmp,png,gif',
                 'max:10000'
             ],
         ]);
