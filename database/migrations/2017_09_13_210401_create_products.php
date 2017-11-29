@@ -23,7 +23,7 @@ class CreateProducts extends Migration
             $table->text('description')->nullable();
             $table->double('price', 15, 2);
             $table->string('currency')->nullable()->default('PHP');
-            $table->string('options')->nullable()->default('PHP');
+            $table->text('options')->nullable();
             $table->string('image')->nullable();
             $table->json('photos')->nullable();
             $table->timestamps();
