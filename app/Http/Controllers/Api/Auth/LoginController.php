@@ -63,8 +63,8 @@ class LoginController extends Controller
 	
 	public function check(Request $request){
 		if($request->user()){
-			return ['user' => $request->user(),'authenticated' => true];
+			return response()->json(['authenticated' => true],200);
 		}
-		return ['authenticated' => false];
+		return response()->json(['authenticated' =>false],401);
 	}
 }

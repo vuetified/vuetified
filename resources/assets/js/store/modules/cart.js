@@ -1,3 +1,4 @@
+//! NOTE App and AppForm is not Being Read Here So We need A Way TO initialize this Data.
 const state = {
     /* gloudemans/shoppingcart */
     items: App.cart.items,

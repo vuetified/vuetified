@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import routes from './routes'
+// import store from './store'
 // import Meta from 'vue-meta'
 // import VueHead from 'vue-head'
 
@@ -35,11 +36,12 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
     /* for all authenticated routes */
     if (to.matched.some(m => m.meta.requiresAuth)) {
-        /* Check For Laravel Passport Access Token Cookie */
-        if (!Bus.$cookie.get('access_token')) {
-            return next({ path: '/login' })
-        }
-        return next()
+        return axios.post(route('api.auth.check')).then(() => {
+            return next()
+        }).catch(() => {
+            let form = new AppForm(App.forms.logoutForm)
+            vm.$store.dispatch('auth/logout', form)
+        })
     }
     /* If No Middleware, Then Just Proceed As Normal */
     return next()
