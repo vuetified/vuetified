@@ -13,7 +13,6 @@ Route::get('/gateways', function(){
 Route::get('/couriers', function(){
     return  \App\Courier::all();
  })->name('api.courier.index');
-Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 Route::post('/cart/add', 'Api\Cart\CartController@add')->name('api.cart.add');
 Route::post('/cart/update', 'Api\Cart\CartController@update')->name('api.cart.update');
 Route::post('/cart/delete', 'Api\Cart\CartController@delete')->name('api.cart.delete');
