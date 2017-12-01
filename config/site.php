@@ -22,7 +22,7 @@ return [
     'icon' => [
         'name' => 'fa-compass', // font-awesome or material icon
         'color' => '#26A69A',
-        'show'  => true
+        'show'  => false
     ],
     'logo' => [
         'url' => '/img/logo.png',

@@ -7,12 +7,15 @@
             <span class="hidden-md-and-down" :style="titleStyle">{{ title }}</span>
         </v-toolbar-title>
         <v-toolbar-title v-else class="text-xs-center">
-            <v-icon :style="{color: iconColor }" class="ml-3 hidden-md-and-down" v-if="showIcon">{{ icon }}</v-icon>
-            <span class="hidden-md-and-down" :style="titleStyle">{{ title }}</span>
+            <v-avatar v-if="!showIcon" size="50px" slot="activator" class="hidden-sm-and-down">
+                <img src="/img/logo.png" alt="">
+            </v-avatar>
+            <v-icon :style="{color: iconColor }" class="ml-3 hidden-sm-and-down" v-else>{{ icon }}</v-icon>
+            <span class="hidden-sm-and-down" :style="titleStyle">{{ title }}</span>
         </v-toolbar-title>
         <v-spacer></v-spacer>
         <!-- center logo -->
-        <img v-if="showLogo"   :src="logo" :style="[logoStyle]"  alt="vuejs">
+        <img v-if="showLogo" class="hidden-md-and-up"   :src="logo" :style="[logoStyle]"  alt="vuejs">
         <v-spacer></v-spacer>
         <!-- Add Here All Your Nav Icons -->
         <v-tooltip left>

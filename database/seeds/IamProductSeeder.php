@@ -88,7 +88,7 @@ class IamProductSeeder extends Seeder
             [
                 'name' => 'Mang Siomai Collapsible',
                 'image' => '/img/products/mang-siomai.jpg',
-                'price' => 67200,
+                'price' => 73600,
                 'category_id' => 2,
                 'featured' => true
             ],
@@ -101,7 +101,7 @@ class IamProductSeeder extends Seeder
             [
                 'name' => 'Hongkong Fried Noodles Collapsible',
                 'image' => '/img/products/hongkong-fried-noodles.jpg',
-                'price' => 67200,
+                'price' => 73600,
                 'category_id' => 2,
                 'featured' => true
             ],
@@ -114,7 +114,7 @@ class IamProductSeeder extends Seeder
             [
                 'name' => 'Dumpling King Collapsible',
                 'image' => '/img/products/dumpling-king.jpg',
-                'price' => 67200,
+                'price' => 73600,
                 'category_id' => 2,
                 'featured' => true
             ],
@@ -127,7 +127,7 @@ class IamProductSeeder extends Seeder
             [
                 'name' => 'Chinky Pao Collapsible',
                 'image' => '/img/products/chinky-pao.jpg',
-                'price' => 67200,
+                'price' => 73600,
                 'category_id' => 2,
                 'featured' => true
             ]
@@ -345,7 +345,7 @@ class IamProductSeeder extends Seeder
                 'name' => 'Titanium B',
                 'image' => '/img/packages.png',
                 'excerpt' => '19 Boxes: Pure Barley Powder,12 Boxes: Pure Barley Capsules,14 Boxes: Choco Barley,14 Boxes: Coffee with Glutathione,14 Boxes: Coffee with Tongkat-Ali',
-                'price' => 67200,
+                'price' => 73600,
                 'category_id' => 1,
             ],
             [
@@ -366,7 +366,7 @@ class IamProductSeeder extends Seeder
                 'name' => 'Titanium Package E',
                 'image' => '/img/packages.png',
                 'excerpt' => '1 Complete set of Titanium Franchise Package',
-                'price' => 67200,
+                'price' => 73600,
                 'category_id' => 1,
             ],
             [
