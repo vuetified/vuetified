@@ -1,18 +1,9 @@
 <?php
 Route::get('/getPanelStats', 'Api\Order\OrderController@getPanelStats')->name('api.panel.stats');
-/* Test Order Mailables */
-Route::get('/mailable', function () {
-    $order = App\Order::find(1);
-    $order->load('user','shipment.courier','payment.gateway');
-    return new App\Mail\OrderPlaced($order);
-});
-/* Cart Web Api */
-Route::get('/gateways', function(){
-   return  \App\Gateway::all();
-})->name('api.gateway.index');
-Route::get('/couriers', function(){
-    return  \App\Courier::all();
- })->name('api.courier.index');
+
+
+Route::get('/gateways', 'GatewayController@getGateways')->name('api.gateway.index');
+Route::get('/couriers', 'GatewayController@getCouriers')->name('api.gateway.index');
 Route::post('/cart/add', 'Api\Cart\CartController@add')->name('api.cart.add');
 Route::post('/cart/update', 'Api\Cart\CartController@update')->name('api.cart.update');
 Route::post('/cart/delete', 'Api\Cart\CartController@delete')->name('api.cart.delete');
