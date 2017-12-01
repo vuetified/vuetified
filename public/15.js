@@ -1,1 +1,683 @@
-webpackJsonp([15],{"2a9s":function(t,e,r){var o=r("VU/8"),a=r("5aOi"),n=r("qLCJ"),s=o(a,n,null,null,null);t.exports=s.exports},"2yrZ":function(t,e,r){var o=r("VU/8"),a=r("Ehgr"),n=o(null,a,null,null,null);t.exports=n.exports},"5aOi":function(t,e,r){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var o=r("Dd8w"),a=r.n(o),n=r("2yrZ"),s=r.n(n),l=r("NYxO"),i=Object(l.createNamespacedHelpers)("auth"),u=i.mapActions,c=i.mapGetters,f=i.mapMutations;e.default={data:function(){return{tile:!1,avatarSize:"200px",logoutForm:new AppForm(App.forms.logoutForm),visible:!1}},computed:a()({},c({getAuth:"getAuth",user:"getMe"})),mounted:function(){var t=this;if(!t.getAuth)return t.$nextTick(function(){return t.$router.go(-1)});t.visible=!0},methods:a()({redirectBack:function(){var t=this;return t.$nextTick(function(){return t.$router.go(-1)})},logout:function(){var t=this;return t.logoutForm.busy=!0,t.$nextTick(function(){return t.submit(t.logoutForm)})}},u({submit:"logout"}),f({setToken:"setToken",setRefreshToken:"setRefreshToken",setExpiration:"setExpiration",setMe:"setMe"})),components:{ModalLayout:s.a}}},Dd8w:function(t,e,r){"use strict";e.__esModule=!0;var o=r("woOf"),a=function(t){return t&&t.__esModule?t:{default:t}}(o);e.default=a.default||function(t){for(var e=1;e<arguments.length;e++){var r=arguments[e];for(var o in r)Object.prototype.hasOwnProperty.call(r,o)&&(t[o]=r[o])}return t}},Ehgr:function(t,e){var r=function(){var t=this,e=t.$createElement,r=t._self._c||e;return r("v-app",{attrs:{standalone:""}},[r("main",[r("v-container",{staticClass:"pa-0 ma-0 white",attrs:{transition:"slide-x-transition",fluid:""}},[r("v-card",{attrs:{flat:!0}},[t._t("toolbar"),t._v(" "),t._t("default"),t._v(" "),t._t("footer")],2)],1)],1)])},o=[];t.exports={render:r,staticRenderFns:o}},R4wc:function(t,e,r){var o=r("kM2E");o(o.S+o.F,"Object",{assign:r("To3L")})},To3L:function(t,e,r){"use strict";var o=r("lktj"),a=r("1kS7"),n=r("NpIQ"),s=r("sB3e"),l=r("MU5D"),i=Object.assign;t.exports=!i||r("S82l")(function(){var t={},e={},r=Symbol(),o="abcdefghijklmnopqrst";return t[r]=7,o.split("").forEach(function(t){e[t]=t}),7!=i({},t)[r]||Object.keys(i({},e)).join("")!=o})?function(t,e){for(var r=s(t),i=arguments.length,u=1,c=a.f,f=n.f;i>u;)for(var v,p=l(arguments[u++]),d=c?o(p).concat(c(p)):o(p),x=d.length,m=0;x>m;)f.call(p,v=d[m++])&&(r[v]=p[v]);return r}:i},V3tA:function(t,e,r){r("R4wc"),t.exports=r("FeBl").Object.assign},qLCJ:function(t,e){var r=function(){var t=this,e=t.$createElement,r=t._self._c||e;return t.visible?r("modal-layout",[r("v-card",{attrs:{flat:!0}},[r("v-toolbar",{staticClass:"accent"},[r("v-btn",{attrs:{flat:"",icon:"",color:"primary"},nativeOn:{click:function(e){t.redirectBack()}}},[r("v-icon",[t._v("arrow_back")])],1),t._v(" "),r("v-spacer"),t._v(" "),r("v-toolbar-title",{staticClass:"text-xs-center primary--text"},[t._v("Are You Sure You Want To Log Out?")]),t._v(" "),r("v-spacer"),t._v(" "),r("v-toolbar-items",[r("v-btn",{attrs:{flat:"",color:"error",flat:""},nativeOn:{click:function(e){t.logout()}}},[r("v-icon",{attrs:{right:""}},[t._v("fa-power-off")])],1)],1)],1),t._v(" "),r("v-card-text",{staticStyle:{"padding-top":"100px"}},[r("v-container",{attrs:{fluid:""}},[r("form",{on:{submit:function(e){e.preventDefault(),t.logout()}}},[t.user?r("v-layout",{attrs:{row:""}},[r("v-flex",{attrs:{x12:"",sm12:"",md4:"","offset-md4":"",lg4:"","offset-lg4":"",xl4:"","offset-xl4":""}},[r("v-card",{attrs:{flat:""}},[r("v-container",{attrs:{"fill-height":"",fluid:""}},[r("v-layout",{attrs:{"fill-height":""}},[r("v-flex",{attrs:{xs12:"","text-xs-center":"",flexbox:""}},[r("v-avatar",{staticClass:"grey lighten-4",attrs:{tile:t.tile,size:t.avatarSize,"fill-height":"",fluid:""}},[r("img",{attrs:{src:t.user.photo_url,alt:t.user.name}})])],1)],1)],1),t._v(" "),r("v-layout",[r("v-flex",{attrs:{xs12:"","text-xs-center":"",flexbox:""}},[r("h5",{staticClass:"primary--text title"},[t._v(t._s(t._f("uppercase")(t.user.name)))])])],1)],1)],1)],1):t._e(),t._v(" "),r("v-layout",{attrs:{row:""}},[r("v-flex",{attrs:{xs12:"",sm12:"",md4:"","offset-md4":"",lg4:"","offset-lg4":"",xl4:"","offset-xl4":""}},[r("v-card-actions",[r("v-btn",{staticClass:"info--text error",attrs:{block:"",flat:""},nativeOn:{click:function(e){t.redirectBack()}}},[t._v("No, I Want To Stay")]),t._v(" "),r("v-btn",{staticClass:"error--text",class:{primary:!t.logoutForm.busy,accent:t.logoutForm.busy},attrs:{block:"",flat:"",loading:t.logoutForm.busy,disabled:t.logoutForm.busy,type:"submit",block:""}},[t._v("Yes, Log Me Out")])],1)],1)],1)],1)])],1)],1)],1):t._e()},o=[];t.exports={render:r,staticRenderFns:o}},woOf:function(t,e,r){t.exports={default:r("V3tA"),__esModule:!0}}});
+webpackJsonp([15],{
+
+/***/ 628:
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(310)
+/* script */
+var __vue_script__ = __webpack_require__(699)
+/* template */
+var __vue_template__ = __webpack_require__(700)
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\pages\\Logout.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] Logout.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-0e40f054", Component.options)
+  } else {
+    hotAPI.reload("data-v-0e40f054", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ 649:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _assign = __webpack_require__(652);
+
+var _assign2 = _interopRequireDefault(_assign);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _assign2.default || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];
+
+    for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }
+
+  return target;
+};
+
+/***/ }),
+
+/***/ 652:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = { "default": __webpack_require__(653), __esModule: true };
+
+/***/ }),
+
+/***/ 653:
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(654);
+module.exports = __webpack_require__(31).Object.assign;
+
+
+/***/ }),
+
+/***/ 654:
+/***/ (function(module, exports, __webpack_require__) {
+
+// 19.1.3.1 Object.assign(target, source)
+var $export = __webpack_require__(60);
+
+$export($export.S + $export.F, 'Object', { assign: __webpack_require__(655) });
+
+
+/***/ }),
+
+/***/ 655:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+// 19.1.2.1 Object.assign(target, source, ...)
+var getKeys = __webpack_require__(91);
+var gOPS = __webpack_require__(132);
+var pIE = __webpack_require__(92);
+var toObject = __webpack_require__(311);
+var IObject = __webpack_require__(312);
+var $assign = Object.assign;
+
+// should work with symbols and should have deterministic property order (V8 bug)
+module.exports = !$assign || __webpack_require__(69)(function () {
+  var A = {};
+  var B = {};
+  // eslint-disable-next-line no-undef
+  var S = Symbol();
+  var K = 'abcdefghijklmnopqrst';
+  A[S] = 7;
+  K.split('').forEach(function (k) { B[k] = k; });
+  return $assign({}, A)[S] != 7 || Object.keys($assign({}, B)).join('') != K;
+}) ? function assign(target, source) { // eslint-disable-line no-unused-vars
+  var T = toObject(target);
+  var aLen = arguments.length;
+  var index = 1;
+  var getSymbols = gOPS.f;
+  var isEnum = pIE.f;
+  while (aLen > index) {
+    var S = IObject(arguments[index++]);
+    var keys = getSymbols ? getKeys(S).concat(getSymbols(S)) : getKeys(S);
+    var length = keys.length;
+    var j = 0;
+    var key;
+    while (length > j) if (isEnum.call(S, key = keys[j++])) T[key] = S[key];
+  } return T;
+} : $assign;
+
+
+/***/ }),
+
+/***/ 687:
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(310)
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = __webpack_require__(688)
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\layouts\\ModalLayout.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] ModalLayout.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-d721983c", Component.options)
+  } else {
+    hotAPI.reload("data-v-d721983c", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ 688:
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("v-app", { attrs: { standalone: "" } }, [
+    _c(
+      "main",
+      [
+        _c(
+          "v-container",
+          {
+            staticClass: "pa-0 ma-0 white",
+            attrs: { transition: "slide-x-transition", fluid: "" }
+          },
+          [
+            _c(
+              "v-card",
+              { attrs: { flat: true } },
+              [
+                _vm._t("toolbar"),
+                _vm._v(" "),
+                _vm._t("default"),
+                _vm._v(" "),
+                _vm._t("footer")
+              ],
+              2
+            )
+          ],
+          1
+        )
+      ],
+      1
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-d721983c", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ 699:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends__ = __webpack_require__(649);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__layouts_ModalLayout__ = __webpack_require__(687);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__layouts_ModalLayout___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__layouts_ModalLayout__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__(90);
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["createNamespacedHelpers"])('auth'),
+    mapActions = _createNamespacedHelp.mapActions,
+    mapGetters = _createNamespacedHelp.mapGetters,
+    mapMutations = _createNamespacedHelp.mapMutations;
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            tile: false,
+            avatarSize: '200px',
+            logoutForm: new AppForm(App.forms.logoutForm),
+            visible: false
+        };
+    },
+    computed: __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends___default()({}, mapGetters({
+        getAuth: 'getAuth',
+        user: 'getMe'
+    })),
+    mounted: function mounted() {
+        var self = this;
+        /* Make Sure We Only Show Logout Page If Authenticated */
+        if (!self.getAuth) {
+            /* nextick make sure our modal wount be visible before redirect */
+            return self.$nextTick(function () {
+                return self.$router.go(-1);
+            });
+        }
+        self.visible = true;
+    },
+
+    methods: __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends___default()({
+        redirectBack: function redirectBack() {
+            var self = this;
+            return self.$nextTick(function () {
+                return self.$router.go(-1);
+            });
+        },
+        logout: function logout() {
+            var self = this;
+            self.logoutForm.busy = true;
+            return self.$nextTick(function () {
+                return self.submit(self.logoutForm);
+            });
+        }
+    }, mapActions({
+        submit: 'logout'
+    }), mapMutations({
+        setToken: 'setToken',
+        setRefreshToken: 'setRefreshToken',
+        setExpiration: 'setExpiration',
+        setMe: 'setMe'
+    })),
+    components: {
+        ModalLayout: __WEBPACK_IMPORTED_MODULE_1__layouts_ModalLayout___default.a
+    }
+});
+
+/***/ }),
+
+/***/ 700:
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm.visible
+    ? _c(
+        "modal-layout",
+        [
+          _c(
+            "v-card",
+            { attrs: { flat: true } },
+            [
+              _c(
+                "v-toolbar",
+                { staticClass: "accent" },
+                [
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: { flat: "", icon: "", color: "primary" },
+                      nativeOn: {
+                        click: function($event) {
+                          _vm.redirectBack()
+                        }
+                      }
+                    },
+                    [_c("v-icon", [_vm._v("arrow_back")])],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("v-spacer"),
+                  _vm._v(" "),
+                  _c(
+                    "v-toolbar-title",
+                    { staticClass: "text-xs-center primary--text" },
+                    [_vm._v("Are You Sure You Want To Log Out?")]
+                  ),
+                  _vm._v(" "),
+                  _c("v-spacer"),
+                  _vm._v(" "),
+                  _c(
+                    "v-toolbar-items",
+                    [
+                      _c(
+                        "v-btn",
+                        {
+                          attrs: { flat: "", color: "error", flat: "" },
+                          nativeOn: {
+                            click: function($event) {
+                              _vm.logout()
+                            }
+                          }
+                        },
+                        [
+                          _c("v-icon", { attrs: { right: "" } }, [
+                            _vm._v("fa-power-off")
+                          ])
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-card-text",
+                { staticStyle: { "padding-top": "100px" } },
+                [
+                  _c("v-container", { attrs: { fluid: "" } }, [
+                    _c(
+                      "form",
+                      {
+                        on: {
+                          submit: function($event) {
+                            $event.preventDefault()
+                            _vm.logout()
+                          }
+                        }
+                      },
+                      [
+                        _vm.user
+                          ? _c(
+                              "v-layout",
+                              { attrs: { row: "" } },
+                              [
+                                _c(
+                                  "v-flex",
+                                  {
+                                    attrs: {
+                                      x12: "",
+                                      sm12: "",
+                                      md4: "",
+                                      "offset-md4": "",
+                                      lg4: "",
+                                      "offset-lg4": "",
+                                      xl4: "",
+                                      "offset-xl4": ""
+                                    }
+                                  },
+                                  [
+                                    _c(
+                                      "v-card",
+                                      { attrs: { flat: "" } },
+                                      [
+                                        _c(
+                                          "v-container",
+                                          {
+                                            attrs: {
+                                              "fill-height": "",
+                                              fluid: ""
+                                            }
+                                          },
+                                          [
+                                            _c(
+                                              "v-layout",
+                                              { attrs: { "fill-height": "" } },
+                                              [
+                                                _c(
+                                                  "v-flex",
+                                                  {
+                                                    attrs: {
+                                                      xs12: "",
+                                                      "text-xs-center": "",
+                                                      flexbox: ""
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "v-avatar",
+                                                      {
+                                                        staticClass:
+                                                          "grey lighten-4",
+                                                        attrs: {
+                                                          tile: _vm.tile,
+                                                          size: _vm.avatarSize,
+                                                          "fill-height": "",
+                                                          fluid: ""
+                                                        }
+                                                      },
+                                                      [
+                                                        _c("img", {
+                                                          attrs: {
+                                                            src:
+                                                              _vm.user
+                                                                .photo_url,
+                                                            alt: _vm.user.name
+                                                          }
+                                                        })
+                                                      ]
+                                                    )
+                                                  ],
+                                                  1
+                                                )
+                                              ],
+                                              1
+                                            )
+                                          ],
+                                          1
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "v-layout",
+                                          [
+                                            _c(
+                                              "v-flex",
+                                              {
+                                                attrs: {
+                                                  xs12: "",
+                                                  "text-xs-center": "",
+                                                  flexbox: ""
+                                                }
+                                              },
+                                              [
+                                                _c(
+                                                  "h5",
+                                                  {
+                                                    staticClass:
+                                                      "primary--text title"
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      _vm._s(
+                                                        _vm._f("uppercase")(
+                                                          _vm.user.name
+                                                        )
+                                                      )
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            )
+                                          ],
+                                          1
+                                        )
+                                      ],
+                                      1
+                                    )
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            )
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _c(
+                          "v-layout",
+                          { attrs: { row: "" } },
+                          [
+                            _c(
+                              "v-flex",
+                              {
+                                attrs: {
+                                  xs12: "",
+                                  sm12: "",
+                                  md4: "",
+                                  "offset-md4": "",
+                                  lg4: "",
+                                  "offset-lg4": "",
+                                  xl4: "",
+                                  "offset-xl4": ""
+                                }
+                              },
+                              [
+                                _c(
+                                  "v-card-actions",
+                                  [
+                                    _c(
+                                      "v-btn",
+                                      {
+                                        staticClass: "info--text error",
+                                        attrs: { block: "", flat: "" },
+                                        nativeOn: {
+                                          click: function($event) {
+                                            _vm.redirectBack()
+                                          }
+                                        }
+                                      },
+                                      [_vm._v("No, I Want To Stay")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "v-btn",
+                                      {
+                                        staticClass: "error--text",
+                                        class: {
+                                          primary: !_vm.logoutForm.busy,
+                                          accent: _vm.logoutForm.busy
+                                        },
+                                        attrs: {
+                                          block: "",
+                                          flat: "",
+                                          loading: _vm.logoutForm.busy,
+                                          disabled: _vm.logoutForm.busy,
+                                          type: "submit",
+                                          block: ""
+                                        }
+                                      },
+                                      [_vm._v("Yes, Log Me Out")]
+                                    )
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ])
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    : _vm._e()
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-0e40f054", module.exports)
+  }
+}
+
+/***/ })
+
+});
