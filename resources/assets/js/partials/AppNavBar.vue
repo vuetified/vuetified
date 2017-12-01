@@ -8,7 +8,7 @@
         </v-toolbar-title>
         <v-toolbar-title v-else class="text-xs-center">
             <v-avatar v-if="!showIcon" size="50px" slot="activator" class="hidden-sm-and-down">
-                <img src="/img/logo.png" alt="">
+                <img :src="`${App.site.logo.url}`" alt="">
             </v-avatar>
             <v-icon :style="{color: iconColor }" class="ml-3 hidden-sm-and-down" v-else>{{ icon }}</v-icon>
             <span class="hidden-sm-and-down" :style="titleStyle">{{ title }}</span>
