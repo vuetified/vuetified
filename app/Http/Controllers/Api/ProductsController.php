@@ -32,7 +32,6 @@ class ProductsController extends Controller
         $data = request()->validate([
             'name' => [
                 'present',
-                'regex:/(^[A-Za-z0-9 ]+$)+/'
             ],
             'price' => [
                 'present',
