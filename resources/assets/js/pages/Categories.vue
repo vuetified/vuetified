@@ -24,37 +24,18 @@
             :key="category.slug" :index="index"
           >
             <v-card :dark="true">
-            <clazy-load :src="category.image">
-                <transition name="fade" slot="image">
-                    <v-card-media
-                        :src="category.image"
-                        height="200px"
-                    >
-                        <v-container fill-height fluid>
-                            <v-layout fill-height>
-                                <v-flex xs12 align-end flexbox>
-                                <span class="headline" v-text="category.name"></span>
-                                </v-flex>
-                            </v-layout>
-                        </v-container>
-                    </v-card-media>
-                </transition>
-                <transition name="fade" slot="placeholder">
-                    <v-card-media
-                    src="/img/Bars.svg"
-                    height="200px"
-                    width="200px"
-                    >
-                        <v-container fill-height fluid>
-                            <v-layout fill-height>
-                                <v-flex xs12 align-end flexbox>
-                                    <span class="headline" v-text="category.name"></span>
-                                </v-flex>
-                            </v-layout>
-                        </v-container>
-                    </v-card-media>
-                </transition>
-              </clazy-load>
+            <v-card-media
+                :src="category.image"
+                height="200px"
+            >
+                <v-container fill-height fluid>
+                    <v-layout fill-height>
+                        <v-flex xs12 align-end flexbox>
+                        <span class="headline" v-text="category.name"></span>
+                        </v-flex>
+                    </v-layout>
+                </v-container>
+            </v-card-media>
               <v-card-actions class="accent">
                 <span class="body-2">View Product List</span>
                 <v-spacer></v-spacer>

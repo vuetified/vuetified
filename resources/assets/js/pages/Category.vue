@@ -31,37 +31,18 @@
             :key="product.slug" :index="index"
           >
             <v-card dark>
-            <clazy-load :src="product.image">
-                <transition name="fade" slot="image">
-                    <v-card-media
-                        :src="product.image"
-                        height="200px"
-                    >
-                        <v-container fill-height fluid>
-                            <v-layout fill-height>
-                                <v-flex xs12 align-end flexbox>
-                                <span class="body-2 white--text accent" v-text="product.name"></span>
-                                </v-flex>
-                            </v-layout>
-                        </v-container>
-                    </v-card-media>
-                </transition>
-                <transition name="fade" slot="placeholder">
-                    <v-card-media
-                    src="/img/Bars.svg"
-                    height="200px"
-                    width="200px"
-                    >
-                        <v-container fill-height fluid>
-                            <v-layout fill-height>
-                                <v-flex xs12 align-end flexbox>
-                                    <span class="body-2 white--text accent" v-text="product.name"></span>
-                                </v-flex>
-                            </v-layout>
-                        </v-container>
-                    </v-card-media>
-                </transition>
-              </clazy-load>
+            <v-card-media
+                :src="product.image"
+                height="200px"
+            >
+                <v-container fill-height fluid>
+                    <v-layout fill-height>
+                        <v-flex xs12 align-end flexbox>
+                        <span class="body-2 white--text accent" v-text="product.name"></span>
+                        </v-flex>
+                    </v-layout>
+                </v-container>
+            </v-card-media>
               <v-card-actions class="accent">
                 <span class="body-2">{{product.price | currency(currency)}}</span>
                 <v-spacer></v-spacer>

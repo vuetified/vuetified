@@ -9,7 +9,7 @@ import VeeValidate from 'vee-validate' /* Form Validation */
 // import VueAgile from 'vue-agile' /* Carousel */
 // import Bars from 'vuebars' /* Chart */
 import VueYouTubeEmbed from 'vue-youtube-embed' /* Embed Youtube Video */
-import VueClazyLoad from 'vue-clazy-load' /* Lazyload Images */
+// import VueClazyLoad from 'vue-clazy-load' /* Lazyload Images */
 // import VueImg from 'v-img' /* Image Gallery Directive */
 // import Echo from 'laravel-echo' /* Make App Realtime */
 // import VueEcho from 'vue-echo' /* Vue Wrapper for laravel echo */
@@ -67,7 +67,7 @@ Vue.use(VueUp) /* used in almost all axios request */
 // Vue.use(VueAgile)
 // Vue.use(Bars)
 Vue.use(VueYouTubeEmbed) /* used in home.vue */
-Vue.use(VueClazyLoad) /* used in categories.vue, products.vue, category.vue */
+// Vue.use(VueClazyLoad) /* used in categories.vue, products.vue, category.vue */
 // Vue.use(VueImg)
 // Vue.use(VueTimeago, timeagoConfig)
 Vue.use(VeeValidate, veeConfig)
