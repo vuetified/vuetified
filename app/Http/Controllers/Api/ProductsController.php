@@ -107,6 +107,7 @@ class ProductsController extends Controller
         if(is_null($photos)){
             $photos[0] = $path;
         }else{
+            dd($photos);
             array_push($photos,$path);
         }
         $product->photos = $photos;
