@@ -104,7 +104,7 @@ class ProductsController extends Controller
         $path = $this->uploaded($request,'photos');
         $path = str_replace("public","/storage",$path);
         $photos = $product->photos;
-        if(is_null($photos) || $photos === ''){
+        if(is_null($photos)){
             $photos[0] = $path;
         }else{
             array_push($photos,$path);
@@ -113,6 +113,17 @@ class ProductsController extends Controller
         $product->save();
         return  response()->json(['path' => $path,'message' => 'Product Image Uploaded!'],200);
     }
+
+    public function deleteGalleryImage(Request $request,$slug){
+        $product = Product::findBySlug($slug);
+        $image = $request->image;
+        $photos = $product->photos;
+        $index = array_search($image, $photos);
+        array_splice($photos, $index, 1);
+        $product->photos = $photos;
+        $product->save();
+    }
+
     public function uploadImage(Request $request,$slug)
     {   
         $validator = \Validator::make($request->all(), [

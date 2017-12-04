@@ -40,6 +40,7 @@ Route::group(['middleware' => ['auth:api']], function () {
 
     Route::post('/products/{slug}/edit', 'Api\ProductsController@update')->name('api.product.update');
     Route::post('/products/{slug}/uploadImage', 'Api\ProductsController@uploadImage')->name('api.product.uploadImage');
+    Route::post('/products/{slug}/deleteGalleryImage', 'Api\ProductsController@deleteGalleryImage')->name('api.product.deleteGalleryImage');
     Route::post('/products/{slug}/uploadGalleryImages', 'Api\ProductsController@uploadGalleryImages')->name('api.product.uploadGalleryImages');
 
 });
