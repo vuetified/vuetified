@@ -104,10 +104,9 @@ class ProductsController extends Controller
         $path = $this->uploaded($request,'photos');
         $path = str_replace("public","/storage",$path);
         $photos = $product->photos;
-        if(is_null($photos)){
+        if(is_null($photos) || $photos === ''){
             $photos[0] = $path;
         }else{
-            dd($photos);
             array_push($photos,$path);
         }
         $product->photos = $photos;
