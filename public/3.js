@@ -3264,7 +3264,7 @@ exports = module.exports = __webpack_require__(625)(undefined);
 
 
 // module
-exports.push([module.i, "\n.image[data-v-d83c7cae] {\n    background-size: cover;\n    background-repeat: no-repeat;\n    background-position: center center;\n    border: 2px solid #BA9A5A;\n    margin: 15px;\n}\n", ""]);
+exports.push([module.i, "\n.image[data-v-d83c7cae] {\r\n    background-size: cover;\r\n    background-repeat: no-repeat;\r\n    background-position: center center;\r\n    border: 2px solid #BA9A5A;\r\n    margin: 15px;\n}\r\n", ""]);
 
 // exports
 
