@@ -102,7 +102,6 @@ class ProductsController extends Controller
         }
         $product = Product::findBySlug($slug);
         $path = $this->uploaded($request,'photos');
-        $path = str_replace("public","",$path);
         $photos = $product->photos;
         if(is_null($photos)){
             $photos[0] = $path;
@@ -127,7 +126,6 @@ class ProductsController extends Controller
         }
         $product = Product::findBySlug($slug);
         $path = $this->uploaded($request,'image');
-        $path = str_replace("public","",$path);
         $product->image =$path;
         $product->save();
         return  response()->json(['path' => $path,'message' => 'Product Image Uploaded!'],200);
