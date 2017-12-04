@@ -5,7 +5,7 @@
       height="100%"
       enable-resize-watcher
       v-model="drawer"
-      class="accent"
+      class="blue-grey"
     >
       <v-list dense>
         <!-- V-For Links From Menu -->

@@ -1,6 +1,6 @@
 <template>
-<v-footer :class="[footerClass]">
-<v-spacer></v-spacer><span>© {{ year }} {{ domain }} ® | {{ trademark }}™</span><v-spacer></v-spacer>
+<v-footer light>
+<v-spacer></v-spacer><span class="primary--text">© {{ year }} {{ domain }} ® | {{ trademark }}™</span><v-spacer></v-spacer>
 </v-footer>
 </template>
 

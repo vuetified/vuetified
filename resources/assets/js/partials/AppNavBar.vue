@@ -1,17 +1,17 @@
 <template>
-  <v-toolbar :style="navbarStyle" :dark="!isDark" fixed>
-    <v-toolbar-side-icon :style="toggleBarStyle" @click.native.stop="toggleDrawer()"></v-toolbar-side-icon>
+  <v-toolbar color="accent" :dark="!isDark" fixed>
+    <v-toolbar-side-icon  @click.native.stop="toggleDrawer()"></v-toolbar-side-icon>
         <!-- Title -->
         <v-toolbar-title v-if="extension" class="text-xs-center" slot="extension">
-            <v-icon :style="{color: iconColor }" class="ml-3 hidden-md-and-down" v-if="showIcon">{{ icon }}</v-icon>
-            <span class="hidden-md-and-down" :style="titleStyle">{{ title }}</span>
+            <v-icon  class="ml-3 hidden-md-and-down" v-if="showIcon">{{ icon }}</v-icon>
+            <span class="hidden-md-and-down">{{ title }}</span>
         </v-toolbar-title>
         <v-toolbar-title v-else class="text-xs-center">
             <v-avatar v-if="!showIcon" size="50px" slot="activator" class="hidden-sm-and-down">
                 <img :src="`${App.site.logo.url}`" alt="">
             </v-avatar>
-            <v-icon :style="{color: iconColor }" class="ml-3 hidden-sm-and-down" v-else>{{ icon }}</v-icon>
-            <span class="hidden-sm-and-down" :style="titleStyle">{{ title }}</span>
+            <v-icon  class="ml-3 hidden-sm-and-down" v-else>{{ icon }}</v-icon>
+            <span class="hidden-sm-and-down">{{ title }}</span>
         </v-toolbar-title>
         <v-spacer></v-spacer>
         <!-- center logo -->

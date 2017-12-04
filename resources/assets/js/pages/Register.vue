@@ -2,15 +2,15 @@
     <modal-layout>
         <v-card :flat="true">
         <v-toolbar class="accent">
-          <v-btn flat icon color="primary" @click.native="redirectBack()">
+          <v-btn flat icon color="white" @click.native="redirectBack()">
           <v-icon>arrow_back</v-icon>
           </v-btn>
           <v-spacer></v-spacer>
-          <v-toolbar-title class="text-xs-center primary--text">Registration Page</v-toolbar-title>
+          <v-toolbar-title class="text-xs-center white--text">Registration Page</v-toolbar-title>
           <v-spacer></v-spacer>
           <v-toolbar-items>
               <!-- If There is no User Account Login Yet Redirect to Authentication Page -->
-             <v-btn flat color="primary" @click.native="goHome()">
+             <v-btn flat color="white" @click.native="goHome()">
             <v-icon>fa-home</v-icon>
             </v-btn>
           </v-toolbar-items>

@@ -1,6 +1,6 @@
 webpackJsonp([18],{
 
-/***/ 626:
+/***/ 625:
 /***/ (function(module, exports) {
 
 /*
@@ -83,19 +83,19 @@ function toComment(sourceMap) {
 
 /***/ }),
 
-/***/ 647:
+/***/ 646:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(909)
+  __webpack_require__(908)
 }
 var normalizeComponent = __webpack_require__(310)
 /* script */
-var __vue_script__ = __webpack_require__(911)
+var __vue_script__ = __webpack_require__(910)
 /* template */
-var __vue_template__ = __webpack_require__(912)
+var __vue_template__ = __webpack_require__(911)
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
@@ -134,7 +134,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 648:
+/***/ 647:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -153,7 +153,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(656)
+var listToStyles = __webpack_require__(655)
 
 /*
 type StyleObject = {
@@ -356,7 +356,7 @@ function applyToTag (styleElement, obj) {
 
 /***/ }),
 
-/***/ 656:
+/***/ 655:
 /***/ (function(module, exports) {
 
 /**
@@ -390,7 +390,7 @@ module.exports = function listToStyles (parentId, list) {
 
 /***/ }),
 
-/***/ 687:
+/***/ 686:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
@@ -398,7 +398,7 @@ var normalizeComponent = __webpack_require__(310)
 /* script */
 var __vue_script__ = null
 /* template */
-var __vue_template__ = __webpack_require__(688)
+var __vue_template__ = __webpack_require__(687)
 /* styles */
 var __vue_styles__ = null
 /* scopeId */
@@ -437,7 +437,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 688:
+/***/ 687:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -487,17 +487,17 @@ if (false) {
 
 /***/ }),
 
-/***/ 909:
+/***/ 908:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(910);
+var content = __webpack_require__(909);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(648)("64cd1cdb", content, false);
+var update = __webpack_require__(647)("64cd1cdb", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -514,10 +514,10 @@ if(false) {
 
 /***/ }),
 
-/***/ 910:
+/***/ 909:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(626)(undefined);
+exports = module.exports = __webpack_require__(625)(undefined);
 // imports
 
 
@@ -529,12 +529,12 @@ exports.push([module.i, "\n.cls-1[data-v-6ba62439] {\n  fill: #ffc541;\n}\n.cls-
 
 /***/ }),
 
-/***/ 911:
+/***/ 910:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__layouts_ModalLayout__ = __webpack_require__(687);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__layouts_ModalLayout__ = __webpack_require__(686);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__layouts_ModalLayout___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__layouts_ModalLayout__);
 //
 //
@@ -721,7 +721,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 912:
+/***/ 911:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {

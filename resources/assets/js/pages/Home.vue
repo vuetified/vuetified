@@ -14,7 +14,7 @@
                 @click="changeVideo(video)"
                 >
                 </v-card-media>
-                <v-card-title style="background-color: #103050;">
+                <v-card-title style="background-color: #009688;">
                 <v-spacer></v-spacer>
                 <span>{{ video.title }}</span>
                 <v-spacer></v-spacer>
