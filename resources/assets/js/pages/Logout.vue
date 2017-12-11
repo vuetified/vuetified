@@ -2,15 +2,15 @@
     <modal-layout v-if="visible">
         <v-card :flat="true">
         <v-toolbar class="accent">
-          <v-btn flat icon color="primary" @click.native="redirectBack()">
+          <v-btn flat icon color="white" @click.native="redirectBack()">
           <v-icon>arrow_back</v-icon>
           </v-btn>
           <v-spacer></v-spacer>
-          <v-toolbar-title class="text-xs-center primary--text">Are You Sure You Want To Log Out?</v-toolbar-title>
+          <v-toolbar-title class="text-xs-center white--text">Are You Sure You Want To Log Out?</v-toolbar-title>
           <v-spacer></v-spacer>
           <v-toolbar-items>
               <!-- If There is no User Account Login Yet Redirect to Authentication Page -->
-            <v-btn flat color="error" flat @click.native="logout()"><v-icon right>fa-power-off</v-icon></v-btn>
+            <v-btn flat color="white" flat @click.native="logout()"><v-icon right>fa-power-off</v-icon></v-btn>
           </v-toolbar-items>
         </v-toolbar>
         <v-card-text style="padding-top:100px;">

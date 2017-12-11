@@ -76,7 +76,7 @@
             >
 
             <v-date-picker v-model="shipmentForm.date_sent" scrollable actions light>
-            <template scope="{ save, cancel }">
+            <template scope-slot="{ save, cancel }">
                 <v-card-actions>
                 <v-spacer></v-spacer>
                 <v-btn flat color="primary" @click="cancel">Cancel</v-btn>
@@ -114,7 +114,7 @@
             light
             >
             <v-date-picker v-model="shipmentForm.date_received" scrollable actions light>
-            <template scope="{ save, cancel }">
+            <template scope-slot="{ save, cancel }">
                 <v-card-actions>
                 <v-spacer></v-spacer>
                 <v-btn flat color="primary" @click="cancel">Cancel</v-btn>
@@ -194,6 +194,12 @@ export default {
                 }
                 self.shipmentForm.busy = false
             })
+        },
+        save () {
+
+        },
+        cancel () {
+
         }
 
     }

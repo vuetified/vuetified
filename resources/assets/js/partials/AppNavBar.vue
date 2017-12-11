@@ -19,7 +19,7 @@
         <v-spacer></v-spacer>
         <!-- Add Here All Your Nav Icons -->
         <v-tooltip left>
-        <v-btn flat icon color="primary" slot="activator" @click="openCart()">
+        <v-btn flat icon color="white" slot="activator" @click="openCart()">
         <v-badge left>
         <span slot="badge">{{ count }}</span>
         <v-icon>shopping_cart</v-icon>

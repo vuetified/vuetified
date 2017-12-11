@@ -22,7 +22,7 @@
         item-key="name"
         expand
         >
-            <template slot="items" scope="props">
+            <template slot="items" slot-scope="props">
                 <tr>
                     <td class="title text-xs-left primary--text">
                         {{ props.item.id }}
@@ -83,11 +83,11 @@
                 </tr>
             </template>
 
-            <template slot="pageText" scope="{ pageStart, pageStop }">
+            <template slot="pageText" slot-scope="{ pageStart, pageStop }">
                 From {{ pageStart }} to {{ pageStop }}
             </template>
 
-            <template slot="expand" scope="props">
+            <template slot="expand" slot-scope="props">
                 <v-container fluid>
                     <v-card light flat text-xs-center>
                         <v-card-media
@@ -150,7 +150,7 @@
                                             prepend-icon="fa-tags"
                                             v-model="props.item.roles"
                                         >
-                                        <template slot="selection" scope="data">
+                                        <template slot="selection" slot-scope="data">
                                             <v-chip
                                             light
                                             close
@@ -187,7 +187,7 @@
                                             prepend-icon="fa-tags"
                                             v-model="props.item.permissions"
                                         >
-                                        <template slot="selection" scope="data">
+                                        <template slot="selection" slot-scope="data">
                                             <!-- Enable update permissions -->
                                             <!--
                                                 close

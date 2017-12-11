@@ -89,7 +89,7 @@
     >
     </v-text-field>
     <v-date-picker v-model="paymentForm.date_paid" scrollable actions light>
-      <template scope="{ save, cancel }">
+      <template scope-slot="{ save, cancel }">
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn flat color="primary" @click="cancel">Cancel</v-btn>
@@ -217,6 +217,12 @@ export default {
                 }
                 self.paymentForm.busy = false
             })
+        },
+        save () {
+
+        },
+        cancel () {
+
         }
 
     }

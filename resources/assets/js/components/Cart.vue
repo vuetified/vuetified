@@ -1,16 +1,16 @@
 <template>
 <modal-layout>
     <v-toolbar class="accent" slot="toolbar">
-    <v-btn flat icon color="primary" @click.native="redirectBack()">
+    <v-btn flat icon color="white" @click.native="redirectBack()">
         <v-icon>arrow_back</v-icon>
     </v-btn>
     <v-spacer></v-spacer>
-    <v-toolbar-title class="text-xs-center primary--text">Shopping Cart</v-toolbar-title>
+    <v-toolbar-title class="text-xs-center white--text">Shopping Cart</v-toolbar-title>
     <v-spacer></v-spacer>
     <v-toolbar-items>
         <!-- If There is no User Account Login Yet Redirect to Authentication Page -->
         <v-btn color="success" flat @click.native="checkout()" v-if="count > 0">Checkout<v-icon right>payment</v-icon></v-btn>
-        <v-btn  flat  color="primary" @click.native="close()" v-else>Close</v-btn>
+        <v-btn  flat  color="white" @click.native="close()" v-else>Close</v-btn>
     </v-toolbar-items>
     </v-toolbar>
     <basket></basket>

@@ -21,7 +21,7 @@
             :error-messages="errors.collect('courier')"
             prepend-icon="local_shipping"
             >
-            <template slot="selection" scope="data">
+            <template slot="selection" slot-scope="data">
                 <v-chip
                 @input="data.parent.selectItem(data.item)"
                 :selected="data.selected"
@@ -33,7 +33,7 @@
                 {{ data.item.name }}
                 </v-chip>
             </template>
-            <template slot="item" scope="data">
+            <template slot="item" slot-scope="data">
                 <template v-if="typeof data.item !== 'object'">
                 <v-list-tile-content v-text="data.item"></v-list-tile-content>
                 </template>

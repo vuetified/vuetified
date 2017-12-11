@@ -39,7 +39,7 @@
                 no-data-text="Click `Choose Files` Button To Upload Files."
                 :rows-per-page-items="perPageData"
             >
-            <template slot="items" scope="props">
+            <template slot="items" slot-scope="props">
 
                 <td class="title text-xs-left primary--text">
                     <img v-if="props.item.thumb" :src="props.item.thumb" width="40" height="auto" />

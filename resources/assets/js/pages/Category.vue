@@ -38,7 +38,7 @@
                 <v-container fill-height fluid>
                     <v-layout fill-height>
                         <v-flex xs12 align-end flexbox>
-                        <span class="body-2 white--text accent" v-text="product.name"></span>
+                        <span class="body-2 white--text primary" v-text="product.name"></span>
                         </v-flex>
                     </v-layout>
                 </v-container>
@@ -46,7 +46,7 @@
               <v-card-actions class="accent">
                 <span class="body-2">{{product.price | currency(currency)}}</span>
                 <v-spacer></v-spacer>
-                <v-btn flat icon color="primary" slot="activator" @click.native="showProduct(product.slug)">
+                <v-btn flat icon color="white" slot="activator" @click.native="showProduct(product.slug)">
                 <v-icon>fa-shopping-bag</v-icon>
                 </v-btn>
                 <!-- Add Other Action buttons Here -->

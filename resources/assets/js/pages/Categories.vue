@@ -1,6 +1,6 @@
 <template>
   <main-layout :class="[contentClass]">
-      <v-container fluid grid-list-md style="padding-top:100px;">
+      <v-container grid-list-xl style="padding-top:100px;">
         <v-layout row wrap>
             <v-breadcrumbs icons divider="forward">
                 <v-breadcrumbs-item
@@ -31,7 +31,7 @@
                 <v-container fill-height fluid>
                     <v-layout fill-height>
                         <v-flex xs12 align-end flexbox>
-                        <span class="headline" v-text="category.name"></span>
+                        <span class="headline white--text primary" v-text="category.name"></span>
                         </v-flex>
                     </v-layout>
                 </v-container>
@@ -39,7 +39,7 @@
               <v-card-actions class="accent">
                 <span class="body-2">View Product List</span>
                 <v-spacer></v-spacer>
-                <v-btn flat icon color="primary" slot="activator" @click="showCategory(category.slug)">
+                <v-btn flat icon color="white" slot="activator" @click="showCategory(category.slug)">
                 <v-icon>fa-list</v-icon>
                 </v-btn>
                 <!-- Add Other Action buttons Here -->

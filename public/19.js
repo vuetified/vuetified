@@ -1,1 +1,654 @@
-webpackJsonp([19],{Dd8w:function(e,s,t){"use strict";s.__esModule=!0;var r=t("woOf"),o=function(e){return e&&e.__esModule?e:{default:e}}(r);s.default=o.default||function(e){for(var s=1;s<arguments.length;s++){var t=arguments[s];for(var r in t)Object.prototype.hasOwnProperty.call(t,r)&&(e[r]=t[r])}return e}},KtaL:function(e,s,t){"use strict";Object.defineProperty(s,"__esModule",{value:!0});var r=t("Dd8w"),o=t.n(r),a=t("NYxO"),n=Object(a.createNamespacedHelpers)("auth"),i=n.mapGetters,l=n.mapActions;s.default={props:["token"],data:function(){return{passwordResetForm:new AppForm(App.forms.passwordResetForm),password_visible:!1,rules:{password:{required:function(e){return!!e||"Password is Required."},min:function(e){return e.length>5||"Password is Below 6 Characters"}},password_confirmation:function(e,s){return e===s||"Password Confirmation is Does Not Match."},username:{required:function(e){return!!e||"Email is Required."},email:function(e){return/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(e)||"Invalid e-mail."}}}}},computed:o()({icon:function(){return this.password_visible?"visibility":"visibility_off"}},i({getAuth:"getAuth"})),mounted:function(){var e=this;if(e.getAuth)return e.$nextTick(function(){return e.$router.go(-1)});e.$modal.show("reset-password"),e.passwordResetForm.token=e.token},methods:o()({},l({reset:"passwordreset"}),{goHome:function(){var e=this;e.$modal.hide("reset-password"),e.$nextTick(function(){return e.$router.push({name:"home"})})},redirectBack:function(){var e=this;return e.$modal.hide("reset-password"),e.$nextTick(function(){return e.$router.go(-1)})},resetPassword:function(){var e=this;e.reset(e.passwordResetForm)}})}},R4wc:function(e,s,t){var r=t("kM2E");r(r.S+r.F,"Object",{assign:t("To3L")})},To3L:function(e,s,t){"use strict";var r=t("lktj"),o=t("1kS7"),a=t("NpIQ"),n=t("sB3e"),i=t("MU5D"),l=Object.assign;e.exports=!l||t("S82l")(function(){var e={},s={},t=Symbol(),r="abcdefghijklmnopqrst";return e[t]=7,r.split("").forEach(function(e){s[e]=e}),7!=l({},e)[t]||Object.keys(l({},s)).join("")!=r})?function(e,s){for(var t=n(e),l=arguments.length,c=1,d=o.f,u=a.f;l>c;)for(var p,f=i(arguments[c++]),m=d?r(f).concat(d(f)):r(f),w=m.length,v=0;w>v;)u.call(f,p=m[v++])&&(t[p]=f[p]);return t}:l},V3tA:function(e,s,t){t("R4wc"),e.exports=t("FeBl").Object.assign},k06s:function(e,s,t){var r=t("VU/8"),o=t("KtaL"),a=t("t/MA"),n=r(o,a,null,null,null);e.exports=n.exports},"t/MA":function(e,s){var t=function(){var e=this,s=e.$createElement,t=e._self._c||s;return t("modal",{attrs:{name:"reset-password",adaptive:!0,width:"100%",height:"100%",clickToClose:!1}},[t("v-card",{attrs:{flat:!0}},[t("v-toolbar",{staticClass:"accent"},[t("v-btn",{attrs:{icon:""},nativeOn:{click:function(s){e.redirectBack()}}},[t("v-icon",{staticClass:"primary--text"},[e._v("arrow_back")])],1),e._v(" "),t("v-spacer"),e._v(" "),t("v-toolbar-title",{staticClass:"text-xs-center primary--text"},[e._v("Reset Password")]),e._v(" "),t("v-spacer"),e._v(" "),t("v-toolbar-items",[t("v-btn",{staticClass:"primary--text",attrs:{flat:""},nativeOn:{click:function(s){e.goHome()}}},[t("v-icon",{attrs:{right:"",dark:""}},[e._v("fa-home")])],1)],1)],1),e._v(" "),t("v-card-text",{staticStyle:{"padding-top":"100px"}},[t("v-container",{attrs:{fluid:""}},[t("form",{on:{submit:function(s){s.preventDefault(),e.resetPassword()}}},[t("v-layout",{attrs:{row:""}},[t("v-flex",{attrs:{xs12:"",sm12:"",md4:"","offset-md4":"",lg4:"","offset-lg4":"",xl4:"","offset-xl4":""}},[t("v-text-field",{staticClass:"primary--text",attrs:{name:"username",label:"Email",rules:[e.rules.username.required,e.rules.username.email],"prepend-icon":"email",counter:"60"},model:{value:e.passwordResetForm.username,callback:function(s){e.passwordResetForm.username=s},expression:"passwordResetForm.username"}})],1)],1),e._v(" "),t("v-layout",{attrs:{row:""}},[t("v-flex",{attrs:{xs12:"",sm12:"",md4:"","offset-md4":"",lg4:"","offset-lg4":"",xl4:"","offset-xl4":""}},[t("v-text-field",{staticClass:"primary--text",attrs:{name:"password",label:"New Password",min:"8","append-icon":e.icon,"append-icon-cb":function(){return e.password_visible=!e.password_visible},type:e.password_visible?"text":"password",rules:[e.rules.password.required,e.rules.password.min],"prepend-icon":"fa-key",counter:"60"},model:{value:e.passwordResetForm.password,callback:function(s){e.passwordResetForm.password=s},expression:"passwordResetForm.password"}})],1)],1),e._v(" "),t("v-layout",{attrs:{row:""}},[t("v-flex",{attrs:{xs12:"",sm12:"",md4:"","offset-md4":"",lg4:"","offset-lg4":"",xl4:"","offset-xl4":""}},[t("v-text-field",{staticClass:"primary--text",attrs:{name:"password_confirmation",label:"Confirm New Password","append-icon":e.icon,"append-icon-cb":function(){return e.password_visible=!e.password_visible},type:e.password_visible?"text":"password",rules:[function(s){return s===e.passwordResetForm.password||"Password Confirmation is Does Not Match."}],"prepend-icon":"fa-copy",counter:"60"},model:{value:e.passwordResetForm.password_confirmation,callback:function(s){e.passwordResetForm.password_confirmation=s},expression:"passwordResetForm.password_confirmation"}})],1)],1),e._v(" "),t("v-flex",{attrs:{xs12:"",sm12:"",md4:"","offset-md4":"",lg4:"","offset-lg4":"",xl4:"","offset-xl4":""}},[t("v-btn",{class:{primary:!e.passwordResetForm.busy,error:e.passwordResetForm.busy},attrs:{loading:e.passwordResetForm.busy,disabled:e.passwordResetForm.busy,type:"submit",block:""}},[e._v("Reset Password")])],1)],1)])],1)],1)],1)},r=[];e.exports={render:t,staticRenderFns:r}},woOf:function(e,s,t){e.exports={default:t("V3tA"),__esModule:!0}}});
+webpackJsonp([19],{
+
+/***/ 632:
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(314)
+/* script */
+var __vue_script__ = __webpack_require__(705)
+/* template */
+var __vue_template__ = __webpack_require__(706)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\pages\\ResetPassword.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-62173d23", Component.options)
+  } else {
+    hotAPI.reload("data-v-62173d23", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ 651:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _assign = __webpack_require__(654);
+
+var _assign2 = _interopRequireDefault(_assign);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _assign2.default || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];
+
+    for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }
+
+  return target;
+};
+
+/***/ }),
+
+/***/ 654:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = { "default": __webpack_require__(655), __esModule: true };
+
+/***/ }),
+
+/***/ 655:
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(656);
+module.exports = __webpack_require__(31).Object.assign;
+
+
+/***/ }),
+
+/***/ 656:
+/***/ (function(module, exports, __webpack_require__) {
+
+// 19.1.3.1 Object.assign(target, source)
+var $export = __webpack_require__(60);
+
+$export($export.S + $export.F, 'Object', { assign: __webpack_require__(657) });
+
+
+/***/ }),
+
+/***/ 657:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+// 19.1.2.1 Object.assign(target, source, ...)
+var getKeys = __webpack_require__(91);
+var gOPS = __webpack_require__(131);
+var pIE = __webpack_require__(92);
+var toObject = __webpack_require__(315);
+var IObject = __webpack_require__(316);
+var $assign = Object.assign;
+
+// should work with symbols and should have deterministic property order (V8 bug)
+module.exports = !$assign || __webpack_require__(69)(function () {
+  var A = {};
+  var B = {};
+  // eslint-disable-next-line no-undef
+  var S = Symbol();
+  var K = 'abcdefghijklmnopqrst';
+  A[S] = 7;
+  K.split('').forEach(function (k) { B[k] = k; });
+  return $assign({}, A)[S] != 7 || Object.keys($assign({}, B)).join('') != K;
+}) ? function assign(target, source) { // eslint-disable-line no-unused-vars
+  var T = toObject(target);
+  var aLen = arguments.length;
+  var index = 1;
+  var getSymbols = gOPS.f;
+  var isEnum = pIE.f;
+  while (aLen > index) {
+    var S = IObject(arguments[index++]);
+    var keys = getSymbols ? getKeys(S).concat(getSymbols(S)) : getKeys(S);
+    var length = keys.length;
+    var j = 0;
+    var key;
+    while (length > j) if (isEnum.call(S, key = keys[j++])) T[key] = S[key];
+  } return T;
+} : $assign;
+
+
+/***/ }),
+
+/***/ 705:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends__ = __webpack_require__(651);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(90);
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["createNamespacedHelpers"])('auth'),
+    mapGetters = _createNamespacedHelp.mapGetters,
+    mapActions = _createNamespacedHelp.mapActions;
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['token'],
+    data: function data() {
+        return {
+            passwordResetForm: new AppForm(App.forms.passwordResetForm),
+            password_visible: false,
+            rules: {
+                password: {
+                    required: function required(value) {
+                        return !!value || 'Password is Required.';
+                    },
+                    min: function min(value) {
+                        return value.length > 5 || 'Password is Below 6 Characters';
+                    }
+                },
+                password_confirmation: function password_confirmation(value, password) {
+                    return value === password || 'Password Confirmation is Does Not Match.';
+                },
+
+                username: {
+                    required: function required(value) {
+                        return !!value || 'Email is Required.';
+                    },
+                    email: function email(value) {
+                        var pattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                        return pattern.test(value) || 'Invalid e-mail.';
+                    }
+                }
+
+            }
+        };
+    },
+    computed: __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends___default()({
+        icon: function icon() {
+            return this.password_visible ? 'visibility' : 'visibility_off';
+        }
+    }, mapGetters({
+        getAuth: 'getAuth'
+    })),
+    mounted: function mounted() {
+        var self = this;
+        /* Make Sure We Only Load Reset Password Page If Not Authenticated */
+        if (self.getAuth) {
+            /* nextick make sure our modal wount be visible before redirect */
+            return self.$nextTick(function () {
+                return self.$router.go(-1);
+            });
+        }
+        /* Show Reset Password Modal */
+        self.$modal.show('reset-password');
+        self.passwordResetForm.token = self.token;
+    },
+
+    methods: __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends___default()({}, mapActions({
+        reset: 'passwordreset'
+    }), {
+        goHome: function goHome() {
+            var self = this;
+            self.$modal.hide('reset-password');
+            self.$nextTick(function () {
+                return self.$router.push({ name: 'home' });
+            });
+        },
+        redirectBack: function redirectBack() {
+            var self = this;
+            self.$modal.hide('reset-password');
+            return self.$nextTick(function () {
+                return self.$router.go(-1);
+            });
+        },
+        resetPassword: function resetPassword() {
+            var self = this;
+            self.reset(self.passwordResetForm);
+        }
+    })
+});
+
+/***/ }),
+
+/***/ 706:
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "modal",
+    {
+      attrs: {
+        name: "reset-password",
+        adaptive: true,
+        width: "100%",
+        height: "100%",
+        clickToClose: false
+      }
+    },
+    [
+      _c(
+        "v-card",
+        { attrs: { flat: true } },
+        [
+          _c(
+            "v-toolbar",
+            { staticClass: "accent" },
+            [
+              _c(
+                "v-btn",
+                {
+                  attrs: { icon: "" },
+                  nativeOn: {
+                    click: function($event) {
+                      _vm.redirectBack()
+                    }
+                  }
+                },
+                [
+                  _c("v-icon", { staticClass: "primary--text" }, [
+                    _vm._v("arrow_back")
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("v-spacer"),
+              _vm._v(" "),
+              _c(
+                "v-toolbar-title",
+                { staticClass: "text-xs-center primary--text" },
+                [_vm._v("Reset Password")]
+              ),
+              _vm._v(" "),
+              _c("v-spacer"),
+              _vm._v(" "),
+              _c(
+                "v-toolbar-items",
+                [
+                  _c(
+                    "v-btn",
+                    {
+                      staticClass: "primary--text",
+                      attrs: { flat: "" },
+                      nativeOn: {
+                        click: function($event) {
+                          _vm.goHome()
+                        }
+                      }
+                    },
+                    [
+                      _c("v-icon", { attrs: { right: "", dark: "" } }, [
+                        _vm._v("fa-home")
+                      ])
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-card-text",
+            { staticStyle: { "padding-top": "100px" } },
+            [
+              _c("v-container", { attrs: { fluid: "" } }, [
+                _c(
+                  "form",
+                  {
+                    on: {
+                      submit: function($event) {
+                        $event.preventDefault()
+                        _vm.resetPassword()
+                      }
+                    }
+                  },
+                  [
+                    _c(
+                      "v-layout",
+                      { attrs: { row: "" } },
+                      [
+                        _c(
+                          "v-flex",
+                          {
+                            attrs: {
+                              xs12: "",
+                              sm12: "",
+                              md4: "",
+                              "offset-md4": "",
+                              lg4: "",
+                              "offset-lg4": "",
+                              xl4: "",
+                              "offset-xl4": ""
+                            }
+                          },
+                          [
+                            _c("v-text-field", {
+                              staticClass: "primary--text",
+                              attrs: {
+                                name: "username",
+                                label: "Email",
+                                rules: [
+                                  _vm.rules.username.required,
+                                  _vm.rules.username.email
+                                ],
+                                "prepend-icon": "email",
+                                counter: "60"
+                              },
+                              model: {
+                                value: _vm.passwordResetForm.username,
+                                callback: function($$v) {
+                                  _vm.$set(
+                                    _vm.passwordResetForm,
+                                    "username",
+                                    $$v
+                                  )
+                                },
+                                expression: "passwordResetForm.username"
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "v-layout",
+                      { attrs: { row: "" } },
+                      [
+                        _c(
+                          "v-flex",
+                          {
+                            attrs: {
+                              xs12: "",
+                              sm12: "",
+                              md4: "",
+                              "offset-md4": "",
+                              lg4: "",
+                              "offset-lg4": "",
+                              xl4: "",
+                              "offset-xl4": ""
+                            }
+                          },
+                          [
+                            _c("v-text-field", {
+                              staticClass: "primary--text",
+                              attrs: {
+                                name: "password",
+                                label: "New Password",
+                                min: "8",
+                                "append-icon": _vm.icon,
+                                "append-icon-cb": function() {
+                                  return (_vm.password_visible = !_vm.password_visible)
+                                },
+                                type: !_vm.password_visible
+                                  ? "password"
+                                  : "text",
+                                rules: [
+                                  _vm.rules.password.required,
+                                  _vm.rules.password.min
+                                ],
+                                "prepend-icon": "fa-key",
+                                counter: "60"
+                              },
+                              model: {
+                                value: _vm.passwordResetForm.password,
+                                callback: function($$v) {
+                                  _vm.$set(
+                                    _vm.passwordResetForm,
+                                    "password",
+                                    $$v
+                                  )
+                                },
+                                expression: "passwordResetForm.password"
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "v-layout",
+                      { attrs: { row: "" } },
+                      [
+                        _c(
+                          "v-flex",
+                          {
+                            attrs: {
+                              xs12: "",
+                              sm12: "",
+                              md4: "",
+                              "offset-md4": "",
+                              lg4: "",
+                              "offset-lg4": "",
+                              xl4: "",
+                              "offset-xl4": ""
+                            }
+                          },
+                          [
+                            _c("v-text-field", {
+                              staticClass: "primary--text",
+                              attrs: {
+                                name: "password_confirmation",
+                                label: "Confirm New Password",
+                                "append-icon": _vm.icon,
+                                "append-icon-cb": function() {
+                                  return (_vm.password_visible = !_vm.password_visible)
+                                },
+                                type: !_vm.password_visible
+                                  ? "password"
+                                  : "text",
+                                rules: [
+                                  function(value) {
+                                    return (
+                                      value ===
+                                        _vm.passwordResetForm.password ||
+                                      "Password Confirmation is Does Not Match."
+                                    )
+                                  }
+                                ],
+                                "prepend-icon": "fa-copy",
+                                counter: "60"
+                              },
+                              model: {
+                                value:
+                                  _vm.passwordResetForm.password_confirmation,
+                                callback: function($$v) {
+                                  _vm.$set(
+                                    _vm.passwordResetForm,
+                                    "password_confirmation",
+                                    $$v
+                                  )
+                                },
+                                expression:
+                                  "passwordResetForm.password_confirmation"
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "v-flex",
+                      {
+                        attrs: {
+                          xs12: "",
+                          sm12: "",
+                          md4: "",
+                          "offset-md4": "",
+                          lg4: "",
+                          "offset-lg4": "",
+                          xl4: "",
+                          "offset-xl4": ""
+                        }
+                      },
+                      [
+                        _c(
+                          "v-btn",
+                          {
+                            class: {
+                              primary: !_vm.passwordResetForm.busy,
+                              error: _vm.passwordResetForm.busy
+                            },
+                            attrs: {
+                              loading: _vm.passwordResetForm.busy,
+                              disabled: _vm.passwordResetForm.busy,
+                              type: "submit",
+                              block: ""
+                            }
+                          },
+                          [_vm._v("Reset Password")]
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ])
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-62173d23", module.exports)
+  }
+}
+
+/***/ })
+
+});

@@ -10,7 +10,7 @@
                 light
                 expand
             >
-            <template slot="items" scope="props">
+            <template slot="items" slot-scope="props">
             <tr>
                 <td class="title text-xs-left primary--text">
                     <v-btn color="primary" icon @click="props.expanded = !props.expanded"><v-icon>shopping_basket</v-icon></v-btn>
@@ -75,20 +75,20 @@
             </tr>
             </template>
 
-            <template slot="expand" scope="props">
+            <template slot="expand" slot-scope="props">
                 <v-data-table
                     :items="getItems(props.item.cart)"
                     hide-actions
                     light
                     >
-                    <template slot="headers" scope="orders">
+                    <template slot="headers" slot-scope="orders">
                             <th class="text-xs-left">Product</th>
                             <th class="text-xs-left">Qty</th>
                             <th class="text-xs-left">Price</th>
                             <th class="text-xs-left">Tax</th>
                             <th class="text-xs-left">Subtotal</th>
                     </template>
-                        <template slot="items" scope="orders">
+                        <template slot="items" slot-scope="orders">
                         <td class="text-xs-left"><span class="primary--text">{{ orders.item.name }}</span>
                             <span v-if="orders.item.options !== {}">
                                 <span  class="info--text caption" v-for="(option,key) in orders.item.options" :key="key">({{ option }})</span>
@@ -102,7 +102,7 @@
                 </v-data-table>
             </template>
 
-            <template slot="pageText" scope="{ pageStart, pageStop }">
+            <template slot="pageText" slot-scope="{ pageStart, pageStop }">
                 From {{ pageStart }} to {{ pageStop }}
             </template>
 
@@ -110,14 +110,14 @@
             <v-dialog v-model="dialog" fullscreen transition="dialog-bottom-transition" :overlay="false">
                 <v-card :light="true">
                 <v-toolbar  color="accent">
-                    <v-btn icon @click.native="dialog = false" class="error--text">
+                    <v-btn icon @click.native="dialog = false" class="white--text">
                     <v-icon>close</v-icon>
                     </v-btn>
                     <v-spacer></v-spacer>
-                    <v-toolbar-title class="primary--text">Update Order No. {{ current_order.id }}</v-toolbar-title>
+                    <v-toolbar-title class="white--text">Update Order No. {{ current_order.id }}</v-toolbar-title>
                     <v-spacer></v-spacer>
                     <v-toolbar-items>
-                    <v-btn  flat @click.native="dialog = false" class="info--text">Save</v-btn>
+                    <v-btn  flat @click.native="dialog = false" class="white--text">Save</v-btn>
                     </v-toolbar-items>
                 </v-toolbar>
                 <v-container fluid>
