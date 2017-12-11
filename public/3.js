@@ -3956,7 +3956,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "row pb-5" }, [
-      _c("h1", { staticClass: "text-xs-center primary--text" }, [
+      _c("h2", { staticClass: "text-xs-center primary--text" }, [
         _vm._v("We Accept the Following Mode of Payment")
       ]),
       _vm._v(" "),

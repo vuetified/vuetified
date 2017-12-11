@@ -948,7 +948,11 @@ var render = function() {
                   attrs: { label: "" }
                 },
                 [
-                  _c("v-icon", { attrs: { left: "" } }, [_vm._v("fa-percent")]),
+                  _c(
+                    "v-icon",
+                    { staticClass: "white--text", attrs: { left: "" } },
+                    [_vm._v("fa-percent")]
+                  ),
                   _vm._v(
                     " Tax : " +
                       _vm._s(_vm.currency) +
@@ -971,9 +975,11 @@ var render = function() {
                 "v-chip",
                 { staticClass: "info white--text title", attrs: { label: "" } },
                 [
-                  _c("v-icon", { attrs: { left: "" } }, [
-                    _vm._v("shopping_basket")
-                  ]),
+                  _c(
+                    "v-icon",
+                    { staticClass: "white--text", attrs: { left: "" } },
+                    [_vm._v("shopping_basket")]
+                  ),
                   _vm._v(
                     " Subtotal : " +
                       _vm._s(_vm.currency) +
@@ -999,7 +1005,11 @@ var render = function() {
                   attrs: { label: "" }
                 },
                 [
-                  _c("v-icon", { attrs: { left: "" } }, [_vm._v("fa-money")]),
+                  _c(
+                    "v-icon",
+                    { staticClass: "white--text", attrs: { left: "" } },
+                    [_vm._v("fa-money")]
+                  ),
                   _vm._v(
                     " Total : " +
                       _vm._s(_vm.currency) +

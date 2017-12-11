@@ -89,19 +89,19 @@
 
             <v-flex xs12 class="text-xs-right">
                  <v-chip label class="red lighten-2 white--text title">
-                    <v-icon left>fa-percent</v-icon> Tax : {{ currency }} {{ tax }}
+                    <v-icon left class="white--text">fa-percent</v-icon> Tax : {{ currency }} {{ tax }}
                 </v-chip>
             </v-flex>
 
             <v-flex xs12 class="text-xs-right">
                 <v-chip label class="info white--text title">
-                    <v-icon left>shopping_basket</v-icon> Subtotal : {{ currency }} {{ subtotal }}
+                    <v-icon left class="white--text">shopping_basket</v-icon> Subtotal : {{ currency }} {{ subtotal }}
                 </v-chip>
             </v-flex>
 
             <v-flex xs12 class="text-xs-right">
                 <v-chip label class="primary white--text title">
-                    <v-icon left>fa-money</v-icon> Total : {{ currency }} {{ total }}
+                    <v-icon left class="white--text">fa-money</v-icon> Total : {{ currency }} {{ total }}
                 </v-chip>
             </v-flex>
 
