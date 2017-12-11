@@ -1,11 +1,12 @@
 <template>
   <v-navigation-drawer
-      temporary
-      hide-overlay
-      height="100%"
-      enable-resize-watcher
+      fixed
+      :clipped="$vuetify.breakpoint.width > 1264"
       v-model="drawer"
-      class="blue-grey"
+      class="secondary"
+      disable-resize-watcher
+      disable-route-watcher
+      app
     >
       <v-list dense>
         <!-- V-For Links From Menu -->

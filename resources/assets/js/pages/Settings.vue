@@ -1,30 +1,30 @@
 <template>
-  <main-layout :class="[contentClass]" :style="{ paddingTop: `55px`}">
-      <v-tabs dark fixed icons centered>
+  <main-layout :style="{ paddingTop: `45px`, backgroundColor: `white` }">
+      <v-tabs  fixed icons centered>
       <v-tabs-bar class="blue-grey darken-4">
         <v-tabs-slider color="primary"></v-tabs-slider>
         <!-- tabs -->
         <v-tabs-item href="#account">
           <v-icon>fa-user</v-icon>
-          Account
+          <span class="hidden-md-and-down">Account</span>
         </v-tabs-item>
         <v-tabs-item href="#referral-link" v-if="active">
           <v-icon>timeline</v-icon>
-          Link
+          <span class="hidden-md-and-down">Link</span>
         </v-tabs-item>
         <v-tabs-item href="#profile">
           <v-icon>fa-address-card</v-icon>
-          Profile
+          <span class="hidden-md-and-down">Profile</span>
         </v-tabs-item>
             <!-- for reseller account only -->
         <v-tabs-item href="#contact-details" v-if="active">
           <v-icon>phone</v-icon>
-          Contact Details
+          <span class="hidden-md-and-down">Contact Details</span>
         </v-tabs-item>
             <!-- for reseller account only -->
         <v-tabs-item href="#social-links" v-if="active">
           <v-icon>link</v-icon>
-          Social Links
+          <span class="hidden-md-and-down">Social Links</span>
         </v-tabs-item>
         <!-- tabs -->
       </v-tabs-bar>

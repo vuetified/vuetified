@@ -1,5 +1,5 @@
 <template>
-  <v-toolbar color="accent" :dark="!isDark" fixed>
+  <v-toolbar color="accent" :dark="!isDark" dense fixed clipped-left app>
     <v-toolbar-side-icon  @click.native.stop="toggleDrawer()"></v-toolbar-side-icon>
         <!-- Title -->
         <v-toolbar-title v-if="extension" class="text-xs-center" slot="extension">

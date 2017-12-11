@@ -1,10 +1,10 @@
 <template>
- <v-app :dark="App.theme.dark"  standalone v-cloak>
+ <v-app :dark="App.theme.dark" v-cloak>
     <left-side-bar></left-side-bar>
     <app-nav-bar></app-nav-bar>
     <main>
     <!-- added fluid and pa-0 ma-0 for full screen pages -->
-      <v-container transition="slide-x-transition" fluid class="pa-0 ma-0">
+      <v-container transition="slide-x-transition" fluid pa-0 ma-0>
           <slot></slot>
       </v-container>
     </main>

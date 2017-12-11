@@ -1,5 +1,5 @@
 <template>
-<v-footer light>
+<v-footer :dark="darkClass">
 <v-spacer></v-spacer><span class="primary--text">© {{ year }} {{ domain }} ® | {{ trademark }}™</span><v-spacer></v-spacer>
 </v-footer>
 </template>

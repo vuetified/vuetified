@@ -1,11 +1,11 @@
 <template>
-  <main-layout :class="[contentClass]" :style="{ paddingTop: `56px`}">
+  <main-layout :class="[contentClass]">
     <v-parallax src="/img/bg.jpg">
       <v-layout column align-center justify-center>
-        <h4 class="white--text">ABOUT IAMWORLDWIDE CORPORATION</h4>
-        <h5 class="white--text" text-xs-center>
+        <h1 class="white--text">ABOUT IAMWORLDWIDE CORPORATION</h1>
+        <h2 class="white--text" text-xs-center>
             A company committed in upgrading the quality of life – it was designed for dedicated, honest, hardworking, and self-motivated people who want to build their own business as Independent Distributors across the globe. Our portfolio offers a diverse and comprehensive range of marketing solutions, specialty products, and services aimed to drive individuals and families to financial excellence.
-        </h5>
+        </h2>
       </v-layout>
     </v-parallax>
     <v-container light>

@@ -6,7 +6,7 @@
             <v-layout row wrap>
                 <p class="primary--text">Referral Link</p>
                 <v-flex xs12>
-                    <v-alert color="primary" icon="fa-link" value="true">
+                    <v-alert color="primary" value="true">
                         <v-list dense light class="primary">
                             <v-link  link-color="white" :dark="false"  :title="`Your Online Shop Link : ${href}`" :href="href"></v-link>
                         </v-list>

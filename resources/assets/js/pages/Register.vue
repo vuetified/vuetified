@@ -83,7 +83,7 @@
         </v-layout>
         <v-flex xs12 sm12 md4 offset-md4 lg4 offset-lg4 xl4 offset-xl4>
             <v-btn :loading="registerForm.busy" :disabled="errors.any()" type="submit" block :class="{primary: !registerForm.busy, error: registerForm.busy}">Register</v-btn>
-            <v-btn @click.native="goToLogin()" block flat class="info--text info">Already Have An Account? Go Login</v-btn>
+            <v-btn @click.native="goToLogin()" block flat class="white--text" color="teal lighten-2">Already Have An Account? Go Login</v-btn>
          </v-flex>
         </form>
       </v-container>

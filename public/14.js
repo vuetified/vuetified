@@ -761,8 +761,12 @@ var render = function() {
                         _c(
                           "v-btn",
                           {
-                            staticClass: "info--text info",
-                            attrs: { block: "", flat: "" },
+                            staticClass: "white--text",
+                            attrs: {
+                              block: "",
+                              flat: "",
+                              color: "teal lighten-2"
+                            },
                             nativeOn: {
                               click: function($event) {
                                 _vm.goToLogin()

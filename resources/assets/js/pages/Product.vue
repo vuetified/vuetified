@@ -2,7 +2,8 @@
   <main-layout :class="[contentClass]" :style="{ paddingTop: `100px` }" v-if="product">
     <v-container fluid grid-list-md>
         <v-layout row wrap>
-            <v-breadcrumbs icons divider="forward" light>
+            <v-breadcrumbs light>
+                <v-icon slot="divider" color="teal">forward</v-icon>
                 <v-breadcrumbs-item
                 active-class="primary--text"
                 :disabled="false"
@@ -262,10 +263,5 @@ export default {
     background-position: center center;
     border: 1px solid #ebebeb;
     margin: 5px;
-}
-.breadcrumbs li:not(:last-child):after {
-    color: #009688;
-    content: attr(data-divider);
-    vertical-align: middle;
 }
 </style>

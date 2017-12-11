@@ -21239,6 +21239,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__store__ = __webpack_require__(617);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vuex_router_sync__ = __webpack_require__(625);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vuex_router_sync___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_vuex_router_sync__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vuetify__ = __webpack_require__(304);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vuetify___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_vuetify__);
 /* Boostrap App */
 
 /* App Routing */
@@ -21248,9 +21250,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* App State Management */
 
 
+
 /* Add Vuex Router Module */
 Object(__WEBPACK_IMPORTED_MODULE_4_vuex_router_sync__["sync"])(__WEBPACK_IMPORTED_MODULE_3__store__["a" /* default */], __WEBPACK_IMPORTED_MODULE_1__router__["a" /* default */]);
 
+Vue.use(__WEBPACK_IMPORTED_MODULE_5_vuetify___default.a, {
+    theme: {
+        primary: '#BA9A5A',
+        secondary: '#455A64',
+        accent: '#103050',
+        error: '#C62828',
+        info: '#7FCAC3',
+        success: '#D4E157',
+        warning: '#FFEA00'
+    }
+});
 /* Declare Here All Global Components You Want */
 
 /* Our Main Vue Instance */
@@ -28074,27 +28088,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(68);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(90);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuetify__ = __webpack_require__(304);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuetify___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_vuetify__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue2_filters__ = __webpack_require__(558);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue2_filters___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_vue2_filters__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vueup__ = __webpack_require__(559);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vueup___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_vueup__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vee_validate__ = __webpack_require__(560);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_vue_youtube_embed__ = __webpack_require__(561);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_vue_youtube_embed___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_vue_youtube_embed__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_vue_js_cookie__ = __webpack_require__(562);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_vue_js_cookie___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_vue_js_cookie__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_vue_visible__ = __webpack_require__(564);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_vue_visible___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_vue_visible__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__mixins_initial_state__ = __webpack_require__(565);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_acl__ = __webpack_require__(566);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_vue_truncate_filter__ = __webpack_require__(579);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_vue_truncate_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11_vue_truncate_filter__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue2_filters__ = __webpack_require__(558);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue2_filters___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_vue2_filters__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vueup__ = __webpack_require__(559);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vueup___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_vueup__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vee_validate__ = __webpack_require__(560);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vue_youtube_embed__ = __webpack_require__(561);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vue_youtube_embed___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_vue_youtube_embed__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_vue_js_cookie__ = __webpack_require__(562);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_vue_js_cookie___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_vue_js_cookie__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_vue_visible__ = __webpack_require__(564);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_vue_visible___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_vue_visible__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__mixins_initial_state__ = __webpack_require__(565);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_acl__ = __webpack_require__(566);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_vue_truncate_filter__ = __webpack_require__(579);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_vue_truncate_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_vue_truncate_filter__);
 /* IE 11 Compatible */
 
  /* State Management */
- /* Front End Framework */
  /* Add Filters such as currency etc */
  /* Simple Notification */
  /* Form Validation */
@@ -28153,22 +28164,21 @@ var veeConfig = {
 
     /* Install Vue Plugins */
 
-};__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_2_vuetify___default.a);
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_3_vue2_filters___default.a);
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_4_vueup___default.a); /* used in almost all axios request */
+};__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_2_vue2_filters___default.a);
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_3_vueup___default.a); /* used in almost all axios request */
 // Vue.use(VueAgile)
 // Vue.use(Bars)
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_6_vue_youtube_embed___default.a); /* used in home.vue */
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_5_vue_youtube_embed___default.a); /* used in home.vue */
 // Vue.use(VueClazyLoad) /* used in categories.vue, products.vue, category.vue */
 // Vue.use(VueImg)
 // Vue.use(VueTimeago, timeagoConfig)
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_5_vee_validate__["a" /* default */], veeConfig);
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_4_vee_validate__["a" /* default */], veeConfig);
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex__["default"]);
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_7_vue_js_cookie___default.a); /* used in auth.js */
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_8_vue_visible___default.a);
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_11_vue_truncate_filter___default.a); /* used in fileUploader.vue
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_6_vue_js_cookie___default.a); /* used in auth.js */
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_7_vue_visible___default.a);
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_10_vue_truncate_filter___default.a); /* used in fileUploader.vue
                       /* Seed Initial State as Mixins */
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.mixin(__WEBPACK_IMPORTED_MODULE_9__mixins_initial_state__["a" /* default */]);
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.mixin(__WEBPACK_IMPORTED_MODULE_8__mixins_initial_state__["a" /* default */]);
 
 /* Custom Filters */
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.filter('formatSize', function (size) {

@@ -1074,7 +1074,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "v-footer",
-    { attrs: { light: "" } },
+    { attrs: { dark: _vm.darkClass } },
     [
       _c("v-spacer"),
       _c("span", { staticClass: "primary--text" }, [
@@ -1307,7 +1307,16 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "v-toolbar",
-    { attrs: { color: "accent", dark: !_vm.isDark, fixed: "" } },
+    {
+      attrs: {
+        color: "accent",
+        dark: !_vm.isDark,
+        dense: "",
+        fixed: "",
+        "clipped-left": "",
+        app: ""
+      }
+    },
     [
       _c("v-toolbar-side-icon", {
         nativeOn: {
@@ -1495,6 +1504,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_theme__ = __webpack_require__(652);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vuex__ = __webpack_require__(90);
 
+//
 //
 //
 //
@@ -1837,12 +1847,13 @@ var render = function() {
   return _c(
     "v-navigation-drawer",
     {
-      staticClass: "blue-grey",
+      staticClass: "secondary",
       attrs: {
-        temporary: "",
-        "hide-overlay": "",
-        height: "100%",
-        "enable-resize-watcher": ""
+        fixed: "",
+        clipped: _vm.$vuetify.breakpoint.width > 1264,
+        "disable-resize-watcher": "",
+        "disable-route-watcher": "",
+        app: ""
       },
       model: {
         value: _vm.drawer,
@@ -3137,7 +3148,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "v-app",
-    { attrs: { dark: _vm.App.theme.dark, standalone: "" } },
+    { attrs: { dark: _vm.App.theme.dark } },
     [
       _c("left-side-bar"),
       _vm._v(" "),
@@ -3149,8 +3160,12 @@ var render = function() {
           _c(
             "v-container",
             {
-              staticClass: "pa-0 ma-0",
-              attrs: { transition: "slide-x-transition", fluid: "" }
+              attrs: {
+                transition: "slide-x-transition",
+                fluid: "",
+                "pa-0": "",
+                "ma-0": ""
+              }
             },
             [_vm._t("default")],
             2
@@ -4113,13 +4128,7 @@ var render = function() {
                 [
                   _c(
                     "v-alert",
-                    {
-                      attrs: {
-                        color: "primary",
-                        icon: "fa-link",
-                        value: "true"
-                      }
-                    },
+                    { attrs: { color: "primary", value: "true" } },
                     [
                       _c(
                         "v-list",
@@ -4307,7 +4316,7 @@ exports = module.exports = __webpack_require__(628)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -4334,8 +4343,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-//
-//
 //
 //
 //
@@ -4999,13 +5006,9 @@ var render = function() {
                       _c(
                         "v-btn",
                         {
-                          staticClass: "white--text",
-                          class: {
-                            primary: !_vm.contactDetailsForm.busy,
-                            error: _vm.contactDetailsForm.busy
-                          },
                           attrs: {
                             block: "",
+                            flat: "",
                             disabled: _vm.errors.any(),
                             loading: _vm.contactDetailsForm.busy,
                             light: ""
@@ -5017,9 +5020,12 @@ var render = function() {
                           }
                         },
                         [
-                          _vm._v("Update Contact Details\n                "),
+                          _c("span", { staticClass: "hidden-md-and-down" }, [
+                            _vm._v("Update Contact Details")
+                          ]),
+                          _vm._v(" "),
                           _c("v-icon", { attrs: { right: "" } }, [
-                            _vm._v("fa-send")
+                            _vm._v("fa-save")
                           ])
                         ],
                         1
@@ -5035,7 +5041,7 @@ var render = function() {
                       _c(
                         "v-btn",
                         {
-                          attrs: { block: "", color: "accent" },
+                          attrs: { block: "", color: "accent", flat: "" },
                           nativeOn: {
                             click: function($event) {
                               _vm.openModal()
@@ -5043,7 +5049,10 @@ var render = function() {
                           }
                         },
                         [
-                          _vm._v("Create Contact Details\n                "),
+                          _c("span", { staticClass: "hidden-md-and-down" }, [
+                            _vm._v("Create Contact Details")
+                          ]),
+                          _vm._v(" "),
                           _c("v-icon", { attrs: { right: "" } }, [
                             _vm._v("fa-plus")
                           ])
@@ -5067,7 +5076,7 @@ var render = function() {
                       _c(
                         "v-btn",
                         {
-                          attrs: { block: "", color: "accent" },
+                          attrs: { block: "", flat: "", color: "accent" },
                           nativeOn: {
                             click: function($event) {
                               _vm.openModal()
@@ -5075,7 +5084,10 @@ var render = function() {
                           }
                         },
                         [
-                          _vm._v("Create Contact Details\n                "),
+                          _c("span", { staticClass: "hidden-md-and-down" }, [
+                            _vm._v("Create Contact Details")
+                          ]),
+                          _vm._v(" "),
                           _c("v-icon", { attrs: { right: "" } }, [
                             _vm._v("fa-plus")
                           ])
@@ -5700,7 +5712,7 @@ exports = module.exports = __webpack_require__(628)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -5727,8 +5739,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-//
-//
 //
 //
 //
@@ -6336,13 +6346,9 @@ var render = function() {
                       _c(
                         "v-btn",
                         {
-                          staticClass: "white--text",
-                          class: {
-                            primary: !_vm.socialLinksForm.busy,
-                            error: _vm.socialLinksForm.busy
-                          },
                           attrs: {
                             block: "",
+                            flat: "",
                             disabled: _vm.errors.any(),
                             loading: _vm.socialLinksForm.busy,
                             light: ""
@@ -6354,9 +6360,12 @@ var render = function() {
                           }
                         },
                         [
-                          _vm._v("Update Links\n                "),
+                          _c("span", { staticClass: "hidden-md-and-down" }, [
+                            _vm._v("Update Links")
+                          ]),
+                          _vm._v(" "),
                           _c("v-icon", { attrs: { right: "" } }, [
-                            _vm._v("fa-send")
+                            _vm._v("fa-save")
                           ])
                         ],
                         1
@@ -6372,7 +6381,7 @@ var render = function() {
                       _c(
                         "v-btn",
                         {
-                          attrs: { block: "", color: "accent" },
+                          attrs: { block: "", flat: "", color: "accent" },
                           nativeOn: {
                             click: function($event) {
                               _vm.openModal()
@@ -6380,7 +6389,10 @@ var render = function() {
                           }
                         },
                         [
-                          _vm._v("Create Social Link\n                "),
+                          _c("span", { staticClass: "hidden-md-and-down" }, [
+                            _vm._v("Create Social Link")
+                          ]),
+                          _vm._v(" "),
                           _c("v-icon", { attrs: { right: "" } }, [
                             _vm._v("fa-plus")
                           ])
@@ -6404,7 +6416,7 @@ var render = function() {
                       _c(
                         "v-btn",
                         {
-                          attrs: { block: "", color: "accent" },
+                          attrs: { block: "", flat: "", color: "accent" },
                           nativeOn: {
                             click: function($event) {
                               _vm.openModal()
@@ -6412,7 +6424,10 @@ var render = function() {
                           }
                         },
                         [
-                          _vm._v("Create Social Link\n                "),
+                          _c("span", { staticClass: "hidden-md-and-down" }, [
+                            _vm._v("Create Social Link")
+                          ]),
+                          _vm._v(" "),
                           _c("v-icon", { attrs: { right: "" } }, [
                             _vm._v("fa-plus")
                           ])
@@ -6569,11 +6584,11 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "main-layout",
-    { class: [_vm.contentClass], style: { paddingTop: "55px" } },
+    { style: { paddingTop: "45px", backgroundColor: "white" } },
     [
       _c(
         "v-tabs",
-        { attrs: { dark: "", fixed: "", icons: "", centered: "" } },
+        { attrs: { fixed: "", icons: "", centered: "" } },
         [
           _c(
             "v-tabs-bar",
@@ -6586,7 +6601,10 @@ var render = function() {
                 { attrs: { href: "#account" } },
                 [
                   _c("v-icon", [_vm._v("fa-user")]),
-                  _vm._v("\n        Account\n      ")
+                  _vm._v(" "),
+                  _c("span", { staticClass: "hidden-md-and-down" }, [
+                    _vm._v("Account")
+                  ])
                 ],
                 1
               ),
@@ -6597,7 +6615,10 @@ var render = function() {
                     { attrs: { href: "#referral-link" } },
                     [
                       _c("v-icon", [_vm._v("timeline")]),
-                      _vm._v("\n        Link\n      ")
+                      _vm._v(" "),
+                      _c("span", { staticClass: "hidden-md-and-down" }, [
+                        _vm._v("Link")
+                      ])
                     ],
                     1
                   )
@@ -6608,7 +6629,10 @@ var render = function() {
                 { attrs: { href: "#profile" } },
                 [
                   _c("v-icon", [_vm._v("fa-address-card")]),
-                  _vm._v("\n        Profile\n      ")
+                  _vm._v(" "),
+                  _c("span", { staticClass: "hidden-md-and-down" }, [
+                    _vm._v("Profile")
+                  ])
                 ],
                 1
               ),
@@ -6619,7 +6643,10 @@ var render = function() {
                     { attrs: { href: "#contact-details" } },
                     [
                       _c("v-icon", [_vm._v("phone")]),
-                      _vm._v("\n        Contact Details\n      ")
+                      _vm._v(" "),
+                      _c("span", { staticClass: "hidden-md-and-down" }, [
+                        _vm._v("Contact Details")
+                      ])
                     ],
                     1
                   )
@@ -6631,7 +6658,10 @@ var render = function() {
                     { attrs: { href: "#social-links" } },
                     [
                       _c("v-icon", [_vm._v("link")]),
-                      _vm._v("\n        Social Links\n      ")
+                      _vm._v(" "),
+                      _c("span", { staticClass: "hidden-md-and-down" }, [
+                        _vm._v("Social Links")
+                      ])
                     ],
                     1
                   )

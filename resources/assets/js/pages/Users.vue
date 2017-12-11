@@ -55,6 +55,7 @@
                             <v-avatar
                             :class="{
                             primary: (role === 'admin'),
+                            'white--text': true,
                             accent: (role === 'customer'),
                             info: (role === 'merchant'),
                             success: (role === 'reseller')
@@ -158,7 +159,7 @@
                                             :selected="data.selected"
                                             >
                                             <v-avatar
-                                            class="blue-grey"
+                                            class="blue-grey white--text"
                                             >
                                             {{ data.item.charAt(0).toUpperCase() }}
                                             </v-avatar>
@@ -198,7 +199,7 @@
                                             :selected="data.selected"
                                             >
                                             <v-avatar
-                                            class="brown"
+                                            class="brown white--text"
                                             >
                                             {{ data.item.charAt(0).toUpperCase() }}
                                             </v-avatar>

@@ -144,8 +144,7 @@
         <v-layout row>
         <v-flex xs12 sm12 md4 offset-md4 lg4 offset-lg4 xl4 offset-xl4>
             <v-card-actions>
-            <v-btn @click.native="goHome()" block flat class="info--text info">Back To HomePage</v-btn>
-            <v-btn @click.native="goShop()" block flat class="primary--text primary">Continue Shopping</v-btn>
+            <v-btn @click.native="goHome()" block flat color="info">Back To HomePage</v-btn>
             </v-card-actions>
          </v-flex>
         </v-layout>
@@ -172,10 +171,6 @@ export default {
         goHome () {
             let self = this
             self.$router.push({name: 'home'})
-        },
-        goShop () {
-            let self = this
-            self.$router.push({name: 'product.index'})
         }
     }
 }

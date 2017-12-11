@@ -2,7 +2,8 @@
   <main-layout :class="[contentClass]" :style="{ paddingTop: `100px` }">
     <v-container fluid>
         <v-layout row wrap>
-            <v-breadcrumbs icons divider="forward" light>
+            <v-breadcrumbs light>
+                <v-icon slot="divider" color="teal">forward</v-icon>
                 <v-breadcrumbs-item
                 active-class="primary--text"
                 :disabled="false"
@@ -173,9 +174,5 @@ export default {
 </script>
 
 <style scoped>
-.breadcrumbs li:not(:last-child):after {
-    color: #009688;
-    content: attr(data-divider);
-    vertical-align: middle;
-}
+
 </style>

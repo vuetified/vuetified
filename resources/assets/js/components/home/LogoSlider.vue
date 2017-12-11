@@ -1,6 +1,6 @@
 <template>
   <div class="row pb-5">
-<h5 class="text-xs-center primary--text">We Accept the Following Mode of Payment</h5>
+<h1 class="text-xs-center primary--text">We Accept the Following Mode of Payment</h1>
 <div id="jssor_1" style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 980px; height: 100px; overflow: hidden; visibility: hidden;">
 <!-- Loading Screen -->
 <div data-u="loading" style="position: absolute; top: 0px; left: 0px;">

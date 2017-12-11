@@ -330,6 +330,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -475,224 +476,243 @@ var render = function() {
             "v-card-text",
             { staticStyle: { "padding-top": "100px" } },
             [
-              _c("v-container", { attrs: { fluid: "" } }, [
-                _c(
-                  "form",
-                  {
-                    on: {
-                      submit: function($event) {
-                        $event.preventDefault()
-                        _vm.login()
+              _c(
+                "v-container",
+                { attrs: { fluid: "" } },
+                [
+                  _c(
+                    "form",
+                    {
+                      on: {
+                        submit: function($event) {
+                          $event.preventDefault()
+                          _vm.login()
+                        }
                       }
-                    }
-                  },
-                  [
-                    _c(
-                      "v-layout",
-                      { attrs: { row: "" } },
-                      [
-                        _c(
-                          "v-flex",
-                          {
-                            attrs: {
-                              xs12: "",
-                              sm12: "",
-                              md4: "",
-                              "offset-md4": "",
-                              lg4: "",
-                              "offset-lg4": "",
-                              xl4: "",
-                              "offset-xl4": ""
-                            }
-                          },
-                          [
-                            _c("v-text-field", {
-                              directives: [
-                                {
-                                  name: "validate",
-                                  rawName: "v-validate",
-                                  value: "required|email",
-                                  expression: "'required|email'"
-                                }
-                              ],
-                              staticClass: "primary--text",
+                    },
+                    [
+                      _c(
+                        "v-layout",
+                        { attrs: { row: "" } },
+                        [
+                          _c(
+                            "v-flex",
+                            {
                               attrs: {
-                                name: "username",
-                                label: "Type Your Account Email",
-                                "error-messages": _vm.errors.collect(
-                                  "username"
-                                ),
-                                "data-vv-name": "username",
-                                "prepend-icon": "email",
-                                counter: "255"
-                              },
-                              model: {
-                                value: _vm.loginForm.username,
-                                callback: function($$v) {
-                                  _vm.$set(_vm.loginForm, "username", $$v)
-                                },
-                                expression: "loginForm.username"
+                                xs12: "",
+                                sm12: "",
+                                md4: "",
+                                "offset-md4": "",
+                                lg4: "",
+                                "offset-lg4": "",
+                                xl4: "",
+                                "offset-xl4": ""
                               }
-                            })
-                          ],
-                          1
-                        )
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "v-layout",
-                      { attrs: { row: "" } },
-                      [
-                        _c(
-                          "v-flex",
-                          {
-                            attrs: {
-                              xs12: "",
-                              sm12: "",
-                              md4: "",
-                              "offset-md4": "",
-                              lg4: "",
-                              "offset-lg4": "",
-                              xl4: "",
-                              "offset-xl4": ""
-                            }
-                          },
-                          [
-                            _c("v-text-field", {
-                              directives: [
-                                {
-                                  name: "validate",
-                                  rawName: "v-validate",
-                                  value: "required|min:6",
-                                  expression: "'required|min:6'"
-                                }
-                              ],
-                              staticClass: "primary--text",
-                              attrs: {
-                                name: "password",
-                                label: "Enter your password",
-                                hint: "At least 6 characters",
-                                "append-icon": _vm.icon,
-                                "append-icon-cb": function() {
-                                  return (_vm.password_visible = !_vm.password_visible)
-                                },
-                                type: !_vm.password_visible
-                                  ? "password"
-                                  : "text",
-                                "error-messages": _vm.errors.collect(
-                                  "password"
-                                ),
-                                "data-vv-name": "password",
-                                counter: "255",
-                                "prepend-icon": "fa-key"
-                              },
-                              model: {
-                                value: _vm.loginForm.password,
-                                callback: function($$v) {
-                                  _vm.$set(_vm.loginForm, "password", $$v)
-                                },
-                                expression: "loginForm.password"
-                              }
-                            })
-                          ],
-                          1
-                        )
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "v-flex",
-                      {
-                        attrs: {
-                          xs12: "",
-                          sm12: "",
-                          md4: "",
-                          "offset-md4": "",
-                          lg4: "",
-                          "offset-lg4": "",
-                          xl4: "",
-                          "offset-xl4": ""
-                        }
-                      },
-                      [
-                        _c(
-                          "v-btn",
-                          {
-                            class: {
-                              primary: !_vm.loginForm.busy,
-                              error: _vm.loginForm.busy
                             },
-                            attrs: {
-                              loading: _vm.loginForm.busy,
-                              disabled: _vm.errors.any(),
-                              type: "submit",
-                              block: ""
-                            }
-                          },
-                          [_vm._v("Login")]
-                        )
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "v-flex",
-                      {
-                        attrs: {
-                          xs12: "",
-                          sm12: "",
-                          md4: "",
-                          "offset-md4": "",
-                          lg4: "",
-                          "offset-lg4": "",
-                          xl4: "",
-                          "offset-xl4": ""
-                        }
-                      },
-                      [
-                        _c(
-                          "v-card-actions",
-                          [
-                            _c(
-                              "v-btn",
-                              {
-                                staticClass: "info--text info",
-                                attrs: { block: "", flat: "" },
-                                nativeOn: {
-                                  click: function($event) {
-                                    _vm.goToRegister()
+                            [
+                              _c("v-text-field", {
+                                directives: [
+                                  {
+                                    name: "validate",
+                                    rawName: "v-validate",
+                                    value: "required|email",
+                                    expression: "'required|email'"
                                   }
+                                ],
+                                staticClass: "primary--text",
+                                attrs: {
+                                  name: "username",
+                                  label: "Type Your Account Email",
+                                  "error-messages": _vm.errors.collect(
+                                    "username"
+                                  ),
+                                  "data-vv-name": "username",
+                                  "prepend-icon": "email",
+                                  counter: "255"
+                                },
+                                model: {
+                                  value: _vm.loginForm.username,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.loginForm, "username", $$v)
+                                  },
+                                  expression: "loginForm.username"
                                 }
-                              },
-                              [_vm._v("No Account Yet?")]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "v-btn",
-                              {
-                                staticClass: "error--text error",
-                                attrs: { block: "", flat: "" },
-                                nativeOn: {
-                                  click: function($event) {
-                                    _vm.resetPassword()
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-layout",
+                        { attrs: { row: "" } },
+                        [
+                          _c(
+                            "v-flex",
+                            {
+                              attrs: {
+                                xs12: "",
+                                sm12: "",
+                                md4: "",
+                                "offset-md4": "",
+                                lg4: "",
+                                "offset-lg4": "",
+                                xl4: "",
+                                "offset-xl4": ""
+                              }
+                            },
+                            [
+                              _c("v-text-field", {
+                                directives: [
+                                  {
+                                    name: "validate",
+                                    rawName: "v-validate",
+                                    value: "required|min:6",
+                                    expression: "'required|min:6'"
                                   }
+                                ],
+                                staticClass: "primary--text",
+                                attrs: {
+                                  name: "password",
+                                  label: "Enter your password",
+                                  hint: "At least 6 characters",
+                                  "append-icon": _vm.icon,
+                                  "append-icon-cb": function() {
+                                    return (_vm.password_visible = !_vm.password_visible)
+                                  },
+                                  type: !_vm.password_visible
+                                    ? "password"
+                                    : "text",
+                                  "error-messages": _vm.errors.collect(
+                                    "password"
+                                  ),
+                                  "data-vv-name": "password",
+                                  counter: "255",
+                                  "prepend-icon": "fa-key"
+                                },
+                                model: {
+                                  value: _vm.loginForm.password,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.loginForm, "password", $$v)
+                                  },
+                                  expression: "loginForm.password"
                                 }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-flex",
+                        {
+                          attrs: {
+                            xs12: "",
+                            sm12: "",
+                            md4: "",
+                            "offset-md4": "",
+                            lg4: "",
+                            "offset-lg4": "",
+                            xl4: "",
+                            "offset-xl4": "",
+                            "text-xs-center": ""
+                          }
+                        },
+                        [
+                          _c(
+                            "v-btn",
+                            {
+                              attrs: {
+                                block: "",
+                                loading: _vm.loginForm.busy,
+                                disabled: _vm.errors.any(),
+                                type: "submit",
+                                color: "primary"
+                              }
+                            },
+                            [
+                              _vm._v("Sign In "),
+                              _c("v-icon", { attrs: { right: "" } }, [
+                                _vm._v("fa-sign-in")
+                              ])
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-layout",
+                    { attrs: { "row-wrap": "" } },
+                    [
+                      _c(
+                        "v-flex",
+                        {
+                          attrs: {
+                            xs6: "",
+                            md2: "",
+                            "offset-md4": "",
+                            "pa-0": ""
+                          }
+                        },
+                        [
+                          _c(
+                            "v-btn",
+                            {
+                              attrs: {
+                                dark: "",
+                                block: "",
+                                color: "teal lighten-2"
                               },
-                              [_vm._v("Forgot Password?")]
-                            )
-                          ],
-                          1
-                        )
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                )
-              ])
+                              nativeOn: {
+                                click: function($event) {
+                                  _vm.goToRegister()
+                                }
+                              }
+                            },
+                            [_vm._v("No Account Yet?")]
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-flex",
+                        { attrs: { xs6: "", md2: "", "pa-0": "" } },
+                        [
+                          _c(
+                            "v-btn",
+                            {
+                              attrs: {
+                                dark: "",
+                                block: "",
+                                color: "red lighten-2"
+                              },
+                              nativeOn: {
+                                click: function($event) {
+                                  _vm.resetPassword()
+                                }
+                              }
+                            },
+                            [_vm._v("Forgot Password?")]
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
             ],
             1
           )

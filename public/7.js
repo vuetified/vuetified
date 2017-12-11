@@ -1078,7 +1078,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "v-footer",
-    { attrs: { light: "" } },
+    { attrs: { dark: _vm.darkClass } },
     [
       _c("v-spacer"),
       _c("span", { staticClass: "primary--text" }, [
@@ -1311,7 +1311,16 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "v-toolbar",
-    { attrs: { color: "accent", dark: !_vm.isDark, fixed: "" } },
+    {
+      attrs: {
+        color: "accent",
+        dark: !_vm.isDark,
+        dense: "",
+        fixed: "",
+        "clipped-left": "",
+        app: ""
+      }
+    },
     [
       _c("v-toolbar-side-icon", {
         nativeOn: {
@@ -1499,6 +1508,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_theme__ = __webpack_require__(652);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vuex__ = __webpack_require__(90);
 
+//
 //
 //
 //
@@ -1841,12 +1851,13 @@ var render = function() {
   return _c(
     "v-navigation-drawer",
     {
-      staticClass: "blue-grey",
+      staticClass: "secondary",
       attrs: {
-        temporary: "",
-        "hide-overlay": "",
-        height: "100%",
-        "enable-resize-watcher": ""
+        fixed: "",
+        clipped: _vm.$vuetify.breakpoint.width > 1264,
+        "disable-resize-watcher": "",
+        "disable-route-watcher": "",
+        app: ""
       },
       model: {
         value: _vm.drawer,
@@ -3141,7 +3152,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "v-app",
-    { attrs: { dark: _vm.App.theme.dark, standalone: "" } },
+    { attrs: { dark: _vm.App.theme.dark } },
     [
       _c("left-side-bar"),
       _vm._v(" "),
@@ -3153,8 +3164,12 @@ var render = function() {
           _c(
             "v-container",
             {
-              staticClass: "pa-0 ma-0",
-              attrs: { transition: "slide-x-transition", fluid: "" }
+              attrs: {
+                transition: "slide-x-transition",
+                fluid: "",
+                "pa-0": "",
+                "ma-0": ""
+              }
             },
             [_vm._t("default")],
             2
@@ -3301,15 +3316,15 @@ var render = function() {
             { attrs: { row: "", wrap: "" } },
             [
               _c("v-flex", { attrs: { xs12: "" } }, [
-                _c("h3", { staticClass: "primary--text" }, [
+                _c("h1", { staticClass: "primary--text" }, [
                   _vm._v("Thank You For Purchasing!")
                 ]),
                 _vm._v(" "),
-                _c("h5", { staticClass: "info--text" }, [
+                _c("h2", { staticClass: "info--text" }, [
                   _vm._v("An Instruction on How To Settle Payment")
                 ]),
                 _vm._v(" "),
-                _c("h5", { staticClass: "info--text" }, [
+                _c("h2", { staticClass: "info--text" }, [
                   _vm._v("Was Sent To Your Registered Email")
                 ])
               ]),
@@ -3335,8 +3350,7 @@ var render = function() {
                       _c(
                         "v-btn",
                         {
-                          staticClass: "primary--text primary",
-                          attrs: { block: "", flat: "" },
+                          attrs: { block: "", flat: "", color: "primary" },
                           nativeOn: {
                             click: function($event) {
                               _vm.goTo("/dashboard")
@@ -3345,7 +3359,7 @@ var render = function() {
                         },
                         [
                           _vm._v("View Orders "),
-                          _c("v-icon", { attrs: { right: "", dark: "" } }, [
+                          _c("v-icon", { attrs: { right: "" } }, [
                             _vm._v("fa-cubes")
                           ])
                         ],
@@ -3355,8 +3369,7 @@ var render = function() {
                       _c(
                         "v-btn",
                         {
-                          staticClass: "info--text info",
-                          attrs: { block: "", flat: "" },
+                          attrs: { block: "", flat: "", color: "teal" },
                           nativeOn: {
                             click: function($event) {
                               _vm.goTo("/products")
@@ -3365,7 +3378,7 @@ var render = function() {
                         },
                         [
                           _vm._v("Continue Shopping "),
-                          _c("v-icon", { attrs: { right: "", dark: "" } }, [
+                          _c("v-icon", { attrs: { right: "" } }, [
                             _vm._v("fa-shopping-bag")
                           ])
                         ],

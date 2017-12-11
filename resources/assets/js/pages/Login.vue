@@ -52,17 +52,18 @@
             ></v-text-field>
           </v-flex>
         </v-layout>
-        <v-flex xs12 sm12 md4 offset-md4 lg4 offset-lg4 xl4 offset-xl4>
-            <v-btn :loading="loginForm.busy" :disabled="errors.any()"  type="submit" block :class="{primary: !loginForm.busy, error: loginForm.busy}">Login</v-btn>
-
-        </v-flex>
-        <v-flex xs12 sm12 md4 offset-md4 lg4 offset-lg4 xl4 offset-xl4>
-            <v-card-actions>
-            <v-btn @click.native="goToRegister()" block flat class="info--text info">No Account Yet?</v-btn>
-            <v-btn @click.native="resetPassword()" block flat class="error--text error">Forgot Password?</v-btn>
-            </v-card-actions>
+         <v-flex xs12 sm12 md4 offset-md4 lg4 offset-lg4 xl4 offset-xl4 text-xs-center>
+            <v-btn block :loading="loginForm.busy" :disabled="errors.any()"  type="submit" color="primary">Sign In <v-icon right>fa-sign-in</v-icon></v-btn>
         </v-flex>
         </form>
+        <v-layout row-wrap>
+            <v-flex xs6 md2 offset-md4 pa-0>
+            <v-btn @click.native="goToRegister()" dark block color="teal lighten-2">No Account Yet?</v-btn>
+        </v-flex>
+        <v-flex xs6 md2 pa-0>
+            <v-btn @click.native="resetPassword()" dark block color="red lighten-2">Forgot Password?</v-btn>
+        </v-flex>
+        </v-layout>
       </v-container>
 
     </v-card-text>

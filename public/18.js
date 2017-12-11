@@ -695,7 +695,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 
@@ -715,10 +714,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         goHome: function goHome() {
             var self = this;
             self.$router.push({ name: 'home' });
-        },
-        goShop: function goShop() {
-            var self = this;
-            self.$router.push({ name: 'product.index' });
         }
     }
 });
@@ -1630,8 +1625,7 @@ var render = function() {
                           _c(
                             "v-btn",
                             {
-                              staticClass: "info--text info",
-                              attrs: { block: "", flat: "" },
+                              attrs: { block: "", flat: "", color: "info" },
                               nativeOn: {
                                 click: function($event) {
                                   _vm.goHome()
@@ -1639,20 +1633,6 @@ var render = function() {
                               }
                             },
                             [_vm._v("Back To HomePage")]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-btn",
-                            {
-                              staticClass: "primary--text primary",
-                              attrs: { block: "", flat: "" },
-                              nativeOn: {
-                                click: function($event) {
-                                  _vm.goShop()
-                                }
-                              }
-                            },
-                            [_vm._v("Continue Shopping")]
                           )
                         ],
                         1

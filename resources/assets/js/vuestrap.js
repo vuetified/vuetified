@@ -1,7 +1,6 @@
 /* IE 11 Compatible */
 import Vue from 'vue'
 import Vuex from 'vuex' /* State Management */
-import Vuetify from 'vuetify' /* Front End Framework */
 import Vue2Filters from 'vue2-filters' /* Add Filters such as currency etc */
 import VueUp from 'vueup' /* Simple Notification */
 import VeeValidate from 'vee-validate' /* Form Validation */
@@ -61,7 +60,6 @@ const veeConfig = {
 
 /* Install Vue Plugins */
 
-Vue.use(Vuetify)
 Vue.use(Vue2Filters)
 Vue.use(VueUp) /* used in almost all axios request */
 // Vue.use(VueAgile)

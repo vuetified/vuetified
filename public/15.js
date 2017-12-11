@@ -319,6 +319,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -618,8 +624,12 @@ var render = function() {
                                     _c(
                                       "v-btn",
                                       {
-                                        staticClass: "info--text error",
-                                        attrs: { block: "", flat: "" },
+                                        staticClass: "white--text",
+                                        attrs: {
+                                          block: "",
+                                          flat: "",
+                                          color: "info"
+                                        },
                                         nativeOn: {
                                           click: function($event) {
                                             _vm.redirectBack()
@@ -632,18 +642,14 @@ var render = function() {
                                     _c(
                                       "v-btn",
                                       {
-                                        staticClass: "error--text",
-                                        class: {
-                                          primary: !_vm.logoutForm.busy,
-                                          accent: _vm.logoutForm.busy
-                                        },
+                                        staticClass: "white--text",
                                         attrs: {
                                           block: "",
                                           flat: "",
+                                          color: "red lighten-2",
                                           loading: _vm.logoutForm.busy,
                                           disabled: _vm.logoutForm.busy,
-                                          type: "submit",
-                                          block: ""
+                                          type: "submit"
                                         }
                                       },
                                       [_vm._v("Yes, Log Me Out")]

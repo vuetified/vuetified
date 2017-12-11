@@ -9,29 +9,21 @@
         ],
         "html/report-bad-indent": "error"
     },
-    // required to lint *.vue files
     "plugins": [
         "html"
     ],
-    // user especific/ project specific
     "rules": {
         "no-undef": 1,
         "no-unused-vars": [
             "error",
             {
-                // assign all your global var with app pattern
                 "varsIgnorePattern": "app",
                 "args": "after-used",
-                // global args must be prefix with _
                 "argsIgnorePattern": "^_",
                 "ignoreRestSiblings": true
             }
         ],
         "no-use-before-define": [1, {"functions": true, "classes": true, "variables": true}],
-        "linebreak-style": [
-            "error",
-            "unix"
-        ],
         "indent": [
             "error",
             4
@@ -45,7 +37,12 @@
         ]
         
     },
-    // lint vue natives
+    "globals": {
+        "axios": true,
+        "Vue": true,
+        "vm": true
+    },
+    "parser": "vue-eslint-parser",
     "parserOptions": {
         "parser": "babel-eslint",
         "ecmaVersion": 7,
