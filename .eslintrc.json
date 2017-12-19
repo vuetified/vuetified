@@ -1,7 +1,9 @@
 {
     "extends": [
         "standard",
-        "plugin:vue/recommended"
+        "plugin:vue/recommended",
+        "plugin:node/recommended",
+        "plugin:promise/recommended"
     ],
     "settings": {
         "html/html-extensions": [
@@ -10,7 +12,9 @@
         "html/report-bad-indent": "error"
     },
     "plugins": [
-        "html"
+        "html",
+        "import",
+        "promise"
     ],
     "rules": {
         "no-undef": 1,
@@ -34,7 +38,23 @@
             {
                 "allowTemplateLiterals": true
             }
-        ]
+        ],
+        "import/no-unresolved": [2, {"commonjs": true, "amd": true}],
+        "import/named": 2,
+        "import/namespace": 2,
+        "import/default": 2,
+        "import/export": 2,
+        "node/exports-style": ["error", "module.exports"],
+        "promise/always-return": "error",
+        "promise/no-return-wrap": "error",
+        "promise/param-names": "error",
+        "promise/catch-or-return": "error",
+        "promise/no-native": "off",
+        "promise/no-nesting": "warn",
+        "promise/no-promise-in-callback": "warn",
+        "promise/no-callback-in-promise": "warn",
+        "promise/avoid-new": "warn",
+        "promise/no-return-in-finally": "warn"
         
     },
     "globals": {
@@ -46,6 +66,13 @@
     "parserOptions": {
         "parser": "babel-eslint",
         "ecmaVersion": 7,
-        "sourceType": "module"
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "globalReturn": false,
+            "impliedStrict": false,
+            "jsx": false,
+            "experimentalObjectRestSpread": false,
+            "allowImportExportEverywhere": false
+        }
     }
 }
