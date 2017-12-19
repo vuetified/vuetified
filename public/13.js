@@ -6,9 +6,9 @@ webpackJsonp([13],{
 var disposed = false
 var normalizeComponent = __webpack_require__(314)
 /* script */
-var __vue_script__ = __webpack_require__(743)
+var __vue_script__ = __webpack_require__(746)
 /* template */
-var __vue_template__ = __webpack_require__(747)
+var __vue_template__ = __webpack_require__(750)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -302,7 +302,7 @@ module.exports = function (isEntries) {
 
 /***/ }),
 
-/***/ 743:
+/***/ 746:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -311,7 +311,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__layouts_ModalLayout__ = __webpack_require__(689);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__layouts_ModalLayout___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__layouts_ModalLayout__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Basket_vue__ = __webpack_require__(744);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Basket_vue__ = __webpack_require__(747);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Basket_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__Basket_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vuex__ = __webpack_require__(90);
 
@@ -389,15 +389,15 @@ var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_3_vuex__["createNam
 
 /***/ }),
 
-/***/ 744:
+/***/ 747:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(314)
 /* script */
-var __vue_script__ = __webpack_require__(745)
+var __vue_script__ = __webpack_require__(748)
 /* template */
-var __vue_template__ = __webpack_require__(746)
+var __vue_template__ = __webpack_require__(749)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -438,7 +438,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 745:
+/***/ 748:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -666,7 +666,7 @@ var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["createNam
 
 /***/ }),
 
-/***/ 746:
+/***/ 749:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -1042,7 +1042,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 747:
+/***/ 750:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {

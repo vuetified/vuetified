@@ -1,101 +1,18 @@
 webpackJsonp([5],{
 
-/***/ 628:
-/***/ (function(module, exports) {
-
-/*
-	MIT License http://www.opensource.org/licenses/mit-license.php
-	Author Tobias Koppers @sokra
-*/
-// css base code, injected by the css-loader
-module.exports = function(useSourceMap) {
-	var list = [];
-
-	// return the list of modules as css string
-	list.toString = function toString() {
-		return this.map(function (item) {
-			var content = cssWithMappingToString(item, useSourceMap);
-			if(item[2]) {
-				return "@media " + item[2] + "{" + content + "}";
-			} else {
-				return content;
-			}
-		}).join("");
-	};
-
-	// import a list of modules into the list
-	list.i = function(modules, mediaQuery) {
-		if(typeof modules === "string")
-			modules = [[null, modules, ""]];
-		var alreadyImportedModules = {};
-		for(var i = 0; i < this.length; i++) {
-			var id = this[i][0];
-			if(typeof id === "number")
-				alreadyImportedModules[id] = true;
-		}
-		for(i = 0; i < modules.length; i++) {
-			var item = modules[i];
-			// skip already imported module
-			// this implementation is not 100% perfect for weird media query combinations
-			//  when a module is imported multiple times with different media queries.
-			//  I hope this will never occur (Hey this way we have smaller bundles)
-			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
-				if(mediaQuery && !item[2]) {
-					item[2] = mediaQuery;
-				} else if(mediaQuery) {
-					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
-				}
-				list.push(item);
-			}
-		}
-	};
-	return list;
-};
-
-function cssWithMappingToString(item, useSourceMap) {
-	var content = item[1] || '';
-	var cssMapping = item[3];
-	if (!cssMapping) {
-		return content;
-	}
-
-	if (useSourceMap && typeof btoa === 'function') {
-		var sourceMapping = toComment(cssMapping);
-		var sourceURLs = cssMapping.sources.map(function (source) {
-			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
-		});
-
-		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
-	}
-
-	return [content].join('\n');
-}
-
-// Adapted from convert-source-map (MIT)
-function toComment(sourceMap) {
-	// eslint-disable-next-line no-undef
-	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
-	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
-
-	return '/*# ' + data + ' */';
-}
-
-
-/***/ }),
-
 /***/ 645:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(800)
+  __webpack_require__(803)
 }
 var normalizeComponent = __webpack_require__(314)
 /* script */
-var __vue_script__ = __webpack_require__(802)
+var __vue_script__ = __webpack_require__(805)
 /* template */
-var __vue_template__ = __webpack_require__(833)
+var __vue_template__ = __webpack_require__(836)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -638,13 +555,13 @@ if (false) {
 
 /***/ }),
 
-/***/ 800:
+/***/ 803:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(801);
+var content = __webpack_require__(804);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -665,7 +582,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 801:
+/***/ 804:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(628)(undefined);
@@ -680,7 +597,7 @@ exports.push([module.i, "\n.stepper .stepper__step--inactive  .stepper__step__st
 
 /***/ }),
 
-/***/ 802:
+/***/ 805:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -689,17 +606,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__layouts_ModalLayout_vue__ = __webpack_require__(689);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__layouts_ModalLayout_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__layouts_ModalLayout_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_checkout_order_details_vue__ = __webpack_require__(803);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_checkout_order_details_vue__ = __webpack_require__(806);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_checkout_order_details_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_checkout_order_details_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_checkout_shipping_details_vue__ = __webpack_require__(808);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_checkout_shipping_details_vue__ = __webpack_require__(811);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_checkout_shipping_details_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_checkout_shipping_details_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_checkout_customer_details_vue__ = __webpack_require__(813);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_checkout_customer_details_vue__ = __webpack_require__(816);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_checkout_customer_details_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_checkout_customer_details_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_checkout_mode_of_payment_vue__ = __webpack_require__(818);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_checkout_mode_of_payment_vue__ = __webpack_require__(821);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_checkout_mode_of_payment_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_checkout_mode_of_payment_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_checkout_success_order_vue__ = __webpack_require__(823);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_checkout_success_order_vue__ = __webpack_require__(826);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_checkout_success_order_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__components_checkout_success_order_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_checkout_delivery_method_vue__ = __webpack_require__(828);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_checkout_delivery_method_vue__ = __webpack_require__(831);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_checkout_delivery_method_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__components_checkout_delivery_method_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__mixins_theme__ = __webpack_require__(652);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_vuex__ = __webpack_require__(90);
@@ -832,19 +749,19 @@ var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_9_vuex__["createNam
 
 /***/ }),
 
-/***/ 803:
+/***/ 806:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(804)
+  __webpack_require__(807)
 }
 var normalizeComponent = __webpack_require__(314)
 /* script */
-var __vue_script__ = __webpack_require__(806)
+var __vue_script__ = __webpack_require__(809)
 /* template */
-var __vue_template__ = __webpack_require__(807)
+var __vue_template__ = __webpack_require__(810)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -885,13 +802,13 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 804:
+/***/ 807:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(805);
+var content = __webpack_require__(808);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -912,7 +829,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 805:
+/***/ 808:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(628)(undefined);
@@ -927,7 +844,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 /***/ }),
 
-/***/ 806:
+/***/ 809:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1221,7 +1138,7 @@ var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_3_vuex__["createNam
 
 /***/ }),
 
-/***/ 807:
+/***/ 810:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -1475,19 +1392,19 @@ if (false) {
 
 /***/ }),
 
-/***/ 808:
+/***/ 811:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(809)
+  __webpack_require__(812)
 }
 var normalizeComponent = __webpack_require__(314)
 /* script */
-var __vue_script__ = __webpack_require__(811)
+var __vue_script__ = __webpack_require__(814)
 /* template */
-var __vue_template__ = __webpack_require__(812)
+var __vue_template__ = __webpack_require__(815)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -1528,13 +1445,13 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 809:
+/***/ 812:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(810);
+var content = __webpack_require__(813);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -1555,7 +1472,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 810:
+/***/ 813:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(628)(undefined);
@@ -1570,7 +1487,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 /***/ }),
 
-/***/ 811:
+/***/ 814:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1749,7 +1666,7 @@ var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["createNam
 
 /***/ }),
 
-/***/ 812:
+/***/ 815:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -2042,19 +1959,19 @@ if (false) {
 
 /***/ }),
 
-/***/ 813:
+/***/ 816:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(814)
+  __webpack_require__(817)
 }
 var normalizeComponent = __webpack_require__(314)
 /* script */
-var __vue_script__ = __webpack_require__(816)
+var __vue_script__ = __webpack_require__(819)
 /* template */
-var __vue_template__ = __webpack_require__(817)
+var __vue_template__ = __webpack_require__(820)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -2095,13 +2012,13 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 814:
+/***/ 817:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(815);
+var content = __webpack_require__(818);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -2122,7 +2039,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 815:
+/***/ 818:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(628)(undefined);
@@ -2137,7 +2054,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 /***/ }),
 
-/***/ 816:
+/***/ 819:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2286,7 +2203,7 @@ var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["createNam
 
 /***/ }),
 
-/***/ 817:
+/***/ 820:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -2499,19 +2416,19 @@ if (false) {
 
 /***/ }),
 
-/***/ 818:
+/***/ 821:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(819)
+  __webpack_require__(822)
 }
 var normalizeComponent = __webpack_require__(314)
 /* script */
-var __vue_script__ = __webpack_require__(821)
+var __vue_script__ = __webpack_require__(824)
 /* template */
-var __vue_template__ = __webpack_require__(822)
+var __vue_template__ = __webpack_require__(825)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -2552,13 +2469,13 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 819:
+/***/ 822:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(820);
+var content = __webpack_require__(823);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -2579,7 +2496,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 820:
+/***/ 823:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(628)(undefined);
@@ -2594,7 +2511,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 /***/ }),
 
-/***/ 821:
+/***/ 824:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2747,7 +2664,7 @@ var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["createNam
 
 /***/ }),
 
-/***/ 822:
+/***/ 825:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -2936,19 +2853,19 @@ if (false) {
 
 /***/ }),
 
-/***/ 823:
+/***/ 826:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(824)
+  __webpack_require__(827)
 }
 var normalizeComponent = __webpack_require__(314)
 /* script */
-var __vue_script__ = __webpack_require__(826)
+var __vue_script__ = __webpack_require__(829)
 /* template */
-var __vue_template__ = __webpack_require__(827)
+var __vue_template__ = __webpack_require__(830)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -2989,13 +2906,13 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 824:
+/***/ 827:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(825);
+var content = __webpack_require__(828);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -3016,7 +2933,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 825:
+/***/ 828:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(628)(undefined);
@@ -3031,7 +2948,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 /***/ }),
 
-/***/ 826:
+/***/ 829:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3055,7 +2972,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 827:
+/***/ 830:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -3079,19 +2996,19 @@ if (false) {
 
 /***/ }),
 
-/***/ 828:
+/***/ 831:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(829)
+  __webpack_require__(832)
 }
 var normalizeComponent = __webpack_require__(314)
 /* script */
-var __vue_script__ = __webpack_require__(831)
+var __vue_script__ = __webpack_require__(834)
 /* template */
-var __vue_template__ = __webpack_require__(832)
+var __vue_template__ = __webpack_require__(835)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -3132,13 +3049,13 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 829:
+/***/ 832:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(830);
+var content = __webpack_require__(833);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -3159,7 +3076,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 830:
+/***/ 833:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(628)(undefined);
@@ -3174,7 +3091,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 /***/ }),
 
-/***/ 831:
+/***/ 834:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3345,7 +3262,7 @@ var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["createNam
 
 /***/ }),
 
-/***/ 832:
+/***/ 835:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -3535,7 +3452,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 833:
+/***/ 836:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
