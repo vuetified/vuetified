@@ -13,6 +13,8 @@
     ],
     "rules": {
         "no-undef": 1,
+        "eol-last": ["error", "always"],
+        "linebreak-style": ["error", "unix"],
         "no-unused-vars": [
             "error",
             {
@@ -39,7 +41,10 @@
     "globals": {
         "axios": true,
         "Vue": true,
-        "vm": true
+        "vm": true,
+        "route": true,
+        "App": true,
+        "AppForm": true
     },
     "parserOptions": {
         "parser": "babel-eslint",
