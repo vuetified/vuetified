@@ -1,33 +1,45 @@
 <template>
-    <v-tabs-content
+  <v-tabs-content
     id="profile"
-    >
-        <v-container>
-            <v-layout row wrap>
-                <p class="primary--text">Profile Details</p>
-                <v-flex xs12>
-                    <v-alert color="primary" icon="warning" value="true">
-                        <span class="white--text">** This Will be Used as Default for Shipping and Payment Details **</span>
-                    </v-alert>
-                </v-flex>
-                <v-flex xs12>
-                    <v-text-field
-                    :label="toProperCase(key)"
-                    v-model="profile[key]"
-                    light
-                    v-for="(value,key,index) in profile" :key="key" :index="index"
-                    v-validate="{ required: true, regex: /^[a-zA-Z0-9 +@#]+$/ }"
-                    :error-messages="errors.collect(toProperCase(key))"
-                    :data-vv-name="toProperCase(key)"
-                    >
-                    </v-text-field>
-                </v-flex>
-                <v-btn block color="primary" @click="updateProfile()">
-                    Update Profile <v-icon right>fa-send</v-icon>
-                </v-btn>
-            </v-layout>
-        </v-container>
-    </v-tabs-content>
+  >
+    <v-container>
+      <v-layout 
+        row 
+        wrap
+      >
+        <p class="primary--text">Profile Details</p>
+        <v-flex xs12>
+          <v-alert 
+            color="primary" 
+            icon="warning" 
+            value="true"
+          >
+            <span class="white--text">** This Will be Used as Default for Shipping and Payment Details **</span>
+          </v-alert>
+        </v-flex>
+        <v-flex xs12>
+          <v-text-field
+            :label="toProperCase(key)"
+            v-model="profile[key]"
+            light
+            v-for="(value,key,index) in profile" 
+            :key="key" 
+            :index="index"
+            v-validate="{ required: true, regex: /^[a-zA-Z0-9 +@#]+$/ }"
+            :error-messages="errors.collect(toProperCase(key))"
+            :data-vv-name="toProperCase(key)"
+          />
+        </v-flex>
+        <v-btn 
+          block 
+          color="primary" 
+          @click="updateProfile()"
+        >
+          Update Profile <v-icon right>fa-send</v-icon>
+        </v-btn>
+      </v-layout>
+    </v-container>
+  </v-tabs-content>
 </template>
 
 <script>

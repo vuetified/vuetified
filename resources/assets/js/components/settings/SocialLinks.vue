@@ -1,74 +1,115 @@
 <template>
-    <v-tabs-content
+  <v-tabs-content
     id="social-links"
-    >
-        <v-container>
-            <v-layout row wrap v-if="hasSocialKeys">
-                <v-flex xs6>
-                <v-btn block flat @click.native="updateSocialLinks()"
-                :disabled="errors.any()"
-                :loading="socialLinksForm.busy"
-                light
-                ><span class="hidden-md-and-down">Update Links</span>
-                    <v-icon right>fa-save</v-icon>
-                </v-btn>
-                </v-flex>
-                <v-flex xs6>
-                <v-btn block  flat color="accent" @click.native="openModal()"
-                ><span class="hidden-md-and-down">Create Social Link</span>
-                    <v-icon right>fa-plus</v-icon>
-                </v-btn>
-                </v-flex>
-            </v-layout>
-            <v-layout row wrap v-else>
-                <v-flex xs12>
-                <v-btn block flat color="accent" @click.native="openModal()"
-                ><span class="hidden-md-and-down">Create Social Link</span>
-                    <v-icon right>fa-plus</v-icon>
-                </v-btn>
-                </v-flex>
-            </v-layout>
+  >
+    <v-container>
+      <v-layout 
+        row 
+        wrap 
+        v-if="hasSocialKeys"
+      >
+        <v-flex xs6>
+          <v-btn 
+            block 
+            flat 
+            @click.native="updateSocialLinks()"
+            :disabled="errors.any()"
+            :loading="socialLinksForm.busy"
+            light
+          ><span class="hidden-md-and-down">Update Links</span>
+            <v-icon right>fa-save</v-icon>
+          </v-btn>
+        </v-flex>
+        <v-flex xs6>
+          <v-btn 
+            block 
+            flat 
+            color="accent" 
+            @click.native="openModal()"
+          >
+            <span class="hidden-md-and-down">Create Social Link</span>
+            <v-icon right>fa-plus</v-icon>
+          </v-btn>
+        </v-flex>
+      </v-layout>
+      <v-layout 
+        row 
+        wrap 
+        v-else
+      >
+        <v-flex xs12>
+          <v-btn 
+            block 
+            flat 
+            color="accent" 
+            @click.native="openModal()"
+          >
+            <span class="hidden-md-and-down">Create Social Link</span>
+            <v-icon right>fa-plus</v-icon>
+          </v-btn>
+        </v-flex>
+      </v-layout>
 
-            <v-layout row wrap v-if="hasSocialKeys">
-                <p class="primary--text">Social Links</p>
-                <v-flex xs12>
-                    <v-alert color="primary" icon="warning" value="true">
-                            <span class="white--text">** This Will Be Displayed Publicly in The Homepage **</span>
-                    </v-alert>
-                </v-flex>
-                <v-flex xs12>
-                    <v-text-field
-                    :label="toProperCase(key)"
-                    v-model="social_links[key]"
-                    light
-                    v-for="(value,key,index) in social_links" :key="key" :index="index"
-                    v-validate="{ required: true, regex: /^((https?):\/\/)?(www.)?[a-z0-9]+\.[a-z]+(\/[a-zA-Z0-9#.]+\/?)*$/ }"
-                    :error-messages="errors.collect(key)"
-                    :data-vv-name="key"
-                    append-icon="fa-trash"
-                    :append-icon-cb="() => (deleteSocialKey(key))"
-                    >
-                    </v-text-field>
-                </v-flex>
+      <v-layout 
+        row 
+        wrap 
+        v-if="hasSocialKeys"
+      >
+        <p class="primary--text">Social Links</p>
+        <v-flex xs12>
+          <v-alert 
+            color="primary" 
+            icon="warning" 
+            value="true"
+          >
+            <span class="white--text">** This Will Be Displayed Publicly in The Homepage **</span>
+          </v-alert>
+        </v-flex>
+        <v-flex xs12>
+          <v-text-field
+            :label="toProperCase(key)"
+            v-model="social_links[key]"
+            light
+            v-for="(value,key,index) in social_links" 
+            :key="key" 
+            :index="index"
+            v-validate="{ required: true, regex: /^((https?):\/\/)?(www.)?[a-z0-9]+\.[a-z]+(\/[a-zA-Z0-9#.]+\/?)*$/ }"
+            :error-messages="errors.collect(key)"
+            :data-vv-name="key"
+            append-icon="fa-trash"
+            :append-icon-cb="() => (deleteSocialKey(key))"
+          />
+        </v-flex>
 
-            </v-layout>
+      </v-layout>
 
-            <v-layout row wrap v-else>
-                <v-flex xs12 text-xs-center>
-                    <v-card light :class="[contentClass]" flat >
-                            <v-card-text>
-                            <h4>NO SOCIAL LINKS YET!</h4>
-                            <p class="title">Create Your First Social Link.</p>
-                            <p class="body-2">Note: This Will Displayed In Your Homepage.</p>
-                        </v-card-text>
-                    </v-card>
-                </v-flex>
-            </v-layout>
+      <v-layout 
+        row 
+        wrap 
+        v-else
+      >
+        <v-flex 
+          xs12 
+          text-xs-center
+        >
+          <v-card 
+            light
+            :class="[contentClass]"
+            flat
+          >
+            <v-card-text>
+              <h4>NO SOCIAL LINKS YET!</h4>
+              <p class="title">Create Your First Social Link.</p>
+              <p class="body-2">Note: This Will Displayed In Your Homepage.</p>
+            </v-card-text>
+          </v-card>
+        </v-flex>
+      </v-layout>
 
-            <new-social-link></new-social-link>
+      <new-social-link/>
 
-        </v-container>
-    </v-tabs-content>
+    </v-container>
+  </v-tabs-content>
 </template>
 
 <script>

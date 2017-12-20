@@ -1,34 +1,52 @@
 <template>
-<v-tabs-content
-          id="referral-link"
-    >
-        <v-container>
-            <v-layout row wrap>
-                <p class="primary--text">Referral Link</p>
-                <v-flex xs12>
-                    <v-alert color="primary" value="true">
-                        <v-list dense light class="primary">
-                            <v-link  link-color="white" :dark="false"  :title="`Your Online Shop Link : ${href}`" :href="href"></v-link>
-                        </v-list>
-                    </v-alert>
-                </v-flex>
-                <v-flex xs12>
-                    <v-text-field
-                    label="Referral Link"
-                    v-model="link"
-                    light
-                    v-validate="{ required: true, regex: /^[a-zA-Z0-9][a-zA-Z0-9.-]+[a-zA-Z0-9]$/ }"
-                    :error-messages="errors.collect('referral link')"
-                    data-vv-name="referral link"
-                    >
-                    </v-text-field>
-                </v-flex>
-                <v-btn block color="primary" @click="updateLink()">
-                    Update Referral Link <v-icon right>fa-send</v-icon>
-                </v-btn>
-            </v-layout>
-        </v-container>
-    </v-tabs-content>
+  <v-tabs-content
+    id="referral-link"
+  >
+    <v-container>
+      <v-layout 
+        row 
+        wrap
+      >
+        <p class="primary--text">Referral Link</p>
+        <v-flex xs12>
+          <v-alert 
+            color="primary" 
+            value="true"
+          >
+            <v-list 
+              dense 
+              light 
+              class="primary"
+            >
+              <v-link 
+                link-color="white" 
+                :dark="false" 
+                :title="`Your Online Shop Link : ${href}`" 
+                :href="href"
+              />
+            </v-list>
+          </v-alert>
+        </v-flex>
+        <v-flex xs12>
+          <v-text-field
+            label="Referral Link"
+            v-model="link"
+            light
+            v-validate="{ required: true, regex: /^[a-zA-Z0-9][a-zA-Z0-9.-]+[a-zA-Z0-9]$/ }"
+            :error-messages="errors.collect('referral link')"
+            data-vv-name="referral link"
+          />
+        </v-flex>
+        <v-btn 
+          block 
+          color="primary" 
+          @click="updateLink()"
+        >
+          Update Referral Link <v-icon right>fa-send</v-icon>
+        </v-btn>
+      </v-layout>
+    </v-container>
+  </v-tabs-content>
 </template>
 
 <script>
@@ -37,6 +55,9 @@ import { createNamespacedHelpers } from 'vuex'
 const { mapGetters, mapMutations } = createNamespacedHelpers('auth')
 
 export default {
+    components: {
+        VLink
+    },
     data: () => ({
         linkForm: new AppForm(App.forms.linkForm),
         link: null
@@ -48,9 +69,6 @@ export default {
         href () {
             return `http://${this.link}.${App.site.domain}`
         }
-    },
-    components: {
-        VLink
     },
     mounted () {
         let self = this

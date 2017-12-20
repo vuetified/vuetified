@@ -1,74 +1,115 @@
 <template>
-    <v-tabs-content
+  <v-tabs-content
     id="contact-details"
-    >
-        <v-container>
-            <v-layout row wrap v-if="hasContactKeys">
-                <v-flex xs6>
-                <v-btn block flat  @click.native="updateContactDetails()"
-                :disabled="errors.any()"
-                :loading="contactDetailsForm.busy"
-                light
-                ><span class="hidden-md-and-down">Update Contact Details</span>
-                    <v-icon right>fa-save</v-icon>
-                </v-btn>
-                </v-flex>
-                <v-flex xs6>
-                <v-btn block color="accent" flat @click.native="openModal()"
-                ><span class="hidden-md-and-down">Create Contact Details</span>
-                    <v-icon right>fa-plus</v-icon>
-                </v-btn>
-                </v-flex>
-            </v-layout>
-            <v-layout row wrap v-else>
-                <v-flex xs12>
-                <v-btn block flat color="accent" @click.native="openModal()"
-                ><span class="hidden-md-and-down">Create Contact Details</span>
-                    <v-icon right>fa-plus</v-icon>
-                </v-btn>
-                </v-flex>
-            </v-layout>
+  >
+    <v-container>
+      <v-layout 
+        row 
+        wrap 
+        v-if="hasContactKeys"
+      >
+        <v-flex xs6>
+          <v-btn 
+            block 
+            flat 
+            @click.native="updateContactDetails()"
+            :disabled="errors.any()"
+            :loading="contactDetailsForm.busy"
+            light
+          ><span class="hidden-md-and-down">Update Contact Details</span>
+            <v-icon right>fa-save</v-icon>
+          </v-btn>
+        </v-flex>
+        <v-flex xs6>
+          <v-btn 
+            block 
+            color="accent" 
+            flat 
+            @click.native="openModal()"
+          >
+            <span class="hidden-md-and-down">Create Contact Details</span>
+            <v-icon right>fa-plus</v-icon>
+          </v-btn>
+        </v-flex>
+      </v-layout>
+      <v-layout 
+        row 
+        wrap 
+        v-else
+      >
+        <v-flex xs12>
+          <v-btn 
+            block 
+            flat 
+            color="accent" 
+            @click.native="openModal()"
+          >
+            <span class="hidden-md-and-down">Create Contact Details</span>
+            <v-icon right>fa-plus</v-icon>
+          </v-btn>
+        </v-flex>
+      </v-layout>
 
-            <v-layout row wrap v-if="hasContactKeys">
-                <p class="primary--text">Contact Details</p>
-                <v-flex xs12>
-                    <v-alert color="primary" icon="warning" value="true">
-                            <span class="white--text">** This Will Be Displayed Publicly in The Homepage **</span>
-                    </v-alert>
-                </v-flex>
-                <v-flex xs12>
-                    <v-text-field
-                    :label="toProperCase(key)"
-                    v-model="contact_details[key]"
-                    light
-                    v-for="(value,key,index) in contact_details" :key="key" :index="index"
-                    v-validate="{ required: true, regex: /^[a-zA-Z0-9 +@#]+$/}"
-                    :error-messages="errors.collect(key)"
-                    :data-vv-name="key"
-                    append-icon="fa-trash"
-                    :append-icon-cb="() => (deleteContactDetails(key))"
-                    >
-                    </v-text-field>
-                </v-flex>
+      <v-layout 
+        row 
+        wrap 
+        v-if="hasContactKeys"
+      >
+        <p class="primary--text">Contact Details</p>
+        <v-flex xs12>
+          <v-alert 
+            color="primary" 
+            icon="warning" 
+            value="true"
+          >
+            <span class="white--text">** This Will Be Displayed Publicly in The Homepage **</span>
+          </v-alert>
+        </v-flex>
+        <v-flex xs12>
+          <v-text-field
+            :label="toProperCase(key)"
+            v-model="contact_details[key]"
+            light
+            v-for="(value,key,index) in contact_details" 
+            :key="key" 
+            :index="index"
+            v-validate="{ required: true, regex: /^[a-zA-Z0-9 +@#]+$/}"
+            :error-messages="errors.collect(key)"
+            :data-vv-name="key"
+            append-icon="fa-trash"
+            :append-icon-cb="() => (deleteContactDetails(key))"
+          />
+        </v-flex>
 
-            </v-layout>
+      </v-layout>
 
-            <v-layout row wrap v-else>
-                <v-flex xs12 text-xs-center>
-                    <v-card light :class="[contentClass]" flat >
-                            <v-card-text>
-                            <h4>No Contact Details Yet!</h4>
-                            <p class="title">Create Your First Contact Details.</p>
-                            <p class="body-2">Note: This Will Displayed In Your Homepage.</p>
-                        </v-card-text>
-                    </v-card>
-                </v-flex>
-            </v-layout>
+      <v-layout 
+        row 
+        wrap 
+        v-else
+      >
+        <v-flex 
+          xs12 
+          text-xs-center
+        >
+          <v-card 
+            light 
+            :class="[contentClass]" 
+            flat 
+          >
+            <v-card-text>
+              <h4>No Contact Details Yet!</h4>
+              <p class="title">Create Your First Contact Details.</p>
+              <p class="body-2">Note: This Will Displayed In Your Homepage.</p>
+            </v-card-text>
+          </v-card>
+        </v-flex>
+      </v-layout>
 
-            <new-contact-details></new-contact-details>
+      <new-contact-details/>
 
-        </v-container>
-    </v-tabs-content>
+    </v-container>
+  </v-tabs-content>
 </template>
 
 <script>

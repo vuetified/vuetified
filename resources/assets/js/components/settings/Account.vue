@@ -1,83 +1,84 @@
 <template>
-    <v-tabs-content
-          id="account"
-    >
-        <v-container>
-            <v-layout row wrap>
-                <p class="primary--text">Account Details</p>
-                <v-flex xs12>
-                    <v-text-field
-                    label="Username"
-                    v-model="username"
-                    light
-                    v-validate="{ required: true, regex: /^[a-zA-Z0-9][a-zA-Z0-9.-]+[a-zA-Z0-9]$/ }"
-                    :error-messages="errors.collect('username')"
-                    data-vv-name="username"
-                    >
-                    </v-text-field>
-                </v-flex>
-                <v-flex xs12>
-                    <v-text-field
-                    label="Email"
-                    v-model="email"
-                    light
-                    v-validate="{ required: true, email: true }"
-                    :error-messages="errors.collect('email')"
-                    data-vv-name="email"
-                    >
-                    </v-text-field>
-                </v-flex>
-                <v-flex xs12>
-                    <v-text-field
-                    label="Account Name"
-                    v-model="name"
-                    light
-                    v-validate="{ required: true, regex: /^[a-zA-Z0-9 ]+$/ }"
-                    :error-messages="errors.collect('name')"
-                    data-vv-name="name"
-                    >
-                    </v-text-field>
-                </v-flex>
-                <v-flex xs12>
-                    <v-text-field
-                    label="Current Password"
-                    v-model="old_password"
-                    light
-                    v-validate="{ min: 6,regex: /^([a-zA-Z0-9@*#]{6,15})$/ }"
-                    :error-messages="errors.collect('current password')"
-                    data-vv-name="current password"
-                    >
-                    </v-text-field>
-                </v-flex>
-                <v-flex xs12>
-                    <v-text-field
-                    label="New Password"
-                    v-model="password"
-                    light
-                    name="password"
-                    v-validate="{ min: 6,regex: /^([a-zA-Z0-9@*#]{6,15})$/ }"
-                    :error-messages="errors.collect('new password')"
-                    data-vv-name="new password"
-                    >
-                    </v-text-field>
-                </v-flex>
-                <v-flex xs12>
-                    <v-text-field
-                    label="Confirm New Password"
-                    v-model="password_confirmation"
-                    light
-                    v-validate="'confirmed:password'"
-                    :error-messages="errors.collect('confirm new password')"
-                    data-vv-name="confirm new password"
-                    >
-                    </v-text-field>
-                </v-flex>
-                <v-btn block color="primary" @click="updateAccount()">
-                    Update Account <v-icon right>fa-send</v-icon>
-                </v-btn>
-            </v-layout>
-        </v-container>
-    </v-tabs-content>
+  <v-tabs-content
+    id="account"
+  >
+    <v-container>
+      <v-layout 
+        row 
+        wrap
+      >
+        <p class="primary--text">Account Details</p>
+        <v-flex xs12>
+          <v-text-field
+            label="Username"
+            v-model="username"
+            light
+            v-validate="{ required: true, regex: /^[a-zA-Z0-9][a-zA-Z0-9.-]+[a-zA-Z0-9]$/ }"
+            :error-messages="errors.collect('username')"
+            data-vv-name="username"
+          />
+        </v-flex>
+        <v-flex xs12>
+          <v-text-field
+            label="Email"
+            v-model="email"
+            light
+            v-validate="{ required: true, email: true }"
+            :error-messages="errors.collect('email')"
+            data-vv-name="email"
+          />
+        </v-flex>
+        <v-flex xs12>
+          <v-text-field
+            label="Account Name"
+            v-model="name"
+            light
+            v-validate="{ required: true, regex: /^[a-zA-Z0-9 ]+$/ }"
+            :error-messages="errors.collect('name')"
+            data-vv-name="name"
+          />
+        </v-flex>
+        <v-flex xs12>
+          <v-text-field
+            label="Current Password"
+            v-model="old_password"
+            light
+            v-validate="{ min: 6,regex: /^([a-zA-Z0-9@*#]{6,15})$/ }"
+            :error-messages="errors.collect('current password')"
+            data-vv-name="current password"
+          />
+        </v-flex>
+        <v-flex xs12>
+          <v-text-field
+            label="New Password"
+            v-model="password"
+            light
+            name="password"
+            v-validate="{ min: 6,regex: /^([a-zA-Z0-9@*#]{6,15})$/ }"
+            :error-messages="errors.collect('new password')"
+            data-vv-name="new password"
+          />
+        </v-flex>
+        <v-flex xs12>
+          <v-text-field
+            label="Confirm New Password"
+            v-model="password_confirmation"
+            light
+            v-validate="'confirmed:password'"
+            :error-messages="errors.collect('confirm new password')"
+            data-vv-name="confirm new password"
+          />
+        </v-flex>
+        <v-btn 
+          block 
+          color="primary" 
+          @click="updateAccount()"
+        >
+          Update Account <v-icon right>fa-send</v-icon>
+        </v-btn>
+      </v-layout>
+    </v-container>
+  </v-tabs-content>
 </template>
 
 <script>
