@@ -1,176 +1,285 @@
 <template>
-<v-container fluid>
-  <v-layout row v-if="paymentForm.gateway">
-    <v-flex xs12 text-xs-center>
+  <v-container fluid>
+    <v-layout 
+      row 
+      v-if="paymentForm.gateway"
+    >
+      <v-flex 
+        xs12 
+        text-xs-center
+      >
         <p class="subheader primary--text">Gateway Details:</p>
-    </v-flex>
-  </v-layout>
-  <v-layout row v-if="paymentForm.gateway">
-    <v-flex xs12 sm12 md12  lg12  xl12>
-      <v-text-field
-      class="primary--text"
-      name="mop"
-      label="Mode Of Payment"
-      v-model="paymentForm.gateway.name"
-      readonly
-      :light="true"
-      ></v-text-field>
-    </v-flex>
-  </v-layout>
-  <div v-if="paymentForm.gateway">
-    <v-layout row v-for="(value,key,index) in paymentForm.gateway.details" :key="key" :index="index">
-    <v-flex xs12 sm12 md12  lg12  xl12>
-      <v-text-field
-      class="primary--text"
-      name="key"
-      :label="toProperCase(key)"
-      :value="value"
-      readonly
-      :light="true"
-      ></v-text-field>
-    </v-flex>
-  </v-layout>
-  </div>
-  <v-layout row>
-    <v-flex xs12 text-xs-center>
+      </v-flex>
+    </v-layout>
+    <v-layout 
+      row 
+      v-if="paymentForm.gateway"
+    >
+      <v-flex 
+        xs12 
+        sm12 
+        md12 
+        lg12 
+        xl12
+      >
+        <v-text-field
+          class="primary--text"
+          name="mop"
+          label="Mode Of Payment"
+          v-model="paymentForm.gateway.name"
+          readonly
+          :light="true"
+        />
+      </v-flex>
+    </v-layout>
+    <div v-if="paymentForm.gateway">
+      <v-layout 
+        row 
+        v-for="(value,key,index) in paymentForm.gateway.details" 
+        :key="key" 
+        :index="index"
+      >
+        <v-flex 
+          xs12 
+          sm12 
+          md12 
+          lg12 
+          xl12
+        >
+          <v-text-field
+            class="primary--text"
+            name="key"
+            :label="toProperCase(key)"
+            :value="value"
+            readonly
+            :light="true"
+          />
+        </v-flex>
+      </v-layout>
+    </div>
+    <v-layout row>
+      <v-flex 
+        xs12 
+        text-xs-center
+      >
         <p class="subheader primary--text">Payment Details:</p>
-    </v-flex>
-  </v-layout>
-  <v-layout row v-if="order.receipt">
-    <v-flex xs12 sm12 md12  lg12  xl12>
-      <v-text-field
-      class="primary--text"
-      label="Receipt"
-      v-model="order.receipt"
-      prepend-icon="fa-file"
-      append-icon="fa-download"
-      :append-icon-cb="() => (viewAttachment(order.receipt))"
-      hint="View Receipt"
-      persistent-hint
-      :light="true"
-      readonly
-      ></v-text-field>
-    </v-flex>
-  </v-layout>
-  <v-layout row>
-    <v-flex xs12 sm12 md12  lg12  xl12>
-      <v-text-field
-        class="primary--text"
-        name="transaction_no"
-        label="Transaction No"
-        v-model="paymentForm.transaction_no"
-        v-validate="'required|max:255'"
-        data-vv-name="Transaction No"
-        :error-messages="errors.collect('Transaction No')"
-        prepend-icon="fa-hashtag"
-        :light="true"
-      ></v-text-field>
-    </v-flex>
-  </v-layout>
-  <v-layout row>
-    <v-flex xs12 sm12 md12  lg12  xl12>
-    <v-dialog
-    persistent
-    v-model="dialog"
-    lazy
-    full-width
-    light
+      </v-flex>
+    </v-layout>
+    <v-layout 
+      row 
+      v-if="order.receipt"
     >
-    <v-text-field
-    slot="activator"
-    label="Date Paid"
-    v-model="paymentForm.date_paid"
-    prepend-icon="event"
-    v-validate="'required'"
-    data-vv-name="Date Paid"
-    :error-messages="errors.collect('Date Paid')"
-    light
-    readonly
+      <v-flex 
+        xs12 
+        sm12 
+        md12 
+        lg12 
+        xl12
+      >
+        <v-text-field
+          class="primary--text"
+          label="Receipt"
+          v-model="order.receipt"
+          prepend-icon="fa-file"
+          append-icon="fa-download"
+          :append-icon-cb="() => (viewAttachment(order.receipt))"
+          hint="View Receipt"
+          persistent-hint
+          :light="true"
+          readonly
+        />
+      </v-flex>
+    </v-layout>
+    <v-layout row>
+      <v-flex 
+        xs12 
+        sm12 
+        md12 
+        lg12 
+        xl12
+      >
+        <v-text-field
+          class="primary--text"
+          name="transaction_no"
+          label="Transaction No"
+          v-model="paymentForm.transaction_no"
+          v-validate="'required|max:255'"
+          data-vv-name="Transaction No"
+          :error-messages="errors.collect('Transaction No')"
+          prepend-icon="fa-hashtag"
+          :light="true"
+        />
+      </v-flex>
+    </v-layout>
+    <v-layout row>
+      <v-flex 
+        xs12 
+        sm12 
+        md12 
+        lg12 
+        xl12
+      >
+        <v-dialog
+          persistent
+          v-model="dialog"
+          lazy
+          full-width
+          light
+        >
+          <v-text-field
+            slot="activator"
+            label="Date Paid"
+            v-model="paymentForm.date_paid"
+            prepend-icon="event"
+            v-validate="'required'"
+            data-vv-name="Date Paid"
+            :error-messages="errors.collect('Date Paid')"
+            light
+            readonly
+          />
+          <v-date-picker 
+            v-model="paymentForm.date_paid" 
+            scrollable 
+            actions 
+            light
+          >
+            <template scope-slot="{ save, cancel }">
+              <v-card-actions>
+                <v-spacer/>
+                <v-btn 
+                  flat 
+                  color="primary" 
+                  @click="cancel"
+                >
+                  Cancel
+                </v-btn>
+                <v-btn 
+                  flat 
+                  color="primary" 
+                  @click="save"
+                >
+                  OK
+                </v-btn>
+              </v-card-actions>
+            </template>
+          </v-date-picker>
+        </v-dialog>
+      </v-flex>
+    </v-layout>
+    <v-layout row>
+      <v-flex 
+        xs12 
+        sm12 
+        md12 
+        lg12 
+        xl12
+      >
+        <v-text-field
+          class="primary--text"
+          name="account_name"
+          label="Account Name"
+          v-model="paymentForm.account_name"
+          v-validate="'required|max:255'"
+          data-vv-name="Account Name"
+          :error-messages="errors.collect('Account Name')"
+          prepend-icon="fa-id-card"
+          :light="true"
+        />
+      </v-flex>
+    </v-layout>
+    <v-layout row>
+      <v-flex 
+        xs12 
+        sm12 
+        md12 
+        lg12 
+        xl12
+      >
+        <v-text-field
+          class="primary--text"
+          name="account_no"
+          label="Account No."
+          v-model="paymentForm.account_no"
+          v-validate="'required|max:255'"
+          data-vv-name="Account No"
+          :error-messages="errors.collect('Account No')"
+          prepend-icon="fa-credit-card"
+          :light="true"
+        />
+      </v-flex>
+    </v-layout>
+    <v-layout row>
+      <v-flex 
+        xs12 
+        sm12 
+        md12 
+        lg12 
+        xl12
+      >
+        <v-text-field
+          class="primary--text"
+          name="amount"
+          label="Amount"
+          v-model.number="paymentForm.amount"
+          v-validate="'required|min_value:1'"
+          data-vv-name="amount"
+          :error-messages="errors.collect('amount')"
+          prepend-icon="fa-money"
+          hint="Amount You Paid"
+          persistent-hint
+          :light="true"
+        />
+      </v-flex>
+    </v-layout>
+    <v-layout row>
+      <v-flex 
+        xs12 
+        sm12 
+        md12 
+        lg12 
+        xl12
+      >
+        <v-text-field
+          class="primary--text"
+          name="currency"
+          label="Currency"
+          v-model="paymentForm.currency"
+          v-validate="'required'"
+          data-vv-name="currency"
+          :error-messages="errors.collect('currency')"
+          prepend-icon="fa-usd"
+          hint="Currency Of Your Payment"
+          persistent-hint
+          :light="true"
+        />
+      </v-flex>
+    </v-layout>
+    <v-btn 
+      light 
+      color="primary" 
+      :loading="paymentForm.busy" 
+      :disabled="errors.any()"
+      @click.native="submit()" 
+      :class="{primary: !paymentForm.busy, error: paymentForm.busy}" 
+      class="white--text"
     >
-    </v-text-field>
-    <v-date-picker v-model="paymentForm.date_paid" scrollable actions light>
-      <template scope-slot="{ save, cancel }">
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn flat color="primary" @click="cancel">Cancel</v-btn>
-          <v-btn flat color="primary" @click="save">OK</v-btn>
-        </v-card-actions>
-      </template>
-    </v-date-picker>
-    </v-dialog>
-    </v-flex>
-  </v-layout>
-  <v-layout row>
-      <v-flex xs12 sm12 md12  lg12  xl12>
-      <v-text-field
-        class="primary--text"
-        name="account_name"
-        label="Account Name"
-        v-model="paymentForm.account_name"
-        v-validate="'required|max:255'"
-        data-vv-name="Account Name"
-        :error-messages="errors.collect('Account Name')"
-        prepend-icon="fa-id-card"
-        :light="true"
-      ></v-text-field>
-    </v-flex>
-  </v-layout>
-  <v-layout row>
-      <v-flex xs12 sm12 md12  lg12  xl12>
-      <v-text-field
-        class="primary--text"
-        name="account_no"
-        label="Account No."
-        v-model="paymentForm.account_no"
-        v-validate="'required|max:255'"
-        data-vv-name="Account No"
-        :error-messages="errors.collect('Account No')"
-        prepend-icon="fa-credit-card"
-        :light="true"
-      ></v-text-field>
-    </v-flex>
-  </v-layout>
-  <v-layout row>
-    <v-flex xs12 sm12 md12  lg12  xl12>
-      <v-text-field
-        class="primary--text"
-        name="amount"
-        label="Amount"
-        v-model.number="paymentForm.amount"
-        v-validate="'required|min_value:1'"
-        data-vv-name="amount"
-        :error-messages="errors.collect('amount')"
-        prepend-icon="fa-money"
-        hint="Amount You Paid"
-      persistent-hint
-        :light="true"
-      ></v-text-field>
-    </v-flex>
-  </v-layout>
-  <v-layout row>
-    <v-flex xs12 sm12 md12  lg12  xl12>
-      <v-text-field
-      class="primary--text"
-      name="currency"
-      label="Currency"
-      v-model="paymentForm.currency"
-      v-validate="'required'"
-      data-vv-name="currency"
-      :error-messages="errors.collect('currency')"
-      prepend-icon="fa-usd"
-      hint="Currency Of Your Payment"
-      persistent-hint
-      :light="true"
-      ></v-text-field>
-    </v-flex>
-  </v-layout>
-  <v-btn light color="primary" :loading="paymentForm.busy" :disabled="errors.any()"  @click.native="submit()" :class="{primary: !paymentForm.busy, error: paymentForm.busy}" class="white--text">Update</v-btn>
-</v-container>
+      Update
+    </v-btn>
+  </v-container>
 </template>
 
 <script>
 export default {
-    props: ['tab', 'order'],
+    props: {
+        tab: {
+            type: Object,
+            required: true
+        },
+        order: {
+            type: Object,
+            required: true
+        }
+    },
     data: () => ({
         dialog: false,
         paymentForm: new AppForm(App.forms.paymentForm)

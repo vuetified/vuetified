@@ -44,7 +44,8 @@
         "vm": true,
         "route": true,
         "App": true,
-        "AppForm": true
+        "AppForm": true,
+        "moment": true
     },
     "parserOptions": {
         "parser": "babel-eslint",

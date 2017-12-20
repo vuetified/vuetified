@@ -1,71 +1,101 @@
 <template>
-<v-container fluid>
+  <v-container fluid>
     <form>
-        <v-layout row>
-          <v-flex xs12 sm12 md12  lg12  xl12>
-            <v-text-field
-              class="primary--text"
-              name="address_1"
-              label="Address 1"
-              v-model="addressForm.shipping_details.address_1"
-              v-validate="'required|max:255'"
-              data-vv-name="address_1"
-              :error-messages="errors.collect('address_1')"
-              prepend-icon="fa-address-book"
-              :light="true"
-            ></v-text-field>
-          </v-flex>
-        </v-layout>
-        <v-layout row>
-            <v-flex xs12 sm12 md12  lg12  xl12>
-            <v-text-field
-              class="primary--text"
-              name="address_2"
-              label="Address 2"
-              v-model="addressForm.shipping_details.address_2"
-              v-validate="'required|max:255'"
-              data-vv-name="address_2"
-              :error-messages="errors.collect('address_2')"
-              prepend-icon="fa-address-book-o"
-              :light="true"
-            ></v-text-field>
-          </v-flex>
+      <v-layout row>
+        <v-flex 
+          xs12 
+          sm12 
+          md12 
+          lg12 
+          xl12
+        >
+          <v-text-field
+            class="primary--text"
+            name="address_1"
+            label="Address 1"
+            v-model="addressForm.shipping_details.address_1"
+            v-validate="'required|max:255'"
+            data-vv-name="address_1"
+            :error-messages="errors.collect('address_1')"
+            prepend-icon="fa-address-book"
+            :light="true"
+          />
+        </v-flex>
+      </v-layout>
+      <v-layout row>
+        <v-flex 
+          xs12 
+          sm12 
+          md12 
+          lg12 
+          xl12
+        >
+          <v-text-field
+            class="primary--text"
+            name="address_2"
+            label="Address 2"
+            v-model="addressForm.shipping_details.address_2"
+            v-validate="'required|max:255'"
+            data-vv-name="address_2"
+            :error-messages="errors.collect('address_2')"
+            prepend-icon="fa-address-book-o"
+            :light="true"
+          />
+        </v-flex>
 
-        </v-layout>
-        <v-layout row>
-            <v-flex xs12 sm12 md12  lg12  xl12>
-            <v-text-field
-              class="primary--text"
-              name="city"
-              label="City"
-              v-model="addressForm.shipping_details.city"
-              v-validate="'required|max:255'"
-              data-vv-name="city"
-              :error-messages="errors.collect('city')"
-              prepend-icon="location_city"
-              :light="true"
-            ></v-text-field>
-          </v-flex>
-        </v-layout>
+      </v-layout>
+      <v-layout row>
+        <v-flex 
+          xs12 
+          sm12 
+          md12 
+          lg12 
+          xl12
+        >
+          <v-text-field
+            class="primary--text"
+            name="city"
+            label="City"
+            v-model="addressForm.shipping_details.city"
+            v-validate="'required|max:255'"
+            data-vv-name="city"
+            :error-messages="errors.collect('city')"
+            prepend-icon="location_city"
+            :light="true"
+          />
+        </v-flex>
+      </v-layout>
 
-        <v-layout row>
-          <v-flex xs12 sm12 md12  lg12  xl12>
-            <v-text-field
-              class="primary--text"
-              name="country"
-              label="Country"
-              v-model="addressForm.shipping_details.country"
-              v-validate="'required|max:255'"
-              data-vv-name="country"
-              :error-messages="errors.collect('country')"
-              prepend-icon="fa-fa"
-              :light="true"
-            ></v-text-field>
-          </v-flex>
-        </v-layout>
-        <v-layout row>
-          <v-flex xs12 sm12 md12  lg12  xl12>
-            <v-text-field
+      <v-layout row>
+        <v-flex 
+          xs12 
+          sm12 
+          md12 
+          lg12 
+          xl12
+        >
+          <v-text-field
+            class="primary--text"
+            name="country"
+            label="Country"
+            v-model="addressForm.shipping_details.country"
+            v-validate="'required|max:255'"
+            data-vv-name="country"
+            :error-messages="errors.collect('country')"
+            prepend-icon="fa-fa"
+            :light="true"
+          />
+        </v-flex>
+      </v-layout>
+      <v-layout row>
+        <v-flex 
+          xs12 
+          sm12 
+          md12 
+          lg12 
+          xl12
+        >
+          <v-text-field
             class="primary--text"
             name="zip_code"
             label="Zip Code"
@@ -75,12 +105,18 @@
             :error-messages="errors.collect('zip_code')"
             prepend-icon="markunread_mailbox"
             :light="true"
-            ></v-text-field>
-          </v-flex>
-        </v-layout>
-        <v-layout row>
-          <v-flex xs12 sm12 md12  lg12  xl12>
-            <v-text-field
+          />
+        </v-flex>
+      </v-layout>
+      <v-layout row>
+        <v-flex 
+          xs12 
+          sm12 
+          md12 
+          lg12 
+          xl12
+        >
+          <v-text-field
             class="primary--text"
             name="state_province"
             label="State | Province"
@@ -90,17 +126,36 @@
             :error-messages="errors.collect('state_province')"
             prepend-icon="place"
             :light="true"
-            ></v-text-field>
-          </v-flex>
-        </v-layout>
-        <v-btn light color="primary" :loading="addressForm.busy" :disabled="errors.any()"  @click.native="submit()" :class="{primary: !addressForm.busy, error: addressForm.busy}" class="white--text">Update</v-btn>
-        </form>
-</v-container>
+          />
+        </v-flex>
+      </v-layout>
+      <v-btn 
+        light 
+        color="primary" 
+        :loading="addressForm.busy" 
+        :disabled="errors.any()" 
+        @click.native="submit()" 
+        :class="{primary: !addressForm.busy, error: addressForm.busy}" 
+        class="white--text"
+      >
+        Update
+      </v-btn>
+    </form>
+  </v-container>
 </template>
 
 <script>
 export default {
-    props: ['tab', 'order'],
+    props: {
+        tab: {
+            type: Object,
+            required: true
+        },
+        order: {
+            type: Object,
+            required: true
+        }
+    },
     data: () => ({
         addressForm: new AppForm(App.forms.addressForm)
     }),

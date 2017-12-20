@@ -1,137 +1,247 @@
 <template>
-<v-container fluid>
-        <v-layout row v-if="shipmentForm.courier">
-            <v-flex xs12 text-xs-center>
-                <p class="subheader primary--text">Delivery Method:</p>
-            </v-flex>
-        </v-layout>
-        <v-layout row v-if="shipmentForm.courier">
-          <v-flex xs12 sm12 md12  lg12  xl12>
-            <v-text-field
-            class="primary--text"
-            name="mop"
-            label="Mode Of Payment"
-            v-model="shipmentForm.courier.name"
-            readonly
-            :light="true"
-            ></v-text-field>
-          </v-flex>
-        </v-layout>
-        <div v-if="shipmentForm.courier">
-            <v-layout row v-for="(value,key,index) in shipmentForm.courier.details" :key="key" :index="index">
-          <v-flex xs12 sm12 md12  lg12  xl12>
-            <v-text-field
+  <v-container fluid>
+    <v-layout 
+      row 
+      v-if="shipmentForm.courier"
+    >
+      <v-flex 
+        xs12 
+        text-xs-center
+      >
+        <p class="subheader primary--text">Delivery Method:</p>
+      </v-flex>
+    </v-layout>
+    <v-layout 
+      row 
+      v-if="shipmentForm.courier"
+    >
+      <v-flex 
+        xs12 
+        sm12 
+        md12 
+        lg12 
+        xl12
+      >
+        <v-text-field
+          class="primary--text"
+          name="mop"
+          label="Mode Of Payment"
+          v-model="shipmentForm.courier.name"
+          readonly
+          :light="true"
+        />
+      </v-flex>
+    </v-layout>
+    <div v-if="shipmentForm.courier">
+      <v-layout 
+        row 
+        v-for="(value,key,index) in shipmentForm.courier.details" 
+        :key="key" 
+        :index="index"
+      >
+        <v-flex 
+          xs12 
+          sm12 
+          md12 
+          lg12 
+          xl12
+        >
+          <v-text-field
             class="primary--text"
             name="key"
             :label="toProperCase(key)"
             :value="value"
             readonly
             :light="true"
-            ></v-text-field>
-          </v-flex>
-        </v-layout>
-        </div>
-        <v-layout row>
-            <v-flex xs12 text-xs-center>
-                <p class="subheader primary--text">Shipment Status:</p>
-            </v-flex>
-        </v-layout>
-        <v-layout row>
-          <v-flex xs12 sm12 md12  lg12  xl12>
-            <!-- read Only if not admin -->
-            <v-text-field
-              class="primary--text"
-              name="tracking_no"
-              label="Tracking No"
-              v-model="shipmentForm.tracking_no"
-              v-validate="'required|max:255'"
-              data-vv-name="Tracking No"
-              :error-messages="errors.collect('Tracking No')"
-              prepend-icon="fa-truck"
-              :light="true"
-              :disabled="!hasRole('admin')"
-            ></v-text-field>
-          </v-flex>
-        </v-layout>
-        <v-layout row>
-            <v-flex xs12 sm12 md12  lg12  xl12>
-            <v-text-field
-            @click="showSentModal"
-            label="Date Sent"
-            v-model="shipmentForm.date_sent"
-            prepend-icon="event"
-            v-validate="'required'"
-            data-vv-name="Date Sent"
-            :error-messages="errors.collect('Date Sent')"
-            light
-            readonly
-            >
-            </v-text-field>
-            <v-dialog
-            persistent
-            v-model="modal1"
-            lazy
-            full-width
-            light
-            >
+          />
+        </v-flex>
+      </v-layout>
+    </div>
+    <v-layout row>
+      <v-flex 
+        xs12 
+        text-xs-center
+      >
+        <p class="subheader primary--text">Shipment Status:</p>
+      </v-flex>
+    </v-layout>
+    <v-layout row>
+      <v-flex 
+        xs12 
+        sm12 
+        md12 
+        lg12 
+        xl12
+      >
+        <!-- read Only if not admin -->
+        <v-text-field
+          class="primary--text"
+          name="tracking_no"
+          label="Tracking No"
+          v-model="shipmentForm.tracking_no"
+          v-validate="'required|max:255'"
+          data-vv-name="Tracking No"
+          :error-messages="errors.collect('Tracking No')"
+          prepend-icon="fa-truck"
+          :light="true"
+          :disabled="!hasRole('admin')"
+        />
+      </v-flex>
+    </v-layout>
+    <v-layout row>
+      <v-flex 
+        xs12 
+        sm12 
+        md12 
+        lg12 
+        xl12
+      >
+        <v-text-field
+          @click="showSentModal"
+          label="Date Sent"
+          v-model="shipmentForm.date_sent"
+          prepend-icon="event"
+          v-validate="'required'"
+          data-vv-name="Date Sent"
+          :error-messages="errors.collect('Date Sent')"
+          light
+          readonly
+        />
+        <v-dialog
+          persistent
+          v-model="modal1"
+          lazy
+          full-width
+          light
+        >
 
-            <v-date-picker v-model="shipmentForm.date_sent" scrollable actions light>
-            <template scope-slot="{ save, cancel }">
-                <v-card-actions>
-                <v-spacer></v-spacer>
-                <v-btn flat color="primary" @click="cancel">Cancel</v-btn>
-                <v-btn flat color="primary" @click="save">OK</v-btn>
-                </v-card-actions>
-            </template>
-            </v-date-picker>
-            </v-dialog>
-            </v-flex>
-        </v-layout>
-        <v-layout row>
-            <v-flex xs12 sm12 md12  lg12  xl12>
-            <v-checkbox :disabled="!hasRole('admin')" v-bind:label="`Sent`" v-model="shipmentForm.sent" light></v-checkbox>
-          </v-flex>
-        </v-layout>
-        <v-layout row>
-            <v-flex xs12 sm12 md12  lg12  xl12>
-            <v-text-field
-            @click="showReceivedModal"
-            label="Date Received"
-            v-model="shipmentForm.date_received"
-            prepend-icon="event"
-            v-validate="'required'"
-            data-vv-name="Date Received"
-            :error-messages="errors.collect('Date Received')"
+          <v-date-picker 
+            v-model="shipmentForm.date_sent" 
+            scrollable 
+            actions 
             light
-            readonly
-            >
-            </v-text-field>
-            <v-dialog
-            persistent
-            v-model="modal2"
-            lazy
-            full-width
-            light
-            >
-            <v-date-picker v-model="shipmentForm.date_received" scrollable actions light>
+          >
             <template scope-slot="{ save, cancel }">
-                <v-card-actions>
-                <v-spacer></v-spacer>
-                <v-btn flat color="primary" @click="cancel">Cancel</v-btn>
-                <v-btn flat color="primary" @click="save">OK</v-btn>
-                </v-card-actions>
+              <v-card-actions>
+                <v-spacer/>
+                <v-btn 
+                  flat 
+                  color="primary" 
+                  @click="cancel"
+                >
+                  Cancel
+                </v-btn>
+                <v-btn 
+                  flat 
+                  color="primary" 
+                  @click="save"
+                >
+                  OK
+                </v-btn>
+              </v-card-actions>
             </template>
-            </v-date-picker>
-            </v-dialog>
-            </v-flex>
-        </v-layout>
-         <v-layout row>
-            <v-flex xs12 sm12 md12  lg12  xl12>
-            <v-checkbox :disabled="!can('edit_order') || !hasRole('admin')" v-bind:label="`Received`" v-model="shipmentForm.received" light></v-checkbox>
-          </v-flex>
-        </v-layout>
-        <v-btn light color="primary" :loading="shipmentForm.busy" :disabled="errors.any()"  @click.native="submit()" :class="{primary: !shipmentForm.busy, error: shipmentForm.busy}" class="white--text">Update</v-btn>
-</v-container>
+          </v-date-picker>
+        </v-dialog>
+      </v-flex>
+    </v-layout>
+    <v-layout row>
+      <v-flex 
+        xs12 
+        sm12 
+        md12 
+        lg12 
+        xl12>
+        <v-checkbox 
+          :disabled="!hasRole('admin')" 
+          :label="`Sent`" 
+          v-model="shipmentForm.sent" 
+          light
+        />
+      </v-flex>
+    </v-layout>
+    <v-layout row>
+      <v-flex 
+        xs12 
+        sm12 
+        md12 
+        lg12 
+        xl12
+      >
+        <v-text-field
+          @click="showReceivedModal"
+          label="Date Received"
+          v-model="shipmentForm.date_received"
+          prepend-icon="event"
+          v-validate="'required'"
+          data-vv-name="Date Received"
+          :error-messages="errors.collect('Date Received')"
+          light
+          readonly
+        />
+        <v-dialog
+          persistent
+          v-model="modal2"
+          lazy
+          full-width
+          light
+        >
+          <v-date-picker 
+            v-model="shipmentForm.date_received" 
+            scrollable 
+            actions 
+            light
+          >
+            <template scope-slot="{ save, cancel }">
+              <v-card-actions>
+                <v-spacer/>
+                <v-btn 
+                  flat 
+                  color="primary" 
+                  @click="cancel"
+                >
+                  Cancel
+                </v-btn>
+                <v-btn 
+                  flat 
+                  color="primary" 
+                  @click="save"
+                >
+                  OK
+                </v-btn>
+              </v-card-actions>
+            </template>
+          </v-date-picker>
+        </v-dialog>
+      </v-flex>
+    </v-layout>
+    <v-layout row>
+      <v-flex 
+        xs12 
+        sm12 
+        md12 
+        lg12 
+        xl12
+      >
+        <v-checkbox 
+          :disabled="!can('edit_order') || !hasRole('admin')" 
+          :label="`Received`" 
+          v-model="shipmentForm.received" 
+          light
+        />
+      </v-flex>
+    </v-layout>
+    <v-btn 
+      light 
+      color="primary" 
+      :loading="shipmentForm.busy" 
+      :disabled="errors.any()" 
+      @click.native="submit()" 
+      :class="{primary: !shipmentForm.busy, error: shipmentForm.busy}" 
+      class="white--text"
+    >
+      Update
+    </v-btn>
+  </v-container>
 </template>
 
 <script>
@@ -139,7 +249,16 @@ import Acl from '../../mixins/acl'
 
 export default {
     mixins: [Acl],
-    props: ['tab', 'order'],
+    props: {
+        tab: {
+            type: Object,
+            required: true
+        },
+        order: {
+            type: Object,
+            required: true
+        }
+    },
     data: () => ({
         modal1: false,
         modal2: false,
