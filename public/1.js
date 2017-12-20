@@ -1347,6 +1347,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -1357,10 +1364,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
         },
         href: {
-            type: String
+            type: String,
+            required: true
         },
         title: {
-            type: String
+            type: String,
+            required: true
         },
         avatar: {
             type: String,
@@ -1369,7 +1378,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
         },
         icon: {
-            type: String
+            type: String,
+            default: function _default() {
+                return null;
+            }
         },
         iconColor: {
             type: String,
@@ -2122,12 +2134,34 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['items'],
     components: {
         VLink: __WEBPACK_IMPORTED_MODULE_0__components_VLink_vue___default.a
+    },
+    props: {
+        items: {
+            type: Array,
+            required: true
+        }
     },
     data: function data() {
         return {
@@ -2526,6 +2560,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(90);
 
+//
 //
 //
 //
@@ -6390,7 +6425,7 @@ exports = module.exports = __webpack_require__(630)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -6412,6 +6447,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -6423,12 +6462,35 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 // import '../plugins/trumbowyg.upload.js'
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    components: {
+        trumbowyg: __WEBPACK_IMPORTED_MODULE_0_vue_trumbowyg___default.a
+    },
     //* html = content
     //* disabled = disabled
     //* trumbowyg = current instance of trumbowyg
-    props: ['html', 'disabled', 'uploadLink', 'id'],
-    components: {
-        trumbowyg: __WEBPACK_IMPORTED_MODULE_0_vue_trumbowyg___default.a
+    props: {
+        fileKey: {
+            type: String,
+            default: function _default() {
+                return null;
+            }
+        },
+        uploadLink: {
+            type: String,
+            default: function _default() {
+                return '';
+            }
+        },
+        id: {
+            type: String,
+            required: true
+        },
+        disabled: {
+            type: Boolean,
+            default: function _default() {
+                return false;
+            }
+        }
     },
     data: function data() {
         return {
@@ -6489,22 +6551,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             } };
     },
-    mounted: function mounted() {
-        var self = this;
-        //* Initialized Text Editor Component Data From Props
-        self.config.advanced.disabled = self.disabled ? self.disabled : false;
-        //* Listen For Upload File Event
-        // ? Desctructure payload --> $modal && values
-        Bus.$on('upload-file', function () {
-            var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : payload,
-                data = _ref.data,
-                trumbowyg = _ref.trumbowyg;
-
-            self.trumbowyg = trumbowyg;
-            self.uploadImage(data);
-        });
-    },
-
     watch: {
         //* Whenever Parent Change Active Props Update Config
         // ? Useful For Disabling Text Editor
@@ -6525,6 +6571,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             self.content = newValue;
         }
     },
+    mounted: function mounted() {
+        var self = this;
+        //* Initialized Text Editor Component Data From Props
+        self.config.advanced.disabled = self.disabled ? self.disabled : false;
+        //* Listen For Upload File Event
+        // ? Desctructure payload --> $modal && values
+        Bus.$on('upload-file', function () {
+            var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : payload,
+                data = _ref.data,
+                trumbowyg = _ref.trumbowyg;
+
+            self.trumbowyg = trumbowyg;
+            self.uploadImage(data);
+        });
+    },
+
     methods: {
         uploadImage: function uploadImage(form) {
             var self = this;
@@ -9250,21 +9312,154 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['fileKey', 'putUrl', 'postUrl', 'single'],
     components: {
         FileUpload: __WEBPACK_IMPORTED_MODULE_1_vue_upload_component___default.a
     },
-    mounted: function mounted() {
-        this.postAction = this.postUrl ? this.postUrl : ' /uploads/post';
-        this.putAction = this.putUrl ? this.putUrl : null;
-        this.headers['Authorization'] = 'Bearer ' + vm.$cookie.get('access_token');
-        this.name = this.fileKey;
-        if (this.single) {
-            this.multiple = false;
+    props: {
+        fileKey: {
+            type: String,
+            default: function _default() {
+                return false;
+            }
+        },
+        putUrl: {
+            type: String,
+            default: function _default() {
+                return '';
+            }
+        },
+        postUrl: {
+            type: String,
+            required: true
+        },
+        single: {
+            type: Boolean,
+            default: function _default() {
+                return false;
+            }
         }
     },
     data: function data() {
@@ -9304,6 +9499,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             /* file per page */
             perPageData: [10, 25, 50, { text: 'All', value: -1 }]
         };
+    },
+
+    watch: {
+        fileKey: function fileKey(newValue) {
+            this.name = newValue;
+        },
+        single: function single(newValue) {
+            if (newValue) {
+                this.multiple = false;
+            } else {
+                this.multiple = true;
+            }
+        }
+    },
+    mounted: function mounted() {
+        this.postAction = this.postUrl ? this.postUrl : ' /uploads/post';
+        this.putAction = this.putUrl ? this.putUrl : null;
+        this.headers['Authorization'] = 'Bearer ' + vm.$cookie.get('access_token');
+        this.name = this.fileKey;
+        if (this.single) {
+            this.multiple = false;
+        }
     },
 
     methods: {
@@ -9416,18 +9633,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 }
             }
         }
-    },
-    watch: {
-        fileKey: function fileKey(newValue) {
-            this.name = newValue;
-        },
-        single: function single(newValue) {
-            if (newValue) {
-                this.multiple = false;
-            } else {
-                this.multiple = true;
-            }
-        }
     }
 });
 
@@ -9488,7 +9693,7 @@ var render = function() {
                     expression: "files"
                   }
                 },
-                [_vm._v("\n                Choose Files\n                ")]
+                [_vm._v("\n        Choose Files\n      ")]
               )
             ],
             1
@@ -9570,7 +9775,11 @@ var render = function() {
                                     attrs: { slot: "input" },
                                     slot: "input"
                                   },
-                                  [_vm._v("Update Name")]
+                                  [
+                                    _vm._v(
+                                      "\n              Update Name\n            "
+                                    )
+                                  ]
                                 ),
                                 _vm._v(" "),
                                 _c("v-text-field", {
@@ -9645,7 +9854,13 @@ var render = function() {
                               {
                                 staticClass: "title text-xs-left primary--text"
                               },
-                              [_vm._v(_vm._s(props.item.error))]
+                              [
+                                _vm._v(
+                                  "\n          " +
+                                    _vm._s(props.item.error) +
+                                    "\n        "
+                                )
+                              ]
                             )
                           : props.item.success
                             ? _c(
@@ -9654,7 +9869,7 @@ var render = function() {
                                   staticClass:
                                     "title text-xs-left primary--text"
                                 },
-                                [_vm._v("success")]
+                                [_vm._v("\n          success\n        ")]
                               )
                             : props.item.active
                               ? _c(
@@ -9663,7 +9878,7 @@ var render = function() {
                                     staticClass:
                                       "title text-xs-left primary--text"
                                   },
-                                  [_vm._v("active")]
+                                  [_vm._v("\n          active\n        ")]
                                 )
                               : _c("td", {
                                   staticClass:
@@ -9801,7 +10016,7 @@ var render = function() {
                   }
                 },
                 [
-                  _vm._v("Start Upload "),
+                  _vm._v("\n      Start Upload \n      "),
                   _c("v-icon", { attrs: { right: "" } }, [_vm._v("play_arrow")])
                 ],
                 1
@@ -9826,7 +10041,7 @@ var render = function() {
                   }
                 },
                 [
-                  _vm._v("Stop Upload "),
+                  _vm._v("\n      Stop Upload \n      "),
                   _c("v-icon", { attrs: { right: "" } }, [_vm._v("stop")])
                 ],
                 1
@@ -9846,7 +10061,7 @@ var render = function() {
                       }
                     },
                     [
-                      _vm._v("Remove All Files "),
+                      _vm._v("\n      Remove All Files \n      "),
                       _c("v-icon", { attrs: { right: "" } }, [
                         _vm._v("fa-times")
                       ])
@@ -10136,13 +10351,13 @@ var render = function() {
                   _vm.autoCompress > 0
                     ? _c("p", { staticClass: "grey--text caption" }, [
                         _vm._v(
-                          "More than " +
+                          "\n        More than " +
                             _vm._s(_vm._f("formatSize")(_vm.autoCompress)) +
-                            " files are automatically compressed"
+                            " files are automatically compressed\n      "
                         )
                       ])
                     : _c("p", { staticClass: "grey--text caption" }, [
-                        _vm._v("Set up automatic compression")
+                        _vm._v("\n        Set up automatic compression\n      ")
                       ])
                 ],
                 1
@@ -11159,21 +11374,154 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['fileKey', 'putUrl', 'postUrl', 'single'],
     components: {
         FileUpload: __WEBPACK_IMPORTED_MODULE_1_vue_upload_component___default.a
     },
-    mounted: function mounted() {
-        this.postAction = this.postUrl ? this.postUrl : ' /uploads/post';
-        this.putAction = this.putUrl ? this.putUrl : null;
-        this.headers['Authorization'] = 'Bearer ' + vm.$cookie.get('access_token');
-        this.name = this.fileKey;
-        if (this.single) {
-            this.multiple = false;
+    props: {
+        fileKey: {
+            type: String,
+            default: function _default() {
+                return false;
+            }
+        },
+        putUrl: {
+            type: String,
+            default: function _default() {
+                return '';
+            }
+        },
+        postUrl: {
+            type: String,
+            required: true
+        },
+        single: {
+            type: Boolean,
+            default: function _default() {
+                return false;
+            }
         }
     },
     data: function data() {
@@ -11213,6 +11561,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             /* file per page */
             perPageData: [10, 25, 50, { text: 'All', value: -1 }]
         };
+    },
+    mounted: function mounted() {
+        this.postAction = this.postUrl ? this.postUrl : ' /uploads/post';
+        this.putAction = this.putUrl ? this.putUrl : null;
+        this.headers['Authorization'] = 'Bearer ' + vm.$cookie.get('access_token');
+        this.name = this.fileKey;
+        if (this.single) {
+            this.multiple = false;
+        }
     },
 
     methods: {
@@ -11397,7 +11754,7 @@ var render = function() {
                     expression: "files"
                   }
                 },
-                [_vm._v("\n                Choose Files\n                ")]
+                [_vm._v("\n        Choose Files\n      ")]
               )
             ],
             1
@@ -11479,7 +11836,11 @@ var render = function() {
                                     attrs: { slot: "input" },
                                     slot: "input"
                                   },
-                                  [_vm._v("Update Name")]
+                                  [
+                                    _vm._v(
+                                      "\n              Update Name\n            "
+                                    )
+                                  ]
                                 ),
                                 _vm._v(" "),
                                 _c("v-text-field", {
@@ -11554,7 +11915,13 @@ var render = function() {
                               {
                                 staticClass: "title text-xs-left primary--text"
                               },
-                              [_vm._v(_vm._s(props.item.error))]
+                              [
+                                _vm._v(
+                                  "\n          " +
+                                    _vm._s(props.item.error) +
+                                    "\n        "
+                                )
+                              ]
                             )
                           : props.item.success
                             ? _c(
@@ -11563,7 +11930,7 @@ var render = function() {
                                   staticClass:
                                     "title text-xs-left primary--text"
                                 },
-                                [_vm._v("success")]
+                                [_vm._v("\n          success\n        ")]
                               )
                             : props.item.active
                               ? _c(
@@ -11572,7 +11939,7 @@ var render = function() {
                                     staticClass:
                                       "title text-xs-left primary--text"
                                   },
-                                  [_vm._v("active")]
+                                  [_vm._v("\n          active\n        ")]
                                 )
                               : _c("td", {
                                   staticClass:
@@ -11710,7 +12077,7 @@ var render = function() {
                   }
                 },
                 [
-                  _vm._v("Start Upload "),
+                  _vm._v("\n      Start Upload \n      "),
                   _c("v-icon", { attrs: { right: "" } }, [_vm._v("play_arrow")])
                 ],
                 1
@@ -11735,7 +12102,7 @@ var render = function() {
                   }
                 },
                 [
-                  _vm._v("Stop Upload "),
+                  _vm._v("\n      Stop Upload \n      "),
                   _c("v-icon", { attrs: { right: "" } }, [_vm._v("stop")])
                 ],
                 1
@@ -11755,7 +12122,7 @@ var render = function() {
                       }
                     },
                     [
-                      _vm._v("Remove All Files "),
+                      _vm._v("\n      Remove All Files \n      "),
                       _c("v-icon", { attrs: { right: "" } }, [
                         _vm._v("fa-times")
                       ])
@@ -12045,13 +12412,13 @@ var render = function() {
                   _vm.autoCompress > 0
                     ? _c("p", { staticClass: "grey--text caption" }, [
                         _vm._v(
-                          "More than " +
+                          "\n        More than " +
                             _vm._s(_vm._f("formatSize")(_vm.autoCompress)) +
-                            " files are automatically compressed"
+                            " files are automatically compressed\n      "
                         )
                       ])
                     : _c("p", { staticClass: "grey--text caption" }, [
-                        _vm._v("Set up automatic compression")
+                        _vm._v("\n        Set up automatic compression\n      ")
                       ])
                 ],
                 1

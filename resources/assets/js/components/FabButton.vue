@@ -1,39 +1,40 @@
 <template>
   <v-speed-dial
+    v-model="fab"
+    :top="top"
+    :bottom="bottom"
+    :right="right"
+    :left="left"
+    :direction="direction"
+    :hover="hover"
+    :transition="transition"
+    :absolute="absolute"
+    :fixed="fixed"
+  >
+    <v-btn
+      slot="activator"
+      :class="[activeFab.class]"
+      dark
+      fab
+      hover
       v-model="fab"
-      :top="top"
-      :bottom="bottom"
-      :right="right"
-      :left="left"
-      :direction="direction"
-      :hover="hover"
-      :transition="transition"
-      :absolute="absolute"
-      :fixed="fixed"
     >
-      <v-btn
-        slot="activator"
-        :class="[activeFab.class]"
-        dark
-        fab
-        hover
-        v-model="fab"
-      >
-        <v-icon class="white--text">{{ activeFab.icon }}</v-icon>
-        <v-icon class="error--text">close</v-icon>
-      </v-btn>
-      <v-btn
-        v-for="button in buttons" :key="button.name"
-        v-if="isVisible(button)"
-        fab
-        dark
-        small
-        :class="[button.class]"
-        @click.native="navigate(button)"
-      >
-        <v-icon>{{ button.icon }}</v-icon>
-      </v-btn>
-    </v-speed-dial>
+      <v-icon class="white--text">{{ activeFab.icon }}</v-icon>
+      <v-icon class="error--text">close</v-icon>
+    </v-btn>
+    <v-btn
+      v-for="button in buttons" 
+      :key="button.name"
+      v-if="isVisible(button)"
+      fab
+      dark
+      small
+      :class="[button.class]"
+      @click.native="navigate(button)"
+    >
+      <v-icon>{{ button.icon }}</v-icon>
+    </v-btn>
+  </v-speed-dial>
 </template>
 
 <script>

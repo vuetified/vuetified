@@ -1,5 +1,9 @@
 <template>
-  <trumbowyg :config="config.advanced" v-model="content" :id="id"></trumbowyg>
+  <trumbowyg 
+    :config="config.advanced" 
+    v-model="content" 
+    :id="id"
+  />
 </template>
 
 <script>
@@ -13,12 +17,35 @@ import 'trumbowyg/dist/plugins/noembed/trumbowyg.noembed.min.js'
 // import '../plugins/trumbowyg.upload.js'
 
 export default {
+    components: {
+        trumbowyg
+    },
     //* html = content
     //* disabled = disabled
     //* trumbowyg = current instance of trumbowyg
-    props: ['html', 'disabled', 'uploadLink', 'id'],
-    components: {
-        trumbowyg
+    props: {
+        fileKey: {
+            type: String,
+            default () {
+                return null
+            }
+        },
+        uploadLink: {
+            type: String,
+            default () {
+                return ''
+            }
+        },
+        id: {
+            type: String,
+            required: true
+        },
+        disabled: {
+            type: Boolean,
+            default () {
+                return false
+            }
+        }
     },
     data: () => ({
         content: '',
@@ -91,17 +118,6 @@ export default {
         } // End of Configs
 
     }),
-    mounted () {
-        let self = this
-        //* Initialized Text Editor Component Data From Props
-        self.config.advanced.disabled = self.disabled ? self.disabled : false
-        //* Listen For Upload File Event
-        // ? Desctructure payload --> $modal && values
-        Bus.$on('upload-file', ({data, trumbowyg} = payload) => {
-            self.trumbowyg = trumbowyg
-            self.uploadImage(data)
-        })
-    },
     watch: {
         //* Whenever Parent Change Active Props Update Config
         // ? Useful For Disabling Text Editor
@@ -121,6 +137,17 @@ export default {
             let self = this
             self.content = newValue
         }
+    },
+    mounted () {
+        let self = this
+        //* Initialized Text Editor Component Data From Props
+        self.config.advanced.disabled = self.disabled ? self.disabled : false
+        //* Listen For Upload File Event
+        // ? Desctructure payload --> $modal && values
+        Bus.$on('upload-file', ({data, trumbowyg} = payload) => {
+            self.trumbowyg = trumbowyg
+            self.uploadImage(data)
+        })
     },
     methods: {
         uploadImage (form) {

@@ -1,20 +1,27 @@
 <template>
-    <v-list-tile :avatar="avatarOn"  @click.native="navigate(href)" :class="[{ styleAvatar: avatarOn }]">
-          <v-list-tile-action v-if="iconOn && !avatarOn">
-            <v-icon :style="{color: isActive ? activeColor : iconColor, cursor: href ? 'pointer' : ''}">{{ icon }}</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-avatar v-if="iconOn && avatarOn">
-              <img :src="avatar" alt="">
-            </v-list-tile-avatar>
-          <v-list-tile-content>
-            <v-list-tile-title  :style="{color: isActive ? activeColor : linkColor}">
-              <span :style="{cursor: href ? 'pointer' : ''}">{{ title  }}</span>
-            </v-list-tile-title>
-          </v-list-tile-content>
-          <v-list-tile-action v-if="iconOn && avatarOn">
-            <v-icon :style="{color: isActive ? activeColor : iconColor, cursor: href ? 'pointer' : ''}">{{ icon }}</v-icon>
-          </v-list-tile-action>
-    </v-list-tile>
+  <v-list-tile 
+    :avatar="avatarOn"
+    @click.native="navigate(href)" 
+    :class="[{ styleAvatar: avatarOn }]"
+  >
+    <v-list-tile-action v-if="iconOn && !avatarOn">
+      <v-icon :style="{color: isActive ? activeColor : iconColor, cursor: href ? 'pointer' : ''}">{{ icon }}</v-icon>
+    </v-list-tile-action>
+    <v-list-tile-avatar v-if="iconOn && avatarOn">
+      <img 
+        :src="avatar" 
+        alt=""
+      >
+    </v-list-tile-avatar>
+    <v-list-tile-content>
+      <v-list-tile-title :style="{color: isActive ? activeColor : linkColor}">
+        <span :style="{cursor: href ? 'pointer' : ''}">{{ title }}</span>
+      </v-list-tile-title>
+    </v-list-tile-content>
+    <v-list-tile-action v-if="iconOn && avatarOn">
+      <v-icon :style="{color: isActive ? activeColor : iconColor, cursor: href ? 'pointer' : ''}">{{ icon }}</v-icon>
+    </v-list-tile-action>
+  </v-list-tile>
 </template>
 
 <script>
@@ -27,10 +34,12 @@ export default {
             }
         },
         href: {
-            type: String
+            type: String,
+            required: true
         },
         title: {
-            type: String
+            type: String,
+            required: true
         },
         avatar: {
             type: String,
@@ -39,7 +48,10 @@ export default {
             }
         },
         icon: {
-            type: String
+            type: String,
+            default () {
+                return null
+            }
         },
         iconColor: {
             type: String,

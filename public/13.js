@@ -331,6 +331,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -340,6 +363,10 @@ var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_3_vuex__["createNam
     mapGetters = _createNamespacedHelp.mapGetters;
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    components: {
+        ModalLayout: __WEBPACK_IMPORTED_MODULE_1__layouts_ModalLayout___default.a,
+        Basket: __WEBPACK_IMPORTED_MODULE_2__Basket_vue___default.a
+    },
     data: function data() {
         return {
             count: 0
@@ -352,9 +379,11 @@ var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_3_vuex__["createNam
             return this.dark === true;
         }
     }),
-    components: {
-        ModalLayout: __WEBPACK_IMPORTED_MODULE_1__layouts_ModalLayout___default.a,
-        Basket: __WEBPACK_IMPORTED_MODULE_2__Basket_vue___default.a
+    watch: {
+        getCount: function getCount(newValue) {
+            var self = this;
+            self.count = newValue;
+        }
     },
     mounted: function mounted() {
         var self = this;
@@ -375,12 +404,6 @@ var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_3_vuex__["createNam
             return self.$nextTick(function () {
                 return self.$router.push({ name: 'checkout' });
             });
-        }
-    },
-    watch: {
-        getCount: function getCount(newValue) {
-            var self = this;
-            self.count = newValue;
         }
     }
 });
@@ -447,6 +470,72 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__(90);
 
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -766,9 +855,7 @@ var render = function() {
                       "td",
                       { staticClass: "title text-xs-left primary--text" },
                       [
-                        _vm._v(
-                          _vm._s(props.item.name) + "\n                    "
-                        ),
+                        _vm._v(_vm._s(props.item.name) + "\n          "),
                         props.item.options !== {}
                           ? _c(
                               "span",
@@ -779,7 +866,13 @@ var render = function() {
                                     key: key,
                                     staticClass: "info--text caption"
                                   },
-                                  [_vm._v("(" + _vm._s(option) + ")")]
+                                  [
+                                    _vm._v(
+                                      "\n              (" +
+                                        _vm._s(option) +
+                                        ")\n            "
+                                    )
+                                  ]
                                 )
                               })
                             )
@@ -853,7 +946,11 @@ var render = function() {
                                 attrs: { slot: "input" },
                                 slot: "input"
                               },
-                              [_vm._v("Update Qty")]
+                              [
+                                _vm._v(
+                                  "\n              Update Qt\n            y"
+                                )
+                              ]
                             ),
                             _vm._v(" "),
                             _c("v-text-field", {
@@ -915,11 +1012,11 @@ var render = function() {
                   var pageStop = ref.pageStop
                   return [
                     _vm._v(
-                      "\n                From " +
+                      "\n        From " +
                         _vm._s(pageStart) +
                         " to " +
                         _vm._s(pageStop) +
-                        "\n            "
+                        "\n      "
                     )
                   ]
                 }
@@ -948,14 +1045,14 @@ var render = function() {
                   _c(
                     "v-icon",
                     { staticClass: "white--text", attrs: { left: "" } },
-                    [_vm._v("fa-percent")]
+                    [_vm._v("\n          fa-percent\n        ")]
                   ),
                   _vm._v(
-                    " Tax : " +
+                    " \n        Tax : " +
                       _vm._s(_vm.currency) +
                       " " +
                       _vm._s(_vm.tax) +
-                      "\n                "
+                      "\n      "
                   )
                 ],
                 1
@@ -975,14 +1072,14 @@ var render = function() {
                   _c(
                     "v-icon",
                     { staticClass: "white--text", attrs: { left: "" } },
-                    [_vm._v("shopping_basket")]
+                    [_vm._v("\n          shopping_basket\n        ")]
                   ),
                   _vm._v(
-                    " Subtotal : " +
+                    "\n        Subtotal : " +
                       _vm._s(_vm.currency) +
                       " " +
                       _vm._s(_vm.subtotal) +
-                      "\n                "
+                      "\n      "
                   )
                 ],
                 1
@@ -1005,14 +1102,14 @@ var render = function() {
                   _c(
                     "v-icon",
                     { staticClass: "white--text", attrs: { left: "" } },
-                    [_vm._v("fa-money")]
+                    [_vm._v("\n          fa-money\n        ")]
                   ),
                   _vm._v(
-                    " Total : " +
+                    " \n        Total : " +
                       _vm._s(_vm.currency) +
                       " " +
                       _vm._s(_vm.total) +
-                      "\n                "
+                      "\n      "
                   )
                 ],
                 1
@@ -1090,7 +1187,7 @@ var render = function() {
                       }
                     },
                     [
-                      _vm._v("Checkout"),
+                      _vm._v("\n        Checkout\n        "),
                       _c("v-icon", { attrs: { right: "" } }, [
                         _vm._v("payment")
                       ])
@@ -1107,7 +1204,7 @@ var render = function() {
                         }
                       }
                     },
-                    [_vm._v("Close")]
+                    [_vm._v("\n        Close\n      ")]
                   )
             ],
             1
