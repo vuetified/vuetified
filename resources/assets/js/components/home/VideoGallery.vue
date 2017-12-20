@@ -1,32 +1,68 @@
 <template>
-  <v-container fluid class="pa-0 ma-0">
-      <v-layout row wrap>
-          <v-flex xs12 text-xs-center>
-                <h1 class="primary--text">Learn More About Iam World Wide</h1>
-              <h2 class="headline accent--text">Watch Our Video Presentations</h2>
-          </v-flex>
-      </v-layout>
-      <v-layout row justify-center>
-        <v-flex xs12 sm12 md4 lg4 xl4 v-for="(video,key) in videos" :key="key" text-xs-center pa-2>
-            <v-card>
-                <v-card-media :src="video.poster"
-                :style="{ backgroundImage: 'url(' + video.poster + ')', height: imageHeight }"
-                style="cursor:pointer;"
-                @click="changeVideo(video)"
-                >
-                </v-card-media>
-                <v-card-title style="background-color: #103050;" v-if="showVideoTitle">
-                <v-spacer></v-spacer>
-                <span class="headline white--text">{{ video.title }}</span>
-                <v-spacer></v-spacer>
-                </v-card-title>
-            </v-card>
-        </v-flex>
+  <v-container 
+    fluid 
+    class="pa-0 ma-0"
+  >
+    <v-layout 
+      row 
+      wrap
+    >
+      <v-flex 
+        xs12 
+        text-xs-center
+      >
+        <h1 class="primary--text">Learn More About Iam World Wide</h1>
+        <h2 class="headline accent--text">Watch Our Video Presentations</h2>
+      </v-flex>
     </v-layout>
-    <v-layout row wrap v-if="loaded">
-        <v-flex xs12 text-xs-center>
-            <youtube :video-id="youtube_id" :player-width="youtubeWidth" :player-height="youtubeHeight"></youtube>
-        </v-flex>
+    <v-layout 
+      row 
+      justify-center
+    >
+      <v-flex 
+        xs12 
+        sm12 
+        md4 
+        lg4 
+        xl4 
+        v-for="(video,key) in videos" 
+        :key="key" 
+        text-xs-center 
+        pa-2
+      >
+        <v-card>
+          <v-card-media 
+            :src="video.poster"
+            :style="{ backgroundImage: 'url(' + video.poster + ')', height: imageHeight }"
+            style="cursor:pointer;"
+            @click="changeVideo(video)"
+          />
+          <v-card-title 
+            style="background-color: #103050;" 
+            v-if="showVideoTitle"
+          >
+            <v-spacer/>
+            <span class="headline white--text">{{ video.title }}</span>
+            <v-spacer/>
+          </v-card-title>
+        </v-card>
+      </v-flex>
+    </v-layout>
+    <v-layout 
+      row 
+      wrap 
+      v-if="loaded"
+    >
+      <v-flex 
+        xs12 
+        text-xs-center
+      >
+        <youtube 
+          :video-id="youtube_id" 
+          :player-width="youtubeWidth" 
+          :player-height="youtubeHeight"
+        />
+      </v-flex>
     </v-layout>
   </v-container>
 </template>

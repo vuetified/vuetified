@@ -1,13 +1,26 @@
 <template>
-  <v-carousel icon="crop_square" class="primary--text">
-        <v-carousel-item  v-for="(item,i) in images" :src="item.src" :key="i">
-            <div class="headline text-xs-center">
-            <h3 class="white--text"> <span >{{ item.headline }}</span></h3>
-            <p class="white--text title" ><span >{{ item.subheader }}</span></p>
-            <v-btn class="primary white--text" @click.native.prevent="goToLink(item.buttonlink)">{{ item.buttontext }} <v-icon right dark>{{ item.icon }}</v-icon></v-btn>
-            </div>
-        </v-carousel-item>
-    </v-carousel>
+  <v-carousel 
+    icon="crop_square" 
+    class="primary--text"
+  >
+    <v-carousel-item 
+      v-for="(item,i) in images" 
+      :src="item.src" 
+      :key="i"
+    >
+      <div class="headline text-xs-center">
+        <h3 class="white--text"> <span >{{ item.headline }}</span></h3>
+        <p class="white--text title" ><span >{{ item.subheader }}</span></p>
+        <v-btn 
+          class="primary white--text" 
+          @click.native.prevent="goToLink(item.buttonlink)"
+        >
+          {{ item.buttontext }} 
+          <v-icon right dark>{{ item.icon }}</v-icon>
+        </v-btn>
+      </div>
+    </v-carousel-item>
+  </v-carousel>
 </template>
 
 <script>
@@ -22,11 +35,6 @@ export default {
             {src: '/img/parallax4.jpg', headline: 'Interested But Still Undecided?', 'subheader': 'Our Customer Service Is Open For Your Questions', 'buttontext': 'Contact Us', 'buttonlink': '/support', 'icon': 'textsms'}
         ]
     }),
-    methods: {
-        goToLink (link) {
-            this.$router.push({ path: link })
-        }
-    },
     mounted () {
         let self = this
         if (self.isLoggedIn()) {
@@ -36,7 +44,13 @@ export default {
                 }
             })
         }
+    },
+    methods: {
+        goToLink (link) {
+            this.$router.push({ path: link })
+        }
     }
+    
 }
 </script>
 
