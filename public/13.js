@@ -1,14 +1,14 @@
 webpackJsonp([13],{
 
-/***/ 638:
+/***/ 640:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(314)
+var normalizeComponent = __webpack_require__(316)
 /* script */
-var __vue_script__ = __webpack_require__(746)
+var __vue_script__ = __webpack_require__(748)
 /* template */
-var __vue_template__ = __webpack_require__(750)
+var __vue_template__ = __webpack_require__(752)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -26,7 +26,6 @@ var Component = normalizeComponent(
   __vue_module_identifier__
 )
 Component.options.__file = "resources\\assets\\js\\components\\Cart.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -38,7 +37,7 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-4b324dd2", Component.options)
   } else {
     hotAPI.reload("data-v-4b324dd2", Component.options)
-' + '  }
+  }
   module.hot.dispose(function (data) {
     disposed = true
   })
@@ -49,7 +48,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 651:
+/***/ 653:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -57,7 +56,7 @@ module.exports = Component.exports
 
 exports.__esModule = true;
 
-var _assign = __webpack_require__(654);
+var _assign = __webpack_require__(656);
 
 var _assign2 = _interopRequireDefault(_assign);
 
@@ -79,34 +78,34 @@ exports.default = _assign2.default || function (target) {
 
 /***/ }),
 
-/***/ 654:
+/***/ 656:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = { "default": __webpack_require__(655), __esModule: true };
+module.exports = { "default": __webpack_require__(657), __esModule: true };
 
 /***/ }),
 
-/***/ 655:
+/***/ 657:
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(656);
+__webpack_require__(658);
 module.exports = __webpack_require__(31).Object.assign;
 
 
 /***/ }),
 
-/***/ 656:
+/***/ 658:
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.3.1 Object.assign(target, source)
 var $export = __webpack_require__(60);
 
-$export($export.S + $export.F, 'Object', { assign: __webpack_require__(657) });
+$export($export.S + $export.F, 'Object', { assign: __webpack_require__(659) });
 
 
 /***/ }),
 
-/***/ 657:
+/***/ 659:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -115,12 +114,12 @@ $export($export.S + $export.F, 'Object', { assign: __webpack_require__(657) });
 var getKeys = __webpack_require__(91);
 var gOPS = __webpack_require__(131);
 var pIE = __webpack_require__(92);
-var toObject = __webpack_require__(315);
-var IObject = __webpack_require__(316);
+var toObject = __webpack_require__(317);
+var IObject = __webpack_require__(318);
 var $assign = Object.assign;
 
 // should work with symbols and should have deterministic property order (V8 bug)
-module.exports = !$assign || __webpack_require__(69)(function () {
+module.exports = !$assign || __webpack_require__(68)(function () {
   var A = {};
   var B = {};
   // eslint-disable-next-line no-undef
@@ -148,15 +147,15 @@ module.exports = !$assign || __webpack_require__(69)(function () {
 
 /***/ }),
 
-/***/ 689:
+/***/ 691:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(314)
+var normalizeComponent = __webpack_require__(316)
 /* script */
 var __vue_script__ = null
 /* template */
-var __vue_template__ = __webpack_require__(690)
+var __vue_template__ = __webpack_require__(692)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -174,7 +173,6 @@ var Component = normalizeComponent(
   __vue_module_identifier__
 )
 Component.options.__file = "resources\\assets\\js\\layouts\\ModalLayout.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -186,7 +184,7 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-5774f095", Component.options)
   } else {
     hotAPI.reload("data-v-5774f095", Component.options)
-' + '  }
+  }
   module.hot.dispose(function (data) {
     disposed = true
   })
@@ -197,7 +195,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 690:
+/***/ 692:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -247,28 +245,28 @@ if (false) {
 
 /***/ }),
 
-/***/ 694:
+/***/ 696:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = { "default": __webpack_require__(695), __esModule: true };
+module.exports = { "default": __webpack_require__(697), __esModule: true };
 
 /***/ }),
 
-/***/ 695:
+/***/ 697:
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(696);
+__webpack_require__(698);
 module.exports = __webpack_require__(31).Object.values;
 
 
 /***/ }),
 
-/***/ 696:
+/***/ 698:
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://github.com/tc39/proposal-object-values-entries
 var $export = __webpack_require__(60);
-var $values = __webpack_require__(697)(false);
+var $values = __webpack_require__(699)(false);
 
 $export($export.S, 'Object', {
   values: function values(it) {
@@ -279,7 +277,7 @@ $export($export.S, 'Object', {
 
 /***/ }),
 
-/***/ 697:
+/***/ 699:
 /***/ (function(module, exports, __webpack_require__) {
 
 var getKeys = __webpack_require__(91);
@@ -302,16 +300,16 @@ module.exports = function (isEntries) {
 
 /***/ }),
 
-/***/ 746:
+/***/ 748:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends__ = __webpack_require__(651);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends__ = __webpack_require__(653);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__layouts_ModalLayout__ = __webpack_require__(689);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__layouts_ModalLayout__ = __webpack_require__(691);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__layouts_ModalLayout___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__layouts_ModalLayout__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Basket_vue__ = __webpack_require__(747);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Basket_vue__ = __webpack_require__(749);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Basket_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__Basket_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vuex__ = __webpack_require__(90);
 
@@ -389,15 +387,15 @@ var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_3_vuex__["createNam
 
 /***/ }),
 
-/***/ 747:
+/***/ 749:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(314)
+var normalizeComponent = __webpack_require__(316)
 /* script */
-var __vue_script__ = __webpack_require__(748)
+var __vue_script__ = __webpack_require__(750)
 /* template */
-var __vue_template__ = __webpack_require__(749)
+var __vue_template__ = __webpack_require__(751)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -415,7 +413,6 @@ var Component = normalizeComponent(
   __vue_module_identifier__
 )
 Component.options.__file = "resources\\assets\\js\\components\\Basket.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -427,7 +424,7 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-5d9a0e06", Component.options)
   } else {
     hotAPI.reload("data-v-5d9a0e06", Component.options)
-' + '  }
+  }
   module.hot.dispose(function (data) {
     disposed = true
   })
@@ -438,14 +435,14 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 748:
+/***/ 750:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_core_js_object_values__ = __webpack_require__(694);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_core_js_object_values__ = __webpack_require__(696);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_core_js_object_values___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_core_js_object_values__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends__ = __webpack_require__(651);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends__ = __webpack_require__(653);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__(90);
 
@@ -666,7 +663,7 @@ var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["createNam
 
 /***/ }),
 
-/***/ 749:
+/***/ 751:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -1042,7 +1039,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 750:
+/***/ 752:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {

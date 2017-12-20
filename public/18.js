@@ -1,18 +1,18 @@
 webpackJsonp([18],{
 
-/***/ 649:
+/***/ 651:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(914)
+  __webpack_require__(916)
 }
-var normalizeComponent = __webpack_require__(314)
+var normalizeComponent = __webpack_require__(316)
 /* script */
-var __vue_script__ = __webpack_require__(916)
+var __vue_script__ = __webpack_require__(918)
 /* template */
-var __vue_template__ = __webpack_require__(917)
+var __vue_template__ = __webpack_require__(919)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -30,7 +30,6 @@ var Component = normalizeComponent(
   __vue_module_identifier__
 )
 Component.options.__file = "resources\\assets\\js\\pages\\NotFound.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -42,7 +41,7 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-f76e8734", Component.options)
   } else {
     hotAPI.reload("data-v-f76e8734", Component.options)
-' + '  }
+  }
   module.hot.dispose(function (data) {
     disposed = true
   })
@@ -53,7 +52,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 650:
+/***/ 652:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -72,7 +71,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(658)
+var listToStyles = __webpack_require__(660)
 
 /*
 type StyleObject = {
@@ -275,7 +274,7 @@ function applyToTag (styleElement, obj) {
 
 /***/ }),
 
-/***/ 658:
+/***/ 660:
 /***/ (function(module, exports) {
 
 /**
@@ -309,15 +308,15 @@ module.exports = function listToStyles (parentId, list) {
 
 /***/ }),
 
-/***/ 689:
+/***/ 691:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(314)
+var normalizeComponent = __webpack_require__(316)
 /* script */
 var __vue_script__ = null
 /* template */
-var __vue_template__ = __webpack_require__(690)
+var __vue_template__ = __webpack_require__(692)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -335,7 +334,6 @@ var Component = normalizeComponent(
   __vue_module_identifier__
 )
 Component.options.__file = "resources\\assets\\js\\layouts\\ModalLayout.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -347,7 +345,7 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-5774f095", Component.options)
   } else {
     hotAPI.reload("data-v-5774f095", Component.options)
-' + '  }
+  }
   module.hot.dispose(function (data) {
     disposed = true
   })
@@ -358,7 +356,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 690:
+/***/ 692:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -408,17 +406,17 @@ if (false) {
 
 /***/ }),
 
-/***/ 914:
+/***/ 916:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(915);
+var content = __webpack_require__(917);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(650)("5d68fffa", content, false);
+var update = __webpack_require__(652)("5d68fffa", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -435,10 +433,10 @@ if(false) {
 
 /***/ }),
 
-/***/ 915:
+/***/ 917:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(628)(undefined);
+exports = module.exports = __webpack_require__(630)(undefined);
 // imports
 
 
@@ -450,12 +448,12 @@ exports.push([module.i, "\n.cls-1[data-v-f76e8734] {\n  fill: #ffc541;\n}\n.cls-
 
 /***/ }),
 
-/***/ 916:
+/***/ 918:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__layouts_ModalLayout__ = __webpack_require__(689);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__layouts_ModalLayout__ = __webpack_require__(691);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__layouts_ModalLayout___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__layouts_ModalLayout__);
 //
 //
@@ -637,7 +635,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 917:
+/***/ 919:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
