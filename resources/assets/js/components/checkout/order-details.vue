@@ -1,55 +1,138 @@
 <template>
-<div>
+  <div>
     <v-layout row>
-          <v-flex xs12 sm12 md12  lg12  xl12>
-            <v-text-field
-              class="primary--text"
-              label="Total Price"
-              v-model="subtotal"
-              readonly
-              prepend-icon="fa-shopping-bag"
-            ></v-text-field>
-          </v-flex>
-        </v-layout>
-        <v-layout row v-if="parseFloat(tax) > 0">
-          <v-flex xs12 sm12 md12  lg12  xl12>
-            <v-text-field
-              class="primary--text"
-              label="Tax"
-              v-model="tax"
-              readonly
-              prepend-icon="fa-percent"
-            ></v-text-field>
-          </v-flex>
-        </v-layout>
-        <v-layout row v-if="courier && courier.details.rate > 0">
-            <v-flex xs12 sm12 md12  lg12  xl12>
-            <v-text-field
-              class="primary--text"
-              label="Shipping Fee"
-              :value="courier.details.rate"
-              readonly
-              prepend-icon="local_shipping"
-            ></v-text-field>
-          </v-flex>
-        </v-layout>
-        <v-layout row>
-            <v-flex xs12 sm12 md12  lg12  xl12>
-            <v-text-field
-              class="primary--text"
-              label="Total Amount"
-              :value="total_amount"
-              readonly
-              prepend-icon="fa-money"
-            ></v-text-field>
-          </v-flex>
-        </v-layout>
-        <v-btn v-if="courier && courier.slug ==='paypal'" @click.native="paypalcallback()" :loading="checkOutForm.busy" :disabled="errors.any()"  :class="{primary: !checkOutForm.busy, error: checkOutForm.busy}">Pay Via Paypal <v-icon right dark>fa-paypal</v-icon></v-btn>
-        <v-btn v-else-if="courier && courier.slug ==='bitcoin'" @click.native="bitcoincallback()" :loading="checkOutForm.busy" :disabled="errors.any()"  :class="{primary: !checkOutForm.busy, error: checkOutForm.busy}">Pay Via Bitcoin <v-icon right dark>fa-btc</v-icon></v-btn>
-        <v-btn v-else-if="courier && courier.slug ==='credit-card'" @click.native="stripecallback()" :loading="checkOutForm.busy" :disabled="errors.any()"  :class="{primary: !checkOutForm.busy, error: checkOutForm.busy}">Pay Via Stripe <v-icon right dark>fa-cc-stripe</v-icon></v-btn>
-        <v-btn v-else @click.native="submit()" :loading="checkOutForm.busy" :disabled="errors.any()"  :class="{primary: !checkOutForm.busy, error: checkOutForm.busy}">Submit <v-icon right dark>send</v-icon></v-btn>
-        <v-btn :disabled="errors.any()" outline color="primary" @click.native="back()">Back</v-btn>
-</div>
+      <v-flex 
+        xs12 
+        sm12 
+        md12 
+        lg12 
+        xl12
+      >
+        <v-text-field
+          class="primary--text"
+          label="Total Price"
+          v-model="subtotal"
+          readonly
+          prepend-icon="fa-shopping-bag"
+        />
+      </v-flex>
+    </v-layout>
+    <v-layout 
+      row 
+      v-if="parseFloat(tax) > 0"
+    >
+      <v-flex 
+        xs12 
+        sm12 
+        md12 
+        lg12 
+        xl12
+      >
+        <v-text-field
+          class="primary--text"
+          label="Tax"
+          v-model="tax"
+          readonly
+          prepend-icon="fa-percent"
+        />
+      </v-flex>
+    </v-layout>
+    <v-layout 
+      row 
+      v-if="courier && courier.details.rate > 0"
+    >
+      <v-flex 
+        xs12 
+        sm12 
+        md12 
+        lg12 
+        xl12
+      >
+        <v-text-field
+          class="primary--text"
+          label="Shipping Fee"
+          :value="courier.details.rate"
+          readonly
+          prepend-icon="local_shipping"
+        />
+      </v-flex>
+    </v-layout>
+    <v-layout row>
+      <v-flex 
+        xs12 
+        sm12 
+        md12 
+        lg12 
+        xl12
+      >
+        <v-text-field
+          class="primary--text"
+          label="Total Amount"
+          :value="total_amount"
+          readonly
+          prepend-icon="fa-money"
+        />
+      </v-flex>
+    </v-layout>
+    <v-btn 
+      v-if="courier && courier.slug ==='paypal'" 
+      @click.native="paypalcallback()" 
+      :loading="checkOutForm.busy" 
+      :disabled="errors.any()" 
+      :class="{primary: !checkOutForm.busy, error: checkOutForm.busy}"
+    >
+      Pay Via Paypal 
+      <v-icon 
+        right 
+        dark
+      >
+        fa-paypal
+      </v-icon>
+    </v-btn>
+    <v-btn 
+      v-else-if="courier && courier.slug ==='bitcoin'" 
+      @click.native="bitcoincallback()" 
+      :loading="checkOutForm.busy" 
+      :disabled="errors.any()" 
+      :class="{primary: !checkOutForm.busy, error: checkOutForm.busy}"
+    >
+      Pay Via Bitcoin 
+      <v-icon right dark>
+        fa-btc
+      </v-icon>
+    </v-btn>
+    <v-btn 
+      v-else-if="courier && courier.slug ==='credit-card'" 
+      @click.native="stripecallback()" 
+      :loading="checkOutForm.busy" 
+      :disabled="errors.any()" 
+      :class="{primary: !checkOutForm.busy, error: checkOutForm.busy}"
+    >
+      Pay Via Stripe 
+      <v-icon right dark>
+        fa-cc-stripe
+      </v-icon>
+    </v-btn>
+    <v-btn 
+      v-else @click.native="submit()" 
+      :loading="checkOutForm.busy" 
+      :disabled="errors.any()" 
+      :class="{primary: !checkOutForm.busy, error: checkOutForm.busy}"
+    >
+      Submit 
+      <v-icon right dark>
+        send
+      </v-icon>
+    </v-btn>
+    <v-btn 
+      :disabled="errors.any()" 
+      outline 
+      color="primary" 
+      @click.native="back()"
+    >
+      Back
+    </v-btn>
+  </div>
 
 </template>
 

@@ -1,60 +1,80 @@
 <template>
-<v-card flat>
+  <v-card flat>
     <v-card-text>
-    <v-container fluid>
-        <v-layout row wrap>
-        <v-flex xs12>
+      <v-container fluid>
+        <v-layout 
+          row 
+          wrap
+        >
+          <v-flex xs12>
             <form>
-            <v-select
-            label="Select"
-            v-bind:items="getGateways"
-            v-model="mop"
-            item-text="name"
-            item-value="slug"
-            max-height="400"
-            hint="Payment Options"
-            persistent-hint
-            v-validate="'required'"
-            data-vv-name="mop"
-            :return-object="true"
-            :error-messages="errors.collect('mop')"
-            prepend-icon="fa-money"
-            >
-            <template slot="selection" slot-scope="data">
-                <v-chip
-                @input="data.parent.selectItem(data.item)"
-                :selected="data.selected"
-                :key="JSON.stringify(data.item)"
+              <v-select
+                label="Select"
+                :items="getGateways"
+                v-model="mop"
+                item-text="name"
+                item-value="slug"
+                max-height="400"
+                hint="Payment Options"
+                persistent-hint
+                v-validate="'required'"
+                data-vv-name="mop"
+                :return-object="true"
+                :error-messages="errors.collect('mop')"
+                prepend-icon="fa-money"
+              >
+                <template 
+                  slot="selection" 
+                  slot-scope="data"
                 >
-                <v-avatar>
-                    <img :src="data.item.avatar">
-                </v-avatar>
-                {{ data.item.name }}
-                </v-chip>
-            </template>
-            <template slot="item" slot-scope="data">
-                <template v-if="typeof data.item !== 'object'">
-                <v-list-tile-content v-text="data.item"></v-list-tile-content>
+                  <v-chip
+                    @input="data.parent.selectItem(data.item)"
+                    :selected="data.selected"
+                    :key="JSON.stringify(data.item)"
+                  >
+                    <v-avatar>
+                      <img :src="data.item.avatar">
+                    </v-avatar>
+                    {{ data.item.name }}
+                  </v-chip>
                 </template>
-                <template v-else>
-                <v-list-tile-avatar>
-                    <img v-bind:src="data.item.avatar"/>
-                </v-list-tile-avatar>
-                <v-list-tile-content>
-                    <v-list-tile-title v-html="data.item.name"></v-list-tile-title>
-                    <v-list-tile-sub-title v-html="data.item.group"></v-list-tile-sub-title>
-                </v-list-tile-content>
+                <template 
+                  slot="item" 
+                  slot-scope="data"
+                >
+                  <template v-if="typeof data.item !== 'object'">
+                    <v-list-tile-content v-text="data.item"/>
+                  </template>
+                  <template v-else>
+                    <v-list-tile-avatar>
+                      <img :src="data.item.avatar">
+                    </v-list-tile-avatar>
+                    <v-list-tile-content>
+                      <v-list-tile-title v-html="data.item.name"/>
+                      <v-list-tile-sub-title v-html="data.item.group"/>
+                    </v-list-tile-content>
+                  </template>
                 </template>
-            </template>
-            </v-select>
-            <v-btn color="primary" @click.native="forward()">Continue</v-btn>
-            <v-btn outline color="primary" @click.native="back()">Back</v-btn>
+              </v-select>
+              <v-btn 
+                color="primary" 
+                @click.native="forward()"
+              >
+                Continue
+              </v-btn>
+              <v-btn 
+                outline 
+                color="primary" 
+                @click.native="back()"
+              >
+                Back
+              </v-btn>
             </form>
-        </v-flex>
+          </v-flex>
         </v-layout>
-    </v-container>
+      </v-container>
     </v-card-text>
-</v-card>
+  </v-card>
 </template>
 
 <script>
