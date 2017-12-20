@@ -52,7 +52,10 @@
         "route": true,
         "App": true,
         "AppForm": true,
-        "moment": true
+        "moment": true,
+        "Bus": true,
+        "jQuery": true,
+        "$": true
     },
     "parserOptions": {
         "parser": "babel-eslint",

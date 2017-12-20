@@ -1,18 +1,29 @@
 <template>
-    <v-dialog v-model="gallery_modal" fullscreen transition="dialog-bottom-transition">
-        <v-card :light="true">
-        <v-toolbar  color="accent">
-            <v-btn icon @click="closeGalleryModal" class="error--text">
-            <v-icon>close</v-icon>
-            </v-btn>
-            <v-spacer></v-spacer>
-            <v-toolbar-title class="primary--text">Upload Product Gallery Images</v-toolbar-title>
-            <v-spacer></v-spacer>
-        </v-toolbar>
-        <multi-uploads :file-key="fileKey" :post-url="postUrl"></multi-uploads>
+  <v-dialog 
+    v-model="gallery_modal" 
+    fullscreen 
+    transition="dialog-bottom-transition"
+  >
+    <v-card :light="true">
+      <v-toolbar color="accent">
+        <v-btn 
+          icon 
+          @click="closeGalleryModal" 
+          class="error--text"
+        >
+          <v-icon>close</v-icon>
+        </v-btn>
+        <v-spacer/>
+        <v-toolbar-title class="primary--text">Upload Product Gallery Images</v-toolbar-title>
+        <v-spacer/>
+      </v-toolbar>
+      <multi-uploads 
+        :file-key="fileKey" 
+        :post-url="postUrl"
+      />
         </v-container>
-        </v-card>
-    </v-dialog>
+    </v-card>
+  </v-dialog>
 </template>
 
 <script>

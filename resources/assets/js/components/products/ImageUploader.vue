@@ -1,18 +1,30 @@
 <template>
-<v-dialog v-model="image_modal" fullscreen transition="dialog-bottom-transition">
+  <v-dialog 
+    v-model="image_modal" 
+    fullscreen 
+    transition="dialog-bottom-transition"
+  >
     <v-card :light="true">
-    <v-toolbar  color="accent">
-        <v-btn icon @click="closeImageModal" class="error--text">
-        <v-icon>close</v-icon>
+      <v-toolbar color="accent">
+        <v-btn 
+          icon 
+          @click="closeImageModal" 
+          class="error--text"
+        >
+          <v-icon>close</v-icon>
         </v-btn>
-        <v-spacer></v-spacer>
+        <v-spacer/>
         <v-toolbar-title class="primary--text">Upload Featured Image</v-toolbar-title>
-        <v-spacer></v-spacer>
-    </v-toolbar>
-    <uploads :file-key="fileKey" :post-url="postUrl" :single="true"></uploads>
+        <v-spacer/>
+      </v-toolbar>
+      <uploads 
+        :file-key="fileKey" 
+        :post-url="postUrl" 
+        :single="true"
+      />
     </v-container>
     </v-card>
-</v-dialog>
+  </v-dialog>
 </template>
 
 <script>
