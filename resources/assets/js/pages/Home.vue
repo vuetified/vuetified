@@ -1,10 +1,10 @@
 <template>
   <main-layout :class="[contentClass]">
-    <carousel></carousel>
-    <show-case></show-case>
-    <video-gallery></video-gallery>
-    <logo-slider></logo-slider>
-    <footer-note></footer-note>
+    <carousel/>
+    <show-case/>
+    <video-gallery/>
+    <logo-slider/>
+    <footer-note/>
   </main-layout>
 </template>
 
@@ -18,14 +18,6 @@ import FooterNote from '../partials/FooterNote'
 import Theme from '../mixins/theme'
 
 export default {
-    mixins: [Theme],
-    data: () => ({
-        contentClass: { 'white': true, 'accent--text': true },
-        backgroundcolor: 'white'
-    }),
-    mounted () {
-        Bus.$emit('footer-content-visible', true)
-    },
     components: {
         MainLayout,
         ShowCase,
@@ -33,6 +25,14 @@ export default {
         FooterNote,
         VideoGallery,
         LogoSlider
+    },
+    mixins: [Theme],
+    data: () => ({
+        contentClass: { 'white': true, 'accent--text': true },
+        backgroundcolor: 'white'
+    }),
+    mounted () {
+        Bus.$emit('footer-content-visible', true)
     }
 }
 </script>

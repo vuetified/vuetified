@@ -666,6 +666,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3289,6 +3297,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3299,12 +3320,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    mixins: [__WEBPACK_IMPORTED_MODULE_6__mixins_theme__["a" /* default */]],
-    data: function data() {
-        return {
-            contentClass: { 'grey': true, 'lighten-4': true, 'accent--text': true }
-        };
-    },
     components: {
         MainLayout: __WEBPACK_IMPORTED_MODULE_0__layouts_Main_vue___default.a,
         Account: __WEBPACK_IMPORTED_MODULE_1__components_settings_Account_vue___default.a,
@@ -3312,6 +3327,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         ContactDetails: __WEBPACK_IMPORTED_MODULE_3__components_settings_ContactDetails_vue___default.a,
         Profile: __WEBPACK_IMPORTED_MODULE_4__components_settings_Profile_vue___default.a,
         SocialLinks: __WEBPACK_IMPORTED_MODULE_5__components_settings_SocialLinks_vue___default.a
+    },
+    mixins: [__WEBPACK_IMPORTED_MODULE_6__mixins_theme__["a" /* default */]],
+    data: function data() {
+        return {
+            contentClass: { 'grey': true, 'lighten-4': true, 'accent--text': true }
+        };
     },
     computed: {
         /* need to logout to reflect changes in account */

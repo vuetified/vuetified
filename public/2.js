@@ -670,6 +670,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -5687,6 +5695,69 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -5699,7 +5770,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    mixins: [__WEBPACK_IMPORTED_MODULE_3__mixins_theme__["a" /* default */], __WEBPACK_IMPORTED_MODULE_4__mixins_acl__["a" /* default */]],
     components: {
         MainLayout: __WEBPACK_IMPORTED_MODULE_2__layouts_Main_vue___default.a,
         DashPanels: __WEBPACK_IMPORTED_MODULE_5__partials_DashPanels_vue___default.a,
@@ -5709,6 +5779,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         ShipmentDetails: __WEBPACK_IMPORTED_MODULE_9__components_dashboard_ShipmentDetails_vue___default.a,
         FileUploader: __WEBPACK_IMPORTED_MODULE_10__components_dashboard_FileUploader_vue___default.a
     },
+    mixins: [__WEBPACK_IMPORTED_MODULE_3__mixins_theme__["a" /* default */], __WEBPACK_IMPORTED_MODULE_4__mixins_acl__["a" /* default */]],
     data: function data() {
         return {
             contentClass: { 'grey': true, 'lighten-4': true, 'accent--text': true },
@@ -10772,9 +10843,9 @@ var render = function() {
                                 1
                               ),
                               _vm._v(
-                                "\n                  " +
+                                "\n              " +
                                   _vm._s(props.item.id) +
-                                  "\n              "
+                                  "\n            "
                               )
                             ],
                             1
@@ -11046,7 +11117,9 @@ var render = function() {
                                               },
                                               [
                                                 _vm._v(
-                                                  "(" + _vm._s(option) + ")"
+                                                  "\n                    (" +
+                                                    _vm._s(option) +
+                                                    ")\n                  "
                                                 )
                                               ]
                                             )
@@ -11108,11 +11181,11 @@ var render = function() {
                       var pageStop = ref.pageStop
                       return [
                         _vm._v(
-                          "\n              From " +
+                          "\n          From " +
                             _vm._s(pageStart) +
                             " to " +
                             _vm._s(pageStop) +
-                            "\n          "
+                            "\n        "
                         )
                       ]
                     }
@@ -11189,7 +11262,11 @@ var render = function() {
                                     }
                                   }
                                 },
-                                [_vm._v("Save")]
+                                [
+                                  _vm._v(
+                                    "\n                Save\n              "
+                                  )
+                                ]
                               )
                             ],
                             1
@@ -11230,9 +11307,9 @@ var render = function() {
                                       },
                                       [
                                         _vm._v(
-                                          "\n                      " +
+                                          "\n                  " +
                                             _vm._s(tab.name) +
-                                            "\n                      "
+                                            "\n                "
                                         )
                                       ]
                                     )

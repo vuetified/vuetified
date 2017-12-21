@@ -670,6 +670,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3506,6 +3514,94 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3516,10 +3612,15 @@ var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_6_vuex__["createNam
     mapActions = _createNamespacedHelp.mapActions;
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['slug'],
-    mixins: [__WEBPACK_IMPORTED_MODULE_4__mixins_theme__["a" /* default */], __WEBPACK_IMPORTED_MODULE_5__mixins_acl__["a" /* default */]],
     components: {
         MainLayout: __WEBPACK_IMPORTED_MODULE_3__layouts_Main_vue___default.a
+    },
+    mixins: [__WEBPACK_IMPORTED_MODULE_4__mixins_theme__["a" /* default */], __WEBPACK_IMPORTED_MODULE_5__mixins_acl__["a" /* default */]],
+    props: {
+        slug: {
+            type: String,
+            required: true
+        }
     },
     data: function data() {
         return {
@@ -3691,7 +3792,7 @@ var render = function() {
                           attrs: { slot: "divider", color: "teal" },
                           slot: "divider"
                         },
-                        [_vm._v("forward")]
+                        [_vm._v("\n          forward\n        ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -3703,7 +3804,7 @@ var render = function() {
                             to: "/"
                           }
                         },
-                        [_vm._v("\n              Home\n              ")]
+                        [_vm._v("\n          Home\n        ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -3715,7 +3816,7 @@ var render = function() {
                             to: "/products"
                           }
                         },
-                        [_vm._v("\n              Products\n              ")]
+                        [_vm._v("\n          Products\n        ")]
                       ),
                       _vm._v(" "),
                       _c("v-breadcrumbs-item", { attrs: { disabled: true } }, [
@@ -3793,9 +3894,9 @@ var render = function() {
                                     [
                                       _c("v-spacer"),
                                       _vm._v(
-                                        "\n                              " +
+                                        "\n                " +
                                           _vm._s(_vm.titleCase(_vm.slug)) +
-                                          "\n                              "
+                                          "\n                "
                                       ),
                                       _c("v-spacer")
                                     ],
@@ -4002,11 +4103,13 @@ var render = function() {
                                         },
                                         [
                                           _vm._v(
-                                            _vm._s(_vm.currency) +
+                                            "\n                  " +
+                                              _vm._s(_vm.currency) +
                                               _vm._s(
                                                 _vm.product.price *
                                                   _vm.product.qty
-                                              )
+                                              ) +
+                                              "\n                "
                                           )
                                         ]
                                       ),
@@ -4027,7 +4130,9 @@ var render = function() {
                                           }
                                         },
                                         [
-                                          _vm._v("Add To Cart "),
+                                          _vm._v(
+                                            "\n                  Add To Cart \n                  "
+                                          ),
                                           _c("v-icon", [
                                             _vm._v("shopping_cart")
                                           ])
@@ -4086,7 +4191,7 @@ var render = function() {
                                     [
                                       _c("v-spacer"),
                                       _vm._v(
-                                        "\n                              Product Details:\n                              "
+                                        "\n                Product Details:\n                "
                                       ),
                                       _c("v-spacer")
                                     ],

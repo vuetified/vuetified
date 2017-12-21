@@ -772,6 +772,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -788,7 +801,6 @@ var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_9_vuex__["createNam
     mapMutations = _createNamespacedHelp.mapMutations;
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    mixins: [__WEBPACK_IMPORTED_MODULE_8__mixins_theme__["a" /* default */]],
     components: {
         ModalLayout: __WEBPACK_IMPORTED_MODULE_1__layouts_ModalLayout_vue___default.a,
         OrderDetails: __WEBPACK_IMPORTED_MODULE_2__components_checkout_order_details_vue___default.a,
@@ -798,6 +810,7 @@ var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_9_vuex__["createNam
         SuccessOrder: __WEBPACK_IMPORTED_MODULE_6__components_checkout_success_order_vue___default.a,
         DeliveryMethod: __WEBPACK_IMPORTED_MODULE_7__components_checkout_delivery_method_vue___default.a
     },
+    mixins: [__WEBPACK_IMPORTED_MODULE_8__mixins_theme__["a" /* default */]],
     data: function data() {
         return {
             footerClass: { 'primary--text': true, 'accent': true }
@@ -813,19 +826,20 @@ var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_9_vuex__["createNam
             }
         }
     }),
-    methods: __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends___default()({}, mapMutations(['setStep', 'setSteps']), {
-        redirectBack: function redirectBack() {
-            var self = this;
-            self.$router.push({ path: '/cart' });
-        }
-    }),
     mounted: function mounted() {
         var self = this;
         /* redirect if no Item in the Cart */
         if (self.$store.getters['cart/getCount'] === 0) {
             self.$router.push({ path: '/' });
         }
-    }
+    },
+
+    methods: __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends___default()({}, mapMutations(['setStep', 'setSteps']), {
+        redirectBack: function redirectBack() {
+            var self = this;
+            self.$router.push({ path: '/cart' });
+        }
+    })
 });
 
 /***/ }),
@@ -3760,7 +3774,7 @@ var render = function() {
           _c(
             "v-toolbar-title",
             { staticClass: "text-xs-center primary--text" },
-            [_vm._v("\n            Checkout Order Form\n        ")]
+            [_vm._v("\n      Checkout Order Form\n    ")]
           ),
           _vm._v(" "),
           _c("v-spacer")

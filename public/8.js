@@ -670,6 +670,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3260,7 +3268,7 @@ exports = module.exports = __webpack_require__(630)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -3393,11 +3401,77 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    components: {
+        MainLayout: __WEBPACK_IMPORTED_MODULE_2__layouts_Main_vue___default.a
+    },
     mixins: [__WEBPACK_IMPORTED_MODULE_3__mixins_theme__["a" /* default */]],
     data: function data() {
         return {
@@ -3411,9 +3485,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             contact_details: App.sponsor.contact_details,
             contactForm: new AppForm(App.forms.contactForm)
         };
-    },
-    components: {
-        MainLayout: __WEBPACK_IMPORTED_MODULE_2__layouts_Main_vue___default.a
     },
     methods: {
         resetForm: function resetForm() {
@@ -3519,7 +3590,7 @@ var render = function() {
                       attrs: { slot: "divider", color: "teal" },
                       slot: "divider"
                     },
-                    [_vm._v("forward")]
+                    [_vm._v("\n          forward\n        ")]
                   ),
                   _vm._v(" "),
                   _c(
@@ -3531,7 +3602,7 @@ var render = function() {
                         to: "/"
                       }
                     },
-                    [_vm._v("\n              Home\n              ")]
+                    [_vm._v("\n          Home\n        ")]
                   ),
                   _vm._v(" "),
                   _c("v-breadcrumbs-item", { attrs: { disabled: true } }, [
@@ -3749,7 +3820,9 @@ var render = function() {
                                           on: { click: _vm.submit }
                                         },
                                         [
-                                          _vm._v("Send"),
+                                          _vm._v(
+                                            "\n                    Send\n                    "
+                                          ),
                                           _c(
                                             "v-icon",
                                             { attrs: { right: "" } },

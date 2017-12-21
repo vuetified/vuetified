@@ -670,6 +670,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3260,7 +3268,7 @@ exports = module.exports = __webpack_require__(630)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -3355,13 +3363,63 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['query'],
+    components: {
+        MainLayout: __WEBPACK_IMPORTED_MODULE_2__layouts_Main_vue___default.a
+    },
     mixins: [__WEBPACK_IMPORTED_MODULE_3__mixins_theme__["a" /* default */]],
+    props: {
+        query: {
+            type: Object,
+            required: true
+        }
+    },
     data: function data() {
         return {
             contentClass: { 'grey': true, 'lighten-4': true, 'accent--text': true },
@@ -3393,6 +3451,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var self = this;
             return self.meta.total === self.meta.per_page;
         }
+    },
+    watch: {
+        page: function page(newValue) {
+            var self = this;
+            self.page = newValue;
+            self.$router.push({ name: 'category.index', query: { page: newValue } });
+        },
+
+        categories: {
+            handler: function handler() {
+                console.log('Categories Array Updated');
+            },
+            deep: true
+        },
+        '$route': 'loadCategories'
     },
     created: function created() {
         var self = this;
@@ -3481,24 +3554,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var self = this;
             self.$router.push({ name: 'category.show', params: { slug: slug } });
         }
-    },
-    components: {
-        MainLayout: __WEBPACK_IMPORTED_MODULE_2__layouts_Main_vue___default.a
-    },
-    watch: {
-        page: function page(newValue) {
-            var self = this;
-            self.page = newValue;
-            self.$router.push({ name: 'category.index', query: { page: newValue } });
-        },
-
-        categories: {
-            handler: function handler() {
-                console.log('Categories Array Updated');
-            },
-            deep: true
-        },
-        '$route': 'loadCategories'
     }
 });
 
@@ -3536,7 +3591,7 @@ var render = function() {
                       attrs: { slot: "divider", color: "teal" },
                       slot: "divider"
                     },
-                    [_vm._v("forward")]
+                    [_vm._v("\n          forward\n        ")]
                   ),
                   _vm._v(" "),
                   _c(
@@ -3548,7 +3603,7 @@ var render = function() {
                         to: "/"
                       }
                     },
-                    [_vm._v("\n                  Home\n              ")]
+                    [_vm._v("\n          Home\n        ")]
                   ),
                   _vm._v(" "),
                   _c("v-breadcrumbs-item", { attrs: { disabled: true } }, [

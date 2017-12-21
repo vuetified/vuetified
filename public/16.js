@@ -329,6 +329,75 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -633,7 +702,9 @@ var render = function() {
                               }
                             },
                             [
-                              _vm._v("Sign In "),
+                              _vm._v(
+                                "\n              Sign In \n              "
+                              ),
                               _c("v-icon", { attrs: { right: "" } }, [
                                 _vm._v("fa-sign-in")
                               ])
@@ -676,7 +747,11 @@ var render = function() {
                                 }
                               }
                             },
-                            [_vm._v("No Account Yet?")]
+                            [
+                              _vm._v(
+                                "\n              No Account Yet?\n            "
+                              )
+                            ]
                           )
                         ],
                         1
@@ -700,7 +775,11 @@ var render = function() {
                                 }
                               }
                             },
-                            [_vm._v("Forgot Password?")]
+                            [
+                              _vm._v(
+                                "\n              Forgot Password?\n            "
+                              )
+                            ]
                           )
                         ],
                         1

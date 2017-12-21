@@ -233,6 +233,70 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -241,7 +305,12 @@ var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["createNam
     mapActions = _createNamespacedHelp.mapActions;
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['token'],
+    props: {
+        token: {
+            type: String,
+            required: true
+        }
+    },
     data: function data() {
         return {
             passwordResetForm: new AppForm(App.forms.passwordResetForm),
@@ -334,7 +403,7 @@ var render = function() {
         adaptive: true,
         width: "100%",
         height: "100%",
-        clickToClose: false
+        "click-to-close": false
       }
     },
     [
@@ -390,7 +459,7 @@ var render = function() {
                     },
                     [
                       _c("v-icon", { attrs: { right: "", dark: "" } }, [
-                        _vm._v("fa-home")
+                        _vm._v("\n            fa-home\n          ")
                       ])
                     ],
                     1
@@ -619,7 +688,11 @@ var render = function() {
                               block: ""
                             }
                           },
-                          [_vm._v("Reset Password")]
+                          [
+                            _vm._v(
+                              "\n              Reset Password\n            "
+                            )
+                          ]
                         )
                       ],
                       1

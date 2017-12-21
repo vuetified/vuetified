@@ -1,17 +1,25 @@
 <template>
- <v-app :dark="App.theme.dark" v-cloak>
-    <left-side-bar></left-side-bar>
-    <app-nav-bar></app-nav-bar>
+  <v-app 
+    :dark="App.theme.dark" 
+    v-cloak
+  >
+    <left-side-bar/>
+    <app-nav-bar/>
     <main>
-    <!-- added fluid and pa-0 ma-0 for full screen pages -->
-      <v-container transition="slide-x-transition" fluid pa-0 ma-0>
-          <slot></slot>
+      <!-- added fluid and pa-0 ma-0 for full screen pages -->
+      <v-container 
+        transition="slide-x-transition" 
+        fluid 
+        pa-0
+        ma-0
+      >
+        <slot/>
       </v-container>
     </main>
     <!-- <shopping-cart></shopping-cart> -->
-    <fab-button></fab-button>
-    <cookie-law></cookie-law>
-    <app-footer></app-footer>
+    <fab-button/>
+    <cookie-law/>
+    <app-footer/>
   </v-app>
 </template>
 

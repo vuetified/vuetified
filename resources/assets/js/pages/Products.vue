@@ -1,75 +1,117 @@
 <template>
   <main-layout :class="[contentClass]">
-      <v-container fluid grid-list-md style="padding-top:100px;">
-        <v-layout row wrap>
-            <v-breadcrumbs light>
-                <v-icon slot="divider" color="teal">forward</v-icon>
-                <v-breadcrumbs-item
-                active-class="primary--text"
-                :disabled="false"
-                to="/"
-                >
-                    Home
-                </v-breadcrumbs-item>
-                <v-breadcrumbs-item
-                :disabled="true"
-                >
-                    <span class="blue-grey--text">Products</span>
-                </v-breadcrumbs-item>
-            </v-breadcrumbs>
-        </v-layout>
-        <v-layout row wrap>
-          <v-flex
-            xs12 sm12 md3 lg3 xl3
-            v-for="(product,index) in products"
-            :key="product.slug" :index="index"
+    <v-container 
+      fluid 
+      grid-list-md 
+      style="padding-top:100px;"
+    >
+      <v-layout 
+        row 
+        wrap
+      >
+        <v-breadcrumbs light>
+          <v-icon 
+            slot="divider" 
+            color="teal"
           >
-            <v-card>
+            forward
+          </v-icon>
+          <v-breadcrumbs-item
+            active-class="primary--text"
+            :disabled="false"
+            to="/"
+          >
+            Home
+          </v-breadcrumbs-item>
+          <v-breadcrumbs-item
+            :disabled="true"
+          >
+            <span class="blue-grey--text">Products</span>
+          </v-breadcrumbs-item>
+        </v-breadcrumbs>
+      </v-layout>
+      <v-layout 
+        row 
+        wrap
+      >
+        <v-flex
+          xs12 
+          sm12
+          md3 
+          lg3 
+          xl3
+          v-for="(product,index) in products"
+          :key="product.slug" 
+          :index="index"
+        >
+          <v-card>
             <v-card-media
-                :src="product.image"
-                height="200px"
+              :src="product.image"
+              height="200px"
             >
-                <v-container fill-height fluid>
-                    <v-layout fill-height>
-                        <v-flex xs12 align-end flexbox>
-                        <span class="body-2 white--text primary" v-text="product.name"></span>
-                        </v-flex>
-                    </v-layout>
-                </v-container>
+              <v-container 
+                fill-height 
+                fluid
+              >
+                <v-layout fill-height>
+                  <v-flex 
+                    xs12 
+                    align-end 
+                    flexbox
+                  >
+                    <span 
+                      class="body-2 white--text primary" 
+                      v-text="product.name"
+                    />
+                  </v-flex>
+                </v-layout>
+              </v-container>
             </v-card-media>
-              <v-card-actions class="accent">
-                <span class="body-2">{{product.price | currency(currency)}}</span>
+            <v-card-actions class="accent">
+              <span class="body-2">{{ product.price | currency(currency) }}</span>
 
-                <v-spacer></v-spacer>
-                <v-btn flat icon color="white" slot="activator" @click.native="showProduct(product.slug)">
+              <v-spacer/>
+              <v-btn 
+                flat 
+                icon 
+                color="white" 
+                slot="activator" 
+                @click.native="showProduct(product.slug)"
+              >
                 <v-icon>fa-shopping-bag </v-icon>
-                </v-btn>
-                <!-- Add Other Action buttons Here -->
-              </v-card-actions>
-            </v-card>
-          </v-flex>
-        </v-layout>
-        <v-layout v-if="!noPagination" row wrap>
-            <v-flex xs12>
-                <div class="text-xs-center">
-                    <v-pagination
-                    :length="length"
-                    v-model.number="page"
-                    circle
-                    >
-                    </v-pagination>
-                </div>
-            </v-flex>
-            <v-flex xs12 height="50px">
-            </v-flex>
-        </v-layout>
-        <!-- If No Pagination Then Add 50px Height -->
-        <v-layout v-else row wrap height="50px">
-
-        </v-layout>
-      </v-container>
-    </v-flex>
-  </v-layout>
+              </v-btn>
+              <!-- Add Other Action buttons Here -->
+            </v-card-actions>
+          </v-card>
+        </v-flex>
+      </v-layout>
+      <v-layout 
+        v-if="!noPagination" 
+        row 
+        wrap
+      >
+        <v-flex xs12>
+          <div class="text-xs-center">
+            <v-pagination
+              :length="length"
+              v-model.number="page"
+              circle
+            />
+          </div>
+        </v-flex>
+        <v-flex 
+          xs12 
+          height="50px"
+        />
+      </v-layout>
+      <!-- If No Pagination Then Add 50px Height -->
+      <v-layout 
+        v-else 
+        row 
+        wrap 
+        height="50px"
+      />
+    </v-container>
   </main-layout>
 </template>
 
@@ -77,13 +119,18 @@
 import MainLayout from '../layouts/Main.vue'
 import Theme from '../mixins/theme'
 import { createNamespacedHelpers } from 'vuex'
-const { mapActions, mapGetters } = createNamespacedHelpers('cart')
+const { mapGetters } = createNamespacedHelpers('cart')
 
 export default {
-    props: ['query'],
-    mixins: [Theme],
     components: {
         MainLayout
+    },
+    mixins: [Theme],
+    props:{
+        query:{
+            type: Object,
+            required: true
+        }
     },
     data: () => ({
         contentClass: { 'grey': true, 'lighten-4': true, 'accent--text': true },
@@ -124,6 +171,24 @@ export default {
                 return false
             }
         }
+    },
+    watch: {
+        products: {
+            handler: function () {
+                console.log('Products Array Updated')
+            },
+            deep: true
+        },
+        /* change page value then */
+        page (newValue) {
+            let self = this
+            self.page = newValue
+            self.$router.push({ name: 'product.index', query: { page: newValue } })
+            vm.$popup({ message: `Product Page: ${self.page}`, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
+        },
+        /* after change page and new route is push then load new products */
+        '$route': 'loadProducts'
+
     },
     created () {
         /* important if redirecting back to populate our product list */
@@ -167,24 +232,6 @@ export default {
                 vm.$popup({ message: message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' })
             })
         }
-    },
-    watch: {
-        products: {
-            handler: function () {
-                console.log('Products Array Updated')
-            },
-            deep: true
-        },
-        /* change page value then */
-        page (newValue) {
-            let self = this
-            self.page = newValue
-            self.$router.push({ name: 'product.index', query: { page: newValue } })
-            vm.$popup({ message: `Product Page: ${self.page}`, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
-        },
-        /* after change page and new route is push then load new products */
-        '$route': 'loadProducts'
-
     }
 }
 </script>

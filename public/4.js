@@ -666,6 +666,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3534,12 +3542,109 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    components: {
+        MainLayout: __WEBPACK_IMPORTED_MODULE_3__layouts_Main_vue___default.a
+    },
     mixins: [__WEBPACK_IMPORTED_MODULE_4__mixins_theme__["a" /* default */], __WEBPACK_IMPORTED_MODULE_5__mixins_acl__["a" /* default */]],
     data: function data() {
         return {
@@ -3557,9 +3662,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             rolesForm: new AppForm(App.forms.rolesForm),
             permissionsForm: new AppForm(App.forms.permissionsForm)
         };
-    },
-    components: {
-        MainLayout: __WEBPACK_IMPORTED_MODULE_3__layouts_Main_vue___default.a
     },
     mounted: function mounted() {
         var self = this;
@@ -4124,9 +4226,9 @@ var render = function() {
                         { staticClass: "title text-xs-left primary--text" },
                         [
                           _vm._v(
-                            "\n                        " +
+                            "\n            " +
                               _vm._s(props.item.id) +
-                              "\n                    "
+                              "\n          "
                           )
                         ]
                       ),
@@ -4136,9 +4238,9 @@ var render = function() {
                         { staticClass: "title text-xs-left primary--text" },
                         [
                           _vm._v(
-                            "\n                        " +
+                            "\n            " +
                               _vm._s(props.item.name) +
-                              "\n                    "
+                              "\n          "
                           )
                         ]
                       ),
@@ -4228,16 +4330,16 @@ var render = function() {
                                 },
                                 [
                                   _vm._v(
-                                    "\n                            " +
+                                    "\n                " +
                                       _vm._s(role.charAt(0).toUpperCase()) +
-                                      "\n                            "
+                                      "\n              "
                                   )
                                 ]
                               ),
                               _vm._v(
-                                "\n                                " +
+                                "\n              " +
                                   _vm._s(role) +
-                                  "\n                        "
+                                  "\n            "
                               )
                             ],
                             1
@@ -4309,11 +4411,11 @@ var render = function() {
                   var pageStop = ref.pageStop
                   return [
                     _vm._v(
-                      "\n                From " +
+                      "\n        From " +
                         _vm._s(pageStart) +
                         " to " +
                         _vm._s(pageStop) +
-                        "\n            "
+                        "\n      "
                     )
                   ]
                 }
@@ -4403,7 +4505,9 @@ var render = function() {
                                         }
                                       },
                                       [
-                                        _vm._v("Activate Link "),
+                                        _vm._v(
+                                          "\n                Activate Link \n                "
+                                        ),
                                         _c("v-icon", { attrs: { right: "" } }, [
                                           _vm._v("done_all")
                                         ])
@@ -4424,9 +4528,11 @@ var render = function() {
                                         }
                                       },
                                       [
-                                        _vm._v("Deactivate Link "),
+                                        _vm._v(
+                                          "\n                Deactivate Link \n                "
+                                        ),
                                         _c("v-icon", { attrs: { right: "" } }, [
-                                          _vm._v("fa-ban ")
+                                          _vm._v("fa-ban")
                                         ])
                                       ],
                                       1
@@ -4515,7 +4621,11 @@ var render = function() {
                                       ? _c(
                                           "p",
                                           { staticClass: "title info--text" },
-                                          [_vm._v("Assigned Roles")]
+                                          [
+                                            _vm._v(
+                                              "\n                  Assigned Roles\n                "
+                                            )
+                                          ]
                                         )
                                       : _vm._e(),
                                     _vm._v(" "),
@@ -4578,22 +4688,22 @@ var render = function() {
                                                             },
                                                             [
                                                               _vm._v(
-                                                                "\n                                            " +
+                                                                "\n                            " +
                                                                   _vm._s(
                                                                     data.item
                                                                       .charAt(0)
                                                                       .toUpperCase()
                                                                   ) +
-                                                                  "\n                                            "
+                                                                  "\n                          "
                                                               )
                                                             ]
                                                           ),
                                                           _vm._v(
-                                                            "\n                                            " +
+                                                            "\n                          " +
                                                               _vm._s(
                                                                 data.item
                                                               ) +
-                                                              "\n                                            "
+                                                              "\n                        "
                                                           )
                                                         ],
                                                         1
@@ -4625,7 +4735,11 @@ var render = function() {
                                       ? _c(
                                           "p",
                                           { staticClass: "title info--text" },
-                                          [_vm._v("Role Inherited Permissions")]
+                                          [
+                                            _vm._v(
+                                              "\n                  Role Inherited Permissions\n                "
+                                            )
+                                          ]
                                         )
                                       : _vm._e(),
                                     _vm._v(" "),
@@ -4669,22 +4783,22 @@ var render = function() {
                                                             },
                                                             [
                                                               _vm._v(
-                                                                "\n                                            " +
+                                                                "\n                            " +
                                                                   _vm._s(
                                                                     data.item
                                                                       .charAt(0)
                                                                       .toUpperCase()
                                                                   ) +
-                                                                  "\n                                            "
+                                                                  "\n                          "
                                                               )
                                                             ]
                                                           ),
                                                           _vm._v(
-                                                            "\n                                            " +
+                                                            "\n                          " +
                                                               _vm._s(
                                                                 data.item
                                                               ) +
-                                                              "\n                                            "
+                                                              "\n                        "
                                                           )
                                                         ],
                                                         1
@@ -4717,7 +4831,11 @@ var render = function() {
                                       ? _c(
                                           "p",
                                           { staticClass: "title info--text" },
-                                          [_vm._v("Profile Details")]
+                                          [
+                                            _vm._v(
+                                              "\n                  Profile Details\n                "
+                                            )
+                                          ]
                                         )
                                       : _vm._e(),
                                     _vm._v(" "),

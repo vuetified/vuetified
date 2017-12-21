@@ -308,6 +308,41 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -316,6 +351,9 @@ var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_4_vuex__["createNam
     mapGetters = _createNamespacedHelp.mapGetters;
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    components: {
+        ModalLayout: __WEBPACK_IMPORTED_MODULE_3__layouts_ModalLayout___default.a
+    },
     data: function data() {
         return {
             resetForm: new AppForm(App.forms.resetForm)
@@ -390,9 +428,6 @@ var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_4_vuex__["createNam
 
             return sendEmail;
         }()
-    },
-    components: {
-        ModalLayout: __WEBPACK_IMPORTED_MODULE_3__layouts_ModalLayout___default.a
     }
 });
 
@@ -562,7 +597,11 @@ var render = function() {
                               block: ""
                             }
                           },
-                          [_vm._v("Send Password Reset Email")]
+                          [
+                            _vm._v(
+                              "\n              Send Password Reset Email\n            "
+                            )
+                          ]
                         )
                       ],
                       1

@@ -351,6 +351,76 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -360,6 +430,9 @@ var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["createNam
     mapGetters = _createNamespacedHelp.mapGetters;
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    components: {
+        ModalLayout: __WEBPACK_IMPORTED_MODULE_1__layouts_ModalLayout___default.a
+    },
     data: function data() {
         return {
             registerForm: new AppForm(App.forms.registerForm),
@@ -415,10 +488,7 @@ var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["createNam
                 self.submit(self.registerForm);
             }
         }
-    }),
-    components: {
-        ModalLayout: __WEBPACK_IMPORTED_MODULE_1__layouts_ModalLayout___default.a
-    }
+    })
 });
 
 /***/ }),
@@ -753,7 +823,7 @@ var render = function() {
                               block: ""
                             }
                           },
-                          [_vm._v("Register")]
+                          [_vm._v("\n              Register\n            ")]
                         ),
                         _vm._v(" "),
                         _c(
@@ -771,7 +841,11 @@ var render = function() {
                               }
                             }
                           },
-                          [_vm._v("Already Have An Account? Go Login")]
+                          [
+                            _vm._v(
+                              "\n              Already Have An Account? Go Login\n            "
+                            )
+                          ]
                         )
                       ],
                       1

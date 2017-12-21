@@ -1,202 +1,347 @@
 <template>
-  <main-layout :class="[contentClass]" :style="{ paddingTop: `100px` }" v-if="product">
-    <v-container fluid grid-list-md>
-        <!-- Breadcrumbs -->
-        <v-layout row wrap>
-            <v-breadcrumbs icons divider="forward" light>
-                <v-breadcrumbs-item
-                active-class="primary--text"
-                :disabled="false"
-                to="/"
-                >
-                Home
-                </v-breadcrumbs-item>
-                <v-breadcrumbs-item
-                active-class="primary--text"
-                :disabled="false"
-                to="/products"
-                >
-                Products
-                </v-breadcrumbs-item>
-                <v-breadcrumbs-item
-                active-class="primary--text"
-                :disabled="false"
-                :to="`/products/${slug}`"
-                >
-                {{ slug | capitalize }}
-                </v-breadcrumbs-item>
-                <v-breadcrumbs-item
-                :disabled="true"
-                >
-                <span class="blue-grey--text">Edit</span>
-                </v-breadcrumbs-item>
-            </v-breadcrumbs>
-        </v-layout>
-        <!-- Breadcrumbs -->
-        <v-layout row wrap>
-            <!-- left side -->
-            <v-flex d-flex xs12 sm12 md6 lg6>
-                <v-layout row wrap fill-height>
-                    <!-- Product Image -->
-                    <v-flex d-flex xs12 text-xs-right>
-                        <v-card color="grey lighten-4" flat light>
-                            <v-card-title class="title accent--text">
-                                <v-spacer></v-spacer>
-                                Edit {{ titleCase(slug) }}
-                                <v-spacer></v-spacer>
-                            </v-card-title>
-                            <!-- Image Placeholder -->
-                            <div v-if="!current_image" style="background-color:#d3d3d3;height:322px;width:483px;margin: auto;width: 50%;">
-                            </div>
-                            <!-- Image Placeholder -->
-                            <!-- Image -->
-                            <v-card-media
-                            v-else
-                            :src="current_image"
-                            height="322px"
-                            contain
-                            >
-                            </v-card-media>
-                            <!-- Image -->
-                            <!-- Gallery -->
-                            <v-container fill-height fluid v-if="product.photos.length > 0">
-                                <v-layout fill-height>
-                                    <v-flex xs12 align-end flexbox>
-                                        <div
-                                        class="image"
-                                        v-for="(image,key) in product.photos"
-                                        :key="key"
-                                        @click="setCurrentImage(key)"
-                                        :style="{ backgroundImage: 'url(' + image + ')', width: '50px', height: '50px' }"
-                                        >
-                                        </div>
-                                    </v-flex>
-                                </v-layout>
-                            </v-container>
-                            <!-- Gallery -->
-                        </v-card>
-                    </v-flex>
-                    <!-- Product Image -->
-                    <!-- Action Buttons -->
-                    <v-flex d-flex xs10 offset-xs1 pl-5 pr-5>
-                        <!-- Upload Buttons -->
-                        <v-card color="grey lighten-4" flat>
-                            <v-card-actions>
-                                <v-btn light flat block color="green" @click="editPrimaryImage">Upload Product Image<v-icon right>photo</v-icon></v-btn>
-                                <v-btn light flat block color="teal" @click="editGallerImages">Upload Gallery Images<v-icon right>photo_library</v-icon></v-btn>
-                            </v-card-actions>
-                        </v-card>
-                        <!-- Upload Buttons -->
-                    </v-flex>
-                    <!-- Action Buttons -->
-                </v-layout>
-            </v-flex>
-            <!-- left side -->
-            <!-- right side -->
-            <v-flex d-flex xs12 sm12 md6 lg6>
-                <!-- Product Details -->
-                <v-layout row wrap>
-                    <v-flex d-flex xs10 offset-xs1 pl-5 pr-5>
-                        <v-card color="grey lighten-4" flat light>
-                            <v-card-title class="title accent--text">
-                                <v-spacer></v-spacer>
-                                Product Details:
-                                <v-spacer></v-spacer>
-                                <v-btn icon color="teal lighten-2" @click="updateProduct"><v-icon>fa-save</v-icon></v-btn>
-                            </v-card-title>
-                            <v-text-field
-                            light
-                            label="Name"
-                            v-model="editProductForm.name"
-                            ></v-text-field>
-                            <v-text-field
-                            light
-                            label="Slug"
-                            v-model="editProductForm.slug"
-                            ></v-text-field>
-                            <v-text-field
-                            light
-                            label="Sku"
-                            v-model="editProductForm.sku"
-                            ></v-text-field>
-                            <v-text-field
-                            light
-                            label="Price"
-                            v-model="editProductForm.price"
-                            ></v-text-field>
-                            <v-text-field
-                            light
-                            label="Currency"
-                            v-model="editProductForm.currency"
-                            disabled
-                            ></v-text-field>
-                            <v-text-field
-                            light
-                            label="Excerpt"
-                            v-model="editProductForm.excerpt"
-                            multi-line
-                            >
-                            </v-text-field>
-                        </v-card>
-                    </v-flex>
-                </v-layout>
-                <!-- Product Details-->
-            </v-flex>
-            <!-- right side -->
-        </v-layout>
-        <!-- Product Options -->
-        <v-layout row wrap>
-            <v-flex xs10 offset-xs1 pl-5 pr-5>
-                <v-card color="grey lighten-4" flat light>
-                    <v-card-title class="title accent--text">
-                        <v-spacer></v-spacer>
-                        Packages:
-                        <v-spacer></v-spacer>
-                        <v-btn icon color="green lighten-2" @click="openOptionModal"><v-icon>fa-plus</v-icon></v-btn>
-                    </v-card-title>
-                </v-card>
-            </v-flex>
-            <v-flex xs10 offset-xs1 pl-5 pr-5 v-if="editProductForm.options.length > 0">
-                <v-text-field
-                :label="option.name"
+  <main-layout 
+    :class="[contentClass]" 
+    :style="{ paddingTop: `100px` }"
+    v-if="product"
+  >
+    <v-container 
+      fluid 
+      grid-list-md
+    >
+      <!-- Breadcrumbs -->
+      <v-layout 
+        row 
+        wrap
+      >
+        <v-breadcrumbs 
+          icons 
+          divider="forward" 
+          light
+        >
+          <v-breadcrumbs-item
+            active-class="primary--text"
+            :disabled="false"
+            to="/"
+          >
+            Home
+          </v-breadcrumbs-item>
+          <v-breadcrumbs-item
+            active-class="primary--text"
+            :disabled="false"
+            to="/products"
+          >
+            Products
+          </v-breadcrumbs-item>
+          <v-breadcrumbs-item
+            active-class="primary--text"
+            :disabled="false"
+            :to="`/products/${slug}`"
+          >
+            {{ slug | capitalize }}
+          </v-breadcrumbs-item>
+          <v-breadcrumbs-item
+            :disabled="true"
+          >
+            <span class="blue-grey--text">Edit</span>
+          </v-breadcrumbs-item>
+        </v-breadcrumbs>
+      </v-layout>
+      <!-- Breadcrumbs -->
+      <v-layout 
+        row 
+        wrap
+      >
+        <!-- left side -->
+        <v-flex 
+          d-flex 
+          xs12 
+          sm12 
+          md6 
+          lg6
+        >
+          <v-layout 
+            row 
+            wrap 
+            fill-height
+          >
+            <!-- Product Image -->
+            <v-flex 
+              d-flex 
+              xs12 
+              text-xs-right
+            >
+              <v-card 
+                color="grey lighten-4" 
+                flat 
                 light
-                v-for="(option,key) in editProductForm.options"
-                :key="key"
-                v-model="option.value"
-                append-icon="fa-trash"
-                color="primary"
-                :append-icon-cb="() => (deleteOption(key))"
+              >
+                <v-card-title class="title accent--text">
+                  <v-spacer/>
+                  Edit {{ titleCase(slug) }}
+                  <v-spacer/>
+                </v-card-title>
+                <!-- Image Placeholder -->
+                <div 
+                  v-if="!current_image" 
+                  style="background-color:#d3d3d3;height:322px;width:483px;margin: auto;width: 50%;"
+                />
+                <!-- Image Placeholder -->
+                <!-- Image -->
+                <v-card-media
+                  v-else
+                  :src="current_image"
+                  height="322px"
+                  contain
+                />
+                <!-- Image -->
+                <!-- Gallery -->
+                <v-container 
+                  fill-height 
+                  fluid 
+                  v-if="product.photos.length > 0"
                 >
-                </v-text-field>
+                  <v-layout fill-height>
+                    <v-flex 
+                      xs12
+                      align-end 
+                      flexbox
+                    >
+                      <div
+                        class="image"
+                        v-for="(image,key) in product.photos"
+                        :key="key"
+                        @click="setCurrentImage(key)"
+                        :style="{ backgroundImage: 'url(' + image + ')', width: '50px', height: '50px' }"
+                      />
+                    </v-flex>
+                  </v-layout>
+                </v-container>
+                <!-- Gallery -->
+              </v-card>
             </v-flex>
-        </v-layout>
-        <!-- Product Options -->
-        <!-- Product Decsription -->
-        <v-layout row wrap>
-            <v-flex xs10 offset-xs1 pl-5 pr-5>
-                <v-card color="grey lighten-4" flat light>
-                    <v-card-title class="title accent--text">
-                        <v-spacer></v-spacer>
-                        Product Description:
-                        <v-spacer></v-spacer>
-                        <v-btn icon color="info" @click="updateProduct"><v-icon>fa-save</v-icon></v-btn>
-                    </v-card-title>
-                </v-card>
+            <!-- Product Image -->
+            <!-- Action Buttons -->
+            <v-flex 
+              d-flex 
+              xs10 
+              offset-xs1
+              pl-5 
+              pr-5
+            >
+              <!-- Upload Buttons -->
+              <v-card 
+                color="grey lighten-4" 
+                flat
+              >
+                <v-card-actions>
+                  <v-btn 
+                    light 
+                    flat 
+                    block 
+                    color="green" 
+                    @click="editPrimaryImage"
+                  >
+                    Upload Product Image
+                    <v-icon right>photo</v-icon>
+                  </v-btn>
+                  <v-btn 
+                    light 
+                    flat 
+                    block 
+                    color="teal" 
+                    @click="editGallerImages"
+                  >
+                    Upload Gallery Images
+                    <v-icon right>photo_library</v-icon>
+                  </v-btn>
+                </v-card-actions>
+              </v-card>
+              <!-- Upload Buttons -->
             </v-flex>
-            <v-flex xs10 pl-5 pr-5 offset-xs1>
-                <text-editor  :id="text_editor_id" :html="editProductForm.description" :upload-link="`/products/${slug}/uploads`" :disabled="false"></text-editor>
+            <!-- Action Buttons -->
+          </v-layout>
+        </v-flex>
+        <!-- left side -->
+        <!-- right side -->
+        <v-flex 
+          d-flex 
+          xs12
+          sm12 
+          md6 
+          lg6
+        >
+          <!-- Product Details -->
+          <v-layout 
+            row 
+            wrap
+          >
+            <v-flex 
+              d-flex 
+              xs10 
+              offset-xs1 
+              pl-5 
+              pr-5
+            >
+              <v-card 
+                color="grey lighten-4" 
+                flat 
+                light
+              >
+                <v-card-title class="title accent--text">
+                  <v-spacer/>
+                  Product Details:
+                  <v-spacer/>
+                  <v-btn 
+                    icon 
+                    color="teal lighten-2" 
+                    @click="updateProduct"
+                  >
+                    <v-icon>fa-save</v-icon>
+                  </v-btn>
+                </v-card-title>
+                <v-text-field
+                  light
+                  label="Name"
+                  v-model="editProductForm.name"
+                />
+                <v-text-field
+                  light
+                  label="Slug"
+                  v-model="editProductForm.slug"
+                />
+                <v-text-field
+                  light
+                  label="Sku"
+                  v-model="editProductForm.sku"
+                />
+                <v-text-field
+                  light
+                  label="Price"
+                  v-model="editProductForm.price"
+                />
+                <v-text-field
+                  light
+                  label="Currency"
+                  v-model="editProductForm.currency"
+                  disabled
+                />
+                <v-text-field
+                  light
+                  label="Excerpt"
+                  v-model="editProductForm.excerpt"
+                  multi-line
+                />
+              </v-card>
             </v-flex>
-        </v-layout>
-        <!-- Product Decsription -->
-        <!-- Add Option Modal -->
-        <package-modal></package-modal>
-        <!-- Add Option Modal -->
-        <!-- Add Featured Image Modal -->
-        <image-uploader></image-uploader>
-        <!-- Add Featured Image Modal -->
-        <!-- Add Gallery Image Modal -->
-        <gallery-uploader></gallery-uploader>
-        <!-- Add Gallery Image Modal -->
+          </v-layout>
+          <!-- Product Details-->
+        </v-flex>
+        <!-- right side -->
+      </v-layout>
+      <!-- Product Options -->
+      <v-layout 
+        row 
+        wrap
+      >
+        <v-flex 
+          xs10 
+          offset-xs1
+          pl-5 
+          pr-5
+        >
+          <v-card
+            color="grey lighten-4" 
+            flat 
+            light
+          >
+            <v-card-title class="title accent--text">
+              <v-spacer/>
+              Packages:
+              <v-spacer/>
+              <v-btn 
+                icon 
+                color="green lighten-2"
+                @click="openOptionModal"
+              >
+                <v-icon>fa-plus</v-icon>
+              </v-btn>
+            </v-card-title>
+          </v-card>
+        </v-flex>
+        <v-flex
+          xs10 
+          offset-xs1 
+          pl-5 
+          pr-5
+          v-if="editProductForm.options.length > 0"
+        >
+          <v-text-field
+            :label="option.name"
+            light
+            v-for="(option,key) in editProductForm.options"
+            :key="key"
+            v-model="option.value"
+            append-icon="fa-trash"
+            color="primary"
+            :append-icon-cb="() => (deleteOption(key))"
+          />
+        </v-flex>
+      </v-layout>
+      <!-- Product Options -->
+      <!-- Product Decsription -->
+      <v-layout 
+        row 
+        wrap
+      >
+        <v-flex 
+          xs10 
+          offset-xs1 
+          pl-5
+          pr-5
+        >
+          <v-card 
+            color="grey lighten-4"
+            flat 
+            light
+          >
+            <v-card-title class="title accent--text">
+              <v-spacer/>
+              Product Description:
+              <v-spacer/>
+              <v-btn 
+                icon 
+                color="info" 
+                @click="updateProduct"
+              >
+                <v-icon>fa-save</v-icon>
+              </v-btn>
+            </v-card-title>
+          </v-card>
+        </v-flex>
+        <v-flex 
+          xs10 
+          pl-5 
+          pr-5 
+          offset-xs1
+        >
+          <text-editor 
+            :id="text_editor_id" 
+            :html="editProductForm.description" 
+            :upload-link="`/products/${slug}/uploads`" 
+            :disabled="false"
+          />
+        </v-flex>
+      </v-layout>
+      <!-- Product Decsription -->
+      <!-- Add Option Modal -->
+      <package-modal/>
+      <!-- Add Option Modal -->
+      <!-- Add Featured Image Modal -->
+      <image-uploader/>
+      <!-- Add Featured Image Modal -->
+      <!-- Add Gallery Image Modal -->
+      <gallery-uploader/>
+      <!-- Add Gallery Image Modal -->
 
     </v-container>
   </main-layout>
@@ -212,14 +357,19 @@ import PackageModal from '../components/products/PackageModal.vue'
 import GalleryUploader from '../components/products/GalleryUploader.vue'
 
 export default {
-    props: ['slug'],
-    mixins: [Theme, Acl],
     components: {
         MainLayout,
         TextEditor,
         ImageUploader,
         PackageModal,
         GalleryUploader
+    },
+    mixins: [Theme, Acl],
+    props:{
+        slug:{
+            type: String,
+            required: true
+        }
     },
     data: () => ({
         contentClass: { 'grey': true, 'lighten-4': true, 'accent--text': true },
@@ -245,7 +395,11 @@ export default {
         current_image: '',
         text_editor_id: 'product-editor'
     }),
-
+    watch: {
+        'editProductForm.options' (newValue) {
+            this.editProductForm.options = newValue
+        }
+    },
     created () {
         this.getProduct()
     },
@@ -345,13 +499,7 @@ export default {
         editGallerImages () {
             Bus.$emit('edit-gallery-images')
         }
-    },
-    watch: {
-        'editProductForm.options' (newValue) {
-            this.editProductForm.options = newValue
-        }
     }
-
 }
 </script>
 

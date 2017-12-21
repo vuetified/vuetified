@@ -1,112 +1,176 @@
 <template>
   <main-layout :class="[contentClass]">
     <v-parallax src="/img/bg.jpg">
-      <v-layout column align-center justify-center>
+      <v-layout 
+        column 
+        align-center 
+        justify-center
+      >
         <h1 class="white--text">ABOUT IAMWORLDWIDE CORPORATION</h1>
-        <h2 class="white--text" text-xs-center>
-            A company committed in upgrading the quality of life – it was designed for dedicated, honest, hardworking, and self-motivated people who want to build their own business as Independent Distributors across the globe. Our portfolio offers a diverse and comprehensive range of marketing solutions, specialty products, and services aimed to drive individuals and families to financial excellence.
+        <h2 
+          class="white--text" 
+          text-xs-center
+        >
+          A company committed in upgrading the quality of life – it was designed for dedicated, honest, hardworking, and self-motivated people who want to build their own business as Independent Distributors across the globe. Our portfolio offers a diverse and comprehensive range of marketing solutions, specialty products, and services aimed to drive individuals and families to financial excellence.
         </h2>
       </v-layout>
     </v-parallax>
     <v-container light>
-        <v-layout row wrap >
-          <v-flex xs12>
-              <h2 light>
-                  Company Profile
-              </h2>
-              <p>
-                  IAM Worldwide is a company committed to upgrading the quality of life – it was designed for dedicated, honest, hardworking, and self-motivated people who want to build their own businesses as Independent Distributors across the globe. Our portfolio offers a diverse and comprehensive range of marketing solutions, specialty products, and services aimed to drive individuals and families to financial excellence.
-              </p>
-              <p pa-5>
-                  The company was founded by Mr. Allen Marvin Yu Eder and Ms. Aika Lorraine Uy who are both seasoned network marketing professionals and entrepreneurs. With an impeccable track record for being consistent top earners from several other marketing companies, they have both built unrelenting multi-million sales teams worldwide. Through their passion for helping individuals achieve financial freedom and personal greatness, they have helped create more than a hundred millionaires over the years. The IAMWORLDWIDE leadership team has over 20 combined years of expertise in the relationship marketing industry, that they have only implemented the systems and practices into IAMWORLDWIDE that are proven to work best.
-              </p>
-          </v-flex>
+      <v-layout 
+        row 
+        wrap 
+      >
+        <v-flex xs12>
+          <h2 light>
+            Company Profile
+          </h2>
+          <p>
+            IAM Worldwide is a company committed to upgrading the quality of life – it was designed for dedicated, honest, hardworking, and self-motivated people who want to build their own businesses as Independent Distributors across the globe. Our portfolio offers a diverse and comprehensive range of marketing solutions, specialty products, and services aimed to drive individuals and families to financial excellence.
+          </p>
+          <p pa-5>
+            The company was founded by Mr. Allen Marvin Yu Eder and Ms. Aika Lorraine Uy who are both seasoned network marketing professionals and entrepreneurs. With an impeccable track record for being consistent top earners from several other marketing companies, they have both built unrelenting multi-million sales teams worldwide. Through their passion for helping individuals achieve financial freedom and personal greatness, they have helped create more than a hundred millionaires over the years. The IAMWORLDWIDE leadership team has over 20 combined years of expertise in the relationship marketing industry, that they have only implemented the systems and practices into IAMWORLDWIDE that are proven to work best.
+          </p>
+        </v-flex>
 
-        </v-layout>
-        <v-layout row wrap>
-            <v-flex xs12 md6 lg6 xl6 pa-2>
-                <v-card-media
-                    src="/img/am2.jpg"
-                    height="450px"
-                    contain
-                    >
-                    </v-card-media>
-            </v-flex>
-             <v-flex xs12 md6 lg6 xl6 pa-2>
+      </v-layout>
+      <v-layout 
+        row 
+        wrap
+      >
+        <v-flex 
+          xs12 
+          md6 
+          lg6 
+          xl6 
+          pa-2
+        >
+          <v-card-media
+            src="/img/am2.jpg"
+            height="450px"
+            contain
+          />
+        </v-flex>
+        <v-flex 
+          xs12 
+          md6 
+          lg6 
+          xl6 
+          pa-2
+        >
 
-                <v-card-media
-                    src="/img/aika2.jpg"
-                    height="450px"
-                    contain
-                    >
-                    </v-card-media>
-            </v-flex>
-        </v-layout>
-        <v-layout row wrap>
-            <v-flex
-            v-bind="{ [`xs${card.xs}`]: true, [`sm${card.sm}`]: true, [`md${card.md}`]: true,[`lg${card.lg}`]: true,[`xl${card.xl}`]: true }"
-            v-for="card in showcase"
-            :key="card.title"
-            class="pa-2"
-            >
-            <v-card-text>
-                <p class="text-xs-center">
-                    <v-btn icon v-if="card.icon" :color="card.color">
-                    <v-icon>{{ card.icon }}</v-icon>
-                </v-btn>
-                </p>
-            </v-card-text>
-                <v-card flat style="background-color:transparent;">
-                    <v-card-actions>
-                        <v-spacer></v-spacer>
-                        <p class="headline primary--text" v-text="card.title"></p>
-                        <v-spacer></v-spacer>
-                        <v-btn icon @click.native="card.show = !card.show" class="accent--text">
-                            <v-icon>{{ card.show ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</v-icon>
-                        </v-btn>
-                    </v-card-actions>
-                    <v-slide-y-transition>
-                        <v-card-text v-show="card.show" v-text="card.tagline" class="accent--text">
-                        </v-card-text>
-                    </v-slide-y-transition>
-                </v-card>
-            </v-flex>
-        </v-layout>
-        <v-layout row wrap>
-             <v-flex xs12>
-              <h2 light>
-                  Company Core Values
-              </h2>
-          </v-flex>
-            <v-flex
-            v-bind="{ [`xs${card.xs}`]: true, [`sm${card.sm}`]: true, [`md${card.md}`]: true,[`lg${card.lg}`]: true,[`xl${card.xl}`]: true }"
-            v-for="card in values"
-            :key="card.title"
-            class="pa-2"
-            >
-                <v-card-text>
-                <p class="text-xs-center">
-                    <v-btn icon v-if="card.icon" :color="card.color">
-                    <v-icon>{{ card.icon }}</v-icon>
-                </v-btn>
-                </p>
-                </v-card-text>
-                <v-card flat style="background-color:transparent;">
-                    <v-card-actions>
-                        <v-spacer></v-spacer>
-                        <p class="headline primary--text" v-text="card.title"></p>
-                        <v-spacer></v-spacer>
-                        <v-btn icon @click.native="card.show = !card.show" class="accent--text" v-if="card.title">
-                            <v-icon>{{ card.show ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</v-icon>
-                        </v-btn>
-                    </v-card-actions>
-                    <v-slide-y-transition>
-                        <v-card-text v-show="card.show" v-text="card.tagline" class="accent--text">
-                        </v-card-text>
-                    </v-slide-y-transition>
-                </v-card>
-            </v-flex>
-        </v-layout>
+          <v-card-media
+            src="/img/aika2.jpg"
+            height="450px"
+            contain
+          />
+        </v-flex>
+      </v-layout>
+      <v-layout 
+        row 
+        wrap
+      >
+        <v-flex
+          v-bind="{ [`xs${card.xs}`]: true, [`sm${card.sm}`]: true, [`md${card.md}`]: true,[`lg${card.lg}`]: true,[`xl${card.xl}`]: true }"
+          v-for="card in showcase"
+          :key="card.title"
+          class="pa-2"
+        >
+          <v-card-text>
+            <p class="text-xs-center">
+              <v-btn 
+                icon 
+                v-if="card.icon" 
+                :color="card.color"
+              >
+                <v-icon>{{ card.icon }}</v-icon>
+              </v-btn>
+            </p>
+          </v-card-text>
+          <v-card 
+            flat 
+            style="background-color:transparent;"
+          >
+            <v-card-actions>
+              <v-spacer/>
+              <p 
+                class="headline primary--text" 
+                v-text="card.title"
+              />
+              <v-spacer/>
+              <v-btn 
+                icon 
+                @click.native="card.show = !card.show" 
+                class="accent--text"
+              >
+                <v-icon>{{ card.show ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</v-icon>
+              </v-btn>
+            </v-card-actions>
+            <v-slide-y-transition>
+              <v-card-text 
+                v-show="card.show" 
+                v-text="card.tagline" 
+                class="accent--text"
+              />
+            </v-slide-y-transition>
+          </v-card>
+        </v-flex>
+      </v-layout>
+      <v-layout 
+        row 
+        wrap
+      >
+        <v-flex xs12>
+          <h2 light>
+            Company Core Values
+          </h2>
+        </v-flex>
+        <v-flex
+          v-bind="{ [`xs${card.xs}`]: true, [`sm${card.sm}`]: true, [`md${card.md}`]: true,[`lg${card.lg}`]: true,[`xl${card.xl}`]: true }"
+          v-for="card in values"
+          :key="card.title"
+          class="pa-2"
+        >
+          <v-card-text>
+            <p class="text-xs-center">
+              <v-btn 
+                icon 
+                v-if="card.icon" 
+                :color="card.color"
+              >
+                <v-icon>{{ card.icon }}</v-icon>
+              </v-btn>
+            </p>
+          </v-card-text>
+          <v-card 
+            flat 
+            style="background-color:transparent;"
+          >
+            <v-card-actions>
+              <v-spacer/>
+              <p 
+                class="headline primary--text" 
+                v-text="card.title"
+              />
+              <v-spacer/>
+              <v-btn 
+                icon 
+                @click.native="card.show = !card.show"
+                class="accent--text" 
+                v-if="card.title"
+              >
+                <v-icon>{{ card.show ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</v-icon>
+              </v-btn>
+            </v-card-actions>
+            <v-slide-y-transition>
+              <v-card-text 
+                v-show="card.show" 
+                v-text="card.tagline" 
+                class="accent--text"
+              />
+            </v-slide-y-transition>
+          </v-card>
+        </v-flex>
+      </v-layout>
     </v-container>
 
   </main-layout>
@@ -117,6 +181,9 @@ import MainLayout from '../layouts/Main.vue'
 import Theme from '../mixins/theme'
 
 export default {
+    components: {
+        MainLayout
+    },
     mixins: [Theme],
     data: () => ({
         contentClass: { 'grey': true, 'lighten-4': true, 'accent--text': true },
@@ -133,9 +200,7 @@ export default {
             { color: '', icon: '', show: true, title: '', tagline: '', xs: 12, sm: 12, md: 4, lg: 4, xl: 4 },
             { color: 'blue', icon: 'fa-thumbs-up', show: true, title: 'Passion for Excellence', tagline: 'Our endeavor entails pursuing what is right, over and over again. A habituation of demanding more of ourselves than our customers would. Through our persistence in finding better ways of doing what we do, and by declaring & attaining ambitious goals, we set new standards in our industry even exceeding our own expectations. We do not rest on our achievements. Rather, we passionately build on them in our personal and professional journey, wherever we may be in the world.', xs: 12, sm: 12, md: 4, lg: 4, xl: 4 }
         ]
-    }),
-    components: {
-        MainLayout
-    }
+    })
+    
 }
 </script>

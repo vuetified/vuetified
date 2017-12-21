@@ -666,6 +666,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3318,6 +3326,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    components: {
+        MainLayout: __WEBPACK_IMPORTED_MODULE_0__layouts_Main_vue___default.a,
+        ShowCase: __WEBPACK_IMPORTED_MODULE_1__components_home_Showcase_vue___default.a,
+        Carousel: __WEBPACK_IMPORTED_MODULE_2__components_home_Carousel_vue___default.a,
+        FooterNote: __WEBPACK_IMPORTED_MODULE_5__partials_FooterNote___default.a,
+        VideoGallery: __WEBPACK_IMPORTED_MODULE_3__components_home_VideoGallery_vue___default.a,
+        LogoSlider: __WEBPACK_IMPORTED_MODULE_4__components_home_LogoSlider_vue___default.a
+    },
     mixins: [__WEBPACK_IMPORTED_MODULE_6__mixins_theme__["a" /* default */]],
     data: function data() {
         return {
@@ -3327,15 +3343,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     mounted: function mounted() {
         Bus.$emit('footer-content-visible', true);
-    },
-
-    components: {
-        MainLayout: __WEBPACK_IMPORTED_MODULE_0__layouts_Main_vue___default.a,
-        ShowCase: __WEBPACK_IMPORTED_MODULE_1__components_home_Showcase_vue___default.a,
-        Carousel: __WEBPACK_IMPORTED_MODULE_2__components_home_Carousel_vue___default.a,
-        FooterNote: __WEBPACK_IMPORTED_MODULE_5__partials_FooterNote___default.a,
-        VideoGallery: __WEBPACK_IMPORTED_MODULE_3__components_home_VideoGallery_vue___default.a,
-        LogoSlider: __WEBPACK_IMPORTED_MODULE_4__components_home_LogoSlider_vue___default.a
     }
 });
 

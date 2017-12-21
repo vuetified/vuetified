@@ -670,6 +670,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3260,7 +3268,7 @@ exports = module.exports = __webpack_require__(630)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -3360,20 +3368,66 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
 
 
 var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_5_vuex__["createNamespacedHelpers"])('cart'),
-    mapActions = _createNamespacedHelp.mapActions,
     mapGetters = _createNamespacedHelp.mapGetters;
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['query'],
-    mixins: [__WEBPACK_IMPORTED_MODULE_4__mixins_theme__["a" /* default */]],
     components: {
         MainLayout: __WEBPACK_IMPORTED_MODULE_3__layouts_Main_vue___default.a
+    },
+    mixins: [__WEBPACK_IMPORTED_MODULE_4__mixins_theme__["a" /* default */]],
+    props: {
+        query: {
+            type: Object,
+            required: true
+        }
     },
     data: function data() {
         return {
@@ -3416,6 +3470,25 @@ var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_5_vuex__["createNam
             }
         }
     }),
+    watch: {
+        products: {
+            handler: function handler() {
+                console.log('Products Array Updated');
+            },
+            deep: true
+        },
+        /* change page value then */
+        page: function page(newValue) {
+            var self = this;
+            self.page = newValue;
+            self.$router.push({ name: 'product.index', query: { page: newValue } });
+            vm.$popup({ message: 'Product Page: ' + self.page, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' });
+        },
+
+        /* after change page and new route is push then load new products */
+        '$route': 'loadProducts'
+
+    },
     created: function created() {
         /* important if redirecting back to populate our product list */
         this.getProducts();
@@ -3507,25 +3580,6 @@ var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_5_vuex__["createNam
 
             return loadProducts;
         }()
-    },
-    watch: {
-        products: {
-            handler: function handler() {
-                console.log('Products Array Updated');
-            },
-            deep: true
-        },
-        /* change page value then */
-        page: function page(newValue) {
-            var self = this;
-            self.page = newValue;
-            self.$router.push({ name: 'product.index', query: { page: newValue } });
-            vm.$popup({ message: 'Product Page: ' + self.page, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' });
-        },
-
-        /* after change page and new route is push then load new products */
-        '$route': 'loadProducts'
-
     }
 });
 
@@ -3563,7 +3617,7 @@ var render = function() {
                       attrs: { slot: "divider", color: "teal" },
                       slot: "divider"
                     },
-                    [_vm._v("forward")]
+                    [_vm._v("\n          forward\n        ")]
                   ),
                   _vm._v(" "),
                   _c(
@@ -3575,7 +3629,7 @@ var render = function() {
                         to: "/"
                       }
                     },
-                    [_vm._v("\n                  Home\n              ")]
+                    [_vm._v("\n          Home\n        ")]
                   ),
                   _vm._v(" "),
                   _c("v-breadcrumbs-item", { attrs: { disabled: true } }, [

@@ -1,47 +1,82 @@
 <template>
-    <modal-layout>
-        <v-card :flat="true">
-        <v-toolbar class="accent">
-          <v-btn flat icon color="white" @click.native="redirectBack()">
+  <modal-layout>
+    <v-card :flat="true">
+      <v-toolbar class="accent">
+        <v-btn 
+          flat 
+          icon 
+          color="white" 
+          @click.native="redirectBack()"
+        >
           <v-icon>arrow_back</v-icon>
-          </v-btn>
-          <v-spacer></v-spacer>
-          <v-toolbar-title class="text-xs-center white--text">Reset Password</v-toolbar-title>
-          <v-spacer></v-spacer>
-          <v-toolbar-items>
-              <!-- If There is no User Account Login Yet Redirect to Authentication Page -->
-            <v-btn flat color="white" @click.native="goHome()">
+        </v-btn>
+        <v-spacer/>
+        <v-toolbar-title class="text-xs-center white--text">Reset Password</v-toolbar-title>
+        <v-spacer/>
+        <v-toolbar-items>
+          <!-- If There is no User Account Login Yet Redirect to Authentication Page -->
+          <v-btn 
+            flat 
+            color="white"
+            @click.native="goHome()"
+          >
             <v-icon>fa-home</v-icon>
-            </v-btn>
-          </v-toolbar-items>
-        </v-toolbar>
-        <v-card-text style="padding-top:100px;">
-      <v-container fluid>
-        <form @submit.prevent="sendEmail()">
-        <v-layout row>
-          <v-flex xs12 sm12 md4 offset-md4 lg4 offset-lg4 xl4 offset-xl4>
-            <v-text-field
-              class="primary--text"
-              name="username"
-              label="Type Your Registered Email"
-              v-model="resetForm.username"
-              prepend-icon="email"
-              v-validate="'required|email'"
-              data-vv-name="username"
-              :error-messages="errors.collect('username')"
-              counter="255"
-            ></v-text-field>
-          </v-flex>
-        </v-layout>
-        <v-flex xs12 sm12 md4 offset-md4 lg4 offset-lg4 xl4 offset-xl4>
-            <v-btn :disabled="errors.any()" :loading="resetForm.busy" type="submit" block :class="{primary: !resetForm.busy, error: resetForm.busy}">Send Password Reset Email</v-btn>
-        </v-flex>
-        </form>
-      </v-container>
+          </v-btn>
+        </v-toolbar-items>
+      </v-toolbar>
+      <v-card-text style="padding-top:100px;">
+        <v-container fluid>
+          <form @submit.prevent="sendEmail()">
+            <v-layout row>
+              <v-flex 
+                xs12 
+                sm12 
+                md4 
+                offset-md4 
+                lg4 
+                offset-lg4
+                xl4 
+                offset-xl4
+              >
+                <v-text-field
+                  class="primary--text"
+                  name="username"
+                  label="Type Your Registered Email"
+                  v-model="resetForm.username"
+                  prepend-icon="email"
+                  v-validate="'required|email'"
+                  data-vv-name="username"
+                  :error-messages="errors.collect('username')"
+                  counter="255"
+                />
+              </v-flex>
+            </v-layout>
+            <v-flex 
+              xs12 
+              sm12 
+              md4 
+              offset-md4 
+              lg4 
+              offset-lg4 
+              xl4 
+              offset-xl4
+            >
+              <v-btn 
+                :disabled="errors.any()" 
+                :loading="resetForm.busy" 
+                type="submit" 
+                block 
+                :class="{primary: !resetForm.busy, error: resetForm.busy}"
+              >
+                Send Password Reset Email
+              </v-btn>
+            </v-flex>
+          </form>
+        </v-container>
 
-    </v-card-text>
-      </v-card>
-    </modal-layout>
+      </v-card-text>
+    </v-card>
+  </modal-layout>
 </template>
 
 <script>
@@ -50,6 +85,9 @@ import { createNamespacedHelpers } from 'vuex'
 const { mapGetters } = createNamespacedHelpers('auth')
 
 export default {
+    components: {
+        ModalLayout
+    },
     data: () => ({
         resetForm: new AppForm(App.forms.resetForm)
     }),
@@ -91,9 +129,6 @@ export default {
                 })
             }
         }
-    },
-    components: {
-        ModalLayout
     }
 }
 </script>

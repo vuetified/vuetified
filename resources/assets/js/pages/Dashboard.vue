@@ -1,155 +1,218 @@
 <template>
-  <main-layout  :style="{ paddingTop: `100px`, backgroundColor: `white` }">
-    <v-container  fluid>
-      <dash-panels :unpaid="unpaid" :paid="paid" :sent="sent" :received="received" :total="total" :unsent="unsent" :done="done"></dash-panels>
+  <main-layout :style="{ paddingTop: `100px`, backgroundColor: `white` }">
+    <v-container fluid>
+      <dash-panels 
+        :unpaid="unpaid" 
+        :paid="paid" 
+        :sent="sent" 
+        :received="received" 
+        :total="total" 
+        :unsent="unsent" 
+        :done="done"
+      />
       <v-container fluid>
 
-            <v-data-table
-                :headers="headers"
-                :items="items"
-                light
-                expand
-            >
-            <template slot="items" slot-scope="props">
+        <v-data-table
+          :headers="headers"
+          :items="items"
+          light
+          expand
+        >
+          <template 
+            slot="items" 
+            slot-scope="props"
+          >
             <tr>
-                <td class="title text-xs-left primary--text">
-                    <v-btn color="primary" icon @click="props.expanded = !props.expanded"><v-icon>shopping_basket</v-icon></v-btn>
-                    {{ props.item.id }}
-                </td>
-                <td class="title text-xs-left primary--text">{{ totalAmount(props.item) | currency(currency) }}</td>
+              <td class="title text-xs-left primary--text">
+                <v-btn 
+                  color="primary" 
+                  icon 
+                  @click="props.expanded = !props.expanded"
+                >
+                  <v-icon>shopping_basket</v-icon>
+                </v-btn>
+                {{ props.item.id }}
+              </td>
+              <td class="title text-xs-left primary--text">{{ totalAmount(props.item) | currency(currency) }}</td>
 
-                <td class="title text-xs-left primary--text">
-                    <v-switch
-                        :label="`${props.item.payment.paid ? 'Paid' : 'Unpaid'}`"
-                        v-model="props.item.payment.paid"
-                        color="teal darken-4"
-                        light
-                        :disabled="!hasRole('admin')"
-                        @change="togglePaid(props.item)"
-                        >
-                    </v-switch>
-                </td>
+              <td class="title text-xs-left primary--text">
+                <v-switch
+                  :label="`${props.item.payment.paid ? 'Paid' : 'Unpaid'}`"
+                  v-model="props.item.payment.paid"
+                  color="teal darken-4"
+                  light
+                  :disabled="!hasRole('admin')"
+                  @change="togglePaid(props.item)"
+                />
+              </td>
 
-                <td class="title text-xs-left primary--text">
-                    <v-switch
-                        :label="`${props.item.shipment.sent ? 'Sent' : 'On-Hold'}`"
-                        v-model="props.item.shipment.sent"
-                        color="cyan"
-                        light
-                        :disabled="!hasRole('admin')"
-                        @change="toggleSent(props.item)"
-                        v-if="props.item.shipment"
-                        >
-                    </v-switch>
-                </td>
-                <td class="title text-xs-left primary--text">
-                    <v-switch
-                        :label="`${props.item.shipment.received ? 'Received' : 'Pending'}`"
-                        v-model="props.item.shipment.received"
-                        color="light-green"
-                        light
-                        @change="toggleReceived(props.item)"
-                        v-if="props.item.shipment"
-                        >
-                    </v-switch>
-                </td>
-                <td class="title text-xs-left primary--text">
-                    <v-switch
-                        :label="`${props.item.done ? 'Completed' : 'On-Progress'}`"
-                        v-model="props.item.done"
-                        color="teal lighten-2"
-                        light
-                        :disabled="!hasRole('admin')"
-                        @change="toggleDone(props.item)"
-                        >
-                    </v-switch>
-                </td>
-                <td class="title text-xs-center">
-                    <v-btn :disabled="!can('edit_order')"  flat icon color="accent" @click.native="setCurrentOrder(props.item)">
-                        <v-icon>fa-edit</v-icon>
-                    </v-btn>
-                    <v-btn :disabled="!can('delete_order')" flat icon color="error" @click.native="deleteOrder(props.item)">
-                        <v-icon>fa-trash</v-icon>
-                    </v-btn>
-                </td>
+              <td class="title text-xs-left primary--text">
+                <v-switch
+                  :label="`${props.item.shipment.sent ? 'Sent' : 'On-Hold'}`"
+                  v-model="props.item.shipment.sent"
+                  color="cyan"
+                  light
+                  :disabled="!hasRole('admin')"
+                  @change="toggleSent(props.item)"
+                  v-if="props.item.shipment"
+                />
+              </td>
+              <td class="title text-xs-left primary--text">
+                <v-switch
+                  :label="`${props.item.shipment.received ? 'Received' : 'Pending'}`"
+                  v-model="props.item.shipment.received"
+                  color="light-green"
+                  light
+                  @change="toggleReceived(props.item)"
+                  v-if="props.item.shipment"
+                />
+              </td>
+              <td class="title text-xs-left primary--text">
+                <v-switch
+                  :label="`${props.item.done ? 'Completed' : 'On-Progress'}`"
+                  v-model="props.item.done"
+                  color="teal lighten-2"
+                  light
+                  :disabled="!hasRole('admin')"
+                  @change="toggleDone(props.item)"
+                />
+              </td>
+              <td class="title text-xs-center">
+                <v-btn 
+                  :disabled="!can('edit_order')" 
+                  flat 
+                  icon 
+                  color="accent" 
+                  @click.native="setCurrentOrder(props.item)"
+                >
+                  <v-icon>fa-edit</v-icon>
+                </v-btn>
+                <v-btn 
+                  :disabled="!can('delete_order')" 
+                  flat 
+                  icon 
+                  color="error"
+                  @click.native="deleteOrder(props.item)"
+                >
+                  <v-icon>fa-trash</v-icon>
+                </v-btn>
+              </td>
             </tr>
-            </template>
+          </template>
 
-            <template slot="expand" slot-scope="props">
-                <v-data-table
-                    :items="getItems(props.item.cart)"
-                    hide-actions
-                    light
+          <template 
+            slot="expand" 
+            slot-scope="props"
+          >
+            <v-data-table
+              :items="getItems(props.item.cart)"
+              hide-actions
+              light
+            >
+              <template 
+                slot="headers" 
+                slot-scope="orders"
+              >
+                <th class="text-xs-left">Product</th>
+                <th class="text-xs-left">Qty</th>
+                <th class="text-xs-left">Price</th>
+                <th class="text-xs-left">Tax</th>
+                <th class="text-xs-left">Subtotal</th>
+              </template>
+              <template 
+                slot="items" 
+                slot-scope="orders"
+              >
+                <td class="text-xs-left"><span class="primary--text">{{ orders.item.name }}</span>
+                  <span v-if="orders.item.options !== {}">
+                    <span 
+                      class="info--text caption" 
+                      v-for="(option,key) in orders.item.options" 
+                      :key="key"
                     >
-                    <template slot="headers" slot-scope="orders">
-                            <th class="text-xs-left">Product</th>
-                            <th class="text-xs-left">Qty</th>
-                            <th class="text-xs-left">Price</th>
-                            <th class="text-xs-left">Tax</th>
-                            <th class="text-xs-left">Subtotal</th>
-                    </template>
-                        <template slot="items" slot-scope="orders">
-                        <td class="text-xs-left"><span class="primary--text">{{ orders.item.name }}</span>
-                            <span v-if="orders.item.options !== {}">
-                                <span  class="info--text caption" v-for="(option,key) in orders.item.options" :key="key">({{ option }})</span>
-                            </span>
-                        </td>
-                        <td class="text-xs-left">{{ orders.item.qty }}</td>
-                        <td class="text-xs-left">{{ orders.item.price | currency(currency) }}</td>
-                        <td class="text-xs-left">{{ parseFloat(orders.item.tax).toFixed(2) | currency(currency) }}</td>
-                        <td class="text-xs-left">{{ orders.item.subtotal | currency(currency) }}</td>
-                        </template>
-                </v-data-table>
-            </template>
-
-            <template slot="pageText" slot-scope="{ pageStart, pageStop }">
-                From {{ pageStart }} to {{ pageStop }}
-            </template>
-
+                      ({{ option }})
+                    </span>
+                  </span>
+                </td>
+                <td class="text-xs-left">{{ orders.item.qty }}</td>
+                <td class="text-xs-left">{{ orders.item.price | currency(currency) }}</td>
+                <td class="text-xs-left">{{ parseFloat(orders.item.tax).toFixed(2) | currency(currency) }}</td>
+                <td class="text-xs-left">{{ orders.item.subtotal | currency(currency) }}</td>
+              </template>
             </v-data-table>
-            <v-dialog v-model="dialog" fullscreen transition="dialog-bottom-transition" :overlay="false">
-                <v-card :light="true">
-                <v-toolbar  color="accent">
-                    <v-btn icon @click.native="dialog = false" class="white--text">
-                    <v-icon>close</v-icon>
-                    </v-btn>
-                    <v-spacer></v-spacer>
-                    <v-toolbar-title class="white--text">Update Order No. {{ current_order.id }}</v-toolbar-title>
-                    <v-spacer></v-spacer>
-                    <v-toolbar-items>
-                    <v-btn  flat @click.native="dialog = false" class="white--text">Save</v-btn>
-                    </v-toolbar-items>
-                </v-toolbar>
-                <v-container fluid>
-                    <v-tabs v-model="active.name">
-                        <v-tabs-bar class="accent">
-                        <v-tabs-item
-                        v-for="(tab,key) in tabs"
-                        :key="key"
-                        :href="'#' + tab.name"
-                        ripple
-                        >
-                        {{tab.name}}
-                        </v-tabs-item>
-                        <v-tabs-slider color="primary"></v-tabs-slider>
-                        </v-tabs-bar>
-                        <v-tabs-items>
-                            <v-tabs-content
-                            v-for="(tab, key) in tabs"
-                            :key="key"
-                            :id="tab.name"
-                            >
-                            <v-card flat :light="true">
-                                <component :is="tab.component" :tab="tab" :order="current_order">
-                                </component>
-                            </v-card>
-                            </v-tabs-content>
-                        </v-tabs-items>
-                    </v-tabs>
-                </v-layout>
-                </v-container>
-                </v-card>
-            </v-dialog>
+          </template>
+
+          <template 
+            slot="pageText" 
+            slot-scope="{ pageStart, pageStop }"
+          >
+            From {{ pageStart }} to {{ pageStop }}
+          </template>
+
+        </v-data-table>
+        <v-dialog 
+          v-model="dialog" 
+          fullscreen 
+          transition="dialog-bottom-transition" 
+          :overlay="false"
+        >
+          <v-card :light="true">
+            <v-toolbar color="accent">
+              <v-btn 
+                icon 
+                @click.native="dialog = false" 
+                class="white--text"
+              >
+                <v-icon>close</v-icon>
+              </v-btn>
+              <v-spacer/>
+              <v-toolbar-title class="white--text">Update Order No. {{ current_order.id }}</v-toolbar-title>
+              <v-spacer/>
+              <v-toolbar-items>
+                <v-btn 
+                  flat
+                  @click.native="dialog = false" 
+                  class="white--text"
+                >
+                  Save
+                </v-btn>
+              </v-toolbar-items>
+            </v-toolbar>
+            <v-container fluid>
+              <v-tabs v-model="active.name">
+                <v-tabs-bar class="accent">
+                  <v-tabs-item
+                    v-for="(tab,key) in tabs"
+                    :key="key"
+                    :href="'#' + tab.name"
+                    ripple
+                  >
+                    {{ tab.name }}
+                  </v-tabs-item>
+                  <v-tabs-slider color="primary"/>
+                </v-tabs-bar>
+                <v-tabs-items>
+                  <v-tabs-content
+                    v-for="(tab, key) in tabs"
+                    :key="key"
+                    :id="tab.name"
+                  >
+                    <v-card 
+                      flat 
+                      :light="true"
+                    >
+                      <component 
+                        :is="tab.component" 
+                        :tab="tab" 
+                        :order="current_order"
+                      />
+                    </v-card>
+                  </v-tabs-content>
+                </v-tabs-items>
+              </v-tabs>
+            </v-container>
+          </v-card>
+        </v-dialog>
       </v-container>
     </v-container>
   </main-layout>
@@ -167,7 +230,6 @@ import ShipmentDetails from '../components/dashboard/ShipmentDetails.vue'
 import FileUploader from '../components/dashboard/FileUploader.vue'
 
 export default {
-    mixins: [Theme, Acl],
     components: {
         MainLayout,
         DashPanels,
@@ -177,6 +239,7 @@ export default {
         ShipmentDetails,
         FileUploader
     },
+    mixins: [Theme, Acl],
     data: () => ({
         contentClass: { 'grey': true, 'lighten-4': true, 'accent--text': true },
         currency: '₱',

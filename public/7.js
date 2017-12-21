@@ -670,6 +670,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3260,7 +3268,7 @@ exports = module.exports = __webpack_require__(630)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -3297,19 +3305,50 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    components: {
+        MainLayout: __WEBPACK_IMPORTED_MODULE_0__layouts_Main_vue___default.a
+    },
     mixins: [__WEBPACK_IMPORTED_MODULE_1__mixins_theme__["a" /* default */]],
     data: function data() {
         return {
             contentClass: { 'grey': true, 'lighten-4': true, 'accent--text': true, 'text-xs-center': true }
         };
-    },
-    components: {
-        MainLayout: __WEBPACK_IMPORTED_MODULE_0__layouts_Main_vue___default.a
     },
     methods: {
         goTo: function goTo(route) {
@@ -3384,7 +3423,7 @@ var render = function() {
                           }
                         },
                         [
-                          _vm._v("View Orders "),
+                          _vm._v("\n            View Orders \n            "),
                           _c("v-icon", { attrs: { right: "" } }, [
                             _vm._v("fa-cubes")
                           ])
@@ -3403,7 +3442,9 @@ var render = function() {
                           }
                         },
                         [
-                          _vm._v("Continue Shopping "),
+                          _vm._v(
+                            "\n            Continue Shopping \n            "
+                          ),
                           _c("v-icon", { attrs: { right: "" } }, [
                             _vm._v("fa-shopping-bag")
                           ])

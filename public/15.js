@@ -323,6 +323,61 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -435,7 +490,7 @@ var render = function() {
                       _c(
                         "v-btn",
                         {
-                          attrs: { flat: "", color: "white", flat: "" },
+                          attrs: { flat: "", color: "white" },
                           nativeOn: {
                             click: function($event) {
                               _vm.logout()
@@ -634,7 +689,11 @@ var render = function() {
                                           }
                                         }
                                       },
-                                      [_vm._v("No, I Want To Stay")]
+                                      [
+                                        _vm._v(
+                                          "\n                  No, I Want To Stay\n                "
+                                        )
+                                      ]
                                     ),
                                     _vm._v(" "),
                                     _c(

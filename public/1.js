@@ -1126,6 +1126,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -6131,6 +6139,151 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -6141,14 +6294,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['slug'],
-    mixins: [__WEBPACK_IMPORTED_MODULE_3__mixins_theme__["a" /* default */], __WEBPACK_IMPORTED_MODULE_4__mixins_acl__["a" /* default */]],
     components: {
         MainLayout: __WEBPACK_IMPORTED_MODULE_2__layouts_Main_vue___default.a,
         TextEditor: __WEBPACK_IMPORTED_MODULE_5__components_TextEditor_vue___default.a,
         ImageUploader: __WEBPACK_IMPORTED_MODULE_6__components_products_ImageUploader_vue___default.a,
         PackageModal: __WEBPACK_IMPORTED_MODULE_7__components_products_PackageModal_vue___default.a,
         GalleryUploader: __WEBPACK_IMPORTED_MODULE_8__components_products_GalleryUploader_vue___default.a
+    },
+    mixins: [__WEBPACK_IMPORTED_MODULE_3__mixins_theme__["a" /* default */], __WEBPACK_IMPORTED_MODULE_4__mixins_acl__["a" /* default */]],
+    props: {
+        slug: {
+            type: String,
+            required: true
+        }
     },
     data: function data() {
         return {
@@ -6176,7 +6334,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             text_editor_id: 'product-editor'
         };
     },
-
+    watch: {
+        'editProductForm.options': function editProductFormOptions(newValue) {
+            this.editProductForm.options = newValue;
+        }
+    },
     created: function created() {
         this.getProduct();
     },
@@ -6327,13 +6489,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         editGallerImages: function editGallerImages() {
             Bus.$emit('edit-gallery-images');
         }
-    },
-    watch: {
-        'editProductForm.options': function editProductFormOptions(newValue) {
-            this.editProductForm.options = newValue;
-        }
     }
-
 });
 
 /***/ }),
@@ -12615,7 +12771,7 @@ var render = function() {
                             to: "/"
                           }
                         },
-                        [_vm._v("\n              Home\n              ")]
+                        [_vm._v("\n          Home\n        ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -12627,7 +12783,7 @@ var render = function() {
                             to: "/products"
                           }
                         },
-                        [_vm._v("\n              Products\n              ")]
+                        [_vm._v("\n          Products\n        ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -12641,9 +12797,9 @@ var render = function() {
                         },
                         [
                           _vm._v(
-                            "\n              " +
+                            "\n          " +
                               _vm._s(_vm._f("capitalize")(_vm.slug)) +
-                              "\n              "
+                              "\n        "
                           )
                         ]
                       ),
@@ -12706,9 +12862,9 @@ var render = function() {
                                     [
                                       _c("v-spacer"),
                                       _vm._v(
-                                        "\n                              Edit " +
+                                        "\n                Edit " +
                                           _vm._s(_vm.titleCase(_vm.slug)) +
-                                          "\n                              "
+                                          "\n                "
                                       ),
                                       _c("v-spacer")
                                     ],
@@ -12827,7 +12983,9 @@ var render = function() {
                                           on: { click: _vm.editPrimaryImage }
                                         },
                                         [
-                                          _vm._v("Upload Product Image"),
+                                          _vm._v(
+                                            "\n                  Upload Product Image\n                  "
+                                          ),
                                           _c(
                                             "v-icon",
                                             { attrs: { right: "" } },
@@ -12849,7 +13007,9 @@ var render = function() {
                                           on: { click: _vm.editGallerImages }
                                         },
                                         [
-                                          _vm._v("Upload Gallery Images"),
+                                          _vm._v(
+                                            "\n                  Upload Gallery Images\n                  "
+                                          ),
                                           _c(
                                             "v-icon",
                                             { attrs: { right: "" } },
@@ -12918,7 +13078,7 @@ var render = function() {
                                     [
                                       _c("v-spacer"),
                                       _vm._v(
-                                        "\n                              Product Details:\n                              "
+                                        "\n                Product Details:\n                "
                                       ),
                                       _c("v-spacer"),
                                       _vm._v(" "),
@@ -13081,9 +13241,7 @@ var render = function() {
                             { staticClass: "title accent--text" },
                             [
                               _c("v-spacer"),
-                              _vm._v(
-                                "\n                      Packages:\n                      "
-                              ),
+                              _vm._v("\n            Packages:\n            "),
                               _c("v-spacer"),
                               _vm._v(" "),
                               _c(
@@ -13177,7 +13335,7 @@ var render = function() {
                             [
                               _c("v-spacer"),
                               _vm._v(
-                                "\n                      Product Description:\n                      "
+                                "\n            Product Description:\n            "
                               ),
                               _c("v-spacer"),
                               _vm._v(" "),

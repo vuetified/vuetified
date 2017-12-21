@@ -1,96 +1,166 @@
 <template>
-    <modal-layout>
-        <v-card :flat="true">
-        <v-toolbar class="accent">
-          <v-btn flat icon color="white" @click.native="redirectBack()">
+  <modal-layout>
+    <v-card :flat="true">
+      <v-toolbar class="accent">
+        <v-btn 
+          flat 
+          icon 
+          color="white" 
+          @click.native="redirectBack()"
+        >
           <v-icon>arrow_back</v-icon>
-          </v-btn>
-          <v-spacer></v-spacer>
-          <v-toolbar-title class="text-xs-center white--text">Registration Page</v-toolbar-title>
-          <v-spacer></v-spacer>
-          <v-toolbar-items>
-              <!-- If There is no User Account Login Yet Redirect to Authentication Page -->
-             <v-btn flat color="white" @click.native="goHome()">
+        </v-btn>
+        <v-spacer/>
+        <v-toolbar-title class="text-xs-center white--text">Registration Page</v-toolbar-title>
+        <v-spacer/>
+        <v-toolbar-items>
+          <!-- If There is no User Account Login Yet Redirect to Authentication Page -->
+          <v-btn 
+            flat 
+            color="white" 
+            @click.native="goHome()"
+          >
             <v-icon>fa-home</v-icon>
-            </v-btn>
-          </v-toolbar-items>
-        </v-toolbar>
-        <v-card-text style="padding-top:100px;">
-      <v-container fluid>
-        <form @submit.prevent="register()">
-        <v-layout row>
-          <v-flex xs12 sm12 md4 offset-md4 lg4 offset-lg4 xl4 offset-xl4>
-            <v-text-field
-              class="primary--text"
-              name="name"
-              label="Full Name"
-              v-model="registerForm.name"
-              v-validate="'required|max:255'"
-              data-vv-name="name"
-              :error-messages="errors.collect('name')"
-              counter="255"
-              prepend-icon="fa-user"
-            ></v-text-field>
-          </v-flex>
-        </v-layout>
-        <v-layout row>
-          <v-flex xs12 sm12 md4 offset-md4 lg4 offset-lg4 xl4 offset-xl4>
-            <v-text-field
-              class="primary--text"
-              name="email"
-              label="Email"
-              v-model="registerForm.username"
-              v-validate="'required|email'"
-              data-vv-name="email"
-              :error-messages="errors.collect('email')"
-              prepend-icon="email"
-              counter="255"
-            ></v-text-field>
-          </v-flex>
-        </v-layout>
-        <v-layout row>
-          <v-flex xs12 sm12 md4 offset-md4 lg4 offset-lg4 xl4 offset-xl4>
-            <v-text-field
-            class="primary--text"
-            name="password"
-            label="Password"
-            v-model="registerForm.password"
-            :append-icon="icon"
-            :append-icon-cb="() => (password_visible = !password_visible)"
-            :type="!password_visible ? 'password' : 'text'"
-            v-validate="'required|min:6|confirmed:password_confirmation'"
-            data-vv-name="password"
-            :error-messages="errors.collect('password')"
-            prepend-icon="fa-key"
-            counter="255"
-            ></v-text-field>
-          </v-flex>
-        </v-layout>
-        <v-layout row>
-          <v-flex xs12 sm12 md4 offset-md4 lg4 offset-lg4 xl4 offset-xl4>
-            <v-text-field
-            class="primary--text"
-            name="password_confirmation"
-            label="Confirm Password"
-            v-model="registerForm.password_confirmation"
-            :append-icon="icon"
-            :append-icon-cb="() => (password_visible = !password_visible)"
-            :type="!password_visible ? 'password' : 'text'"
-            prepend-icon="fa-copy"
-            counter="255"
-            ></v-text-field>
-          </v-flex>
-        </v-layout>
-        <v-flex xs12 sm12 md4 offset-md4 lg4 offset-lg4 xl4 offset-xl4>
-            <v-btn :loading="registerForm.busy" :disabled="errors.any()" type="submit" block :class="{primary: !registerForm.busy, error: registerForm.busy}">Register</v-btn>
-            <v-btn @click.native="goToLogin()" block flat class="white--text" color="teal lighten-2">Already Have An Account? Go Login</v-btn>
-         </v-flex>
-        </form>
-      </v-container>
+          </v-btn>
+        </v-toolbar-items>
+      </v-toolbar>
+      <v-card-text style="padding-top:100px;">
+        <v-container fluid>
+          <form @submit.prevent="register()">
+            <v-layout row>
+              <v-flex 
+                xs12
+                sm12 
+                md4 
+                offset-md4 
+                lg4 
+                offset-lg4 
+                xl4 
+                offset-xl4
+              >
+                <v-text-field
+                  class="primary--text"
+                  name="name"
+                  label="Full Name"
+                  v-model="registerForm.name"
+                  v-validate="'required|max:255'"
+                  data-vv-name="name"
+                  :error-messages="errors.collect('name')"
+                  counter="255"
+                  prepend-icon="fa-user"
+                />
+              </v-flex>
+            </v-layout>
+            <v-layout row>
+              <v-flex 
+                xs12 
+                sm12 
+                md4 
+                offset-md4 
+                lg4 
+                offset-lg4 
+                xl4 
+                offset-xl4
+              >
+                <v-text-field
+                  class="primary--text"
+                  name="email"
+                  label="Email"
+                  v-model="registerForm.username"
+                  v-validate="'required|email'"
+                  data-vv-name="email"
+                  :error-messages="errors.collect('email')"
+                  prepend-icon="email"
+                  counter="255"
+                />
+              </v-flex>
+            </v-layout>
+            <v-layout row>
+              <v-flex 
+                xs12 
+                sm12 
+                md4 
+                offset-md4 
+                lg4 
+                offset-lg4 
+                xl4 
+                offset-xl4
+              >
+                <v-text-field
+                  class="primary--text"
+                  name="password"
+                  label="Password"
+                  v-model="registerForm.password"
+                  :append-icon="icon"
+                  :append-icon-cb="() => (password_visible = !password_visible)"
+                  :type="!password_visible ? 'password' : 'text'"
+                  v-validate="'required|min:6|confirmed:password_confirmation'"
+                  data-vv-name="password"
+                  :error-messages="errors.collect('password')"
+                  prepend-icon="fa-key"
+                  counter="255"
+                />
+              </v-flex>
+            </v-layout>
+            <v-layout row>
+              <v-flex 
+                xs12 
+                sm12 
+                md4 
+                offset-md4
+                lg4 
+                offset-lg4 
+                xl4 
+                offset-xl4
+              >
+                <v-text-field
+                  class="primary--text"
+                  name="password_confirmation"
+                  label="Confirm Password"
+                  v-model="registerForm.password_confirmation"
+                  :append-icon="icon"
+                  :append-icon-cb="() => (password_visible = !password_visible)"
+                  :type="!password_visible ? 'password' : 'text'"
+                  prepend-icon="fa-copy"
+                  counter="255"
+                />
+              </v-flex>
+            </v-layout>
+            <v-flex 
+              xs12 
+              sm12 
+              md4 
+              offset-md4 
+              lg4 
+              offset-lg4 
+              xl4 
+              offset-xl4
+            >
+              <v-btn 
+                :loading="registerForm.busy" 
+                :disabled="errors.any()" 
+                type="submit" 
+                block 
+                :class="{primary: !registerForm.busy, error: registerForm.busy}"
+              >
+                Register
+              </v-btn>
+              <v-btn 
+                @click.native="goToLogin()" 
+                block 
+                flat 
+                class="white--text" 
+                color="teal lighten-2"
+              >
+                Already Have An Account? Go Login
+              </v-btn>
+            </v-flex>
+          </form>
+        </v-container>
 
-    </v-card-text>
-      </v-card>
-    </modal-layout>
+      </v-card-text>
+    </v-card>
+  </modal-layout>
 </template>
 
 <script>
@@ -99,6 +169,9 @@ import { createNamespacedHelpers } from 'vuex'
 const { mapActions, mapGetters } = createNamespacedHelpers('auth')
 
 export default {
+    components: {
+        ModalLayout
+    },
     data: () => ({
         registerForm: new AppForm(App.forms.registerForm),
         password_visible: false
@@ -145,9 +218,6 @@ export default {
                 self.submit(self.registerForm)
             }
         }
-    },
-    components: {
-        ModalLayout
     }
 }
 </script>

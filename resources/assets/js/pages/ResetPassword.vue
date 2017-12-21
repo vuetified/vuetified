@@ -1,78 +1,142 @@
 <template>
-    <modal name="reset-password" :adaptive="true" width="100%" height="100%" :clickToClose="false">
-        <v-card :flat="true">
-        <v-toolbar class="accent">
-          <v-btn icon @click.native="redirectBack()">
-            <v-icon class="primary--text">arrow_back</v-icon>
+  <modal 
+    name="reset-password" 
+    :adaptive="true" 
+    width="100%" 
+    height="100%" 
+    :click-to-close="false"
+  >
+    <v-card :flat="true">
+      <v-toolbar class="accent">
+        <v-btn 
+          icon 
+          @click.native="redirectBack()"
+        >
+          <v-icon class="primary--text">arrow_back</v-icon>
+        </v-btn>
+        <v-spacer/>
+        <v-toolbar-title class="text-xs-center primary--text">Reset Password</v-toolbar-title>
+        <v-spacer/>
+        <v-toolbar-items>
+          <!-- If There is no User Account Login Yet Redirect to Authentication Page -->
+          <v-btn 
+            class="primary--text"
+            flat 
+            @click.native="goHome()"
+          >
+            <v-icon 
+              right 
+              dark
+            >
+              fa-home
+            </v-icon>
           </v-btn>
-          <v-spacer></v-spacer>
-          <v-toolbar-title class="text-xs-center primary--text">Reset Password</v-toolbar-title>
-          <v-spacer></v-spacer>
-          <v-toolbar-items>
-              <!-- If There is no User Account Login Yet Redirect to Authentication Page -->
-            <v-btn class="primary--text" flat @click.native="goHome()"><v-icon right dark>fa-home</v-icon></v-btn>
-          </v-toolbar-items>
-        </v-toolbar>
-        <v-card-text style="padding-top:100px;">
-      <v-container fluid>
-        <form @submit.prevent="resetPassword()">
-        <v-layout row>
-          <v-flex xs12 sm12 md4 offset-md4 lg4 offset-lg4 xl4 offset-xl4>
-            <v-text-field
-              class="primary--text"
-              name="username"
-              label="Email"
-              v-model="passwordResetForm.username"
-              :rules="[rules.username.required, rules.username.email]"
-              prepend-icon="email"
-              counter="60"
-            ></v-text-field>
-          </v-flex>
-        </v-layout>
-        <v-layout row>
-          <v-flex xs12 sm12 md4 offset-md4 lg4 offset-lg4 xl4 offset-xl4>
-            <v-text-field
-            class="primary--text"
-            name="password"
-            label="New Password"
-            v-model="passwordResetForm.password"
-            min="8"
-            :append-icon="icon"
-            :append-icon-cb="() => (password_visible = !password_visible)"
-            :type="!password_visible ? 'password' : 'text'"
-            :rules="[rules.password.required, rules.password.min]"
-            prepend-icon="fa-key"
-            counter="60"
-            ></v-text-field>
-          </v-flex>
-        </v-layout>
-        <v-layout row>
-          <v-flex xs12 sm12 md4 offset-md4 lg4 offset-lg4 xl4 offset-xl4>
-            <v-text-field
-            class="primary--text"
-            name="password_confirmation"
-            label="Confirm New Password"
-            v-model="passwordResetForm.password_confirmation"
-            :append-icon="icon"
-            :append-icon-cb="() => (password_visible = !password_visible)"
-            :type="!password_visible ? 'password' : 'text'"
-            :rules="[(value) => {
-                return value === passwordResetForm.password || 'Password Confirmation is Does Not Match.'
-            }]"
-            prepend-icon="fa-copy"
-            counter="60"
-            ></v-text-field>
-          </v-flex>
-        </v-layout>
-        <v-flex xs12 sm12 md4 offset-md4 lg4 offset-lg4 xl4 offset-xl4>
-            <v-btn :loading="passwordResetForm.busy" :disabled="passwordResetForm.busy" type="submit" block :class="{primary: !passwordResetForm.busy, error: passwordResetForm.busy}">Reset Password</v-btn>
-        </v-flex>
-        </form>
-      </v-container>
+        </v-toolbar-items>
+      </v-toolbar>
+      <v-card-text style="padding-top:100px;">
+        <v-container fluid>
+          <form @submit.prevent="resetPassword()">
+            <v-layout row>
+              <v-flex 
+                xs12
+                sm12 
+                md4 
+                offset-md4 
+                lg4 
+                offset-lg4
+                xl4 
+                offset-xl4
+              >
+                <v-text-field
+                  class="primary--text"
+                  name="username"
+                  label="Email"
+                  v-model="passwordResetForm.username"
+                  :rules="[rules.username.required, rules.username.email]"
+                  prepend-icon="email"
+                  counter="60"
+                />
+              </v-flex>
+            </v-layout>
+            <v-layout row>
+              <v-flex 
+                xs12 
+                sm12 
+                md4
+                offset-md4 
+                lg4 
+                offset-lg4 
+                xl4 
+                offset-xl4
+              >
+                <v-text-field
+                  class="primary--text"
+                  name="password"
+                  label="New Password"
+                  v-model="passwordResetForm.password"
+                  min="8"
+                  :append-icon="icon"
+                  :append-icon-cb="() => (password_visible = !password_visible)"
+                  :type="!password_visible ? 'password' : 'text'"
+                  :rules="[rules.password.required, rules.password.min]"
+                  prepend-icon="fa-key"
+                  counter="60"
+                />
+              </v-flex>
+            </v-layout>
+            <v-layout row>
+              <v-flex
+                xs12
+                sm12 
+                md4 
+                offset-md4 
+                lg4 
+                offset-lg4 
+                xl4
+                offset-xl4
+              >
+                <v-text-field
+                  class="primary--text"
+                  name="password_confirmation"
+                  label="Confirm New Password"
+                  v-model="passwordResetForm.password_confirmation"
+                  :append-icon="icon"
+                  :append-icon-cb="() => (password_visible = !password_visible)"
+                  :type="!password_visible ? 'password' : 'text'"
+                  :rules="[(value) => {
+                    return value === passwordResetForm.password || 'Password Confirmation is Does Not Match.'
+                  }]"
+                  prepend-icon="fa-copy"
+                  counter="60"
+                />
+              </v-flex>
+            </v-layout>
+            <v-flex 
+              xs12 
+              sm12 
+              md4 
+              offset-md4 
+              lg4 
+              offset-lg4 
+              xl4
+              offset-xl4
+            >
+              <v-btn 
+                :loading="passwordResetForm.busy" 
+                :disabled="passwordResetForm.busy" 
+                type="submit" 
+                block 
+                :class="{primary: !passwordResetForm.busy, error: passwordResetForm.busy}"
+              >
+                Reset Password
+              </v-btn>
+            </v-flex>
+          </form>
+        </v-container>
 
-    </v-card-text>
-      </v-card>
-    </modal>
+      </v-card-text>
+    </v-card>
+  </modal>
 </template>
 
 <script>
@@ -80,7 +144,12 @@ import { createNamespacedHelpers } from 'vuex'
 const { mapGetters, mapActions } = createNamespacedHelpers('auth')
 
 export default {
-    props: ['token'],
+    props:{
+        token:{
+            type: String,
+            required: true
+        }
+    },
     data: () => ({
         passwordResetForm: new AppForm(App.forms.passwordResetForm),
         password_visible: false,
