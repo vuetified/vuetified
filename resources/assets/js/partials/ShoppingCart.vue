@@ -1,98 +1,137 @@
 <template>
-  <v-layout row justify-center>
+  <v-layout 
+    row 
+    justify-center
+  >
 
     <v-dialog
-    v-model="dialog"
-    persistent
-    fullscreen
-    transition="dialog-bottom-transition"
-     :overlay="false"
+      v-model="dialog"
+      persistent
+      fullscreen
+      transition="dialog-bottom-transition"
+      :overlay="false"
     >
 
       <v-card>
 
-        <v-toolbar dark class="accent">
+        <v-toolbar
+          dark 
+          class="accent"
+        >
 
-          <v-btn icon @click.native="close()" dark>
+          <v-btn 
+            icon 
+            @click.native="close()" 
+            dark
+          >
             <v-icon class="error--text">close</v-icon>
           </v-btn>
 
-          <v-spacer></v-spacer>
+          <v-spacer/>
           <v-toolbar-title class="text-xs-center primary--text">Shopping Cart</v-toolbar-title>
-          <v-spacer></v-spacer>
+          <v-spacer/>
 
           <v-toolbar-items>
-            <v-btn class="success--text" flat @click.native="checkout()" v-if="count > 0">Checkout<v-icon right>payment</v-icon></v-btn>
-            <v-btn class="warning--text" flat @click.native="close()" v-else>Close</v-btn>
+            <v-btn 
+              class="success--text" 
+              flat 
+              @click.native="checkout()"
+              v-if="count > 0"
+            >
+              Checkout
+              <v-icon right>payment</v-icon>
+            </v-btn>
+            <v-btn 
+              class="warning--text" 
+              flat 
+              @click.native="close()" 
+              v-else
+            >
+              Close
+            </v-btn>
           </v-toolbar-items>
 
         </v-toolbar>
         <!-- content -->
         <v-container fluid>
 
-            <v-card-title>
+          <v-card-title>
 
             <v-tooltip top>
-            <v-btn flat icon color="error" slot="activator" @click="emptyCart()" v-if="count > 0">
-            <v-icon>remove_shopping_cart</v-icon>
-            </v-btn>
-            <span>Empty | Cart</span>
+              <v-btn 
+                flat 
+                icon 
+                color="error" 
+                slot="activator" 
+                @click="emptyCart()"
+                v-if="count > 0"
+              >
+                <v-icon>remove_shopping_cart</v-icon>
+              </v-btn>
+              <span>Empty | Cart</span>
             </v-tooltip>
 
-            <v-spacer></v-spacer>
+            <v-spacer/>
             Your Shopping Cart Contents
-            <v-spacer></v-spacer>
+            <v-spacer/>
 
             <v-text-field
-                append-icon="search"
-                label="Search"
-                single-line
-                hide-details
-                v-model="search"
-            ></v-text-field>
+              append-icon="search"
+              label="Search"
+              single-line
+              hide-details
+              v-model="search"
+            />
 
-            </v-card-title>
+          </v-card-title>
 
-            <v-data-table
-                :headers="headers"
-                :items="items"
-                :search="search"
-                v-model="selected"
-                selected-key="id"
-                select-all
+          <v-data-table
+            :headers="headers"
+            :items="items"
+            :search="search"
+            v-model="selected"
+            selected-key="id"
+            select-all
+          >
+            <template 
+              slot="items" 
+              scope="props"
             >
-            <template slot="items" scope="props">
-                <td>
-                    <v-checkbox
-                    color="primary"
-                    hide-details
-                    v-model="props.selected"
-                    >
-                    </v-checkbox>
-                </td>
-                <td class="title text-xs-left">{{ props.item.id }}</td>
-                <td class="title text-xs-left">{{ props.item.name }}</td>
-                <td class="title text-xs-left">
-                    {{ props.item.qty }}
-                </td>
-                <td class="title text-xs-left">{{ props.item.price | currency(currency) }}</td>
-                <td class="title text-xs-left">{{ props.item.subtotal | currency(currency) }}</td>
-                <td class="title text-xs-center">
+              <td>
+                <v-checkbox
+                  color="primary"
+                  hide-details
+                  v-model="props.selected"
+                />
+              </td>
+              <td class="title text-xs-left">{{ props.item.id }}</td>
+              <td class="title text-xs-left">{{ props.item.name }}</td>
+              <td class="title text-xs-left">
+                {{ props.item.qty }}
+              </td>
+              <td class="title text-xs-left">{{ props.item.price | currency(currency) }}</td>
+              <td class="title text-xs-left">{{ props.item.subtotal | currency(currency) }}</td>
+              <td class="title text-xs-center">
 
-                    <v-edit-dialog
-                    @open="tmp = props.item"
-                    @save="updateCartItem(tmp)"
-                    large
-                    lazy
-                    >
+                <v-edit-dialog
+                  @open="tmp = props.item"
+                  @save="updateCartItem(tmp)"
+                  large
+                  lazy
+                >
 
-                    <v-btn icon>
-                        <v-icon class="teal--text text--lighten-2">fa-edit</v-icon>
-                    </v-btn>
+                  <v-btn icon>
+                    <v-icon class="teal--text text--lighten-2">fa-edit</v-icon>
+                  </v-btn>
 
-                    <div slot="input" class="mt-3 title primary--text">Update Qty</div>
+                  <div 
+                    slot="input" 
+                    class="mt-3 title primary--text"
+                  >
+                    Update Qty
+                  </div>
 
-                    <v-text-field
+                  <v-text-field
                     slot="input"
                     label="Edit"
                     v-model="tmp.qty"
@@ -100,43 +139,66 @@
                     counter
                     autofocus
                     :rules="[maxCount]"
-                    >
-                    </v-text-field>
+                  />
 
                 </v-edit-dialog>
 
-                </td>
-                <td class="title text-xs-center">
-                    <v-btn icon @click.native="removeFromCart(props.item.id)">
-                        <v-icon class="red--text text--lighten-2">delete_forever</v-icon>
-                    </v-btn>
-                </td>
+              </td>
+              <td class="title text-xs-center">
+                <v-btn 
+                  icon 
+                  @click.native="removeFromCart(props.item.id)"
+                >
+                  <v-icon class="red--text text--lighten-2">delete_forever</v-icon>
+                </v-btn>
+              </td>
 
             </template>
 
-            <template slot="pageText" scope="{ pageStart, pageStop }">
-                From {{ pageStart }} to {{ pageStop }}
+            <template 
+              slot="pageText" 
+              scope="{ pageStart, pageStop }"
+            >
+              From {{ pageStart }} to {{ pageStop }}
             </template>
 
-            </v-data-table>
+          </v-data-table>
 
-            <v-flex xs12 class="text-xs-right">
-                 <v-chip label class="red lighten-2 white--text title">
-                    <v-icon left>fa-percent</v-icon> Tax : {{ currency }} {{ tax }}
-                </v-chip>
-            </v-flex>
+          <v-flex 
+            xs12 
+            class="text-xs-right"
+          >
+            <v-chip 
+              label 
+              class="red lighten-2 white--text title"
+            >
+              <v-icon left>fa-percent</v-icon> Tax : {{ currency }} {{ tax }}
+            </v-chip>
+          </v-flex>
 
-            <v-flex xs12 class="text-xs-right">
-                <v-chip label class="info white--text title">
-                    <v-icon left>shopping_basket</v-icon> Subtotal : {{ currency }} {{ subtotal }}
-                </v-chip>
-            </v-flex>
+          <v-flex 
+            xs12 
+            class="text-xs-right"
+          >
+            <v-chip 
+              label 
+              class="info white--text title"
+            >
+              <v-icon left>shopping_basket</v-icon> Subtotal : {{ currency }} {{ subtotal }}
+            </v-chip>
+          </v-flex>
 
-            <v-flex xs12 class="text-xs-right">
-                <v-chip label class="primary white--text title">
-                    <v-icon left>fa-money</v-icon> Total : {{ currency }} {{ total }}
-                </v-chip>
-            </v-flex>
+          <v-flex 
+            xs12 
+            class="text-xs-right"
+          >
+            <v-chip 
+              label 
+              class="primary white--text title"
+            >
+              <v-icon left>fa-money</v-icon> Total : {{ currency }} {{ total }}
+            </v-chip>
+          </v-flex>
 
         </v-container>
 

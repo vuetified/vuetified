@@ -811,6 +811,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    components: {
+        VLink: __WEBPACK_IMPORTED_MODULE_1__components_VLink_vue___default.a
+    },
     mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_theme__["a" /* default */]],
     data: function data() {
         return {
@@ -824,10 +827,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         Bus.$on('footer-content-visible', function (visibility) {
             _this.contentVisible = visibility;
         });
-    },
-
-    components: {
-        VLink: __WEBPACK_IMPORTED_MODULE_1__components_VLink_vue___default.a
     }
 });
 
@@ -1212,7 +1211,7 @@ exports = module.exports = __webpack_require__(630)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -1229,6 +1228,50 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_theme__ = __webpack_require__(654);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__(90);
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -1279,6 +1322,12 @@ var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["createNam
     computed: __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends___default()({}, mapState({
         getCount: 'count'
     })),
+    watch: {
+        getCount: function getCount(newValue) {
+            var self = this;
+            self.count = newValue;
+        }
+    },
     created: function created() {
         var _this = this;
 
@@ -1305,12 +1354,6 @@ var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["createNam
         openCart: function openCart() {
             var self = this;
             self.$router.push({ name: 'cart' });
-        }
-    },
-    watch: {
-        getCount: function getCount(newValue) {
-            var self = this;
-            self.count = newValue;
         }
     }
 });
@@ -1357,7 +1400,7 @@ var render = function() {
             [
               _vm.showIcon
                 ? _c("v-icon", { staticClass: "ml-3 hidden-md-and-down" }, [
-                    _vm._v(_vm._s(_vm.icon))
+                    _vm._v("\n      " + _vm._s(_vm.icon) + "\n    ")
                   ])
                 : _vm._e(),
               _vm._v(" "),
@@ -1386,7 +1429,7 @@ var render = function() {
                     ]
                   )
                 : _c("v-icon", { staticClass: "ml-3 hidden-sm-and-down" }, [
-                    _vm._v(_vm._s(_vm.icon))
+                    _vm._v("\n      " + _vm._s(_vm.icon) + "\n    ")
                   ]),
               _vm._v(" "),
               _c("span", { staticClass: "hidden-sm-and-down" }, [
@@ -1556,6 +1599,72 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -1566,6 +1675,10 @@ var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_4_vuex__["createNam
     mapGetters = _createNamespacedHelp.mapGetters;
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    components: {
+        VLink: __WEBPACK_IMPORTED_MODULE_1__components_VLink_vue___default.a,
+        CategoryLink: __WEBPACK_IMPORTED_MODULE_2__components_CategoryLink_vue___default.a
+    },
     mixins: [__WEBPACK_IMPORTED_MODULE_3__mixins_theme__["a" /* default */]],
     data: function data() {
         return {
@@ -1579,10 +1692,6 @@ var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_4_vuex__["createNam
         getAuth: 'getAuth',
         getMe: 'getMe'
     })),
-    components: {
-        VLink: __WEBPACK_IMPORTED_MODULE_1__components_VLink_vue___default.a,
-        CategoryLink: __WEBPACK_IMPORTED_MODULE_2__components_CategoryLink_vue___default.a
-    },
     mounted: function mounted() {
         var self = this;
         Bus.$on('toggleDrawer', function () {
@@ -2396,6 +2505,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3140,7 +3252,7 @@ var render = function() {
     {
       attrs: {
         theme: "dark-lime",
-        buttonText: "Yes, I Understand This Site Uses Cookie."
+        "button-text": "Yes, I Understand This Site Uses Cookie."
       }
     },
     [
@@ -3149,7 +3261,7 @@ var render = function() {
           "p",
           [
             _vm._v(
-              "This website uses cookies to ensure you get the best experience on our website.\n                "
+              "This website uses cookies to ensure you get the best experience on our website.\n      "
             ),
             _c("span", [
               _vm._v("Read Our Cookie Terms and Usage For More Info:")
@@ -6169,9 +6281,130 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['unpaid', 'paid', 'sent', 'received', 'total', 'unsent', 'done']
+    props: {
+        unpaid: {
+            type: Boolean,
+            required: true
+        },
+        paid: {
+            type: Boolean,
+            required: true
+        },
+        sent: {
+            type: Boolean,
+            required: true
+        },
+        received: {
+            type: Boolean,
+            required: true
+        },
+        total: {
+            type: Number,
+            required: true
+        },
+        unsent: {
+            type: Boolean,
+            required: true
+        },
+        done: {
+            type: Boolean,
+            required: true
+        }
+    }
 });
 
 /***/ }),
@@ -6193,7 +6426,7 @@ var render = function() {
           _c("v-flex", { attrs: { xs12: "", "text-xs-right": "" } }, [
             _c("h5", { staticClass: "primary--text" }, [
               _vm._v(
-                "\n        Total Orders: " + _vm._s(_vm.total) + "\n        "
+                "\n        Total Orders: " + _vm._s(_vm.total) + "\n      "
               )
             ])
           ])
@@ -6223,10 +6456,16 @@ var render = function() {
                       _c(
                         "v-icon",
                         { attrs: { large: "", color: "amber lighten-2" } },
-                        [_vm._v("confirmation_number")]
+                        [
+                          _vm._v(
+                            "\n            confirmation_number\n          "
+                          )
+                        ]
                       ),
                       _vm._v(
-                        " Unpaid: " + _vm._s(_vm.unpaid) + "\n            "
+                        " \n          Unpaid: " +
+                          _vm._s(_vm.unpaid) +
+                          "\n        "
                       )
                     ],
                     1
@@ -6258,9 +6497,7 @@ var render = function() {
                         { attrs: { large: "", color: "red darken-4" } },
                         [_vm._v("do_not_disturb")]
                       ),
-                      _vm._v(
-                        " On-Hold: " + _vm._s(_vm.unsent) + "\n            "
-                      )
+                      _vm._v(" On-Hold: " + _vm._s(_vm.unsent) + "\n        ")
                     ],
                     1
                   )
@@ -6287,9 +6524,11 @@ var render = function() {
                     { staticClass: "title pa-5" },
                     [
                       _c("v-icon", { attrs: { large: "", color: "amber" } }, [
-                        _vm._v("local_shipping")
+                        _vm._v("\n            local_shipping\n          ")
                       ]),
-                      _vm._v(" Sent: " + _vm._s(_vm.sent) + "\n            ")
+                      _vm._v(
+                        " \n          Sent: " + _vm._s(_vm.sent) + "\n        "
+                      )
                     ],
                     1
                   )
@@ -6316,9 +6555,11 @@ var render = function() {
                     { staticClass: "title pa-5" },
                     [
                       _c("v-icon", { attrs: { large: "", color: "lime" } }, [
-                        _vm._v("local_mall")
+                        _vm._v("\n            local_mall\n          ")
                       ]),
-                      _vm._v(" Done: " + _vm._s(_vm.done) + "\n            ")
+                      _vm._v(
+                        " \n          Done: " + _vm._s(_vm.done) + "\n        "
+                      )
                     ],
                     1
                   )
@@ -6345,10 +6586,12 @@ var render = function() {
                     { staticClass: "title pa-5" },
                     [
                       _c("v-icon", { attrs: { large: "", color: "teal" } }, [
-                        _vm._v("beenhere")
+                        _vm._v("\n            beenhere\n          ")
                       ]),
                       _vm._v(
-                        " Received: " + _vm._s(_vm.received) + "\n            "
+                        " \n          Received: " +
+                          _vm._s(_vm.received) +
+                          "\n        "
                       )
                     ],
                     1
@@ -6378,9 +6621,11 @@ var render = function() {
                       _c(
                         "v-icon",
                         { attrs: { large: "", color: "green lighten-2" } },
-                        [_vm._v("local_atm")]
+                        [_vm._v("\n            local_atm\n          ")]
                       ),
-                      _vm._v(" Paid: " + _vm._s(_vm.paid) + "\n            ")
+                      _vm._v(
+                        " \n          Paid: " + _vm._s(_vm.paid) + "\n        "
+                      )
                     ],
                     1
                   )

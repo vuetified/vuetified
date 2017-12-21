@@ -1,33 +1,77 @@
 <template>
-  <v-toolbar color="accent" :dark="!isDark" dense fixed clipped-left app>
-    <v-toolbar-side-icon  @click.native.stop="toggleDrawer()"></v-toolbar-side-icon>
-        <!-- Title -->
-        <v-toolbar-title v-if="extension" class="text-xs-center" slot="extension">
-            <v-icon  class="ml-3 hidden-md-and-down" v-if="showIcon">{{ icon }}</v-icon>
-            <span class="hidden-md-and-down">{{ title }}</span>
-        </v-toolbar-title>
-        <v-toolbar-title v-else class="text-xs-center">
-            <v-avatar v-if="!showIcon" size="50px" slot="activator" class="hidden-sm-and-down">
-                <img :src="`${App.site.logo.url}`" alt="">
-            </v-avatar>
-            <v-icon  class="ml-3 hidden-sm-and-down" v-else>{{ icon }}</v-icon>
-            <span class="hidden-sm-and-down">{{ title }}</span>
-        </v-toolbar-title>
-        <v-spacer></v-spacer>
-        <!-- center logo -->
-        <img v-if="showLogo" class="hidden-md-and-up"   :src="logo" :style="[logoStyle]"  alt="vuejs">
-        <v-spacer></v-spacer>
-        <!-- Add Here All Your Nav Icons -->
-        <v-tooltip left>
-        <v-btn flat icon color="white" slot="activator" @click="openCart()">
+  <v-toolbar 
+    color="accent" 
+    :dark="!isDark" 
+    dense 
+    fixed 
+    clipped-left 
+    app
+  >
+    <v-toolbar-side-icon @click.native.stop="toggleDrawer()"/>
+    <!-- Title -->
+    <v-toolbar-title 
+      v-if="extension" 
+      class="text-xs-center" 
+      slot="extension"
+    >
+      <v-icon
+        class="ml-3 hidden-md-and-down" 
+        v-if="showIcon"
+      >
+        {{ icon }}
+      </v-icon>
+      <span class="hidden-md-and-down">{{ title }}</span>
+    </v-toolbar-title>
+    <v-toolbar-title 
+      v-else 
+      class="text-xs-center"
+    >
+      <v-avatar 
+        v-if="!showIcon" 
+        size="50px" 
+        slot="activator" 
+        class="hidden-sm-and-down"
+      >
+        <img 
+          :src="`${App.site.logo.url}`" 
+          alt=""
+        >
+      </v-avatar>
+      <v-icon 
+        class="ml-3 hidden-sm-and-down" 
+        v-else
+      >
+        {{ icon }}
+      </v-icon>
+      <span class="hidden-sm-and-down">{{ title }}</span>
+    </v-toolbar-title>
+    <v-spacer/>
+    <!-- center logo -->
+    <img 
+      v-if="showLogo" 
+      class="hidden-md-and-up" 
+      :src="logo" 
+      :style="[logoStyle]" 
+      alt="vuejs"
+    >
+    <v-spacer/>
+    <!-- Add Here All Your Nav Icons -->
+    <v-tooltip left>
+      <v-btn 
+        flat 
+        icon 
+        color="white" 
+        slot="activator" 
+        @click="openCart()"
+      >
         <v-badge left>
-        <span slot="badge">{{ count }}</span>
-        <v-icon>shopping_cart</v-icon>
+          <span slot="badge">{{ count }}</span>
+          <v-icon>shopping_cart</v-icon>
         </v-badge>
-        </v-btn>
-        <span>View | Cart</span>
-        </v-tooltip>
-</v-toolbar>
+      </v-btn>
+      <span>View | Cart</span>
+    </v-tooltip>
+  </v-toolbar>
 </template>
 
 <script>
@@ -45,6 +89,12 @@ export default {
         ...mapState({
             getCount: 'count'
         })
+    },
+    watch: {
+        getCount (newValue) {
+            let self = this
+            self.count = newValue
+        }
     },
     created () {
         /* Emit On a Child Component If You Want This To Be Visible */
@@ -68,12 +118,6 @@ export default {
         openCart () {
             let self = this
             self.$router.push({ name: 'cart' })
-        }
-    },
-    watch: {
-        getCount (newValue) {
-            let self = this
-            self.count = newValue
         }
     }
 }

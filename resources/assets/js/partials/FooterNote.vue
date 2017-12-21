@@ -1,46 +1,109 @@
 <template>
-<v-container fluid class="pa-0 ma-0" :class="[contentClass]">
-    <v-layout row wrap>
-    <v-flex xs12 sm12 md3 lg3 xl3>
+  <v-container 
+    fluid 
+    class="pa-0 ma-0" 
+    :class="[contentClass]"
+  >
+    <v-layout 
+      row 
+      wrap
+    >
+      <v-flex 
+        xs12 
+        sm12 
+        md3 
+        lg3 
+        xl3
+      >
         <v-subheader class="headline white--text">Featured Products</v-subheader>
-        <v-list dense :class="[contentClass]">
-        <v-link v-for="(product,key) in products" :key="key" :title="toProperCase(product.name)" :href="`/products/${product.slug}`"></v-link>
-        </v-list>
-    </v-flex>
-    <v-flex xs12 sm12 md3 lg3 xl3>
-        <v-subheader class="headline white--text">Featured Food Carts</v-subheader>
-        <v-list dense :class="[contentClass]">
-        <v-link v-for="(foodcart,key) in foodcarts" :key="key" :title="toProperCase(foodcart.name)" :href="`/products/${foodcart.slug}`"></v-link>
-        </v-list>
-    </v-flex>
-    <v-flex xs12 sm12 md3 lg3 xl3>
-        <v-subheader class="headline white--text">Social Media</v-subheader>
-        <v-list dense :class="[contentClass]">
-        <v-link
-        v-for="(value,key,index) in social_links" :key="key" :index="index"
-        :title="toProperCase(key)" :href="value"
+        <v-list 
+          dense 
+          :class="[contentClass]"
         >
-        </v-link>
+          <v-link 
+            v-for="(product,key) in products" 
+            :key="key" 
+            :title="toProperCase(product.name)" 
+            :href="`/products/${product.slug}`"
+          />
         </v-list>
-    </v-flex>
-    <v-flex xs12 sm12 md3 lg3 xl3>
-    <v-subheader class="headline white--text">Contact Details</v-subheader>
-    <v-list class="accent">
-        <v-list-tile v-for="(value,key,index) in contact_details" :key="key" :index="index">
+      </v-flex>
+      <v-flex 
+        xs12 
+        sm12 
+        md3 
+        lg3 
+        xl3
+      >
+        <v-subheader 
+          class="headline white--text"
+        >
+          Featured Food Carts
+        </v-subheader>
+        <v-list 
+          dense 
+          :class="[contentClass]"
+        >
+          <v-link 
+            v-for="(foodcart,key) in foodcarts" 
+            :key="key" 
+            :title="toProperCase(foodcart.name)" 
+            :href="`/products/${foodcart.slug}`"
+          />
+        </v-list>
+      </v-flex>
+      <v-flex 
+        xs12
+        sm12 
+        md3 
+        lg3 
+        xl3
+      >
+        <v-subheader class="headline white--text">Social Media</v-subheader>
+        <v-list 
+          dense 
+          :class="[contentClass]"
+        >
+          <v-link
+            v-for="(value,key,index) in social_links" 
+            :key="key" 
+            :index="index"
+            :title="toProperCase(key)" 
+            :href="value"
+          />
+        </v-list>
+      </v-flex>
+      <v-flex 
+        xs12 
+        sm12 
+        md3 
+        lg3 
+        xl3
+      >
+        <v-subheader class="headline white--text">Contact Details</v-subheader>
+        <v-list class="accent">
+          <v-list-tile 
+            v-for="(value,key,index) in contact_details" 
+            :key="key" 
+            :index="index"
+          >
             <v-list-tile-content>
-            <v-list-tile-title class="caption">{{ toProperCase(key) }}: {{ toProperCase(value) }}</v-list-tile-title>
+              <v-list-tile-title class="caption">{{ toProperCase(key) }}: {{ toProperCase(value) }}</v-list-tile-title>
             </v-list-tile-content>
-        </v-list-tile>
-    </v-list>
-    </v-flex>
+          </v-list-tile>
+        </v-list>
+      </v-flex>
     </v-layout>
-</v-container>
+  </v-container>
 
 </template>
 
 <script>
 import VLink from '../components/VLink.vue'
 export default {
+    components: {
+        VLink
+    },
     data: () => ({
         contentClass: {'accent': true},
         contact_details: App.sponsor.contact_details,
@@ -48,9 +111,6 @@ export default {
         products: [],
         foodcarts: []
     }),
-    components: {
-        VLink
-    },
     mounted () {
         this.getFoodCart()
         this.getSupplements()
