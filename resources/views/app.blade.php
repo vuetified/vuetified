@@ -42,4 +42,14 @@
 <script src="{{ mix('/js/manifest.js') }}"></script>
 <script src="{{mix('/js/vendor.js')}}"></script>
 <script src="{{mix('/js/app.js')}}"></script>
+<!-- Global site tag (gtag.js) - Google AdWords: 1003805353 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ config('services.adwords.key') }}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '{{ config('services.adwords.key') }}');
+</script>
+
 @endpush
