@@ -31,7 +31,7 @@ return [
                                     'component'=> 'Category'
                                 ],
                                 [
-                                    'id'        => 5,
+                                    'id'        => 6,
                                     'title'=> 'Food Cart', 
                                     'avatar'=> '/img/foodcart.png', 
                                     'action'=> 'fa-search', 
