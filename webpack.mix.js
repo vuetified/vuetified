@@ -17,7 +17,6 @@ mix.js('resources/assets/js/app.js', 'public/js')
     ])
     // .sourceMaps()
 mix.stylus('resources/assets/stylus/app.styl', 'public/css')
-mix.sourceMaps()
 if (mix.inProduction()) {
     mix.version()
     mix.disableNotifications()
