@@ -123,7 +123,6 @@ export default {
     },
     methods: {
         submit () {
-            console.log('form submitted')
             let self = this
             self.customerForm.busy = true
             App.post(route('api.orders.customer_details', {order: self.order.id}), self.customerForm).then(({message}) => {
