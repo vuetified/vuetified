@@ -39,6 +39,12 @@
           <v-icon>link</v-icon>
           <span class="hidden-md-and-down">Social Links</span>
         </v-tabs-item>
+        <v-tabs-item 
+          href="#check-me-out" 
+        >
+          <v-icon>fa-truck</v-icon>
+          <span class="hidden-md-and-down">Check Me Out</span>
+        </v-tabs-item>
         <!-- tabs -->
       </v-tabs-bar>
       <v-tabs-items>
@@ -48,6 +54,7 @@
         <profile/>
         <contact-details v-if="active"/>
         <social-links v-if="active"/>
+        <check-me-out/>
         <!-- tab contents -->
       </v-tabs-items>
     </v-tabs>
@@ -61,6 +68,7 @@ import ReferralLink from '../components/settings/ReferralLink.vue'
 import ContactDetails from '../components/settings/ContactDetails.vue'
 import Profile from '../components/settings/Profile.vue'
 import SocialLinks from '../components/settings/SocialLinks.vue'
+import CheckMeOut from '../components/settings/CheckMeOut.vue'
 import Theme from '../mixins/theme'
 
 export default {
@@ -70,7 +78,8 @@ export default {
         ReferralLink,
         ContactDetails,
         Profile,
-        SocialLinks
+        SocialLinks,
+        CheckMeOut
     },
     mixins: [Theme],
     data: () => ({
