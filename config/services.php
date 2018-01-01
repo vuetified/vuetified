@@ -34,5 +34,13 @@ return [
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],
+    'adwords' => [
+        'key' => env('ADWORDS_KEY'),
+        'send_to' => env('ADWORDS_SEND_TO')
+    ],
+    'checkmeout' => [
+        'api_key' => env('CHECKMEOUT_API_KEY'),
+        'secret_key' => env('CHECKMEOUT_SECRET_KEY')
+    ]
 
 ];
