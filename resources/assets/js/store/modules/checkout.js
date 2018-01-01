@@ -32,8 +32,21 @@ const getters = {
 const actions = {
     async checkout ({ dispatch }, form) {
         form.busy = true
+        let url = undefined
         try {
             const payload = await App.post(route('api.order.create'), form)
+            let callback = () => {
+                if (typeof(url) != 'undefined') {
+                    window.location = url;
+                }
+            }
+            await gtag('event', 'conversion', {
+                'send_to': App.adwords.send_to,
+                'value': form.courier.details.rate,
+                'currency': 'PHP',
+                'transaction_id': payload.transaction_id,
+                'event_callback': callback
+            });
             form.busy = false
             dispatch('resetCheckout')
             vm.$router.push({name: 'thankyou'})
