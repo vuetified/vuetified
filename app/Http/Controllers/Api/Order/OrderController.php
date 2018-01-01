@@ -31,7 +31,8 @@ class OrderController extends Controller
         \Mail::to($request->user())
         ->queue(new OrderPlaced($order));
         return response()->json([
-            'message' => 'Order Placed!'
+            'message' => 'Order Placed!',
+            'transaction_id' => $order->id
         ],200);
     }
 
