@@ -24,7 +24,9 @@ trait ProvidesScriptVariables
             'grouplinks' => config('grouplinks'),
             'theme' => config('theme'),
             'cart' => self::getCart(),
-            'sponsor' => self::getSponsor()
+            'sponsor' => self::getSponsor(),
+            'adwords' => self::getAdwordsTagKeys(),
+            'checkmeout' => self::getCheckMeOutKeys()
             // This will only be Loaded for Authenticated users
             // Specifically Admin Role
             // Hmmf maybe we can use Resource to Dynamically Load this stuff?
@@ -77,6 +79,26 @@ trait ProvidesScriptVariables
                 'social_links' => json_decode($user->social_links,true)
             ];
         }
+    }
+
+    protected static function getAdwordsTagKeys()
+    {
+        // Get the User adwords key by User link being used , if not is given use the admin link
+        // to fetch the adwords credentials
+        return [
+            'key' => config('services.adwords.key'),
+            'send_to' => config('services.adwords.send_to'),
+        ];
+    }
+    protected static function getCheckMeOutKeys()
+    {
+        // Create a New Table to Save this In A User Settings 
+        // if no link is present use the default key
+        // Also Save the access_token in the database after login
+        return [
+            'api_key' => config('services.checkmeout.api_key'),
+            'secret_key' => config('services.checkmeout.secret_key'),
+        ];
     }
 
 }
