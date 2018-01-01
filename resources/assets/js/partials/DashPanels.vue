@@ -152,19 +152,19 @@
 export default {
     props:{
         unpaid:{
-            type: Boolean,
+            type: Number,
             required: true
         },
         paid:{
-            type: Boolean,
+            type: Number,
             required: true
         },
         sent:{
-            type: Boolean,
+            type: Number,
             required: true
         },
         received: {
-            type: Boolean,
+            type: Number,
             required: true
         },
         total:{
@@ -172,11 +172,11 @@ export default {
             required: true
         },
         unsent:{
-            type: Boolean,
+            type: Number,
             required: true
         },
         done:{
-            type: Boolean,
+            type: Number,
             required: true
         }
     }
