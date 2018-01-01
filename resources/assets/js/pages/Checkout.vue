@@ -34,7 +34,7 @@
         <template v-for="(active,key) in getActiveSteps">
 
           <v-stepper-step
-            :key="key"
+            :key="key + active.title"
             :step="parseInt(key + 1)"
             :complete="parseInt(step) > parseInt(key + 1)"
             :rules="[() => getActiveSteps[key].validated]"
