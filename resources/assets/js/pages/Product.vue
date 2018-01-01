@@ -100,11 +100,10 @@
                 <!-- Image -->
                 <!-- Gallery -->
                 <v-container 
-                  fill-height 
                   fluid 
                   v-if="product.photos.length > 0"
                 >
-                  <v-layout fill-height>
+                  <v-layout>
                     <v-flex 
                       xs12 
                       align-end 
@@ -120,89 +119,80 @@
                     </v-flex>
                   </v-layout>
                 </v-container>
+                <v-card-text light>
+                  <v-slider
+                    color="teal"
+                    :min="1"
+                    :max="1000"
+                    v-model.number="product.qty"
+                    step="1"
+                    light
+                    track-color="amber darken-4"
+                    :label="`QTY: ${product.qty}`"
+                  />
+                  <v-text-field
+                    single-line
+                    light
+                    v-model.number="product.qty"
+                    type="number"
+                  />
+                  <!-- product.options -->
+                  <v-select
+                    v-if="hasPackages"
+                    light
+                    color="info"
+                    :items="product.options"
+                    item-text="value"
+                    v-model="option"
+                    label="Select Package"
+                    single-line
+                    return-object
+                    auto
+                    append-icon="fa-cubes"
+                    hide-details
+                    v-validate="{ required: true}"
+                    :error-messages="errors.collect('package')"
+                    data-vv-name="package"
+                  />
+                <!-- product.options -->
+                </v-card-text>
+                <v-card 
+                  color="grey lighten-4" 
+                  flat 
+                  light
+                >
+                  <v-card-actions>
+                    <v-btn 
+                      light 
+                      flat 
+                      block 
+                      color="green"
+                    >
+                      {{ currency }}{{ product.price * product.qty }}
+                    </v-btn>
+                    <v-btn 
+                      light 
+                      flat 
+                      block 
+                      color="teal" 
+                      @click="addToCart()"
+                    >
+                      Add To Cart 
+                      <v-icon>shopping_cart</v-icon>
+                    </v-btn>
+                  </v-card-actions>
+                </v-card>
                 <!-- Gallery -->
               </v-card>
             </v-flex>
-            <!-- Product Image -->
-            <!-- Action Buttons -->
             <v-flex 
               d-flex 
               xs12
-            >
-              <!-- INPUT FIELDS -->
-              <v-card-text light>
-                <v-slider
-                  color="teal"
-                  :min="1"
-                  :max="1000"
-                  v-model.number="product.qty"
-                  step="1"
-                  light
-                  track-color="amber darken-4"
-                  :label="`QTY: ${product.qty}`"
-                />
-                <v-text-field
-                  single-line
-                  light
-                  v-model.number="product.qty"
-                  type="number"
-                />
-                <!-- product.options -->
-                <v-select
-                  v-if="hasPackages"
-                  light
-                  color="info"
-                  :items="product.options"
-                  item-text="value"
-                  v-model="option"
-                  label="Select Package"
-                  single-line
-                  return-object
-                  auto
-                  append-icon="fa-cubes"
-                  hide-details
-                  v-validate="{ required: true}"
-                  :error-messages="errors.collect('package')"
-                  data-vv-name="package"
-                />
-                <!-- product.options -->
-              </v-card-text>
-              <!-- INPUT FIELDS -->
-            </v-flex>
+            />
             <v-flex 
               d-flex 
               xs12
-            >
-              <!-- ADD TO CART -->
-              <v-card 
-                color="grey lighten-4" 
-                flat 
-                light
-              >
-                <v-card-actions>
-                  <v-btn 
-                    light 
-                    flat 
-                    block 
-                    color="green"
-                  >
-                    {{ currency }}{{ product.price * product.qty }}
-                  </v-btn>
-                  <v-btn 
-                    light 
-                    flat 
-                    block 
-                    color="teal" 
-                    @click="addToCart()"
-                  >
-                    Add To Cart 
-                    <v-icon>shopping_cart</v-icon>
-                  </v-btn>
-                </v-card-actions>
-              </v-card>
-              <!-- ADD TO CART -->
-            </v-flex>
-            <!-- Action Buttons -->
+            />
           </v-layout>
         </v-flex>
         <!-- left side -->
