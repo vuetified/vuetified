@@ -37,22 +37,41 @@ Route::get('cmo/addItem', function(){
         'headers' => [
             'Authorization' => 'Bearer ' . 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1MTQ4NjY2NDIsInN1YiI6IjQ5NzlhNWMwNjhhNjU0NzI4MzM1MDNmZDIyZDFkYmQzIn0.bZwKIiz2MlRofIuch_ssDsrSMawUfjyNEl-2BnU2LaM'
         ],
-        GuzzleHttp\RequestOptions::JSON => 
-        [
-        'name' => 'production', 
-        'amount' => 100, 
-        'stock_quantity' => 1, 
-        'receptacle' => $large,
-        'description' => 'my description',
-        'rating' => 5,
-        'sku' => 'product sku',
-        ],
         //! if there is an image of the product we need to upload the image
         GuzzleHttp\RequestOptions::MULTIPART => [
             [
                 'name'     => 'product_photo',
                 'contents' => fopen($image, 'r')
             ],
+            [
+                'name' => 'name',
+                'contents' => 'production'
+            ],
+            [
+                'name' => 'amount',
+                'contents' => 100
+            ],
+            [
+                'name' => 'stock_quantity',
+                'contents' => 5
+            ],
+            [
+                'name' => 'receptacle',
+                'contents' => $large
+            ],
+            [
+                'name' => 'description',
+                'contents' => 'my description'
+            ],
+            [
+                'name' => 'rating',
+                'contents' => 5
+            ],
+            [
+                'name' => 'sku',
+                'contents' => 'production-sku'
+            ],
+
         ],
     ]);
     return $response;
