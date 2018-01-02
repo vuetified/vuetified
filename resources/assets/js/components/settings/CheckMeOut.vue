@@ -122,11 +122,11 @@ const { mapActions } = createNamespacedHelpers('checkmeout')
 
 export default {
     data: () => ({
-        loginForm: new AppForm({
+        loginForm: {
             email: '',
             password:'',
             token: ''
-        }),
+        },
         checkMeOutForm: new AppForm({
             api_key: '',
             secret_key:''
@@ -141,6 +141,7 @@ export default {
     },
     mounted () {
         this.getApiKeys()
+        this.getProducts()
         this.loginForm.token = this.checkMeOutForm.api_key
     },
     methods: {
@@ -158,6 +159,26 @@ export default {
         getApiKeys(){
             this.checkMeOutForm.api_key = App.checkmeout.api_key
             this.checkMeOutForm.secret_key = App.checkmeout.secret_key
+        },
+        getProducts(){
+            let form = {
+                name: 'test',
+                amount: 100,
+                stock_quantity: 1,
+                receptacle: '334d617c-5f22-4057-93c6-3bbf988d7237'
+            }
+            window.$.ajax({
+                type: 'POST',
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader ('Authorization', 'Bearer ' + btoa('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1MTQ3NDg1NjIsInN1YiI6IjQ5NzlhNWMwNjhhNjU0NzI4MzM1MDNmZDIyZDFkYmQzIn0.ZcdJ0loyzGNuFhR3Cv5Ul_HxfS5cNe3XRdAyZZv1GOI'));
+                },
+                url: 'https://api.checkmeout.ph/v1/products',
+                data: form 
+            
+            }).then(response => {
+                console.log('success',response)
+            })
+          
         }
 
     }

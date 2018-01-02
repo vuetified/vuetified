@@ -10,19 +10,36 @@ const getters = {
 }
 
 const actions = {
+    // async checkmeout({ commit }, form){
+    //     form.busy = true
+    //     try {
+    //         const payload = (await App.post('https://api.checkmeout.ph/v1/auth/login', form))
+    //         form.busy = false
+    //         commit('setToken', payload.token)
+    //         vm.$popup({ message: 'Check Me Out Integrated', backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
+    //         vm.$router.push({ name: 'settings' })
+    //     } catch ({errors, message}) {
+    //         form.errors.set(errors)
+    //         form.busy = false
+    //         vm.$popup({ message: message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' })
+    //     }
+    // }
     async checkmeout({ commit }, form){
-        form.busy = true
-        try {
-            const payload = (await App.post('https://api.checkmeout.ph/v1/auth/login', form))
-            form.busy = false
-            commit('setToken', payload.token)
-            vm.$popup({ message: 'Check Me Out Integrated', backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
-            vm.$router.push({ name: 'settings' })
-        } catch ({errors, message}) {
-            form.errors.set(errors)
-            form.busy = false
-            vm.$popup({ message: message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' })
-        }
+
+        window.$.ajax({
+            type: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+            },
+            url: 'https://api.checkmeout.ph/v1/auth/login',
+            data: form 
+            
+        }).then(response => {
+            console.log('success',response)
+            commit('setToken', response.data.token)
+        })
+       
+        
     }
 }
 
