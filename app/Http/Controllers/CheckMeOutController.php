@@ -20,11 +20,10 @@ class CheckMeOutController extends Controller
             // GuzzleHttp\RequestOptions::JSON => ['email' => $request->email, 'password' => $request->password]
             RequestOptions::JSON => ['email' => $request->email, 'password' => $request->password]
         ]);
-
         $data = $this->checkmeout('POST','/auth/login');
-        $access = CheckMeOut::findOrCreate($data);
-        if($access->token){
-        return response()->json(['token' => $access->token,'message' => 'Checkmeout Account Authenticated'],200);
+        $checkmeout = CheckMeOut::findOrCreate($data);
+        if($checkmeout->token){
+        return response()->json(['checkmeout' => $checkmeout,'message' => 'Checkmeout Account Authenticated'],200);
             
         }else{
             return response()->json(['message' => 'Failed To Authenticate Checkmeout Account']);
