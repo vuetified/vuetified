@@ -1,18 +1,19 @@
 <?php
 Route::get('/getPanelStats', 'Api\Order\OrderController@getPanelStats')->name('api.panel.stats');
 
-Route::get('cmo/login', function(){
-    $client = new \GuzzleHttp\Client();
-    $response = $client->post('https://api.checkmeout.ph/v1/auth/login', [
-        GuzzleHttp\RequestOptions::JSON => ['email' => $request->email, 'password' => $request->password]
-    ]);
-    $data = $response->getBody()->getContents();
-    $data = json_decode($data,true);
-    $cmo_id = $data['id'];
-    $token = $data['token'];
-    //! we need to save this token in our database
-    return $token;
-});
+// Route::get('cmo/login', function(){
+//     $client = new \GuzzleHttp\Client();
+//     $response = $client->post('https://api.checkmeout.ph/v1/auth/login', [
+//         GuzzleHttp\RequestOptions::JSON => ['email' => $request->email, 'password' => $request->password]
+//     ]);
+//     $data = $response->getBody()->getContents();
+//     $data = json_decode($data,true);
+//     $cmo_id = $data['id'];
+//     $token = $data['token'];
+//     //! we need to save this token in our database
+//     return $token;
+// });
+Route::get('cmo/login', 'CheckMeOutController@login')->name('cmo.login');
 Route::get('cmo/getProducts', function(){
     $client = new \GuzzleHttp\Client();
     $response = $client->get('https://api.checkmeout.ph/v1/products', [
