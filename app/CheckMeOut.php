@@ -11,7 +11,7 @@ class CheckMeOut extends Model
     public $incrementing = false;
 
     protected $fillable = [
-        'user_id', 'id', 'token'
+        'user_id', 'id', 'token', 'api_key', 'secret_key'
     ];
 
     protected $dates = ['created_at', 'updated_at'];
@@ -21,13 +21,20 @@ class CheckMeOut extends Model
      * @param [Array] $data = ['id','token','user_id']
      * @return void
      */
-    public static function saveToken($data)
+    public static function findOrCreate($data)
     {
         $checkmeout = new static;
-        $checkmeout->id = $data['id'];
-        $checkmeout->token = $data['token'];
-        $checkmeout->user_id = $data['user_id'];
-        $checkmeout->save();
+        $checkmeout = $checkmeout->find($data['id']);
+        if(!$checkmeout){
+            $checkmeout->id = $data['id'];
+            $checkmeout->token = $data['token'];
+            if(optional(request()->user())->id){
+                $checkmeout->user_id = request()->user()->id;
+            }
+            return tap($checkmeout->save());
+        }
+        return $checkmeout;
+        
     }
     public function user()
     {
