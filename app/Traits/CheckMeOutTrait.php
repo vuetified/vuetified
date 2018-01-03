@@ -61,13 +61,12 @@ trait CheckMeOutTrait
         if(!$user){
             throw new UserTokenNotFound;
         }
-        $token = $user->cmo->token;
+        $token = $user->checkmeout->token;
         if($token){
-            $authorization = ['Authorization' => 'Bearer '.$token];
-            if(!array_key_exists('headers',$this->options)){
-                array_push($this->options, ['headers' => []]);
-            }
-            $this->options = array_merge($this->options['headers'],$authorization);
+            $authorization = ['headers' =>
+            ['Authorization' => 'Bearer '.$token]
+        ];
+            $this->addOption($authorization);
         }
     }
 
