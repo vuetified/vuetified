@@ -51943,7 +51943,11 @@ var actions = {
                             payload = _context.sent;
 
                             console.log(payload);
-                            commit('setToken', payload.token);
+                            commit('setToken', payload.checkmeout.token);
+                            // payload.checkmeout.api_key
+                            // payload.checkmeout.secret_key
+                            // payload.checkmeout.user_id
+
 
                         case 5:
                         case 'end':
