@@ -43,6 +43,9 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::post('/products/{slug}/deleteGalleryImage', 'Api\ProductsController@deleteGalleryImage')->name('api.product.deleteGalleryImage');
     Route::post('/products/{slug}/uploadGalleryImages', 'Api\ProductsController@uploadGalleryImages')->name('api.product.uploadGalleryImages');
 
+    Route::post('/cmo/login', 'CheckMeOutController@login')->name('api.cmo.login');
+    Route::post('/cmo/getProducts', 'CheckMeOutController@getProducts')->name('api.cmo.getProducts');
+
 });
 
 Route::post('/auth/register', 'Api\Auth\RegisterController@register')->name('api.auth.register');

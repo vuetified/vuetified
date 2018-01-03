@@ -1,31 +1,19 @@
 <?php
 Route::get('/getPanelStats', 'Api\Order\OrderController@getPanelStats')->name('api.panel.stats');
 
-// Route::get('cmo/login', function(){
+
+// Route::get('cmo/getProducts', function(){
 //     $client = new \GuzzleHttp\Client();
-//     $response = $client->post('https://api.checkmeout.ph/v1/auth/login', [
-//         GuzzleHttp\RequestOptions::JSON => ['email' => $request->email, 'password' => $request->password]
+//     $response = $client->get('https://api.checkmeout.ph/v1/products', [
+//         'headers' => [
+//             'Authorization' => 'Bearer ' . 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1MTQ4NjY2NDIsInN1YiI6IjQ5NzlhNWMwNjhhNjU0NzI4MzM1MDNmZDIyZDFkYmQzIn0.bZwKIiz2MlRofIuch_ssDsrSMawUfjyNEl-2BnU2LaM'
+//         ]
 //     ]);
+    
 //     $data = $response->getBody()->getContents();
 //     $data = json_decode($data,true);
-//     $cmo_id = $data['id'];
-//     $token = $data['token'];
-//     //! we need to save this token in our database
-//     return $token;
+//     return $data;
 // });
-Route::get('cmo/login', 'CheckMeOutController@login')->name('cmo.login');
-Route::get('cmo/getProducts', function(){
-    $client = new \GuzzleHttp\Client();
-    $response = $client->get('https://api.checkmeout.ph/v1/products', [
-        'headers' => [
-            'Authorization' => 'Bearer ' . 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1MTQ4NjY2NDIsInN1YiI6IjQ5NzlhNWMwNjhhNjU0NzI4MzM1MDNmZDIyZDFkYmQzIn0.bZwKIiz2MlRofIuch_ssDsrSMawUfjyNEl-2BnU2LaM'
-        ]
-    ]);
-    
-    $data = $response->getBody()->getContents();
-    $data = json_decode($data,true);
-    return $data;
-});
 Route::get('cmo/addItem', function(){
 
     $client = new \GuzzleHttp\Client();
