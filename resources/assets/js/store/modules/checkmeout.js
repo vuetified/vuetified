@@ -26,18 +26,9 @@ const actions = {
     // }
     async checkmeout({ commit }, form){
 
-        window.$.ajax({
-            type: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-            },
-            url: 'https://api.checkmeout.ph/v1/auth/login',
-            data: form 
-            
-        }).then(response => {
-            console.log('success',response)
-            commit('setToken', response.data.token)
-        })
+        let payload= (await App.post(route('api.cmo.login'),form))
+        console.log(payload)
+        commit('setToken', payload.token)
        
         
     }
