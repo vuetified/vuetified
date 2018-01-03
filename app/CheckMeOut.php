@@ -23,9 +23,9 @@ class CheckMeOut extends Model
      */
     public static function findOrCreate($data)
     {
-        $checkmeout = new static;
-        $checkmeout = $checkmeout->find($data['id']);
+        $checkmeout =self::find($data['id']);
         if(!$checkmeout){
+            $checkmeout = new static;
             $checkmeout->id = $data['id'];
             $checkmeout->token = $data['token'];
             if(optional(request()->user())->id){
