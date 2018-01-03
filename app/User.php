@@ -69,6 +69,11 @@ class User extends Authenticatable
         return $this->hasMany(Order::class);
     }
 
+    public function checkmeout() 
+    {
+        return $this->hasOne(CheckMeOut::class);
+    }
+
 
     public function sponsor()
     {
