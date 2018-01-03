@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Traits\CheckMeOutTrait;
 use GuzzleHttp\RequestOptions;
+use App\CheckMeOut;
 class CheckMeOutController extends Controller
 {
     use CheckMeOutTrait;
@@ -21,6 +22,23 @@ class CheckMeOutController extends Controller
         ]);
 
         $data = $this->checkmeout('POST','/auth/login');
+        $access = CheckMeOut::findOrCreate($data);
+        if($access->token){
+        return response()->json(['token' => $access->token,'message' => 'Checkmeout Account Authenticated'],200);
+            
+        }else{
+            return response()->json(['message' => 'Failed To Authenticate Checkmeout Account']);
+        }
+    }
+
+    public function getProducts(Request $request)
+    {
+        
+        $this->setToken($request);
+
+        $data = $this->checkmeout('GET','/products');
         return $data;
     }
+
+
 }
