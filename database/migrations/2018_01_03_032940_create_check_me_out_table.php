@@ -19,6 +19,8 @@ class CreateCheckMeOutTable extends Migration
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('token');
+            $table->string('api_key')->nullable();
+            $table->string('secret_key')->nullable();
             $table->timestamps();
         });
     }
