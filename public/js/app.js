@@ -51931,25 +51931,21 @@ var actions = {
     checkmeout: function () {
         var _ref2 = __WEBPACK_IMPORTED_MODULE_1_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(_ref, form) {
             var commit = _ref.commit;
+            var payload;
             return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
                 while (1) {
                     switch (_context.prev = _context.next) {
                         case 0:
+                            _context.next = 2;
+                            return App.post(route('api.cmo.login'), form);
 
-                            window.$.ajax({
-                                type: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-                                },
-                                url: 'https://api.checkmeout.ph/v1/auth/login',
-                                data: form
+                        case 2:
+                            payload = _context.sent;
 
-                            }).then(function (response) {
-                                console.log('success', response);
-                                commit('setToken', response.data.token);
-                            });
+                            console.log(payload);
+                            commit('setToken', payload.token);
 
-                        case 1:
+                        case 5:
                         case 'end':
                             return _context.stop();
                     }

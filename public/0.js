@@ -6964,7 +6964,7 @@ exports = module.exports = __webpack_require__(631)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -7107,11 +7107,11 @@ var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["createNam
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            loginForm: {
+            loginForm: new AppForm({
                 email: '',
                 password: '',
                 token: ''
-            },
+            }),
             checkMeOutForm: new AppForm({
                 api_key: '',
                 secret_key: ''
@@ -7128,7 +7128,6 @@ var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["createNam
     mounted: function mounted() {
         this.getApiKeys();
         this.getProducts();
-        this.loginForm.token = this.checkMeOutForm.api_key;
     },
 
     methods: __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends___default()({}, mapActions({
@@ -7146,22 +7145,9 @@ var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["createNam
             this.checkMeOutForm.secret_key = App.checkmeout.secret_key;
         },
         getProducts: function getProducts() {
-            var form = {
-                name: 'test',
-                amount: 100,
-                stock_quantity: 1,
-                receptacle: '334d617c-5f22-4057-93c6-3bbf988d7237'
-            };
-            window.$.ajax({
-                type: 'POST',
-                beforeSend: function beforeSend(xhr) {
-                    xhr.setRequestHeader('Authorization', 'Bearer ' + btoa('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1MTQ3NDg1NjIsInN1YiI6IjQ5NzlhNWMwNjhhNjU0NzI4MzM1MDNmZDIyZDFkYmQzIn0.ZcdJ0loyzGNuFhR3Cv5Ul_HxfS5cNe3XRdAyZZv1GOI'));
-                },
-                url: 'https://api.checkmeout.ph/v1/products',
-                data: form
-
-            }).then(function (response) {
-                console.log('success', response);
+            var form = {};
+            axios.post(route('api.cmo.getProducts'), form).then(function (response) {
+                console.log(response.data);
             });
         }
     })
