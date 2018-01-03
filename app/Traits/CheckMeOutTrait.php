@@ -61,7 +61,7 @@ trait CheckMeOutTrait
         if(!$user){
             throw new UserTokenNotFound;
         }
-        $token = $user->checkmeout->token;
+        $token = optional($user->checkmeout)->token;
         if($token){
             $authorization = ['headers' =>
             ['Authorization' => 'Bearer '.$token]
