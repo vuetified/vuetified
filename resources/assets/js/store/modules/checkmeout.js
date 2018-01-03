@@ -28,7 +28,10 @@ const actions = {
 
         let payload= (await App.post(route('api.cmo.login'),form))
         console.log(payload)
-        commit('setToken', payload.token)
+        commit('setToken', payload.checkmeout.token)
+        // payload.checkmeout.api_key
+        // payload.checkmeout.secret_key
+        // payload.checkmeout.user_id
        
         
     }
