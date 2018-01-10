@@ -3,10 +3,10 @@ import VueRouter from 'vue-router'
 import routes from './routes'
 // import store from './store'
 // import Meta from 'vue-meta'
-// import VueHead from 'vue-head'
+import VueHead from 'vue-head'
 
 // Vue.use(Meta)
-// Vue.use(VueHead)
+Vue.use(VueHead)
 /* SEO META */
 // Vue.use(Meta, {
 //     keyName: 'metaInfo', // the component option name that vue-meta looks for meta info on.
