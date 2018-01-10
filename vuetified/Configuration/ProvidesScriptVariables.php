@@ -5,6 +5,7 @@ namespace Vuetified\Configuration;
 use Vuetified\Vuetified;
 use Illuminate\Support\Facades\Auth;
 use Vuetified\Contracts\InitialFrontendState;
+use App\Exceptions\UserTokenNotFound;
 
 trait ProvidesScriptVariables
 {
@@ -92,12 +93,18 @@ trait ProvidesScriptVariables
     }
     protected static function getCheckMeOutKeys()
     {
-        // Create a New Table to Save this In A User Settings 
-        // if no link is present use the default key
-        // Also Save the access_token in the database after login
         return [
             'api_key' => config('services.checkmeout.api_key'),
             'secret_key' => config('services.checkmeout.secret_key'),
+        ];
+
+        $user = request()->user();
+        if(!user){
+            throw new UserTokenNotFound;
+        }
+        $token = $user->checkmeout->token;
+        return [
+            'token' => $token,
         ];
     }
 
