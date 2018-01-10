@@ -46,6 +46,11 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::post('/cmo/login', 'CheckMeOutController@login')->name('api.cmo.login');
     Route::post('/cmo/getProducts', 'CheckMeOutController@getProducts')->name('api.cmo.getProducts');
 
+    Route::post('/cmo/fetchKeys', 'CheckMeOutController@fetchKeys')->name('api.cmo.fetchkeys');
+    Route::post('/cmo/addKeys', 'CheckMeOutController@addKeys')->name('api.cmo.addKeys');
+    
+    Route::post('/cmo/addItems', 'CheckMeOutController@addItems')->name('api.cmo.addItems');
+
 });
 
 Route::post('/auth/register', 'Api\Auth\RegisterController@register')->name('api.auth.register');
@@ -79,3 +84,6 @@ Route::post('/orders/{order}/receipts', 'Api\Media\ReceiptUploadController@uploa
 Route::post('/@inquiry', 'Api\InquiryController@inquiry')->name('api.@inquiry');
 // Route::post('/checkout', 'Api\CheckoutController@checkout')->name('api.product.show');
 // Checkout Will Save A New Order For Specific Authenticated User
+Route::get('/cmo/receptacles', 'CheckMeOutController@getReceptacles')->name('api.cmo.getReceptacles');
+
+
