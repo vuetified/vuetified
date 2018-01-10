@@ -31,6 +31,7 @@ return [
         'show'  => true
     ],
     'trademark' => env('HOME_TRADEMARK','Vuetified'),
+    'description' => env('HOME_DESCRIPTION', 'A New Vuetified App'),
     'domain' => env('APP_DOMAIN', 'vuetified.app'),
     'url' => env('APP_URL', 'http://localhost'),
     'email' => env('MAIL_USERNAME', 'admin@vuetified.app'),
@@ -40,5 +41,6 @@ return [
         'twitter' => env('HOME_TWITTER','https://twitter.com/@vuetified'),
         'youtube' => env('HOME_YOUTUBE','https://www.youtube.com/vuetified'),
         'linkedIn' => env('HOME_LINKEDIN','https://www.linkedin.com/in/vuetified'),
-    ]
+    ],
+    'fb_id' => env('FB_APP_ID')
 ];
