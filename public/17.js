@@ -1,14 +1,14 @@
 webpackJsonp([17],{
 
-/***/ 636:
+/***/ 633:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(316)
 /* script */
-var __vue_script__ = __webpack_require__(710)
+var __vue_script__ = __webpack_require__(704)
 /* template */
-var __vue_template__ = __webpack_require__(711)
+var __vue_template__ = __webpack_require__(705)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -25,7 +25,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\js\\pages\\ForgotPassword.vue"
+Component.options.__file = "resources\\assets\\js\\pages\\Login.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -34,9 +34,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-32f9f015", Component.options)
+    hotAPI.createRecord("data-v-6d4a7902", Component.options)
   } else {
-    hotAPI.reload("data-v-32f9f015", Component.options)
+    hotAPI.reload("data-v-6d4a7902", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -48,7 +48,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 654:
+/***/ 656:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -56,7 +56,7 @@ module.exports = Component.exports
 
 exports.__esModule = true;
 
-var _assign = __webpack_require__(657);
+var _assign = __webpack_require__(659);
 
 var _assign2 = _interopRequireDefault(_assign);
 
@@ -78,34 +78,34 @@ exports.default = _assign2.default || function (target) {
 
 /***/ }),
 
-/***/ 657:
+/***/ 659:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = { "default": __webpack_require__(658), __esModule: true };
+module.exports = { "default": __webpack_require__(660), __esModule: true };
 
 /***/ }),
 
-/***/ 658:
+/***/ 660:
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(659);
+__webpack_require__(661);
 module.exports = __webpack_require__(31).Object.assign;
 
 
 /***/ }),
 
-/***/ 659:
+/***/ 661:
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.3.1 Object.assign(target, source)
 var $export = __webpack_require__(62);
 
-$export($export.S + $export.F, 'Object', { assign: __webpack_require__(660) });
+$export($export.S + $export.F, 'Object', { assign: __webpack_require__(662) });
 
 
 /***/ }),
 
-/***/ 660:
+/***/ 662:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -147,7 +147,7 @@ module.exports = !$assign || __webpack_require__(68)(function () {
 
 /***/ }),
 
-/***/ 692:
+/***/ 694:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
@@ -155,7 +155,7 @@ var normalizeComponent = __webpack_require__(316)
 /* script */
 var __vue_script__ = null
 /* template */
-var __vue_template__ = __webpack_require__(693)
+var __vue_template__ = __webpack_require__(695)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -195,7 +195,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 693:
+/***/ 695:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -245,7 +245,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 710:
+/***/ 704:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -254,9 +254,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_asyncToGenerator__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_asyncToGenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_asyncToGenerator__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends__ = __webpack_require__(654);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends__ = __webpack_require__(656);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__layouts_ModalLayout__ = __webpack_require__(692);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__layouts_ModalLayout__ = __webpack_require__(694);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__layouts_ModalLayout___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__layouts_ModalLayout__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vuex__ = __webpack_require__(90);
 
@@ -343,11 +343,73 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
 
 var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_4_vuex__["createNamespacedHelpers"])('auth'),
+    mapActions = _createNamespacedHelp.mapActions,
     mapGetters = _createNamespacedHelp.mapGetters;
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -356,29 +418,62 @@ var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_4_vuex__["createNam
     },
     data: function data() {
         return {
-            resetForm: new AppForm(App.forms.resetForm)
+            loginForm: new AppForm(App.forms.loginForm),
+            password_visible: false
+
         };
     },
-    computed: __WEBPACK_IMPORTED_MODULE_2_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends___default()({}, mapGetters({
+    computed: __WEBPACK_IMPORTED_MODULE_2_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends___default()({
+        icon: function icon() {
+            return this.password_visible ? 'visibility' : 'visibility_off';
+        }
+    }, mapGetters({
         getAuth: 'getAuth'
     })),
+    head: {
+        title: function title() {
+            return {
+                inner: 'Login',
+                separator: '-',
+                complement: App.site.trademark
+            };
+        },
+        // Meta tags
+        meta: [{ name: 'application-name', content: App.site.trademark }, { name: 'description', content: App.site.description, id: 'desc' }, // id to replace intead of create element
+        // Facebook / Open Graph
+        { property: 'fb:app_id', content: App.site.fb_id }, { property: 'og:title', content: App.site.title }, { property: 'og:type', content: 'website' }, { property: 'og:image', content: App.site.logo.url }, { property: 'og:description', content: App.site.description }, { property: 'og:site_name', content: App.site.trademark }, { property: 'og:locale', content: 'en_US' }, { property: 'article:author', content: App.site.trademark }],
+        // link tags
+        link: [{ rel: 'canonical', href: window.location.href, id: 'canonical' }]
+
+    },
     mounted: function mounted() {
         var self = this;
-        /* Make Sure We Only Load Forgot Password Page If Not Authenticated */
+        /* Make Sure We Only Load Login Page If Not Authenticated */
         if (self.getAuth) {
             /* nextick make sure our modal wount be visible before redirect */
             return self.$nextTick(function () {
                 return self.$router.go(-1);
             });
         }
-        /* Show Forgot Password Modal */
     },
 
-    methods: {
+    methods: __WEBPACK_IMPORTED_MODULE_2_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends___default()({
+        resetPassword: function resetPassword() {
+            var self = this;
+            self.$nextTick(function () {
+                return self.$router.push({ name: 'forgotpassword' });
+            });
+        },
         goHome: function goHome() {
             var self = this;
             self.$nextTick(function () {
                 return self.$router.push({ name: 'home' });
+            });
+        },
+        goToRegister: function goToRegister() {
+            var self = this;
+            self.$nextTick(function () {
+                return self.$router.push({ name: 'register' });
             });
         },
         redirectBack: function redirectBack() {
@@ -387,7 +482,7 @@ var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_4_vuex__["createNam
                 return self.$router.go(-1);
             });
         },
-        sendEmail: function () {
+        login: function () {
             var _ref = __WEBPACK_IMPORTED_MODULE_1_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
                 var self;
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
@@ -399,22 +494,14 @@ var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_4_vuex__["createNam
                                 self.$validator.validateAll();
 
                                 if (self.errors.any()) {
-                                    _context.next = 6;
+                                    _context.next = 5;
                                     break;
                                 }
 
-                                self.resetForm.busy = true;
-                                _context.next = 6;
-                                return axios.post(route('api.auth.forgotpassword'), self.resetForm).then(function (response) {
-                                    self.$popup({ message: response.data.message, backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' });
-                                    self.resetForm.busy = false;
-                                    self.$router.push({ name: 'home' });
-                                }).catch(function (error) {
-                                    self.resetForm.busy = false;
-                                    self.$popup({ message: error.response.data.message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' });
-                                });
+                                _context.next = 5;
+                                return self.submit(self.loginForm);
 
-                            case 6:
+                            case 5:
                             case 'end':
                                 return _context.stop();
                         }
@@ -422,18 +509,20 @@ var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_4_vuex__["createNam
                 }, _callee, this);
             }));
 
-            function sendEmail() {
+            function login() {
                 return _ref.apply(this, arguments);
             }
 
-            return sendEmail;
+            return login;
         }()
-    }
+    }, mapActions({
+        submit: 'login'
+    }))
 });
 
 /***/ }),
 
-/***/ 711:
+/***/ 705:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -470,7 +559,7 @@ var render = function() {
               _c(
                 "v-toolbar-title",
                 { staticClass: "text-xs-center white--text" },
-                [_vm._v("Reset Password")]
+                [_vm._v("Customer Login Page")]
               ),
               _vm._v(" "),
               _c("v-spacer"),
@@ -502,114 +591,253 @@ var render = function() {
             "v-card-text",
             { staticStyle: { "padding-top": "100px" } },
             [
-              _c("v-container", { attrs: { fluid: "" } }, [
-                _c(
-                  "form",
-                  {
-                    on: {
-                      submit: function($event) {
-                        $event.preventDefault()
-                        _vm.sendEmail()
-                      }
-                    }
-                  },
-                  [
-                    _c(
-                      "v-layout",
-                      { attrs: { row: "" } },
-                      [
-                        _c(
-                          "v-flex",
-                          {
-                            attrs: {
-                              xs12: "",
-                              sm12: "",
-                              md4: "",
-                              "offset-md4": "",
-                              lg4: "",
-                              "offset-lg4": "",
-                              xl4: "",
-                              "offset-xl4": ""
-                            }
-                          },
-                          [
-                            _c("v-text-field", {
-                              directives: [
-                                {
-                                  name: "validate",
-                                  rawName: "v-validate",
-                                  value: "required|email",
-                                  expression: "'required|email'"
-                                }
-                              ],
-                              staticClass: "primary--text",
-                              attrs: {
-                                name: "username",
-                                label: "Type Your Registered Email",
-                                "prepend-icon": "email",
-                                "data-vv-name": "username",
-                                "error-messages": _vm.errors.collect(
-                                  "username"
-                                ),
-                                counter: "255"
-                              },
-                              model: {
-                                value: _vm.resetForm.username,
-                                callback: function($$v) {
-                                  _vm.$set(_vm.resetForm, "username", $$v)
-                                },
-                                expression: "resetForm.username"
-                              }
-                            })
-                          ],
-                          1
-                        )
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "v-flex",
-                      {
-                        attrs: {
-                          xs12: "",
-                          sm12: "",
-                          md4: "",
-                          "offset-md4": "",
-                          lg4: "",
-                          "offset-lg4": "",
-                          xl4: "",
-                          "offset-xl4": ""
+              _c(
+                "v-container",
+                { attrs: { fluid: "" } },
+                [
+                  _c(
+                    "form",
+                    {
+                      on: {
+                        submit: function($event) {
+                          $event.preventDefault()
+                          _vm.login()
                         }
-                      },
-                      [
-                        _c(
-                          "v-btn",
-                          {
-                            class: {
-                              primary: !_vm.resetForm.busy,
-                              error: _vm.resetForm.busy
+                      }
+                    },
+                    [
+                      _c(
+                        "v-layout",
+                        { attrs: { row: "" } },
+                        [
+                          _c(
+                            "v-flex",
+                            {
+                              attrs: {
+                                xs12: "",
+                                sm12: "",
+                                md4: "",
+                                "offset-md4": "",
+                                lg4: "",
+                                "offset-lg4": "",
+                                xl4: "",
+                                "offset-xl4": ""
+                              }
                             },
-                            attrs: {
-                              disabled: _vm.errors.any(),
-                              loading: _vm.resetForm.busy,
-                              type: "submit",
-                              block: ""
-                            }
-                          },
-                          [
-                            _vm._v(
-                              "\n              Send Password Reset Email\n            "
-                            )
-                          ]
-                        )
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                )
-              ])
+                            [
+                              _c("v-text-field", {
+                                directives: [
+                                  {
+                                    name: "validate",
+                                    rawName: "v-validate",
+                                    value: "required|email",
+                                    expression: "'required|email'"
+                                  }
+                                ],
+                                staticClass: "primary--text",
+                                attrs: {
+                                  name: "username",
+                                  label: "Type Your Account Email",
+                                  "error-messages": _vm.errors.collect(
+                                    "username"
+                                  ),
+                                  "data-vv-name": "username",
+                                  "prepend-icon": "email",
+                                  counter: "255"
+                                },
+                                model: {
+                                  value: _vm.loginForm.username,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.loginForm, "username", $$v)
+                                  },
+                                  expression: "loginForm.username"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-layout",
+                        { attrs: { row: "" } },
+                        [
+                          _c(
+                            "v-flex",
+                            {
+                              attrs: {
+                                xs12: "",
+                                sm12: "",
+                                md4: "",
+                                "offset-md4": "",
+                                lg4: "",
+                                "offset-lg4": "",
+                                xl4: "",
+                                "offset-xl4": ""
+                              }
+                            },
+                            [
+                              _c("v-text-field", {
+                                directives: [
+                                  {
+                                    name: "validate",
+                                    rawName: "v-validate",
+                                    value: "required|min:6",
+                                    expression: "'required|min:6'"
+                                  }
+                                ],
+                                staticClass: "primary--text",
+                                attrs: {
+                                  name: "password",
+                                  label: "Enter your password",
+                                  hint: "At least 6 characters",
+                                  "append-icon": _vm.icon,
+                                  "append-icon-cb": function() {
+                                    return (_vm.password_visible = !_vm.password_visible)
+                                  },
+                                  type: !_vm.password_visible
+                                    ? "password"
+                                    : "text",
+                                  "error-messages": _vm.errors.collect(
+                                    "password"
+                                  ),
+                                  "data-vv-name": "password",
+                                  counter: "255",
+                                  "prepend-icon": "fa-key"
+                                },
+                                model: {
+                                  value: _vm.loginForm.password,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.loginForm, "password", $$v)
+                                  },
+                                  expression: "loginForm.password"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-flex",
+                        {
+                          attrs: {
+                            xs12: "",
+                            sm12: "",
+                            md4: "",
+                            "offset-md4": "",
+                            lg4: "",
+                            "offset-lg4": "",
+                            xl4: "",
+                            "offset-xl4": "",
+                            "text-xs-center": ""
+                          }
+                        },
+                        [
+                          _c(
+                            "v-btn",
+                            {
+                              attrs: {
+                                block: "",
+                                loading: _vm.loginForm.busy,
+                                disabled: _vm.errors.any(),
+                                type: "submit",
+                                color: "primary"
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n              Sign In \n              "
+                              ),
+                              _c("v-icon", { attrs: { right: "" } }, [
+                                _vm._v("fa-sign-in")
+                              ])
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-layout",
+                    { attrs: { "row-wrap": "" } },
+                    [
+                      _c(
+                        "v-flex",
+                        {
+                          attrs: {
+                            xs6: "",
+                            md2: "",
+                            "offset-md4": "",
+                            "pa-0": ""
+                          }
+                        },
+                        [
+                          _c(
+                            "v-btn",
+                            {
+                              attrs: {
+                                dark: "",
+                                block: "",
+                                color: "teal lighten-2"
+                              },
+                              nativeOn: {
+                                click: function($event) {
+                                  _vm.goToRegister()
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n              No Account Yet?\n            "
+                              )
+                            ]
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-flex",
+                        { attrs: { xs6: "", md2: "", "pa-0": "" } },
+                        [
+                          _c(
+                            "v-btn",
+                            {
+                              attrs: {
+                                dark: "",
+                                block: "",
+                                color: "red lighten-2"
+                              },
+                              nativeOn: {
+                                click: function($event) {
+                                  _vm.resetPassword()
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n              Forgot Password?\n            "
+                              )
+                            ]
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
             ],
             1
           )
@@ -626,7 +854,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-32f9f015", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-6d4a7902", module.exports)
   }
 }
 
