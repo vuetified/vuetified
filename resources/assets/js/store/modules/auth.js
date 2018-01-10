@@ -44,9 +44,11 @@ const actions = {
             commit('setExpiration', payload.expires_in)
             vm.$cookie.set('access_token', payload.access_token, { expires: 365 })
             await dispatch('fetchMe')
+            //! added checkmeout fetchKeys uses, action of different vuex module
+            await dispatch('checkmeout/fetchKeys',null,  {root:true})
             form.busy = false
-            vm.$popup({ message: 'Successfully Logged In!', backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
-            vm.$router.push({ name: 'dashboard' })
+            await vm.$popup({ message: 'Successfully Logged In!', backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })
+            await vm.$router.push({ name: 'dashboard' })
         } catch ({errors, message}) {
             form.errors.set(errors)
             form.busy = false
