@@ -200,7 +200,36 @@ export default {
             { color: '', icon: '', show: true, title: '', tagline: '', xs: 12, sm: 12, md: 4, lg: 4, xl: 4 },
             { color: 'blue', icon: 'fa-thumbs-up', show: true, title: 'Passion for Excellence', tagline: 'Our endeavor entails pursuing what is right, over and over again. A habituation of demanding more of ourselves than our customers would. Through our persistence in finding better ways of doing what we do, and by declaring & attaining ambitious goals, we set new standards in our industry even exceeding our own expectations. We do not rest on our achievements. Rather, we passionately build on them in our personal and professional journey, wherever we may be in the world.', xs: 12, sm: 12, md: 4, lg: 4, xl: 4 }
         ]
-    })
+    }),
+    head: {
+        title: function () {
+            return {
+                inner: 'About',
+                separator: '-',
+                complement: App.site.trademark
+            }
+        },
+        // Meta tags
+        meta: [
+            { name: 'application-name', content: App.site.trademark },
+            { name: 'description', content: App.site.description, id: 'desc' }, // id to replace intead of create element
+            // Facebook / Open Graph
+            { property: 'fb:app_id', content: App.site.fb_id },
+            { property: 'og:title', content: App.site.title },
+            { property: 'og:type', content: 'website' },
+            { property: 'og:image', content: App.site.logo.url },
+            { property: 'og:description', content: App.site.description },
+            { property: 'og:site_name', content: App.site.trademark },
+            { property: 'og:locale', content: 'en_US' },
+            { property: 'article:author', content: App.site.trademark }
+        ],
+        // link tags
+        link: [
+            { rel: 'canonical', href: window.location.href, id: 'canonical' }
+        ]
+        
+        
+    }
     
 }
 </script>

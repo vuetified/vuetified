@@ -279,6 +279,36 @@ export default {
         option: null,
         count: 0
     }),
+    head: {
+        title: function () {
+            let self = this
+            return {
+                inner: self.titleCase(self.slug),
+                separator: '-',
+                complement: App.site.trademark
+            }
+        },
+        // Meta tags
+        meta: [
+            { name: 'application-name', content: App.site.trademark },
+            { name: 'description', content: App.site.description, id: 'desc' }, // id to replace intead of create element
+            // Facebook / Open Graph
+            { property: 'fb:app_id', content: App.site.fb_id },
+            { property: 'og:title', content: App.site.title },
+            { property: 'og:type', content: 'website' },
+            { property: 'og:image', content: App.site.logo.url },
+            { property: 'og:description', content: App.site.description },
+            { property: 'og:site_name', content: App.site.trademark },
+            { property: 'og:locale', content: 'en_US' },
+            { property: 'article:author', content: App.site.trademark }
+        ],
+        // link tags
+        link: [
+            { rel: 'canonical', href: window.location.href, id: 'canonical' }
+        ]
+        
+        
+    },
     computed: {
         hasPackages () {
             return !_.isEmpty(this.product.options)
