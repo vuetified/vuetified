@@ -37,18 +37,21 @@
       </v-toolbar-items>
     </v-toolbar>
     <basket/>
+    <check-out-dialog/>
   </modal-layout>
 </template>
 <script>
 import ModalLayout from '../layouts/ModalLayout'
 import Basket from './Basket.vue'
+import CheckOutDialog from '../components/cart/CheckOutDialog'
 import { createNamespacedHelpers } from 'vuex'
 const { mapGetters } = createNamespacedHelpers('cart')
 
 export default {
     components: {
         ModalLayout,
-        Basket
+        Basket,
+        CheckOutDialog
     },
     data: () => ({
         count: 0
@@ -60,6 +63,35 @@ export default {
         isDark () {
             return this.dark === true
         }
+    },
+    head: {
+        title: function () {
+            return {
+                inner: 'Cart',
+                separator: '-',
+                complement: App.site.trademark
+            }
+        },
+        // Meta tags
+        meta: [
+            { name: 'application-name', content: App.site.trademark },
+            { name: 'description', content: App.site.description, id: 'desc' }, // id to replace intead of create element
+            // Facebook / Open Graph
+            { property: 'fb:app_id', content: App.site.fb_id },
+            { property: 'og:title', content: App.site.title },
+            { property: 'og:type', content: 'website' },
+            { property: 'og:image', content: App.site.logo.url },
+            { property: 'og:description', content: App.site.description },
+            { property: 'og:site_name', content: App.site.trademark },
+            { property: 'og:locale', content: 'en_US' },
+            { property: 'article:author', content: App.site.trademark }
+        ],
+        // link tags
+        link: [
+            { rel: 'canonical', href: window.location.href, id: 'canonical' }
+        ]
+        
+        
     },
     watch: {
         getCount (newValue) {
@@ -81,8 +113,7 @@ export default {
             self.$router.push({path: '/'})
         },
         checkout () {
-            let self = this
-            return self.$nextTick(() => self.$router.push({ name: 'checkout' }))
+            Bus.$emit('check-out-dialog')
         }
     }
 }
