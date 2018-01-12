@@ -480,8 +480,11 @@ export default {
             // you cant delete an admin account
             // but we can only downgrade it to other role
             // except if your email is = admin@
-            let index = _.findIndex(self.items, { id: user.id })
-            self.$delete(self.items, index)
+            axios.delete(route('api.user.delete',{id: user.id})).then( (response)=> {
+                let index = _.findIndex(self.items, { id: user.id })
+                self.$delete(self.items, index)
+                vm.$popup({ message: response.data.message, backgroundColor: '#e57373', delay: 5, color: '#fffffa' })
+            })
         },
         viewUser (user) {
             // redirect to view User page

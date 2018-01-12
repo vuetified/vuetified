@@ -6,6 +6,7 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::post('/users/username/{username}', 'Api\UsersController@findByUsername')->name('api.user.findByUsername');
     Route::post('/users/email/{email}', 'Api\UsersController@findByEmail')->name('api.user.findByEmail');
     Route::post('/users/{id}', 'Api\UsersController@show')->name('api.user.show');
+    Route::delete('/users/{id}', 'Api\UsersController@destroy')->name('api.user.delete');
 
     Route::get('/permissions', 'Api\Auth\PermissionRolesController@getAllPermissions')->name('api.permissions.index');
     Route::get('/roles', 'Api\Auth\PermissionRolesController@getAllRoles')->name('api.roles.index');

@@ -57,5 +57,17 @@ class UsersController extends Controller
         return new UserResouce($user->load('profile','referralLink', 'roles', 'permissions'));
     }
 
+    public function destroy($id)
+    {
+        $user = User::find($id);
+        if(optional($user)->id != 1){
+            $user->delete();
+            return response()->json(['message' => 'User Delete!'],200);
+        }else{
+            return response()->json(['message' => 'Failed To Delete User'],400);
+        }
+        
+    }
+
     
 }
