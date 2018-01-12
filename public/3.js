@@ -1,5 +1,88 @@
 webpackJsonp([3],{
 
+/***/ 632:
+/***/ (function(module, exports) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function(useSourceMap) {
+	var list = [];
+
+	// return the list of modules as css string
+	list.toString = function toString() {
+		return this.map(function (item) {
+			var content = cssWithMappingToString(item, useSourceMap);
+			if(item[2]) {
+				return "@media " + item[2] + "{" + content + "}";
+			} else {
+				return content;
+			}
+		}).join("");
+	};
+
+	// import a list of modules into the list
+	list.i = function(modules, mediaQuery) {
+		if(typeof modules === "string")
+			modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for(var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if(typeof id === "number")
+				alreadyImportedModules[id] = true;
+		}
+		for(i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if(mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if(mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
+
+function cssWithMappingToString(item, useSourceMap) {
+	var content = item[1] || '';
+	var cssMapping = item[3];
+	if (!cssMapping) {
+		return content;
+	}
+
+	if (useSourceMap && typeof btoa === 'function') {
+		var sourceMapping = toComment(cssMapping);
+		var sourceURLs = cssMapping.sources.map(function (source) {
+			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
+		});
+
+		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
+	}
+
+	return [content].join('\n');
+}
+
+// Adapted from convert-source-map (MIT)
+function toComment(sourceMap) {
+	// eslint-disable-next-line no-undef
+	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
+	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
+
+	return '/*# ' + data + ' */';
+}
+
+
+/***/ }),
+
 /***/ 640:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3763,7 +3846,7 @@ exports = module.exports = __webpack_require__(632)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -3801,13 +3884,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_acl__["a" /* default */]],
     data: function data() {
         return {
-            images: [{ src: '/img/parallax1.jpg', headline: 'Amazing Organic Health Products', 'subheader': 'Choose From A Wide Variety of Health And Organic Products', 'buttontext': 'See All Products', 'buttonlink': '/products', 'icon': 'shopping_basket' }, { src: '/img/parallax2.jpg', headline: 'Competetive Low Cost Foodcart Franchise', 'subheader': 'Start For As Low As P73,600  ONLY!', 'buttontext': 'Be A Franchisee Now!', 'buttonlink': '/categories/food-cart', 'icon': 'store_mall_directory' }, { src: '/img/parallax3.jpg', headline: 'Want To Resell Our Product?', 'subheader': 'Why Not Get Paid For Referring New Consumer?', 'buttontext': 'Be A Reseller', 'buttonlink': '/register', 'icon': 'person_pin' }, { src: '/img/parallax4.jpg', headline: 'Interested But Still Undecided?', 'subheader': 'Our Customer Service Is Open For Your Questions', 'buttontext': 'Contact Us', 'buttonlink': '/support', 'icon': 'textsms' }]
+            images: [{ src: '/img/parallax1.jpg', headline: 'Amazing Organic Health Products', 'subheader': 'Choose From A Wide Variety of Health And Organic Products', 'buttontext': 'See All Products', 'buttonlink': '/products', 'icon': 'shopping_basket' }, { src: '/img/parallax2.jpg', headline: 'Competetive Low Cost Foodcart Franchise', 'subheader': 'Start For As Low As P73,600  ONLY!', 'buttontext': 'Be A Franchisee Now!', 'buttonlink': '/categories/food-cart', 'icon': 'store_mall_directory' }, { src: '/img/parallax3.jpg', headline: 'Want To Resell Our Product?', 'subheader': 'Why Not Get Paid For Referring New Consumer?', 'buttontext': 'Be A Reseller', 'buttonlink': '/register', 'icon': 'person_pin' }, { src: '/img/checkoutprocess.jpg', headline: 'Easy Shopping Experience', subheader: 'So Many Ways To Pay, Credit Card, Online Payment, Bank Deposit and COD', 'buttontext': 'Shop Now', 'buttonlink': '/products', 'icon': 'fa-shopping-bag ' }, { src: '/img/parallax4.jpg', headline: 'Interested But Still Undecided?', 'subheader': 'Our Customer Service Is Open For Your Questions', 'buttontext': 'Contact Us', 'buttonlink': '/support', 'icon': 'textsms' }]
         };
     },
     mounted: function mounted() {
@@ -3847,33 +3941,41 @@ var render = function() {
           "div",
           { staticClass: "headline text-xs-center" },
           [
-            _c("h3", { staticClass: "white--text" }, [
-              _c("span", [_vm._v(_vm._s(item.headline))])
-            ]),
-            _vm._v(" "),
-            _c("p", { staticClass: "white--text title" }, [
-              _c("span", [_vm._v(_vm._s(item.subheader))])
-            ]),
-            _vm._v(" "),
-            _c(
-              "v-btn",
-              {
-                staticClass: "primary white--text",
-                nativeOn: {
-                  click: function($event) {
-                    $event.preventDefault()
-                    _vm.goToLink(item.buttonlink)
-                  }
-                }
-              },
-              [
-                _vm._v("\n        " + _vm._s(item.buttontext) + " \n        "),
-                _c("v-icon", { attrs: { right: "", dark: "" } }, [
-                  _vm._v(_vm._s(item.icon))
+            item.headline
+              ? _c("h3", { staticClass: "white--text" }, [
+                  _c("span", [_vm._v(_vm._s(item.headline))])
                 ])
-              ],
-              1
-            )
+              : _vm._e(),
+            _vm._v(" "),
+            item.subheader
+              ? _c("p", { staticClass: "white--text title" }, [
+                  _c("span", [_vm._v(_vm._s(item.subheader))])
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            item.buttontext
+              ? _c(
+                  "v-btn",
+                  {
+                    staticClass: "primary white--text",
+                    nativeOn: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        _vm.goToLink(item.buttonlink)
+                      }
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n        " + _vm._s(item.buttontext) + " \n        "
+                    ),
+                    _c("v-icon", { attrs: { right: "", dark: "" } }, [
+                      _vm._v(_vm._s(item.icon))
+                    ])
+                  ],
+                  1
+                )
+              : _vm._e()
           ],
           1
         )
