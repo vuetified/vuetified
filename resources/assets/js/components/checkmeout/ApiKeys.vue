@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent="addKeys()">
-
+    <!--
     <v-text-field
       class="primary--text"
       name="api_key"
@@ -38,6 +38,7 @@
       Save
       <v-icon right>fa-save</v-icon
     ></v-btn>
+    -->
     <v-btn 
       v-if="!getToken"
       block 
