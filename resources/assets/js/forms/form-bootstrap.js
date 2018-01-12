@@ -168,6 +168,12 @@ App.forms = {
         message: '',
         contact_no: '',
         sponsor_id: ''
+    },
+    checkMeOutForm: {
+        products: [],
+        receptacle: 'b85cc79e-2938-4ef2-8f91-a44a389bdb36',
+        subtotal: 0
+
     }
     // Add Other Form Object Here
 }
