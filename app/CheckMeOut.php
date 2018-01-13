@@ -30,8 +30,8 @@ class CheckMeOut extends Model
             $checkmeout->token = $data['token'];
             if(optional(request()->user())->id){
                 $checkmeout->user_id = request()->user()->id;
+                $checkmeout->save();
             }
-            return tap($checkmeout->save());
         }
         return $checkmeout;
         

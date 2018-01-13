@@ -8,6 +8,7 @@ use GuzzleHttp\RequestOptions;
 use App\CheckMeOut;
 use App\Exceptions\UserTokenNotFound;
 use App\Product;
+use App\Exceptions\CheckMeOutNotAuthorized;
 
 class CheckMeOutController extends Controller
 {
@@ -24,13 +25,12 @@ class CheckMeOutController extends Controller
             RequestOptions::JSON => ['email' => $request->email, 'password' => $request->password]
         ]);
         $data = $this->checkmeout('POST','/auth/login');
-        $checkmeout = CheckMeOut::findOrCreate($data);
-        if($checkmeout->token){
-        return response()->json(['checkmeout' => $checkmeout, 'message' => 'Checkmeout Account Authenticated'],200);
-            
-        }else{
-            return response()->json(['message' => 'Failed To Authenticate Checkmeout Account']);
+        if(!$data){
+            throw new CheckMeOutNotAuthorized;
         }
+        $checkmeout = CheckMeOut::findOrCreate($data);
+        return response()->json(['checkmeout' => $checkmeout, 'message' => 'Checkmeout Account Authenticated'],200);
+       
     }
 
     public function getProducts(Request $request)
