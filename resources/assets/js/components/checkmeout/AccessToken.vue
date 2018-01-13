@@ -91,8 +91,7 @@ export default {
     data: () => ({
         loginForm: new AppForm({
             email: '',
-            password:'',
-            token: ''
+            password:''
         }),
         password_visible: false
     }),
