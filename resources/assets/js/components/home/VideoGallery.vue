@@ -100,7 +100,7 @@ export default {
                 poster: 'https://img.youtube.com/vi/KtTIQokv2y8/maxresdefault.jpg'
             },
             {
-                title: 'Garcia Cambogia',
+                title: 'Garcinia Cambogia',
                 href: 'https://www.youtube.com/watch?v=0jOAxake3XY',
                 type: 'text/html',
                 youtube: '0jOAxake3XY',

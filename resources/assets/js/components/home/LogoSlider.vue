@@ -75,6 +75,18 @@
             src="/img/gateway/western.png" 
           >
         </div>
+        <div style="display: none;">
+          <img 
+            data-u="image" 
+            src="/img/gateway/credit-cards.jpg" 
+          >
+        </div>
+        <div style="display: none;">
+          <img 
+            data-u="image" 
+            src="/img/gateway/cashondelivery.jpg" 
+          >
+        </div>
       </div>
     </div>
   </div>
