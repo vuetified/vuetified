@@ -13,11 +13,13 @@
         row 
         wrap
       >
-        <v-breadcrumbs 
-          icons 
-          divider="forward" 
-          light
-        >
+        <v-breadcrumbs light>
+          <v-icon 
+            slot="divider" 
+            color="teal"
+          >
+            forward
+          </v-icon>
           <v-breadcrumbs-item
             active-class="primary--text"
             :disabled="false"
@@ -33,11 +35,9 @@
             Products
           </v-breadcrumbs-item>
           <v-breadcrumbs-item
-            active-class="primary--text"
             :disabled="false"
-            :to="`/products/${slug}`"
           >
-            {{ slug | capitalize }}
+            <span class="blue-grey--text">{{ slug | capitalize }}</span>
           </v-breadcrumbs-item>
           <v-breadcrumbs-item
             :disabled="true"
