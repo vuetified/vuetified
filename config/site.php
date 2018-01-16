@@ -25,7 +25,7 @@ return [
         'show'  => false
     ],
     'logo' => [
-        'url' => '/img/logo.png',
+        'url' => env('HOME_LOGO','/img/logo.png'),
         'width' => '50px',
         'height' => '50px',
         'show'  => true
