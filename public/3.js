@@ -4082,7 +4082,7 @@ exports = module.exports = __webpack_require__(632)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -4169,22 +4169,34 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             videos: [{
                 title: 'Testimonials',
-                href: 'https://www.youtube.com/watch?v=l-nKCcfSMHc',
+                href: 'https://www.youtube.com/watch?v=6ZsablEj0X0',
                 type: 'text/html',
-                youtube: 'l-nKCcfSMHc',
-                poster: 'https://img.youtube.com/vi/l-nKCcfSMHc/maxresdefault.jpg'
+                youtube: '6ZsablEj0X0',
+                poster: 'https://img.youtube.com/vi/6ZsablEj0X0/maxresdefault.jpg'
             }, {
-                title: 'Opportunity',
-                href: 'https://www.youtube.com/watch?v=Y65XWelZiB8',
+                title: 'Business Opportunity',
+                href: 'https://www.youtube.com/watch?v=6I56VvVsveE',
                 type: 'text/html',
-                youtube: 'Y65XWelZiB8',
-                poster: 'https://img.youtube.com/vi/Y65XWelZiB8/maxresdefault.jpg'
+                youtube: '6I56VvVsveE',
+                poster: 'https://img.youtube.com/vi/6I56VvVsveE/maxresdefault.jpg'
             }, {
-                title: 'Product Presentation',
-                href: 'https://www.youtube.com/watch?v=DjrAVpRNKTo',
+                title: 'Foodcart Franchise',
+                href: 'https://www.youtube.com/watch?t=15s&v=QN0Itos5D3E',
                 type: 'text/html',
-                youtube: 'DjrAVpRNKTo',
-                poster: 'https://img.youtube.com/vi/DjrAVpRNKTo/maxresdefault.jpg'
+                youtube: 'QN0Itos5D3E',
+                poster: '/img/foodcart.png'
+            }, {
+                title: 'The Grand Launch',
+                href: 'https://www.youtube.com/watch?v=KtTIQokv2y8',
+                type: 'text/html',
+                youtube: 'KtTIQokv2y8',
+                poster: 'https://img.youtube.com/vi/KtTIQokv2y8/maxresdefault.jpg'
+            }, {
+                title: 'Garcia Cambogia',
+                href: 'https://www.youtube.com/watch?v=0jOAxake3XY',
+                type: 'text/html',
+                youtube: '0jOAxake3XY',
+                poster: '/img/products/grape-juice-with-garcinia-cambogia.jpg'
             }],
             youtube_id: 'l-nKCcfSMHc',
             loaded: false
