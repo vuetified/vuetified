@@ -24,3 +24,19 @@ sudo apt-get install gifsicle
 
 jhona video
 bXrfnC-yxGU
+
+https://www.youtube.com/watch?v=Y65XWelZiB8.
+https://www.youtube.com/watch?v=DjrAVpRNKTo
+https://www.youtube.com/watch?v=l-nKCcfSMHc
+
+Vue.use(Vuetify, {
+    theme: {
+        primary: '#009688',
+        secondary: '#455A64',
+        accent: '#EF9A9A',
+        error: '#C62828',
+        info: '#7FCAC3',
+        success: '#D4E157',
+        warning: '#FFEA00'
+    }
+})
