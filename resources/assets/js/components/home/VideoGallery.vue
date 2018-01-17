@@ -38,7 +38,7 @@
             @click="changeVideo(video)"
           />
           <v-card-title 
-            style="background-color: #103050;" 
+            style="background-color: #4db6ac;" 
             v-if="showVideoTitle"
           >
             <v-spacer/>
