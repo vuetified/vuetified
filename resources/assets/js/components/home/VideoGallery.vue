@@ -73,37 +73,37 @@ export default {
         videos: [
             {
                 title: 'Testimonials',
-                href: 'https://www.youtube.com/watch?v=6ZsablEj0X0',
+                href: 'https://www.youtube.com/watch?v=l-nKCcfSMHc',
                 type: 'text/html',
-                youtube: '6ZsablEj0X0',
+                youtube: 'l-nKCcfSMHc',
                 poster: 'https://img.youtube.com/vi/6ZsablEj0X0/maxresdefault.jpg'
             },
             {
                 title: 'Business Opportunity',
-                href: 'https://www.youtube.com/watch?v=6I56VvVsveE',
+                href: 'https://www.youtube.com/watch?v=Y65XWelZiB8',
                 type: 'text/html',
-                youtube: '6I56VvVsveE',
+                youtube: 'Y65XWelZiB8',
                 poster: 'https://img.youtube.com/vi/6I56VvVsveE/maxresdefault.jpg'
             },
             {
                 title: 'Foodcart Franchise',
-                href: 'https://www.youtube.com/watch?t=15s&v=QN0Itos5D3E',
+                href: 'https://www.youtube.com/watch?v=bXrfnC-yxGU',
                 type: 'text/html',
-                youtube: 'QN0Itos5D3E',
+                youtube: 'bXrfnC-yxGU',
                 poster: '/img/foodcart.png'
             },
             {
-                title: 'The Grand Launch',
-                href: 'https://www.youtube.com/watch?v=KtTIQokv2y8',
+                title: 'Quick Presentation',
+                href: 'https://www.youtube.com/watch?v=SvOVb0BO7o4',
                 type: 'text/html',
-                youtube: 'KtTIQokv2y8',
+                youtube: 'SvOVb0BO7o4',
                 poster: 'https://img.youtube.com/vi/KtTIQokv2y8/maxresdefault.jpg'
             },
             {
                 title: 'Garcinia Cambogia',
-                href: 'https://www.youtube.com/watch?v=0jOAxake3XY',
+                href: 'https://www.youtube.com/watch?v=DjrAVpRNKTo',
                 type: 'text/html',
-                youtube: '0jOAxake3XY',
+                youtube: 'DjrAVpRNKTo',
                 poster: '/img/products/grape-juice-with-garcinia-cambogia.jpg'
             }
         ],

@@ -23,16 +23,14 @@ sudo npm install -g svgo
 sudo apt-get install gifsicle
 
 jhona video
-bXrfnC-yxGU
 
-https://www.youtube.com/watch?v=Y65XWelZiB8.
-https://www.youtube.com/watch?v=DjrAVpRNKTo
-https://www.youtube.com/watch?v=l-nKCcfSMHc
 
+
+jhona
 Vue.use(Vuetify, {
     theme: {
-        primary: '#009688',
-        secondary: '#455A64',
+        primary: '#4db6ac',
+        secondary: '#607d8b',
         accent: '#EF9A9A',
         error: '#C62828',
         info: '#7FCAC3',
@@ -40,3 +38,93 @@ Vue.use(Vuetify, {
         warning: '#FFEA00'
     }
 })
+
+```
+{
+                title: 'Testimonials',
+                href: 'https://www.youtube.com/watch?v=l-nKCcfSMHc',
+                type: 'text/html',
+                youtube: 'l-nKCcfSMHc',
+                poster: 'https://img.youtube.com/vi/6ZsablEj0X0/maxresdefault.jpg'
+            },
+            {
+                title: 'Business Opportunity',
+                href: 'https://www.youtube.com/watch?v=Y65XWelZiB8',
+                type: 'text/html',
+                youtube: 'Y65XWelZiB8',
+                poster: 'https://img.youtube.com/vi/6I56VvVsveE/maxresdefault.jpg'
+            },
+            {
+                title: 'Foodcart Franchise',
+                href: 'https://www.youtube.com/watch?v=bXrfnC-yxGU',
+                type: 'text/html',
+                youtube: 'bXrfnC-yxGU',
+                poster: '/img/foodcart.png'
+            },
+            {
+                title: 'Quick Presentation',
+                href: 'https://www.youtube.com/watch?v=SvOVb0BO7o4',
+                type: 'text/html',
+                youtube: 'SvOVb0BO7o4',
+                poster: 'https://img.youtube.com/vi/KtTIQokv2y8/maxresdefault.jpg'
+            },
+            {
+                title: 'Garcinia Cambogia',
+                href: 'https://www.youtube.com/watch?v=DjrAVpRNKTo',
+                type: 'text/html',
+                youtube: 'DjrAVpRNKTo',
+                poster: '/img/products/grape-juice-with-garcinia-cambogia.jpg'
+            }
+```
+
+patsy
+Vue.use(Vuetify, {
+    theme: {
+        primary: '#BA9A5A',
+        secondary: '#455A64',
+        accent: '#103050',
+        error: '#C62828',
+        info: '#7FCAC3',
+        success: '#D4E157',
+        warning: '#FFEA00'
+    }
+})
+
+```
+{
+                title: 'Testimonials',
+                href: 'https://www.youtube.com/watch?v=6ZsablEj0X0',
+                type: 'text/html',
+                youtube: '6ZsablEj0X0',
+                poster: 'https://img.youtube.com/vi/6ZsablEj0X0/maxresdefault.jpg'
+            },
+            {
+                title: 'Business Opportunity',
+                href: 'https://www.youtube.com/watch?v=6I56VvVsveE',
+                type: 'text/html',
+                youtube: '6I56VvVsveE',
+                poster: 'https://img.youtube.com/vi/6I56VvVsveE/maxresdefault.jpg'
+            },
+            {
+                title: 'Foodcart Franchise',
+                href: 'https://www.youtube.com/watch?t=15s&v=QN0Itos5D3E',
+                type: 'text/html',
+                youtube: 'QN0Itos5D3E',
+                poster: '/img/foodcart.png'
+            },
+            {
+                title: 'The Grand Launch',
+                href: 'https://www.youtube.com/watch?v=KtTIQokv2y8',
+                type: 'text/html',
+                youtube: 'KtTIQokv2y8',
+                poster: 'https://img.youtube.com/vi/KtTIQokv2y8/maxresdefault.jpg'
+            },
+            {
+                title: 'Garcinia Cambogia',
+                href: 'https://www.youtube.com/watch?v=0jOAxake3XY',
+                type: 'text/html',
+                youtube: '0jOAxake3XY',
+                poster: '/img/products/grape-juice-with-garcinia-cambogia.jpg'
+            }
+
+```
