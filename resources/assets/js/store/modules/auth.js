@@ -84,6 +84,11 @@ const actions = {
             commit('setRefreshToken', null)
             commit('setExpiration', null)
             commit('setMe', null)
+            commit('checkmeout/setToken', null, { root: true })
+            commit('checkmeout/setApiKey', null, { root: true })
+            commit('checkmeout/setID', null, { root: true })
+            commit('checkmeout/setSecretKey', null, { root: true })
+            commit('checkmeout/setUserID', null, { root: true })
             form.busy = false
             vm.$router.push({ name: 'home' })
             vm.$popup({ message: 'Successfully Logged Out!', backgroundColor: '#4db6ac', delay: 5, color: '#fffffa' })

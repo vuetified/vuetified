@@ -53,8 +53,6 @@ Route::group(['middleware' => ['auth:api']], function () {
 
     Route::post('/cmo/fetchKeys', 'CheckMeOutController@fetchKeys')->name('api.cmo.fetchkeys');
     Route::post('/cmo/addKeys', 'CheckMeOutController@addKeys')->name('api.cmo.addKeys');
-    
-    Route::post('/cmo/addItems', 'CheckMeOutController@addItems')->name('api.cmo.addItems');
     /* Orders */
     Route::post('/orders/{order}/toggle/paid', 'Api\Order\ToggleOrderController@togglePaid')->name('api.toggle.paid');
     Route::post('/orders/{order}/toggle/sent', 'Api\Order\ToggleOrderController@toggleSent')->name('api.toggle.sent');

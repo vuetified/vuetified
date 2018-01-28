@@ -90,7 +90,8 @@ export default {
         },
         async addItems(){
             let self = this
-            let payload = (await axios.post(route('api.cmo.addItems'),self.checkMeOutForm))
+            //! HardCoded Links Make Sure To Change This When You Change This On Your Route!
+            let payload = (await axios.post('/api/cmo/addItems',self.checkMeOutForm))
             return payload.data
         }
     }

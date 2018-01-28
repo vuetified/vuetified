@@ -6,6 +6,7 @@ namespace App\Traits;
 use Illuminate\Http\Request;
 use App\Exceptions\UserTokenNotFound;
 use GuzzleHttp\Client;
+use App\User;
 
 trait CheckMeOutTrait 
 {
@@ -16,6 +17,8 @@ trait CheckMeOutTrait
     public static $version = 'v1';
     public static $api='api';
     public static $based_url = 'https://api.checkmeout.ph/v1';
+    public $api_key = null;
+    public $secret_key = null;
 
     public function __construct(Client $client)
     {
@@ -54,17 +57,69 @@ trait CheckMeOutTrait
     {
         return self::getBasedURL() . $segment;
     }
+    private function __base64_encode_safe($data, $flag = true)
+	{
+		return rtrim(strtr(base64_encode($data), '+/', '-_'), '=');
+	}
+    private function _sign($header, $payload, $secret_key, $alg = 'HS256')
+	{
+		// Build the data to be signed.
+		$data = $this->__base64_encode_safe( json_encode($header), true) . '.' . $this->__base64_encode_safe(json_encode($payload), true);
+		
+		// Sign it.
+		switch (strtolower($alg)) {
+			case 'hs256':
+				$signature = $this->__base64_encode_safe(hash_hmac('sha256', $data, $secret_key, true), true);
+				break;
+			default:
+				throw new \Exception('The requested hashing algorithm is not supported.', 401);
+		}
+		
+		return $signature;
+    }
 
+    private function generateJWT()
+	{
+		$header = [
+			'alg' => 'HS256',
+			'typ' => 'JWT'
+        ];
+        
+        $payload = [
+			'iat' => time(),
+			'sub' => $this->api_key//$user->checkmeout->api_key
+        ];
+        $signature = $this->_sign($header, $payload, $this->secret_key); // $user->checkmeout->secret_key
+		
+		return $this->__base64_encode_safe(json_encode($header), true) . '.' . $this->__base64_encode_safe(json_encode($payload), true) . '.' . $signature;
+    }
+    public function getConfigKeys($sponsor){
+        $user = User::find(optional($sponsor)->user_id);
+        $keys = [];
+        if($checkmeout = optional($user)->checkmeout){
+            $keys = [
+                'api_key' => $checkmeout->api_key,
+                'secret_key' => $checkmeout->secret_key
+            ];
+        }
+        // We Will Return a Default Sponsor
+        else {
+            $keys = [
+                'api_key' => config('checkmeout.api_key'),
+                'secret_key' => config('checkmeout.secret_key')
+            ];
+        }
+        $this->api_key = $keys['api_key'];
+        $this->secret_key = $keys['secret_key'];
+    }
     public function setToken(Request $request) : void
     {
-        $user = $request->user();
-        if(!$user){
-            throw new UserTokenNotFound;
-        }
-        $token = optional($user->checkmeout)->token;
+        $token = $this->generateJWT(); //! generate token using api_key and secret_key
         if($token){
             $authorization = ['headers' =>
-            ['Authorization' => 'Bearer '.$token]
+            [
+                'Authorization' => 'Bearer '.$token
+            ],
         ];
             $this->addOption($authorization);
         }

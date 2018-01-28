@@ -42,7 +42,7 @@ const actions = {
     async fetchKeys({ commit }){
         try{
             let payload = (await axios.post(route('api.cmo.fetchkeys')))
-            console.log(payload.data)
+            console.log('payload',payload.data)
             commit('setToken', payload.data.token)
             commit('setID', payload.data.id)
             commit('setUserID', payload.data.user_id)
@@ -57,7 +57,7 @@ const actions = {
         try {
             form.busy = true
             let payload= (await App.post(route('api.cmo.addKeys'),form))
-            console.log(payload)
+            console.log('payload',payload)
             commit('setApiKey', payload.api_key)
             commit('setSecretKey', payload.secret_key)
             form.busy = false

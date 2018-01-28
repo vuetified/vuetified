@@ -9,6 +9,7 @@ use App\CheckMeOut;
 use App\Exceptions\UserTokenNotFound;
 use App\Product;
 use App\Exceptions\CheckMeOutNotAuthorized;
+use App\User;
 
 class CheckMeOutController extends Controller
 {
@@ -18,6 +19,7 @@ class CheckMeOutController extends Controller
      *
      * @return mixed
      */
+    //! NOT BEING USED!!!!
     public function login(Request $request)
     {
         $this->addOption([
@@ -53,11 +55,12 @@ class CheckMeOutController extends Controller
         
         return $receptacles;
     }
-
-    public function addItem(Request $request)
+    //! NOT BEING USED !!!!
+    public function addItem($sponsor = null,Request $request)
     {
+        //! Fetch Correct Config Keys
+        $this->getConfigKeys($sponsor);
         //! add logic to determine what type of receptacles we will use
-        //! we can use either weight or dimension or qty as bases
         $receptacles =  $this->getReceptacles();
         $this->setToken($request);
         //! maybe we can sign our own jwt token here instead of needing user access token to get the stored access_token
@@ -98,11 +101,11 @@ class CheckMeOutController extends Controller
 
         return $data;
     }
-
-    public function addItems(Request $request)
+    //! CHECKOUT OR CHECKMEOUT
+    public function addItems($sponsor = null,Request $request)
     {
-        //! add logic to determine what type of receptacles we will use
-        //! we can use either weight or dimension or qty as bases
+        //! Fetch Correct Config Keys
+        $this->getConfigKeys($sponsor);
         $str = $request->subtotal;
         $subtotal = (double)filter_var($str, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
         
@@ -117,17 +120,20 @@ class CheckMeOutController extends Controller
             $product = Product::find($ids[0]);
             $image = $product->image;
             $name = $product->name;
-            $description = $product->description ? $product->description: $product->name;
+            $description = strip_tags(mb_strimwidth($product->description, 0, 250, "..."));
+            $description = $description ? $description : $product->name;
         }
         else {
             $products =  Product::findMany($ids);
-            $description = $products->pluck('name')->toArray();
             $name = 'Collection Of Product';
             $image = '/img/checkout.png';
-            $description = implode(",",$description);  
+            $description = '';
+            foreach(\Cart::content() as $row) {
+                $description .= ' '.'('.$row->qty.')'.' ' . $row->name . ' ';
+            }
+
         }
         $this->setToken($request);
-        //! maybe we can sign our own jwt token here instead of needing user access token to get the stored access_token
         $this->addOption([
             RequestOptions::MULTIPART => 
             [
@@ -189,11 +195,23 @@ class CheckMeOutController extends Controller
             $checkmeout->api_key = $request->api_key;
             $checkmeout->secret_key = $request->secret_key;
             $checkmeout->save();
+            return response()->json([
+                'message' => 'CheckMeOut Api Keys Created!',
+                'user_id' => $user->id,
+                'api_key' => $checkmeout->api_key,
+                'secret_key' => $checkmeout->secret_key
+                ]);
         }else{
             //! Update CheckMeOut Keys
             $checkmeout->api_key = $request->api_key;
             $checkmeout->secret_key = $request->secret_key;
             $checkmeout->save();
+            return response()->json([
+                'message' => 'CheckMeOut Api Keys Saved!',
+                'user_id' => $user->id,
+                'api_key' => $checkmeout->api_key,
+                'secret_key' => $checkmeout->secret_key
+            ]);
         }
         
     }

@@ -16,7 +16,7 @@
             icon="warning" 
             value="true"
           >
-            <span class="white--text">** Login Here Using Checkmeout Credentials To Get An Access Token To Integrate This in Your Checkout Process! **</span>
+            <span class="white--text">** Get Your CheckMeOut Api Credentials In Your CheckMeOut Account Settings And Paste It Here! **</span>
           </v-alert>
         </v-flex>
         <v-flex

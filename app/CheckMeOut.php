@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\GenerateUniqueID;
 
-class CheckMeOut extends Model 
+class CheckMeOut extends Model
 {
+    use GenerateUniqueID;
+
     protected $table = 'check_me_out';
 
     public $incrementing = false;

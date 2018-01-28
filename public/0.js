@@ -1,5 +1,88 @@
 webpackJsonp([0],{
 
+/***/ 632:
+/***/ (function(module, exports) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function(useSourceMap) {
+	var list = [];
+
+	// return the list of modules as css string
+	list.toString = function toString() {
+		return this.map(function (item) {
+			var content = cssWithMappingToString(item, useSourceMap);
+			if(item[2]) {
+				return "@media " + item[2] + "{" + content + "}";
+			} else {
+				return content;
+			}
+		}).join("");
+	};
+
+	// import a list of modules into the list
+	list.i = function(modules, mediaQuery) {
+		if(typeof modules === "string")
+			modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for(var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if(typeof id === "number")
+				alreadyImportedModules[id] = true;
+		}
+		for(i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if(mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if(mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
+
+function cssWithMappingToString(item, useSourceMap) {
+	var content = item[1] || '';
+	var cssMapping = item[3];
+	if (!cssMapping) {
+		return content;
+	}
+
+	if (useSourceMap && typeof btoa === 'function') {
+		var sourceMapping = toComment(cssMapping);
+		var sourceURLs = cssMapping.sources.map(function (source) {
+			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
+		});
+
+		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
+	}
+
+	return [content].join('\n');
+}
+
+// Adapted from convert-source-map (MIT)
+function toComment(sourceMap) {
+	// eslint-disable-next-line no-undef
+	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
+	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
+
+	return '/*# ' + data + ' */';
+}
+
+
+/***/ }),
+
 /***/ 651:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -7042,7 +7125,7 @@ exports = module.exports = __webpack_require__(632)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -7070,16 +7153,78 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
 var _createNamespacedHelp = Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["createNamespacedHelpers"])('checkmeout'),
-    mapGetters = _createNamespacedHelp.mapGetters;
+    mapGetters = _createNamespacedHelp.mapGetters,
+    mapActions = _createNamespacedHelp.mapActions;
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            checkMeOutForm: new AppForm({
+                api_key: '',
+                secret_key: ''
+            }),
+            password_visible: false
+        };
+    },
     computed: __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends___default()({}, mapGetters({
-        getToken: 'getToken'
-    }))
+        getApiKey: 'getApiKey',
+        getSecretKey: 'getSecretKey'
+    }), {
+        icon: function icon() {
+            return this.password_visible ? 'visibility' : 'visibility_off';
+        }
+    }),
+    mounted: function mounted() {
+        this.fetchKeys();
+        this.checkMeOutForm.api_key = this.getApiKey;
+        this.checkMeOutForm.secret_key = this.getSecretKey;
+    },
+
+    methods: __WEBPACK_IMPORTED_MODULE_0_C_Users_uriah_sites_www_shop_node_modules_babel_runtime_helpers_extends___default()({}, mapActions({
+        addKeys: 'addKeys',
+        fetchKeys: 'fetchKeys'
+    }), {
+        submit: function submit() {
+            this.addKeys(this.checkMeOutForm);
+        }
+    })
 });
 
 /***/ }),
@@ -7092,14 +7237,96 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "v-btn",
+    "form",
     {
-      staticClass: "white--text",
-      attrs: { block: "", color: "secondary", to: "/checkmeout/access-token" }
+      on: {
+        submit: function($event) {
+          $event.preventDefault()
+          _vm.submit()
+        }
+      }
     },
     [
-      _vm._v("\n  Get Access Token\n  "),
-      _c("v-icon", { attrs: { right: "" } }, [_vm._v("fa-sign-in")])
+      _c("v-text-field", {
+        directives: [
+          {
+            name: "validate",
+            rawName: "v-validate",
+            value: "required",
+            expression: "'required'"
+          }
+        ],
+        staticClass: "primary--text",
+        attrs: {
+          name: "api_key",
+          label: "Api Key",
+          "error-messages": _vm.errors.collect("api_key"),
+          "data-vv-name": "api_key",
+          "prepend-icon": "fa-key",
+          light: "",
+          counter: "255"
+        },
+        model: {
+          value: _vm.checkMeOutForm.api_key,
+          callback: function($$v) {
+            _vm.$set(_vm.checkMeOutForm, "api_key", $$v)
+          },
+          expression: "checkMeOutForm.api_key"
+        }
+      }),
+      _vm._v(" "),
+      _c("v-text-field", {
+        directives: [
+          {
+            name: "validate",
+            rawName: "v-validate",
+            value: "required",
+            expression: "'required'"
+          }
+        ],
+        staticClass: "primary--text",
+        attrs: {
+          name: "secret_key",
+          label: "Secret Key",
+          "error-messages": _vm.errors.collect("secret_key"),
+          "data-vv-name": "secret_key",
+          "prepend-icon": "fa-user-secret ",
+          "append-icon": _vm.icon,
+          "append-icon-cb": function() {
+            return (_vm.password_visible = !_vm.password_visible)
+          },
+          type: !_vm.password_visible ? "password" : "text",
+          light: "",
+          counter: "255"
+        },
+        model: {
+          value: _vm.checkMeOutForm.secret_key,
+          callback: function($$v) {
+            _vm.$set(_vm.checkMeOutForm, "secret_key", $$v)
+          },
+          expression: "checkMeOutForm.secret_key"
+        }
+      }),
+      _vm._v(" "),
+      _c(
+        "v-btn",
+        {
+          staticClass: "white--text",
+          attrs: {
+            block: "",
+            loading: _vm.checkMeOutForm.busy,
+            disabled: _vm.errors.any(),
+            type: "submit",
+            color: "primary",
+            light: ""
+          }
+        },
+        [
+          _vm._v("\n    Save\n    "),
+          _c("v-icon", { attrs: { right: "" } }, [_vm._v("fa-save")])
+        ],
+        1
+      )
     ],
     1
   )
@@ -7154,7 +7381,7 @@ var render = function() {
                     [
                       _c("span", { staticClass: "white--text" }, [
                         _vm._v(
-                          "** Login Here Using Checkmeout Credentials To Get An Access Token To Integrate This in Your Checkout Process! **"
+                          "** Get Your CheckMeOut Api Credentials In Your CheckMeOut Account Settings And Paste It Here! **"
                         )
                       ])
                     ]
