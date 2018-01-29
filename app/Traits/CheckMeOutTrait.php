@@ -97,7 +97,7 @@ trait CheckMeOutTrait
         $user = User::find(optional($sponsor)->user_id);
         $keys = [];
         //! If User Set Up His CheckMeOut Api Key and Secret Use it
-        if(optional($user->checkmeout)->api_key && optional($user->checkmeout)->secret_key){
+        if(!is_null($sponsor) && optional($user->checkmeout)->api_key && optional($user->checkmeout)->secret_key){
             $keys = [
                 'api_key' => $checkmeout->api_key,
                 'secret_key' => $checkmeout->secret_key
