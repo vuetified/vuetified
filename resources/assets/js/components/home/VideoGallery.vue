@@ -38,7 +38,7 @@
             @click="changeVideo(video)"
           />
           <v-card-title 
-            style="background-color: #4db6ac;" 
+            style="background-color: #103050;" 
             v-if="showVideoTitle"
           >
             <v-spacer/>
@@ -73,37 +73,37 @@ export default {
         videos: [
             {
                 title: 'Testimonials',
-                href: 'https://www.youtube.com/watch?v=l-nKCcfSMHc',
+                href: 'https://www.youtube.com/watch?v=6ZsablEj0X0',
                 type: 'text/html',
-                youtube: 'l-nKCcfSMHc',
+                youtube: '6ZsablEj0X0',
                 poster: 'https://img.youtube.com/vi/6ZsablEj0X0/maxresdefault.jpg'
             },
             {
                 title: 'Business Opportunity',
-                href: 'https://www.youtube.com/watch?v=Y65XWelZiB8',
+                href: 'https://www.youtube.com/watch?v=6I56VvVsveE',
                 type: 'text/html',
-                youtube: 'Y65XWelZiB8',
+                youtube: '6I56VvVsveE',
                 poster: 'https://img.youtube.com/vi/6I56VvVsveE/maxresdefault.jpg'
             },
             {
                 title: 'Foodcart Franchise',
-                href: 'https://www.youtube.com/watch?v=bXrfnC-yxGU',
+                href: 'https://www.youtube.com/watch?t=15s&v=QN0Itos5D3E',
                 type: 'text/html',
-                youtube: 'bXrfnC-yxGU',
+                youtube: 'QN0Itos5D3E',
                 poster: '/img/foodcart.png'
             },
             {
-                title: 'Quick Presentation',
-                href: 'https://www.youtube.com/watch?v=SvOVb0BO7o4',
+                title: 'The Grand Launch',
+                href: 'https://www.youtube.com/watch?v=KtTIQokv2y8',
                 type: 'text/html',
-                youtube: 'SvOVb0BO7o4',
+                youtube: 'KtTIQokv2y8',
                 poster: 'https://img.youtube.com/vi/KtTIQokv2y8/maxresdefault.jpg'
             },
             {
-                title: 'Garcinia Cambogia',
-                href: 'https://www.youtube.com/watch?v=DjrAVpRNKTo',
+                title: 'Garcia Cambogia',
+                href: 'https://www.youtube.com/watch?v=0jOAxake3XY',
                 type: 'text/html',
-                youtube: 'DjrAVpRNKTo',
+                youtube: '0jOAxake3XY',
                 poster: '/img/products/grape-juice-with-garcinia-cambogia.jpg'
             }
         ],
