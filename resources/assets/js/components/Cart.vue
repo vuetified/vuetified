@@ -18,7 +18,7 @@
       <v-toolbar-items>
         <!-- If There is no User Account Login Yet Redirect to Authentication Page -->
         <v-btn 
-          color="success" 
+          color="white" 
           flat 
           @click.native="checkout()" 
           v-if="count > 0"
