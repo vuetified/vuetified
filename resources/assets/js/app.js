@@ -13,9 +13,9 @@ sync(store, router)
 
 Vue.use(Vuetify, {
     theme: {
-        primary: '#4db6ac',
-        secondary: '#607d8b',
-        accent: '#EF9A9A',
+        primary: '#BA9A5A',
+        secondary: '#455A64',
+        accent: '#103050',
         error: '#C62828',
         info: '#7FCAC3',
         success: '#D4E157',

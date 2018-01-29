@@ -10,15 +10,16 @@
         color="primary" 
         @click.native="redirectBack()"
       >
-        <v-icon >arrow_back</v-icon>
+        <v-icon dark>arrow_back</v-icon>
       </v-btn>
       <v-spacer/>
-      <v-toolbar-title class="text-xs-center primary--text">PAGE NOT FOUND</v-toolbar-title>
+      <v-toolbar-title class="text-xs-center white--text">PAGE NOT FOUND</v-toolbar-title>
       <v-spacer/>
       <v-toolbar-items>
         <v-btn 
           class="primary--text" 
           flat 
+          color="primary" 
           @click.native="goHome()"
         >
           <v-icon 
