@@ -18,7 +18,7 @@ mix.webpackConfig({
 
 mix.js('resources/assets/js/app.js', 'public/js')
     .extract([
-        'lodash', 'axios', 'jquery', 'vue', 'vuex', 'vue-router', 'vuetify'
+        'lodash', 'axios', 'jquery', 'vue', 'vuex', 'vue-router'
     ])
     // .sourceMaps()
 mix.stylus('resources/assets/stylus/app.styl', 'public/css')
