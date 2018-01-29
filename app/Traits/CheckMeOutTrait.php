@@ -96,13 +96,14 @@ trait CheckMeOutTrait
     public function getConfigKeys($sponsor){
         $user = User::find(optional($sponsor)->user_id);
         $keys = [];
-        if($checkmeout = optional($user)->checkmeout){
+        //! If User Set Up His CheckMeOut Api Key and Secret Use it
+        if(optional($user->checkmeout)->api_key && optional($user->checkmeout)->secret_key){
             $keys = [
                 'api_key' => $checkmeout->api_key,
                 'secret_key' => $checkmeout->secret_key
             ];
         }
-        // We Will Return a Default Sponsor
+        //! We Will Use A Default One Which is On The Config File
         else {
             $keys = [
                 'api_key' => config('checkmeout.api_key'),

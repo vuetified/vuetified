@@ -1,8 +1,9 @@
 <?php
-use Illuminate\Database\Seeder;
 use App\User;
 use App\Link;
 use App\Profile;
+use App\CheckMeOut;
+use Illuminate\Database\Seeder;
 
 class AdminSeeder extends Seeder
 {
@@ -44,8 +45,11 @@ class AdminSeeder extends Seeder
         $file2 = public_path('social_links.json');
         $social_links =file_get_contents($file2);
         $user->social_links = $social_links;
-        $user->save();
-        
+
+        $cmo = new CheckMeOut;
+        $cmo->api_key = config('checkmeout.api_key');
+        $cmo->secret_key = config('checkmeout.secret_key');
+        $user->checkmeout()->save($cmo);
         
     }
 }

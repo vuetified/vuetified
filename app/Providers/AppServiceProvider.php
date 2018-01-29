@@ -7,6 +7,8 @@ use App\Observers\UserObserver;
 use App\Observers\LinkObserver;
 use App\User;
 use App\Link;
+use App\Observers\CheckMeOutObserver;
+use App\CheckMeOut;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +21,7 @@ class AppServiceProvider extends ServiceProvider
     {
         User::observe(UserObserver::class);
         Link::observe(LinkObserver::class);
+        CheckMeOut::observe(CheckMeOutObserver::class);
     }
 
     /**

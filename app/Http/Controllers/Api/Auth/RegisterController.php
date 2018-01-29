@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers\Api\Auth;
 
-use App\Http\Controllers\Controller;
 use App\User;
+use App\Link;
+use App\Profile;
+use App\CheckMeOut;
+use App\Rules\CheckSponsor;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
 use Laravel\Passport\Client;
 use App\Traits\IssueTokenTrait;
-use App\Profile;
-use App\Link;
-use App\Rules\CheckSponsor;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Route;
 
 class RegisterController extends Controller
 {
@@ -65,6 +66,9 @@ class RegisterController extends Controller
 		$link = new Link();
 		$link->link = $user->username;
 		$user->referralLink()->save($link);
+
+		$checkmeout = new CheckMeOut;
+		$user->checkmeout()->save($checkmeout);
 		/* issue new access_token */
     	return $this->issueToken($request, 'password');
     }
