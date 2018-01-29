@@ -1,14 +1,18 @@
 <template>
-  <v-dialog v-model="dialog" max-width="300">
-    <v-card>
-      <v-card-title class="headline blue--text text--darken-2">What Do You Want To Use For Checkout?</v-card-title>
-      <v-card-text><strong class="green--text">Checkmeout</strong> - For COD, Credit Card, and Online Banking </v-card-text>
-      <v-card-text><strong class="lime--text">Checkout</strong> - For Bank Deposit, Pick Up and Cash On Hand</v-card-text>
+  <v-dialog v-model="dialog" max-width="500px">
+    <v-card v-if="!checkMeOutForm.busy">
+      <v-card-title class="headline error--text">What Do You Want To Use For Checkout?</v-card-title>
+      <v-card-text><strong class="green--text">Checkmeout.ph</strong> - For COD, Credit Card, and Online Banking </v-card-text>
+      <v-card-text><strong class="blue--text text--darken-2">Checkout</strong> - For Bank Deposit, Pick Up and Cash On Hand</v-card-text>
       <v-card-actions>
         <v-spacer/>
-        <v-btn color="green" flat @click="checkMeOut">CHECKMEOUT</v-btn>
-        <v-btn color="lime" flat @click="checkout">CHECKOUT</v-btn>
+        <v-btn color="primary" :disabled="checkMeOutForm.busy" flat @click="checkMeOut"><img src="/img/checkmeout.png"></v-btn>
+        <v-btn color="blue darken-2" flat @click="checkout" :disabled="checkMeOutForm.busy">CHECKOUT</v-btn>
       </v-card-actions>
+    </v-card>
+    <v-card v-else>
+      <v-card-title class="text-xs-center headline info--text">Processing Orders, Please Wait...</v-card-title>
+      <v-card-text class="text-xs-center"><v-progress-circular indeterminate :size="70" :width="7" color="primary"/></v-card-text>
     </v-card>
   </v-dialog>
 </template>
@@ -56,13 +60,14 @@ export default {
         },
         async checkMeOut(){
             let self = this
+            self.checkMeOutForm.busy = true
             self.checkMeOutForm.receptacle = self.choseReceptables(self.getTotalQTY())
             self.checkMeOutForm.products = self.getProductIDs()
             self.checkMeOutForm.subtotal = self.getSubTotal
             console.log('checkmeoutform',self.checkMeOutForm)
-            self.close()
             let url = await self.addItems()
             await self.destroyCart()
+            self.checkMeOutForm.busy = false
             return self.$nextTick(() => window.location.href = url)
         },
         checkout(){
