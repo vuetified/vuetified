@@ -41,6 +41,7 @@
         </v-tabs-item>
         <v-tabs-item 
           href="#check-me-out" 
+          v-if="active"
         >
           <v-icon>fa-truck</v-icon>
           <span class="hidden-md-and-down">Check Me Out</span>
@@ -54,7 +55,7 @@
         <profile/>
         <contact-details v-if="active"/>
         <social-links v-if="active"/>
-        <check-me-out/>
+        <check-me-out v-if="active"/>
         <!-- tab contents -->
       </v-tabs-items>
     </v-tabs>
